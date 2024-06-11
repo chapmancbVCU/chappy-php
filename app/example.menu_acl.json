@@ -1,0 +1,13 @@
+{
+    "Home" : "home",
+    "Tools" : {
+        "My Tools" : "tools",
+        "Tool 1" : "tools/first",
+        "separator" : "",
+        "Tool 2" : "tools/second"
+    },
+    "Google" : "https://www.google.com",
+    "PHP Docs" : "http://php.net/manual/en",
+    "Login" : "register/login",
+    "Logout" : "register/logout"
+}
