@@ -6,20 +6,15 @@
 <?php
 /**
  * Prints to console using JavaScript.
- * @param data - The information we want to print to console.
- * @param string $context The context for what we are printing.  Used as a 
- * parameter to the console.info function.
+ * @param string $output - The information we want to print to console.
+ * @param bool $with_script_tags - Determines if we will use script tabs in 
+ * our output.  Default value is true.
  */
-function cl($data, $context = 'Debug in Console') {
+function cl($output, $with_script_tags = true) {
     if(CONSOLE_LOGGING) {
-        // Buffering to solve problems frameworks, like header() in this and not a solid return.
-        ob_start();
-
-        $output  = 'console.info(\'' . $context . ':\');';
-        $output .= 'console.log(' . json_encode($data) . ');';
-        $output  = sprintf('<script>%s</script>', $output);
-
-        echo $output;
+        $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
+        if($with_script_tags) $js_code = '<script>' . $js_code . '</script>';
+        echo $js_code;
     }
 }
 

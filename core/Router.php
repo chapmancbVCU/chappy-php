@@ -129,9 +129,8 @@ class Router {
         // ACL check
         $grantAccess = self::hasAccess($controller_name, $action_name);
         if(!$grantAccess) {
-
-            $controller_name = ACCESS_RESTRICTED.'Controller';
-            $controller = ACCESS_RESTRICTED;
+            $controller = ACCESS_RESTRICTED.'Controller';
+            $controller_name = ACCESS_RESTRICTED;
             $action = 'indexAction';
         }
 
