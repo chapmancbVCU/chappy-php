@@ -44,6 +44,15 @@ class FormHelper {
         return $html;
     }
 
+    public static function posted_values($post) {
+        $clean_array = [];
+        foreach($post as $key => $value) {
+            $clean_array[$key] = self::sanitize($value);
+        }
+
+        return $clean_array;
+    }
+    
     /**
      * Stringify attributes.
      * @param string $attrs - The attributes we want to stringify.
@@ -95,5 +104,14 @@ class FormHelper {
     public static function submitTag($buttonText, $inputAttrs = []) {
         $inputString = self::stringifyAttrs($inputAttrs);
         return '<input type="submit" value="'.$buttonText.'"'.$inputString.' />';
+    }
+
+    /**
+     * Sanitized potentially harmful string of characters.
+     * @param string - $dirty The potentially dirty string.
+     * @return string The sanitized version of the dirty string.
+     */
+    public static function sanitize($dirty) {
+        return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
     }
 }

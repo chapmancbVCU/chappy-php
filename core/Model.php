@@ -28,7 +28,7 @@ class Model {
         if(!empty($params)) {
             foreach($params as $key => $val) {
                 if(property_exists($this, $key)) {
-                    $this->$key = sanitize($val);
+                    $this->$key = FormHelper::sanitize($val);
                 }
             }
             return true;
@@ -41,7 +41,7 @@ class Model {
      */
     public function data() {
         $data = new stdClass();
-        foreach(getObjectProperties($this) as $column => $value) {
+        foreach(Helper::getObjectProperties($this) as $column => $value) {
             $data->column = $value;
         }
         return $data;
@@ -111,7 +111,7 @@ class Model {
      * Wrapper for update and insert functions.
      */
     public function save() {
-        $fields = getObjectProperties($this);
+        $fields = Helper::getObjectProperties($this);
 
         // Determine whether to update or insert.
         if(property_exists($this, 'id') && $this->id != '') {

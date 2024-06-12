@@ -40,8 +40,8 @@ class RegisterController extends Controller {
     }
 
     public function logoutAction() {
-        if(currentUser()) {
-            currentUser()->logout();
+        if(Users::currentUser()) {
+            Users::currentUser()->logout();
         }
         Router::redirect(('register/login'));
     }
@@ -50,7 +50,7 @@ class RegisterController extends Controller {
         $validation = new Validate();
         $posted_values = ['fname'=>'', 'lname'=>'', 'username'=>'', 'email'=>'', 'password'=>'', 'confirm'=>''];
         if($_POST) {
-            $posted_values = posted_values($_POST);
+            $posted_values = FormHelper::posted_values($_POST);
             $validation->check($_POST, [
                 'fname' => [
                     'display' => 'First Name',
