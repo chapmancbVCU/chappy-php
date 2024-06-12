@@ -56,4 +56,12 @@ class View {
     public function setLayout($path) {
         $this->_layout = $path;
     }
+
+    public function insert($path) {
+        include ROOT . DS . 'app' . DS . 'views' . DS . $path . '.php';
+    }
+
+    public function partial($group, $partial) {
+        include ROOT . DS . 'app' . DS . 'views' . DS . $group . DS . 'partials' . DS . $partial . '.php';
+    }
 }
