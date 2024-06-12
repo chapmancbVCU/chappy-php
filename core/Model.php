@@ -77,7 +77,7 @@ class Model {
         $resultsQuery = $this->_db->find($this->_table, $params);
 
         if(!$resultsQuery) return [];
-        
+
         foreach($resultsQuery as $result) {
             $obj = new $this->_modelName($this->_table);
             $obj->populateObjData($result);
@@ -96,6 +96,8 @@ class Model {
         $result = new $this->_modelName($this->_table);
         if($resultQuery) {
             $result->populateObjData($resultQuery);
+        } else {
+            $result = false;
         }
         return $result;
     }
