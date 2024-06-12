@@ -11,7 +11,9 @@ function autoload($className) {
     $searchPaths = [
         ROOT . DS . "core" . DS . $className . ".php",
         ROOT . DS . "app" . DS . "controllers" . DS . $className . ".php",
-        ROOT . DS . "app" . DS . "models" . DS . $className . ".php"
+        ROOT . DS . "app" . DS . "models" . DS . $className . ".php",
+        ROOT . DS . "app" . DS . "custom_validators" . DS . $className . ".php",
+        ROOT . DS . "core" . DS . "validators" . DS . $className . ".php"
     ];
 
     foreach($searchPaths as $i)
