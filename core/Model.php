@@ -169,7 +169,7 @@ class Model {
     }
 
     public function update($id, $fields) {
-        if(empty($fields) || $id = '') return false;
+        if(empty($fields) || $id == '') return false;
         return $this->_db->update($this->_table, $id, $fields);
     }
 }
