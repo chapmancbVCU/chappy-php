@@ -6,7 +6,7 @@
     <h3 class="text-center">Register</h3>
     <hr>
     <form class="form" action="" method="post">
-        <div class="bg-danger"><?=$this->displayErrors?></div>
+        <div class="bg-danger form-errors"><?=$this->displayErrors?></div>
         <div class="form-group">
             <label for="fname">First Name</label>
             <input type="text" id="fname" name="fname" class="form-control" value="<?=$this->post['fname']?>">
