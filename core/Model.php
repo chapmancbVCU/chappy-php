@@ -5,13 +5,12 @@ class Model {
     protected $_table;
     protected $_modelName;
     protected $_softDelete = false;
-    protected $_columnNames = [];
     public $id;
 
     public function __construct($table) {
         $this->_db = DB::getInstance();
         $this->_table = $table;
-        $this->_setTableColumns();
+
 
         /* Replace table name under scores with a space and use ucwords upper case each word 
          * of model and replaces all spaces with no space. 
@@ -28,11 +27,10 @@ class Model {
     public function assign($params) {
         if(!empty($params)) {
             foreach($params as $key => $val) {
-                if(in_array($key, $this->_columnNames)) {
+                if(property_exists($this, $key)) {
                     $this->$key = sanitize($val);
                 }
             }
-
             return true;
         }
         return false;
@@ -43,8 +41,8 @@ class Model {
      */
     public function data() {
         $data = new stdClass();
-        foreach($this->_columnNames as $column) {
-            $data->column = $this->column;
+        foreach(getObjectProperties($this) as $column => $value) {
+            $data->column = $value;
         }
         return $data;
     }
@@ -73,17 +71,9 @@ class Model {
     
     public function find($params = []) {
         $params = $this->_softDeleteParams(($params));
-        $results = [];
-        $resultsQuery = $this->_db->find($this->_table, $params);
-
+        $resultsQuery = $this->_db->find($this->_table, $params, get_class($this));
         if(!$resultsQuery) return [];
-
-        foreach($resultsQuery as $result) {
-            $obj = new $this->_modelName($this->_table);
-            $obj->populateObjData($result);
-            $results[] = $obj;
-        }
-        return $results;
+        return $resultsQuery;
     }
 
     public function findById($id) {
@@ -92,14 +82,8 @@ class Model {
 
     public function findFirst($params = []) {
         $params = $this->_softDeleteParams(($params));
-        $resultQuery = $this->_db->findFirst($this->_table, $params);
-        $result = new $this->_modelName($this->_table);
-        if($resultQuery) {
-            $result->populateObjData($resultQuery);
-        } else {
-            $result = false;
-        }
-        return $result;
+        $resultQuery = $this->_db->findFirst($this->_table, $params, get_class($this));
+        return $resultQuery;
     }
 
     /** 
@@ -127,29 +111,13 @@ class Model {
      * Wrapper for update and insert functions.
      */
     public function save() {
-        $fields = [];
-        foreach($this->_columnNames as $column) {
-            $fields[$column] = $this->$column;  // $column so property is a variable property
-        }
+        $fields = getObjectProperties($this);
 
         // Determine whether to update or insert.
         if(property_exists($this, 'id') && $this->id != '') {
             return $this->update($this->id, $fields);
         } else {
             return $this->insert($fields);
-        }
-    }
-
-    /**
-     * Grab all columns and set properties up on class.
-     */
-    protected function _setTableColumns() {
-        $columns = $this->getColumns();
-        //dnd($columns);
-        foreach($columns as $column) {
-            $columnName = $column->Field;           // Field property of column
-            $this->_columnNames[] = $columnName;
-            $this->{$columnName} = null;
         }
     }
 

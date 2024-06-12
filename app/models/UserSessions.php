@@ -1,6 +1,11 @@
 <?php
 
 class UserSessions extends Model{
+    public $id;
+    public $user_id;
+    public $session;
+    public $user_agent;
+    
     public function __construct() {
         $table = 'user_sessions';
         parent::__construct($table);

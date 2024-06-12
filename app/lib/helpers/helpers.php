@@ -49,6 +49,10 @@ function dnd($data) {
     die();
 }
 
+function getObjectProperties($obj) {
+    return get_object_vars($obj);
+}
+
 function posted_values($post) {
     $clean_array = [];
     foreach($post as $key => $value) {
