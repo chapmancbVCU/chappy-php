@@ -6,6 +6,7 @@
     <h3 class="text-center">Register</h3>
     <hr>
     <form class="form" action="" method="post">
+        <?= FormHelper::csrfInput() ?>
         <div class="bg-danger form-errors"><?=$this->displayErrors?></div>
         <div class="form-group">
             <label for="fname">First Name</label>
@@ -31,7 +32,7 @@
             <label for="confirm">Confirm Password</label>
             <input type="password" id="confirm" name="confirm" class="form-control" value="<?=$this->post['confirm']?>">
         </div>
-        <div class="pull-right">
+        <div class="text-right">
             <input type="submit" class="btn btn-primary btn-large" value="register">
         </div>
     </form>
