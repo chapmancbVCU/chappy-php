@@ -4,6 +4,8 @@ class Model {
     protected $_table;
     protected $_modelName;
     protected $_softDelete = false;
+    protected $_validates = true;
+    protected $_validationErrors = [];
     public $id;
 
     public function __construct($table) {
@@ -17,6 +19,11 @@ class Model {
          * $table = 'user_sessions => User Sessions => UserSessions
          */
         $this->_modelName = str_replace(' ', '', ucwords(str_replace('_', '', $this->_table)));
+    }
+
+    public function addErrorMessage($field, $msg) {
+        $this->validates = false;
+        $this->_validationErrors[$field] = $msg;  
     }
 
     /**
@@ -67,7 +74,10 @@ class Model {
         return $this->_db->getColumns($this->_table);
     }
 
-    
+    public function getErrorMessages() {
+        return $this->_validationErrors;
+    }
+
     public function find($params = []) {
         $params = $this->_softDeleteParams(($params));
         $resultsQuery = $this->_db->find($this->_table, $params, get_class($this));
@@ -106,18 +116,30 @@ class Model {
         return $this->_db->query($sql, $bind);
     }
 
+    public function runValidation($validator) {
+        $key = $validator->field;
+        if(!$validator->success) {
+            $this->_validates = false;
+            $this->_validationErrors[$key] = $validator->msg;
+        }
+    }
+
     /**
      * Wrapper for update and insert functions.
      */
     public function save() {
-        $fields = Helper::getObjectProperties($this);
+        $this->validator();
+        if($this->_validates) {
+            $fields = Helper::getObjectProperties($this);
 
-        // Determine whether to update or insert.
-        if(property_exists($this, 'id') && $this->id != '') {
-            return $this->update($this->id, $fields);
-        } else {
-            return $this->insert($fields);
+            // Determine whether to update or insert.
+            if(property_exists($this, 'id') && $this->id != '') {
+                return $this->update($this->id, $fields);
+            } else {
+                return $this->insert($fields);
+            }
         }
+        return false;
     }
 
     protected function _softDeleteParams($params) {
@@ -138,5 +160,13 @@ class Model {
     public function update($id, $fields) {
         if(empty($fields) || $id == '') return false;
         return $this->_db->update($this->_table, $id, $fields);
+    }
+
+    public function validationPasses() {
+        return $this->_validates;
+    }
+
+    public function validator() {
+
     }
 }

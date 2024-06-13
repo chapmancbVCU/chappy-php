@@ -36,7 +36,6 @@ class DB {
                     $x++;
                 }
             }
-
             if($this->_query->execute()) {
                 if($class) {
                     $this->_result = $this->_query->fetchAll(PDO::FETCH_CLASS, $class);

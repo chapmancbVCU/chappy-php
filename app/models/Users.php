@@ -46,6 +46,7 @@ class Users extends Model {
         return json_decode($this->acl, true);
 
     }
+
     public function findByUserName($username) {
         return $this->findFirst(['conditions' => 'username = ?', 'bind' => [$username]]);
     }
@@ -98,5 +99,9 @@ class Users extends Model {
         $this->deleted = 0;
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         $this->save();
+    }
+
+    public function validator() {
+        $this->runValidation(new MinValidator($this, ['field' => 'username', 'rule' => '6', 'msg' => 'Username must be at least 6 characters.']));
     }
 }

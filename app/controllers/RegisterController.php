@@ -46,54 +46,52 @@ class RegisterController extends Controller {
     }
 
     public function registerAction() {
-        $validation = new Validate();
-        $posted_values = ['fname'=>'', 'lname'=>'', 'username'=>'', 'email'=>'', 'password'=>'', 'confirm'=>''];
+        $newUser = new Users();
         if($_POST) {
-            $posted_values = FormHelper::posted_values($_POST);
-            $validation->check($_POST, [
-                'fname' => [
-                    'display' => 'First Name',
-                    'required' => true
-                ],
-                'lname' => [
-                    'display' => 'Last Name',
-                    'required' => true
-                ],
-                'username' => [
-                    'display' => 'Username',
-                    'required' => true,
-                    'unique' => 'users',
-                    'min' => 6,
-                    'max' => 150
-                ],
-                'email' => [
-                    'display' => 'E-mail',
-                    'required' => true,
-                    'unique' => 'users',
-                    'max' => 150,
-                    'valid_email' => true
-                ],
-                'password' => [
-                    'display' => 'Password',
-                    'required' => true,
-                    'min' => 6
-                ],
-                'confirm' => [
-                    'display' => 'Confirm Password',
-                    'required' => true,
-                    'matches' => 'password'
-                ]
-            ], true);
 
-            if($validation->passed()) {
-                $newUser = new Users();
-                $newUser->registerNewUser($_POST);
+            // $validation->check($_POST, [
+            //     'fname' => [
+            //         'display' => 'First Name',
+            //         'required' => true
+            //     ],
+            //     'lname' => [
+            //         'display' => 'Last Name',
+            //         'required' => true
+            //     ],
+            //     'username' => [
+            //         'display' => 'Username',
+            //         'required' => true,
+            //         'unique' => 'users',
+            //         'min' => 6,
+            //         'max' => 150
+            //     ],
+            //     'email' => [
+            //         'display' => 'E-mail',
+            //         'required' => true,
+            //         'unique' => 'users',
+            //         'max' => 150,
+            //         'valid_email' => true
+            //     ],
+            //     'password' => [
+            //         'display' => 'Password',
+            //         'required' => true,
+            //         'min' => 6
+            //     ],
+            //     'confirm' => [
+            //         'display' => 'Confirm Password',
+            //         'required' => true,
+            //         'matches' => 'password'
+            //     ]
+            // ], true);
+
+            $newUser->assign($_POST);
+            if($newUser->save()) {
                 Router::redirect('register/login');
             }
         }
 
-        $this->view->post = $posted_values;
-        $this->view->displayErrors = $validation->displayErrors();
+        $this->view->newUser = $newUser;
+        $this->view->displayErrors = $newUser->getErrorMessages();
         $this->view->render('register/register');
     }
 }
