@@ -14,7 +14,7 @@ class Users extends Model {
     public $fname;
     public $lname;
     public $acl;
-    public $delete = 0;
+    public $deleted = 0;
 
     public function __construct($user = '') {
         $table = 'users';
