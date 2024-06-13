@@ -8,7 +8,8 @@ class Application {
 
     private function _set_reporting() {
         if(DEBUG) {
-            error_reporting(E_ALL);
+            //error_reporting(E_ALL);
+            error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED);
             ini_set('display_errors', 1);
         } else {
             error_reporting(0);

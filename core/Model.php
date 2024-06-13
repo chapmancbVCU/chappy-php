@@ -1,5 +1,4 @@
 <?php
-#[AllowDynamicProperties]
 class Model {
     protected $_db;
     protected $_table;
