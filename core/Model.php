@@ -26,6 +26,8 @@ class Model {
         $this->_validationErrors[$field] = $msg;  
     }
 
+    public function afterSave() {}
+
     /**
      * Take POST array and assign it to our object.  Sanitize values 
      * before saving.
@@ -34,13 +36,15 @@ class Model {
         if(!empty($params)) {
             foreach($params as $key => $val) {
                 if(property_exists($this, $key)) {
-                    $this->$key = FormHelper::sanitize($val);
+                    $this->$key = $val;
                 }
             }
             return true;
         }
         return false;
     }
+
+    public function beforeSave() {}
 
     /**
      * Grab object and if we just need data for smaller result set.
@@ -130,13 +134,18 @@ class Model {
     public function save() {
         $this->validator();
         if($this->_validates) {
+            $this->beforeSave();
             $fields = Helper::getObjectProperties($this);
 
             // Determine whether to update or insert.
             if(property_exists($this, 'id') && $this->id != '') {
-                return $this->update($this->id, $fields);
+                $save =  $this->update($this->id, $fields);
+                $this->afterSave();
+                return $save;
             } else {
-                return $this->insert($fields);
+                $save = $this->insert($fields);
+                $this->afterSave();
+                return $save;
             }
         }
         return false;
@@ -162,7 +171,7 @@ class Model {
         return $this->_db->update($this->_table, $id, $fields);
     }
 
-    public function validationPasses() {
+    public function validationPassed() {
         return $this->_validates;
     }
 

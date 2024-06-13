@@ -1,7 +1,8 @@
 <?php
 class Controller extends Application {
-    protected $_controller;
     protected $_action;
+    protected $_controller;
+    public $request;
     public $view;
 
     public function __construct($controller, $action) {
@@ -9,6 +10,7 @@ class Controller extends Application {
 
         $this->_controller = $controller;
         $this->_action = $action;
+        $this->request = new Input();
         $this->view = new View();
     }
 

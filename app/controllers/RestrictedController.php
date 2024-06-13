@@ -5,6 +5,10 @@ class RestrictedController extends Controller {
         parent::__construct($controller, $action);
     }
 
+    public function badTokenAction() {
+        $this->view->render('restricted/badToken');
+    }
+    
     public function indexAction() {
         $this->view->render('restricted/index');
     }

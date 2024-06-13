@@ -19,6 +19,16 @@ class FormHelper {
         return $html;
     }
 
+    public static function checkboxBlock($label, $name, $checked = false, $inputAttrs = [], $divAttrs = []) {
+        $divString = self::stringifyAttrs($divAttrs);
+        $inputString = self::stringifyAttrs(($inputAttrs));
+        $checkString = ($checked) ? ' checked="checked"' : '';
+
+        $html = '<div'.$divString.'>';
+        $html .= '<label for="'.$name.'">'.$label.' <input type="checkbox" id="'.$name.'" name="'.$name.'" value="on"'.$checkString.$inputString.'></label>';
+        $html .= '</div>';
+        return $html;
+    }
 
     public static function checkToken($token) {
         return (Session::exists('csrf_token') && Session::get('csrf_token') == $token);

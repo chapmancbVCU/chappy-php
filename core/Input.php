@@ -1,11 +1,36 @@
 <?php
-
 class Input {
-    public static function get($input) {
-        if(isset($_POST[$input])) {
-            return FormHelper::sanitize(($_POST[$input]));
-        } else if(isset($_GET[$input])) {
-            return FormHelper::sanitize(($_GET[$input]));
-        }
+    public function csrfCheck() {
+        if(!FormHelper::checkToken($this->get('csrf_token'))) 
+            Router::redirect('restricted/badtoken');
+        return true;
     }
+    
+    public function get($input = false) {
+        if(!$input) {
+            // Return and sanitize entire request array.
+            $data = [];
+            foreach($_REQUEST as $field => $value) {
+                $data[$field] = FormHelper::sanitize($value);
+            }
+            return $data;
+        }
+        return FormHelper::sanitize(($_REQUEST[$input]));
+    }
+
+    public function getRequestMethod() {
+        return strtoupper($_SERVER['REQUEST_METHOD']);
+    }
+
+    public function isGet() {
+        return $this->getRequestMethod() === 'GET';
+    } 
+
+    public function isPost() {
+        return $this->getRequestMethod() === 'POST';
+    }
+
+    public function isPut() {
+        return $this->getRequestMethod() === 'PUT';
+    } 
 }

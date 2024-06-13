@@ -47,6 +47,10 @@ class Users extends Model {
 
     }
 
+    public function beforeSave() {
+        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+    }
+
     public function findByUserName($username) {
         return $this->findFirst(['conditions' => 'username = ?', 'bind' => [$username]]);
     }
@@ -96,13 +100,6 @@ class Users extends Model {
      
         if($user) $user->login();
         return $user;
-    }
-
-    public function registerNewUser($params) {
-        $this->assign($params);
-        $this->deleted = 0;
-        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
-        $this->save();
     }
 
     public function setConfirm($value) {
