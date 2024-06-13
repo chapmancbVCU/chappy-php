@@ -3,7 +3,7 @@
 
 <?php $this->start('body'); ?>
 <div class="col-md-6 col-md-offset-3 well">
-    <h3 class="text-center">Register</h3>
+    <h3 class="text-center">Register Here!</h3>
     <hr>
     <form class="form" action="" method="post">
         <?= FormHelper::csrfInput() ?>
