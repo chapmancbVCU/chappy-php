@@ -13,7 +13,7 @@
         <?= FormHelper::inputBlock('text', "Email", 'email', $this->newUser->email, ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
         <?= FormHelper::inputBlock('text', "User name", 'username', $this->newUser->username, ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
         <?= FormHelper::inputBlock('password', "Password", 'password', $this->newUser->password, ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
-        <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->newUser->password, ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
+        <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->newUser->getConfirm(), ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
         <?= FormHelper::submitBlock('Register', ['class' => 'btn btn-primary btn-large'], ['class' => 'text-right']) ?>
     </form>
 </div>

@@ -4,7 +4,7 @@ class Users extends Model {
     private $_isLoggedIn;
     private $_sessionName;
     private $_cookieName;
-
+    private $_confirm;
     public static $currentLoggedInUser = null;
 
     public $id;
@@ -59,6 +59,10 @@ class Users extends Model {
         return self::$currentLoggedInUser;
     }
 
+    public function getConfirm() {
+        return $this->_confirm;
+    }
+
     public function login($rememberMe = false) {
         Session::set($this->_sessionName, $this->id);
         if($rememberMe) {
@@ -101,7 +105,23 @@ class Users extends Model {
         $this->save();
     }
 
+    public function setConfirm($value) {
+        $this->_confirm = $value;
+    }
+
     public function validator() {
+        $this->runValidation(new RequiredValidator($this, ['field' => 'fname', 'msg' => 'First Name is required.']));
+        $this->runValidation(new RequiredValidator($this, ['field' => 'lname', 'msg' => 'Last Name is required.']));
+        $this->runValidation(new RequiredValidator($this, ['field' => 'email', 'msg' => 'Email is required.']));
+        $this->runValidation(new MaxValidator($this, ['field' => 'email', 'rule' => '150', 'msg' => 'Email must be less than 155 characters.']));
+        $this->runValidation(new EmailValidator($this, ['field' => 'email', 'msg' => 'You must provide a valid email address.']));
+
         $this->runValidation(new MinValidator($this, ['field' => 'username', 'rule' => '6', 'msg' => 'Username must be at least 6 characters.']));
+        $this->runValidation(new MaxValidator($this, ['field' => 'username', 'rule' => '150', 'msg' => 'Username must be less than 155 characters.']));
+        $this->runValidation(new UniqueValidator($this, ['field' => 'username', 'msg' => 'That username already exists.  Please chose a new one.']));
+        $this->runValidation(new RequiredValidator($this, ['field' => 'password', 'msg' => 'Password is required.']));
+        $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => '6', 'msg' => 'Password must be at least 6 characters.']));
+        $this->runValidation(new MatchesValidator($this, ['field' => 'password', 'rule' => $this->_confirm, 'msg' => 'Passwords must match.']));
+        
     }
 }

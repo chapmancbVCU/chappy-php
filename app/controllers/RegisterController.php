@@ -48,43 +48,8 @@ class RegisterController extends Controller {
     public function registerAction() {
         $newUser = new Users();
         if($_POST) {
-
-            // $validation->check($_POST, [
-            //     'fname' => [
-            //         'display' => 'First Name',
-            //         'required' => true
-            //     ],
-            //     'lname' => [
-            //         'display' => 'Last Name',
-            //         'required' => true
-            //     ],
-            //     'username' => [
-            //         'display' => 'Username',
-            //         'required' => true,
-            //         'unique' => 'users',
-            //         'min' => 6,
-            //         'max' => 150
-            //     ],
-            //     'email' => [
-            //         'display' => 'E-mail',
-            //         'required' => true,
-            //         'unique' => 'users',
-            //         'max' => 150,
-            //         'valid_email' => true
-            //     ],
-            //     'password' => [
-            //         'display' => 'Password',
-            //         'required' => true,
-            //         'min' => 6
-            //     ],
-            //     'confirm' => [
-            //         'display' => 'Confirm Password',
-            //         'required' => true,
-            //         'matches' => 'password'
-            //     ]
-            // ], true);
-
             $newUser->assign($_POST);
+            $newUser->setConfirm(Input::get('confirm'));
             if($newUser->save()) {
                 Router::redirect('register/login');
             }
