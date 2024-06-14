@@ -109,6 +109,10 @@ class Model {
         return $this->_db->insert($this->_table, $fields);
     }
 
+    public function isNew() {
+        return (property_exists($this, 'id') && !empty($this->id)) ? false : true;
+    }
+    
     protected function populateObjData($result) {
         foreach($result as $key => $val) {
             $this->$key = $val;
