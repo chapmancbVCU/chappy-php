@@ -28,6 +28,11 @@ class DB {
         }
     }
 
+    /**
+     * 
+     *
+     * @return int 
+     */
     public function count() {
         return $this->_count;
     }
