@@ -10,7 +10,7 @@ class Router {
         if(preg_match('/https?:\/\//', $val) == 1) {
             return $val;
         } else {
-            $uAry = explode(DS, $val);
+            $uAry = explode('/', $val);
             $controller_name = ucwords($uAry[0]);
             $action_name = (isset($uAry[1])) ? $uAry[1] : '';
             if(self::hasAccess($controller_name, $action_name)) {
