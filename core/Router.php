@@ -5,7 +5,9 @@ use Core\Session;
 class Router {
     /**
      * Gets link based on value from acl.
+     * 
      * @param string item in acl that will be used to create a link.
+     * @return
      */
     private static function get_link($val) {
         // Check if external link just return it.
@@ -25,7 +27,8 @@ class Router {
     /**
      * Parses menu_acl.json file to determine menu contents depending on acl 
      * of user.
-     * @param string $menu - Name of menu acl file.
+     * 
+     * @param string $menu Name of menu acl file.
      * @return array The array of menu items.
      */
     public static function getMenu($menu) {
@@ -61,6 +64,12 @@ class Router {
     /**
      * Checks if user has access to a particular section of the site
      * and grants access if that is the case.
+     * 
+     * @param string $controller_name The name of the controller we want to 
+     * test before granting the user access to a particular section of the 
+     * site.
+     * @param string $action_name The name of the action the user wants to 
+     * perform.  The default value is "index"
      */
     public static function hasAccess($controller_name, $action_name = "index") {
         $acl_file = file_get_contents(ROOT . DS . 'app' . DS . 'acl.json');
@@ -98,6 +107,8 @@ class Router {
 
     /**
      * Performs redirect operations.
+     * 
+     * @param string $location
      */
     public static function redirect($location) {
         if(!headers_sent()) {
@@ -115,7 +126,13 @@ class Router {
     }
 
     /**
-     * Supports operations for routing.
+     * Supports operations for routing.  It parses the url to determine which 
+     * page needs to be rendered.  That path is parsed to determine 
+     * the correct controller and action to use.
+     * 
+     * @param string $url The path that contains information about the 
+     * controller and action to use.
+     * @return void
      */
     public static function route($url) {
         // Extract from URL our controllers
@@ -139,6 +156,7 @@ class Router {
         // Params - any params will now be passed into our action.
         $queryParams = $url;
         $controller = 'App\Controllers\\' . $controller;
+        
         // Use to pass in controller name and action
         $dispatch = new $controller($controller_name, $action);
 
