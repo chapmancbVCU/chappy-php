@@ -1,4 +1,8 @@
 <?php
+use Core\Session;
+use Core\Cookie;
+use Core\Router;
+use App\Models\Users;
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__));
 
@@ -6,20 +10,16 @@ define('ROOT', dirname(__FILE__));
 require_once(ROOT . DS . 'config' . DS . 'config.php');
 require_once(ROOT . DS . 'config' . DS . 'dbConfig.php');
 
-// Autoload classes
 function autoload($className) {
-    $searchPaths = [
-        ROOT . DS . "core" . DS . $className . ".php",
-        ROOT . DS . "app" . DS . "controllers" . DS . $className . ".php",
-        ROOT . DS . "app" . DS . "models" . DS . $className . ".php",
-        ROOT . DS . "app" . DS . "custom_validators" . DS . $className . ".php",
-        ROOT . DS . "core" . DS . "validators" . DS . $className . ".php"
-    ];
+    $classArray = explode('\\', $className);
+    $class = array_pop($classArray);
+    $subPath = strtolower(implode(DS, $classArray));
 
-    foreach($searchPaths as $i)
-        if(file_exists($i))
-            require_once($i);
-};
+    $path = ROOT . DS . $subPath . DS . $class . '.php';
+    if(file_exists($path)) {
+        require_once($path);
+    }
+}
 
 spl_autoload_register('autoload');
 

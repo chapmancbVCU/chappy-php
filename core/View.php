@@ -1,4 +1,5 @@
 <?php
+namespace Core;
 
 class View {
     protected $_head;

@@ -1,5 +1,7 @@
 <?php
-
+namespace Core;
+use App\Models\Users;
+use Core\Session;
 class Router {
     /**
      * Gets link based on value from acl.
@@ -136,7 +138,7 @@ class Router {
 
         // Params - any params will now be passed into our action.
         $queryParams = $url;
-
+        $controller = 'App\Controllers\\' . $controller;
         // Use to pass in controller name and action
         $dispatch = new $controller($controller_name, $action);
 

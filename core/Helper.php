@@ -1,9 +1,9 @@
-<?php 
+<?php
+namespace Core;
+
 /**
  * Helper functions.
  */
-?>
-<?php
 class Helper {
     /**
      * Prints to console using JavaScript.

@@ -1,4 +1,6 @@
 <?php
+namespace Core;
+
 class Model {
     protected $_db;
     protected $_table;

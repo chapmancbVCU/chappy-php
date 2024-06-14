@@ -1,4 +1,7 @@
 <?php
+namespace Core\Validators;
+use \Exception;
+
 abstract class CustomValidator {
     public $success = true;
     public $msg = '';

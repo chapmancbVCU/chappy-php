@@ -1,9 +1,10 @@
 <?php
+namespace Core;
+use Core\Session;
+
 /**
  * Form helper functions.
  */
-?>
-<?php
 class FormHelper {
     /**
      * Returns list of errors.

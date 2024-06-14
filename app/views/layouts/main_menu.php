@@ -1,6 +1,9 @@
 <?php
-    $menu = Router::getMenu('menu_acl');
-    $currentPage = Helper::currentPage();
+  use Core\Router;
+  use Core\Helper;
+  use App\Models\Users;
+  $menu = Router::getMenu('menu_acl');
+  $currentPage = Helper::currentPage();
 ?>
 
 <nav class="navbar navbar-default">
