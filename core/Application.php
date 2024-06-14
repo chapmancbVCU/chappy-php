@@ -1,11 +1,21 @@
 <?php
 namespace Core;
+
+/**
+ * The Application class supports basic functional needs of the application.
+ */
 class Application {
     public function __construct() {
         $this->_set_reporting();
         $this->_unregister_globals();
     }
 
+    /**
+     * Manages the displaying of error messages and other reporting for this 
+     * application.
+     *
+     * @return void
+     */
     private function _set_reporting() {
         if(DEBUG) {
             //error_reporting(E_ALL);
@@ -19,6 +29,12 @@ class Application {
         }
     }
 
+    /**
+     * Unregister global variables that are created by default in PHP prior 
+     * to version 8.
+     *
+     * @return void
+     */
     private function _unregister_globals() {
         if(ini_get('register_globals')) {
             $globalsAry = ['_SESSION', '_COOKIE', '_POST', '_GET' , '_REQUEST', '_SERVER', '_ENV', '_FILES'];
