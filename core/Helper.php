@@ -7,7 +7,8 @@ namespace Core;
 class Helper {
     /**
      * Prints to console using JavaScript.
-     * @param string $output - The information we want to print to console.
+     * 
+     * @param string $output The information we want to print to console.
      * @param bool $with_script_tags - Determines if we will use script tabs in 
      * our output.  Default value is true.
      */
@@ -21,7 +22,8 @@ class Helper {
 
     /**
      * Determines current page based on REQUEST_URI.
-     * @return string $currentPage - The current page.
+     * 
+     * @return string $currentPage  The current page.
      */
     public static function currentPage() {
         $currentPage = $_SERVER['REQUEST_URI'];
@@ -33,7 +35,8 @@ class Helper {
 
     /**
      * Performs var_dump of parameter and kills the page.
-     * @param $data - Contains the data we wan to print to the page.
+     * 
+     * @param string $data Contains the data we wan to print to the page.
      */
     public static function dnd($data) {
         echo "<pre>";
@@ -42,8 +45,16 @@ class Helper {
         die();
     }
 
-    public static function getObjectProperties($obj) {
-        return get_object_vars($obj);
+    /**
+     * Gets the properties of the given object
+     *
+     * @param object $object An object instance.
+     * @return array An associative array of defined object accessible 
+     * non-static properties for the specified object in scope. If a property 
+     * have not been assigned a value, it will be returned with a null value.
+     */
+    public static function getObjectProperties($object) {
+        return get_object_vars($object);
     }
 
 }
