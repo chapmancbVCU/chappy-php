@@ -83,9 +83,9 @@ class DB {
      * our query against
      * @param array $params The values for the query.  They are the fields of 
      * the table in our database.  The default value is an empty array.
-     * @param boolean|string  $class A default value of false, it contains the 
+     * @param bool|string  $class A default value of false, it contains the 
      * name of the class we will build based on the name of a model.
-     * @return void
+     * @return bool|array An array of object returned from an SQL query.
      */
     public function find($table, $params = [], $class = false) {
         if($this->_read($table, $params, $class)) {
@@ -102,9 +102,9 @@ class DB {
      * our query against
      * @@param array $params The values for the query.  They are the fields of 
      * the table in our database.  The default value is an empty array.
-     * @param boolean|string  $class A default value of false, it contains the 
+     * @param bool|string  $class A default value of false, it contains the 
      * name of the class we will build based on the name of a model.
-     * @return void
+     * @return bool|object An Object returned from an SQL query.
      */
     public function findFirst($table, $params = [], $class = false) {
         if($this->_read($table, $params, $class)) {
@@ -194,7 +194,7 @@ class DB {
      * @param string $sql The database query we will submit to the database.
      * @param array $params The values for the query.  They are the fields of 
      * the table in our database.  The default value is an empty array.
-     * @param boolean|string  $class A default value of false, it contains the 
+     * @param bool|string  $class A default value of false, it contains the 
      * name of the class we will build based on the name of a model.
      * @return object The results of the database query.
      */
@@ -233,9 +233,9 @@ class DB {
      * record(s) we want to find.
      * @param array $params The values for the query.  They are the fields of 
      * the table in our database.  The default value is an empty array.
-     * @param boolean|string  $class A default value of false, it contains the 
+     * @param bool|string  $class A default value of false, it contains the 
      * name of the class we will build based on the name of a model.
-     * @return void
+     * @return bool A true or false value depending on a successful operation.
      */
     protected function _read($table, $params = [], $class) {
         $conditionString = '';

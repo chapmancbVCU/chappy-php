@@ -92,34 +92,65 @@ class Model {
 
     /**
      * Gets columns from table.
+     * 
+     * @return
      */
     public function getColumns() {
         return $this->_db->getColumns($this->_table);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function getErrorMessages() {
         return $this->_validationErrors;
     }
 
+    /**
+     * Wrapper for the find function that is found in the DB class.
+     *
+     * @param array $params The values for the query.  They are the fields of 
+     * the table in our database.  The default value is an empty array.
+     * @return bool|array An array of object returned from an SQL query.
+     */
     public function find($params = []) {
-        $params = $this->_softDeleteParams(($params));
+        $params = $this->_softDeleteParams($params);
         $resultsQuery = $this->_db->find($this->_table, $params, get_class($this));
         if(!$resultsQuery) return [];
         return $resultsQuery;
     }
 
+    /**
+     * Get result from database by primary key ID.
+     *
+     * @param int $id The ID of the row we want to retrieve from the database.
+     * @return object The row from a database.
+     */
     public function findById($id) {
         return $this->findFirst(['conditions'=>"id = ?", 'bind' => [$id]]);
     }
 
+    /**
+     * Wrapper for the findFirst function that is found in the DB class.
+     *
+     * @param array $params The values for the query.  They are the fields of 
+     * the table in our database.  The default value is an empty array.
+     * @return bool|object An array of object returned from an SQL query.
+     */
     public function findFirst($params = []) {
-        $params = $this->_softDeleteParams(($params));
+        $params = $this->_softDeleteParams($params);
         $resultQuery = $this->_db->findFirst($this->_table, $params, get_class($this));
         return $resultQuery;
     }
 
     /** 
      * Wrapper for database insert function.
+     * 
+     * @param array $fields The field names and the respective values we will 
+     * use to populate a database record.  The default value is an empty array.
+     * @return bool Report for whether or not the operation was successful.
      */
     public function insert($fields) {
         if(empty($fields)) return false;
@@ -130,6 +161,12 @@ class Model {
         return (property_exists($this, 'id') && !empty($this->id)) ? false : true;
     }
     
+    /**
+     * Populates object with data.
+     *
+     * @param array|object $result Results from a database query.
+     * @return void
+     */
     protected function populateObjData($result) {
         foreach($result as $key => $val) {
             $this->$key = $val;
