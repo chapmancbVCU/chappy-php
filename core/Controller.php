@@ -23,7 +23,6 @@ class Controller extends Application {
      */
     public function __construct($controller, $action) {
         parent::__construct();
-
         $this->_controller = $controller;
         $this->_action = $action;
         $this->request = new Input();
