@@ -1,31 +1,48 @@
 <?php
 namespace Core;
 
+/**
+ * Parent class for our models.  Takes functions from DB wrapper and extract 
+ * functionality further to make operations easier to use and improve 
+ * extendability
+ */
 class Model {
     protected $_db;
-    protected $_table;
+    public $id;
     protected $_modelName;
     protected $_softDelete = false;
+    protected $_table;
     protected $_validates = true;
     protected $_validationErrors = [];
-    public $id;
 
+    /**
+     * Default constructor.
+     * 
+     * @param string $table The name of the table so we can work with the 
+     * correct child model class.
+     */
     public function __construct($table) {
         $this->_db = DB::getInstance();
         $this->_table = $table;
 
-
-        /* Replace table name under scores with a space and use ucwords upper case each word 
-         * of model and replaces all spaces with no space. 
-         * 
-         * $table = 'user_sessions => User Sessions => UserSessions
-         */
+        /* Replace table name under scores with a space and use ucwords upper 
+           case each word of model and replaces all spaces with no space. 
+           $table = 'user_sessions => User Sessions => UserSessions */
         $this->_modelName = str_replace(' ', '', ucwords(str_replace('_', '', $this->_table)));
     }
 
-    public function addErrorMessage($field, $msg) {
+    /**
+     * Generates error messages that occur during form validation
+     *
+     * @param string $field The form field associated with failed form 
+     * validation
+     * @param string $message A message that describes to the user the cause 
+     * for failed form validation.
+     * @return void
+     */
+    public function addErrorMessage($field, $message) {
         $this->validates = false;
-        $this->_validationErrors[$field] = $msg;  
+        $this->_validationErrors[$field] = $message;  
     }
 
     public function afterSave() {}
@@ -130,7 +147,7 @@ class Model {
         $key = $validator->field;
         if(!$validator->success) {
             $this->_validates = false;
-            $this->_validationErrors[$key] = $validator->msg;
+            $this->_validationErrors[$key] = $validator->message;
         }
     }
 
