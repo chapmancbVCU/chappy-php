@@ -2,6 +2,10 @@
 namespace Core\Validators;
 use \Exception;
 
+/**
+ * Abstract parent class for our child validation child classes.  Each child 
+ * class must implement the runValidation() function.
+ */
 abstract class CustomValidator {
     public $field;
     protected $_model;
@@ -9,9 +13,14 @@ abstract class CustomValidator {
     public $rule;
     public $success = true;
     
-
-    
-
+    /**
+     * Constructor for Custom Validator
+     *
+     * @param string $model The name of the model we want to perform 
+     * validation when submitting a form.
+     * @param array $params A list of values obtained from an input when a 
+     * form is submitted during a post action.
+     */
     public function __construct($model, $params) {
         $this->_model = $model;
 
@@ -42,5 +51,11 @@ abstract class CustomValidator {
         }
     }
 
+    /**
+     * Signature for the runValidation function that must be implemented by 
+     * each child class.
+     *
+     * @return void
+     */
     abstract public function runValidation();
 }
