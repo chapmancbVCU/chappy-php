@@ -3,10 +3,18 @@ namespace App\Controllers;
 use Core\Controller;
 
 /**
- * Implements support for our Home controller.  Functions found in the class 
+ * Implements support for our Home controller.  Functions found in this class 
  * will support tasks related to the home page.
  */
 class HomeController extends Controller {
+    /**
+     * Constructor for Home Controller
+     *
+     * @param string $controller The name of the controller obtained while 
+     * parsing the URL.
+     * @param string $action The name of the action specified in the path of 
+     * the URL.
+     */
     public function __construct($controller, $action) {
         parent::__construct($controller, $action);
     }

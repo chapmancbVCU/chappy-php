@@ -5,13 +5,31 @@ use Core\Router;
 use App\Models\Users;
 use App\Models\Login;
 
+/**
+ * Implements support for our Register controller.  Functions found in this 
+ * class will support tasks related to the user registration
+ */
 class RegisterController extends Controller {
+    /**
+     * Constructor for Register Controller
+     *
+     * @param string $controller The name of the controller obtained while 
+     * parsing the URL.
+     * @param string $action The name of the action specified in the path of 
+     * the URL.
+     */
     public function __construct($controller, $action) {
         parent::__construct($controller, $action);
         $this->load_model('Users');
         $this->view->setLayout('default');
     }
 
+    /**
+     * 
+     * Manages login action processes.
+     *
+     * @return void
+     */
     public function loginAction() {
         $loginModel = new Login();
         if($this->request->isPost()) {
@@ -36,6 +54,11 @@ class RegisterController extends Controller {
         $this->view->render('register/login');
     }
 
+    /**
+     * Manages logout action for a user.
+     *
+     * @return void
+     */
     public function logoutAction() {
         if(Users::currentUser()) {
             Users::currentUser()->logout();
@@ -43,6 +66,11 @@ class RegisterController extends Controller {
         Router::redirect(('register/login'));
     }
 
+    /**
+     * Manages actions related to user registration.
+     *
+     * @return void
+     */
     public function registerAction() {
         $newUser = new Users();
         if($this->request->isPost()) {
