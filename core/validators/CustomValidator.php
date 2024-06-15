@@ -3,12 +3,14 @@ namespace Core\Validators;
 use \Exception;
 
 abstract class CustomValidator {
-    public $success = true;
-    public $msg = '';
     public $field;
-    public $rule;
-
     protected $_model;
+    public $message = '';
+    public $rule;
+    public $success = true;
+    
+
+    
 
     public function __construct($model, $params) {
         $this->_model = $model;
@@ -23,10 +25,10 @@ abstract class CustomValidator {
             throw new Exception("The field must exist in the model");
         }
 
-        if(!array_key_exists('msg', $params)) {
+        if(!array_key_exists('message', $params)) {
             throw new Exception("You must add a message to the params array");
         } else {
-            $this->msg = $params['msg'];
+            $this->message = $params['message'];
         }
 
         if(array_key_exists('rule', $params)) {
