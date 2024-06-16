@@ -99,7 +99,7 @@ class View {
     /**
      * Sets the layout for the view.
      *
-     * @param string $path  
+     * @param string $path The path for our view.
      * @return void
      */
     public function setLayout($path) {
