@@ -46,7 +46,7 @@ class Controller extends Application {
     /**
      * Loads the model provided to this controller.
      *
-     * @param string $model The name of the model that we will used.
+     * @param string $model The name of the model that will used.
      * @return void
      */
     protected function load_model($model) {

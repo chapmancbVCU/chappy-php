@@ -53,8 +53,8 @@ class Users extends Model {
             }
 
             if($u) {
-                foreach($u as $key => $val) {
-                    $this->$key = $val;
+                foreach($u as $key => $value) {
+                    $this->$key = $value;
                 }
             }
         }     
@@ -72,6 +72,13 @@ class Users extends Model {
         }
     }
 
+    /**
+     * Finds user by username in the Users table.
+     *
+     * @param string $username The username we want to find in the Users table. 
+     * @return bool|object An object containing information about a user from 
+     * the Users table.
+     */
     public function findByUserName($username) {
         return $this->findFirst(['conditions' => 'username = ?', 'bind' => [$username]]);
     }
@@ -88,6 +95,13 @@ class Users extends Model {
         return $this->_confirm;
     }
 
+    /**
+     * Creates a session when the user logs in.
+     *
+     * @param string $rememberMe Value obtained from remember me checkbox 
+     * found in login form.  Default value is false.
+     * @return void
+     */
     public function login($rememberMe = false) {
         Session::set($this->_sessionName, $this->id);
         if($rememberMe) {
@@ -95,8 +109,11 @@ class Users extends Model {
             $user_agent = Session::uagent_no_version();
             Cookie::set($this->_cookieName, $hash, REMEMBER_ME_COOKIE_EXPIRY);
             $fields = ['session' => $hash, 'user_agent' => $user_agent, 'user_id' => $this->id];
-            $this->_db->query("DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?", [$this->id, $user_agent]);
 
+            // Clean up database in case expired sessions still exists.
+            $this->_db->query("DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?", [$this->id, $user_agent]);
+            
+            // Finally insert new session into user_sessions table.
             $this->_db->insert('user_sessions', $fields);
         }
     }

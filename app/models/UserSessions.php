@@ -4,17 +4,29 @@ use Core\Model;
 use Core\Session;
 use Core\Cookie;
 
+/**
+ * Supports operations of the User Session model.  Extends the Model class.
+ */
 class UserSessions extends Model{
     public $id;
-    public $user_id;
     public $session;
     public $user_agent;
+    public $user_id;
     
+    /**
+     * Creates new instance of UserSessions model.
+     */
     public function __construct() {
         $table = 'user_sessions';
         parent::__construct($table);
     }
 
+    /**
+     * Retrieves User Session information from cookie.
+     *
+     * @return UserSessions An object containing information about the current 
+     * user's session.
+     */
     public static function getFromCookie() {
         $userSession = new self();
         if(Cookie::exists(REMEMBER_ME_COOKIE_NAME)) {

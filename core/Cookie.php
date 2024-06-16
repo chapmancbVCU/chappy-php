@@ -59,7 +59,5 @@ class Cookie {
             return true;
         }
         return false;
-    }
-
-    
+    } 
 }
