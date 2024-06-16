@@ -1,7 +1,6 @@
 <?php
 namespace App\Models;
 use Core\Model;
-//use App\Models\Users;
 use App\Models\UserSessions;
 use Core\Cookie;
 use Core\Session;
@@ -12,23 +11,30 @@ use Core\Validators\EmailValidator;
 use Core\Validators\MatchesValidator;
 use Core\Validators\UniqueValidator;
 
-
+/**
+ * Extends the Model class.  Supports functions for the Users model.
+ */
 class Users extends Model {
-    private $_isLoggedIn;
-    private $_sessionName;
-    private $_cookieName;
-    private $_confirm;
-    public static $currentLoggedInUser = null;
-
-    public $id;
-    public $username;
-    public $email;
-    public $password;
-    public $fname;
-    public $lname;
     public $acl;
+    public $email;
+    private $_confirm;
+    private $_cookieName;
+    public static $currentLoggedInUser = null;
     public $deleted = 0;
-
+    public $fname;
+    public $id;
+    private $_isLoggedIn;
+    public $lname;
+    public $password;
+    private $_sessionName;
+    public $username;
+    
+    /**
+     * Builds instance of Users model c.ass
+     *
+     * @param string $user The name of the user.  Default value is an empty 
+     * string.
+     */
     public function __construct($user = '') {
         $table = 'users';
         parent::__construct($table);
@@ -123,16 +129,31 @@ class Users extends Model {
         $this->_confirm = $value;
     }
 
+    /**
+     * Performs validation on the user registration form.
+     *
+     * @return void
+     */
     public function validator() {
+        // Validate first name
         $this->runValidation(new RequiredValidator($this, ['field' => 'fname', 'message' => 'First Name is required.']));
+        $this->runValidation(new MaxValidator($this, ['field' => 'fname', 'rule' => '150', 'message' => 'Email must be less than 155 characters.']));
+
+        // Validate last name
         $this->runValidation(new RequiredValidator($this, ['field' => 'lname', 'message' => 'Last Name is required.']));
+        $this->runValidation(new MaxValidator($this, ['field' => 'lname', 'rule' => '150', 'message' => 'Email must be less than 155 characters.']));
+
+        // Validate E-mail
         $this->runValidation(new RequiredValidator($this, ['field' => 'email', 'message' => 'Email is required.']));
         $this->runValidation(new MaxValidator($this, ['field' => 'email', 'rule' => '150', 'message' => 'Email must be less than 155 characters.']));
         $this->runValidation(new EmailValidator($this, ['field' => 'email', 'message' => 'You must provide a valid email address.']));
 
+        // Validate username
         $this->runValidation(new MinValidator($this, ['field' => 'username', 'rule' => '6', 'message' => 'Username must be at least 6 characters.']));
         $this->runValidation(new MaxValidator($this, ['field' => 'username', 'rule' => '150', 'message' => 'Username must be less than 155 characters.']));
         $this->runValidation(new UniqueValidator($this, ['field' => 'username', 'message' => 'That username already exists.  Please chose a new one.']));
+
+        // Validate password
         $this->runValidation(new RequiredValidator($this, ['field' => 'password', 'message' => 'Password is required.']));
         $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => '6', 'message' => 'Password must be at least 6 characters.']));
         if($this->isNew()) {
