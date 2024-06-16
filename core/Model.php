@@ -48,8 +48,10 @@ class Model {
     public function afterSave() {}
 
     /**
-     * Take POST array and assign it to our object.  Sanitize values 
-     * before saving.
+     * Update the object with an associative array.
+     * 
+     * @param array Take values from post array and assign values.
+     * @return bool Report for whether or not the operation was successful.
      */
     public function assign($params) {
         if(!empty($params)) {
@@ -67,6 +69,8 @@ class Model {
 
     /**
      * Grab object and if we just need data for smaller result set.
+     * 
+     * @return object The data associated with an object.
      */
     public function data() {
         $data = new stdClass();
@@ -79,6 +83,11 @@ class Model {
     /**
      * Wrapper for database delete function.  If not softDelete we set it.
      * If row is set to softDelete we call the database delete function.
+     * 
+     * @param int $id The primary key for the record we want to remove from a 
+     * database table.  The default value is an empty string.
+     * @return bool True if delete operation is successful.  Otherwise, we 
+     * return false.
      */
     public function delete($id = '') {
         if($id == '' && $this->id == '') return false;
@@ -93,7 +102,8 @@ class Model {
     /**
      * Gets columns from table.
      * 
-     * @return
+     * @return array An array of objects where each one represents a column 
+     * from a database table.
      */
     public function getColumns() {
         return $this->_db->getColumns($this->_table);
@@ -175,6 +185,10 @@ class Model {
 
     /**
      * Wrapper for database delete function.
+     * 
+     * @param string $sql The database query we will submit to the database.
+     * @param array The values we want to bind in our database query.
+     * @return object The results of the database query.
      */
     public function query($sql, $bind) {
         return $this->_db->query($sql, $bind);
@@ -190,6 +204,9 @@ class Model {
 
     /**
      * Wrapper for update and insert functions.
+     * 
+     * @return bool True if the update operation is successful.  Otherwise, 
+     * we return false.
      */
     public function save() {
         $this->validator();
@@ -226,6 +243,16 @@ class Model {
         return $params;
     }
 
+    /**
+     * Wrapper for the update function found in the DB class.
+     *
+     * @param int $id The primary key for the record we want to remove from a 
+     * database table.
+     * @param array $fields The value of the fields we want to set for the 
+     * database record.  The default value is an empty array.
+     * @return bool True if the update operation is successful.  Otherwise, 
+     * we return false.
+     */
     public function update($id, $fields) {
         if(empty($fields) || $id == '') return false;
         return $this->_db->update($this->_table, $id, $fields);
@@ -235,6 +262,11 @@ class Model {
         return $this->_validates;
     }
 
+    /**
+   * Method that is called on save if validation fails the save function will 
+   * not proceed.
+   * @method validator
+   */
     public function validator() {
 
     }
