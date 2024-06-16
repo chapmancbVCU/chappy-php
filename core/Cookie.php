@@ -1,17 +1,28 @@
 <?php
 namespace Core;
-
 /**
  * Manages cookies used by this application.  The $_COOKIE superglobal 
  * variable is an associative array.
  */
 class Cookie {
     /**
+     * Deletes a cookie from the $_COOKIE superglobal variable.
+     *
+     * @param string $name The name of the cookie we want to remove.  Also 
+     * known as the constant REMEMBER_ME_COOKIE_NAME.
+     * @return void
+     */
+    public static function delete($name) {
+        self::set($name, '', time() - 1);
+    }
+
+    /**
      * The name of the cookie we want to work with that is found in the 
      * $_COOKIE superglobal.  
      *
-     * @param string $name The name of the cookie we want to retrieve from 
-     * the $_COOKIE superglobal.
+     * @param string $name The cookie identification string we want to 
+     * retrieve from the $_COOKIE superglobal.  Also known as the constant 
+     * REMEMBER_ME_COOKIE_NAME.
      * @return string The name of the cookie specified in the $name parameter.
      */
     public static function get($name) {
@@ -22,8 +33,9 @@ class Cookie {
      * Checks if a particular cookie exists in the $_COOKIE superglobal 
      * variable.
      *
-     * @param string $name The name of the cookie we want to check if
-     * it exists in the $_COOKIE superglobal variable.
+     * @param string $name The cookie identification string we want to check 
+     * if it exists in the $_COOKIE superglobal variable.  Also known as the
+     * constant REMEMBER_ME_COOKIE_NAME.
      * @return bool True if the cookie exists.  Otherwise false.
      */
     public static function exists($name) {
@@ -35,8 +47,8 @@ class Cookie {
      * it needs are its name, a value, and the amount of time we want this 
      * cookie to exist.
      *
-     * @param string $name The name of the cookie we want to set.
-     * @param string $value The value of the cookie
+     * @param string $name The value for REMEMBER_ME_COOKIE_NAME constant.
+     * @param string $value The value of the cookie unique to this session.
      * @param int $expiry The amount of time we want this cookie to exist 
      * before it expires.
      * @return void True if the cookie is successfully set.  Otherwise it 
@@ -47,16 +59,6 @@ class Cookie {
             return true;
         }
         return false;
-    }
-
-    /**
-     * Deletes a cookie from the $_COOKIE superglobal variable.
-     *
-     * @param string $name The name of the cookie we want to remove.
-     * @return void
-     */
-    public static function delete($name) {
-        self::set($name, '', time() - 1);
     }
 
     
