@@ -3,7 +3,8 @@
         "denied" : {},
         "Home" : ["*"],
         "Register" : ["login", "register"],
-        "Restricted" : ["*"]
+        "Restricted" : ["*"],
+        "Documentation" : ["*"]
     },
     "LoggedIn" : {
         "denied" : {

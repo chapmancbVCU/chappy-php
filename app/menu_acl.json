@@ -1,6 +1,6 @@
 {
     "Home" : "home",
-    "Google" : "https://www.google.com",
+    "Custom MVC Docs" : "documentation",
     "PHP Docs" : "http://php.net/manual/en",
     "Login" : "register/login",
     "Logout" : "register/logout"
