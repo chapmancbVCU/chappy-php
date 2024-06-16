@@ -10,7 +10,7 @@ use Core\Validators\RequiredValidator;
 use Core\Validators\EmailValidator;
 use Core\Validators\MatchesValidator;
 use Core\Validators\UniqueValidator;
-
+use Core\Helper;
 /**
  * Extends the Model class.  Supports functions for the Users model.
  */
@@ -83,10 +83,16 @@ class Users extends Model {
         return $this->findFirst(['conditions' => 'username = ?', 'bind' => [$username]]);
     }
 
+    /**
+     * Checks if a user is logged in.
+     *
+     * @return object An object containing information about current logged in 
+     * user from users table.
+     */
     public static function currentUser() {
         if(!isset(self::$currentLoggedInUser) && Session::exists(CURRENT_USER_SESSION_NAME)) {
-            $u = new Users((int)Session::get(CURRENT_USER_SESSION_NAME));
-            self::$currentLoggedInUser = $u;
+            $user = new Users((int)Session::get(CURRENT_USER_SESSION_NAME));
+            self::$currentLoggedInUser = $user;
         }
         return self::$currentLoggedInUser;
     }
@@ -96,7 +102,9 @@ class Users extends Model {
     }
 
     /**
-     * Creates a session when the user logs in.
+     * Creates a session when the user logs in.  A new record is added to the 
+     * user_sessions table and a cookie is created if remember me is 
+     * selected.
      *
      * @param string $rememberMe Value obtained from remember me checkbox 
      * found in login form.  Default value is false.
@@ -118,10 +126,21 @@ class Users extends Model {
         }
     }
 
+    /**
+     * Perform logout operation on current logged in user.  The record for the 
+     * current logged in user is removed from the user_session table and the 
+     * corresponding cookie is deleted.
+     *
+     * @return bool Returns true if operation is successful.
+     */
     public function logout() {
         $userSession = UserSessions::getFromCookie();
-        if($userSession) $userSession->delete();
+        if($userSession) {
+            $userSession->delete();
+        }
+
         Session::delete(CURRENT_USER_SESSION_NAME);
+
         if(Cookie::exists(REMEMBER_ME_COOKIE_NAME)) {
             Cookie::delete(REMEMBER_ME_COOKIE_NAME);
         }

@@ -110,9 +110,10 @@ class Model {
     }
 
     /**
-     * Undocumented function
+     * Displays error messages when form validation fails.
      *
-     * @return void
+     * @return array An array that contains a list of items that failed form 
+     * validation.
      */
     public function getErrorMessages() {
         return $this->_validationErrors;

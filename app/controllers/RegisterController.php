@@ -25,7 +25,6 @@ class RegisterController extends Controller {
     }
 
     /**
-     * 
      * Manages login action processes.
      *
      * @return void
@@ -55,7 +54,9 @@ class RegisterController extends Controller {
     }
 
     /**
-     * Manages logout action for a user.
+     * Manages logout action for a user.  It checks if a user is currently 
+     * logged.  No matter of the result, the user gets redirected to the 
+     * login screen.
      *
      * @return void
      */

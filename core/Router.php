@@ -2,6 +2,10 @@
 namespace Core;
 use App\Models\Users;
 use Core\Session;
+
+/**
+ * This class is responsible for routing between views.
+ */
 class Router {
     /**
      * Gets link based on value from acl.
