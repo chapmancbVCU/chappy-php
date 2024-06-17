@@ -24,8 +24,9 @@ class UserSessions extends Model{
     /**
      * Retrieves User Session information from cookie.
      *
-     * @return UserSessions An object containing information about the current 
-     * user's session.
+     * @return bool|UserSessions An object containing information about the 
+     * current user's session.  If a user session does not exist false is 
+     * returned.
      */
     public static function getFromCookie() {
         $userSession = new self();

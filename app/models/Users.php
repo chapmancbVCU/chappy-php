@@ -148,6 +148,11 @@ class Users extends Model {
         return true;
     }
 
+    /**
+     * Logs in user from cookie.
+     *
+     * @return User The user associated with previous session.
+     */
     public static function loginUserFromCookie() {
         $userSession = UserSessions::getFromCookie();
         
