@@ -56,7 +56,7 @@ use Core\FormHelper;
         'Zip', 
         'zip', 
         $this->contact->zip, 
-        ['class' => 'form-control'], 
+        ['class' => 'form-control', 'pattern' => '[0-9]*', 'placeholder' => 'ex: 90210'], 
         ['class' => 'form-group col-md-4']
     );?>
 
@@ -72,7 +72,12 @@ use Core\FormHelper;
         'Cell Phone', 
         'cell_phone', 
         $this->contact->cell_phone, 
-        ['class' => 'form-control'], 
+        [
+            'class' => 'form-control',
+            'onkeydown' => 'cellPhoneNumberFormatter()',
+            'pattern' => '[0-9]{3}-[0-9]{3}-[0-9]{4}',
+            'placeholder' => 'ex: 123-456-7890',
+        ], 
         ['class' => 'form-group col-md-6']
     );?>
 
@@ -85,7 +90,6 @@ use Core\FormHelper;
             'onkeydown' => 'homePhoneNumberFormatter()',
             'pattern' => '[0-9]{3}-[0-9]{3}-[0-9]{4}',
             'placeholder' => 'ex: 123-456-7890',
-            // 'required' => ""
         ], 
         ['class' => 'form-group col-md-6']
     );?>
@@ -94,7 +98,12 @@ use Core\FormHelper;
         'Work Phone', 
         'work_phone', 
         $this->contact->work_phone, 
-        ['class' => 'form-control'], 
+        [
+            'class' => 'form-control',
+            'onkeydown' => 'workPhoneNumberFormatter()',
+            'pattern' => '[0-9]{3}-[0-9]{3}-[0-9]{4}',
+            'placeholder' => 'ex: 123-456-7890',
+        ], 
         ['class' => 'form-group col-md-6']
     );?>
 
