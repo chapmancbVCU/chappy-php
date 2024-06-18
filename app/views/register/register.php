@@ -15,6 +15,16 @@ use Core\FormHelper;
         <?= FormHelper::inputBlock('text', "Last Name", 'lname', $this->newUser->lname, ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
         <?= FormHelper::inputBlock('text', "Email", 'email', $this->newUser->email, ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
         <?= FormHelper::inputBlock('text', "User name", 'username', $this->newUser->username, ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
+        <div>
+            <h4>Password Requirements</h4>
+            <ul>
+                <li>Minimum 12 characters in length</li>
+                <li>At least 1 upper case character</li>
+                <li>At least 1 lower case character</li>
+                <li>At least 1 number</li>
+                <li>Must contain special characters (ex: !, @, $, %, ^, &, *, +, #)</li>
+            </ul>
+        </div>
         <?= FormHelper::inputBlock('password', "Password", 'password', $this->newUser->password, ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
         <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->newUser->getConfirm(), ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
         <?= FormHelper::submitBlock('Register', ['class' => 'btn btn-primary btn-large'], ['class' => 'text-right']) ?>
