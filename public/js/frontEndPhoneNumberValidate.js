@@ -13,6 +13,7 @@
  * @returns The properly formatted string based on length.
  */
 function formatPhoneNumber(value) {
+
     // If input is falsy eg if the user deletes the input, then just return.
     if(!value) return value;
 
@@ -45,13 +46,13 @@ function formatPhoneNumber(value) {
 }
 
 /**
- * Uses getElementbyId('phone') to get phone number input from webpage.  
+ * Uses getElementbyId('home_phone') to get phone number input from webpage.  
  * The way this function works is we grab the value of what the user is typing 
  * into the input.  Next we format the value and set the value of the input 
  * field in the html document.
  */
-function phoneNumberFormatter() {
-    const inputField = document.getElementById('phone');
+function homePhoneNumberFormatter() {
+    const inputField = document.getElementById('home_phone');
     const formattedInputValue = formatPhoneNumber(inputField.value);
     inputField.value = formattedInputValue;
 }
