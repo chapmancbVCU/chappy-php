@@ -1,6 +1,13 @@
 {
     "Home" : "home",
-    "Custom MVC Docs" : "documentation",
+    "Custom MVC Docs" : {
+        "Docs Home" : "documentation",
+        "Controllers" : "documentation/controllers",
+        "Core" : "documentation/core",
+        "Models" : "documentation/models",
+        "separator" :"",
+        "Java Script" : "documentation/javaScript"
+    },
     "PHP Docs" : "http://php.net/manual/en",
     "Login" : "register/login",
     "Logout" : "register/logout"

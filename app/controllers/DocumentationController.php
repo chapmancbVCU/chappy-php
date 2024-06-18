@@ -20,6 +20,20 @@ class DocumentationController extends Controller {
         $this->view->setLayout('default');
     }
 
+    /**
+     * Action for the Controller classes documentation page.
+     *
+     * @return void
+     */
+    public function controllersAction() {
+        $this->view->render('documentation/controllers_docs');
+    }
+
+    /**
+     * Action for the Core Classes documentation page.
+     *
+     * @return void
+     */
     public function coreAction() {
         $this->view->render('documentation/core_docs');
     }
@@ -34,5 +48,21 @@ class DocumentationController extends Controller {
         $this->view->render('documentation/index');
     }
 
-    
+    /**
+     * Action for the JavaScript documentation page.
+     *
+     * @return void
+     */
+    public function javaScriptAction() {
+        $this->view->render('documentation/java_script_docs');
+    }
+
+    /**
+     * Action for the Model classes documentation page.
+     *
+     * @return void
+     */
+    public function modelsAction() {
+        $this->view->render('documentation/models_docs');
+    }
 }

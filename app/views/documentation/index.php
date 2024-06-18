@@ -1,6 +1,12 @@
 <?php $this->setSiteTitle("Custom MVC Framework Docs"); ?>
 <?php $this->start('body'); ?>
-<h1 class="text-center red">Custom MVC Framework Docs.</h1>
+<h1 class="text-center red">Custom MVC Framework Docs</h1>
 
-<a href="<?=PROOT?>documentation/core" class="text-primary">Core</a>
+<ul>
+    <li><a href="<?=PROOT?>documentation/controllers" class="text-primary">Controllers</a></li>
+    <li><a href="<?=PROOT?>documentation/core" class="text-primary">Core</a></li>
+    <li><a href="<?=PROOT?>documentation/javaScript" class="text-primary">javaScript</a></li>
+    <li><a href="<?=PROOT?>documentation/models" class="text-primary">Models</a></li>
+</ul>
+
 <?php $this->end(); ?>
