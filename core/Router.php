@@ -10,19 +10,24 @@ class Router {
     /**
      * Gets link based on value from acl.
      * 
-     * @param string item in acl that will be used to create a link.
-     * @return
+     * @param string $value item in acl that will be used to create a 
+     * link.  
+     * @return bool|string False if the user does not have access to a 
+     * controller or action.  Otherwise we return the value so we can create 
+     * a link.
      */
-    private static function get_link($val) {
+    private static function get_link($value) {
         // Check if external link just return it.
-        if(preg_match('/https?:\/\//', $val) == 1) {
-            return $val;
+        if(preg_match('/https?:\/\//', $value) == 1) {
+            return $value;
         } else {
-            $uAry = explode('/', $val);
-            $controller_name = ucwords($uAry[0]);
-            $action_name = (isset($uAry[1])) ? $uAry[1] : '';
+            $uArray = explode('/', $value);
+            $controller_name = ucwords($uArray[0]);
+            $action_name = (isset($uArray[1])) ? $uArray[1] : '';
+
+            // Build link item only if the user has access.
             if(self::hasAccess($controller_name, $action_name)) {
-                return PROOT . $val;
+                return PROOT . $value;
             } 
             return false;
         }
@@ -36,33 +41,33 @@ class Router {
      * @return array The array of menu items.
      */
     public static function getMenu($menu) {
-        $menuAry = [];
+        $menuArray = [];
         $menuFile = file_get_contents(ROOT . DS . 'app' . DS . $menu . '.json');
         $acl = json_decode($menuFile, true);
-        foreach($acl as $key => $val) {
+        foreach($acl as $key => $value) {
             // If array we will know if there is a dropdown or something else.
-            if(is_array($val)) {
-                $sub = [];
-                foreach($val as $k => $v) {
+            if(is_array($value)) {
+                $subMenu = [];
+                foreach($value as $k => $v) {
                     /* Check if item is a separator and continue.  Don't what 
                      * to add separator as a link. */
-                    if($k == 'separator' && !empty($sub)) {
-                        $sub[$k] = '';
+                    if($k == 'separator' && !empty($subMenu)) {
+                        $subMenu[$k] = '';
                         continue;
-                    } else if($finalVal = self::get_link($v)) {
-                        $sub[$k] = $finalVal;
+                    } else if($finalValue = self::get_link($v)) {
+                        $subMenu[$k] = $finalValue;
                     }
                 }
-                if(!empty($sub)) {
-                    $menuAry[$key] = $sub;
+                if(!empty($subMenu)) {
+                    $menuArray[$key] = $subMenu;
                 }
             } else {
-                if($finalVal = self::get_link($val)) {
-                    $menuAry[$key] = $finalVal;
+                if($finalValue = self::get_link($value)) {
+                    $menuArray[$key] = $finalValue;
                 }
             }
         }
-        return $menuAry;
+        return $menuArray;
     }
 
     /**
