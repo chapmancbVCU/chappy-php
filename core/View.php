@@ -20,6 +20,20 @@ class View {
     }
 
     /**
+     * Includes a partial for our view.  Partial views assist with code 
+     * reuse.  An application of this would be forms.  The parameters are used 
+     * to build the path for the partial used in this function's include 
+     * statement.
+     *
+     * @param string $group The name of the parent view.
+     * @param string $partial The name of the partial view.
+     * @return void
+     */
+    public function addPartialView($group, $partial) {
+        include ROOT . DS . 'app' . DS . 'views' . DS . $group . DS . 'partials' . DS . $partial . '.php';
+    }
+    
+    /**
      * The content of the page.  The two types are head and body.  If 
      * necessary, we can implement additional types of content.
      *
@@ -52,12 +66,12 @@ class View {
     }
 
     /**
-     * Inserts a partial into another partial
+     * Inserts a partial into another partial.
      *
      * @param string $path Path to view.  Example: register/register
      * @return void
      */
-    public function insert($path) {
+    public function insertView($path) {
         include ROOT . DS . 'app' . DS . 'views' . DS . $path . '.php';
     }
 
@@ -80,20 +94,6 @@ class View {
         } else {
             die('The view \"' . $viewName . '\" does not exist');
         }
-    }
-
-    /**
-     * Includes a partial for our view.  Partial views assist with code 
-     * reuse.  An application of this would be forms.  The parameters are used 
-     * to build the path for the partial used in this function's include 
-     * statement.
-     *
-     * @param string $group The name of the parent view.
-     * @param string $partial The name of the partial view.
-     * @return void
-     */
-    public function partial($group, $partial) {
-        include ROOT . DS . 'app' . DS . 'views' . DS . $group . DS . 'partials' . DS . $partial . '.php';
     }
 
     /**

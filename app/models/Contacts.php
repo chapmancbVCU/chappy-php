@@ -75,7 +75,6 @@ class Contacts extends Model {
      * @return array The list of contacts that is returned from the database.
      */
     public function findAllByUserId($user_id, $params = []) {
-        Helper::cl($params);
         $conditions = [
             'conditions' => 'user_id = ?',
             'bind' => [$user_id]
