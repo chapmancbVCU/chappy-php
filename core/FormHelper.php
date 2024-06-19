@@ -32,7 +32,7 @@ class FormHelper {
      * FormHelper::checkboxBlock('Remember Me', 'remember_me', $this->login->getRememberMeChecked(), [], ['class' => 'form-group'])
      * 
      * Example HTML output is shown below:
-     * 
+     * <input type="hidden" name="csrf_token" id="csrf_token" value="RANDOM_STRING_OF_VALUES" />
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the name for, id, and name attributes for this 

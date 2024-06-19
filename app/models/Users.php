@@ -11,6 +11,7 @@ use Core\Validators\EmailValidator;
 use Core\Validators\MatchesValidator;
 use Core\Validators\UniqueValidator;
 use Core\Helper;
+
 /**
  * Extends the Model class.  Supports functions for the Users model.
  */

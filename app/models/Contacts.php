@@ -3,7 +3,12 @@ namespace App\Models;
 use Core\Model;
 use Core\Validators\RequiredValidator;
 use Core\Validators\MaxValidator;
+use Core\Helper;
 
+/**
+ * Extends the Model class.  Supports functions for handling Contacts such as 
+ * displaying information, form validation, and DB operations.
+ */
 class Contacts extends Model {
     public $address;
     public $address2;
@@ -20,6 +25,9 @@ class Contacts extends Model {
     public $work_phone;
     public $zip;
 
+    /**
+     * Constructor for the Contacts class.
+     */
     public function __construct() {
         $table = 'contacts';
         parent::__construct($table);
@@ -48,11 +56,26 @@ class Contacts extends Model {
         return $html;
     }
 
+    /**
+     * Displays name in following format: ${firstName}, ${lastName}
+     *
+     * @return string Returns first name and last name.
+     */
     public function displayName() {
         return $this->fname . ' ' . $this->lname;
     }
 
+    /**
+     * Retrieves list of all contacts related to a logged in user.  Using 
+     * additional parameters you can order by fields within the Contacts 
+     * table or set other conditions.
+     *
+     * @param int $user_id The ID user associated with this contact.
+     * @param array $params Used to build conditions for database query.
+     * @return array The list of contacts that is returned from the database.
+     */
     public function findAllByUserId($user_id, $params = []) {
+        Helper::cl($params);
         $conditions = [
             'conditions' => 'user_id = ?',
             'bind' => [$user_id]
@@ -72,6 +95,11 @@ class Contacts extends Model {
         return $this->findFirst($conditions);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function validator() {
         // Validate first name
         $this->runValidation(new RequiredValidator($this, ['field' => 'fname', 'message' => 'First Name is required']));

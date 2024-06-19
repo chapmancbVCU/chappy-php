@@ -6,9 +6,21 @@ use Core\Router;
 use App\Models\Contacts;
 use App\Models\Users;
 
+/**
+ * Implements support for our Contact Controller.  It contains actions for 
+ * handling user interactions that will result in CRUD operations against the 
+ * database.
+ */
 class ContactsController extends Controller {
-    
-    
+    /**
+     * Constructor for the ContactsController.  It sets the default layout 
+     * and loads the Contacts model.
+     *
+     * @param string $controller The name of the controller obtained while 
+     * parsing the URL.
+     * @param string $action The name of the action specified in the path of 
+     * the URL.
+     */
     public function __construct($controller, $action) {
         parent::__construct($controller, $action);
         $this->view->setLayout('default');
@@ -57,6 +69,8 @@ class ContactsController extends Controller {
 
     public function editAction($id) {
         $contact = $this->ContactsModel->findByIdAndUserId((int)$id, Users::currentUser()->id);
+
+        // Check if contact exists
         if(!$contact) Router::redirect('contacts');
         if($this->request->isPost()) {
             $this->request->csrfCheck();
@@ -71,6 +85,12 @@ class ContactsController extends Controller {
         $this->view->render('contacts/edit');
     }
 
+    /**
+     * The index action loads the home page for contacts that lists all 
+     * contacts associated with a particular user.
+     *
+     * @return void
+     */
     public function indexAction() {
         $contacts = $this->ContactsModel->findAllByUserId(Users::currentUser()->id, ['order'=>'lname, fname']);
         $this->view->contacts = $contacts;

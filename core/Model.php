@@ -1,6 +1,6 @@
 <?php
 namespace Core;
-
+use Core\Helper;
 /**
  * Parent class for our models.  Takes functions from DB wrapper and extract 
  * functionality further to make operations easier to use and improve 
@@ -229,6 +229,13 @@ class Model {
         return false;
     }
 
+    /**
+     * Adds to the conditions to avoid getting soft deleted rows returned
+     *
+     * @param array $params Defined parameters to search by
+     * @return array $params parameters with appended conditions for soft 
+     * delete.
+     */
     protected function _softDeleteParams($params) {
         if($this->_softDelete) {
             if(array_key_exists('conditions', $params)) {
