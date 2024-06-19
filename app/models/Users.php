@@ -21,10 +21,9 @@ class Users extends Model {
     private $_confirm;
     private $_cookieName;
     public static $currentLoggedInUser = null;
-    public $deleted = 0;
+    public $deleted = 0;                // Set default value for db field.
     public $fname;
     public $id;
-    private $_isLoggedIn;
     public $lname;
     public $password;
     private $_sessionName;

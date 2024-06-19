@@ -210,8 +210,10 @@ class DB {
             }
             if($this->_query->execute()) {
                 if($class) {
+                    // Construct results in array into class that we pass it.
                     $this->_result = $this->_query->fetchAll(PDO::FETCH_CLASS, $class);
                 } else {
+                    // We just construct an object from the results.
                     $this->_result = $this->_query->fetchAll(PDO::FETCH_OBJ);
                 }
                 $this->_count = $this->_query->rowCount();

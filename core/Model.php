@@ -45,6 +45,11 @@ class Model {
         $this->_validationErrors[$field] = $message;  
     }
 
+    /**
+     * Called before save.
+     *
+     * @return void
+     */
     public function afterSave() {}
 
     /**
@@ -65,6 +70,11 @@ class Model {
         return false;
     }
 
+    /**
+     * Called after save.
+     *
+     * @return void
+     */
     public function beforeSave() {}
 
     /**
@@ -128,7 +138,10 @@ class Model {
      */
     public function find($params = []) {
         $params = $this->_softDeleteParams($params);
+
+        // Using $this will return the child class.
         $resultsQuery = $this->_db->find($this->_table, $params, get_class($this));
+
         if(!$resultsQuery) return [];
         return $resultsQuery;
     }
@@ -204,7 +217,8 @@ class Model {
     }
 
     /**
-     * Wrapper for update and insert functions.
+     * Wrapper for update and insert functions.  A failed form validation will
+     * cause this function to return false.
      * 
      * @return bool True if the update operation is successful.  Otherwise, 
      * we return false.
