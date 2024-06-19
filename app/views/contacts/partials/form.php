@@ -10,14 +10,14 @@ use Core\FormHelper;
             'fname', 
             $this->contact->fname, 
             ['class' => 'form-control'], 
-            ['class' => 'form-group col-6']
+            ['class' => 'form-group col-md-6']
         );?>
         <?= FormHelper::inputBlock('text', 
             'Last Name', 
             'lname', 
             $this->contact->lname, 
             ['class' => 'form-control'], 
-            ['class' => 'form-group col-6']
+            ['class' => 'form-group col-md-6']
         );?>
     </div>
 
@@ -27,14 +27,14 @@ use Core\FormHelper;
             'address', 
             $this->contact->address, 
             ['class' => 'form-control'], 
-            ['class' => 'form-group col-6']
+            ['class' => 'form-group col-md-6']
         );?>
         <?= FormHelper::inputBlock('text', 
             'Address 2', 
             'address2', 
             $this->contact->address2, 
             ['class' => 'form-control'], 
-            ['class' => 'form-group col-6']
+            ['class' => 'form-group col-md-6']
         );?>
     </div>
 
@@ -44,21 +44,21 @@ use Core\FormHelper;
             'city', 
             $this->contact->city, 
             ['class' => 'form-control'], 
-            ['class' => 'form-group col-5']
+            ['class' => 'form-group col-md-5']
         );?>
         <?= FormHelper::inputBlock('text', 
             'State', 
             'state', 
             $this->contact->state, 
-            ['class' => 'form-control'], 
-            ['class' => 'form-group col-3']
+            ['class' => 'form-control', 'pattern' => '[A-Z]*', 'placeholder' => 'ex: VA'], 
+            ['class' => 'form-group col-md-3']
         );?>
         <?= FormHelper::inputBlock('text', 
             'Zip', 
             'zip', 
             $this->contact->zip, 
             ['class' => 'form-control', 'pattern' => '[0-9]*', 'placeholder' => 'ex: 90210'], 
-            ['class' => 'form-group col-4']
+            ['class' => 'form-group col-md-4']
         );?>
     </div>
 
@@ -67,8 +67,8 @@ use Core\FormHelper;
             'Email', 
             'email', 
             $this->contact->email, 
-            ['class' => 'form-control'], 
-            ['class' => 'form-group col-6']
+            ['class' => 'form-control', 'placeholder' => 'email@example.com'], 
+            ['class' => 'form-group col-md-6']
         );?>
         <?= FormHelper::inputBlock('tel', 
             'Cell Phone', 
@@ -80,7 +80,7 @@ use Core\FormHelper;
                 'pattern' => '[0-9]{3}-[0-9]{3}-[0-9]{4}',
                 'placeholder' => 'ex: 123-456-7890',
             ], 
-            ['class' => 'form-group col-6']
+            ['class' => 'form-group col-md-6']
         );?>
     </div>
 
@@ -95,7 +95,7 @@ use Core\FormHelper;
                 'pattern' => '[0-9]{3}-[0-9]{3}-[0-9]{4}',
                 'placeholder' => 'ex: 123-456-7890',
             ], 
-            ['class' => 'form-group col-6']
+            ['class' => 'form-group col-md-6']
         );?>
         <?= FormHelper::inputBlock('tel', 
             'Work Phone', 
@@ -107,11 +107,11 @@ use Core\FormHelper;
                 'pattern' => '[0-9]{3}-[0-9]{3}-[0-9]{4}',
                 'placeholder' => 'ex: 123-456-7890',
             ], 
-            ['class' => 'form-group col-6']
+            ['class' => 'form-group col-md-6']
         );?>
     </div>
 
-    <div class="col-12 text-right">
+    <div class="col-md-12 text-right">
         <a href="<?=PROOT?>contacts" class="btn btn-default">Cancel</a>
         <?= FormHelper::submitTag('Save', ['class' => 'btn btn-primary']) ?>
     </div>
