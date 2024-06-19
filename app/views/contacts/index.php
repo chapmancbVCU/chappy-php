@@ -7,7 +7,7 @@
         <th>Cell Phone</th>
         <th>Home Phone</th>
         <th>Work Phone</th>
-        <th></th>
+        <th width="15%"></th>
     </thead>
     <tbody>
         <?php foreach($this->contacts as $contact): ?>
@@ -21,7 +21,7 @@
                 <td><?= $contact->cell_phone ?></td>
                 <td><?= $contact->home_phone ?></td>
                 <td><?= $contact->work_phone ?></td>
-                <td>
+                <td class="text-center">
                     <a href="<?=PROOT?>contacts/edit/<?=$contact->id?>" class="btn btn-info btn-xs">
                         <i class="glyphicon glyphicon-pencil"></i> Edit
                     </a>
