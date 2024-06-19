@@ -35,7 +35,7 @@ class HomeController extends Controller {
      * @return void
      */
     public function testAjaxAction(){
-        $resp = ['success'=>true,'data'=>['id'=>23,'name'=>'Curtis','favorite_food'=>'bread']];
+        $resp = ['success'=>true,'data'=>['id'=>23,'name'=>'Hello World','favorite_food'=>'bread']];
         $this->jsonResponse($resp);
       }
 }
