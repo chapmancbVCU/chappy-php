@@ -27,6 +27,12 @@ class ContactsController extends Controller {
         $this->load_model('Contacts');
     }
 
+    /**
+     * Displays view for adding a new contact, assists with form validation, 
+     * and begins task for saving record to database.
+     *
+     * @return void
+     */
     public function addAction() {
         $contact = new Contacts();
         if($this->request->isPost()) {
@@ -55,6 +61,12 @@ class ContactsController extends Controller {
         Router::redirect('contacts');
     }
     
+    /**
+     * Retrieves information for a contact and render its details
+     *
+     * @param int $id The id for contact whose information we want to display.
+     * @return void
+     */
     public function detailsAction($id) {
         $contact = $this->ContactsModel->findByIdAndUserId((int)$id, Users::currentUser()->id);
 

@@ -34,6 +34,11 @@ class Contacts extends Model {
         $this->_softDelete = true;
     }
 
+    /**
+     * Formats address to conform to form factor of an address label.
+     *
+     * @return string $html The formatted address.
+     */
     public function displayAddress() {
         $address = '';
         if(!empty($this->address)) {
@@ -50,6 +55,12 @@ class Contacts extends Model {
         return $address;
     }
 
+    /**
+     * Displays contact information in an address label format.
+     *
+     * @return string $html The contact information in an address label 
+     * format.
+     */
     public function displayAddressLabel() {
         $html = $this->displayName() . '<br>';
         $html .= $this->displayAddress();
@@ -85,6 +96,15 @@ class Contacts extends Model {
         return $this->find($conditions);
     }
 
+    /**
+     * Retrieves information for a contact that is associate with a 
+     * particular user.
+     *
+     * @param int $contact_id The ID of the contact whose details we want.
+     * @param int $user_id The ID of the logged in user.
+     * @param array $params Used to set additional conditions.
+     * @return void The contact whose information we want to view.
+     */
     public function findByIdAndUserId($contact_id, $user_id, $params = []) {
         $conditions = [
             'conditions' => 'id = ? AND user_id = ?',
