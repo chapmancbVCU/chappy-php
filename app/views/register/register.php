@@ -31,6 +31,7 @@ use Core\FormHelper;
             <div class="d-flex justify-content-end">
                 <?= FormHelper::submitBlock('Register', ['class' => 'btn btn-primary']) ?>
             </div>
+            <script src="<?=PROOT?>public/js/frontEndPasswordMatchValidate.js"></script>
         </form>
     </div>
 </div>
