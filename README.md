@@ -8,3 +8,9 @@ The Model View Controller is a style of programming that allows developers to ef
 
 ## What does this MVC support?
 It supports everything described above.  This sample application natively comes with support for user login, registration, and sessions associated with each user.
+
+## Goals
+1. Add additional front-end and back-end form validation
+2. Resolve issue for warnings about creating of dynamic properties so the framework is fully compatible with PHP 8
+3. Test with nginx
+4. Update jQuery and Bootstrap to modern builds and add support to maintain same look and feel of front end
