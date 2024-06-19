@@ -7,7 +7,7 @@
         <th>Cell Phone</th>
         <th>Home Phone</th>
         <th>Work Phone</th>
-        <th width="15%"></th>
+        <th></th>
     </thead>
     <tbody>
         <?php foreach($this->contacts as $contact): ?>
@@ -23,10 +23,10 @@
                 <td><?= $contact->work_phone ?></td>
                 <td class="text-center">
                     <a href="<?=PROOT?>contacts/edit/<?=$contact->id?>" class="btn btn-info btn-xs">
-                        <i class="glyphicon glyphicon-pencil"></i> Edit
+                        <i class="fa fa-edit"></i> Edit
                     </a>
                     <a href="<?=PROOT?>contacts/delete/<?=$contact->id?>" class="btn btn-danger btn-xs" onclick="if(!confirm('Are your sure?')){return false;}">
-                        <i class="glyphicon glyphicon-remove"></i> Delete
+                        <i class="fa fa-trash"></i> Delete
                     </a>
                 </td>
             </tr>
