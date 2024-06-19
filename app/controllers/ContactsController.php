@@ -52,6 +52,13 @@ class ContactsController extends Controller {
     }
 
 
+    /**
+     * Performs delete operation on a contact and redirects user back to the 
+     * index contacts view.
+     *
+     * @param int $id The ID of the contact to be deleted.
+     * @return void
+     */
     public function deleteAction($id) {
         $contact = $this->ContactsModel->findByIdAndUserId((int)$id, Users::currentUser()->id);
         if($contact) {
