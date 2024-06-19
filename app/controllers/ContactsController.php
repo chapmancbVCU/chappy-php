@@ -51,7 +51,6 @@ class ContactsController extends Controller {
         $this->view->render('contacts/add');
     }
 
-
     /**
      * Performs delete operation on a contact and redirects user back to the 
      * index contacts view.
@@ -86,6 +85,16 @@ class ContactsController extends Controller {
         $this->view->render('contacts/details');
     }
 
+    /**
+     * Retrieves contact by ID and sets up view for editing a contact.  If 
+     * form validation fails the page is displayed again with the appropriate 
+     * messages.  If the contact does not exist the user is redirected to 
+     * the main contacts page.
+     *
+     * @param int $id The ID for the contact whose information we want too 
+     * edit.
+     * @return void
+     */
     public function editAction($id) {
         $contact = $this->ContactsModel->findByIdAndUserId((int)$id, Users::currentUser()->id);
 
