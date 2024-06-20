@@ -208,10 +208,20 @@ class Model {
         return $this->_db->query($sql, $bind);
     }
 
+    /**
+     * runs a validator object and sets validates boolean and adds error 
+     * message if validator fails.
+     *
+     * @param string $validator The validator object.
+     * @return void
+     */
     public function runValidation($validator) {
+        // $validator->field is the field we ar validating.
         $key = $validator->field;
         if(!$validator->success) {
             $this->_validates = false;
+
+            // Sets message as value for the key.
             $this->_validationErrors[$key] = $validator->message;
         }
     }
@@ -280,15 +290,23 @@ class Model {
         return $this->_db->update($this->_table, $id, $fields);
     }
 
+    /**
+     * Getter function for the $_validates boolean instance variable.
+     *
+     * @return void $_validates is true if validation is successful and 
+     * false if there is a failure.
+     */
     public function validationPassed() {
         return $this->_validates;
     }
 
     /**
-   * Method that is called on save if validation fails the save function will 
-   * not proceed.
-   * @method validator
-   */
+     * Function that is called on save.  If validation fails the save function 
+     * will not proceed.  This function is just a signature and must be 
+     * implemented by models that run form validation because since it is 
+     * called from within this class.
+     * @method validator
+     */
     public function validator() {
 
     }

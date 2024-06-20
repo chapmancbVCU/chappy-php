@@ -14,7 +14,11 @@ abstract class CustomValidator {
     public $success = true;
     
     /**
-     * Constructor for Custom Validator
+     * Constructor for Custom Validator.  It performs checks on the model and 
+     * prams such as fields, rules, and messages.  Finally the validation is 
+     * performed against input from a form.  An exception is thrown if any 
+     * conditions are not satisfied.  When an exception is thrown a message 
+     * is displayed describing the issue.
      *
      * @param string $model The name of the model we want to perform 
      * validation when submitting a form.
@@ -27,19 +31,23 @@ abstract class CustomValidator {
         if(!array_key_exists('field', $params)) {
             throw new Exception("You must add a field to the params array.");
         } else {
+            // Checks if field in params is an array or not.
             $this->field = (is_array($params['field'])) ? $params['field'][0] : $params['field'];
         }
 
+        // $model is the class we are checking and field must exist within it.
         if(!property_exists($model, $this->field)) {
             throw new Exception("The field must exist in the model");
         }
 
+        // The message that is displayed upon failed validation.
         if(!array_key_exists('message', $params)) {
             throw new Exception("You must add a message to the params array");
         } else {
             $this->message = $params['message'];
         }
 
+        // Check if the rule exists and sets the $rule instance variable.
         if(array_key_exists('rule', $params)) {
             $this->rule = $params['rule'];
         }

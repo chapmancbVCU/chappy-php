@@ -22,7 +22,6 @@ class Input {
      * an encoded HTML string.
      */
     public function get($input = false) {
-        
         if(!$input) {
             // Return and sanitize entire request array.
             $data = [];
@@ -34,18 +33,39 @@ class Input {
         return FormHelper::sanitize(($_REQUEST[$input]));
     }
 
+    /**
+     * Returns the request element within the $_SERVER superglobal array.
+     *
+     * @return string The type of request stored in the REQUEST_METHOD element 
+     * within the $_SERVER superglobal array.
+     */
     public function getRequestMethod() {
         return strtoupper($_SERVER['REQUEST_METHOD']);
     }
 
+    /**
+     * Checks if the REQUEST_METHOD is GET.
+     *
+     * @return boolean True if the request method is GET.
+     */
     public function isGet() {
         return $this->getRequestMethod() === 'GET';
     } 
 
+    /**
+     * Checks if the REQUEST_METHOD is POST.
+     *
+     * @return boolean True if the request method is POST.
+     */
     public function isPost() {
         return $this->getRequestMethod() === 'POST';
     }
 
+    /**
+     * Checks if the REQUEST_METHOD is PUT.
+     *
+     * @return boolean True if the request method is PUT.
+     */
     public function isPut() {
         return $this->getRequestMethod() === 'PUT';
     } 
