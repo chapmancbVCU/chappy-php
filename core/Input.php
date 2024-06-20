@@ -9,7 +9,7 @@ use Core\Helper;
 class Input {
     public function csrfCheck() {
         if(!FormHelper::checkToken($this->get('csrf_token'))) 
-            Router::redirect('restricted/badtoken');
+            Router::redirect('restricted/badToken');
         return true;
     }
     
