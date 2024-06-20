@@ -29,10 +29,12 @@ class FormHelper {
      * Generates a div containing an input of type checkbox.
      *
      * An example function call is shown below:
-     * FormHelper::checkboxBlock('Remember Me', 'remember_me', $this->login->getRememberMeChecked(), [], ['class' => 'form-group'])
+     * FormHelper::checkboxBlock('Remember Me', 'remember_me', $this->login->getRememberMeChecked(), [], ['class' => 'form-group']);
      * 
      * Example HTML output is shown below:
-     * <input type="hidden" name="csrf_token" id="csrf_token" value="RANDOM_STRING_OF_VALUES" />
+     * <div class="form-group">
+     *     <label for="remember_me">Remember Me <input type="checkbox" id="remember_me" name="remember_me" value="on"></label>
+     * </div>
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the name for, id, and name attributes for this 
@@ -75,6 +77,9 @@ class FormHelper {
     /**
      * A hidden input to represent the csrf token in a web form.
      *
+     * Example HTML output is shown below:
+     * <input type="hidden" name="csrf_token" id="csrf_token" value="RANDOM_STRING_OF_VALUES" />
+     * 
      * @return string The hidden input of type hidden with the generated token 
      * set as the value.
      */
@@ -98,13 +103,13 @@ class FormHelper {
      * attribute tags in the form section.
      * 
      * An example function call is shown below:
-     * FormHelper::inputBlock("text", "Favorite Color:", "favorite_color", '', ['class'=>'form-control'], ['class'=>'form-group']);
+     * FormHelper::inputBlock('text', 'Username', 'username', $this->login->username, ['class' => 'form-control'], ['class' => 'form-group']);
      * 
      * Example HTML output is shown below:
      * <div class="form-group">
-     *     <label for="favorite_color">Favorite Color:</label>
-     *     <input type="text" id="favorite_color" name="favorite_color" value="" class="form-control" />
-     *  </div>
+     *     <label for="username">Username</label>
+     *     <input type="text" id="username" name="username" value="" class="form-control" />
+     * </div>
      * 
      * @param string $type The input type we want to generate.
      * @param string $label Sets the label for this input.

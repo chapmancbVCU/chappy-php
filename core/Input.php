@@ -7,6 +7,12 @@ use Core\Helper;
  * Input class handles requests to the server.
  */
 class Input {
+    /**
+     * Checks csrf token to determine if it was tampered with.  If the check 
+     * fails the user is routed to a view stating access is restricted.
+     *
+     * @return bool Returns true if check passes.
+     */
     public function csrfCheck() {
         if(!FormHelper::checkToken($this->get('csrf_token'))) 
             Router::redirect('restricted/badToken');
@@ -30,7 +36,7 @@ class Input {
             }
             return $data;
         }
-        return FormHelper::sanitize(($_REQUEST[$input]));
+        return FormHelper::sanitize($_REQUEST[$input]);
     }
 
     /**

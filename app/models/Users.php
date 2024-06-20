@@ -72,6 +72,12 @@ class Users extends Model {
 
     }
 
+    /**
+     * Implements beforeSave function described in Model parent class.  
+     * Ensures password is not in plain text but a hashed one.
+     *
+     * @return void
+     */
     public function beforeSave() {
         if($this->isNew()) {
             $this->password = password_hash($this->password, PASSWORD_DEFAULT);
@@ -104,6 +110,7 @@ class Users extends Model {
     }
 
     public function getConfirm() {
+        Helper::dnd($this->_confirm);
         return $this->_confirm;
     }
 

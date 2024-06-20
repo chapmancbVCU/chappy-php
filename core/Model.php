@@ -181,6 +181,12 @@ class Model {
         return $this->_db->insert($this->_table, $fields);
     }
 
+    /**
+     * Checks if an object is a new insertion or an existing record.
+     *
+     * @return boolean Returns true if the record exists.  Otherwise, we 
+     * return false.
+     */
     public function isNew() {
         return (property_exists($this, 'id') && !empty($this->id)) ? false : true;
     }
