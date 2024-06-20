@@ -202,7 +202,7 @@ class Users extends Model {
 
         // Validate password
         $this->runValidation(new RequiredValidator($this, ['field' => 'password', 'message' => 'Password is required.']));
-        $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => '6', 'message' => 'Password must be at least 6 characters.']));
+        $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => '12', 'message' => 'Password must be at least 12 characters.']));
         if($this->isNew()) {
             $this->runValidation(new MatchesValidator($this, ['field' => 'password', 'rule' => $this->_confirm, 'message' => 'Passwords must match.']));
         }
