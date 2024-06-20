@@ -28,9 +28,7 @@ use Core\FormHelper;
             </div>
             <?= FormHelper::inputBlock('password', "Password", 'password', $this->newUser->password, ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
             <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->newUser->getConfirm(), ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
-            <div class="d-flex justify-content-end">
-                <?= FormHelper::submitBlock('Register', ['class' => 'btn btn-primary']) ?>
-            </div>
+            <?= FormHelper::submitBlock('Register', ['class' => 'btn btn-large btn-primary'], ['class' => 'text-right mt-4'])  ?>
             <script src="<?=PROOT?>public/js/frontEndPasswordMatchValidate.js"></script>
         </form>
     </div>

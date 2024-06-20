@@ -109,8 +109,12 @@ class Users extends Model {
         return self::$currentLoggedInUser;
     }
 
+    /**
+     * Getter function for $_confirm instance variable.
+     *
+     * @return string The value for $_confirm.
+     */
     public function getConfirm() {
-        Helper::dnd($this->_confirm);
         return $this->_confirm;
     }
 
@@ -179,6 +183,13 @@ class Users extends Model {
         return $user;
     }
 
+    /**
+     * Setter function for $_confirm instance variable.
+     *
+     * @param string $value The value we will use to set $_confirm instance 
+     * variable.
+     * @return void
+     */
     public function setConfirm($value) {
         $this->_confirm = $value;
     }
