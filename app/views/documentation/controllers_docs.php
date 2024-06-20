@@ -1,4 +1,4 @@
-<?php $this->setSiteTitle("Controller Classes = Custom MVC Framework Docs"); ?>
+<?php $this->setSiteTitle("Controller Classes - Custom MVC Framework Docs"); ?>
 <?php $this->start('body'); ?>
 <h1 class="text-center">Controller Classes</h1>
 
