@@ -83,7 +83,7 @@ class FormHelper {
     }
 
     /**
-     * Creates a randomly csrf token.
+     * Creates a randomly generated csrf token.
      *
      * @return string The randomly generated token.
      */
