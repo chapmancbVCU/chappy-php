@@ -7,7 +7,7 @@ use Core\Validators\CustomValidator;
 class EmailValidator extends CustomValidator {
     /**
      * Implements the abstract function of the same name from the parent 
-     * class.
+     * class.  Enforces requirement where a field must be a valid E-mail.
      *
      * @return void
      */

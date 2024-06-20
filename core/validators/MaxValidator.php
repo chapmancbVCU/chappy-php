@@ -8,7 +8,7 @@ use Core\Validators\CustomValidator;
 class MaxValidator extends CustomValidator {
     /**
      * Implements the abstract function of the same name from the parent 
-     * class.
+     * class.  Enforces maximum length requirements for a form field.
      *
      * @return void
      */

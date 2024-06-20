@@ -8,7 +8,7 @@ use Core\Validators\CustomValidator;
 class NumericValidator extends CustomValidator {
     /**
      * Implements the abstract function of the same name from the parent 
-     * class.
+     * class.  Enforces requirement where a field must contain a number.
      *
      * @return void
      */

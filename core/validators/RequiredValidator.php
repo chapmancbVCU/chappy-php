@@ -7,7 +7,7 @@ use Core\Validators\CustomValidator;
 class RequiredValidator extends CustomValidator {
     /**
      * Implements the abstract function of the same name from the parent 
-     * class.
+     * class.  Enforces the required requirement for a field.
      *
      * @return void
      */

@@ -8,7 +8,7 @@ use Core\Validators\CustomValidator;
 class MatchesValidator extends CustomValidator {
     /**
      * Implements the abstract function of the same name from the parent 
-     * class.
+     * class.  Enforces requirements when two fields must match.
      *
      * @return void
      */

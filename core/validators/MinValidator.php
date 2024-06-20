@@ -8,7 +8,7 @@ use Core\Validators\CustomValidator;
 class MinValidator extends CustomValidator {
     /**
      * Implements the abstract function of the same name from the parent 
-     * class.
+     * class.  Enforces minimum length requirements for a form field.
      *
      * @return void
      */

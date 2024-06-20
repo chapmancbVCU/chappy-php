@@ -8,7 +8,7 @@ use Core\Validators\CustomValidator;
 class UniqueValidator extends CustomValidator {
     /**
      * Implements the abstract function of the same name from the parent 
-     * class.
+     * class.  Enforces requirement for a field.
      *
      * @return void
      */
