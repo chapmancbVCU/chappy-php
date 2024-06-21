@@ -12,10 +12,10 @@ use Core\FormHelper;
         <form class="form" action="" method="post">
             <?= FormHelper::csrfInput() ?>
             <?= FormHelper::displayErrors($this->displayErrors) ?>
-            <?= FormHelper::inputBlock('text', "First Name", 'fname', $this->newUser->fname, ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
-            <?= FormHelper::inputBlock('text', "Last Name", 'lname', $this->newUser->lname, ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
-            <?= FormHelper::inputBlock('text', "Email", 'email', $this->newUser->email, ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
-            <?= FormHelper::inputBlock('text', "User name", 'username', $this->newUser->username, ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
+            <?= FormHelper::inputBlock('text', "First Name", 'fname', $this->newUser->fname, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
+            <?= FormHelper::inputBlock('text', "Last Name", 'lname', $this->newUser->lname, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
+            <?= FormHelper::inputBlock('text', "Email", 'email', $this->newUser->email, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
+            <?= FormHelper::inputBlock('text', "User name", 'username', $this->newUser->username, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
             <div>
                 <h4>Password Requirements</h4>
                 <ul>
@@ -28,9 +28,9 @@ use Core\FormHelper;
                     <li>Must not contain any spaces</li>
                 </ul>
             </div>
-            <?= FormHelper::inputBlock('password', "Password", 'password', $this->newUser->password, ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
-            <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->newUser->getConfirm(), ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
-            <?= FormHelper::submitBlock('Register', ['class' => 'btn btn-large btn-primary'], ['class' => 'text-right mt-4'])  ?>
+            <?= FormHelper::inputBlock('password', "Password", 'password', $this->newUser->password, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
+            <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->newUser->getConfirm(), ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
+            <?= FormHelper::submitBlock('Register', ['class' => 'btn btn-large btn-primary'], ['class' => 'text-right'])  ?>
         </form>
     </div>
 </div>
