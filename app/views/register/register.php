@@ -20,6 +20,7 @@ use Core\FormHelper;
                 <h4>Password Requirements</h4>
                 <ul>
                     <li>Minimum 12 characters in length</li>
+                    <li>Maximum of 30 characters in length</li>
                     <li>At least 1 upper case character</li>
                     <li>At least 1 lower case character</li>
                     <li>At least 1 number</li>
@@ -29,7 +30,6 @@ use Core\FormHelper;
             <?= FormHelper::inputBlock('password', "Password", 'password', $this->newUser->password, ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
             <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->newUser->getConfirm(), ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>
             <?= FormHelper::submitBlock('Register', ['class' => 'btn btn-large btn-primary'], ['class' => 'text-right mt-4'])  ?>
-            <script src="<?=PROOT?>public/js/frontEndPasswordMatchValidate.js"></script>
         </form>
     </div>
 </div>
