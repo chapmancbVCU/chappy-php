@@ -13,6 +13,7 @@ use Core\Validators\UniqueValidator;
 use Core\Validators\NumberCharValidator;
 use Core\Validators\UpperCharValidator;
 use Core\Validators\LowerCharValidator;
+use Core\Validators\SpecialCharValidator;
 use Core\Helper;
 /**
  * Extends the Model class.  Supports functions for the Users model.
@@ -227,6 +228,7 @@ class Users extends Model {
         $this->runValidation(new UpperCharValidator($this, ['field' => 'password', 'message' => 'Password must contain at least 1 upper case character']));
         $this->runValidation(new LowerCharValidator($this, ['field' => 'password', 'message' => 'Password must contain at least 1 lower case character']));
         $this->runValidation(new NumberCharValidator($this, ['field' => 'password', 'message' => 'Password must contain at least 1 numeric character']));
+        $this->runValidation(new SpecialCharValidator($this, ['field' => 'password', 'message' => 'Password must contain at least 1 special character not including spaces']));
         if($this->isNew()) {
             $this->runValidation(new MatchesValidator($this, ['field' => 'password', 'rule' => $this->_confirm, 'message' => 'Passwords must match.']));
         }
