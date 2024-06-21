@@ -14,3 +14,6 @@ It supports everything described above.  This sample application natively comes 
 2. Resolve issue for warnings about creating of dynamic properties so the framework is fully compatible with PHP 8
 3. Test with nginx
 4. Update jQuery and Bootstrap to modern builds and add support to maintain same look and feel of front end
+
+## Credits
+1. “mvc” icon by iconixar, from thenounproject.com.
