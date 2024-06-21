@@ -24,7 +24,7 @@ use Core\FormHelper;
                     <li>At least 1 upper case character</li>
                     <li>At least 1 lower case character</li>
                     <li>At least 1 number</li>
-                    <li>Must contain special characters (ex: !, @, $, %, ^, &, *, +, #)</li>
+                    <li>Must contain at least 1 special character</li>
                 </ul>
             </div>
             <?= FormHelper::inputBlock('password', "Password", 'password', $this->newUser->password, ['class' => 'form-control input-sm]', ['class' => 'form-group']]) ?>

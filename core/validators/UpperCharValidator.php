@@ -8,8 +8,8 @@ use Core\Validators\CustomValidator;
 class UpperCharValidator extends CustomValidator {
     /**
      * Implements the abstract function of the same name from the parent 
-     * class.  Enforces requirement where a field must contain an upper 
-     * case character.
+     * class.  Enforces requirement where a field must contain at least one 
+     * upper case character.
      *
      * @return bool True if field contains at least one upper case character.
      */
