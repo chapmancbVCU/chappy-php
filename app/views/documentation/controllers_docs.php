@@ -12,11 +12,15 @@
     </div>
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <td><a href="<?=PROOT?>documentation/contactsController" class="text-primary">Contacts Controller</a></td>
+            <td><a href="<?=PROOT?>documentation/contactsController" class="text-primary w-25">Contacts Controller</a></td>
             <td>Handles views and Create, Read, Update, and Delete operations for the built in example contact management system.</td>
         </tr>
         <tr>
-            <td><a href="<?=PROOT?>documentation/homeController" class="text-primary">Home Controller</a></td>
+            <td><a href="<?=PROOT?>documentation/homeController" class="text-primary w-25">Home Controller</a></td>
+            <td>Supports actions and view for home controller.</td>
+        </tr>
+        <tr>
+            <td><a href="<?=PROOT?>documentation/registerController" class="text-primary w-25">Register Controller</a></td>
             <td>Supports actions and view for home controller.</td>
         </tr>
     </table>

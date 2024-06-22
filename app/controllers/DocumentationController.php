@@ -82,4 +82,13 @@ class DocumentationController extends Controller {
     public function modelsAction() {
         $this->view->render('documentation/models_docs');
     }
+
+    /**
+     * Action for the Register Controller classes documentation page.
+     *
+     * @return void
+     */
+    public function registerControllerAction() {
+        $this->view->render('documentation/register_controller_docs');
+    }
 }
