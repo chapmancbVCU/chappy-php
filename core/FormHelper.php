@@ -26,7 +26,8 @@ class FormHelper {
     }
 
     /**
-     * Generates a div containing an input of type checkbox.
+     * Generates a div containing an input of type checkbox that is not part 
+     * of a group.
      *
      * An example function call is shown below:
      * FormHelper::checkboxBlock('Remember Me', 'remember_me', $this->login->getRememberMeChecked(), [], ['class' => 'form-group']);
