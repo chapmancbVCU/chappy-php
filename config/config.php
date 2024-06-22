@@ -12,7 +12,7 @@ define('DEFAULT_LAYOUT', 'default');            // If no layout is set in the co
 define('PROOT', '/custom-php-mvc-framework/');  // Set this to '/' for a live server.
 
 define('SITE_TITLE', 'MVC Framework');          // This will be used if no site title is set.
-define('MENU_BRAND', 'PHP MVC Tutorial');       // Branding for menu.
+define('MENU_BRAND', 'MVC Framework');       // Branding for menu.
 
 define('CURRENT_USER_SESSION_NAME', 'afEafFefafDFD');   // Session name for logged in user;
 define('REMEMBER_ME_COOKIE_NAME', 'ADF4R4affa43fFF');   // Cookie name for logged in user remember me
