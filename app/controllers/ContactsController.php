@@ -68,7 +68,7 @@ class ContactsController extends Controller {
     }
     
     /**
-     * Retrieves information for a contact and render its details
+     * Retrieves information for a contact and render its details.
      *
      * @param int $id The id for contact whose information we want to display.
      * @return void
