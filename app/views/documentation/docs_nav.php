@@ -4,6 +4,8 @@
     </button>
     <div class="dropdown-container">
         <a href="<?=PROOT?>documentation/controllers">Overview</a>
+        <a href="<?=PROOT?>documentation/contactsController">Contacts Controller</a>
+        <a href="<?=PROOT?>documentation/homeController">Home Controller</a>
     </div>
     <button class="dropdown-btn">Core
         <i class="float-right pr-1 dropdown-toggle"></i>

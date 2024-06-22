@@ -21,6 +21,15 @@ class DocumentationController extends Controller {
     }
 
     /**
+     * Action for the Contacts Controller class documentation page.
+     *
+     * @return void
+     */
+    public function contactsControllerAction() {
+        $this->view->render('documentation/contacts_controller_docs');
+    }
+
+    /**
      * Action for the Controller classes documentation page.
      *
      * @return void
@@ -48,6 +57,14 @@ class DocumentationController extends Controller {
         $this->view->render('documentation/index');
     }
 
+    /**
+     * Action for the Home Controller class documentation page.
+     *
+     * @return void
+     */
+    public function homeControllerAction() {
+        $this->view->render('documentation/home_controller_docs');
+    }
     /**
      * Action for the JavaScript documentation page.
      *
