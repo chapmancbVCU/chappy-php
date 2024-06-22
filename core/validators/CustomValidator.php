@@ -5,6 +5,7 @@ use \Exception;
 /**
  * Abstract parent class for our child validation child classes.  Each child 
  * class must implement the runValidation() function.
+ * @abstract
  */
 abstract class CustomValidator {
     public $field;
@@ -64,6 +65,7 @@ abstract class CustomValidator {
      * each child class.
      *
      * @return void
+     * @abstract
      */
     abstract public function runValidation();
 }

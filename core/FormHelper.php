@@ -31,7 +31,7 @@ class FormHelper {
      * used for editing records.
      * @param array $inputAttrs The values used to set the class and other 
      * attributes of the input string.  The default value is an empty array.
-     * @param string A surrounding div and the input element.
+     * @return string A surrounding div and the input element.
      */
     public static function checkboxAndRadioInput($type, $label, $name, $value, $checked = false, $inputAttrs = []) {
         $inputString = self::stringifyAttrs(($inputAttrs));
@@ -176,7 +176,7 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
-     * @param string A surrounding div and the input element.
+     * @return string A surrounding div and the input element.
      */
     public static function inputBlock($type, $label, $name, $value = '', $inputAttrs= [], $divAttrs = []) {
         $divString = self::stringifyAttrs($divAttrs);
