@@ -13,7 +13,10 @@ It supports everything described above.  This sample application natively comes 
 1. Add additional front-end and back-end form validation
 2. Resolve issue for warnings about creating of dynamic properties so the framework is fully compatible with PHP 8
 3. Test with nginx
-4. Update jQuery and Bootstrap to modern builds and add support to maintain same look and feel of front end
+4. Update jQuery and Bootstrap to modern builds and add support to maintain similar look and feel of front end (done)
+5. Add support for additional form elements in FormHelpers
+6. Add user guide
+7. Add management system for Users model to in include admin so administrators can manage other users, change user type, and perform password reset operations.
 
 ## Credits
 1. “mvc” icon by iconixar, from thenounproject.com.
