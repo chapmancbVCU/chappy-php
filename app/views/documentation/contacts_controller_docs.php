@@ -4,9 +4,6 @@
 
 <div class="main">
     <h1 class="text-center">Contacts Controller Class</h1>
-
-    <a class="ml-5" href="<?=PROOT?>documentation" class="text-primary">Custom MVC Docs Home</a>
-
     <div class="row align-items-center justify-content-center my-3">
         <p class="text-center w-75">Functions</p>
     </div>
