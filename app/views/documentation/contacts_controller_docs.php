@@ -155,6 +155,7 @@
             <td>void</td>
         </tr>
     </table>
+    <a href="<?=PROOT?>documentation/controllers" class="btn btn-xs btn-secondary mb-5">Controllers</a>
 </div>
 <script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

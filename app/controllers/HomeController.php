@@ -8,7 +8,7 @@ use Core\Controller;
  */
 class HomeController extends Controller {
     /**
-     * Constructor for Home Controller
+     * Constructor for Home Controller.
      *
      * @param string $controller The name of the controller obtained while 
      * parsing the URL.
