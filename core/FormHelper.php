@@ -3,26 +3,33 @@ namespace Core;
 use Core\Session;
 
 /**
- * Form helper functions.
+ * Contains functions for building form elements of various types.
  */
 class FormHelper {
     /**
-     * Returns list of errors.
-     * 
-     * @param array $errors A list of errors and their description that is 
-     * generated during server side form validation.
-     * @return string A string representation of a div element containing an 
-     * input of type checkbox.
+     * Generates a collection of elements consisting of an input that can be 
+     * of type checkbox or radio and a label directly to its right.
+     *
+     * @param string $type The input type we want to generate.
+     * @param string $label Sets the label for this input.
+     * @param string $name Sets the name for, id, and name attributes for this 
+     * input.
+     * @param string $value The value we want to set.  We can use this to set 
+     * the value of the value attribute during form validation.  Default value 
+     * is the empty string.  It can be set with values during form validation 
+     * and forms used for editing records.
+     * @param boolean $checked The value for the checked attribute.  If true 
+     * this attribute will be set as checked="checked".  The default value is 
+     * false.  It can be set with values during form validation and forms 
+     * used for editing records.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param string A surrounding div and the input element.
      */
-    public static function displayErrors($errors) {
-        $hasErrors = (!empty($errors)) ? ' has-errors' : ''; 
-        $html = '<div class="form-errors"><ul class="bg-light'.$hasErrors.'">';
-        foreach($errors as $field =>$error) {
-            $html .= '<li class="text-danger">'.$error.'</li>';
-            $html .= '<script>jQuery("document").ready(function(){jQuery("#'.$field.'").parent().closest("div").addClass("has-error");});</script>';
-        }
-        $html .= '</ul></div>';
-        return $html;
+    public static function checkboxAndRadioInput($type, $label, $name, $value, $checked = false, $inputAttrs = []) {
+        $inputString = self::stringifyAttrs(($inputAttrs));
+        $checkString = ($checked) ? ' checked="checked"' : '';
+        return '<input type="'.$type.'" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label for="'.$name.'">'.$label.'</label> ';
     }
 
     /**
@@ -86,6 +93,25 @@ class FormHelper {
      */
     public static function csrfInput() {
         return '<input type="hidden" name="csrf_token" id="csrf_token" value="'.self::generateToken().'" />';
+    }
+
+    /**
+     * Returns list of errors.
+     * 
+     * @param array $errors A list of errors and their description that is 
+     * generated during server side form validation.
+     * @return string A string representation of a div element containing an 
+     * input of type checkbox.
+     */
+    public static function displayErrors($errors) {
+        $hasErrors = (!empty($errors)) ? ' has-errors' : ''; 
+        $html = '<div class="form-errors"><ul class="bg-light'.$hasErrors.'">';
+        foreach($errors as $field =>$error) {
+            $html .= '<li class="text-danger">'.$error.'</li>';
+            $html .= '<script>jQuery("document").ready(function(){jQuery("#'.$field.'").parent().closest("div").addClass("has-error");});</script>';
+        }
+        $html .= '</ul></div>';
+        return $html;
     }
 
     /**
