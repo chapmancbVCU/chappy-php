@@ -1,12 +1,10 @@
 {
     "Home" : "home",
-    "PHP Docs" : "http://php.net/manual/en",
     "Custom MVC Docs" : "documentation",
     "Contacts" : {
         "My Contacts" : "contacts",
         "Add Contact" : "contacts/add"
     },
-    
     "Login" : "register/login",
     "Logout" : "register/logout"
 }
