@@ -10,6 +10,13 @@ class FormHelper {
      * Generates a collection of elements consisting of an input that can be 
      * of type checkbox or radio and a label directly to its right.
      *
+     * An example function call is shown below:
+     * <?= FormHelper::checkboxAndRadioInput('checkbox', 'Example', 'example_name', 'example_value', checked, ['class' => 'mr-1']); ?>
+     * 
+     * Example HTML output is shown below:
+     * <input type="checkbox" id="example_name" name="example_name" value="example_value" checked="checked" class="mr-1">
+     * <label for="example">Example</label> 
+     * 
      * @param string $type The input type we want to generate.
      * @param string $label Sets the label for this input.
      * @param string $name Sets the name for, id, and name attributes for this 
@@ -37,17 +44,17 @@ class FormHelper {
      * of a group.
      *
      * An example function call is shown below:
-     * FormHelper::checkboxBlock('Remember Me', 'remember_me', $this->login->getRememberMeChecked(), [], ['class' => 'form-group']);
+     * FormHelper::checkboxBlock('Example', 'example_name', 'checked', [], ['class' => 'form-group']);
      * 
      * Example HTML output is shown below:
      * <div class="form-group">
-     *     <label for="remember_me">Remember Me <input type="checkbox" id="remember_me" name="remember_me" value="on"></label>
+     *     <label for="example_name">Example <input type="checkbox" id="example_name" name="example_name" value="on" checked="checked"></label>
      * </div>
      * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the name for, id, and name attributes for this 
      * input.
-     * @param boolean $checked The value for the checked attribute.  If true 
+     * @param bool $checked The value for the checked attribute.  If true 
      * this attribute will be set as checked="checked".  The default value is 
      * false.  It can be set with values during form validation and forms 
      * used for editing records.
@@ -149,12 +156,12 @@ class FormHelper {
      * 15. week
      * 
      * An example function call is shown below:
-     * FormHelper::inputBlock('text', 'Username', 'username', $this->login->username, ['class' => 'form-control'], ['class' => 'form-group']);
+     * FormHelper::inputBlock('text', 'Example', 'example_name', example_value, ['class' => 'form-control'], ['class' => 'form-group']);
      * 
      * Example HTML output is shown below:
      * <div class="form-group">
-     *     <label for="username">Username</label>
-     *     <input type="text" id="username" name="username" value="" class="form-control" />
+     *     <label for="example">Example</label>
+     *     <input type="text" id="example_name" name="example_name" value="example_value" class="form-control" />
      * </div>
      * 
      * @param string $type The input type we want to generate.
@@ -281,12 +288,12 @@ class FormHelper {
      * for setting  attribute tags in the form section.
      * 
      * An example function call is shown below:
-     * <?= FormHelper::textAreaBlock("Example", 'example', $this->propertyName->propertyValue, ['class' => 'form-control input-sm', 'placeholder' => 'foo'], ['class' => 'form-group']) ?>
+     * <?= FormHelper::textAreaBlock("Example", 'example_name', example_value, ['class' => 'form-control input-sm', 'placeholder' => 'foo'], ['class' => 'form-group']) ?>
      * 
      * Example HTML output is shown below:
      * <div class="form-group">
-     *     <label for="test">Example</label>
-     *     <textarea id="example" name="example"  class="form-control input-sm" placeholder="foo"></textarea>
+     *     <label for="example_name">Example</label>
+     *     <textarea id="example_name" name="example_name"  class="form-control input-sm" placeholder="foo">example_value</textarea>
      * </div>
      * 
      * @param string $label Sets the label for this input.
