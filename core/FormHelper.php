@@ -99,8 +99,27 @@ class FormHelper {
     }
 
     /** 
-     * Assists in the development of forms.  It accepts parameters for setting 
-     * attribute tags in the form section.
+     * Assists in the development of forms input blocks in forms.  It accepts 
+     * parameters for setting attribute tags in the form section.  Not to be 
+     * used for inputs of type "Submit"  For submit inputs use the submitBlock 
+     * or submitTag functions.
+     * 
+     * Types of inputs supported:
+     * 1. color
+     * 2. date
+     * 3. datetime-local
+     * 4. email
+     * 5. file
+     * 6. month
+     * 7. number
+     * 8. password
+     * 9. range
+     * 10. search
+     * 11. tel
+     * 12. text
+     * 13. time
+     * 14. url 
+     * 15. week
      * 
      * An example function call is shown below:
      * FormHelper::inputBlock('text', 'Username', 'username', $this->login->username, ['class' => 'form-control'], ['class' => 'form-group']);
@@ -153,6 +172,16 @@ class FormHelper {
         return $clean_array;
     }
     
+    /**
+     * Sanitizes potentially harmful string of characters.
+     * 
+     * @param string $dirty The potentially dirty string.
+     * @return string The sanitized version of the dirty string.
+     */
+    public static function sanitize($dirty) {
+        return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
+    }
+
     /**
      * Stringify attributes.
      * 
@@ -220,13 +249,41 @@ class FormHelper {
         return '<input type="submit" value="'.$buttonText.'"'.$inputString.' />';
     }
 
-    /**
-     * Sanitizes potentially harmful string of characters.
+    /** 
+     * Assists in the development of textarea in forms.  It accepts parameters 
+     * for setting  attribute tags in the form section.
      * 
-     * @param string $dirty The potentially dirty string.
-     * @return string The sanitized version of the dirty string.
+     * An example function call is shown below:
+     * <?= FormHelper::textAreaBlock("Example", 'example', $this->propertyName->propertyValue, ['class' => 'form-control input-sm', 'placeholder' => 'foo'], ['class' => 'form-group']) ?>
+     * 
+     * Example HTML output is shown below:
+     * <div class="form-group">
+     *     <label for="test">Example</label>
+     *     <textarea id="example" name="example"  class="form-control input-sm" placeholder="foo"></textarea>
+     * </div>
+     * 
+     * @param string $label Sets the label for this input.
+     * @param string $name Sets the name for, id, and name attributes for this 
+     * input.
+     * @param string $value The value we want to set.  We can use this to set 
+     * the value of the value attribute during form validation.  Default value 
+     * is the empty string.  It can be set with values during form validation 
+     * and forms used for editing records.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @param string A surrounding div and the input element.
      */
-    public static function sanitize($dirty) {
-        return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
+    public static function textAreaBlock($label, $name, $value = '', $inputAttrs= [], $divAttrs = []) {
+        $divString = self::stringifyAttrs($divAttrs);
+        $inputString = self::stringifyAttrs(($inputAttrs));
+
+        $html = '<div' . $divString . '>';
+        $html .= '<label for="'.$name.'">'.$label.'</label>';
+        $html .= '<textarea id="'.$name.'" name="'.$name.'" '.$inputString.'>'.$value.'</textarea>';
+        $html .= '</div>';
+
+        return $html;
     }
 }
