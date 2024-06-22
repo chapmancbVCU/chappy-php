@@ -10,10 +10,10 @@
     </div>
     <div class="ml-5">
         <ul>
-            <li><a href="<?=PROOT?>documentation/controllers" class="text-primary">Controllers</a></li>
-            <li><a href="<?=PROOT?>documentation/core" class="text-primary">Core</a></li>
-            <li><a href="<?=PROOT?>documentation/javaScript" class="text-primary">javaScript</a></li>
-            <li><a href="<?=PROOT?>documentation/models" class="text-primary">Models</a></li>
+            <li><a href="<?=PROOT?>documentation/controllers" class="text-primary">Controllers</a>: Documentation for controller classes that provide support for interactions between model and views.</li>
+            <li><a href="<?=PROOT?>documentation/core" class="text-primary">Core</a>: Core components for this MVC framework.  Here you will find parent parent and helper classes that facilitate operations for this framework.</li>
+            <li><a href="<?=PROOT?>documentation/javaScript" class="text-primary">JavaScript</a>: Descriptions for any JavaScript files can be found here.</li>
+            <li><a href="<?=PROOT?>documentation/models" class="text-primary">Models</a>: Documentation for models that perform the application's logic and database operations.</li>
         </ul>
     </div>
 </div>

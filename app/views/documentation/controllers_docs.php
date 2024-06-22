@@ -12,10 +12,8 @@
     </div>
     <div class="ml-5">
         <ul>
-            <li><a href="<?=PROOT?>documentation/contactsController" class="text-primary">Contacts Controller: </a>
-                Handles views and Create, Read, Update, and Delete operations for the built in example contact management system.</li>
-            <li><a href="<?=PROOT?>documentation/homeController" class="text-primary">Home Controller: </a>
-                Supports actions and view for home controller.</li>
+            <li><a href="<?=PROOT?>documentation/contactsController" class="text-primary">Contacts Controller</a>: Handles views and Create, Read, Update, and Delete operations for the built in example contact management system.</li>
+            <li><a href="<?=PROOT?>documentation/homeController" class="text-primary">Home Controller</a>: Supports actions and view for home controller.</li>
             <li><a href="<?=PROOT?>documentation/javaScript" class="text-primary">javaScript</a></li>
             <li><a href="<?=PROOT?>documentation/models" class="text-primary">Models</a></li>
         </ul>
