@@ -21,6 +21,15 @@ class DocumentationController extends Controller {
     }
 
     /**
+     * Action for the Controller classes documentation page.
+     *
+     * @return void
+     */
+    public function controllersAction() {
+        $this->view->render('documentation/controllers_docs');
+    }
+
+    /**
      * Action for the Contacts Controller class documentation page.
      *
      * @return void
@@ -30,12 +39,12 @@ class DocumentationController extends Controller {
     }
 
     /**
-     * Action for the Controller classes documentation page.
+     * Action for the Contacts Model class documentation page.
      *
      * @return void
      */
-    public function controllersAction() {
-        $this->view->render('documentation/controllers_docs');
+    public function contactsModelAction() {
+        $this->view->render('documentation/contacts_model_docs');
     }
 
     /**
@@ -47,6 +56,14 @@ class DocumentationController extends Controller {
         $this->view->render('documentation/core_docs');
     }
 
+    /**
+     * Action for the Home Controller class documentation page.
+     *
+     * @return void
+     */
+    public function homeControllerAction() {
+        $this->view->render('documentation/home_controller_docs');
+    }
     /** 
      * The default action for this controller.  It performs rendering of this 
      * site's documentation page.
@@ -58,20 +75,21 @@ class DocumentationController extends Controller {
     }
 
     /**
-     * Action for the Home Controller class documentation page.
-     *
-     * @return void
-     */
-    public function homeControllerAction() {
-        $this->view->render('documentation/home_controller_docs');
-    }
-    /**
      * Action for the JavaScript documentation page.
      *
      * @return void
      */
     public function javaScriptAction() {
         $this->view->render('documentation/java_script_docs');
+    }
+
+    /**
+     * Action for the Login Model class documentation page.
+     *
+     * @return void
+     */
+    public function loginModelAction() {
+        $this->view->render('documentation/login_model_docs');
     }
 
     /**
@@ -99,5 +117,23 @@ class DocumentationController extends Controller {
      */
     public function restrictedControllerAction() {
         $this->view->render('documentation/restricted_controller_docs');
+    }
+
+    /**
+     * Action for the Users Model class documentation page.
+     *
+     * @return void
+     */
+    public function usersModelAction() {
+        $this->view->render('documentation/users_model_docs');
+    }
+
+    /**
+     * Action for the UserSessions Model class documentation page.
+     *
+     * @return void
+     */
+    public function userSessionsModelAction() {
+        $this->view->render('documentation/user_sessions_model_docs');
     }
 }

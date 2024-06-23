@@ -1,4 +1,4 @@
-<?php $this->setSiteTitle("Contracts Controller - Custom MVC Framework Docs"); ?>
+<?php $this->setSiteTitle("Contacts Controller - Custom MVC Framework Docs"); ?>
 <?php $this->start('body'); ?>
 <?php include('docs_nav.php'); ?>
 

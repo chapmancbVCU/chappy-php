@@ -26,6 +26,10 @@
     </button>
     <div class="dropdown-container">
         <a href="<?=PROOT?>documentation/models">Overview</a>
+        <a href="<?=PROOT?>documentation/contactsModel">Contacts Model</a>
+        <a href="<?=PROOT?>documentation/loginModel">Login Model</a>
+        <a href="<?=PROOT?>documentation/usersModel">Users Model</a>
+        <a href="<?=PROOT?>documentation/userSessionsModel">User Sessions Model</a>
     </div>
     <a href="http://php.net/manual/en">PHP Docs<a>
 </div>
