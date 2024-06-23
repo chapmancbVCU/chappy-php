@@ -11,10 +11,16 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
+            <th colspan="2" class="text-center">Extends</th>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-center">Model</td>
+        </tr>
+        <tr>
             <th colspan="2" class="text-center">Namespace</th>
         </tr>
         <tr>
-            <td colspan="2">App\Models</td>
+            <td colspan="2" class="text-center">App\Models</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" rowspan="4">Use</th>
