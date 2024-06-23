@@ -12,7 +12,7 @@
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
             <td><a href="<?=PROOT?>documentation/contactsModel" class="text-primary w-25">Contacts Model</a></td>
-            <td>Handles views and Create, Read, Update, and Delete operations for the built in example contact management system.</td>
+            <td>Supports functions for handling Contacts such as displaying information, form validation, and DB operations.</td>
         </tr>
         <tr>
             <td><a href="<?=PROOT?>documentation/loginModel" class="text-primary w-25">Login Model</a></td>
