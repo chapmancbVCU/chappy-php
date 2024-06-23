@@ -1,30 +1,31 @@
 <?php
 namespace App\Models;
-use Core\Model;
-use App\Models\UserSessions;
 use Core\Cookie;
-use Core\Session;
-use Core\Validators\MinValidator;
-use Core\Validators\MaxValidator;
-use Core\Validators\RequiredValidator;
 use Core\Validators\EmailValidator;
-use Core\Validators\MatchesValidator;
-use Core\Validators\UniqueValidator;
-use Core\Validators\NumberCharValidator;
-use Core\Validators\UpperCharValidator;
 use Core\Validators\LowerCharValidator;
+use Core\Validators\MaxValidator;
+use Core\Validators\MatchesValidator;
+use Core\Validators\MinValidator;
+use Core\Model;
+use Core\Validators\NumberCharValidator;
+use Core\Validators\RequiredValidator;
+use Core\Session;
 use Core\Validators\SpecialCharValidator;
+use Core\Validators\UniqueValidator;
+use Core\Validators\UpperCharValidator;
+use App\Models\UserSessions;
 use Core\Helper;
+
 /**
  * Extends the Model class.  Supports functions for the Users model.
  */
 class Users extends Model {
     public $acl;
-    public $email;
     private $_confirm;
     private $_cookieName;
     public static $currentLoggedInUser = null;
     public $deleted = 0;                // Set default value for db field.
+    public $email;
     public $fname;
     public $id;
     public $lname;
@@ -101,8 +102,8 @@ class Users extends Model {
     /**
      * Checks if a user is logged in.
      *
-     * @return object An object containing information about current logged in 
-     * user from users table.
+     * @return array An associative array containing information about current 
+     * logged in user from users table.
      */
     public static function currentUser() {
         if(!isset(self::$currentLoggedInUser) && Session::exists(CURRENT_USER_SESSION_NAME)) {
