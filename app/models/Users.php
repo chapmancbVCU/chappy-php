@@ -89,17 +89,6 @@ class Users extends Model {
     }
 
     /**
-     * Finds user by username in the Users table.
-     *
-     * @param string $username The username we want to find in the Users table. 
-     * @return bool|object An object containing information about a user from 
-     * the Users table.
-     */
-    public function findByUserName($username) {
-        return $this->findFirst(['conditions' => 'username = ?', 'bind' => [$username]]);
-    }
-
-    /**
      * Checks if a user is logged in.
      *
      * @return array An associative array containing information about current 
@@ -111,6 +100,17 @@ class Users extends Model {
             self::$currentLoggedInUser = $user;
         }
         return self::$currentLoggedInUser;
+    }
+    
+    /**
+     * Finds user by username in the Users table.
+     *
+     * @param string $username The username we want to find in the Users table. 
+     * @return bool|object An object containing information about a user from 
+     * the Users table.
+     */
+    public function findByUserName($username) {
+        return $this->findFirst(['conditions' => 'username = ?', 'bind' => [$username]]);
     }
 
     /**

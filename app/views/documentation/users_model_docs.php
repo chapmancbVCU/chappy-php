@@ -167,6 +167,30 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
+            <th colspan="2" class="text-center">public function currentUser</th>
+        </tr>
+        <tr>
+            <td colspan="2">Checks if a user is logged in.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">none</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>An associative array containing information about current logged in user from users table.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
             <th colspan="2" class="text-center">public function findByUserName</th>
         </tr>
         <tr>
@@ -185,30 +209,6 @@
         <tr>
             <td class="align-middle text-center w-25">bool|object</td>
             <td>An object containing information about a user from the Users table.</td>
-        </tr>
-    </table>
-
-    <hr class="w-75 my-5">
-
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
-        <tr>
-            <th colspan="2" class="text-center">public function currentUser</th>
-        </tr>
-        <tr>
-            <td colspan="2">Checks if a user is logged in.</td>
-        </tr>
-        <tr>
-            <th class="align-middle text-center" colspan="2">params</th>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25">none</td>
-        </tr>
-        <tr>
-            <th class="align-middle text-center w-25" colspan="2">return</th>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25">array</td>
-            <td>An associative array containing information about current logged in user from users table.</td>
         </tr>
     </table>
 

@@ -34,6 +34,69 @@
         </tr>
     </table>
 
+    <hr class="w-75 my-5">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
+            <th colspan="2" class="text-center">public function construct</th>
+        </tr>
+        <tr>
+            <td colspan="2">Calls functions for reporting and unregister of globals.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
+            <th colspan="2" class="text-center">private function _set_reporting</th>
+        </tr>
+        <tr>
+            <td colspan="2">Manages the displaying of error messages and other reporting for this application.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">void</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
+        <tr>
+            <th colspan="2" class="text-center">private function _unregister_global</th>
+        </tr>
+        <tr>
+            <td colspan="2">Unregister global variables that are created by default in PHP prior to version 8.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">void</td>
+        </tr>
+    </table>
+
     <a href="<?=PROOT?>documentation/core" class="btn btn-xs btn-secondary mb-5">Core</a>
 </div>
 <script src="<?=PROOT?>public/js/docNavDropdown.js"></script>

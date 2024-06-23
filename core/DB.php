@@ -83,7 +83,7 @@ class DB {
      * our query against
      * @param array $params The values for the query.  They are the fields of 
      * the table in our database.  The default value is an empty array.
-     * @param bool|string  $class A default value of false, it contains the 
+     * @param bool|string $class A default value of false, it contains the 
      * name of the class we will build based on the name of a model.
      * @return bool|array An array of object returned from an SQL query.
      */
@@ -99,12 +99,13 @@ class DB {
      * for the _read function for this purpose.
      *
      * @param @param string $table The name or the table we want to perform 
-     * our query against
+     * our query against.
      * @@param array $params The values for the query.  They are the fields of 
      * the table in our database.  The default value is an empty array.
      * @param bool|string  $class A default value of false, it contains the 
      * name of the class we will build based on the name of a model.
-     * @return bool|object An Object returned from an SQL query.
+     * @return bool|array An associative array of results returned from an SQL 
+     * query.
      */
     public function findFirst($table, $params = [], $class = false) {
         if($this->_read($table, $params, $class)) {
@@ -116,7 +117,7 @@ class DB {
     /**
      * Returns first result in the _result array.
      *
-     * @return object The first object in a _result array.
+     * @return array An associative array that first object in a _result.
      */
     public function first() {
         return (!empty($this->_result)) ? $this->_result[0] : []; 
@@ -134,6 +135,12 @@ class DB {
         return $this->query("SHOW COLUMNS FROM {$table}")->results();
     }
 
+    /**
+     * An instance of this class set as a variable.  To be used in other 
+     * class because we can't use $this.
+     *
+     * @return self The instance of this class.
+     */
     public static function getInstance() {
         if(!isset(self::$_instance)) {
             self::$_instance = new self();
@@ -156,7 +163,7 @@ class DB {
      * insert operation.
      * @param array $fields The field names and the respective values we will 
      * use to populate a database record.  The default value is an empty array.
-     * @return bool Report for whether or not the operation was successful.
+     * @return bool Report whether or not the operation was successful.
      */
     public function insert($table, $fields = []) {
         $fieldString = '';      // Table field
@@ -189,14 +196,17 @@ class DB {
     }
 
     /**
-     * Perform query functions.
+     * Performs database query operations that includes prepare, 
+     * binding, execute, and fetch.  
      *
      * @param string $sql The database query we will submit to the database.
      * @param array $params The values for the query.  They are the fields of 
      * the table in our database.  The default value is an empty array.
-     * @param bool|string  $class A default value of false, it contains the 
+     * @param bool|string $class A default value of false, it contains the 
      * name of the class we will build based on the name of a model.
-     * @return object The results of the database query.
+     * @return array|bool The results of the database query.  If the operation 
+     * is not successful the $_error instance variable is set to true and is 
+     * returned.
      */
     public function query($sql, $params = [], $class = false) {
         $this->_error = false;
@@ -295,7 +305,7 @@ class DB {
     /**
      * Returns value of query results.
      *
-     * @return array An array of object that contain results of a database 
+     * @return array An array of objects that contain results of a database 
      * query.
      */
     public function results() {

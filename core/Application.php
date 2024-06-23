@@ -5,6 +5,9 @@ namespace Core;
  * The Application class supports basic functional needs of the application.
  */
 class Application {
+    /**
+     * Calls functions for reporting and unregister of globals.
+     */
     public function __construct() {
         $this->_set_reporting();
         $this->_unregister_globals();

@@ -51,7 +51,7 @@ class Cookie {
      * @param string $value The value of the cookie unique to this session.
      * @param int $expiry The amount of time we want this cookie to exist 
      * before it expires.
-     * @return void True if the cookie is successfully set.  Otherwise it 
+     * @return bool True if the cookie is successfully set.  Otherwise it 
      * returns false.
      */
     public static function set($name, $value, $expiry) {
