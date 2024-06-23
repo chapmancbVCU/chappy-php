@@ -23,6 +23,10 @@
             <td><a href="<?=PROOT?>documentation/registerController" class="text-primary w-25">Register Controller</a></td>
             <td>Functions found in this class will support tasks related to the user registration.</td>
         </tr>
+        <tr>
+            <td><a href="<?=PROOT?>documentation/restrictedController" class="text-primary w-25">Restricted Controller</a></td>
+            <td>Functions found in this class will support the rendering of views when a user performs an action that is not allowed.</td>
+        </tr>
     </table>
 </div>
 <script src="<?=PROOT?>public/js/docNavDropdown.js"></script>

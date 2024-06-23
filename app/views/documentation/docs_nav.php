@@ -7,6 +7,7 @@
         <a href="<?=PROOT?>documentation/contactsController">Contacts Controller</a>
         <a href="<?=PROOT?>documentation/homeController">Home Controller</a>
         <a href="<?=PROOT?>documentation/registerController">Register Controller</a>
+        <a href="<?=PROOT?>documentation/restrictedController">Restricted Controller</a>
     </div>
     <button class="dropdown-btn">Core
         <i class="float-right pr-1 dropdown-toggle"></i>

@@ -3,7 +3,9 @@ namespace App\Controllers;
 use Core\Controller;
 
 /**
- * Implements support for the Restricted controller.
+ * Implements support for the Restricted controller.  Interactions that the 
+ * user performs that are restricted will result in a relevant view being 
+ * rendered.
  */
 class RestrictedController extends Controller {
     /**
