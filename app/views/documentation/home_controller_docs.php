@@ -26,7 +26,7 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">construct</th>
+            <th colspan="2" class="text-center">public function construct</th>
         </tr>
         <tr>
             <td colspan="2">Constructor for Home Controller.</td>
@@ -46,9 +46,30 @@
 
     <hr class="w-75 my-5">
 
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
+            <th colspan="2" class="text-center">public function indexAction</th>
+        </tr>
+        <tr>
+            <td colspan="2">The default action for this controller.  It performs rendering of this site's home page.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25">return</th>
+            <td>void</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5">
+
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
         <tr>
-            <th colspan="2" class="text-center">testAjaxAction</th>
+            <th colspan="2" class="text-center">public function testAjaxAction</th>
         </tr>
         <tr>
             <td colspan="2">Demonstration for an Ajax request.</td>
