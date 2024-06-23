@@ -27,6 +27,10 @@
                 <td><a href="<?=PROOT?>documentation/models" class="text-primary">Models</a></td>
                 <td>Documentation for models responsible for the application's logic and database operations.</td>
             </tr>
+            <tr>
+                <td><a href="<?=PROOT?>documentation/validators" class="text-primary">Validators</a></td>
+                <td>Collection of classes responsible for server side form validation</td>
+            </tr>
         </table>
 </div>
 <script src="<?=PROOT?>public/js/docNavDropdown.js"></script>

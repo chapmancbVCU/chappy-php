@@ -42,5 +42,23 @@
         <a href="<?=PROOT?>documentation/usersModel">Users Model</a>
         <a href="<?=PROOT?>documentation/userSessionsModel">User Sessions Model</a>
     </div>
+    <button class="dropdown-btn">Validators
+        <i class="float-right pr-1 dropdown-toggle"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="<?=PROOT?>documentation/validators">Overview</a>
+        <a href="<?=PROOT?>documentation/customValidator">Custom Validator</a>
+        <a href="<?=PROOT?>documentation/emailValidator">Email Validator</a>
+        <a href="<?=PROOT?>documentation/lowerCharValidator">Lower Char Validator</a>
+        <a href="<?=PROOT?>documentation/matchesValidator">Matches Validator</a>
+        <a href="<?=PROOT?>documentation/maxValidator">Max Validator</a>
+        <a href="<?=PROOT?>documentation/minValidator">Min Validator</a>
+        <a href="<?=PROOT?>documentation/numberCharValidator">Number Char Validator</a>
+        <a href="<?=PROOT?>documentation/numericValidator">Numeric Validator</a>
+        <a href="<?=PROOT?>documentation/requiredValidator">Required Validator</a>
+        <a href="<?=PROOT?>documentation/specialCharValidator">Special Char Validator</a>
+        <a href="<?=PROOT?>documentation/uniqueCharValidator">Unique Char Validator</a>
+        <a href="<?=PROOT?>documentation/upperCharValidator">Upper Char Validator</a>
+    </div>
     <a href="http://php.net/manual/en">PHP Docs<a>
 </div>
