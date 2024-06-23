@@ -64,8 +64,10 @@
             <td class="text-center" colspan="2">None</td>
         </tr>
         <tr>
-            <th class="align-middle text-center w-25">return</th>
-            <td>void</td>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">void</td>
         </tr>
     </table>
 
@@ -86,8 +88,10 @@
             <td>$id The ID of the contact to be deleted.</td>
         </tr>
         <tr>
-            <th class="align-middle text-center w-25">return</th>
-            <td>void</td>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">void</td>
         </tr>
     </table>
 
@@ -108,8 +112,10 @@
             <td>$id The ID of the contact to be deleted.</td>
         </tr>
         <tr>
-            <th class="align-middle text-center w-25">return</th>
-            <td>void</td>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">void</td>
         </tr>
     </table>
 
@@ -130,8 +136,10 @@
             <td>$id The ID of the contact to be deleted.</td>
         </tr>
         <tr>
-            <th class="align-middle text-center w-25">return</th>
-            <td>void</td>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">void</td>
         </tr>
     </table>
 
@@ -151,8 +159,10 @@
             <td class="text-center" colspan="2">None</td>
         </tr>
         <tr>
-            <th class="align-middle text-center w-25">return</th>
-            <td>void</td>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">void</td>
         </tr>
     </table>
     <a href="<?=PROOT?>documentation/controllers" class="btn btn-xs btn-secondary mb-5">Controllers</a>
