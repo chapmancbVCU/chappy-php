@@ -9,6 +9,31 @@
         <p class="text-center w-75">The Application class supports basic functional needs of the application.</p>
     </div>
 
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
+            <th colspan="2" class="text-center">Extends</th>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-center">None</td>
+        </tr>
+        <tr>
+            <th colspan="2" class="text-center">Namespace</th>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-center">Core</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25">Use</th>
+            <td>None</td>
+        </tr>
+        <tr>
+            <th colspan="2" class="text-center">Instance Variables</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+    </table>
+
     <a href="<?=PROOT?>documentation/core" class="btn btn-xs btn-secondary mb-5">Core</a>
 </div>
 <script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
