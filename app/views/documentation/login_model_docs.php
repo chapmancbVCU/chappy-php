@@ -67,7 +67,7 @@
 
     <hr class="w-75 my-5">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
             <th colspan="2" class="text-center">public function getRememberMeChecked</th>
         </tr>
