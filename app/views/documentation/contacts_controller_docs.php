@@ -30,7 +30,7 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">construct</th>
+            <th colspan="2" class="text-center">public function construct</th>
         </tr>
         <tr>
             <td colspan="2">Constructor for the Contacts Controller.  It sets the default layout and loads the Contacts model.</td>
@@ -52,7 +52,7 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">addAction</th>
+            <th colspan="2" class="text-center">public function addAction</th>
         </tr>
         <tr>
             <td colspan="2">Displays view for adding a new contact, assists with form validation, and begins task for saving record to database.</td>
@@ -73,7 +73,7 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">deleteAction</th>
+            <th colspan="2" class="text-center">public function deleteAction</th>
         </tr>
         <tr>
             <td colspan="2">Performs delete operation on a contact and redirects user back to the  index contacts view.</td>
@@ -95,7 +95,7 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">detailsAction</th>
+            <th colspan="2" class="text-center">public function detailsAction</th>
         </tr>
         <tr>
             <td colspan="2">Retrieves information for a contact and render its details.</td>
@@ -117,7 +117,7 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">editAction</th>
+            <th colspan="2" class="text-center">public function editAction</th>
         </tr>
         <tr>
             <td colspan="2">Retrieves contact by ID and sets up view for editing a contact.  If form validation fails the page is displayed again with the appropriate messages.  If the contact does not exist the user is redirected to he main contacts page.</td>
@@ -139,7 +139,7 @@
     
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
         <tr>
-            <th colspan="2" class="text-center">indexAction</th>
+            <th colspan="2" class="text-center">public function indexAction</th>
         </tr>
         <tr>
             <td colspan="2">The index action loads the home page for contacts that lists all  contacts associated with a particular user.</td>

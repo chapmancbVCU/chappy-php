@@ -29,7 +29,7 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">construct</th>
+            <th colspan="2" class="text-center">public function construct</th>
         </tr>
         <tr>
             <td colspan="2">Constructor for Register Controller.</td>
@@ -51,7 +51,7 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">loginAction</th>
+            <th colspan="2" class="text-center">public function loginAction</th>
         </tr>
         <tr>
             <td colspan="2">Manages login action processes.</td>
@@ -72,7 +72,7 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">logoutAction</th>
+            <th colspan="2" class="text-center">public function logoutAction</th>
         </tr>
         <tr>
             <td colspan="2">Manages logout action for a user.  It checks if a user is currently logged.  No matter of the result, the user gets redirected to the login screen.</td>
@@ -93,7 +93,7 @@
     
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
         <tr>
-            <th colspan="2" class="text-center">registerAction</th>
+            <th colspan="2" class="text-center">public function registerAction</th>
         </tr>
         <tr>
             <td colspan="2">Manages actions related to user registration.</td>

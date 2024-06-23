@@ -26,7 +26,7 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">construct</th>
+            <th colspan="2" class="text-center">public function construct</th>
         </tr>
         <tr>
             <td colspan="2">Constructor for Restricted Controller.</td>
@@ -48,7 +48,7 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">brokenTokenAction</th>
+            <th colspan="2" class="text-center">public function brokenTokenAction</th>
         </tr>
         <tr>
             <td colspan="2">Renders page when a bad csrf token is detected.</td>
@@ -69,7 +69,7 @@
     
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
         <tr>
-            <th colspan="2" class="text-center">indexAction</th>
+            <th colspan="2" class="text-center">public function indexAction</th>
         </tr>
         <tr>
             <td colspan="2">This controller's default action.</td>
