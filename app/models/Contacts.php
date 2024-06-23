@@ -68,7 +68,7 @@ class Contacts extends Model {
     }
 
     /**
-     * Displays name in following format: ${firstName}, ${lastName}
+     * Displays name in following format: ${firstName}, ${lastName}.
      *
      * @return string Returns first name and last name.
      */
