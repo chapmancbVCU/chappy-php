@@ -25,6 +25,12 @@
         <tr>
             <th class="align-middle text-center w-25" rowspan="1">Use</th>
             <td>Core\Controller</td>
+        </tr>
+        <tr>
+            <th colspan="2" class="text-center">Instance Variables</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
         </tr>  
     </table>
 

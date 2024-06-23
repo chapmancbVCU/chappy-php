@@ -30,6 +30,12 @@
         <tr><td>Core\Router</td></tr>
         <tr><td>App\Models\Contacts</td></tr>
         <tr><td>App\Models\Users</td></tr>
+        <tr>
+            <th colspan="2" class="text-center">Instance Variables</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
     </table>
 
     <hr class="w-75 my-5">
