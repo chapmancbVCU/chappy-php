@@ -7,11 +7,11 @@ use App\Models\Login;
 
 /**
  * Implements support for our Register controller.  Functions found in this 
- * class will support tasks related to the user registration
+ * class will support tasks related to the user registration.
  */
 class RegisterController extends Controller {
     /**
-     * Constructor for Register Controller
+     * Constructor for Register Controller.
      *
      * @param string $controller The name of the controller obtained while 
      * parsing the URL.

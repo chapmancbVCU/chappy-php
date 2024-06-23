@@ -21,7 +21,7 @@
         </tr>
         <tr>
             <td><a href="<?=PROOT?>documentation/registerController" class="text-primary w-25">Register Controller</a></td>
-            <td>Supports actions and view for home controller.</td>
+            <td>Functions found in this class will support tasks related to the user registration.</td>
         </tr>
     </table>
 </div>

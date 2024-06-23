@@ -7,7 +7,7 @@ use App\Models\Contacts;
 use App\Models\Users;
 
 /**
- * Implements support for our Contact Controller.  It contains actions for 
+ * Implements support for our Contacts Controller.  It contains actions for 
  * handling user interactions that will result in CRUD operations against the 
  * database.
  */

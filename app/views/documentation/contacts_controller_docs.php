@@ -33,7 +33,7 @@
             <th colspan="2" class="text-center">construct</th>
         </tr>
         <tr>
-            <td colspan="2">Constructor for the ContactsController.  It sets the default layout and loads the Contacts model.</td>
+            <td colspan="2">Constructor for the Contacts Controller.  It sets the default layout and loads the Contacts model.</td>
         </tr>
         <tr>
             <th class="align-middle text-center" colspan="2">params</th>
