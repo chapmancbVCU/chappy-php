@@ -34,7 +34,7 @@ class Users extends Model {
     public $username;
     
     /**
-     * Builds instance of Users model c.ass
+     * Builds instance of Users model class.
      *
      * @param string $user The name of the user.  Default value is an empty 
      * string.
