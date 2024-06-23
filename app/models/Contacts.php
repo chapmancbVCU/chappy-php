@@ -82,7 +82,8 @@ class Contacts extends Model {
      * table or set other conditions.
      *
      * @param int $user_id The ID user associated with this contact.
-     * @param array $params Used to build conditions for database query.
+     * @param array $params Used to build conditions for database query.  The 
+     * default value is an empty array.
      * @return array The list of contacts that is returned from the database.
      */
     public function findAllByUserId($user_id, $params = []) {
@@ -101,9 +102,11 @@ class Contacts extends Model {
      * particular user.
      *
      * @param int $contact_id The ID of the contact whose details we want.
-     * @param int $user_id The ID of the logged in user.
-     * @param array $params Used to set additional conditions.
-     * @return void The contact whose information we want to view.
+     * @param int $user_id The ID user associated with this contact.
+     * @param array $params Used to set additional conditions.  The default 
+     * value is an empty array.
+     * @return array The associative array with contact information we want to 
+     * view.
      */
     public function findByIdAndUserId($contact_id, $user_id, $params = []) {
         $conditions = [
@@ -115,7 +118,7 @@ class Contacts extends Model {
     }
 
     /**
-     * Undocumented function
+     * Performs form validation checks for add and edit contact form template.
      *
      * @return void
      */

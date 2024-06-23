@@ -121,7 +121,10 @@
             <td class="text-center" colspan="2">None</td>
         </tr>
         <tr>
-            <th class="align-middle text-center w-25">return</th>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
             <td>$html The formatted address.</td>
         </tr>
     </table>
@@ -145,7 +148,10 @@
             <td colspan="2">$html The contact information in an address label format.</td>
         </tr>
         <tr>
-            <th class="align-middle text-center w-25">return</th>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
             <td>$html The contact information in an address label format.</td>
         </tr>
     </table>
@@ -169,12 +175,104 @@
             <td colspan="2">$html The contact information in an address label format.</td>
         </tr>
         <tr>
-            <th class="align-middle text-center w-25">return</th>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
             <td>Returns first name and last name.</td>
         </tr>
     </table>
 
     <hr class="w-75 my-5">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
+            <th colspan="2" class="text-center">public function findAllByUserId</th>
+        </tr>
+        <tr>
+            <td colspan="2">Retrieves list of all contacts related to a logged in user.  Using additional parameters you can order by fields within the Contacts table or set other conditions.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">int</td>
+            <td>$user_id The ID user associated with this contact.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$params Used to build conditions for database query.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>The list of contacts that is returned from the database.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
+            <th colspan="2" class="text-center">public function findByIdAndUserId</th>
+        </tr>
+        <tr>
+            <td colspan="2">Retrieves information for a contact that is associate with a particular user.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">int</td>
+            <td>$contact_id The ID of the contact whose details we want.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">int</td>
+            <td>$user_id The ID user associated with this contact.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$params Used to build conditions for database query.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>The associative array with contact information we want to view.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
+        <tr>
+            <th colspan="2" class="text-center">public function validator</th>
+        </tr>
+        <tr>
+            <td colspan="2">Performs form validation checks for add and edit contact form template.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">void</td>
+        </tr>
+    </table>
 
     <a href="<?=PROOT?>documentation/models" class="btn btn-xs btn-secondary mb-5">Models</a>
 </div>
