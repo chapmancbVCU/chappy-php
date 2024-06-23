@@ -4,7 +4,7 @@ use \PDO;
 use \PDOException;
 use Core\Helper;
 /**
- * Parent class for database connections.
+ * Support database operations.
  */
 class DB {
     private $_count = 0;

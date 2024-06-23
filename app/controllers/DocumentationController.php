@@ -21,6 +21,23 @@ class DocumentationController extends Controller {
     }
 
     /**
+     * Action for the Application class documentation page.
+     *
+     * @return void
+     */
+    public function applicationAction() {
+        $this->view->render('documentation/application_docs');
+    }
+
+    /**
+     * Action for the Controller class documentation page.
+     *
+     * @return void
+     */
+    public function controllerAction() {
+        $this->view->render('documentation/controller_docs');
+    }
+    /**
      * Action for the Controller classes documentation page.
      *
      * @return void
@@ -48,12 +65,57 @@ class DocumentationController extends Controller {
     }
 
     /**
+     * Action for the Cookie class documentation page.
+     *
+     * @return void
+     */
+    public function cookieAction() {
+        $this->view->render('documentation/cookie_docs');
+    }
+
+    /**
      * Action for the Core Classes documentation page.
      *
      * @return void
      */
     public function coreAction() {
         $this->view->render('documentation/core_docs');
+    }
+
+    /**
+     * Action for the DB class documentation page.
+     *
+     * @return void
+     */
+    public function dbAction() {
+        $this->view->render('documentation/db_docs');
+    }
+
+    /**
+     * Action for the FormHelper class documentation page.
+     *
+     * @return void
+     */
+    public function formHelperAction() {
+        $this->view->render('documentation/form_helper_docs');
+    }
+
+    /**
+     * Action for the Helper class documentation page.
+     *
+     * @return void
+     */
+    public function helperAction() {
+        $this->view->render('documentation/helper_docs');
+    }
+
+    /**
+     * Action for the Input class documentation page.
+     *
+     * @return void
+     */
+    public function InputAction() {
+        $this->view->render('documentation/input_docs');
     }
 
     /**
@@ -93,6 +155,15 @@ class DocumentationController extends Controller {
     }
 
     /**
+     * Action for the Application class documentation page.
+     *
+     * @return void
+     */
+    public function modelAction() {
+        $this->view->render('documentation/model_docs');
+    }
+
+    /**
      * Action for the Model classes documentation page.
      *
      * @return void
@@ -120,6 +191,24 @@ class DocumentationController extends Controller {
     }
 
     /**
+     * Action for the Router class documentation page.
+     *
+     * @return void
+     */
+    public function routerAction() {
+        $this->view->render('documentation/router_docs');
+    }
+
+    /**
+     * Action for the Session class documentation page.
+     *
+     * @return void
+     */
+    public function sessionAction() {
+        $this->view->render('documentation/session_docs');
+    }
+
+    /**
      * Action for the Users Model class documentation page.
      *
      * @return void
@@ -135,5 +224,14 @@ class DocumentationController extends Controller {
      */
     public function userSessionsModelAction() {
         $this->view->render('documentation/user_sessions_model_docs');
+    }
+
+    /**
+     * Action for the View class documentation page.
+     *
+     * @return void
+     */
+    public function viewAction() {
+        $this->view->render('documentation/view_docs');
     }
 }

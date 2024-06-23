@@ -2,7 +2,7 @@
 namespace Core;
 use Core\Helper;
 /**
- * Handles operations related to views and its content
+ * Handles operations related to views and its content.
  */
 class View {
     protected $_body;

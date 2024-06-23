@@ -14,6 +14,17 @@
     </button>
     <div class="dropdown-container">
         <a href="<?=PROOT?>documentation/core">Overview</a>
+        <a href="<?=PROOT?>documentation/application">Application</a>
+        <a href="<?=PROOT?>documentation/controller">Controller</a>
+        <a href="<?=PROOT?>documentation/cookie">Cookie</a>
+        <a href="<?=PROOT?>documentation/db">DB</a>
+        <a href="<?=PROOT?>documentation/formHelper">Form Helpers</a>
+        <a href="<?=PROOT?>documentation/helper">Helpers</a>
+        <a href="<?=PROOT?>documentation/input">Input</a>
+        <a href="<?=PROOT?>documentation/model">Model</a>
+        <a href="<?=PROOT?>documentation/router">Router</a>
+        <a href="<?=PROOT?>documentation/session">Session</a>
+        <a href="<?=PROOT?>documentation/view">View</a>
     </div>
     <button class="dropdown-btn">JavaScript
         <i class="float-right pr-1 dropdown-toggle"></i>

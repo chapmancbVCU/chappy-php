@@ -4,7 +4,7 @@ use Core\Helper;
 /**
  * Parent class for our models.  Takes functions from DB wrapper and extract 
  * functionality further to make operations easier to use and improve 
- * extendability
+ * extendability.
  */
 class Model {
     protected $_db;
