@@ -116,9 +116,11 @@
                 Performs delete operation against SQL database.
                 <br><br>
                 Example setup:
-                <br><br>
+                <br>
                 <pre class="my-0">
-<code>$contacts = $db->delete('contacts', 3);</code>
+<code>
+    $contacts = $db->delete('contacts', 3);
+</code>
                 </pre>
             </td>
         </tr>
@@ -302,7 +304,7 @@ $contacts = $db->find('users', [
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">public function getInstance</th>
+            <th colspan="2" class="text-center">public static function getInstance</th>
         </tr>
         <tr>
             <td colspan="2">An instance of this class set as a variable.  To be used in other class because we can't use $this.</td>
@@ -427,7 +429,7 @@ $contacts = $db->insert('contacts', $fields);
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">public function read</th>
+            <th colspan="2" class="text-center">protected function read</th>
         </tr>
         <tr>
             <td colspan="2">Supports SELECT operations that maybe ran against a SQL database.  It supports the ability to order and limit the number of results returned from a database query.  The user can use parameters such as conditions, bind, order, limit, and sort.</td>

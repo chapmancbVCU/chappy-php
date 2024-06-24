@@ -11,7 +11,7 @@ class FormHelper {
      * of type checkbox or radio and a label directly to its right.
      *
      * An example function call is shown below:
-     * <?= FormHelper::checkboxAndRadioInput('checkbox', 'Example', 'example_name', 'example_value', checked, ['class' => 'mr-1']); ?>
+     * FormHelper::checkboxAndRadioInput('checkbox', 'Example', 'example_name', 'example_value', checked, ['class' => 'mr-1']);
      * 
      * Example HTML output is shown below:
      * <input type="checkbox" id="example_name" name="example_name" value="example_value" checked="checked" class="mr-1">
@@ -268,8 +268,8 @@ class FormHelper {
      * or 
      * 
      * self::submitTag("Save", ['class'=>'btn btn-primary']);
-     * Example HTML output is shown below:
      * 
+     * Example HTML output is shown below:
      * <input type="submit" value="Save" class="btn btn-primary" />
      * 
      * @param string $buttonText Sets the value of the text describing the 
