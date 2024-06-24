@@ -48,7 +48,8 @@
                 <br>
                 <pre class="my-0">
 <code>
-FormHelper::checkboxAndRadioInput('checkbox', 
+FormHelper::checkboxAndRadioInput(
+    'checkbox', 
     'Example', 
     'example_name', 
     'example_value', 
@@ -66,7 +67,7 @@ FormHelper::checkboxAndRadioInput('checkbox',
     value="example_value" 
     checked="checked" 
     class="mr-1"&gt;
-&lt;label for="example"&lt;Example&lt;/label&gt;   
+&lt;label for="example"&gt;Example&lt;/label&gt;   
 </code>
                 </pre>
             </td>
@@ -84,7 +85,7 @@ FormHelper::checkboxAndRadioInput('checkbox',
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
-            <td>$name Sets the name for, id, and name attributes for this input.</td>
+            <td>$name Sets the value for the name, for, and id attributes for this input.</td>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
@@ -121,7 +122,8 @@ FormHelper::checkboxAndRadioInput('checkbox',
                 <br>
                 <pre class="my-0">
 <code>
-FormHelper::checkboxBlock('Example', 
+FormHelper::checkboxBlock(
+    'Example', 
     'example_name', 
     'checked', 
     [], 
@@ -154,8 +156,7 @@ FormHelper::checkboxBlock('Example',
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
-            <td>$name Sets the name for, id, and name attributes for this 
-            * input.</td>
+            <td>$name Sets the value for the name, for, and id attributes for this input.</td>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">bool</td>
@@ -321,7 +322,8 @@ FormHelper::checkboxBlock('Example',
             <br>
                 <pre class="my-0">
 <code>
-FormHelper::inputBlock('text', 
+FormHelper::inputBlock(
+    'text', 
     'Example', 
     'example_name', 
     example_value, 
@@ -341,7 +343,7 @@ FormHelper::inputBlock('text',
         name="example_name" 
         value="example_value" 
         class="form-control" /&gt; 
-    &lt;/div&gt; 
+&lt;/div&gt; 
 </code>      
                 </pre>
             </td>
@@ -359,7 +361,7 @@ FormHelper::inputBlock('text',
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
-            <td>$name Sets the name for, id, and name attributes for this input.</td>
+            <td>$name Sets the value for the name, for, and id attributes for this input.</td>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
@@ -461,24 +463,57 @@ FormHelper::inputBlock('text',
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">public static function </th>
+            <th colspan="2" class="text-center">public static function submitBlock</th>
         </tr>
         <tr>
-            <td colspan="2"></td>
+            <td colspan="2">
+                Generates a div containing an input of type submit.
+                <br><br>
+                An example function call is shown below:
+                <br>
+                <pre class="my-0">
+<code>
+FormHelper::submitBlock(
+    "Save", 
+    ['class'=>'btn btn-primary'], 
+    ['class'=>'text-right']
+);
+</code>
+                </pre>
+                Example HTML output is shown below:
+                <pre class="my-0">
+<code>
+&lt;div class="text-right"&gt;
+    &lt;input type="submit" 
+        value="Save" 
+        class="btn btn-primary" 
+    /&gt;
+&lt;/div&gt;
+</code>
+                </pre>
+            </td>
         </tr>
         <tr>
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25"></td>
-            <td></td>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$buttonText Sets the value of the text describing the button.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$inputAttrs The values used to set the class and other attributes of the input string.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$divAttrs The values used to set the class and other attributes of the surrounding div.  The default value is an empty array.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25"></td>
-            <td></td>
+            <td class="align-middle text-center w-25">string</td>
+            <td>A surrounding div and the input element of type submit.</td>
         </tr>
     </table>
 
@@ -486,24 +521,59 @@ FormHelper::inputBlock('text',
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">public static function </th>
+            <th colspan="2" class="text-center">public static function submitTag</th>
         </tr>
         <tr>
-            <td colspan="2"></td>
+            <td colspan="2">
+                Create a input element of type submit.
+                <br><br>
+                An example function call is shown below:
+                <br>
+                <pre class="my-0">
+<code>
+FormHelper::submitTag(
+    "Save", 
+    ['class'=>'btn btn-primary']
+);
+</code>
+                </pre>
+                or
+                <pre class="my-0">
+<code>
+self::submitTag(
+    "Save", 
+    ['class'=>'btn btn-primary']
+);
+</code>
+                </pre>
+                Example HTML output is shown below:
+                <pre class="my-0">
+<code>
+&lt;input type="submit" 
+    value="Save" 
+    class="btn btn-primary" 
+/&gt;
+</code>
+                </pre>
+            </td>
         </tr>
         <tr>
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25"></td>
-            <td></td>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$buttonText Sets the value of the text describing the button.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$inputAttrs The values used to set the class and other attributes of the input string.  The default value is an empty array.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25"></td>
-            <td></td>
+            <td class="align-middle text-center w-25">string</td>
+            <td>An input element of type submit.</td>
         </tr>
     </table>
 
@@ -511,24 +581,69 @@ FormHelper::inputBlock('text',
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto my-5">
         <tr>
-            <th colspan="2" class="text-center">public static function </th>
+            <th colspan="2" class="text-center">public static function textAreaBlock</th>
         </tr>
         <tr>
-            <td colspan="2"></td>
+            <td colspan="2">
+                Assists in the development of textarea in forms.  It accepts parameters for setting  attribute tags in the form section.
+                <br><br>
+                An example function call is shown below:
+                <br>
+                <pre class="my-0">
+<code>
+FormHelper::textAreaBlock(
+    "Example", 
+    'example_name', 
+    example_value, 
+    ['class' => 'form-control input-sm', 
+        'placeholder' => 'foo'], 
+    ['class' => 'form-group']
+);
+</code>
+                </pre>
+                Example HTML output is shown below:
+                <pre class="my-0">
+<code>
+&lt;div class="form-group"&gt;
+    &lt;label for="example_name">Example&lt;/label&gt;
+    &lt;textarea id="example_name" 
+        name="example_name"  
+        class="form-control input-sm"
+        placeholder="foo"&gt;example_value&lt;/textarea&gt;
+&lt;/div&gt;
+</code>
+                </pre>
+            </td>
         </tr>
         <tr>
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25"></td>
-            <td></td>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$label Sets the label for this input.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>name Sets the name for, id, and name attributes for this input.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$value The value we want to set.  We can use this to set the value of the value attribute during form validation.  Default value is the empty string.  It can be set with values during form validation and forms used for editing records.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$inputAttrs The values used to set the class and other attributes of the input string.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$divAttrs The values used to set the class and other attributes of the surrounding div.  The default value is an empty array.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25"></td>
-            <td></td>
+            <td class="align-middle text-center w-25">string</td>
+            <td>A surrounding div and the input element.</td>
         </tr>
     </table>
 
