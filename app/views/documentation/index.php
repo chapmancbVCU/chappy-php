@@ -8,7 +8,7 @@
     <div class="row align-items-center justify-content-center my-3">
         <p class="text-center w-75">The MVC documentation contains descriptions for built in classes, functions, and JavaScript</p>
     </div>
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
         <tr>
             <td><a href="<?=PROOT?>documentation/controllers" class="text-primary">Controllers</a></td>
             <td>Documentation for controller classes that provide support for interactions between model and views.</td>
@@ -32,6 +32,7 @@
             <td>Collection of classes responsible for server side form validation</td>
         </tr>
     </table>
+    <a></a>
 </div>
 <script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

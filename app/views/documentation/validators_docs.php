@@ -4,13 +4,13 @@
 
 <div class="main">
     <h1 class="text-center">Validation</h1>
-    <div class="row align-items-center justify-content-center my-3">
+    <div class="row align-items-center justify-content-center my-3 mx-auto">
         <p class="text-center w-75">
             Built-in form validation classes along with the parent abstract Custom 
             Validation class provided by this Model View Controller (MVC) framework.
         </p>
     </div>
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mb-5 mx-auto">
         <tr>
             <td><a href="<?=PROOT?>documentation/customValidator" class="text-primary w-25">Custom Validator</a></td>
             <td>Abstract parent class for our child validation child classes.  Each child class must implement the runValidation() function.</td>
@@ -60,6 +60,8 @@
             <td>Child class class that supports ability to check if field contains an upper case character in the field.</td>
         </tr>
     </table>
+
+    <a href="<?=PROOT?>documentation" class="btn btn-xs btn-secondary mb-5">Docs Home</a>
 </div>
 <script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

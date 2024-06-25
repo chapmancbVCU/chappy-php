@@ -4,10 +4,10 @@
 
 <div class="main">
     <h1 class="text-center">Core Classes</h1>
-    <div class="row align-items-center justify-content-center my-3">
+    <div class="row align-items-center justify-content-center my-3 mx-auto">
         <p class="text-center w-75">The classes that provide primary support functions and validation for this Model View Controller (MVC) framework.</p>
     </div>
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
         <tr>
             <td><a href="<?=PROOT?>documentation/application" class="text-primary w-25">Application</a></td>
             <td>The Application class supports basic functional needs of the application.</td>
@@ -53,6 +53,8 @@
             <td>Handles operations related to views and its content.</td>
         </tr>
     </table>
+
+    <a href="<?=PROOT?>documentation" class="btn btn-xs btn-secondary mb-5">Docs Home</a>
 </div>
 <script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>
