@@ -78,7 +78,7 @@ class Router {
      * test before granting the user access to a particular section of the 
      * site.
      * @param string $action_name The name of the action the user wants to 
-     * perform.  The default value is "index"
+     * perform.  The default value is "index".
      */
     public static function hasAccess($controller_name, $action_name = "index") {
         $acl_file = file_get_contents(ROOT . DS . 'app' . DS . 'acl.json');
@@ -117,7 +117,7 @@ class Router {
     /**
      * Performs redirect operations.
      * 
-     * @param string $location
+     * @param string $location The view where we will redirect the user.
      */
     public static function redirect($location) {
         if(!headers_sent()) {

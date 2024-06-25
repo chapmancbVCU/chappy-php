@@ -6,7 +6,7 @@ namespace Core;
 class Session {
 
     /**
-     * Adds a session alert message
+     * Adds a session alert message.
      *
      * @param string $type Can be info, success, warning, or danger.
      * @param string $message The message you want to display in the alert.
@@ -77,7 +77,7 @@ class Session {
     }
 
     /**
-     * Undocumented function
+     * Sets value to $_SESSION name key.
      *
      * @param string $name The current user session name.
      * @param int $value The id of the user associated with a particular 
@@ -97,8 +97,8 @@ class Session {
      */
     public static function uagent_no_version() {
         $uagent = $_SERVER['HTTP_USER_AGENT'];
-        $regx = '/\/[a-zA-z0-9.]+/';
-        $newString = preg_replace($regx, '', $uagent);
+        $regex = '/\/[a-zA-z0-9.]+/';
+        $newString = preg_replace($regex, '', $uagent);
         return $newString;
     }
 }

@@ -22,8 +22,8 @@ class Input {
     /**
      * Supports operations related to handling POST and GET requests.
      *
-     * @param boolean $input Values from POST and GET requests.  The default 
-     * value is false;
+     * @param bool $input Values from POST and GET requests.  The default 
+     * value is false.
      * @return array|string An array associated with a POST or GET request or 
      * an encoded HTML string.
      */
@@ -52,7 +52,7 @@ class Input {
     /**
      * Checks if the REQUEST_METHOD is GET.
      *
-     * @return boolean True if the request method is GET.
+     * @return bool True if the request method is GET.
      */
     public function isGet() {
         return $this->getRequestMethod() === 'GET';

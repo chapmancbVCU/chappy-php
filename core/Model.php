@@ -32,7 +32,7 @@ class Model {
     }
 
     /**
-     * Generates error messages that occur during form validation
+     * Generates error messages that occur during form validation.
      *
      * @param string $field The form field associated with failed form 
      * validation
@@ -150,7 +150,7 @@ class Model {
      * Get result from database by primary key ID.
      *
      * @param int $id The ID of the row we want to retrieve from the database.
-     * @return object The row from a database.
+     * @return array The row from a database.
      */
     public function findById($id) {
         return $this->findFirst(['conditions'=>"id = ?", 'bind' => [$id]]);
@@ -161,7 +161,7 @@ class Model {
      *
      * @param array $params The values for the query.  They are the fields of 
      * the table in our database.  The default value is an empty array.
-     * @return bool|object An array of object returned from an SQL query.
+     * @return bool|array An array of object returned from an SQL query.
      */
     public function findFirst($params = []) {
         $params = $this->_softDeleteParams($params);
@@ -204,18 +204,18 @@ class Model {
     }
 
     /**
-     * Wrapper for database delete function.
+     * Wrapper for database query function.
      * 
      * @param string $sql The database query we will submit to the database.
      * @param array The values we want to bind in our database query.
-     * @return object The results of the database query.
+     * @return array The results of the database query.
      */
     public function query($sql, $bind) {
         return $this->_db->query($sql, $bind);
     }
 
     /**
-     * runs a validator object and sets validates boolean and adds error 
+     * Runs a validator object and sets validates boolean and adds error 
      * message if validator fails.
      *
      * @param string $validator The validator object.
@@ -262,7 +262,7 @@ class Model {
     /**
      * Adds to the conditions to avoid getting soft deleted rows returned
      *
-     * @param array $params Defined parameters to search by
+     * @param array $params Defined parameters to search by.
      * @return array $params parameters with appended conditions for soft 
      * delete.
      */

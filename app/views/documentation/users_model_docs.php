@@ -228,7 +228,7 @@
             <td class="text-center" colspan="2">None</td>
         </tr>
         <tr>
-            <th class="align-middle text-center w-25" colspan="2">string</th>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">array</td>

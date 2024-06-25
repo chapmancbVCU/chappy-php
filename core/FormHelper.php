@@ -288,7 +288,7 @@ class FormHelper {
      * for setting  attribute tags in the form section.
      * 
      * An example function call is shown below:
-     * <?= FormHelper::textAreaBlock("Example", 'example_name', example_value, ['class' => 'form-control input-sm', 'placeholder' => 'foo'], ['class' => 'form-group']) ?>
+     * FormHelper::textAreaBlock("Example", 'example_name', example_value, ['class' => 'form-control input-sm', 'placeholder' => 'foo'], ['class' => 'form-group']);
      * 
      * Example HTML output is shown below:
      * <div class="form-group">
