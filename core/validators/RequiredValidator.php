@@ -9,7 +9,8 @@ class RequiredValidator extends CustomValidator {
      * Implements the abstract function of the same name from the parent 
      * class.  Enforces the required requirement for a field.
      *
-     * @return void
+     * @return void Returns true if the value is set.  If the value is empty 
+     * we return false.
      */
     public function runValidation() {
         $value = $this->_model->{$this->field};

@@ -9,7 +9,8 @@ class EmailValidator extends CustomValidator {
      * Implements the abstract function of the same name from the parent 
      * class.  Enforces requirement where a field must be a valid E-mail.
      *
-     * @return void
+     * @return bool Returns true if value is formatted as a valid E-mail.  
+     * Otherwise, we return false.
      */
     public function runValidation() {
         $email = $this->_model->{$this->field};

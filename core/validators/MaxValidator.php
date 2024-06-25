@@ -10,7 +10,8 @@ class MaxValidator extends CustomValidator {
      * Implements the abstract function of the same name from the parent 
      * class.  Enforces maximum length requirements for a form field.
      *
-     * @return void
+     * @return void True if value we are testing is less than the max value 
+     * set by the rule.  Otherwise, we return false.
      */
     public function runValidation() {
         $value = $this->_model->{$this->field};

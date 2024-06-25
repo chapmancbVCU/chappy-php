@@ -16,7 +16,7 @@ abstract class CustomValidator {
     
     /**
      * Constructor for Custom Validator.  It performs checks on the model and 
-     * prams such as fields, rules, and messages.  Finally the validation is 
+     * params such as fields, rules, and messages.  Finally the validation is 
      * performed against input from a form.  An exception is thrown if any 
      * conditions are not satisfied.  When an exception is thrown a message 
      * is displayed describing the issue.
