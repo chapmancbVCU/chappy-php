@@ -26,7 +26,7 @@ class View {
      * statement.
      *
      * @param string $group The name of the parent view.
-     * @param string $partial The name of the partial view.
+     * @param string $group The name of the parent view.
      * @return void
      */
     public function addPartialView($group, $partial) {
@@ -77,7 +77,7 @@ class View {
 
     /**
      * Performs render operations for a particular view.
-     * Example input: home/index
+     * Example input: home/index.
      * 
      * @param string $viewName The name of the view we want to render.
      * @return void
