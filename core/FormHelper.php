@@ -39,7 +39,6 @@ class FormHelper {
         return '<input type="'.$type.'" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label for="'.$name.'">'.$label.'</label> ';
     }
 
-    
     /**
      * Generates a div containing an input of type checkbox that is not part 
      * of a group.
