@@ -39,6 +39,7 @@ class FormHelper {
         return '<input type="'.$type.'" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label for="'.$name.'">'.$label.'</label> ';
     }
 
+    
     /**
      * Generates a div containing an input of type checkbox that is not part 
      * of a group.
@@ -218,7 +219,21 @@ class FormHelper {
 
     /**
      * Renders an option select element.
+     * 
+     * An example function call is shown below:
+     * FormHelper::selectBlock("Test", "test", $_POST["test"],['A' => 'a','B' => 'b', 'C' => 'c'], ['class' => 'form-control'], ['class' => 'form-group']);
      *
+     * Example HTML output is shown below:
+     * <div class="form-group">
+     *     <label for="test">Test</label>
+     *     <select id="test" name="test" value=""  class="form-control">
+     *         <option>---Please select an item--</option>
+     *         <option value="a">A</option>
+     *         <option value="b">B</option>
+     *         <option value="c">C</option>
+     *     </select>
+     * </div>
+     * 
      * @param string $label Sets the label for this input.
      * @param string $name Sets the name for, id, and name attributes for this 
      * input.
