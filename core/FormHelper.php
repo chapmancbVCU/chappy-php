@@ -1,7 +1,7 @@
 <?php
 namespace Core;
 use Core\Session;
-
+use Core\Helper;
 /**
  * Contains functions for building form elements of various types.
  */
@@ -214,6 +214,42 @@ class FormHelper {
      */
     public static function sanitize($dirty) {
         return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
+    }
+
+    /**
+     * Renders an option select element.
+     *
+     * @param string $label Sets the label for this input.
+     * @param string $name Sets the name for, id, and name attributes for this 
+     * input.
+     * @param string $checked The value we want to set as selected.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $options The list of options we will use to populate the 
+     * select option dropdown.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @return string A surrounding div and option select element.
+     */
+    public static function selectBlock($label, $name, $checked = "", $options = [], $inputAttrs= [], $divAttrs = []) {
+        $divString = self::stringifyAttrs($divAttrs);
+        $inputString = self::stringifyAttrs(($inputAttrs));
+
+        $html = '<div' . $divString . '>';
+        $html .= '<label for="'.$name.'">'.$label.'</label>';
+        $html .= '<select id="'.$name.'" name="'.$name.'" value="" '.$inputString.'>';
+        $html .= '<option>---Please select an item--</option>';
+        foreach($options as $key => $value) {
+            if($checked == $value) {
+                $html .= '<option value="'.$value.'" selected>'.$key.'</option>';
+            } else {
+                $html .= '<option value="'.$value.'">'.$key.'</option>';
+            }
+        }
+        $html .= '</select>';
+        $html .= '</div>';
+        
+        return $html;
     }
 
     /**
