@@ -14,7 +14,7 @@ use Core\Helper;
             <?= FormHelper::displayErrors($this->displayErrors) ?>
             <?= FormHelper::inputBlock('text', 'Username', 'username', $this->login->username, ['class' => 'form-control'], ['class' => 'form-group']); ?>
             <?= FormHelper::inputBlock('password', 'Password', 'password', $this->login->password,['class' => 'form-control'], ['class' => 'form-group']); ?>
-            <?= FormHelper::checkboxBlock('Remember Me', 'remember_me', $this->login->getRememberMeChecked(), [], ['class' => 'form-group']); ?>
+            <?= FormHelper::checkboxBlockLabelLeft('Remember Me', 'remember_me', $this->login->getRememberMeChecked(), [], ['class' => 'form-group']); ?>
             
             <?= FormHelper::submitBlock('Login', ['class' => 'btn btn-large btn-primary'], ['class' => 'form-group']) ?>
             <div class="d-flex justify-content-end">

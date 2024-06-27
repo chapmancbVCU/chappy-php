@@ -7,15 +7,55 @@ use Core\Helper;
  */
 class FormHelper {
     /**
-     * Generates a collection of elements consisting of an input that can be 
-     * of type checkbox or radio and a label directly to its right.
+     * Generates a div containing an input of type checkbox with the label to 
+     * the left that is not part of a group.
      *
      * An example function call is shown below:
-     * FormHelper::checkboxAndRadioInput('checkbox', 'Example', 'example_name', 'example_value', checked, ['class' => 'mr-1']);
+     * FormHelper::checkboxBlockLabelLeft('Example', 'example_name', 'checked', [], ['class' => 'form-group']);
      * 
      * Example HTML output is shown below:
-     * <input type="checkbox" id="example_name" name="example_name" value="example_value" checked="checked" class="mr-1">
-     * <label for="example">Example</label> 
+     * <div class="form-group">
+     *     <label for="example_name">Example 
+     *         <input type="checkbox" id="example_name" name="example_name" value="on" checked="checked">
+     *     </label>
+     * </div>
+     * 
+     * @param string $label Sets the label for this input.
+     * @param string $name Sets the name for, id, and name attributes for this 
+     * input.
+     * @param bool $checked The value for the checked attribute.  If true 
+     * this attribute will be set as checked="checked".  The default value is 
+     * false.  It can be set with values during form validation and forms 
+     * used for editing records.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @return string A surrounding div and the input element of type checkbox.
+     */
+    public static function checkboxBlockLabelLeft($label, $name, $checked = false, $inputAttrs = [], $divAttrs = []) {
+        $divString = self::stringifyAttrs($divAttrs);
+        $inputString = self::stringifyAttrs(($inputAttrs));
+        $checkString = ($checked) ? ' checked="checked"' : '';
+
+        $html = '<div'.$divString.'>';
+        $html .= '<label for="'.$name.'">'.$label.' <input type="checkbox" id="'.$name.'" name="'.$name.'" value="on"'.$checkString.$inputString.'></label>';
+        $html .= '</div>';
+        return $html;
+    }
+
+    /**
+     * Generates a div containing an input of type checkbox with the label to 
+     * the right that is not part of a group.
+     *
+     * An example function call is shown below:
+     * FormHelper::checkboxBlockLabelRight('Remember Me', 'remember_me', $this->login->getRememberMeChecked(), [], ['class' => 'form-group mr-1']);
+     * 
+     * Example HTML output is shown below:
+     * <div>
+     *     <input type="checkbox" id="remember_me" name="remember_me" value="" class="form-group mr-1">
+     *     <label for="remember_me">Remember Me</label>
+     * </div> 
      * 
      * @param string $type The input type we want to generate.
      * @param string $label Sets the label for this input.
@@ -33,44 +73,12 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @return string A surrounding div and the input element.
      */
-    public static function checkboxAndRadioInput($type, $label, $name, $value, $checked = false, $inputAttrs = []) {
-        $inputString = self::stringifyAttrs(($inputAttrs));
-        $checkString = ($checked) ? ' checked="checked"' : '';
-        return '<input type="'.$type.'" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label for="'.$name.'">'.$label.'</label> ';
-    }
-
-    /**
-     * Generates a div containing an input of type checkbox that is not part 
-     * of a group.
-     *
-     * An example function call is shown below:
-     * FormHelper::checkboxBlock('Example', 'example_name', 'checked', [], ['class' => 'form-group']);
-     * 
-     * Example HTML output is shown below:
-     * <div class="form-group">
-     *     <label for="example_name">Example <input type="checkbox" id="example_name" name="example_name" value="on" checked="checked"></label>
-     * </div>
-     * 
-     * @param string $label Sets the label for this input.
-     * @param string $name Sets the name for, id, and name attributes for this 
-     * input.
-     * @param bool $checked The value for the checked attribute.  If true 
-     * this attribute will be set as checked="checked".  The default value is 
-     * false.  It can be set with values during form validation and forms 
-     * used for editing records.
-     * @param array $inputAttrs The values used to set the class and other 
-     * attributes of the input string.  The default value is an empty array.
-     * @param array $divAttrs The values used to set the class and other 
-     * attributes of the surrounding div.  The default value is an empty array.
-     * @return string A surrounding div and the input element of type checkbox.
-     */
-    public static function checkboxBlock($label, $name, $checked = false, $inputAttrs = [], $divAttrs = []) {
+    public static function checkboxBlockLabelRight($label, $name, $value, $checked = false, $inputAttrs = [], $divAttrs = []) {
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs(($inputAttrs));
         $checkString = ($checked) ? ' checked="checked"' : '';
-
         $html = '<div'.$divString.'>';
-        $html .= '<label for="'.$name.'">'.$label.' <input type="checkbox" id="'.$name.'" name="'.$name.'" value="on"'.$checkString.$inputString.'></label>';
+        $html .='<input type="checkbox" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label for="'.$name.'">'.$label.'</label> ';
         $html .= '</div>';
         return $html;
     }
@@ -217,7 +225,7 @@ class FormHelper {
     }
 
     /**
-     * Renders an option select element.
+     * Renders a select element with a list of options.
      * 
      * An example function call is shown below:
      * FormHelper::selectBlock("Test", "test", $_POST["test"],['A' => 'a','B' => 'b', 'C' => 'c'], ['class' => 'form-control'], ['class' => 'form-group']);
