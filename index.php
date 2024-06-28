@@ -6,14 +6,15 @@ use Core\Session;
 use Core\Cookie;
 use Core\Router;
 use App\Models\Users;
-
+use Dotenv\Dotenv;
 // Boiler plate imports.
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__));
 
 require_once('vendor/autoload.php');
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
+var_dump($_ENV);
 
 // Load configuration and helper functions.
 require_once(ROOT . DS . 'config' . DS . 'config.php');
