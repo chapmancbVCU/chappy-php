@@ -84,6 +84,42 @@ class FormHelper {
     }
 
     /**
+     * Creates an input element of type radio with an accompanying label 
+     * element.  Compatible with radio button groups.
+     *
+     * An example function call is shown below:
+     * FormHelper::radioInput('HTML', 'html', 'fav_language', "HTML", $check1, ['class' => 'form-group mr-1']); <br>
+     * FormHelper::radioInput('CSS', 'css', 'fav_language', "CSS", $check2, ['class' => 'form-group mr-1']);
+     * 
+     * Example HTML output is shown below:
+     * <input type="radio" id="html" name="fav_language" value="HTML" class="form-group mr-1">
+     * <label for="html">HTML</label>  <br>
+     * <input type="radio" id="css" name="fav_language" value="CSS" class="form-group mr-1">
+     * <label for="css">CSS</label>
+     * 
+     * @param string $label Sets the label for this input.
+     * @param string $id The id attribute for the radio input element.
+     * @param $name Sets the name for, id, and name attributes for this 
+     * input.
+     * @param $value The value we want to set.  We can use this to set 
+     * the value of the value attribute during form validation.  Default value 
+     * is the empty string.  It can be set with values during form validation 
+     * and forms used for editing records.
+     * @param boolean $checked The value for the checked attribute.  If true 
+     * this attribute will be set as checked="checked".  The default value is 
+     * false.  It can be set with values during form validation and forms 
+     * used for editing records.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @return void
+     */
+    public static function radioInput($label, $id, $name, $value, $checked = false, $inputAttrs = []) {
+        $inputString = self::stringifyAttrs(($inputAttrs));
+        $checkString = ($checked) ? ' checked="checked"' : '';
+        return '<input type="radio" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label for="'.$id.'">'.$label.'</label> ';
+    }
+
+    /**
      * Checks if the csrf token exists.  This is used to verify that that has 
      * been no tampering of a form's csrf token.
      *
