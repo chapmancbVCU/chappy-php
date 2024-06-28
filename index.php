@@ -11,16 +11,14 @@ use App\Models\Users;
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__));
 
+require_once('vendor/autoload.php');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 // Load configuration and helper functions.
 require_once(ROOT . DS . 'config' . DS . 'config.php');
 //require_once(ROOT . DS . 'config' . DS . 'dbConfig.php');
 
-/*
- * MIDDLE WARES
- */
-require_once('vendor/autoload.php');
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
 /**
  * Auto-loading of classes using PSR-4 Support.
  *

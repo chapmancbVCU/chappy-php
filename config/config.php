@@ -9,6 +9,11 @@ define('CONSOLE_LOGGING', true);                // JS console logging.
 define('DEFAULT_CONTROLLER', 'Home');           // Default controller if there isn't one defined in the URL.
 define('DEFAULT_LAYOUT', 'default');            // If no layout is set in the controller use this layout.
 
+define('DB_NAME', $_ENV['DB_NAME']);
+define('DB_USER', $_ENV['DB_USER']);
+define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
+define('DB_HOST', $_ENV['DB_HOST']);
+
 define('PROOT', '/custom-php-mvc-framework/');  // Set this to '/' for a live server.
 
 define('SITE_TITLE', 'MVC Framework');          // This will be used if no site title is set.
