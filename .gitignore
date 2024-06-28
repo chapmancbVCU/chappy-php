@@ -1,2 +1,4 @@
 /config/dbConfig.php
 /.vscode
+/vendor/
+.env

@@ -1,0 +1,17 @@
+{
+    "name": "chadchapman/custom-php-mvc-framework",
+    "autoload": {
+        "psr-4": {
+            "Chadchapman\\CustomPhpMvcFramework\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Chad Chapman",
+            "email": "chad.chapman2010@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

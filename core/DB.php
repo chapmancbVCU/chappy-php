@@ -21,7 +21,7 @@ class DB {
      */
     private function __construct() {
         try {
-            $this->_pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
+            $this->_pdo = new PDO('mysql:host='.$_ENV['DB_HOST'].';dbname='.$_ENV['DB_NAME'], $_ENV['DB_USER'], $ENV['DB_PASSWORD']);
         } catch (PDOException $e) {
             die($e->getMessage());
         }
