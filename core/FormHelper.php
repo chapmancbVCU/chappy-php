@@ -7,6 +7,43 @@ use Core\Helper;
  */
 class FormHelper {
     /**
+     * 
+     * An example function call is shown below:
+     * FormHelper::button("Click Me!", ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')']);
+     * 
+     * Example HTML output is shown below:
+     * <button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button>
+     * @param [type] $buttonText
+     * @param array $inputAttrs
+     * @return void
+     */
+    public static function button($buttonText, $inputAttrs = []) {
+        $inputString = self::stringifyAttrs($inputAttrs);
+        return '<button type="button" '.$inputString.'>'.$buttonText.'</button>';
+    }
+
+    /**
+     * 
+     * An example function call is shown below:
+     * FormHelper::buttonBlock("Click Me!", ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')'], ['class' => 'form-group']);
+     * 
+     * Example HTML output is shown below:
+     * <div class="form-group"><button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button></div> 
+     * @param [type] $buttonText
+     * @param array $inputAttrs
+     * @param array $divAttrs
+     * @return void
+     */
+    public static function buttonBlock($buttonText, $inputAttrs = [], $divAttrs = []) {
+        $divString = self::stringifyAttrs($divAttrs);
+
+        $html = '<div'.$divString.'>';
+        $html .= self::button($buttonText, $inputAttrs); 
+        $html .= '</div>';
+
+        return $html;
+    }
+    /**
      * Generates a div containing an input of type checkbox with the label to 
      * the left that is not part of a group.
      *
@@ -376,7 +413,7 @@ class FormHelper {
         $inputString = self::stringifyAttrs($inputAttrs);
         return '<input type="submit" value="'.$buttonText.'"'.$inputString.' />';
     }
-
+    
     /** 
      * Assists in the development of textarea in forms.  It accepts parameters 
      * for setting  attribute tags in the form section.
