@@ -177,6 +177,17 @@ class FormHelper {
         return $token;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $name
+     * @param [type] $value
+     * @return void
+     */
+    public static function hidden($name, $value) {
+        return '<input type="hidden" name="'.$name.'" id="'.$name.'" value="'.$value.'" />';
+    }
+
     /** 
      * Assists in the development of forms input blocks in forms.  It accepts 
      * parameters for setting attribute tags in the form section.  Not to be 
@@ -233,6 +244,10 @@ class FormHelper {
         $html .= '</div>';
 
         return $html;
+    }
+
+    public static function output($name, $for) {
+        return '<output name="'.$name.'" for="'.$for.'"></output>';
     }
 
     /**
