@@ -38,36 +38,30 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">public static function checkboxAndRadioInput</th>
+            <th colspan="2" class="text-center">public static function button</th>
         </tr>
         <tr>
             <td colspan="2">
-                Generates a collection of elements consisting of an input that can be of type checkbox or radio and a label directly to its right.
+                Supports ability to create a styled button.  Supports ability to have functions for event handlers".
                 <br><br>
                 An example function call is shown below:
                 <br>
                 <pre class="my-0">
 <code>
-FormHelper::checkboxAndRadioInput(
-    'checkbox', 
-    'Example', 
-    'example_name', 
-    'example_value', 
-    checked, 
-    ['class' => 'mr-1']
+FormHelper::button(
+    "Click Me!", 
+    ['class' => 'btn btn-large btn-primary', 
+    'onClick' => 'alert(\'Hello World!\')']
 );
 </code>
                 </pre>
                 Example HTML output is shown below:
                 <pre class="my-0">
 <code>
-&lt;input type="checkbox" 
-    id="example_name" 
-    name="example_name" 
-    value="example_value" 
-    checked="checked" 
-    class="mr-1"&gt;
-&lt;label for="example"&gt;Example&lt;/label&gt;   
+&lt;button type="button" 
+    class="btn btn-large btn-primary" 
+    onClick="alert('Hello World!')"&gt;Click Me!
+&lt;/button&gt;    
 </code>
                 </pre>
             </td>
@@ -77,23 +71,7 @@ FormHelper::checkboxAndRadioInput(
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
-            <td>$type The input type we want to generate.</td>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25">string</td>
-            <td>$label Sets the label for this input.</td>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25">string</td>
-            <td>$name Sets the value for the name, for, and id attributes for this input.</td>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25">string</td>
-            <td>$value The value we want to set.  We can use this to set the value of the value attribute during form validation.  Default value is the empty string.  It can be set with values during form validation and forms used for editing records.</td>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25">boolean</td>
-            <td>$checked The value for the checked attribute.  If true this attribute will be set as checked="checked".  The default value is false.  It can be set with values during form validation and forms used for editing records.</td>
+            <td>$buttonText The contents of the button's label.</td>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">array</td>
@@ -104,7 +82,7 @@ FormHelper::checkboxAndRadioInput(
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
-            <td>A surrounding div and the input element.</td>
+            <td>An HTML button element with its label set and any other optional attributes set.</td>
         </tr>
     </table>
 
@@ -112,20 +90,80 @@ FormHelper::checkboxAndRadioInput(
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
-            <th colspan="2" class="text-center">public static function checkboxBlock</th>
+            <th colspan="2" class="text-center">public static function buttonBlock</th>
         </tr>
         <tr>
             <td colspan="2">
-                Generates a div containing an input of type checkbox that is not part of a group.
+                Supports ability to create a styled button and styled surrounding div block.  Supports ability to have functions for event handlers".
                 <br><br>
                 An example function call is shown below:
                 <br>
                 <pre class="my-0">
 <code>
-FormHelper::checkboxBlock(
-    'Example', 
-    'example_name', 
-    'checked', 
+FormHelper::buttonBlock(
+    "Click Me!", 
+    ['class' => 'btn btn-large btn-primary', 
+    'onClick' => 'alert(\'Hello World!\')'], 
+    ['class' => 'form-group']
+);
+</code>
+                </pre>
+                Example HTML output is shown below:
+                <pre class="my-0">
+<code>
+&lt;div class="form-group"&gt; 
+    &lt;button type="button"  
+        class="btn btn-large btn-primary"
+        onClick="alert('Hello World!')"&gt;Click Me!
+    &lt;/button&gt;
+&lt;/div&gt; 
+</code>
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$buttonText The contents of the button's label.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$inputAttrs The values used to set the class and other attributes of the input string.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$divAttrs The values used to set the class and other attributes of the surrounding div.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>An HTML div surrounding a button element with its label set and any other optional attributes set.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
+            <th colspan="2" class="text-center">public static function checkboxBlockLabelLeft</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Generates a div containing an input of type checkbox with the label to the left that is not part of a group.
+                <br><br>
+                An example function call is shown below:
+                <br>
+                <pre class="my-0">
+<code>
+FormHelper::checkboxBlockLabelLeft(
+    'Remember Me', 
+    'remember_me', 
+    'on', 
+    $this->login->getRememberMeChecked(), 
     [], 
     ['class' => 'form-group']
 );
@@ -135,12 +173,11 @@ FormHelper::checkboxBlock(
                 <pre class="my-0">
 <code>
 &lt;div class="form-group"&gt; 
-    &lt;label for="example_name"&gt;Example 
+    &lt;label for="remember_me">Remember Me 
         &lt;input type="checkbox" 
-            id="example_name" 
-            name="example_name" 
-            value="on" 
-            checked="checked"&gt;
+            id="remember_me" 
+            name="remember_me" 
+            value="on"&gt; 
     &lt;/label&gt; 
 &lt;/div&gt; 
 </code>
@@ -157,6 +194,10 @@ FormHelper::checkboxBlock(
         <tr>
             <td class="align-middle text-center w-25">string</td>
             <td>$name Sets the value for the name, for, and id attributes for this input.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$value The value we want to set.  We can use this to set the value of the value attribute during form validation.  Default value is the empty string.  It can be set with values during form validation and forms used for editing records.</td>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">bool</td>
@@ -176,6 +217,80 @@ FormHelper::checkboxBlock(
         <tr>
             <td class="align-middle text-center w-25">string</td>
             <td>A surrounding div and the input element of type checkbox.</td>
+        </tr>
+    </table>
+
+<hr class="w-75 my-5">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
+            <th colspan="2" class="text-center">public static function checkboxBlockLabelRight</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+            Generates a div containing an input of type checkbox with the label to the left that is not part of a group.
+                <br><br>
+                An example function call is shown below:
+                <br>
+                <pre class="my-0">
+<code>
+FormHelper::checkboxBlockLabelRight(
+    'Remember Me', 
+    'remember_me', 
+    'on', 
+    $this->login->getRememberMeChecked(), 
+    [], 
+    ['class' => 'form-group']
+);
+</code>
+                </pre>
+                Example HTML output is shown below:
+                <pre class="my-0">
+<code>
+&lt;div class="form-group"&gt;
+    &lt;input type="checkbox" 
+        id="remember_me" 
+        name="remember_me" 
+        value="on" /&gt;
+    &lt;label for="remember_me">Remember Me&lt;/label&gt;
+&lt;/div>
+</code>
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$label Sets the label for this input.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$name Sets the value for the name, for, and id attributes for this input.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$value The value we want to set.  We can use this to set the value of the value attribute during form validation.  Default value is the empty string.  It can be set with values during form validation and forms used for editing records.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">bool</td>
+            <td>$checked The value for the checked attribute.  If true this attribute will be set as checked="checked".  The default value is false.  It can be set with values during form validation and forms used for editing records.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$inputAttrs The values used to set the class and other attributes of the input string.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$divAttrs The values used to set the class and other attributes of the surrounding div.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>A surrounding div and the input element.</td>
         </tr>
     </table>
 
@@ -293,6 +408,51 @@ FormHelper::checkboxBlock(
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
+            <th colspan="2" class="text-center">public static function hidden</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Description here
+                <br><br>
+                An example function call is shown below:
+                <br>
+                <pre class="my-0">
+<code>
+FormHelper::checkboxBlock(
+    
+);
+</code>
+                </pre>
+                Example HTML output is shown below:
+                <pre class="my-0">
+<code>
+&lt;div class="form-group"&gt; 
+    
+&lt;/div&gt; 
+</code>
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
             <th colspan="2" class="text-center">public static function inputBlock</th>
         </tr>
         <tr>
@@ -388,6 +548,51 @@ FormHelper::inputBlock(
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
+            <th colspan="2" class="text-center">public static function output</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Description here
+                <br><br>
+                An example function call is shown below:
+                <br>
+                <pre class="my-0">
+<code>
+FormHelper::checkboxBlock(
+    
+);
+</code>
+                </pre>
+                Example HTML output is shown below:
+                <pre class="my-0">
+<code>
+&lt;div class="form-group"&gt; 
+    
+&lt;/div&gt; 
+</code>
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
             <th colspan="2" class="text-center">public static function posted_values</th>
         </tr>
         <tr>
@@ -413,6 +618,51 @@ FormHelper::inputBlock(
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
+            <th colspan="2" class="text-center">public static function radioInput</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Description here
+                <br><br>
+                An example function call is shown below:
+                <br>
+                <pre class="my-0">
+<code>
+FormHelper::checkboxBlock(
+    
+);
+</code>
+                </pre>
+                Example HTML output is shown below:
+                <pre class="my-0">
+<code>
+&lt;div class="form-group"&gt; 
+    
+&lt;/div&gt; 
+</code>
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
             <th colspan="2" class="text-center">public static function sanitize</th>
         </tr>
         <tr>
@@ -431,6 +681,51 @@ FormHelper::inputBlock(
         <tr>
             <td class="align-middle text-center w-25">string</td>
             <td>The sanitized version of the dirty string.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
+            <th colspan="2" class="text-center">public static function selectBlock</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Description here
+                <br><br>
+                An example function call is shown below:
+                <br>
+                <pre class="my-0">
+<code>
+FormHelper::checkboxBlock(
+    
+);
+</code>
+                </pre>
+                Example HTML output is shown below:
+                <pre class="my-0">
+<code>
+&lt;div class="form-group"&gt; 
+    
+&lt;/div&gt; 
+</code>
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td></td>
         </tr>
     </table>
 

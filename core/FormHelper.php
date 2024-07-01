@@ -7,34 +7,45 @@ use Core\Helper;
  */
 class FormHelper {
     /**
+     * Supports ability to create a styled button.  Supports ability to have 
+     * functions for event handlers".
      * 
      * An example function call is shown below:
      * FormHelper::button("Click Me!", ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')']);
      * 
      * Example HTML output is shown below:
      * <button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button>
-     * @param [type] $buttonText
-     * @param array $inputAttrs
-     * @return void
+     * 
+     * @param string $buttonText The contents of the button's label.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @return string An HTML button element with its label set and any other 
+     * optional attributes set.
      */
-    public static function button($buttonText, $inputAttrs = []) {
+    public static function button(string $buttonText, array $inputAttrs = []): string {
         $inputString = self::stringifyAttrs($inputAttrs);
         return '<button type="button" '.$inputString.'>'.$buttonText.'</button>';
     }
 
     /**
+     * Supports ability to create a styled button and styled surrounding div 
+     * block.  Supports ability to have functions for event handlers".
      * 
      * An example function call is shown below:
      * FormHelper::buttonBlock("Click Me!", ['class' => 'btn btn-large btn-primary', 'onClick' => 'alert(\'Hello World!\')'], ['class' => 'form-group']);
      * 
      * Example HTML output is shown below:
      * <div class="form-group"><button type="button"  class="btn btn-large btn-primary" onClick="alert('Hello World!')">Click Me!</button></div> 
-     * @param [type] $buttonText
-     * @param array $inputAttrs
-     * @param array $divAttrs
-     * @return void
+     * 
+     * @param string $buttonText The contents of the button's label.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @return string An HTML div surrounding a button element with its label 
+     * set and any other optional attributes set.
      */
-    public static function buttonBlock($buttonText, $inputAttrs = [], $divAttrs = []) {
+    public static function buttonBlock(string $buttonText, array $inputAttrs = [], array $divAttrs = []): string {
         $divString = self::stringifyAttrs($divAttrs);
 
         $html = '<div'.$divString.'>';
@@ -43,23 +54,27 @@ class FormHelper {
 
         return $html;
     }
+
     /**
      * Generates a div containing an input of type checkbox with the label to 
      * the left that is not part of a group.
      *
      * An example function call is shown below:
-     * FormHelper::checkboxBlockLabelLeft('Example', 'example_name', 'checked', [], ['class' => 'form-group']);
+     * FormHelper::checkboxBlockLabelRight('Remember Me', 'remember_me', 'on', $this->login->getRememberMeChecked(), [], ['class' => 'form-group']);
      * 
      * Example HTML output is shown below:
      * <div class="form-group">
-     *     <label for="example_name">Example 
-     *         <input type="checkbox" id="example_name" name="example_name" value="on" checked="checked">
-     *     </label>
+     *     <input type="checkbox" id="remember_me" name="remember_me" value="on" />
+     *     <label for="remember_me">Remember Me</label> 
      * </div>
      * 
      * @param string $label Sets the label for this input.
-     * @param string $name Sets the name for, id, and name attributes for this 
-     * input.
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
+     * @param string $value The value we want to set.  We can use this to set 
+     * the value of the value attribute during form validation.  Default value 
+     * is the empty string.  It can be set with values during form validation 
+     * and forms used for editing records.
      * @param bool $checked The value for the checked attribute.  If true 
      * this attribute will be set as checked="checked".  The default value is 
      * false.  It can be set with values during form validation and forms 
@@ -70,13 +85,13 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @return string A surrounding div and the input element of type checkbox.
      */
-    public static function checkboxBlockLabelLeft($label, $name, $checked = false, $inputAttrs = [], $divAttrs = []) {
+    public static function checkboxBlockLabelLeft($label, $name, $value = "", $checked = false, $inputAttrs = [], $divAttrs = []) {
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs(($inputAttrs));
         $checkString = ($checked) ? ' checked="checked"' : '';
 
         $html = '<div'.$divString.'>';
-        $html .= '<label for="'.$name.'">'.$label.' <input type="checkbox" id="'.$name.'" name="'.$name.'" value="on"'.$checkString.$inputString.'></label>';
+        $html .= '<label for="'.$name.'">'.$label.' <input type="checkbox" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.' /></label>';
         $html .= '</div>';
         return $html;
     }
@@ -96,8 +111,8 @@ class FormHelper {
      * 
      * @param string $type The input type we want to generate.
      * @param string $label Sets the label for this input.
-     * @param string $name Sets the name for, id, and name attributes for this 
-     * input.
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
      * @param string $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
@@ -110,7 +125,7 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @return string A surrounding div and the input element.
      */
-    public static function checkboxBlockLabelRight($label, $name, $value, $checked = false, $inputAttrs = [], $divAttrs = []) {
+    public static function checkboxBlockLabelRight($label, $name, $value = "", $checked = false, $inputAttrs = [], $divAttrs = []) {
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs(($inputAttrs));
         $checkString = ($checked) ? ' checked="checked"' : '';
@@ -177,7 +192,7 @@ class FormHelper {
         return $token;
     }
 
-    /**
+    /** ADD
      * Undocumented function
      *
      * @param [type] $name
@@ -222,8 +237,8 @@ class FormHelper {
      * 
      * @param string $type The input type we want to generate.
      * @param string $label Sets the label for this input.
-     * @param string $name Sets the name for, id, and name attributes for this 
-     * input.
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
      * @param string $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
@@ -246,11 +261,35 @@ class FormHelper {
         return $html;
     }
 
+    /** ADD
+     * Undocumented function
+     *
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
+     * @param [type] $for
+     * @return void
+     */
     public static function output($name, $for) {
         return '<output name="'.$name.'" for="'.$for.'"></output>';
     }
 
     /**
+     * Performs sanitization of values obtained during $_POST.
+     *
+     * @param array $post Values from the $_POST superglobal array when the 
+     * user submits a form.
+     * @return array An array of sanitized values from the submitted form.
+     */
+    public static function posted_values($post) {
+        $clean_array = [];
+        foreach($post as $key => $value) {
+            $clean_array[$key] = self::sanitize($value);
+        }
+
+        return $clean_array;
+    }
+    
+    /** ADD
      * Creates an input element of type radio with an accompanying label 
      * element.  Compatible with radio button groups.
      *
@@ -266,8 +305,8 @@ class FormHelper {
      * 
      * @param string $label Sets the label for this input.
      * @param string $id The id attribute for the radio input element.
-     * @param $name Sets the name for, id, and name attributes for this 
-     * input.
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
      * @param $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
@@ -287,22 +326,6 @@ class FormHelper {
     }
     
     /**
-     * Performs sanitization of values obtained during $_POST.
-     *
-     * @param array $post Values from the $_POST superglobal array when the 
-     * user submits a form.
-     * @return array An array of sanitized values from the submitted form.
-     */
-    public static function posted_values($post) {
-        $clean_array = [];
-        foreach($post as $key => $value) {
-            $clean_array[$key] = self::sanitize($value);
-        }
-
-        return $clean_array;
-    }
-    
-    /**
      * Sanitizes potentially harmful string of characters.
      * 
      * @param string $dirty The potentially dirty string.
@@ -312,7 +335,7 @@ class FormHelper {
         return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
     }
 
-    /**
+    /** ADD
      * Renders a select element with a list of options.
      * 
      * An example function call is shown below:
@@ -330,8 +353,8 @@ class FormHelper {
      * </div>
      * 
      * @param string $label Sets the label for this input.
-     * @param string $name Sets the name for, id, and name attributes for this 
-     * input.
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
      * @param string $checked The value we want to set as selected.
      * @param array $inputAttrs The values used to set the class and other 
      * attributes of the input string.  The default value is an empty array.
@@ -429,7 +452,7 @@ class FormHelper {
         return '<input type="submit" value="'.$buttonText.'"'.$inputString.' />';
     }
     
-    /** 
+    /**
      * Assists in the development of textarea in forms.  It accepts parameters 
      * for setting  attribute tags in the form section.
      * 
@@ -443,8 +466,8 @@ class FormHelper {
      * </div>
      * 
      * @param string $label Sets the label for this input.
-     * @param string $name Sets the name for, id, and name attributes for this 
-     * input.
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
      * @param string $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
