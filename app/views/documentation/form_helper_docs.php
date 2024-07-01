@@ -412,23 +412,26 @@ FormHelper::checkboxBlockLabelRight(
         </tr>
         <tr>
             <td colspan="2">
-                Description here
+                Generates a hidden input element.
                 <br><br>
                 An example function call is shown below:
                 <br>
                 <pre class="my-0">
 <code>
-FormHelper::checkboxBlock(
-    
+FormHelper::hidden(
+    "example_name", 
+    "example_value"
 );
 </code>
                 </pre>
                 Example HTML output is shown below:
                 <pre class="my-0">
 <code>
-&lt;div class="form-group"&gt; 
-    
-&lt;/div&gt; 
+&lt;input type="hidden"
+    name="example_name" 
+    id="example_name" 
+    value="example_value"
+/&gt;
 </code>
                 </pre>
             </td>
@@ -437,15 +440,19 @@ FormHelper::checkboxBlock(
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25"></td>
-            <td></td>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$name The value for the name and id attributes.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">mixed</td>
+            <td>$value The value for the value attribute.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
-            <td></td>
+            <td>The html input element with type hidden.</td>
         </tr>
     </table>
 
@@ -552,23 +559,24 @@ FormHelper::inputBlock(
         </tr>
         <tr>
             <td colspan="2">
-                Description here
+                Generates an HTML output element.
                 <br><br>
                 An example function call is shown below:
                 <br>
                 <pre class="my-0">
 <code>
-FormHelper::checkboxBlock(
-    
+FormHelper::output(
+    "my_name", 
+    "for_value"
 );
 </code>
                 </pre>
                 Example HTML output is shown below:
                 <pre class="my-0">
 <code>
-&lt;div class="form-group"&gt; 
-    
-&lt;/div&gt; 
+&lt;output name="my_name" 
+    for="for_value"&gt;
+&lt;/output&gt;
 </code>
                 </pre>
             </td>
@@ -577,15 +585,20 @@ FormHelper::checkboxBlock(
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25"></td>
-            <td></td>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$name Sets the value for the name attributes for this 
+            * input.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$for Sets the value for the for attribute.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
-            <td></td>
+            <td>The HTML output element.</td>
         </tr>
     </table>
 
@@ -622,23 +635,39 @@ FormHelper::checkboxBlock(
         </tr>
         <tr>
             <td colspan="2">
-                Description here
+                Creates an input element of type radio with an accompanying label element.  Compatible with radio button groups.
                 <br><br>
                 An example function call is shown below:
                 <br>
                 <pre class="my-0">
 <code>
-FormHelper::checkboxBlock(
-    
+FormHelper::radioInput('HTML', 'html', 
+    'fav_language', "HTML", $check1, 
+    ['class' => 'form-group mr-1']
+);
+FormHelper::radioInput('CSS', 'css', 
+    'fav_language', "CSS", $check2, 
+    ['class' => 'form-group mr-1']
 );
 </code>
                 </pre>
                 Example HTML output is shown below:
                 <pre class="my-0">
 <code>
-&lt;div class="form-group"&gt; 
-    
-&lt;/div&gt; 
+&lt;input type="radio" 
+    id="html" 
+    name="fav_language" 
+    value="HTML" 
+    class="form-group 
+    mr-1"&gt; 
+&lt;label for="html">HTML&lt;/label&gt;  &lt;br&gt; 
+&lt;input type="radio" 
+    id="css" 
+    name="fav_language" 
+    value="CSS" 
+    class="form-group 
+    mr-1"&gt; 
+&lt;label for="css">CSS&lt;/label&gt; 
 </code>
                 </pre>
             </td>
@@ -647,15 +676,36 @@ FormHelper::checkboxBlock(
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25"></td>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$label Sets the label for this input.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$id The id attribute for the radio input element.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$value The value we want to set.  We can use this to set the value of the value attribute during form validation.  Default value is the empty string.  It can be set with values during form validation and forms used for editing records.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
             <td></td>
         </tr>
+        <tr>
+            <td class="align-middle text-center w-25">bool</td>
+            <td>$checked The value for the checked attribute.  If true this attribute will be set as checked="checked".  The default value is false.  It can be set with values during form validation and forms used for editing records.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$inputAttrs The values used to set the class and other attributes of the input string.  The default value is an empty array.</td>
+        </tr>
+
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
-            <td></td>
+            <td>The HTML input element of type radio.</td>
         </tr>
     </table>
 
@@ -692,14 +742,19 @@ FormHelper::checkboxBlock(
         </tr>
         <tr>
             <td colspan="2">
-                Description here
+                Renders a select element with a list of options.
                 <br><br>
                 An example function call is shown below:
                 <br>
                 <pre class="my-0">
 <code>
-FormHelper::checkboxBlock(
-    
+FormHelper::selectBlock(
+    "Test", 
+    "test", 
+    $_POST["test"],
+    ['A' => 'a','B' => 'b', 'C' => 'c'], 
+    ['class' => 'form-control'], 
+    ['class' => 'form-group']
 );
 </code>
                 </pre>
@@ -707,7 +762,16 @@ FormHelper::checkboxBlock(
                 <pre class="my-0">
 <code>
 &lt;div class="form-group"&gt; 
-    
+&lt;label for="test"&gt;Test&lt;/label&gt;
+    &lt;select id="test" 
+    name="test" 
+    value="" 
+    class="form-control"&gt;
+        &lt;option&gt;---Please select an item--&lt;/option&gt;
+        &lt;option value="a"&gt;A&lt;/option&gt;
+        &lt;option value="b"&gt;B&lt;/option&gt;
+        &lt;option value="c"&gt;C&lt;/option&gt;
+    &lt;/select&gt;
 &lt;/div&gt; 
 </code>
                 </pre>
@@ -717,15 +781,35 @@ FormHelper::checkboxBlock(
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25"></td>
-            <td></td>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$label Sets the label for this input.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$name Sets the value for the name, for, and id attributes for this input.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$checked The value we want to set as selected.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$inputAttrs The values used to set the class and other attributes of the input string.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$options The list of options we will use to populate the select option dropdown.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$divAttrs The values used to set the class and other attributes of the surrounding div.  The default value is an empty array.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
-            <td></td>
+            <td>A surrounding div and option select element.</td>
         </tr>
     </table>
 

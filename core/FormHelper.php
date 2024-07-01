@@ -192,12 +192,18 @@ class FormHelper {
         return $token;
     }
 
-    /** ADD
-     * Undocumented function
-     *
-     * @param [type] $name
-     * @param [type] $value
-     * @return void
+    /**
+     * Generates a hidden input element.
+     * 
+     * An example function call is shown below:
+     * FormHelper::hidden("example_name", "example_value");
+     * 
+     * Example HTML output is shown below:
+     * <input type="hidden" name="example_name" id="example_name" value="example_value" />
+     * 
+     * @param string $name The value for the name and id attributes.
+     * @param mixed $value The value for the value attribute.
+     * @return string The html input element with type hidden.
      */
     public static function hidden($name, $value) {
         return '<input type="hidden" name="'.$name.'" id="'.$name.'" value="'.$value.'" />';
@@ -261,13 +267,19 @@ class FormHelper {
         return $html;
     }
 
-    /** ADD
-     * Undocumented function
-     *
-     * @param string $name Sets the value for the name, for, and id attributes 
-     * for this input.
-     * @param [type] $for
-     * @return void
+    /** 
+     * Generates an HTML output element.
+     * 
+     * An example function call is shown below:
+     * FormHelper::output("my_name", "for_value")
+     * 
+     * Example HTML output is shown below:
+     * <output name="my_name" for="for_value"></output>
+     * 
+     * @param string $name Sets the value for the name attributes for this 
+     * input.
+     * @param string $for Sets the value for the for attribute.
+     * @return string The HTML output element.
      */
     public static function output($name, $for) {
         return '<output name="'.$name.'" for="'.$for.'"></output>';
@@ -288,13 +300,13 @@ class FormHelper {
 
         return $clean_array;
     }
-    
-    /** ADD
+
+    /**
      * Creates an input element of type radio with an accompanying label 
      * element.  Compatible with radio button groups.
      *
      * An example function call is shown below:
-     * FormHelper::radioInput('HTML', 'html', 'fav_language', "HTML", $check1, ['class' => 'form-group mr-1']); <br>
+     * FormHelper::radioInput('HTML', 'html', 'fav_language', "HTML", $check1, ['class' => 'form-group mr-1']);
      * FormHelper::radioInput('CSS', 'css', 'fav_language', "CSS", $check2, ['class' => 'form-group mr-1']);
      * 
      * Example HTML output is shown below:
@@ -307,17 +319,17 @@ class FormHelper {
      * @param string $id The id attribute for the radio input element.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param $value The value we want to set.  We can use this to set 
+     * @param string $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
      * and forms used for editing records.
-     * @param boolean $checked The value for the checked attribute.  If true 
+     * @param bool $checked The value for the checked attribute.  If true 
      * this attribute will be set as checked="checked".  The default value is 
      * false.  It can be set with values during form validation and forms 
      * used for editing records.
      * @param array $inputAttrs The values used to set the class and other 
      * attributes of the input string.  The default value is an empty array.
-     * @return void
+     * @return string The HTML input element of type radio.
      */
     public static function radioInput($label, $id, $name, $value, $checked = false, $inputAttrs = []) {
         $inputString = self::stringifyAttrs(($inputAttrs));
@@ -335,7 +347,7 @@ class FormHelper {
         return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
     }
 
-    /** ADD
+    /**
      * Renders a select element with a list of options.
      * 
      * An example function call is shown below:
@@ -359,7 +371,7 @@ class FormHelper {
      * @param array $inputAttrs The values used to set the class and other 
      * attributes of the input string.  The default value is an empty array.
      * @param array $options The list of options we will use to populate the 
-     * select option dropdown.
+     * select option dropdown.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
      * @return string A surrounding div and option select element.
