@@ -974,7 +974,7 @@ self::submitTag(
                     <li>d - All options are off.</li>
                     <li>e - Default event listener turned on for enforcing phone format requirements.</li>
                     <li>h - Default placeholder turned on.</li>
-                    <li>p - Default pattern is enforced.</li>
+                    <li>p - Default telephone pattern is enforced.</li>
                 </ul>
                 
                 The user may use 'a', or any combination of 'h', 'p', or 'e'.  The empty string is not a valid value for args.  Leaving out a value for args in the function call will cause all defaults to be turned on.  If the d is entered with all other valid options together will cause no options to be set.  If bad phone types and args values are entered exceptions displaying relevant information will be thrown.

@@ -476,7 +476,7 @@ class FormHelper {
      * 3. e - Default event listener turned on for enforcing phone format 
      * requirements.
      * 4. h - Default placeholder turned on.
-     * 5. p - Default pattern is enforced. 
+     * 5. p - Default telephone pattern is enforced. 
      * 
      * The user may use 'a', or any combination of 'h', 'p', or 'e'.  The 
      * empty string is not a valid value for args.  Leaving out a value for 
@@ -533,9 +533,9 @@ class FormHelper {
             throw new Exception("Incorrect value in arguments field.");
         }
         
-        // Test if certain attributes are not provided
+        // Test for valid args input combinations.
         $inputString = self::stringifyAttrs(($inputAttrs));
-        if(strcmp($args, 'a') == 0 && (str_contains($inputString, 'placeholder') || str_contains($inputString, 'pattern') || str_contains($inputString, 'onkeydown'))) {
+        if(strcmp($args, 'd') == 0 && (str_contains($inputString, 'placeholder') || str_contains($inputString, 'pattern') || str_contains($inputString, 'onkeydown'))) {
             throw new Exception("Can not accept placeholder, pattern, or onkeydown attributes when args is set to d");
         }
         if(str_contains($args, 'h') && str_contains($inputString, 'placeholder')) {

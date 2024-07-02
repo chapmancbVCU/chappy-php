@@ -1,7 +1,7 @@
 <?php 
 use Core\FormHelper;
 ?>
-<form class="form" action=<?=$this->postAction?> method="post">
+<form class="form mb-2" action=<?=$this->postAction?> method="post">
     <?= FormHelper::displayErrors($this->displayErrors) ?>
     <?= FormHelper::csrfInput() ?>
     <div class="row d-flex">
@@ -76,6 +76,7 @@ use Core\FormHelper;
             $this->contact->cell_phone, 
             ['class' => 'form-control'], 
             ['class' => 'form-group col-md-6'],
+            "phe"
         );?>
     </div>
 
@@ -86,7 +87,7 @@ use Core\FormHelper;
             $this->contact->home_phone,
             ['class' => 'form-control', 'placeholder' => 'My placeholder'], 
             ['class' => 'form-group col-md-6'],
-            "pe"
+            "a"
         );?>
         <?= FormHelper::telBlock('work', 
             'Work Phone', 
