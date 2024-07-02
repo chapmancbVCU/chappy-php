@@ -467,7 +467,7 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">string</td>
+            <td class="align-middle text-center w-25">object</td>
             <td>$validator The validator object.</td>
         </tr>
         <tr>

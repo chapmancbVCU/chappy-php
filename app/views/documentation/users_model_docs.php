@@ -182,8 +182,8 @@
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">array</td>
-            <td>An associative array containing information about current logged in user from users table.</td>
+            <td class="align-middle text-center w-25">object</td>
+            <td>An object containing information about current logged in user from users table.</td>
         </tr>
     </table>
 

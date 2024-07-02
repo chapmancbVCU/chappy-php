@@ -41,7 +41,7 @@ class Model {
      * @return void
      */
     public function addErrorMessage($field, $message) {
-        $this->validates = false;
+        $this->_validates = false;
         $this->_validationErrors[$field] = $message;  
     }
 
@@ -218,7 +218,7 @@ class Model {
      * Runs a validator object and sets validates boolean and adds error 
      * message if validator fails.
      *
-     * @param string $validator The validator object.
+     * @param object $validator The validator object.
      * @return void
      */
     public function runValidation($validator) {

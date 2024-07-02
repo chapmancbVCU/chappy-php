@@ -91,7 +91,7 @@ class Users extends Model {
     /**
      * Checks if a user is logged in.
      *
-     * @return array An associative array containing information about current 
+     * @return object An object containing information about current 
      * logged in user from users table.
      */
     public static function currentUser() {
@@ -184,7 +184,7 @@ class Users extends Model {
             }
             return $user;
         }
-        return $user;
+        return;
     }
 
     /**
