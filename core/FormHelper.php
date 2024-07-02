@@ -268,21 +268,46 @@ class FormHelper {
         return $html;
     }
 
-    public static function telBlock($phoneType, $label, $name, $value = '', $inputAttrs= [], $divAttrs = [], $defaults = false) {
+    public static function telBlock($phoneType, $label, $name, $value = '', $inputAttrs= [], $divAttrs = [], $args = "d") {
+        // Test if correct type is provided.
         if((strcmp($phoneType, "cell") != 0) && (strcmp($phoneType, 'home') != 0) && (strcmp($phoneType, "work") != 0)) {
             throw new Exception("Only cell, home, or work are valid phone types");
         }
 
+        // Check for valid arguments d, e, h, and p
+        if(!preg_match('/[dehp]/', $args) == 1) {
+            throw new Exception("Incorrect value in arguments field.");
+        }
+        
+        // Test if certain attributes are not provided
         $inputString = self::stringifyAttrs(($inputAttrs));
-        if($defaults && (str_contains($inputString, 'placeholder') || str_contains($inputString, 'pattern') || str_contains($inputString, 'onkeydown'))) {
-            throw new Exception("Can not accept placeholder, pattern, or onkeydown attributes when defaults flag is set to true");
+        if(strcmp($args, 'd') == 0 && (str_contains($inputString, 'placeholder') || str_contains($inputString, 'pattern') || str_contains($inputString, 'onkeydown'))) {
+            throw new Exception("Can not accept placeholder, pattern, or onkeydown attributes when args is set to d");
+        }
+        if(str_contains($args, 'h') && str_contains($inputString, 'placeholder')) {
+            throw new Exception('Can not accept placeholder when args contains h flag');
+        }
+        if(str_contains($args, 'p') && str_contains($inputString, 'pattern')) {
+            throw new Exception('Can not accept pattern when args contains p flag.');
+        }
+        if(str_contains($args, 'e') && str_contains($inputString, 'onkeydown')) {
+            throw new Exception('Can not accept onkeydown when args contains e flag.');
         }
 
         try {
             $divString = self::stringifyAttrs($divAttrs);
             // Check if user wants to use defined attributes.
-            if($defaults) {
+            if(strcmp($args, 'd') == 0) {
                 $inputString .= ' placeholder="ex: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" onkeydown="'.$phoneType.'PhoneNumberFormatter()"';
+            }
+            if(str_contains($args, 'h')) {
+                $inputString .= ' placeholder="ex: 123-456-7890"';
+            }
+            if(str_contains($args, 'p')) {
+                $inputString .= ' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"';
+            }
+            if(str_contains($args, 'e')) {
+                $inputString .= ' onkeydown="'.$phoneType.'PhoneNumberFormatter()"';
             }
             $html = '<div' . $divString . '>';
             $html .= '<label for="'.$name.'">'.$label.'</label>';

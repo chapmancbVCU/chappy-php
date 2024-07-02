@@ -76,7 +76,6 @@ use Core\FormHelper;
             $this->contact->cell_phone, 
             ['class' => 'form-control'], 
             ['class' => 'form-group col-md-6'],
-            true
         );?>
     </div>
 
@@ -87,7 +86,7 @@ use Core\FormHelper;
             $this->contact->home_phone,
             ['class' => 'form-control'], 
             ['class' => 'form-group col-md-6'],
-            true
+            "phe"
         );?>
         <?= FormHelper::telBlock('work', 
             'Work Phone', 
@@ -95,7 +94,7 @@ use Core\FormHelper;
             $this->contact->work_phone, 
             ['class' => 'form-control'], 
             ['class' => 'form-group col-md-6'],
-            true
+            "d"
         );?>
     </div>
 
