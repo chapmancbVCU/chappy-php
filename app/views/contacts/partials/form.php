@@ -70,44 +70,32 @@ use Core\FormHelper;
             ['class' => 'form-control', 'placeholder' => 'email@example.com'], 
             ['class' => 'form-group col-md-6']
         );?>
-        <?= FormHelper::inputBlock('tel', 
+        <?= FormHelper::telBlock('cell', 
             'Cell Phone', 
             'cell_phone', 
             $this->contact->cell_phone, 
-            [
-                'class' => 'form-control',
-                'onkeydown' => 'cellPhoneNumberFormatter()',
-                'pattern' => '[0-9]{3}-[0-9]{3}-[0-9]{4}',
-                'placeholder' => 'ex: 123-456-7890',
-            ], 
-            ['class' => 'form-group col-md-6']
+            ['class' => 'form-control'], 
+            ['class' => 'form-group col-md-6'],
+            true
         );?>
     </div>
 
     <div class="row">
-        <?= FormHelper::inputBlock('tel', 
+        <?= FormHelper::telBlock('home', 
             'Home Phone', 
             'home_phone', 
             $this->contact->home_phone,
-            [
-                'class' => 'form-control',
-                'onkeydown' => 'homePhoneNumberFormatter()',
-                'pattern' => '[0-9]{3}-[0-9]{3}-[0-9]{4}',
-                'placeholder' => 'ex: 123-456-7890',
-            ], 
-            ['class' => 'form-group col-md-6']
+            ['class' => 'form-control'], 
+            ['class' => 'form-group col-md-6'],
+            true
         );?>
-        <?= FormHelper::inputBlock('tel', 
+        <?= FormHelper::telBlock('work', 
             'Work Phone', 
             'work_phone', 
             $this->contact->work_phone, 
-            [
-                'class' => 'form-control',
-                'onkeydown' => 'workPhoneNumberFormatter()',
-                'pattern' => '[0-9]{3}-[0-9]{3}-[0-9]{4}',
-                'placeholder' => 'ex: 123-456-7890',
-            ], 
-            ['class' => 'form-group col-md-6']
+            ['class' => 'form-control'], 
+            ['class' => 'form-group col-md-6'],
+            true
         );?>
     </div>
 

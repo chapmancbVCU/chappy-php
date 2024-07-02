@@ -1,5 +1,6 @@
 <?php
 namespace Core;
+use \Exception;
 use Core\Session;
 use Core\Helper;
 /**
@@ -265,6 +266,33 @@ class FormHelper {
         $html .= '</div>';
 
         return $html;
+    }
+
+    public static function telBlock($phoneType, $label, $name, $value = '', $inputAttrs= [], $divAttrs = [], $defaults = false) {
+        if((strcmp($phoneType, "cell") != 0) && (strcmp($phoneType, 'home') != 0) && (strcmp($phoneType, "work") != 0)) {
+            throw new Exception("Only cell, home, or work are valid phone types");
+        }
+
+        $inputString = self::stringifyAttrs(($inputAttrs));
+        if($defaults && (str_contains($inputString, 'placeholder') || str_contains($inputString, 'pattern') || str_contains($inputString, 'onkeydown'))) {
+            throw new Exception("Can not accept placeholder, pattern, or onkeydown attributes when defaults flag is set to true");
+        }
+
+        try {
+            $divString = self::stringifyAttrs($divAttrs);
+            // Check if user wants to use defined attributes.
+            if($defaults) {
+                $inputString .= ' placeholder="ex: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" onkeydown="'.$phoneType.'PhoneNumberFormatter()"';
+            }
+            $html = '<div' . $divString . '>';
+            $html .= '<label for="'.$name.'">'.$label.'</label>';
+            $html .= '<input type="tel" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
+            $html .= '</div>';
+
+            return $html;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     /** 
