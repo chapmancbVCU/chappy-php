@@ -23,9 +23,10 @@
             <td colspan="2" class="text-center">Core</td>
         </tr>
         <tr>
-            <th class="align-middle text-center w-25" rowspan="2">Use</th>
+            <th class="align-middle text-center w-25" rowspan="3">Use</th>
             <tr><td>Core\Model</td></tr>
-        </tr>  
+        </tr> 
+        <tr><td>\Exception\</td></tr> 
         <tr>
             <th colspan="2" class="text-center">Instance Variables</th>
         </tr>
@@ -953,6 +954,167 @@ self::submitTag(
         <tr>
             <td class="align-middle text-center w-25">string</td>
             <td>An input element of type submit.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
+            <th colspan="2" class="text-center">public static function telBlock</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Renders an HTML div element that surrounds an input of type tel.  The user is able to enter cell, home, and work as phone types.  Certain options can be set using the args parameter.  
+                <br><br>
+                Arguments supported:
+                <br>
+                <ul>
+                    <li>a - All default options turned on. </li>
+                    <li>d - All options are off.</li>
+                    <li>e - Default event listener turned on for enforcing phone format requirements.</li>
+                    <li>h - Default placeholder turned on.</li>
+                    <li>p - Default pattern is enforced.</li>
+                </ul>
+                
+                The user may use 'a', or any combination of 'h', 'p', or 'e'.  The empty string is not a valid value for args.  Leaving out a value for args in the function call will cause all defaults to be turned on.  If the d is entered with all other valid options together will cause no options to be set.  If bad phone types and args values are entered exceptions displaying relevant information will be thrown.
+                <br><br>
+                An example function call where no arguments are set is shown below:
+                <br>
+                <pre class="my-0">
+<code>
+FormHelper::telBlock(
+    'cell', 
+    'Cell Phone', 
+    'cell_phone', 
+    $this->contact->cell_phone, 
+    ['class' => 'form-control'], 
+    ['class' => 'form-group col-md-6']
+);
+</code>
+                </pre>
+                The corresponding HTML output is shown below:
+                <pre class="my-0">
+<code>
+&lt;div class="form-group"&gt; 
+    &lt;label for="cell_phone"&gt;Cell Phone&lt;/label&gt;
+    &lt;input type="tel" 
+        id="cell_phone" 
+        name="cell_phone" 
+        value="" 
+        class="form-control" 
+    /&gt;
+&lt;/div&gt; 
+</code>
+                </pre>
+
+                <br><br>
+                An example function call where two options are set and other is set with the inputAttrs array is shown below:
+                <br>
+                <pre class="my-0">
+<code>
+FormHelper::telBlock(
+    'home', 
+    'Home Phone', 
+    'home_phone',
+    $this->contact->home_phone, 
+    ['class' => 'form-control', 'placeholder' => 'My placeholder'], 
+    ['class' => 'form-group col-md-6'],
+    "pe"
+);
+</code>
+                </pre>
+                The corresponding HTML output is shown below:
+                <pre class="my-0">
+<code>
+&lt;div class="form-group"&gt; 
+    &lt;label for="home_phone"&gt;Home Phone&lt;/label&gt;
+    &lt;input type="tel" 
+        id="home_phone" 
+        name="home_phone" 
+        value="" 
+        class="form-control" 
+        placeholder="My placeholder" 
+        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
+        onkeydown="homePhoneNumberFormatter()" 
+    /&gt;
+&lt;/div&gt; 
+</code>
+                </pre>
+
+                <br><br>
+                An example function call where 'a' flag is set is shown below:
+                <br>
+                <pre class="my-0">
+<code>
+FormHelper::telBlock(
+    'work', 
+    'Work Phone', 
+    'work_phone', 
+    $this->contact->work_phone, 
+    ['class' => 'form-control'], 
+    ['class' => 'form-group col-md-6'],
+    "a"
+);
+</code>
+                </pre>
+                The corresponding HTML output is shown below:
+                <pre class="my-0">
+<code>
+&lt;div class="form-group"&gt; 
+    &lt;label for="work_phone"&gt;Work Phone&lt;/label&gt;
+    &lt;input type="tel" 
+        id="work_phone" 
+        name="work_phone" 
+        value="" 
+        class="form-control" 
+        placeholder="ex: 123-456-7890" 
+        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
+        onkeydown="workPhoneNumberFormatter()" 
+    /&gt;
+&lt;/div&gt; 
+</code>
+                </pre>
+            </td>
+        </tr>
+        
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$phoneType The type of phone that can be used.  We currently support "cell", "home", and "work" type phones.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$label Sets the label for this input.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$name Sets the value for the name, for, and id attributes for this input.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$value The value we want to set.  We can use this to set the value of the value attribute during form validation.  Default value is the empty string.  It can be set with values during form validation and forms used for editing records.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$inputAttrs The values used to set the class and other attributes of the input string.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$divAttrs The values used to set the class and other  attributes of the surrounding div.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$args Arguments that influence which options are turned on.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>The HTML div element surrounding an input of type tel  with configuration and values set based on parameters entered during function call.</td>
         </tr>
     </table>
 
