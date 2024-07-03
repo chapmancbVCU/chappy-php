@@ -63,11 +63,10 @@ use Core\FormHelper;
     </div>
 
     <div class="row">
-        <?= FormHelper::inputBlock('text', 
-            'Email', 
+        <?= FormHelper::emailBlock('Email', 
             'email', 
             $this->contact->email, 
-            ['class' => 'form-control', 'placeholder' => 'email@example.com'], 
+            ['class' => 'form-control'], 
             ['class' => 'form-group col-md-6']
         );?>
         <?= FormHelper::telBlock('cell', 

@@ -199,6 +199,37 @@ class FormHelper {
     }
 
     /**
+     * Undocumented function
+     *
+     * @param string $label
+     * @param string $name
+     * @param mixed $value
+     * @param array $inputAttrs
+     * @param array $divAttrs
+     * @return string
+     */
+    public static function emailBlock(string $label, 
+        string $name, 
+        mixed $value = '', 
+        array $inputAttrs= [], 
+        array $divAttrs = []
+        ): string {
+
+        // Make sure placeholder is not an attribute.
+        if(array_key_exists('placeholder', $inputAttrs)) {
+            throw new Exception('Can not accept placeholder attribute found in your $inputString array.');
+        }
+
+        $divString = self::stringifyAttrs($divAttrs);
+        $inputString = self::stringifyAttrs(($inputAttrs));
+        $html = '<div' . $divString . '>';
+        $html .= '<label for="'.$name.'">'.$label.'</label>';
+        $html .= '<input type="email" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$inputString.' placeholder="joe@example.com" />';
+        $html .= '</div>';
+        return $html;
+    }
+
+    /**
      * Creates a randomly generated csrf token.
      *
      * @return string The randomly generated token.
