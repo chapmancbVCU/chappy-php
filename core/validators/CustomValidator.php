@@ -21,12 +21,12 @@ abstract class CustomValidator {
      * conditions are not satisfied.  When an exception is thrown a message 
      * is displayed describing the issue.
      *
-     * @param string $model The name of the model we want to perform 
+     * @param object $model The name of the model we want to perform 
      * validation when submitting a form.
      * @param array $params A list of values obtained from an input when a 
      * form is submitted during a post action.
      */
-    public function __construct($model, $params) {
+    public function __construct(object $model, array $params) {
         $this->_model = $model;
 
         if(!array_key_exists('field', $params)) {

@@ -13,7 +13,7 @@ class UniqueValidator extends CustomValidator {
      * @return bool Returns true if value is not associated with a record's 
      * field that we are targeting in a database.  Otherwise, we return false.
      */
-    public function runValidation() {
+    public function runValidation(): bool {
         $field = (is_array($this->field)) ? $this->field[0] : $this->field;
         $value = $this->_model->{$field};
 

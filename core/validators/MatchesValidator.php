@@ -10,9 +10,9 @@ class MatchesValidator extends CustomValidator {
      * Implements the abstract function of the same name from the parent 
      * class.  Enforces requirements when two fields must match.
      *
-     * @return void True if values match.  Otherwise, we return false.
+     * @return bool True if values match.  Otherwise, we return false.
      */
-    public function runValidation() {
+    public function runValidation(): bool {
         $value = $this->_model->{$this->field};
         return $value == $this->rule;
     }

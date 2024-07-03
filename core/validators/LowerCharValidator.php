@@ -13,7 +13,7 @@ class LowerCharValidator extends CustomValidator {
      *
      * @return bool True if field contains at least one lower case character.
      */
-    public function runValidation() {
+    public function runValidation(): bool {
         if(preg_match('/[a-z]/', $this->_model->{$this->field}) == 1) {
             return true;
         }

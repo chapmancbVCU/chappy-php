@@ -14,7 +14,7 @@ class SpecialCharValidator extends CustomValidator {
      * @return bool True if field contains at least one special character 
      * that is not a space.
      */
-    public function runValidation() {
+    public function runValidation(): bool {
         $value = $this->_model->{$this->field};
         if((preg_match('/[^a-zA-Z0-9]/', $value) == 1) && 
             (preg_match('/\s/', $value) == 0)) {

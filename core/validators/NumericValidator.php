@@ -10,10 +10,10 @@ class NumericValidator extends CustomValidator {
      * Implements the abstract function of the same name from the parent 
      * class.  Enforces requirement where a field must contain a number.
      *
-     * @return void Returns true if value is a numeric value.  Otherwise, we 
+     * @return bool Returns true if value is a numeric value.  Otherwise, we 
      * return false.
      */
-    public function runValidation() {
+    public function runValidation(): bool {
         $value = $this->_model->{$this->field};
         $pass = true;
         if(!empty($value)) {

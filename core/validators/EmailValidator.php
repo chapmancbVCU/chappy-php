@@ -12,7 +12,7 @@ class EmailValidator extends CustomValidator {
      * @return bool Returns true if value is formatted as a valid E-mail.  
      * Otherwise, we return false.
      */
-    public function runValidation() {
+    public function runValidation(): bool {
         $email = $this->_model->{$this->field};
         $pass = true;
         if(!empty($email)) {

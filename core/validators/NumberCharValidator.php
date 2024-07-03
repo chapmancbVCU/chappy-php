@@ -13,7 +13,7 @@ class NumberCharValidator extends CustomValidator {
      *
      * @return bool True if field contains at least one upper case character.
      */
-    public function runValidation() {
+    public function runValidation(): bool {
         if(preg_match('/[0-9]/', $this->_model->{$this->field}) == 1) {
             return true;
         }
