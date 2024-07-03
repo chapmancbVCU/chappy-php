@@ -28,7 +28,7 @@ class UserSessions extends Model{
      * current user's session.  If a user session does not exist false is 
      * returned.
      */
-    public static function getFromCookie() {
+    public static function getFromCookie(): bool|UserSessions {
         $userSession = new self();
         if(Cookie::exists(REMEMBER_ME_COOKIE_NAME)) {
             $userSession = $userSession->findFirst([
