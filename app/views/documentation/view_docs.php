@@ -120,7 +120,7 @@
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">bool|mixed</td>
+            <td class="align-middle text-center w-25">mixed</td>
             <td>The type of content we want to render.  If it is not a known type of content we return false;</td>
         </tr>
     </table>

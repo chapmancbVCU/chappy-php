@@ -29,7 +29,7 @@ class View {
      * @param string $group The name of the parent view.
      * @return void
      */
-    public function addPartialView($group, $partial) {
+    public function addPartialView(string $group, string $partial) {
         include ROOT . DS . 'app' . DS . 'views' . DS . $group . DS . 'partials' . DS . $partial . '.php';
     }
     
@@ -38,10 +38,10 @@ class View {
      * necessary, we can implement additional types of content.
      *
      * @param string $type The type of content we want to render.
-     * @return bool|mixed The type of content we want to render.  If it is not 
+     * @return mixed The type of content we want to render.  If it is not 
      * a known type of content we return false;
      */
-    public function content($type) {
+    public function content(string $type): mixed {
         if($type == 'head') return $this->_head;
         elseif($type == 'body') return $this->_body;
         else return false;
@@ -55,7 +55,7 @@ class View {
      *
      * @return void
      */
-    public function end() {
+    public function end(): void {
         if($this->_outputBuffer == 'head') {
             $this->_head = ob_get_clean();
         } elseif($this->_outputBuffer == 'body') {
@@ -71,7 +71,7 @@ class View {
      * @param string $path Path to view.  Example: register/register
      * @return void
      */
-    public function insertView($path) {
+    public function insertView(string $path): void {
         include ROOT . DS . 'app' . DS . 'views' . DS . $path . '.php';
     }
 
@@ -82,7 +82,7 @@ class View {
      * @param string $viewName The name of the view we want to render.
      * @return void
      */
-    public function render($viewName) {
+    public function render(string $viewName): void {
         // Separate into array to get view name.
         $viewArray = explode('/', $viewName);
         $viewString = implode(DS, $viewArray);
@@ -102,7 +102,7 @@ class View {
      * @param string $path The path for our view.
      * @return void
      */
-    public function setLayout($path) {
+    public function setLayout(string $path): void {
         $this->_layout = $path;
     }
 
@@ -112,7 +112,7 @@ class View {
      * @param string $title The site title for a particular page.
      * @return void
      */
-    public function setSiteTitle($title) {
+    public function setSiteTitle(string $title): void {
         $this->_siteTitle = $title;
     }
 
@@ -121,7 +121,7 @@ class View {
      *
      * @return string The site title for a particular page.
      */
-    public function siteTitle() {
+    public function siteTitle(): string {
         return $this->_siteTitle;
     }
 
@@ -134,7 +134,7 @@ class View {
      * in our view.
      * @return void
      */
-    public function start($type) {
+    public function start(string $type): void {
         $this->_outputBuffer = $type;
         ob_start();
     } 
