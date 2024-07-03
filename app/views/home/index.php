@@ -21,7 +21,7 @@
       <img class="card-img-top" src="<?=PROOT?>public/images/validation.png" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Server Side Form Validation</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <p class="card-text">Built in suite of server side form validation tools with message alert support.</p>
       </div>
     </div>
   </div>
@@ -43,14 +43,20 @@
     </div>
   </div>
 
-
-  <div class="d-flex justify-content-around">
-    <div class="card mb-5" style="width: 30rem;">
+  <div class="d-flex flex-wrap justify-content-around">
+   <div class="card mb-5" style="width: 30rem;">
+      <img class="card-img-top" src="<?=PROOT?>public/images/documentation.png" alt="Card image cap">
       <div class="card-body">
+        <h5 class="card-title">MVC Documentation</h5>
+        <p class="card-text">Descriptions of all functions and classes that come with this MVC framework.</p>
+      </div>
+    </div>
+    <div class="card mb-5" style="width: 30rem;">
+      <img class="card-img-top" src="<?=PROOT?>public/images/ajax.png" alt="Card image cap">
+      <div class="card-body d-flex flex-column">
         <h5 class="card-title">Example Ajax Request</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <div class="col text-center d-flex">
-          <div class="btn btn-primary"onclick="ajaxTest();">Click me!!!
+        <p class="card-text">Demonstration of an ajax requests.</p>
+          <div class="btn btn-primary mt-auto w-25" onclick="ajaxTest();">Click me!!!
             <script>
               function ajaxTest(){
                 $.ajax({
@@ -67,7 +73,6 @@
               }
             </script>
           </div>
-        </div>
       </div>
     </div> 
   </div>
