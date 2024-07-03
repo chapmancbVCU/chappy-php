@@ -15,7 +15,7 @@ class HomeController extends Controller {
      * @param string $action The name of the action specified in the path of 
      * the URL.
      */
-    public function __construct($controller, $action) {
+    public function __construct(string $controller, string $action) {
         parent::__construct($controller, $action);
     }
 
@@ -25,7 +25,7 @@ class HomeController extends Controller {
      * 
      * @return void
      */
-    public function indexAction() {
+    public function indexAction(): void {
         $this->view->render('home/index');
     }
 
@@ -34,7 +34,7 @@ class HomeController extends Controller {
      *
      * @return void
      */
-    public function testAjaxAction(){
+    public function testAjaxAction(): void {
         $resp = ['success'=>true,'data'=>['id'=>23,'name'=>'Hello World','favorite_food'=>'bread']];
         $this->jsonResponse($resp);
       }

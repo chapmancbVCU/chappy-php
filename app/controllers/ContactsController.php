@@ -21,7 +21,7 @@ class ContactsController extends Controller {
      * @param string $action The name of the action specified in the path of 
      * the URL.
      */
-    public function __construct($controller, $action) {
+    public function __construct(string $controller, string $action) {
         parent::__construct($controller, $action);
         $this->view->setLayout('default');
         $this->load_model('Contacts');
@@ -33,7 +33,7 @@ class ContactsController extends Controller {
      *
      * @return void
      */
-    public function addAction() {
+    public function addAction(): void {
         $contact = new Contacts();
         if($this->request->isPost()) {
             $this->request->csrfCheck();
@@ -58,7 +58,7 @@ class ContactsController extends Controller {
      * @param int $id The ID of the contact to be deleted.
      * @return void
      */
-    public function deleteAction($id) {
+    public function deleteAction(int $id): void {
         $contact = $this->ContactsModel->findByIdAndUserId((int)$id, Users::currentUser()->id);
         if($contact) {
             $contact->delete();
@@ -73,7 +73,7 @@ class ContactsController extends Controller {
      * @param int $id The id for contact whose information we want to display.
      * @return void
      */
-    public function detailsAction($id) {
+    public function detailsAction(int $id): void {
         $contact = $this->ContactsModel->findByIdAndUserId((int)$id, Users::currentUser()->id);
 
         // When user is not a contact we reroute to contacts index.
@@ -95,7 +95,7 @@ class ContactsController extends Controller {
      * edit.
      * @return void
      */
-    public function editAction($id) {
+    public function editAction(int $id): void {
         $contact = $this->ContactsModel->findByIdAndUserId((int)$id, Users::currentUser()->id);
 
         // Check if contact exists
@@ -119,7 +119,7 @@ class ContactsController extends Controller {
      *
      * @return void
      */
-    public function indexAction() {
+    public function indexAction(): void {
         $contacts = $this->ContactsModel->findAllByUserId(Users::currentUser()->id, ['order'=>'lname, fname']);
         $this->view->contacts = $contacts;
         $this->view->render('contacts/index');

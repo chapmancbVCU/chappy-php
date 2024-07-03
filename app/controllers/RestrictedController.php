@@ -16,7 +16,7 @@ class RestrictedController extends Controller {
      * @param string $action The name of the action specified in the path of 
      * the URL.
      */
-    public function __construct($controller, $action) {
+    public function __construct(string $controller, string $action) {
         parent::__construct($controller, $action);
     }
 
@@ -25,7 +25,7 @@ class RestrictedController extends Controller {
      *
      * @return void
      */
-    public function badTokenAction() {
+    public function badTokenAction(): void {
         $this->view->render('restricted/badToken');
     }
     
@@ -34,7 +34,7 @@ class RestrictedController extends Controller {
      *
      * @return void
      */
-    public function indexAction() {
+    public function indexAction(): void {
         $this->view->render('restricted/index');
     }
 }

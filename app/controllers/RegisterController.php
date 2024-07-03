@@ -18,7 +18,7 @@ class RegisterController extends Controller {
      * @param string $action The name of the action specified in the path of 
      * the URL.
      */
-    public function __construct($controller, $action) {
+    public function __construct(string $controller, string $action) {
         parent::__construct($controller, $action);
         $this->load_model('Users');
         $this->view->setLayout('default');
@@ -29,7 +29,7 @@ class RegisterController extends Controller {
      *
      * @return void
      */
-    public function loginAction() {
+    public function loginAction(): void {
         $loginModel = new Login();
         if($this->request->isPost()) {
             /// Form validation
@@ -60,7 +60,7 @@ class RegisterController extends Controller {
      *
      * @return void
      */
-    public function logoutAction() {
+    public function logoutAction(): void {
         if(Users::currentUser()) {
             Users::currentUser()->logout();
         }
@@ -72,7 +72,7 @@ class RegisterController extends Controller {
      *
      * @return void
      */
-    public function registerAction() {
+    public function registerAction(): void {
         $newUser = new Users();
         if($this->request->isPost()) {
             $this->request->csrfCheck();

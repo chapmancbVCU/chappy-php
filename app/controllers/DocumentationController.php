@@ -15,7 +15,7 @@ class DocumentationController extends Controller {
      * @param string $action The name of the action specified in the path of 
      * the URL.
      */
-    public function __construct($controller, $action) {
+    public function __construct(string $controller, string $action) {
         parent::__construct($controller, $action);
         $this->view->setLayout('default');
     }
@@ -25,7 +25,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function applicationAction() {
+    public function applicationAction(): void {
         $this->view->render('documentation/application_docs');
     }
 
@@ -34,7 +34,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function controllerAction() {
+    public function controllerAction(): void {
         $this->view->render('documentation/controller_docs');
     }
 
@@ -43,7 +43,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function controllersAction() {
+    public function controllersAction(): void {
         $this->view->render('documentation/controllers_docs');
     }
 
@@ -52,7 +52,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function contactsControllerAction() {
+    public function contactsControllerAction(): void {
         $this->view->render('documentation/contacts_controller_docs');
     }
 
@@ -61,7 +61,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function contactsModelAction() {
+    public function contactsModelAction(): void {
         $this->view->render('documentation/contacts_model_docs');
     }
 
@@ -70,7 +70,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function cookieAction() {
+    public function cookieAction(): void {
         $this->view->render('documentation/cookie_docs');
     }
 
@@ -79,7 +79,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function coreAction() {
+    public function coreAction(): void {
         $this->view->render('documentation/core_docs');
     }
 
@@ -88,7 +88,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function customValidatorAction() {
+    public function customValidatorAction(): void {
         $this->view->render('documentation/custom_validator_docs');
     }
 
@@ -97,7 +97,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function dbAction() {
+    public function dbAction(): void {
         $this->view->render('documentation/db_docs');
     }
 
@@ -106,7 +106,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function emailValidatorAction() {
+    public function emailValidatorAction(): void {
         $this->view->render('documentation/email_validator_docs');
     }
 
@@ -115,7 +115,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function formHelperAction() {
+    public function formHelperAction(): void {
         $this->view->render('documentation/form_helper_docs');
     }
 
@@ -124,7 +124,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function helperAction() {
+    public function helperAction(): void {
         $this->view->render('documentation/helper_docs');
     }
 
@@ -133,7 +133,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function InputAction() {
+    public function InputAction(): void {
         $this->view->render('documentation/input_docs');
     }
 
@@ -142,7 +142,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function homeControllerAction() {
+    public function homeControllerAction(): void {
         $this->view->render('documentation/home_controller_docs');
     }
     /** 
@@ -151,7 +151,7 @@ class DocumentationController extends Controller {
      * 
      * @return void
      */
-    public function indexAction() {
+    public function indexAction(): void {
         $this->view->render('documentation/index');
     }
 
@@ -160,7 +160,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function javaScriptAction() {
+    public function javaScriptAction(): void {
         $this->view->render('documentation/java_script_docs');
     }
 
@@ -169,7 +169,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function loginModelAction() {
+    public function loginModelAction(): void {
         $this->view->render('documentation/login_model_docs');
     }
 
@@ -178,7 +178,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function lowerCharValidatorAction() {
+    public function lowerCharValidatorAction(): void {
         $this->view->render('documentation/lower_char_validator_docs');
     }
 
@@ -187,7 +187,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function matchesValidatorAction() {
+    public function matchesValidatorAction(): void {
         $this->view->render('documentation/matches_validator_docs');
     }
 
@@ -196,7 +196,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function maxValidatorAction() {
+    public function maxValidatorAction(): void {
         $this->view->render('documentation/max_validator_docs');
     }
 
@@ -205,7 +205,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function minValidatorAction() {
+    public function minValidatorAction(): void {
         $this->view->render('documentation/min_validator_docs');
     }
 
@@ -214,7 +214,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function modelAction() {
+    public function modelAction(): void {
         $this->view->render('documentation/model_docs');
     }
 
@@ -223,7 +223,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function modelsAction() {
+    public function modelsAction(): void {
         $this->view->render('documentation/models_docs');
     }
 
@@ -232,7 +232,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function numberCharValidatorAction() {
+    public function numberCharValidatorAction(): void {
         $this->view->render('documentation/number_char_validator_docs');
     }
 
@@ -241,7 +241,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function numericValidatorAction() {
+    public function numericValidatorAction(): void {
         $this->view->render('documentation/numeric_validator_docs');
     }
 
@@ -250,7 +250,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function registerControllerAction() {
+    public function registerControllerAction(): void {
         $this->view->render('documentation/register_controller_docs');
     }
 
@@ -259,7 +259,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function requiredValidatorAction() {
+    public function requiredValidatorAction(): void {
         $this->view->render('documentation/required_validator_docs');
     }
 
@@ -268,7 +268,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function restrictedControllerAction() {
+    public function restrictedControllerAction(): void {
         $this->view->render('documentation/restricted_controller_docs');
     }
 
@@ -277,7 +277,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function routerAction() {
+    public function routerAction(): void {
         $this->view->render('documentation/router_docs');
     }
 
@@ -286,7 +286,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function sessionAction() {
+    public function sessionAction(): void {
         $this->view->render('documentation/session_docs');
     }
 
@@ -295,7 +295,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function specialCharValidatorAction() {
+    public function specialCharValidatorAction(): void {
         $this->view->render('documentation/special_char_validator_docs');
     }
 
@@ -304,7 +304,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function uniqueCharValidatorAction() {
+    public function uniqueCharValidatorAction(): void {
         $this->view->render('documentation/unique_char_validator_docs');
     }
     
@@ -313,7 +313,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function upperCharValidatorAction() {
+    public function upperCharValidatorAction(): void {
         $this->view->render('documentation/upper_char_validator_docs');
     }
 
@@ -322,7 +322,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function usersModelAction() {
+    public function usersModelAction(): void {
         $this->view->render('documentation/users_model_docs');
     }
 
@@ -331,7 +331,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function userSessionsModelAction() {
+    public function userSessionsModelAction(): void {
         $this->view->render('documentation/user_sessions_model_docs');
     }
 
@@ -340,7 +340,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function validatorsAction() {
+    public function validatorsAction(): void {
         $this->view->render('documentation/validators_docs');
     }
 
@@ -349,7 +349,7 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
-    public function viewAction() {
+    public function viewAction(): void {
         $this->view->render('documentation/view_docs');
     }
 }
