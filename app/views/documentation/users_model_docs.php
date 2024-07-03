@@ -182,7 +182,7 @@
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">mixed</td>
+            <td class="align-middle text-center w-25">object|null</td>
             <td>An object containing information about current logged in user from users table.</td>
         </tr>
     </table>
@@ -249,7 +249,7 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">string</td>
+            <td class="align-middle text-center w-25">bool</td>
             <td>$rememberMe Value obtained from remember me checkbox found in login form.  Default value is false.</td>
         </tr>
         <tr>

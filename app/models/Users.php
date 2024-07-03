@@ -39,7 +39,7 @@ class Users extends Model {
      * @param string $user The name of the user.  Default value is an empty 
      * string.
      */
-    public function __construct($user = '') {
+    public function __construct(mixed $user = '') {
         $table = 'users';
         parent::__construct($table);
 
@@ -70,7 +70,7 @@ class Users extends Model {
      *
      * @return array The array containing access control list information.
      */
-    public function acls() {
+    public function acls(): array {
         if(empty($this->acl)) return [];
         return json_decode($this->acl, true);
 
@@ -91,10 +91,10 @@ class Users extends Model {
     /**
      * Checks if a user is logged in.
      *
-     * @return object An object containing information about current 
+     * @return object|null An object containing information about current 
      * logged in user from users table.
      */
-    public static function currentUser() {
+    public static function currentUser(): object|null {
         if(!isset(self::$currentLoggedInUser) && Session::exists(CURRENT_USER_SESSION_NAME)) {
             $user = new Users((int)Session::get(CURRENT_USER_SESSION_NAME));
             self::$currentLoggedInUser = $user;
@@ -109,7 +109,7 @@ class Users extends Model {
      * @return bool|object An object containing information about a user from 
      * the Users table.
      */
-    public function findByUserName($username) {
+    public function findByUserName(string $username): bool|object {
         return $this->findFirst(['conditions' => 'username = ?', 'bind' => [$username]]);
     }
 
@@ -118,7 +118,7 @@ class Users extends Model {
      *
      * @return string The value for $_confirm.
      */
-    public function getConfirm() {
+    public function getConfirm(): string {
         return $this->_confirm;
     }
 
@@ -127,11 +127,11 @@ class Users extends Model {
      * user_sessions table and a cookie is created if remember me is 
      * selected.
      *
-     * @param string $rememberMe Value obtained from remember me checkbox 
+     * @param bool $rememberMe Value obtained from remember me checkbox 
      * found in login form.  Default value is false.
      * @return void
      */
-    public function login($rememberMe = false) {
+    public function login(bool $rememberMe = false): void {
         Session::set($this->_sessionName, $this->id);
         if($rememberMe) {
             $hash = md5(uniqid() + rand(0, 100));
@@ -154,7 +154,7 @@ class Users extends Model {
      *
      * @return bool Returns true if operation is successful.
      */
-    public function logout() {
+    public function logout(): bool {
         $userSession = UserSessions::getFromCookie();
         if($userSession) {
             $userSession->delete();
@@ -172,7 +172,7 @@ class Users extends Model {
     /**
      * Logs in user from cookie.
      *
-     * @return User The user associated with previous session.
+     * @return Users The user associated with previous session.
      */
     public static function loginUserFromCookie() {
         $userSession = UserSessions::getFromCookie();
@@ -194,7 +194,7 @@ class Users extends Model {
      * variable.
      * @return void
      */
-    public function setConfirm($value) {
+    public function setConfirm(string $value): void {
         $this->_confirm = $value;
     }
 
