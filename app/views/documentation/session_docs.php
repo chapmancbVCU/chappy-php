@@ -75,7 +75,7 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">int</td>
+            <td class="align-middle text-center w-25">string</td>
             <td>$name The CURRENT_USER_SESSION_NAME associated with the current user session.</td>
         </tr>
         <tr>
@@ -123,7 +123,7 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">int</td>
+            <td class="align-middle text-center w-25">string</td>
             <td>$name The id of the user associated with a particular session.</td>
         </tr>
         <tr>
@@ -148,8 +148,8 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">int</td>
-            <td>$name The id of the user associated with a particular session.</td>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$name The user_id of the user associated with a particular session.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>

@@ -12,7 +12,7 @@ class Session {
      * @param string $message The message you want to display in the alert.
      * @return void
      */
-    public static function addMessage($type, $message) {
+    public static function addMessage(string $type, string $message): void {
         $sessionName = 'alert-' . $type;
         self::set($sessionName, $message);
     }
@@ -21,11 +21,11 @@ class Session {
      * Removes CURRENT_USER_SESSION_NAME from th $_SESSION superglobal array 
      * when a user logs out of a user session.
      *
-     * @param int $name The CURRENT_USER_SESSION_NAME associated with the 
+     * @param string $name The CURRENT_USER_SESSION_NAME associated with the 
      * current user session.
      * @return void
      */
-    public static function delete($name) {
+    public static function delete(string $name): void {
         if(self::exists($name)) {
             unset($_SESSION[$name]);
         }
@@ -37,7 +37,7 @@ class Session {
      * @return string  A HTML element containing a message along with a button 
      * button to dismiss the message.
      */
-    public static function displayMessage() {
+    public static function displayMessage(): string {
         $alerts = ['alert-info', 'alert-success', 'alert-warning', 'alert-danger'];
         $html = "";
         foreach($alerts as $alert) {
@@ -55,11 +55,11 @@ class Session {
     /**
      * Checks if a session by user name exists.
      *
-     * @param int $name The id of the user associated with a particular 
+     * @param string $name The id of the user associated with a particular 
      * session.
      * @return bool True if the session exists.  Otherwise we return false.
      */
-    public static function exists($name) {
+    public static function exists(string $name): bool {
         return (isset($_SESSION[$name])) ? true : false;
     }
 
@@ -67,12 +67,12 @@ class Session {
      * Getter function that returns the $_SESSION superglobal associative 
      * array.
      *
-     * @param int $name The id of the user associated with a particular 
-     * session.
+     * @param string $name The user_id of the user associated with a 
+     * particular session.
      * @return int Element in the $_SESSION superglobal array for 
      * CURRENT_USER_SESSION_NAME set as id for current logged in user.
      */
-    public static function get($name) {
+    public static function get(string $name): int {
         return $_SESSION[$name];
     }
 
@@ -85,7 +85,7 @@ class Session {
      * @return int Element in the $_SESSION superglobal array for 
      * CURRENT_USER_SESSION_NAME set as id for current logged in user.
      */
-    public static function set($name, $value) {
+    public static function set(string $name, int $value): int {
         return $_SESSION[$name] = $value;
     }
 
@@ -95,7 +95,7 @@ class Session {
      * 
      * @return string User agent information with the browser version removed.
      */
-    public static function uagent_no_version() {
+    public static function uagent_no_version(): string {
         $uagent = $_SERVER['HTTP_USER_AGENT'];
         $regex = '/\/[a-zA-z0-9.]+/';
         $newString = preg_replace($regex, '', $uagent);
