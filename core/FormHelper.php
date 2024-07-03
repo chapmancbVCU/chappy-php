@@ -46,13 +46,15 @@ class FormHelper {
      * @return string An HTML div surrounding a button element with its label 
      * set and any other optional attributes set.
      */
-    public static function buttonBlock(string $buttonText, array $inputAttrs = [], array $divAttrs = []): string {
-        $divString = self::stringifyAttrs($divAttrs);
+    public static function buttonBlock(string $buttonText, 
+        array $inputAttrs = [], 
+        array $divAttrs = []
+        ): string {
 
+        $divString = self::stringifyAttrs($divAttrs);
         $html = '<div'.$divString.'>';
         $html .= self::button($buttonText, $inputAttrs); 
         $html .= '</div>';
-
         return $html;
     }
 
@@ -86,7 +88,14 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @return string A surrounding div and the input element of type checkbox.
      */
-    public static function checkboxBlockLabelLeft($label, $name, $value = "", $checked = false, $inputAttrs = [], $divAttrs = []) {
+    public static function checkboxBlockLabelLeft(string $label, 
+        string $name, 
+        string $value = "", 
+        bool $checked = false, 
+        array $inputAttrs = [], 
+        array $divAttrs = []
+        ): string {
+
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs(($inputAttrs));
         $checkString = ($checked) ? ' checked="checked"' : '';
@@ -126,7 +135,14 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @return string A surrounding div and the input element.
      */
-    public static function checkboxBlockLabelRight($label, $name, $value = "", $checked = false, $inputAttrs = [], $divAttrs = []) {
+    public static function checkboxBlockLabelRight(string $label, 
+        string $name, 
+        string $value = "", 
+        bool $checked = false, 
+        array $inputAttrs = [], 
+        array $divAttrs = []
+        ): string {
+
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs(($inputAttrs));
         $checkString = ($checked) ? ' checked="checked"' : '';
@@ -146,7 +162,7 @@ class FormHelper {
      * exists with a session and if the session's token is equal to the value 
      * of the $token parameter.
      */
-    public static function checkToken($token) {
+    public static function checkToken(string $token): bool {
         return (Session::exists('csrf_token') && Session::get('csrf_token') == $token);
     }
 
@@ -159,7 +175,7 @@ class FormHelper {
      * @return string The hidden input of type hidden with the generated token 
      * set as the value.
      */
-    public static function csrfInput() {
+    public static function csrfInput(): string {
         return '<input type="hidden" name="csrf_token" id="csrf_token" value="'.self::generateToken().'" />';
     }
 
@@ -171,7 +187,7 @@ class FormHelper {
      * @return string A string representation of a div element containing an 
      * input of type checkbox.
      */
-    public static function displayErrors($errors) {
+    public static function displayErrors(array $errors): string {
         $hasErrors = (!empty($errors)) ? ' has-errors' : ''; 
         $html = '<div class="form-errors"><ul class="bg-light'.$hasErrors.'">';
         foreach($errors as $field =>$error) {
@@ -187,7 +203,7 @@ class FormHelper {
      *
      * @return string The randomly generated token.
      */
-    public static function generateToken() {
+    public static function generateToken(): string {
         $token = base64_encode(openssl_random_pseudo_bytes(32));
         Session::set('csrf_token', $token);
         return $token;
@@ -206,7 +222,7 @@ class FormHelper {
      * @param mixed $value The value for the value attribute.
      * @return string The html input element with type hidden.
      */
-    public static function hidden($name, $value) {
+    public static function hidden(string $name, mixed $value): string {
         return '<input type="hidden" name="'.$name.'" id="'.$name.'" value="'.$value.'" />';
     }
 
@@ -256,7 +272,14 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @return string A surrounding div and the input element.
      */
-    public static function inputBlock($type, $label, $name, $value = '', $inputAttrs= [], $divAttrs = []) {
+    public static function inputBlock(string $type, 
+        string $label, 
+        string $name, 
+        string $value = '', 
+        array $inputAttrs= [], 
+        array $divAttrs = []
+        ): string {
+
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs(($inputAttrs));
 
@@ -282,7 +305,7 @@ class FormHelper {
      * @param string $for Sets the value for the for attribute.
      * @return string The HTML output element.
      */
-    public static function output($name, $for) {
+    public static function output(string $name, string $for): string {
         return '<output name="'.$name.'" for="'.$for.'"></output>';
     }
 
@@ -293,12 +316,11 @@ class FormHelper {
      * user submits a form.
      * @return array An array of sanitized values from the submitted form.
      */
-    public static function posted_values($post) {
+    public static function posted_values(array $post): array {
         $clean_array = [];
         foreach($post as $key => $value) {
             $clean_array[$key] = self::sanitize($value);
         }
-
         return $clean_array;
     }
 
@@ -332,7 +354,14 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @return string The HTML input element of type radio.
      */
-    public static function radioInput($label, $id, $name, $value, $checked = false, $inputAttrs = []) {
+    public static function radioInput(string $label, 
+        string $id, 
+        string $name, 
+        string $value, 
+        bool $checked = false, 
+        array $inputAttrs = []
+        ): string {
+
         $inputString = self::stringifyAttrs(($inputAttrs));
         $checkString = ($checked) ? ' checked="checked"' : '';
         return '<input type="radio" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label for="'.$id.'">'.$label.'</label> ';
@@ -344,7 +373,7 @@ class FormHelper {
      * @param string $dirty The potentially dirty string.
      * @return string The sanitized version of the dirty string.
      */
-    public static function sanitize($dirty) {
+    public static function sanitize(string $dirty): string {
         return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
     }
 
@@ -377,7 +406,14 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @return string A surrounding div and option select element.
      */
-    public static function selectBlock($label, $name, $checked = "", $options = [], $inputAttrs= [], $divAttrs = []) {
+    public static function selectBlock(string $label, 
+        string $name,
+        string $checked = "", 
+        array $options = [],
+        array $inputAttrs= [], 
+        array $divAttrs = []
+        ): string {
+
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs(($inputAttrs));
 
@@ -404,7 +440,7 @@ class FormHelper {
      * @param array $attrs The attributes we want to stringify.
      * @return string The stringified attributes.
      */
-    public static function stringifyAttrs($attrs) {
+    public static function stringifyAttrs(array $attrs): string {
         $string = '';
         foreach($attrs as $key => $val) {
             $string .= ' ' . $key . '="' . $val . '"'; 
@@ -431,7 +467,11 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @param string A surrounding div and the input element of type submit.
      */
-    public static function submitBlock($buttonText, $inputAttrs = [], $divAttrs = []) {
+    public static function submitBlock(string $buttonText, 
+        array $inputAttrs = [], 
+        array $divAttrs = []
+        ): string {
+
         $divString = self::stringifyAttrs($divAttrs);
 
         $html = '<div'.$divString.'>';
@@ -460,7 +500,7 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @return string An input element of type submit.
      */
-    public static function submitTag($buttonText, $inputAttrs = []) {
+    public static function submitTag(string $buttonText, array $inputAttrs = []): string {
         $inputString = self::stringifyAttrs($inputAttrs);
         return '<input type="submit" value="'.$buttonText.'"'.$inputString.' />';
     }
@@ -522,7 +562,15 @@ class FormHelper {
      * with configuration and values set based on parameters entered during 
      * function call.
      */
-    public static function telBlock($phoneType, $label, $name, $value = '', $inputAttrs= [], $divAttrs = [], $args = "d") {
+    public static function telBlock(string $phoneType, 
+        string $label, 
+        string $name, 
+        string $value = '', 
+        array $inputAttrs= [], 
+        array $divAttrs = [], 
+        string $args = "d"
+        ): string {
+
         // Test if correct type is provided.
         if((strcmp($phoneType, "cell") != 0) && (strcmp($phoneType, 'home') != 0) && (strcmp($phoneType, "work") != 0)) {
             throw new Exception("Only cell, home, or work are valid phone types");
@@ -595,7 +643,13 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @param string A surrounding div and the input element.
      */
-    public static function textAreaBlock($label, $name, $value = '', $inputAttrs= [], $divAttrs = []) {
+    public static function textAreaBlock(string $label, 
+        string $name, 
+        string $value = '',
+        array $inputAttrs= [], 
+        array $divAttrs = []
+        ): string {
+
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs(($inputAttrs));
 
