@@ -527,16 +527,14 @@ class FormHelper {
         if((strcmp($phoneType, "cell") != 0) && (strcmp($phoneType, 'home') != 0) && (strcmp($phoneType, "work") != 0)) {
             throw new Exception("Only cell, home, or work are valid phone types");
         }
-
         // Check for valid arguments d, e, h, and p
-        if(!preg_match('/[adehp]/', $args) == 1) {
+        if(!preg_match('/^[adehp]*$/', $args) == 1) {
             throw new Exception("Incorrect value in arguments field.");
         }
-        
         // Test for valid args input combinations.
         $inputString = self::stringifyAttrs(($inputAttrs));
-        if(strcmp($args, 'd') == 0 && (str_contains($inputString, 'placeholder') || str_contains($inputString, 'pattern') || str_contains($inputString, 'onkeydown'))) {
-            throw new Exception("Can not accept placeholder, pattern, or onkeydown attributes when args is set to d");
+        if(strcmp($args, 'a') == 0 && (preg_match_all('['.implode('|', ['placeholder', 'pattern', 'onkeydown']).']', $inputString) > 0)) {
+            throw new Exception("Can not accept placeholder, pattern, or onkeydown attributes when args is set to a");
         }
         if(str_contains($args, 'h') && str_contains($inputString, 'placeholder')) {
             throw new Exception('Can not accept placeholder when args contains h flag');
@@ -554,24 +552,21 @@ class FormHelper {
             if(strcmp($args, 'a') == 0) {
                 $inputString .= ' placeholder="ex: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" onkeydown="'.$phoneType.'PhoneNumberFormatter()"';
             }
-            if(str_contains($args, 'h') && !str_contains($args, 'd')) {
+            if(str_contains($args, 'h') && !str_contains($args, 'a')) {
                 $inputString .= ' placeholder="ex: 123-456-7890"';
             }
-            if(str_contains($args, 'p') && !str_contains($args, 'd')) {
+            if(str_contains($args, 'p') && !str_contains($args, 'a')) {
                 $inputString .= ' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"';
             }
-            if(str_contains($args, 'e') && !str_contains($args, 'd')) {
+            if(str_contains($args, 'e') && !str_contains($args, 'a')) {
                 $inputString .= ' onkeydown="'.$phoneType.'PhoneNumberFormatter()"';
             }
             $html = '<div' . $divString . '>';
             $html .= '<label for="'.$name.'">'.$label.'</label>';
             $html .= '<input type="tel" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
             $html .= '</div>';
-
             return $html;
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
+        } catch (Exception $e) { echo $e->getMessage(); }
     }
 
     /**
