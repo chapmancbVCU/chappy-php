@@ -19,7 +19,7 @@ class Application {
      *
      * @return void
      */
-    private function _set_reporting() {
+    private function _set_reporting(): void {
         if(DEBUG) {
             //error_reporting(E_ALL);
             error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED);
@@ -38,7 +38,7 @@ class Application {
      *
      * @return void
      */
-    private function _unregister_globals() {
+    private function _unregister_globals(): void {
         if(ini_get('register_globals')) {
             $globalsArray = ['_SESSION', '_COOKIE', '_POST', '_GET' , '_REQUEST', '_SERVER', '_ENV', '_FILES'];
             foreach($globalsArray as $global) {

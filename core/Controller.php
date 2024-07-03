@@ -21,7 +21,7 @@ class Controller extends Application {
      * @param string $action The name of the action specified in the path of 
      * the URL.
      */
-    public function __construct($controller, $action) {
+    public function __construct(string $controller, string $action) {
         parent::__construct();
         $this->_controller = $controller;
         $this->_action = $action;
@@ -32,10 +32,10 @@ class Controller extends Application {
     /**
      * Sample jsonResponse for supporting AJAX requests.
      *
-     * @param string $res The JSON response.
+     * @param mixed $res The JSON response.
      * @return void
      */
-    public function jsonResponse($res){
+    public function jsonResponse(mixed $res): void {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
         http_response_code(200);
@@ -49,7 +49,7 @@ class Controller extends Application {
      * @param string $model The name of the model that will used.
      * @return void
      */
-    protected function load_model($model) {
+    protected function load_model(string $model): void {
         $modelPath = 'App\Models\\' . $model;
         if(class_exists($modelPath)) {
             $this->{$model.'Model'} = new $modelPath();
