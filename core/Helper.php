@@ -15,7 +15,7 @@ class Helper {
    * @return string|false Returns the contents of the active output buffer on 
    * success or false on failure.
    */
-  public static function buildMenuListItems($menu,$dropdownClass=""){
+  public static function buildMenuListItems(array $menu, string $dropdownClass=""): string|false {
     ob_start();
     $currentPage = self::currentPage();
     foreach($menu as $key => $val):
@@ -48,8 +48,9 @@ class Helper {
    * @param string $output The information we want to print to console.
    * @param bool $with_script_tags - Determines if we will use script tabs in 
    * our output.  Default value is true.
+   * @return void
    */
-  public static function cl($output, $with_script_tags = true) {
+  public static function cl(string $output, bool $with_script_tags = true): void {
     if(CONSOLE_LOGGING) {
       $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
       if($with_script_tags) $js_code = '<script>' . $js_code . '</script>';
@@ -62,7 +63,7 @@ class Helper {
    * 
    * @return string $currentPage  The current page.
    */
-  public static function currentPage() {
+  public static function currentPage(): string {
     $currentPage = $_SERVER['REQUEST_URI'];
     if($currentPage == PROOT || $currentPage == PROOT.'home/index') {
       $currentPage = PROOT . 'home';
@@ -74,8 +75,9 @@ class Helper {
    * Performs var_dump of parameter and kills the page.
    * 
    * @param string $data Contains the data we wan to print to the page.
+   * @return void
    */
-  public static function dnd($data) {
+  public static function dnd(string $data): void {
     echo "<pre>";
     var_dump($data);
     echo "<pre>";
@@ -90,7 +92,7 @@ class Helper {
    * non-static properties for the specified object in scope. If a property 
    * have not been assigned a value, it will be returned with a null value.
    */
-  public static function getObjectProperties($object) {
+  public static function getObjectProperties(object $object): array {
     return get_object_vars($object);
   }
 }

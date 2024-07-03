@@ -73,7 +73,7 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">bool</td>
+            <td class="align-middle text-center w-25">mixed</td>
             <td>$input Values from POST and GET requests.  The default value is false.</td>
         </tr>
         <tr>

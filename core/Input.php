@@ -13,7 +13,7 @@ class Input {
      *
      * @return bool Returns true if check passes.
      */
-    public function csrfCheck() {
+    public function csrfCheck(): bool {
         if(!FormHelper::checkToken($this->get('csrf_token'))) 
             Router::redirect('restricted/badToken');
         return true;
@@ -22,12 +22,12 @@ class Input {
     /**
      * Supports operations related to handling POST and GET requests.
      *
-     * @param bool $input Values from POST and GET requests.  The default 
+     * @param mixed $input Values from POST and GET requests.  The default 
      * value is false.
      * @return array|string An array associated with a POST or GET request or 
      * an encoded HTML string.
      */
-    public function get($input = false) {
+    public function get(mixed $input = false): array|string {
         if(!$input) {
             // Return and sanitize entire request array.
             $data = [];
@@ -45,7 +45,7 @@ class Input {
      * @return string The type of request stored in the REQUEST_METHOD element 
      * within the $_SERVER superglobal array.
      */
-    public function getRequestMethod() {
+    public function getRequestMethod(): string {
         return strtoupper($_SERVER['REQUEST_METHOD']);
     }
 
@@ -54,7 +54,7 @@ class Input {
      *
      * @return bool True if the request method is GET.
      */
-    public function isGet() {
+    public function isGet(): bool {
         return $this->getRequestMethod() === 'GET';
     } 
 
@@ -63,7 +63,7 @@ class Input {
      *
      * @return boolean True if the request method is POST.
      */
-    public function isPost() {
+    public function isPost(): bool {
         return $this->getRequestMethod() === 'POST';
     }
 
@@ -72,7 +72,7 @@ class Input {
      *
      * @return boolean True if the request method is PUT.
      */
-    public function isPut() {
+    public function isPut(): bool {
         return $this->getRequestMethod() === 'PUT';
     } 
 }

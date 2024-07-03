@@ -401,10 +401,10 @@ class FormHelper {
     /**
      * Sanitizes potentially harmful string of characters.
      * 
-     * @param string $dirty The potentially dirty string.
+     * @param mixed $dirty The potentially dirty string.
      * @return string The sanitized version of the dirty string.
      */
-    public static function sanitize(string $dirty): string {
+    public static function sanitize(mixed $dirty): string {
         return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
     }
 
