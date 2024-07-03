@@ -23,9 +23,9 @@ class Login extends Model {
      * Returns result for remember me checkbox so user stays logged in if it's
      * checked.
      *
-     * @return void
+     * @return bool The value for remember_me checkbox.
      */
-    public function getRememberMeChecked() {
+    public function getRememberMeChecked(): bool {
         return $this->remember_me == 'on';
     }
 

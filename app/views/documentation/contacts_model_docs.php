@@ -252,7 +252,7 @@
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">array</td>
+            <td class="align-middle text-center w-25">bool|object</td>
             <td>The associative array with contact information we want to view.</td>
         </tr>
     </table>

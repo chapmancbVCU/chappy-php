@@ -69,10 +69,10 @@ class Session {
      *
      * @param string $name The user_id of the user associated with a 
      * particular session.
-     * @return string Element in the $_SESSION superglobal array for 
+     * @return mixed Element in the $_SESSION superglobal array for 
      * CURRENT_USER_SESSION_NAME set as id for current logged in user.
      */
-    public static function get(string $name): string {
+    public static function get(string $name): mixed {
         return $_SESSION[$name];
     }
 

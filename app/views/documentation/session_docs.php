@@ -155,7 +155,7 @@
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">string</td>
+            <td class="align-middle text-center w-25">mixed</td>
             <td>Element in the $_SESSION superglobal array for CURRENT_USER_SESSION_NAME set as id for current logged in user.</td>
         </tr>
     </table>

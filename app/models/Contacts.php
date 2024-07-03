@@ -39,7 +39,7 @@ class Contacts extends Model {
      *
      * @return string $html The formatted address.
      */
-    public function displayAddress() {
+    public function displayAddress(): string {
         $address = '';
         if(!empty($this->address)) {
             $address .= $this->address . '<br>';
@@ -61,7 +61,7 @@ class Contacts extends Model {
      * @return string $html The contact information in an address label 
      * format.
      */
-    public function displayAddressLabel() {
+    public function displayAddressLabel(): string {
         $html = $this->displayName() . '<br>';
         $html .= $this->displayAddress();
         return $html;
@@ -72,7 +72,7 @@ class Contacts extends Model {
      *
      * @return string Returns first name and last name.
      */
-    public function displayName() {
+    public function displayName(): string {
         return $this->fname . ' ' . $this->lname;
     }
 
@@ -86,7 +86,7 @@ class Contacts extends Model {
      * default value is an empty array.
      * @return array The list of contacts that is returned from the database.
      */
-    public function findAllByUserId($user_id, $params = []) {
+    public function findAllByUserId(int $user_id, array $params = []): array {
         $conditions = [
             'conditions' => 'user_id = ?',
             'bind' => [$user_id]
@@ -105,10 +105,10 @@ class Contacts extends Model {
      * @param int $user_id The ID user associated with this contact.
      * @param array $params Used to set additional conditions.  The default 
      * value is an empty array.
-     * @return array The associative array with contact information we want to 
+     * @return bool|object The associative array with contact information we want to 
      * view.
      */
-    public function findByIdAndUserId($contact_id, $user_id, $params = []) {
+    public function findByIdAndUserId(int $contact_id, int $user_id, array $params = []): bool|object {
         $conditions = [
             'conditions' => 'id = ? AND user_id = ?',
             'bind' => [$contact_id, $user_id]
