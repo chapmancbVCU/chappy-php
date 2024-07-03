@@ -11,6 +11,7 @@
             "Register" : ["login", "register"]
         },
         "Register" : ["logout"],
-        "Contacts" : ["*"]
+        "Contacts" : ["*"],
+        "Profile" : ["*"]
     }
 }

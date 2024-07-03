@@ -17,7 +17,7 @@
     </ul>
     <ul class="navbar-nav ml-auto">
       <?php if(Users::currentUser()): ?>
-        <li><a class="nav-link" href="#">Hello <?=Users::currentUser()->fname?></a></li>
+        <li><a class="nav-link" href="<?=PROOT?>profile">Hello <?=Users::currentUser()->fname?></a></li>
       <?php endif; ?>
     </ul>
   </div><!-- /.navbar-collapse -->
