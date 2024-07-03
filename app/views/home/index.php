@@ -53,6 +53,7 @@
     </div>
     <div class="card mb-5" style="width: 30rem;">
       <img class="card-img-top" src="<?=PROOT?>public/images/ajax.png" alt="Card image cap">
+      <img class="card-img-top" src="<?=PROOT?>public/images/ajax_request.png" alt="Card image cap">
       <div class="card-body d-flex flex-column">
         <h5 class="card-title">Example Ajax Request</h5>
         <p class="card-text">Demonstration of an ajax requests.</p>
