@@ -155,7 +155,7 @@
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">int</td>
+            <td class="align-middle text-center w-25">string</td>
             <td>Element in the $_SESSION superglobal array for CURRENT_USER_SESSION_NAME set as id for current logged in user.</td>
         </tr>
     </table>
@@ -173,18 +173,18 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25"></td>
+            <td class="align-middle text-center w-25">string</td>
             <td>$name The current user session name.</td>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25"></td>
+            <td class="align-middle text-center w-25">string</td>
             <td>$value The id of the user associated with a particular session.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25"></td>
+            <td class="align-middle text-center w-25">string</td>
             <td>Element in the $_SESSION superglobal array for CURRENT_USER_SESSION_NAME set as id for current logged in user.</td>
         </tr>
     </table>

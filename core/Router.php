@@ -16,7 +16,7 @@ class Router {
      * controller or action.  Otherwise we return the value so we can create 
      * a link.
      */
-    private static function get_link($value) {
+    private static function get_link(string $value): bool|string {
         // Check if external link just return it.
         if(preg_match('/https?:\/\//', $value) == 1) {
             return $value;
@@ -40,7 +40,7 @@ class Router {
      * @param string $menu Name of menu acl file.
      * @return array The array of menu items.
      */
-    public static function getMenu($menu) {
+    public static function getMenu(string $menu): array {
         $menuArray = [];
         $menuFile = file_get_contents(ROOT . DS . 'app' . DS . $menu . '.json');
         $acl = json_decode($menuFile, true);
@@ -79,8 +79,9 @@ class Router {
      * site.
      * @param string $action_name The name of the action the user wants to 
      * perform.  The default value is "index".
+     * @return bool $grantAccess True if we give access, otherwise false.
      */
-    public static function hasAccess($controller_name, $action_name = "index") {
+    public static function hasAccess(string $controller_name, string $action_name = "index"): bool {
         $acl_file = file_get_contents(ROOT . DS . 'app' . DS . 'acl.json');
         $acl = json_decode($acl_file, true);
         $current_user_acls = ["Guest"];
@@ -118,8 +119,9 @@ class Router {
      * Performs redirect operations.
      * 
      * @param string $location The view where we will redirect the user.
+     * @return void
      */
-    public static function redirect($location) {
+    public static function redirect(string $location): void {
         if(!headers_sent()) {
             header('Location: '.PROOT.$location);
             exit();
@@ -139,11 +141,11 @@ class Router {
      * page needs to be rendered.  That path is parsed to determine 
      * the correct controller and action to use.
      * 
-     * @param string $url The path that contains information about the 
+     * @param array $url The path that contains information about the 
      * controller and action to use.
      * @return void
      */
-    public static function route($url) {
+    public static function route(array $url): void {
         // Extract from URL our controllers
         $controller = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]).'Controller' : DEFAULT_CONTROLLER.'Controller';
         $controller_name = str_replace('Controller', '', $controller);

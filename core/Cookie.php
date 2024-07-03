@@ -12,7 +12,7 @@ class Cookie {
      * known as the constant REMEMBER_ME_COOKIE_NAME.
      * @return void
      */
-    public static function delete($name) {
+    public static function delete(string $name): void {
         self::set($name, '', time() - 1);
     }
 
@@ -23,9 +23,9 @@ class Cookie {
      * @param string $name The cookie identification string we want to 
      * retrieve from the $_COOKIE superglobal.  Also known as the constant 
      * REMEMBER_ME_COOKIE_NAME.
-     * @return string The name of the cookie specified in the $name parameter.
+     * @return string|int The name of the cookie specified in the $name parameter.
      */
-    public static function get($name) {
+    public static function get(string $name): string|int {
         return $_COOKIE[$name];
     }
 
@@ -38,7 +38,7 @@ class Cookie {
      * constant REMEMBER_ME_COOKIE_NAME.
      * @return bool True if the cookie exists.  Otherwise false.
      */
-    public static function exists($name) {
+    public static function exists(string $name): bool {
         return isset($_COOKIE[$name]);
     }
 
@@ -54,7 +54,7 @@ class Cookie {
      * @return bool True if the cookie is successfully set.  Otherwise it 
      * returns false.
      */
-    public static function set($name, $value, $expiry) {
+    public static function set(string $name, string $value, int $expiry): bool {
         if(setCookie($name, $value, time() + $expiry, '/')) {
             return true;
         }

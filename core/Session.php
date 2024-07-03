@@ -69,10 +69,10 @@ class Session {
      *
      * @param string $name The user_id of the user associated with a 
      * particular session.
-     * @return int Element in the $_SESSION superglobal array for 
+     * @return string Element in the $_SESSION superglobal array for 
      * CURRENT_USER_SESSION_NAME set as id for current logged in user.
      */
-    public static function get(string $name): int {
+    public static function get(string $name): string {
         return $_SESSION[$name];
     }
 
@@ -80,12 +80,12 @@ class Session {
      * Sets value to $_SESSION name key.
      *
      * @param string $name The current user session name.
-     * @param int $value The id of the user associated with a particular 
+     * @param string $value The id of the user associated with a particular 
      * session.
-     * @return int Element in the $_SESSION superglobal array for 
+     * @return string Element in the $_SESSION superglobal array for 
      * CURRENT_USER_SESSION_NAME set as id for current logged in user.
      */
-    public static function set(string $name, int $value): int {
+    public static function set(string $name, string $value): string {
         return $_SESSION[$name] = $value;
     }
 

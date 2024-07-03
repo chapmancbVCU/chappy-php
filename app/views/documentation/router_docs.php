@@ -110,7 +110,8 @@
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="text-center" colspan="2">void</td>
+            <td class="align-middle text-center w-25">bool</td>
+            <td>$grantAccess True if we give access, otherwise false.</td>
         </tr>
     </table>
 
@@ -151,7 +152,7 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">string</td>
+            <td class="align-middle text-center w-25">array</td>
             <td>$url The path that contains information about the controller and action to use.</td>
         </tr>
         <tr>

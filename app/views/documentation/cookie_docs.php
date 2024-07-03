@@ -78,7 +78,7 @@
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">string</td>
+            <td class="align-middle text-center w-25">string|int</td>
             <td>The name of the cookie specified in the $name parameter.</td>
         </tr>
     </table>
