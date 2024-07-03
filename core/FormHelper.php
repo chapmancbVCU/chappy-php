@@ -262,7 +262,7 @@ class FormHelper {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param string $value The value we want to set.  We can use this to set 
+     * @param mixed $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
      * and forms used for editing records.
@@ -275,7 +275,7 @@ class FormHelper {
     public static function inputBlock(string $type, 
         string $label, 
         string $name, 
-        string $value = '', 
+        mixed $value = '', 
         array $inputAttrs= [], 
         array $divAttrs = []
         ): string {
@@ -548,7 +548,7 @@ class FormHelper {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param string $value The value we want to set.  We can use this to set 
+     * @param mixed $value The value we want to set.  We can use this to set 
      * the value of the value attribute during form validation.  Default value 
      * is the empty string.  It can be set with values during form validation 
      * and forms used for editing records.
@@ -565,7 +565,7 @@ class FormHelper {
     public static function telBlock(string $phoneType, 
         string $label, 
         string $name, 
-        string $value = '', 
+        mixed $value = '', 
         array $inputAttrs= [], 
         array $divAttrs = [], 
         string $args = "d"
