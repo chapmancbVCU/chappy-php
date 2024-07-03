@@ -1,6 +1,8 @@
 <?php
 namespace Core;
 use Core\Helper;
+use \stdClass;
+
 /**
  * Parent class for our models.  Takes functions from DB wrapper and extract 
  * functionality further to make operations easier to use and improve 
@@ -21,7 +23,7 @@ class Model {
      * @param string $table The name of the table so we can work with the 
      * correct child model class.
      */
-    public function __construct($table) {
+    public function __construct(string $table) {
         $this->_db = DB::getInstance();
         $this->_table = $table;
 
@@ -40,7 +42,7 @@ class Model {
      * for failed form validation.
      * @return void
      */
-    public function addErrorMessage($field, $message) {
+    public function addErrorMessage(string $field, string $message): void {
         $this->_validates = false;
         $this->_validationErrors[$field] = $message;  
     }
@@ -50,7 +52,7 @@ class Model {
      *
      * @return void
      */
-    public function afterSave() {}
+    public function afterSave(): void {}
 
     /**
      * Update the object with an associative array.
@@ -58,7 +60,7 @@ class Model {
      * @param array Take values from post array and assign values.
      * @return bool Report for whether or not the operation was successful.
      */
-    public function assign($params) {
+    public function assign(array $params): bool {
         if(!empty($params)) {
             foreach($params as $key => $val) {
                 if(property_exists($this, $key)) {
@@ -75,14 +77,14 @@ class Model {
      *
      * @return void
      */
-    public function beforeSave() {}
+    public function beforeSave(): void {}
 
     /**
      * Grab object and if we just need data for smaller result set.
      * 
      * @return object The data associated with an object.
      */
-    public function data() {
+    public function data(): object {
         $data = new stdClass();
         foreach(Helper::getObjectProperties($this) as $column => $value) {
             $data->column = $value;
@@ -94,12 +96,12 @@ class Model {
      * Wrapper for database delete function.  If not softDelete we set it.
      * If row is set to softDelete we call the database delete function.
      * 
-     * @param int $id The primary key for the record we want to remove from a 
+     * @param string $id The primary key for the record we want to remove from a 
      * database table.  The default value is an empty string.
      * @return bool True if delete operation is successful.  Otherwise, we 
      * return false.
      */
-    public function delete($id = '') {
+    public function delete(string $id = ''): bool {
         if($id == '' && $this->id == '') return false;
         $id = ($id == '') ? $this->id : $id;
         if($this->_softDelete) {
@@ -115,7 +117,7 @@ class Model {
      * @return array An array of objects where each one represents a column 
      * from a database table.
      */
-    public function getColumns() {
+    public function getColumns(): array {
         return $this->_db->getColumns($this->_table);
     }
 
@@ -125,7 +127,7 @@ class Model {
      * @return array An array that contains a list of items that failed form 
      * validation.
      */
-    public function getErrorMessages() {
+    public function getErrorMessages(): array {
         return $this->_validationErrors;
     }
 
@@ -136,7 +138,7 @@ class Model {
      * the table in our database.  The default value is an empty array.
      * @return bool|array An array of object returned from an SQL query.
      */
-    public function find($params = []) {
+    public function find(array $params = []): bool|array {
         $params = $this->_softDeleteParams($params);
 
         // Using $this will return the child class.
@@ -150,9 +152,9 @@ class Model {
      * Get result from database by primary key ID.
      *
      * @param int $id The ID of the row we want to retrieve from the database.
-     * @return array The row from a database.
+     * @return bool|object The row from a database.
      */
-    public function findById($id) {
+    public function findById(int $id): bool|object {
         return $this->findFirst(['conditions'=>"id = ?", 'bind' => [$id]]);
     }
 
@@ -161,9 +163,9 @@ class Model {
      *
      * @param array $params The values for the query.  They are the fields of 
      * the table in our database.  The default value is an empty array.
-     * @return bool|array An array of object returned from an SQL query.
+     * @return bool|object An array of object returned from an SQL query.
      */
-    public function findFirst($params = []) {
+    public function findFirst(array $params = []): bool|object {
         $params = $this->_softDeleteParams($params);
         $resultQuery = $this->_db->findFirst($this->_table, $params, get_class($this));
         return $resultQuery;
@@ -176,7 +178,7 @@ class Model {
      * use to populate a database record.  The default value is an empty array.
      * @return bool Report for whether or not the operation was successful.
      */
-    public function insert($fields) {
+    public function insert(array $fields): bool {
         if(empty($fields)) return false;
         return $this->_db->insert($this->_table, $fields);
     }
@@ -184,10 +186,10 @@ class Model {
     /**
      * Checks if an object is a new insertion or an existing record.
      *
-     * @return boolean Returns true if the record exists.  Otherwise, we 
+     * @return bool Returns true if the record exists.  Otherwise, we 
      * return false.
      */
-    public function isNew() {
+    public function isNew(): bool {
         return (property_exists($this, 'id') && !empty($this->id)) ? false : true;
     }
     
@@ -197,7 +199,7 @@ class Model {
      * @param array|object $result Results from a database query.
      * @return void
      */
-    protected function populateObjData($result) {
+    protected function populateObjData(array|object $result): void {
         foreach($result as $key => $val) {
             $this->$key = $val;
         }
@@ -210,7 +212,7 @@ class Model {
      * @param array The values we want to bind in our database query.
      * @return array The results of the database query.
      */
-    public function query($sql, $bind) {
+    public function query(string $sql, array $bind): array {
         return $this->_db->query($sql, $bind);
     }
 
@@ -221,7 +223,7 @@ class Model {
      * @param object $validator The validator object.
      * @return void
      */
-    public function runValidation($validator) {
+    public function runValidation(object $validator): void {
         // $validator->field is the field we ar validating.
         $key = $validator->field;
         if(!$validator->success) {
@@ -239,7 +241,7 @@ class Model {
      * @return bool True if the update operation is successful.  Otherwise, 
      * we return false.
      */
-    public function save() {
+    public function save(): bool {
         $this->validator();
         if($this->_validates) {
             $this->beforeSave();
@@ -266,7 +268,7 @@ class Model {
      * @return array $params parameters with appended conditions for soft 
      * delete.
      */
-    protected function _softDeleteParams($params) {
+    protected function _softDeleteParams(array $params): array {
         if($this->_softDelete) {
             if(array_key_exists('conditions', $params)) {
                 if(is_array($params['conditions'])) {
@@ -291,7 +293,7 @@ class Model {
      * @return bool True if the update operation is successful.  Otherwise, 
      * we return false.
      */
-    public function update($id, $fields) {
+    public function update(int $id, array $fields): bool {
         if(empty($fields) || $id == '') return false;
         return $this->_db->update($this->_table, $id, $fields);
     }
@@ -299,10 +301,10 @@ class Model {
     /**
      * Getter function for the $_validates boolean instance variable.
      *
-     * @return void $_validates is true if validation is successful and 
+     * @return bool $_validates is true if validation is successful and 
      * false if there is a failure.
      */
-    public function validationPassed() {
+    public function validationPassed(): bool {
         return $this->_validates;
     }
 
@@ -312,8 +314,9 @@ class Model {
      * implemented by models that run form validation because since it is 
      * called from within this class.
      * @method validator
+     * @return void
      */
-    public function validator() {
+    public function validator(): void {
 
     }
 }

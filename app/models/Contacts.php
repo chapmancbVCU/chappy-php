@@ -122,7 +122,7 @@ class Contacts extends Model {
      *
      * @return void
      */
-    public function validator() {
+    public function validator(): void {
         // Validate first name
         $this->runValidation(new RequiredValidator($this, ['field' => 'fname', 'message' => 'First Name is required']));
         $this->runValidation((new MaxValidator($this, ['field' => 'fname', 'message' => 'First Name must be less than 156 characters.', 'rule' => 155])));

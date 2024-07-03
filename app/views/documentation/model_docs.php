@@ -23,8 +23,8 @@
             <td colspan="2" class="text-center">Core</td>
         </tr>
         <tr>
-            <th class="align-middle text-center w-25">Use</th>
-            <td>None</td>
+            <th class="align-middle text-center w-25" rowspan="2">Use</th>
+            <tr><td>\stdClass</td></tr>
         </tr>  
         <tr>
             <th colspan="2" class="text-center">Instance Variables</th>
@@ -217,7 +217,7 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">int</td>
+            <td class="align-middle text-center w-25">string</td>
             <td>$id The primary key for the record we want to remove from a database table.  The default value is an empty string.</td>
         </tr>
         <tr>
@@ -322,7 +322,7 @@
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">array</td>
+            <td class="align-middle text-center w-25">bool|object</td>
             <td>The row from a database.</td>
         </tr>
     </table>
@@ -347,7 +347,7 @@
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">bool|array</td>
+            <td class="align-middle text-center w-25">bool|object</td>
             <td>An array of object returned from an SQL query.</td>
         </tr>
     </table>
@@ -575,7 +575,7 @@
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25"></td>
+            <td class="align-middle text-center w-25">bool</td>
             <td>$_validates is true if validation is successful and false if there is a failure.</td>
         </tr>
     </table>

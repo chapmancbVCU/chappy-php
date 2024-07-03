@@ -34,7 +34,7 @@ class Login extends Model {
      *
      * @return void
      */
-    public function validator() {
+    public function validator(): void {
         $this->runValidation(new RequiredValidator($this, ['field' => 'username', 'message' => 'Username is required']));
         $this->runValidation(new RequiredValidator($this, ['field' => 'password', 'message' => 'Password is required']));
     }

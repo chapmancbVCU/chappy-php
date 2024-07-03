@@ -82,7 +82,7 @@ class Users extends Model {
      *
      * @return void
      */
-    public function beforeSave() {
+    public function beforeSave(): void {
         if($this->isNew()) {
             $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         }
@@ -203,7 +203,7 @@ class Users extends Model {
      *
      * @return void
      */
-    public function validator() {
+    public function validator(): void {
         // Validate first name
         $this->runValidation(new RequiredValidator($this, ['field' => 'fname', 'message' => 'First Name is required.']));
         $this->runValidation(new MaxValidator($this, ['field' => 'fname', 'rule' => '150', 'message' => 'Email must be less than 155 characters.']));
