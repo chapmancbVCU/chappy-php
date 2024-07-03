@@ -420,7 +420,7 @@ $contacts = $db->insert('contacts', $fields);
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">array</td>
+            <td class="align-middle text-center w-25">DB</td>
             <td>The results of the database query.  If the operation is not successful the $_error instance variable is set to true and is returned.</td>
         </tr>
     </table>

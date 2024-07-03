@@ -210,9 +210,9 @@ class Model {
      * 
      * @param string $sql The database query we will submit to the database.
      * @param array The values we want to bind in our database query.
-     * @return array The results of the database query.
+     * @return DB The results of the database query.
      */
-    public function query(string $sql, array $bind): array {
+    public function query(string $sql, array $bind): DB {
         return $this->_db->query($sql, $bind);
     }
 

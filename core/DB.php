@@ -32,7 +32,7 @@ class DB {
      *
      * @return int The number of results found in an SQL query.
      */
-    public function count() {
+    public function count(): int {
         return $this->_count;
     }
 
@@ -49,7 +49,7 @@ class DB {
      * @return bool True if delete operation is successful.  Otherwise, we 
      * return false.
      */
-    public function delete($table, $id) {
+    public function delete(string $table, int $id): bool {
         $sql = "DELETE FROM {$table} WHERE id = {$id}";
 
         if(!$this->query($sql)->error()) {
@@ -131,7 +131,7 @@ class DB {
      * @return array An array of objects where each one represents a column 
      * from a database table.
      */
-    public function getColumns($table) {
+    public function getColumns(string $table): array {
         return $this->query("SHOW COLUMNS FROM {$table}")->results();
     }
 
@@ -204,11 +204,11 @@ class DB {
      * the table in our database.  The default value is an empty array.
      * @param bool|string $class A default value of false, it contains the 
      * name of the class we will build based on the name of a model.
-     * @return array|bool The results of the database query.  If the operation 
+     * @return DB The results of the database query.  If the operation 
      * is not successful the $_error instance variable is set to true and is 
      * returned.
      */
-    public function query($sql, $params = [], $class = false) {
+    public function query(string $sql, array $params = [], bool|string $class = false): DB {
         $this->_error = false;
         if($this->_query = $this->_pdo->prepare($sql)) {
             $x = 1;
@@ -249,7 +249,7 @@ class DB {
      * name of the class we will build based on the name of a model.
      * @return bool A true or false value depending on a successful operation.
      */
-    protected function _read($table, $params = [], $class) {
+    protected function _read(string $table, array $params = [], bool|string $class): bool {
         $conditionString = '';
         $bind = [];
         $order = '';
@@ -308,7 +308,7 @@ class DB {
      * @return array An array of objects that contain results of a database 
      * query.
      */
-    public function results() {
+    public function results(): array {
         return $this->_result;
     }
 
@@ -331,7 +331,7 @@ class DB {
      * @return bool True if the update operation is successful.  Otherwise, 
      * we return false.
      */
-    public function update($table, $id, $fields = []) {
+    public function update(string $table, int $id, array $fields = []): bool {
         $fieldString = '';      // Table field
         $values = [];           // Values we will bind when we build our query
 
