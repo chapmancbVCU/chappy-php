@@ -231,7 +231,7 @@
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">array</td>
+            <td class="align-middle text-center w-25">mixed</td>
             <td>The value for $_confirm.</td>
         </tr>
     </table>

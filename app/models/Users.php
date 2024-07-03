@@ -116,9 +116,9 @@ class Users extends Model {
     /**
      * Getter function for $_confirm instance variable.
      *
-     * @return string The value for $_confirm.
+     * @return mixed The value for $_confirm.
      */
-    public function getConfirm(): string {
+    public function getConfirm(): mixed {
         return $this->_confirm;
     }
 
