@@ -199,14 +199,26 @@ class FormHelper {
     }
 
     /**
-     * Undocumented function
+     * Renders an HTML div element that surrounds an input of type email.
      *
-     * @param string $label
-     * @param string $name
-     * @param mixed $value
-     * @param array $inputAttrs
-     * @param array $divAttrs
-     * @return string
+     * An example function call is shown below:
+     * FormHelper::emailBlock('Email', 'email', $this->contact->email, ['class' => 'form-control'], ['class' => 'form-group col-md-6']);
+     * 
+     * Example HTML output is shown below:
+     * <label for="email">Email</label><input type="email" id="email" name="email" value="" class="form-control" placeholder="joe_@_example.com" />
+     * 
+     * @param string $label Sets the label for this input.
+     * @param string $name Sets the value for the name, for, and id attributes 
+     * for this input.
+     * @param mixed $value The value we want to set.  We can use this to set 
+     * the value of the value attribute during form validation.  Default value 
+     * is the empty string.  It can be set with values during form validation 
+     * and forms used for editing records.
+     * @param array $inputAttrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $divAttrs The values used to set the class and other 
+     * attributes of the surrounding div.  The default value is an empty array.
+     * @return string A surrounding div and the input element of type email.
      */
     public static function emailBlock(string $label, 
         string $name, 

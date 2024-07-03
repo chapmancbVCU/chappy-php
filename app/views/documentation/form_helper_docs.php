@@ -382,6 +382,76 @@ FormHelper::checkboxBlockLabelRight(
     </table>
 
     <hr class="w-75 my-5">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
+            <th colspan="2" class="text-center">public static function emailBlock</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Renders an HTML div element that surrounds an input of type email.
+                <br><br>
+                An example function call is shown below:
+                <br>
+                <pre class="my-0">
+<code>
+FormHelper::emailBlock('Email', 
+    'email', 
+    $this->contact->email, 
+    ['class' => 'form-control'], 
+    ['class' => 'form-group col-md-6']
+);
+</code>
+                </pre>
+                Example HTML output is shown below:
+                <pre class="my-0">
+<code>
+&lt;div class="form-group"&gt; 
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;input type="email" 
+        id="email" 
+        name="email" 
+        value="" 
+        class="form-control" 
+        placeholder="joe@example.com" 
+    /&gt;
+&lt;/div&gt; 
+</code>
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$label Sets the label for this input.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$name Sets the value for the name, for, and id attributes for this input.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">mixed</td>
+            <td>$value The value we want to set.  We can use this to set the value of the value attribute during form validation.  Default value is the empty string.  It can be set with values during form validation and forms used for editing records.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$inputAttrs The values used to set the class and other attributes of the input string.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$divAttrs The values used to set the class and other attributes of the surrounding div.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>A surrounding div and the input element of type email.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
