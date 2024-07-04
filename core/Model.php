@@ -205,6 +205,18 @@ class Model {
         }
     }
 
+    public function processFile($file) {
+        if($file['profileImage']['name'] != "") {
+            Helper::cl($file);
+            $target_dir = PROOT."public/images/profileImages/";
+            $target_file = $target_dir . basename($file["profileImage"]["name"]);
+            $target_file = preg_replace('/\s+/', '', $target_file);
+            Helper::cl($target_file);
+        } else {
+            Helper::cl("No file selected");
+        } 
+    }
+
     /**
      * Wrapper for database query function.
      * 

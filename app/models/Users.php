@@ -224,9 +224,6 @@ class Users extends Model {
         $this->runValidation(new MaxValidator($this, ['field' => 'username', 'rule' => 150, 'message' => 'Username must be less than 150 characters.']));
         $this->runValidation(new UniqueValidator($this, ['field' => 'username', 'message' => 'That username already exists.  Please chose a new one.']));
 
-        // Validate description
-        $this->runValidation(new MaxValidator($this, ['field' => 'description', 'rule' => '1000', 'message' => 'Username must be less than 1000 characters.']));
-
         // Validate password
         $this->runValidation(new RequiredValidator($this, ['field' => 'password', 'message' => 'Password is required.'])); 
         if($this->isNew()) {

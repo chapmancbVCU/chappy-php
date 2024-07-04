@@ -3,6 +3,7 @@ namespace App\Controllers;
 use Core\Controller;
 use Core\Router;
 use App\Models\Users;
+use Core\Helper;
 class ProfileController extends Controller {
     /**
      * Constructor for Profile Controller.
@@ -26,15 +27,15 @@ class ProfileController extends Controller {
         $this->view->render('profile/index');
     }
 
-    public function editAction(string $id): void {
+    public function editAction(): void {
         $user = Users::currentUser();
-        
         if(!$user) Router::redirect('');
         if($this->request->isPost()) {
             $this->request->csrfCheck();
             $user->assign($this->request->get());
+            $user->processFile($_FILES);
             if($user->save()) {
-                Router::redirect('profile');
+                Router::redirect('profile/index');
             }
         }
 
