@@ -45,12 +45,12 @@ class Helper {
   /**
    * Prints to console using JavaScript.
    * 
-   * @param string $output The information we want to print to console.
+   * @param mixed $output The information we want to print to console.
    * @param bool $with_script_tags - Determines if we will use script tabs in 
    * our output.  Default value is true.
    * @return void
    */
-  public static function cl(string $output, bool $with_script_tags = true): void {
+  public static function cl(mixed $output, bool $with_script_tags = true): void {
     if(CONSOLE_LOGGING) {
       $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
       if($with_script_tags) $js_code = '<script>' . $js_code . '</script>';
@@ -74,10 +74,10 @@ class Helper {
   /**
    * Performs var_dump of parameter and kills the page.
    * 
-   * @param string $data Contains the data we wan to print to the page.
+   * @param mixed $data Contains the data we wan to print to the page.
    * @return void
    */
-  public static function dnd(string $data): void {
+  public static function dnd(mixed $data): void {
     echo "<pre>";
     var_dump($data);
     echo "<pre>";
