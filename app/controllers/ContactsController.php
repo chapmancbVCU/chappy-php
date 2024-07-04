@@ -70,10 +70,10 @@ class ContactsController extends Controller {
     /**
      * Retrieves information for a contact and render its details.
      *
-     * @param int $id The id for contact whose information we want to display.
+     * @param mixed $id The id for contact whose information we want to display.
      * @return void
      */
-    public function detailsAction(int $id): void {
+    public function detailsAction(mixed $id): void {
         $contact = $this->ContactsModel->findByIdAndUserId((int)$id, Users::currentUser()->id);
 
         // When user is not a contact we reroute to contacts index.
