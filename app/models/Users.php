@@ -31,6 +31,7 @@ class Users extends Model {
     public $id;
     public $lname;
     public $password;
+    public $profileImage;
     private $_sessionName;
     public $username;
     
@@ -206,21 +207,21 @@ class Users extends Model {
      */
     public function validator(): void {
         // Validate first name
-        $this->runValidation(new RequiredValidator($this, ['field' => 'fname', 'message' => 'First Name is required.']));
-        $this->runValidation(new MaxValidator($this, ['field' => 'fname', 'rule' => '150', 'message' => 'Email must be less than 150 characters.']));
+        $this->runValidation(new RequiredValidator($this, ['field' => 'fname', 'message' => 'First Name is required']));
+        $this->runValidation(new MaxValidator($this, ['field' => 'fname', 'rule' => 150, 'message' => 'First name must be less than 150 characters.']));
 
         // Validate last name
         $this->runValidation(new RequiredValidator($this, ['field' => 'lname', 'message' => 'Last Name is required.']));
-        $this->runValidation(new MaxValidator($this, ['field' => 'lname', 'rule' => '150', 'message' => 'Email must be less than 150 characters.']));
+        $this->runValidation(new MaxValidator($this, ['field' => 'lname', 'rule' => 150, 'message' => 'Last name must be less than 150 characters.']));
 
         // Validate E-mail
         $this->runValidation(new RequiredValidator($this, ['field' => 'email', 'message' => 'Email is required.']));
-        $this->runValidation(new MaxValidator($this, ['field' => 'email', 'rule' => '150', 'message' => 'Email must be less than 150 characters.']));
+        $this->runValidation(new MaxValidator($this, ['field' => 'email', 'rule' => 150, 'message' => 'Email must be less than 150 characters.']));
         $this->runValidation(new EmailValidator($this, ['field' => 'email', 'message' => 'You must provide a valid email address.']));
 
         // Validate username
-        $this->runValidation(new MinValidator($this, ['field' => 'username', 'rule' => '6', 'message' => 'Username must be at least 6 characters.']));
-        $this->runValidation(new MaxValidator($this, ['field' => 'username', 'rule' => '150', 'message' => 'Username must be less than 150 characters.']));
+        $this->runValidation(new MinValidator($this, ['field' => 'username', 'rule' => 6, 'message' => 'Username must be at least 6 characters.']));
+        $this->runValidation(new MaxValidator($this, ['field' => 'username', 'rule' => 150, 'message' => 'Username must be less than 150 characters.']));
         $this->runValidation(new UniqueValidator($this, ['field' => 'username', 'message' => 'That username already exists.  Please chose a new one.']));
 
         // Validate description
@@ -229,8 +230,8 @@ class Users extends Model {
         // Validate password
         $this->runValidation(new RequiredValidator($this, ['field' => 'password', 'message' => 'Password is required.'])); 
         if($this->isNew()) {
-            $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => '12', 'message' => 'Password must be at least 12 characters.']));
-            $this->runValidation(new MaxValidator($this, ['field' => 'password', 'rule' => '30', 'message' => 'Password must be less than 30 characters.']));
+            $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => 12, 'message' => 'Password must be at least 12 characters.']));
+            $this->runValidation(new MaxValidator($this, ['field' => 'password', 'rule' => 30, 'message' => 'Password must be less than 30 characters.']));
             $this->runValidation(new UpperCharValidator($this, ['field' => 'password', 'message' => '1 or more complex password requirements is not satisfied.']));
             $this->runValidation(new LowerCharValidator($this, ['field' => 'password', 'message' => '1 or more complex password requirements is not satisfied.']));
             $this->runValidation(new NumberCharValidator($this, ['field' => 'password', 'message' => '1 or more complex password requirements is not satisfied.']));
