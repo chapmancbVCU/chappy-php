@@ -25,6 +25,7 @@ class Users extends Model {
     private $_cookieName;
     public static $currentLoggedInUser = null;
     public $deleted = 0;                // Set default value for db field.
+    public $description;
     public $email;
     public $fname;
     public $id;
@@ -206,21 +207,24 @@ class Users extends Model {
     public function validator(): void {
         // Validate first name
         $this->runValidation(new RequiredValidator($this, ['field' => 'fname', 'message' => 'First Name is required.']));
-        $this->runValidation(new MaxValidator($this, ['field' => 'fname', 'rule' => '150', 'message' => 'Email must be less than 155 characters.']));
+        $this->runValidation(new MaxValidator($this, ['field' => 'fname', 'rule' => '150', 'message' => 'Email must be less than 150 characters.']));
 
         // Validate last name
         $this->runValidation(new RequiredValidator($this, ['field' => 'lname', 'message' => 'Last Name is required.']));
-        $this->runValidation(new MaxValidator($this, ['field' => 'lname', 'rule' => '150', 'message' => 'Email must be less than 155 characters.']));
+        $this->runValidation(new MaxValidator($this, ['field' => 'lname', 'rule' => '150', 'message' => 'Email must be less than 150 characters.']));
 
         // Validate E-mail
         $this->runValidation(new RequiredValidator($this, ['field' => 'email', 'message' => 'Email is required.']));
-        $this->runValidation(new MaxValidator($this, ['field' => 'email', 'rule' => '150', 'message' => 'Email must be less than 155 characters.']));
+        $this->runValidation(new MaxValidator($this, ['field' => 'email', 'rule' => '150', 'message' => 'Email must be less than 150 characters.']));
         $this->runValidation(new EmailValidator($this, ['field' => 'email', 'message' => 'You must provide a valid email address.']));
 
         // Validate username
         $this->runValidation(new MinValidator($this, ['field' => 'username', 'rule' => '6', 'message' => 'Username must be at least 6 characters.']));
-        $this->runValidation(new MaxValidator($this, ['field' => 'username', 'rule' => '150', 'message' => 'Username must be less than 155 characters.']));
+        $this->runValidation(new MaxValidator($this, ['field' => 'username', 'rule' => '150', 'message' => 'Username must be less than 150 characters.']));
         $this->runValidation(new UniqueValidator($this, ['field' => 'username', 'message' => 'That username already exists.  Please chose a new one.']));
+
+        // Validate description
+        $this->runValidation(new MaxValidator($this, ['field' => 'description', 'rule' => '1000', 'message' => 'Username must be less than 1000 characters.']));
 
         // Validate password
         $this->runValidation(new RequiredValidator($this, ['field' => 'password', 'message' => 'Password is required.'])); 

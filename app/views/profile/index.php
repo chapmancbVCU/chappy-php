@@ -28,6 +28,18 @@
                 <td class="text-center">ACL</td>
                 <td class="text-center"><?=$this->user->acl?></td>
             </tr>
+            <?php if($this->user->description): ?>
+                <tr>
+                    <th class="text-center" colspan="2">Description</th>
+                </tr>
+                <tr>
+                    <td colspan="2"><?=$this->user->description?></td>
+                </tr>
+            <?php else: ?>
+                <tr>
+                    <td class="text-center" colspan="2">No description</td>
+                </tr>
+            <?php endif; ?>
         </tbody>
     </table>
     <a href="<?=PROOT?>profile/edit/<?=$this->user->id?>" class="btn btn-info btn-xs">
