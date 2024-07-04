@@ -125,18 +125,18 @@ class Contacts extends Model {
     public function validator(): void {
         // Validate first name
         $this->runValidation(new RequiredValidator($this, ['field' => 'fname', 'message' => 'First Name is required']));
-        $this->runValidation((new MaxValidator($this, ['field' => 'fname', 'message' => 'First Name must be less than 156 characters.', 'rule' => 155])));
+        $this->runValidation(new MaxValidator($this, ['field' => 'fname', 'message' => 'First Name must be less than 156 characters.', 'rule' => 155]));
 
         // Validate last name
         $this->runValidation(new RequiredValidator($this, ['field' => 'lname', 'message' => 'Last Name is required']));
-        $this->runValidation((new MaxValidator($this, ['field' => 'lname', 'message' => 'Last Name must be less than 156 characters.', 'rule' => 155])));
+        $this->runValidation(new MaxValidator($this, ['field' => 'lname', 'message' => 'Last Name must be less than 156 characters.', 'rule' => 155]));
 
         // Validate address
         $this->runValidation(new RequiredValidator($this, ['field' => 'address', 'message' => 'Address is required']));
-        $this->runValidation((new MaxValidator($this, ['field' => 'address', 'message' => 'Address must be less than 256 characters.', 'rule' => 255])));
+        $this->runValidation(new MaxValidator($this, ['field' => 'address', 'message' => 'Address must be less than 256 characters.', 'rule' => 255]));
 
         // Validate address 2
-        $this->runValidation((new MaxValidator($this, ['field' => 'address2', 'message' => 'Address 2 Name must be less than 256 characters.', 'rule' => 255])));
+        $this->runValidation(new MaxValidator($this, ['field' => 'address2', 'message' => 'Address 2 Name must be less than 256 characters.', 'rule' => 255]));
 
         // Validate city
         $this->runValidation(new RequiredValidator($this, ['field' => 'city', 'message' => 'City is required']));
