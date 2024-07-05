@@ -205,9 +205,10 @@ class Model {
         }
     }
 
-    public function processFile($file, $imageName, $arg = "", $fileTypes = []) {
+    public function processFile($file, $imageName, $arg = "", $fileTypes = [], $oldFile = "") {
         if($file[$imageName]['name'] != "") {
-            $target_dir = getcwd().DIRECTORY_SEPARATOR."public". DS ."images" . DS . $imageName . DS;
+            $cwd = getcwd().DIRECTORY_SEPARATOR;
+            $target_dir = $cwd."public". DS ."images" . DS . $imageName . DS;
             $imageFileType = strtolower(pathinfo($file[$imageName]["name"],PATHINFO_EXTENSION));
             if(strcmp($arg, "") == 0) {
                 $target_file = preg_replace('/\s+/u', '', basename($file[$imageName]["name"]));
@@ -221,6 +222,10 @@ class Model {
             }
             if(!empty($fileTypes) && !in_array($imageFileType, $fileTypes)) {
                 $this->addErrorMessage('profileImage', "Invalid file type.");
+            }
+            // Remove file only if old file name is provided.
+            if(!unlink($cwd."public". DS ."images" . DS . $imageName . DS .$oldFile) && strcmp($oldFile, "")) {
+                $this->addErrorMessage('profileImage', "File to remove previous file.");
             }
             if($this->_validates && !move_uploaded_file($file[$imageName]["tmp_name"], $full_target_path)) {
                 $this->addErrorMessage('profileImage', "File upload failure.");
