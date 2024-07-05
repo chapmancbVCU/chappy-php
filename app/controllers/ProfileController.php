@@ -44,7 +44,7 @@ class ProfileController extends Controller {
             $this->request->csrfCheck();
             $user->assign($this->request->get());
             $fileTypes = ['png', 'jpg', 'gif', 'bmp'];
-            $user->profileImage = $user->processFile($_FILES, "profileImage", $user->username, $fileTypes, $user->profileImage);
+            $user->profileImage = $user->processFile($_FILES, "profileImage", $user->username, $user->profileImage, $fileTypes);
             if($user->save()) {
                 Router::redirect('profile/index');
             }

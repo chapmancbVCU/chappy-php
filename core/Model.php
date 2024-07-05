@@ -205,7 +205,36 @@ class Model {
         }
     }
 
-    public function processFile($file, $imageName, $arg = "", $fileTypes = [], $oldFile = "") {
+    /**
+     * Processes, validates, and uploads a file submitted through a post 
+     * request.  You can also test if the file is of a valid type using the 
+     * optional $fileTypes array.  The optional $oldFile argument allows you 
+     * to delete the previous file by giving it the name stored in the 
+     * database.
+     *
+     * @param array $file An associate array containing information about 
+     * file received during POST.
+     * @param string $imageName The name for type of image to match image's 
+     * parent directory.  For example, we used profileImage for all profile 
+     * images.
+     * @param string $arg Additional information that can be used as part of 
+     * uploaded file's name.  The default value is an empty string.  Providing 
+     * an empty string will cause whitespace within the filename to be 
+     * removed before upload.
+     * @param string $oldFile The name of the old file we want to remove.  The 
+     * default value is an empty string.
+     * @param array $fileTypes The file types we will test to determine if 
+     * it is a valid file type.
+     * @return string $targetFile The filename and extension so name can be 
+     * stored in a database.
+     */
+    public function processFile(array $file, 
+        string $imageName, 
+        string $arg = "", 
+        string $oldFile = "", 
+        array $fileTypes = []
+        ): string {
+
         if($file[$imageName]['name'] != "") {
             $cwd = getcwd().DS;
             $target_dir = $cwd."public". DS ."images" . DS . $imageName . DS;
@@ -214,9 +243,7 @@ class Model {
                 $target_file = preg_replace('/\s+/u', '', basename($file[$imageName]["name"]));
             } else {    
                 $target_file = $arg . "." .$imageFileType;
-                $full_target_path = $target_dir . $target_file;
             }
-            $full_target_path = $target_dir . $target_file;
             if($file[$imageName]["size"] > MAX_FILE_UPLOAD_SIZE) {
                 $this->addErrorMessage('profileImage', "File too large.");
             }
@@ -227,6 +254,8 @@ class Model {
             if(!unlink($cwd."public". DS ."images" . DS . $imageName . DS .$oldFile) && strcmp($oldFile, "")) {
                 $this->addErrorMessage('profileImage', "File to remove previous file.");
             }
+            // Check for validation failures and upload the file.
+            $full_target_path = $target_dir . $target_file;
             if($this->_validates && !move_uploaded_file($file[$imageName]["tmp_name"], $full_target_path)) {
                 $this->addErrorMessage('profileImage', "File upload failure.");
             } 
