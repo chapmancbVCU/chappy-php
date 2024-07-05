@@ -4,20 +4,20 @@
  */
 
 define('DEBUG', $_ENV['DEBUG']);
-define('CONSOLE_LOGGING', $_ENV['CONSOLE_LOGGING']);        // JS console logging.
+define('CONSOLE_LOGGING', $_ENV['CONSOLE_LOGGING']);            // JS console logging.
 
-define('DEFAULT_CONTROLLER', $_ENV['DEFAULT_CONTROLLER']);  // Default controller if there isn't one defined in the URL.
-define('DEFAULT_LAYOUT', $_ENV['DEFAULT_LAYOUT']);          // If no layout is set in the controller use this layout.
+define('DEFAULT_CONTROLLER', $_ENV['DEFAULT_CONTROLLER']);      // Default controller if there isn't one defined in the URL.
+define('DEFAULT_LAYOUT', $_ENV['DEFAULT_LAYOUT']);              // If no layout is set in the controller use this layout.
 
 define('DB_NAME', $_ENV['DB_NAME']);
 define('DB_USER', $_ENV['DB_USER']);
 define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
 define('DB_HOST', $_ENV['DB_HOST']);
 
-define('PROOT', $_ENV['PROOT']);                            // Set this to '/' for a live server.
-
-define('SITE_TITLE', $_ENV['SITE_TITLE']);                  // This will be used if no site title is set.
-define('MENU_BRAND', $_ENV['MENU_BRAND']);                  // Branding for menu.
+define('PROOT', $_ENV['PROOT']);                                // Set this to '/' for a live server.
+define('MAX_FILE_UPLOAD_SIZE', $_ENV['MAX_FILE_UPLOAD_SIZE']);  // Set max file upload size.
+define('SITE_TITLE', $_ENV['SITE_TITLE']);                      // This will be used if no site title is set.
+define('MENU_BRAND', $_ENV['MENU_BRAND']);                      // Branding for menu.
 
 define('CURRENT_USER_SESSION_NAME', $_ENV['CURRENT_USER_SESSION_NAME']);   // Session name for logged in user;
 define('REMEMBER_ME_COOKIE_NAME', $_ENV['REMEMBER_ME_COOKIE_NAME']);       // Cookie name for logged in user remember me

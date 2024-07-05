@@ -216,8 +216,7 @@ class Model {
                 $full_target_path = $target_dir . $target_file;
             }
             $full_target_path = $target_dir . $target_file;
-            // Check file size
-            if($file[$imageName]["size"] > 41943040) {
+            if($file[$imageName]["size"] > MAX_FILE_UPLOAD_SIZE) {
                 $this->addErrorMessage('profileImage', "File too large.");
             }
             if(!empty($fileTypes) && !in_array($imageFileType, $fileTypes)) {
