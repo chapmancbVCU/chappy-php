@@ -245,21 +245,22 @@ class Model {
                 $target_file = $arg . "." .$imageFileType;
             }
             if($file[$imageName]["size"] > MAX_FILE_UPLOAD_SIZE) {
-                $this->addErrorMessage('profileImage', "File too large.");
+                $this->addErrorMessage($imageName, "File is too large.");
             }
             if(!empty($fileTypes) && !in_array($imageFileType, $fileTypes)) {
-                $this->addErrorMessage('profileImage', "Invalid file type.");
+                $this->addErrorMessage($imageName, "Invalid file type.");
             }
             // Remove file only if old file name is provided.
             if(!unlink($cwd."public". DS ."images" . DS . $imageName . DS .$oldFile) && strcmp($oldFile, "")) {
-                $this->addErrorMessage('profileImage', "File to remove previous file.");
+                $this->addErrorMessage($imageName, "Failed to remove previous file.");
             }
             // Check for validation failures and upload the file.
             $full_target_path = $target_dir . $target_file;
             if($this->_validates && !move_uploaded_file($file[$imageName]["tmp_name"], $full_target_path)) {
-                $this->addErrorMessage('profileImage', "File upload failure.");
+                $this->addErrorMessage($imageName, "File upload failure.");
             } 
         } else {
+            $target_file = $oldFile;
             $this->addErrorMessage('profileImage', "No file selected.");
         } 
         return $target_file;

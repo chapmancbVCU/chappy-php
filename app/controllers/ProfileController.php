@@ -60,6 +60,7 @@ class ProfileController extends Controller {
 
             // Process file and set DB name
             $user->profileImage = $user->processFile($_FILES, "profileImage", $user->username, $user->profileImage, $fileTypes);
+            if($user->profileImage == "") Router::redirect('profile/index');
             if($user->save()) {
                 Router::redirect('profile/index');
             }
