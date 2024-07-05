@@ -234,10 +234,10 @@ class Model {
         string $oldFile = "", 
         array $fileTypes = []
         ): string {
-
+        
         if($file[$imageName]['name'] != "") {
-            $cwd = getcwd().DS;
-            $target_dir = $cwd."public". DS ."images" . DS . $imageName . DS;
+            // Process and upload file.
+            $target_dir = getcwd().DS."public". DS ."images" . DS . $imageName . DS;
             $imageFileType = strtolower(pathinfo($file[$imageName]["name"],PATHINFO_EXTENSION));
             if(strcmp($arg, "") == 0) {
                 $target_file = preg_replace('/\s+/u', '', basename($file[$imageName]["name"]));
@@ -250,18 +250,19 @@ class Model {
             if(!empty($fileTypes) && !in_array($imageFileType, $fileTypes)) {
                 $this->addErrorMessage($imageName, "Invalid file type.");
             }
+
             // Remove file only if old file name is provided.
-            if(!unlink($cwd."public". DS ."images" . DS . $imageName . DS .$oldFile) && strcmp($oldFile, "")) {
-                $this->addErrorMessage($imageName, "Failed to remove previous file.");
-            }
+            self::unlink($imageName, $oldFile);
+
             // Check for validation failures and upload the file.
             $full_target_path = $target_dir . $target_file;
             if($this->_validates && !move_uploaded_file($file[$imageName]["tmp_name"], $full_target_path)) {
                 $this->addErrorMessage($imageName, "File upload failure.");
             } 
         } else {
-            $target_file = $oldFile;
-            $this->addErrorMessage('profileImage', "No file selected.");
+            // If no file selected we remove profile image.
+            $target_file = "";
+            self::unlink($imageName, $oldFile);
         } 
         return $target_file;
     }
@@ -342,6 +343,23 @@ class Model {
             }
         }
         return $params;
+    }
+
+    /**
+     * Removes a file during a remove/update file operation.  If there is a 
+     * failure a failed to remove previous file message is set.
+     *
+     * @param $imageName The name for type of image to match image's 
+     * parent directory.  For example, we used profileImage for all profile 
+     * images.
+     * @param string $oldFile The name of the old file we want to remove.  The 
+     * default value is an empty string.
+     * @return void
+     */
+    private function unlink($imageName, $oldFile = "") {
+        if(!unlink(getcwd().DS."public". DS ."images" . DS . $imageName . DS .$oldFile) && strcmp($oldFile, "")) {
+            $this->addErrorMessage($imageName, "Failed to remove previous file.");
+        }
     }
 
     /**
