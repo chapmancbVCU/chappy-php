@@ -17,7 +17,11 @@
     </ul>
     <ul class="navbar-nav ml-auto">
       <?php if(Users::currentUser()): ?>
-        <li><a class="nav-link" href="<?=PROOT?>profile">Hello <?=Users::currentUser()->fname?></a></li>
+        <li>
+          <a class="nav-link" href="<?=PROOT?>profile">Hello <?=Users::currentUser()->fname ?>
+            <img class="img-thumbnail ml-2 p-0"  style="width: 50px" src="<?=PROOT?>public/images/profileImage/<?=Users::currentUser()->profileImage?>"></img></a>
+          </a>
+        </li>
       <?php endif; ?>
     </ul>
   </div><!-- /.navbar-collapse -->
