@@ -9,25 +9,21 @@
         </img>
     <?php endif; ?>
     <table class="table table-striped table-condensed table-bordered table-hover bg-light my-5">
-        <thead>
-            <th class="text-center">Field Name</th>
-            <th class="text-center">Value</th>
-        </thead>
         <tbody>
             <tr>
-                <td class="text-center">First Name</td>
+                <th class="text-center">First Name</th>
                 <td class="text-center"><?=$this->user->fname?></td>
             </tr>
             <tr>
-                <td class="text-center">Last Name</td>
+                <th class="text-center">Last Name</th>
                 <td class="text-center"><?=$this->user->lname?></td>
             </tr>
             <tr>
-                <td class="text-center">E-mail</td>
+                <th class="text-center">E-mail</th>
                 <td class="text-center"><?=$this->user->email?></td>
             </tr>
             <tr>
-                <td class="text-center">ACL</td>
+                <th class="text-center">ACL</th>
                 <td class="text-center"><?=$this->user->acl?></td>
             </tr>
             <?php if($this->user->description): ?>
@@ -35,7 +31,7 @@
                     <th class="text-center" colspan="2">Description</th>
                 </tr>
                 <tr>
-                    <td colspan="2"><?=$this->user->description?></td>
+                    <td colspan="2"><?=htmlspecialchars_decode(stripslashes($this->user->description));?></td>
                 </tr>
             <?php else: ?>
                 <tr>

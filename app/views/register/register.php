@@ -1,8 +1,11 @@
 <?php
 use Core\FormHelper;
 ?>
-<?php $this->start('head'); ?>
-<?php $this->end(); ?>
+<?php $this->setSiteTitle("Register Here!"); ?>
+<?php $this->start('head') ?>
+  <script src='<?=PROOT?>vendor/tinymce/tinymce/tinymce.min.js'></script>
+  <script src='<?=PROOT?>public/js/profileDescriptionTinyMCE.js'></script>
+<?php $this->end() ?>
 
 <?php $this->start('body'); ?>
 <div class="row align-items-center justify-content-center">

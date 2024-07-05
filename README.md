@@ -15,10 +15,13 @@ It supports everything described above.  This sample application natively comes 
 3. Test with nginx
 4. Update jQuery and Bootstrap to modern builds and add support to maintain similar look and feel of front end (done)
 5. Add support for additional form elements in FormHelpers (In progress)
-6. Add user guide (In progress)
+6. Add user guide (Update as needed)
 7. Add management system for Users model to in include admin so administrators can manage other users, change user type, and perform password reset operations.
-8. Add types to functions (In progress)
+8. Add types to functions (Done)
 9. Add types to instance variables
+10. Add TinyMCE.
+11. Add file upload support (Done).
+12. Add user's guide
 
 ## Credits
 1. “mvc” icon by iconixar, from thenounproject.com.
