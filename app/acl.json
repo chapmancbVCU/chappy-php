@@ -4,7 +4,8 @@
         "Home" : ["*"],
         "Register" : ["login", "register"],
         "Restricted" : ["*"],
-        "Documentation" : ["*"]
+        "Documentation" : ["*"],
+        "Userguide" : ["*"]
     },
     "LoggedIn" : {
         "denied" : {

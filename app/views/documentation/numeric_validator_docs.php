@@ -1,6 +1,6 @@
 <?php $this->setSiteTitle("NumericValidator - Custom MVC Framework Docs"); ?>
 <?php $this->start('body'); ?>
-<?php include('docs_nav.php'); ?>
+<?php include(getcwd().DS.'app' . DS . 'views/layouts/docs_nav.php'); ?>
 
 <div class="main">
     <a href="<?=PROOT?>documentation/validators" class="btn btn-xs btn-secondary">Validators</a>

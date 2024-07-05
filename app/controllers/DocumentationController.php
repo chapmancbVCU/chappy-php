@@ -145,6 +145,7 @@ class DocumentationController extends Controller {
     public function homeControllerAction(): void {
         $this->view->render('documentation/home_controller_docs');
     }
+    
     /** 
      * The default action for this controller.  It performs rendering of this 
      * site's documentation page.

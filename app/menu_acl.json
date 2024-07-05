@@ -1,6 +1,9 @@
 {
     "Home" : "home",
-    "Custom MVC Docs" : "documentation",
+    "Custom MVC Docs" : {
+        "Classes and Functions" : "documentation",
+        "User Guide" : "userguide"
+    },
     "Contacts" : {
         "My Contacts" : "contacts",
         "Add Contact" : "contacts/add"

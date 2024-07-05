@@ -1,6 +1,6 @@
 <?php $this->setSiteTitle("Controller Classes - Custom MVC Framework Docs"); ?>
 <?php $this->start('body'); ?>
-<?php include('docs_nav.php'); ?>
+<?php include(getcwd().DS.'app' . DS . 'views/layouts/docs_nav.php'); ?>
 
 <div class="main">
     <h1 class="text-center">Controller Classes</h1>
