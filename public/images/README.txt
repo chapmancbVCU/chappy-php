@@ -1,0 +1,1 @@
+You need to create profileImage directory here with 777 permissions and "chown -R $username:daemon profileImage/" to get profile image support to work.
