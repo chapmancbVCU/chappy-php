@@ -1,6 +1,6 @@
 /config/dbConfig.php
 /.vscode
 /vendor/
-/public/images/profileImage/
+/public/images/profileImage/*
 .env
 template.txt
