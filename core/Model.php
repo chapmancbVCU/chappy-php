@@ -207,7 +207,7 @@ class Model {
 
     public function processFile($file, $imageName, $arg = "", $fileTypes = [], $oldFile = "") {
         if($file[$imageName]['name'] != "") {
-            $cwd = getcwd().DIRECTORY_SEPARATOR;
+            $cwd = getcwd().DS;
             $target_dir = $cwd."public". DS ."images" . DS . $imageName . DS;
             $imageFileType = strtolower(pathinfo($file[$imageName]["name"],PATHINFO_EXTENSION));
             if(strcmp($arg, "") == 0) {
