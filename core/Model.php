@@ -205,11 +205,11 @@ class Model {
         }
     }
 
-    public function processFile($file) {
-        if($file['profileImage']['name'] != "") {
+    public function processFile($file, $imageName) {
+        if($file[$imageName]['name'] != "") {
             Helper::cl($file);
-            $target_dir = PROOT."public/images/profileImages/";
-            $target_file = $target_dir . basename($file["profileImage"]["name"]);
+            $target_dir = PROOT."public". DS ."images/" . DS . $imageName."s" . DS;
+            $target_file = $target_dir . basename($file[$imageName]["name"]);
             $target_file = preg_replace('/\s+/', '', $target_file);
             Helper::cl($target_file);
         } else {

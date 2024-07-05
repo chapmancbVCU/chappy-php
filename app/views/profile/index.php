@@ -1,6 +1,3 @@
-<?php
-    use App\Models\Users;
-?>
 <?php $this->setSiteTitle("Profile Details for ".$this->user->username); ?>
 <?php $this->start('body'); ?>
 <h1 class="text-center">Profile Details for <?=$this->user->username?></h1>
@@ -42,8 +39,17 @@
             <?php endif; ?>
         </tbody>
     </table>
-    <a href="<?=PROOT?>profile/edit/<?=$this->user->id?>" class="btn btn-info btn-xs">
-        <i class="fa fa-edit"></i> Edit Profile
+    <div>
+        <a href="<?=PROOT?>profile/edit/<?=$this->user->id?>" class="btn btn-info btn-xs">
+            <i class="fa fa-edit"></i> Edit User Profile
+        </a>
+        <a href="<?=PROOT?>profile/editProfileImage/<?=$this->user->id?>" class="btn btn-secondary btn-xs">
+            <i class="fa fa-image"></i> Edit Profile Image
+        </a>
+        <a href="<?=PROOT?>profile/updatePassword/<?=$this->user->id?>" class="btn btn-danger btn-xs">
+        <i class="fa fa-key"></i> Update Password
     </a>
+    </div>
+    
 </div>
 <?php $this->end(); ?>

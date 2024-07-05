@@ -4,6 +4,10 @@ use Core\Controller;
 use Core\Router;
 use App\Models\Users;
 use Core\Helper;
+
+/**
+ * Undocumented class
+ */
 class ProfileController extends Controller {
     /**
      * Constructor for Profile Controller.
@@ -17,6 +21,34 @@ class ProfileController extends Controller {
         parent::__construct($controller, $action);
     }
 
+    public function editAction(): void {
+        $user = Users::currentUser();
+        if(!$user) Router::redirect('');
+        if($this->request->isPost()) {
+            $this->request->csrfCheck();
+            $user->assign($this->request->get());
+            //$user->processFile($_FILES);
+            if($user->save()) {
+                Router::redirect('profile/index');
+            }
+        }
+
+        $this->view->displayErrors = $user->getErrorMessages();
+        $this->view->user = $user;
+        $this->view->postAction = PROOT . 'profile' . DS . 'edit' . DS . $user->id;
+        $this->view->render('profile/edit');
+    }
+
+    public function editProfileImageAction(): void {
+        $user = Users::currentUser();
+
+        if(!$user) {
+            Router::redirect('');
+        }
+        $this->view->user = $user;
+        $this->view->render('profile/edit_profile_image');
+    }
+
     public function indexAction(): void {
         $user = Users::currentUser();
 
@@ -27,22 +59,23 @@ class ProfileController extends Controller {
         $this->view->render('profile/index');
     }
 
-    public function editAction(): void {
+    public function updatePasswordAction(): void {
         $user = Users::currentUser();
         if(!$user) Router::redirect('');
         if($this->request->isPost()) {
             $this->request->csrfCheck();
             $user->assign($this->request->get());
-            $user->processFile($_FILES);
+            $user->setChangePassword(true);
+            $user->setConfirm($this->request->get('confirm'));
             if($user->save()) {
                 Router::redirect('profile/index');
+                $user->setChangePassword(false);
             }
         }
-
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->user = $user;
-        $this->view->postAction = PROOT . 'profile' . DS . 'edit' . DS . $user->id;
-        $this->view->render('profile/edit');
+        $this->view->postAction = PROOT . 'profile' . DS . 'update_password' . DS . $user->id;
+        $this->view->render('profile/update_password');
     }
 
 }

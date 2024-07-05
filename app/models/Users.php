@@ -21,6 +21,7 @@ use Core\Helper;
  */
 class Users extends Model {
     public $acl;
+    private $changePassword = false;
     private $_confirm;
     private $_cookieName;
     public static $currentLoggedInUser = null;
@@ -200,6 +201,10 @@ class Users extends Model {
         $this->_confirm = $value;
     }
 
+    public function setChangePassword(bool $value): void {
+        $this->changePassword = $value;
+    }
+
     /**
      * Performs validation on the user registration form.
      *
@@ -226,13 +231,26 @@ class Users extends Model {
 
         // Validate password
         $this->runValidation(new RequiredValidator($this, ['field' => 'password', 'message' => 'Password is required.'])); 
-        if($this->isNew()) {
-            $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => 12, 'message' => 'Password must be at least 12 characters.']));
-            $this->runValidation(new MaxValidator($this, ['field' => 'password', 'rule' => 30, 'message' => 'Password must be less than 30 characters.']));
+        
+        if(!$this->isNew()) {
             $this->runValidation(new UpperCharValidator($this, ['field' => 'password', 'message' => '1 or more complex password requirements is not satisfied.']));
             $this->runValidation(new LowerCharValidator($this, ['field' => 'password', 'message' => '1 or more complex password requirements is not satisfied.']));
             $this->runValidation(new NumberCharValidator($this, ['field' => 'password', 'message' => '1 or more complex password requirements is not satisfied.']));
-            $this->runValidation(new SpecialCharValidator($this, ['field' => 'password', 'message' => '1 or more complex password requirements is not satisfied.']));
+            $this->runValidation(new SpecialCharValidator($this, ['field' => 'password', 'message' => '1 or more complex password requirements is not satisfied.'])); 
+            if($this->changePassword) {
+                $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => 12, 'message' => 'Password must be at least 12 characters.']));
+                $this->runValidation(new MaxValidator($this, ['field' => 'password', 'rule' => 50, 'message' => 'Password must be less than 30 characters.']));
+                $this->runValidation(new MatchesValidator($this, ['field' => 'password', 'rule' => $this->_confirm, 'message' => 'Passwords must match.']));
+            }
+        }
+        
+        if($this->isNew()) {
+            $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => 12, 'message' => 'Password must be at least 12 characters.']));
+            $this->runValidation(new MaxValidator($this, ['field' => 'password', 'rule' => 50, 'message' => 'Password must be less than 30 characters.']));
+            $this->runValidation(new UpperCharValidator($this, ['field' => 'password', 'message' => '1 or more complex password requirements is not satisfied.']));
+            $this->runValidation(new LowerCharValidator($this, ['field' => 'password', 'message' => '1 or more complex password requirements is not satisfied.']));
+            $this->runValidation(new NumberCharValidator($this, ['field' => 'password', 'message' => '1 or more complex password requirements is not satisfied.']));
+            $this->runValidation(new SpecialCharValidator($this, ['field' => 'password', 'message' => '1 or more complex password requirements is not satisfied.'])); 
             $this->runValidation(new MatchesValidator($this, ['field' => 'password', 'rule' => $this->_confirm, 'message' => 'Passwords must match.']));
         }
     }
