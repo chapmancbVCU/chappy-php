@@ -205,16 +205,31 @@ class Model {
         }
     }
 
-    public function processFile($file, $imageName) {
+    public function processFile($file, $imageName, $arg = "", $fileTypes = []) {
         if($file[$imageName]['name'] != "") {
-            Helper::cl($file);
-            $target_dir = PROOT."public". DS ."images/" . DS . $imageName."s" . DS;
-            $target_file = $target_dir . basename($file[$imageName]["name"]);
-            $target_file = preg_replace('/\s+/', '', $target_file);
-            Helper::cl($target_file);
+            $target_dir = getcwd().DIRECTORY_SEPARATOR."public". DS ."images" . DS . $imageName . DS;
+            $imageFileType = strtolower(pathinfo($file[$imageName]["name"],PATHINFO_EXTENSION));
+            if(strcmp($arg, "") == 0) {
+                $target_file = preg_replace('/\s+/u', '', basename($file[$imageName]["name"]));
+            } else {    
+                $target_file = $arg . "." .$imageFileType;
+                $full_target_path = $target_dir . $target_file;
+            }
+            $full_target_path = $target_dir . $target_file;
+            // Check file size
+            if($file[$imageName]["size"] > 41943040) {
+                $this->addErrorMessage('profileImage', "File too large.");
+            }
+            if(!empty($fileTypes) && !in_array($imageFileType, $fileTypes)) {
+                $this->addErrorMessage('profileImage', "Invalid file type.");
+            }
+            if($this->_validates && !move_uploaded_file($file[$imageName]["tmp_name"], $full_target_path)) {
+                $this->addErrorMessage('profileImage', "File upload failure.");
+            } 
         } else {
-            Helper::cl("No file selected");
+            $this->addErrorMessage('profileImage', "No file selected.");
         } 
+        return $target_file;
     }
 
     /**

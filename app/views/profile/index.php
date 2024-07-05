@@ -3,7 +3,9 @@
 <h1 class="text-center">Profile Details for <?=$this->user->username?></h1>
 
 <div class="col align-items-center justify-content-center mx-auto my-3 w-50">
-    <table class="table table-striped table-condensed table-bordered table-hover bg-light">
+    <img src="<?=PROOT?>public/images/profileImage/<?=$this->user->profileImage?>"
+        class="img-thumbnail mx-auto my-5 d-block w-50 rounded border border-primary"></img>
+    <table class="table table-striped table-condensed table-bordered table-hover bg-light my-5">
         <thead>
             <th class="text-center">Field Name</th>
             <th class="text-center">Value</th>
@@ -39,16 +41,16 @@
             <?php endif; ?>
         </tbody>
     </table>
-    <div>
-        <a href="<?=PROOT?>profile/edit/<?=$this->user->id?>" class="btn btn-info btn-xs">
+    <div class="mb-5 d-flex justify-content-around">
+        <a href="<?=PROOT?>profile/edit/<?=$this->user->id?>" class="btn btn-info btn-xs mx-2 mb-3">
             <i class="fa fa-edit"></i> Edit User Profile
         </a>
-        <a href="<?=PROOT?>profile/editProfileImage/<?=$this->user->id?>" class="btn btn-secondary btn-xs">
+        <a href="<?=PROOT?>profile/editProfileImage/<?=$this->user->id?>" class="btn btn-secondary btn-xs mx-2 mb-3">
             <i class="fa fa-image"></i> Edit Profile Image
         </a>
-        <a href="<?=PROOT?>profile/updatePassword/<?=$this->user->id?>" class="btn btn-danger btn-xs">
-        <i class="fa fa-key"></i> Update Password
-    </a>
+        <a href="<?=PROOT?>profile/updatePassword/<?=$this->user->id?>" class="btn btn-danger btn-xs mx-2 mb-3">
+            <i class="fa fa-key"></i> Update Password
+        </a>
     </div>
     
 </div>

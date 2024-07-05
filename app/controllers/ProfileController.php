@@ -27,12 +27,10 @@ class ProfileController extends Controller {
         if($this->request->isPost()) {
             $this->request->csrfCheck();
             $user->assign($this->request->get());
-            //$user->processFile($_FILES);
             if($user->save()) {
                 Router::redirect('profile/index');
             }
         }
-
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->user = $user;
         $this->view->postAction = PROOT . 'profile' . DS . 'edit' . DS . $user->id;
@@ -41,11 +39,19 @@ class ProfileController extends Controller {
 
     public function editProfileImageAction(): void {
         $user = Users::currentUser();
-
-        if(!$user) {
-            Router::redirect('');
+        if(!$user) Router::redirect('');
+        if($this->request->isPost()) {
+            $this->request->csrfCheck();
+            $user->assign($this->request->get());
+            $fileTypes = ['png', 'jpg', 'gif', 'bmp'];
+            $user->profileImage = $user->processFile($_FILES, "profileImage", $user->username, $fileTypes);
+            if($user->save()) {
+                Router::redirect('profile/index');
+            }
         }
+        $this->view->displayErrors = $user->getErrorMessages();
         $this->view->user = $user;
+        $this->view->postAction = PROOT . 'profile' . DS . 'edit_profile_image' . DS . $user->id;
         $this->view->render('profile/edit_profile_image');
     }
 
