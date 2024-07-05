@@ -19,7 +19,7 @@ It supports everything described above.  This sample application natively comes 
 7. Add management system for Users model to in include admin so administrators can manage other users, change user type, and perform password reset operations.
 8. Add types to functions (Done)
 9. Add types to instance variables
-10. Add TinyMCE.
+10. Add TinyMCE (Done)
 11. Add file upload support (Done).
 12. Add user's guide
 
