@@ -3,8 +3,11 @@
 <h1 class="text-center">Profile Details for <?=$this->user->username?></h1>
 
 <div class="col align-items-center justify-content-center mx-auto my-3 w-50">
-    <img src="<?=PROOT?>public/images/profileImage/<?=$this->user->profileImage?>"
-        class="img-thumbnail mx-auto my-5 d-block w-50 rounded border border-primary"></img>
+    <?php if($this->user->profileImage != null):?>
+        <img src="<?=PROOT?>public/images/profileImage/<?=$this->user->profileImage?>"
+            class="img-thumbnail mx-auto my-5 d-block w-50 rounded border border-primary">
+        </img>
+    <?php endif; ?>
     <table class="table table-striped table-condensed table-bordered table-hover bg-light my-5">
         <thead>
             <th class="text-center">Field Name</th>

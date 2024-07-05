@@ -19,7 +19,9 @@
       <?php if(Users::currentUser()): ?>
         <li>
           <a class="nav-link" href="<?=PROOT?>profile">Hello <?=Users::currentUser()->fname ?>
+            <?php if(Users::currentUser()->profileImage != null): ?>
             <img class="img-thumbnail ml-2 p-0"  style="width: 50px" src="<?=PROOT?>public/images/profileImage/<?=Users::currentUser()->profileImage?>"></img></a>
+            <?php endif; ?>
           </a>
         </li>
       <?php endif; ?>
