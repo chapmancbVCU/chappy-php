@@ -60,5 +60,17 @@
         <a href="<?=PROOT?>documentation/uniqueCharValidator">Unique Char Validator</a>
         <a href="<?=PROOT?>documentation/upperCharValidator">Upper Char Validator</a>
     </div>
+    <button class="dropdown-btn">User Guide
+        <i class="float-right pr-1 dropdown-toggle"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="<?=PROOT?>userguide/">Overview</a>
+        <a href="<?=PROOT?>userguide/gettingStarted">Getting Started</a>
+        <a href="<?=PROOT?>userguide/loginSystem">Login System</a>
+        <a href="<?=PROOT?>userguide/userProfiles">User Profiles</a>
+        <a href="<?=PROOT?>userguide/contactManagement">Contact Management System</a>
+        <a href="<?=PROOT?>userguide/forms">Quick Forms</a>
+        <a href="<?=PROOT?>userguide/validation">Server Side Validation</a>
+    </div>
     <a href="http://php.net/manual/en">PHP Docs<a>
 </div>

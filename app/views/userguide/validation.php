@@ -5,7 +5,7 @@
 <div class="main">
 <a href="<?=PROOT?>userguide/index" class="btn btn-xs btn-secondary">User Guide Home</a>
     <h1 class="text-center">Validation</h1>
-    <div class="my-5 w-75 bg-light mx-auto border rounded">
+    <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded">
         Test
     </div>
 </div>
