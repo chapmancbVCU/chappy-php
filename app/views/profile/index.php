@@ -5,7 +5,7 @@
 <div class="col align-items-center justify-content-center mx-auto my-3 w-50">
     <?php if($this->user->profileImage != null):?>
         <img src="<?=PROOT?>public/images/profileImage/<?=$this->user->profileImage?>"
-            class="img-thumbnail mx-auto my-5 d-block w-50 rounded border border-primary">
+            class="img-thumbnail mx-auto my-5 d-block w-50 rounded border border-primary shadow-lg">
         </img>
     <?php endif; ?>
     <table class="table table-striped table-condensed table-bordered table-hover bg-light my-5">

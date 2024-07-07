@@ -8,14 +8,14 @@
 
 <div class="d-flex flex-column w-75 mx-auto">
   <div class="d-flex flex-wrap justify-content-around">
-    <div class="card mb-5 border border-primary rounded-lg" style="width: 30rem;">
+    <div class="card mb-5 border border-primary rounded-lg shadow-lg" style="width: 30rem;">
       <img class="card-img-top" src="<?=PROOT?>public/images/home/form_helper.png" alt="Example FormHelper function call">
       <div class="card-body">
         <h5 class="card-title">Rapid Form Development</h5>
         <p class="card-text">Built in library of functions focused on rapid development of responsive web forms.</p>
       </div>
     </div>
-    <div class="card mb-5 border border-primary rounded-lg" style="width: 30rem;">
+    <div class="card mb-5 border border-primary rounded-lg shadow-lg" style="width: 30rem;">
       <img class="card-img-top" src="<?=PROOT?>public/images/home/validation.png" alt="Validation messages">
       <div class="card-body">
         <h5 class="card-title">Server Side Form Validation</h5>
@@ -25,14 +25,14 @@
   </div>
   
   <div class="d-flex flex-wrap justify-content-around">
-    <div class="card mb-5 border border-primary rounded-lg" style="width: 30rem;">
+    <div class="card mb-5 border border-primary rounded-lg shadow-lg" style="width: 30rem;">
       <img class="card-img-top" src="<?=PROOT?>public/images/home/contacts.png" alt="Contacts page">
       <div class="card-body">
         <h5 class="card-title">Sample MVC App</h5>
         <p class="card-text">The sample contact management systems demonstrates how to use all features of this MVC framework.</p>
       </div>
     </div>
-    <div class="card mb-5 border border-primary rounded-lg" style="width: 30rem;">
+    <div class="card mb-5 border border-primary rounded-lg shadow-lg" style="width: 30rem;">
       <img class="card-img-top" src="<?=PROOT?>public/images/home/register.png" alt="User registration page">
       <div class="card-body">
         <h5 class="card-title">User Management System</h5>
@@ -42,14 +42,14 @@
   </div>
 
   <div class="d-flex flex-wrap justify-content-around">
-   <div class="card mb-5 border border-primary rounded-lg" style="width: 30rem;">
+   <div class="card mb-5 border border-primary rounded-lg shadow-lg" style="width: 30rem;">
       <img class="card-img-top" src="<?=PROOT?>public/images/home/documentation.png" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">MVC Documentation</h5>
         <p class="card-text">Descriptions of all functions and classes that come with this MVC framework.</p>
       </div>
     </div>
-    <div class="card mb-5 border border-primary rounded-lg" style="width: 30rem;">
+    <div class="card mb-5 border border-primary rounded-lg shadow-lg" style="width: 30rem;">
       <img class="card-img-top" src="<?=PROOT?>public/images/home/ajax.png" alt="Card image cap">
       <img class="card-img-top" src="<?=PROOT?>public/images/home/ajax_request.png" alt="Ajax request code">
       <div class="card-body d-flex flex-column">
