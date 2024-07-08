@@ -58,7 +58,7 @@ class ProfileController extends Controller {
             // Accepted file types.
             $fileTypes = ['png', 'jpg', 'gif', 'bmp'];  
 
-            // Process file and set DB name
+            // Process file.
             $user->profileImage = $user->processFile($_FILES, "profileImage", $user->username, $user->profileImage, "images", $fileTypes);
             if($user->save()) {
                 Router::redirect('profile/index');
