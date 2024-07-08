@@ -223,6 +223,8 @@ class Model {
      * removed before upload.
      * @param string $oldFile The name of the old file we want to remove.  The 
      * default value is an empty string.
+     * @param string $parentDir The directory under public that contains 
+     * collections of media.
      * @param array $fileTypes The file types we will test to determine if 
      * it is a valid file type.
      * @return string $targetFile The filename and extension so name can be 
@@ -231,13 +233,14 @@ class Model {
     public function processFile(array $file, 
         string $imageName, 
         string $arg = "", 
-        string $oldFile = "", 
+        string $oldFile = "",
+        string $parentDir= "",
         array $fileTypes = []
         ): string {
         
         if($file[$imageName]['name'] != "") {
             // Process and upload file.
-            $target_dir = getcwd().DS."public". DS ."images" . DS . $imageName . DS;
+            $target_dir = getcwd().DS."public". DS . $parentDir . DS . $imageName . DS;
             $imageFileType = strtolower(pathinfo($file[$imageName]["name"],PATHINFO_EXTENSION));
             if(strcmp($arg, "") == 0) {
                 $target_file = preg_replace('/\s+/u', '', basename($file[$imageName]["name"]));
