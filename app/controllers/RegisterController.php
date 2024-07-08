@@ -78,6 +78,11 @@ class RegisterController extends Controller {
             $this->request->csrfCheck();
             $newUser->assign($this->request->get());
             $newUser->setConfirm($this->request->get('confirm'));
+            // Accepted file types.
+            $fileTypes = ['png', 'jpg', 'gif', 'bmp'];  
+
+            // Process file.
+            $newUser->profileImage = $newUser->processFile($_FILES, "profileImage", $newUser->username, "", "images", $fileTypes);
             if($newUser->save()) {
                 Router::redirect('register/login');
             }
