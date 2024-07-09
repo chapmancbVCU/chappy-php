@@ -602,7 +602,7 @@ FormHelper::inputBlock(
             <td>$name Sets the value for the name, for, and id attributes for this input.</td>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">string</td>
+            <td class="align-middle text-center w-25">mixed</td>
             <td>$value The value we want to set.  We can use this to set the value of the value attribute during form validation.  Default value is the empty string.  It can be set with values during form validation and forms used for editing records.</td>
         </tr>
         <tr>

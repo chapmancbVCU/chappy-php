@@ -12,7 +12,7 @@ use Core\FormHelper;
     <div class="col-md-6 bg-light p-3">
         <h3 class="text-center">Register Here!</h3>
         <hr>
-        <form class="form" action="" method="post">
+        <form class="form" action="" method="post" enctype="multipart/form-data">
             <?= FormHelper::csrfInput() ?>
             <?= FormHelper::displayErrors($this->displayErrors) ?>
             <?= FormHelper::inputBlock('text', "First Name", 'fname', $this->newUser->fname, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>

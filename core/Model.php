@@ -237,7 +237,7 @@ class Model {
         string $parentDir= "",
         array $fileTypes = []
         ): string {
-        
+            
         if($file[$imageName]['name'] != "") {
             // Process and upload file.
             $target_dir = getcwd().DS."public". DS . $parentDir . DS . $imageName . DS;
@@ -253,7 +253,7 @@ class Model {
             if(!empty($fileTypes) && !in_array($imageFileType, $fileTypes)) {
                 $this->addErrorMessage($imageName, "Invalid file type.");
             }
-
+            
             // Remove file only if old file name is provided.
             self::unlink($imageName, $oldFile);
 
