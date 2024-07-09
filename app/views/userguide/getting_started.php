@@ -64,6 +64,21 @@ sudo chown -R %USERNAME%:%GROUP% profileImage/
                     </li>
                 </ol>
             <li>Import the database found in mvctutorial.sql.zip into SQL.</li>
+            <li>Initialize a composer project</li>
+            <li>Install phpdotenv for environmental file support by running:
+                <pre class="mb-1 pb-1">
+                    <code>
+composer require vlucas/phpdotenv
+                    </code>
+                </pre>
+            </li>
+            <li>Install TinyMCE for WYSIWYG rich text editor support:
+                <pre class="mb-1 pb-1">
+                    <code>
+composer require tinymce/tinymce
+                    </code>
+                </pre>
+            </li>
             <li>Navigate to http://localhost/custom-php-mvc-framework.  If you have any issues make sure your database is setup correctly and the .env file is correct.</li>
         </ol>
     </div>
