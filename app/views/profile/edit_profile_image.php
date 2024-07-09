@@ -11,7 +11,7 @@ use Core\FormHelper;
         <form class="form" action="" method="post" enctype="multipart/form-data">
             <?= FormHelper::csrfInput() ?>
             <?= FormHelper::displayErrors($this->displayErrors) ?>
-            <?= FormHelper::inputBlock('file', "Upload Profile Image (Select none to remove)", 'profileImage', $this->user->profileImage, ['class' => 'form-control'], ['class' => 'form-group w-50']) ?>
+            <?= FormHelper::inputBlock('file', "Upload Profile Image (Select none to remove)", 'profileImage', '', ['class' => 'form-control'], ['class' => 'form-group w-50']) ?>
             <?= FormHelper::submitBlock('Upload', ['class' => 'btn btn-large btn-primary'], ['class' => 'text-right'])  ?>
         </form>
     </div>

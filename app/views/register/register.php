@@ -12,7 +12,7 @@ use Core\FormHelper;
     <div class="col-md-6 bg-light p-3">
         <h3 class="text-center">Register Here!</h3>
         <hr>
-        <form class="form" action="" method="post">
+        <form class="form" action="" method="post" enctype="multipart/form-data">
             <?= FormHelper::csrfInput() ?>
             <?= FormHelper::displayErrors($this->displayErrors) ?>
             <?= FormHelper::inputBlock('text', "First Name", 'fname', $this->newUser->fname, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
@@ -25,6 +25,7 @@ use Core\FormHelper;
                 ['class' => 'form-control input-sm', 'placeholder' => 'Describe yourself here...', 'rows' => '4'], 
                 ['class' => 'form-group']); 
             ?>
+            <?= FormHelper::inputBlock('file', "Upload Profile Image (Select none to remove)", 'profileImage', '', ['class' => 'form-control'], ['class' => 'form-group w-50']) ?>
             <div>
                 <h4>Password Requirements</h4>
                 <ul>

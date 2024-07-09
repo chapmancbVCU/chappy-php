@@ -1,3 +1,7 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 .form-errors {
   border-radius: 8px;
   margin: 10px 25px 45px 25px;

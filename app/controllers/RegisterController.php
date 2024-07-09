@@ -4,7 +4,7 @@ use Core\Controller;
 use Core\Router;
 use App\Models\Users;
 use App\Models\Login;
-
+use Core\Helper;
 /**
  * Implements support for our Register controller.  Functions found in this 
  * class will support tasks related to the user registration.
@@ -78,6 +78,9 @@ class RegisterController extends Controller {
             $this->request->csrfCheck();
             $newUser->assign($this->request->get());
             $newUser->setConfirm($this->request->get('confirm'));
+            // Accepted file types.
+            $fileTypes = ['png', 'jpg', 'gif', 'bmp'];  
+            $newUser->profileImage = $newUser->processFile($_FILES, "profileImage", $newUser->username, "", "images", $fileTypes);
             if($newUser->save()) {
                 Router::redirect('register/login');
             }
