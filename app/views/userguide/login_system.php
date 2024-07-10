@@ -32,6 +32,11 @@
             <li>Password: Make sure they match and fulfill complexity requirements.</li>
         </ol>
     </div>
+
+    <h1 id="login" class="text-center">Login</h1>
+    <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
+        <p>The login page is the standard login setup with a remember me checkbox.</p>
+    </div>
 </div>
 <script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>
