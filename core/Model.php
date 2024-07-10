@@ -352,7 +352,7 @@ class Model {
      * Removes a file during a remove/update file operation.  If there is a 
      * failure a failed to remove previous file message is set.
      *
-     * @param $imageName The name for type of image to match image's 
+     * @param string $imageName The name for type of image to match image's 
      * parent directory.  For example, we used profileImage for all profile 
      * images.
      * @param string $oldFile The name of the old file we want to remove.  The 
