@@ -31,7 +31,7 @@
                     <th class="text-center" colspan="2">Description</th>
                 </tr>
                 <tr>
-                    <td colspan="2"><?=htmlspecialchars_decode(stripslashes($this->user->description));?></td>
+                    <td class="p-4" colspan="2"><?=htmlspecialchars_decode(stripslashes($this->user->description));?></td>
                 </tr>
             <?php else: ?>
                 <tr>
