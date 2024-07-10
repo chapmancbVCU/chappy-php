@@ -42,7 +42,7 @@ class Users extends Model {
      * @param string $user The name of the user.  Default value is an empty 
      * string.
      */
-    public function __construct(mixed $user = '') {
+    public function __construct($user = '') {
         $table = 'users';
         parent::__construct($table);
 
@@ -97,7 +97,7 @@ class Users extends Model {
      * @return object|null An object containing information about current 
      * logged in user from users table.
      */
-    public static function currentUser(): object|null {
+    public static function currentUser() {
         if(!isset(self::$currentLoggedInUser) && Session::exists(CURRENT_USER_SESSION_NAME)) {
             $user = new Users((int)Session::get(CURRENT_USER_SESSION_NAME));
             self::$currentLoggedInUser = $user;
@@ -112,7 +112,7 @@ class Users extends Model {
      * @return bool|object An object containing information about a user from 
      * the Users table.
      */
-    public function findByUserName(string $username): bool|object {
+    public function findByUserName(string $username) {
         return $this->findFirst(['conditions' => 'username = ?', 'bind' => [$username]]);
     }
 
