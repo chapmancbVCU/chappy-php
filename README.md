@@ -11,13 +11,18 @@ It supports everything described above.  This sample application natively comes 
 
 ## Getting Started
 1. Navigate to where your development projects are located in CMD or Terminal.
-2. Run the command git clone git@github.com:chapmancbVCU/custom-php-mvc-framework.git
+2. Run the command ```git clone git@github.com:chapmancbVCU/custom-php-mvc-framework.git```
 3. Make a copy of .env.sample in project root and name it .env.  Fill in the following information:
-   a. DB_USER
-   b. DB_PASSWORD
-   c. CURRENT_USER_SESSION_NAME: should be a long string of upper and lower case characters and numbers.
-   d. REMEMBER_ME_COOKIE_NAME:  should be a long string of upper and lower case characters and numbers.
+   * DB_USER
+   * DB_PASSWORD
+   * CURRENT_USER_SESSION_NAME: should be a long string of upper and lower case characters and numbers.
+   * REMEMBER_ME_COOKIE_NAME:  should be a long string of upper and lower case characters and numbers.
 4. profileImage directory:
+   * In CMD or Terminal navigate to public/images from project root and make a directory called "profileImage".
+   * In Linux and MacOS set the appropriate permissions by running the command: chmod 777 profileImage
+   * In Linux and MacOS you will need to modify the owner and group.
+      ```sudo chown -R %USERNAME%:%GROUP% profileImage/```
+      Where  %USERNAME% is the name of the account you are developing in and %GROUP% is the name of group associated with your server.  In XAMPP it would be daemon and in Nginx it maybe nginx or a something else depending on the instructions you followed to setup your server.
 
 ## Goals
 1. Add additional front-end and back-end form validation (Done)
