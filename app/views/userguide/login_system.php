@@ -6,7 +6,7 @@
 <a href="<?=PROOT?>userguide/index" class="btn btn-xs btn-secondary">User Guide Home</a>
     <h1 class="text-center">Login System</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
-        <ol>
+        <ol class="pl-4">
             <li><a href="#registration">Registration</a></li>
             <li><a href="#login">Login</a></li>
         </ol>
@@ -22,7 +22,7 @@
             <figcaption>Figure 1 - Registration Screen</figcaption>
         </figure>
         <p>Field Descriptions:</p>
-        <ol>
+        <ol class="pl-4">
             <li>First Name: User's first name and it's a required field.</li>
             <li>Last Name: User's last name and it's a required field.</li>
             <li>E-mail: User's Email and it's a required field</li>

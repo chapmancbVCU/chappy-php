@@ -5,8 +5,8 @@
 <div class="main">
 <a href="<?=PROOT?>userguide/index" class="btn btn-xs btn-secondary">User Guide Home</a>
     <h1 class="text-center">Getting Started</h1>
-    <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded py-4">
-        <ol>
+    <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
+        <ol class="pl-4">
             <li><a href="#system-requirements">System Requirements</a></li>
             <li><a href="#setup">Setup</a></li>
         </ol>
@@ -14,7 +14,7 @@
 
     <h1 id="system-requirements" class="text-center">System Requirements</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
-        <ol>
+        <ol class="pl-4">
             <li>Apache Server; Nginx has not been fully tested yet.</li>
             <li>PHP 7; PHP 8 has some issues with some things being deprecated such as dynamic creation of variables</li>
             <li>SQL/MariaDB</li>
@@ -27,7 +27,7 @@
 
     <h1 id="setup" class="text-center">Setup</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
-        <ol>
+        <ol class="pl-4">
             <li>Navigate to where your development projects are located in CMD or Terminal</li>
             <li>Run the command:
                 <pre class="mb-1 pb-1">

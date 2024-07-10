@@ -5,7 +5,7 @@
 <div class="main">
     <h1 class="text-center">User Guide</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
-        <ol>
+        <ol class="pl-4">
             <li><a href="#overview">Overview</a></li>
             <li><a href="<?=PROOT?>userguide/gettingStarted">Getting Started</a></li>
             <li><a href="<?=PROOT?>userguide/loginSystem">Login System</a></li>
