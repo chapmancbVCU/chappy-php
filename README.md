@@ -3,6 +3,8 @@ Model View Controller (MVC) framework based on tutorials I have been following f
 
 Beginning on Friday, June 15, 2024 all updates are driven by me unless other contributors are involved.
 
+Complete documentation including the "Getting Started" guild describe below can be found within the framework after setup.
+
 ## About
 The Model View Controller is a style of programming that allows developers to efficiently manage interactions between users, the user interface, and the database of a web application.  The models manages the data, logic and rules of the application.  The views are what the user sees and interacts with.  Finally, the controller manages interactions between the user, views, and models.
 
