@@ -9,6 +9,16 @@ The Model View Controller is a style of programming that allows developers to ef
 ## What does this MVC support?
 It supports everything described above.  This sample application natively comes with support for user login, registration, and sessions associated with each user.
 
+## Getting Started
+1. Navigate to where your development projects are located in CMD or Terminal.
+2. Run the command git clone git@github.com:chapmancbVCU/custom-php-mvc-framework.git
+3. Make a copy of .env.sample in project root and name it .env.  Fill in the following information:
+   a. DB_USER
+   b. DB_PASSWORD
+   c. CURRENT_USER_SESSION_NAME: should be a long string of upper and lower case characters and numbers.
+   d. REMEMBER_ME_COOKIE_NAME:  should be a long string of upper and lower case characters and numbers.
+4. profileImage directory:
+
 ## Goals
 1. Add additional front-end and back-end form validation (Done)
 2. Resolve issue for warnings about creating of dynamic properties so the framework is fully compatible with PHP 8
@@ -20,8 +30,8 @@ It supports everything described above.  This sample application natively comes 
 8. Add types to functions (Done)
 9. Add types to instance variables
 10. Add TinyMCE (Done)
-11. Add file upload support (Done).
-12. Add user's guide
+11. Add file upload support (Done)
+12. Add user's guide (In progress)
 
 ## Credits
 1. “mvc” icon by iconixar, from thenounproject.com.
