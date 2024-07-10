@@ -19,10 +19,15 @@ It supports everything described above.  This sample application natively comes 
    * REMEMBER_ME_COOKIE_NAME:  should be a long string of upper and lower case characters and numbers.
 4. profileImage directory:
    * In CMD or Terminal navigate to public/images from project root and make a directory called "profileImage".
-   * In Linux and MacOS set the appropriate permissions by running the command: chmod 777 profileImage
+   * In Linux and MacOS set the appropriate permissions by running the command: ```chmod 777 profileImage```
    * In Linux and MacOS you will need to modify the owner and group.
       ```sudo chown -R %USERNAME%:%GROUP% profileImage/```
       Where  %USERNAME% is the name of the account you are developing in and %GROUP% is the name of group associated with your server.  In XAMPP it would be daemon and in Nginx it maybe nginx or a something else depending on the instructions you followed to setup your server.
+5. Import the database found in mvctutorial.sql.zip into SQL.
+6. Initialize a composer project.
+7. Install phpdotenv for environmental file support by running: ```composer require vlucas/phpdotenv```
+8. Install TinyMCE for WYSIWYG rich text editor support: ```composer require tinymce/tinymce```
+9. Navigate to http://localhost/custom-php-mvc-framework.  If you have any issues make sure your database is setup correctly and the .env file is correct.
 
 ## Goals
 1. Add additional front-end and back-end form validation (Done)
