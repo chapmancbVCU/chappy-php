@@ -138,7 +138,7 @@ class Model {
      * the table in our database.  The default value is an empty array.
      * @return bool|array An array of object returned from an SQL query.
      */
-    public function find(array $params = []): bool|array {
+    public function find(array $params = []) {
         $params = $this->_softDeleteParams($params);
 
         // Using $this will return the child class.
@@ -154,7 +154,7 @@ class Model {
      * @param int $id The ID of the row we want to retrieve from the database.
      * @return bool|object The row from a database.
      */
-    public function findById(int $id): bool|object {
+    public function findById(int $id) {
         return $this->findFirst(['conditions'=>"id = ?", 'bind' => [$id]]);
     }
 
@@ -165,7 +165,7 @@ class Model {
      * the table in our database.  The default value is an empty array.
      * @return bool|object An array of object returned from an SQL query.
      */
-    public function findFirst(array $params = []): bool|object {
+    public function findFirst(array $params = []) {
         $params = $this->_softDeleteParams($params);
         $resultQuery = $this->_db->findFirst($this->_table, $params, get_class($this));
         return $resultQuery;
@@ -199,7 +199,7 @@ class Model {
      * @param array|object $result Results from a database query.
      * @return void
      */
-    protected function populateObjData(array|object $result): void {
+    protected function populateObjData($result): void {
         foreach($result as $key => $val) {
             $this->$key = $val;
         }
@@ -352,7 +352,7 @@ class Model {
      * Removes a file during a remove/update file operation.  If there is a 
      * failure a failed to remove previous file message is set.
      *
-     * @param $imageName The name for type of image to match image's 
+     * @param string $imageName The name for type of image to match image's 
      * parent directory.  For example, we used profileImage for all profile 
      * images.
      * @param string $oldFile The name of the old file we want to remove.  The 

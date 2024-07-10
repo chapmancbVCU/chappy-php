@@ -35,7 +35,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -60,7 +60,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -85,7 +85,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -109,7 +109,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -133,7 +133,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -157,7 +157,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
         <tr>

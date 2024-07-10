@@ -16,7 +16,7 @@ class Router {
      * controller or action.  Otherwise we return the value so we can create 
      * a link.
      */
-    private static function get_link(string $value): bool|string {
+    private static function get_link(string $value) {
         // Check if external link just return it.
         if(preg_match('/https?:\/\//', $value) == 1) {
             return $value;

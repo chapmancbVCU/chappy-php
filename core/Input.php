@@ -27,7 +27,7 @@ class Input {
      * @return array|string An array associated with a POST or GET request or 
      * an encoded HTML string.
      */
-    public function get(mixed $input = false): array|string {
+    public function get($input = false) {
         if(!$input) {
             // Return and sanitize entire request array.
             $data = [];

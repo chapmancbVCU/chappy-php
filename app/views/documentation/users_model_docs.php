@@ -51,6 +51,10 @@
             <td>Access control list level.  Represents the acl field in the users table.</td>
         </tr>
         <tr>
+            <td>private $changePassword</td>
+            <td>Boolean flag when set to true allows operations needed for changing password.  Currently used to assist in validation when changing a password.</td>
+        </tr>
+        <tr>
             <td>private $_confirm</td>
             <td>Used by registration process for representing confirm field for password.</td>
         </tr>
@@ -65,6 +69,10 @@
         <tr>
             <td>public $deleted</td>
             <td>With an initial value of 0, when set to 1 the corresponding field in the users table is set.  Supports ability to soft delete.</td>
+        </tr>
+        <tr>
+            <td>public $description</td>
+            <td>Description for a user.  Represents the description field in the user database table.</td>
         </tr>
         <tr>
             <td>public $email</td>
@@ -87,6 +95,10 @@
             <td>The password for this user.  Represents the password field in the users database table.</td>
         </tr>
         <tr>
+            <td>public $profileImage</td>
+            <td>Stores value for profileImage name.  Represents the profileImage field in the users database table.</td>
+        </tr>
+        <tr>
             <td>private $_sessionName </td>
             <td>The name for the current session.  Represents the session filed associated with this user in the user_sessions table.</td>
         </tr>
@@ -96,7 +108,7 @@
         </tr>
         </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -116,7 +128,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -140,7 +152,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -163,7 +175,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -187,7 +199,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -212,7 +224,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -236,7 +248,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -260,7 +272,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -284,7 +296,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -308,7 +320,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -332,7 +344,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
         <tr>

@@ -63,7 +63,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -81,7 +81,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -109,7 +109,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -132,7 +132,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -157,7 +157,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -180,7 +180,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -204,7 +204,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -229,7 +229,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -253,7 +253,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -277,7 +277,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -302,7 +302,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -327,7 +327,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -352,7 +352,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -377,7 +377,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -401,7 +401,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -425,7 +425,52 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
+            <th colspan="2" class="text-center">public function processFile</th>
+        </tr>
+        <tr>
+            <td colspan="2">Processes, validates, and uploads a file submitted through a post request.  You can also test if the file is of a valid type using the optional $fileTypes array.  The optional $oldFile argument allows you to delete the previous file by giving it the name stored in the database.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$file An associate array containing information about file received during POST.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$imageName The name for type of image to match image's parent directory.  For example, we used profileImage for all profile images.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$arg Additional information that can be used as part of uploaded file's name.  The default value is an empty string.  Providing an empty string will cause whitespace within the filename to be removed before upload.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$oldFile The name of the old file we want to remove.  The default value is an empty string.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$parentDir The directory under public that contains collections of media.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$fileTypes The file types we will test to determine if it is a valid file type.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$targetFile The filename and extension so name can be stored in a database.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -454,7 +499,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -478,7 +523,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -502,7 +547,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -527,7 +572,35 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+        <tr>
+            <th colspan="2" class="text-center">private function unlink</th>
+        </tr>
+        <tr>
+            <td colspan="2">Removes a file during a remove/update file operation.  If there is a failure a failed to remove previous file message is set.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$imageName The name for type of image to match image's parent directory.  For example, we used profileImage for all profile images.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$oldFile The name of the old file we want to remove.  The default value is an empty string.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">void</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -556,7 +629,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -580,7 +653,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
         <tr>

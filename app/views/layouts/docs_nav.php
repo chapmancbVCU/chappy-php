@@ -6,6 +6,7 @@
         <a href="<?=PROOT?>documentation/controllers">Overview</a>
         <a href="<?=PROOT?>documentation/contactsController">Contacts Controller</a>
         <a href="<?=PROOT?>documentation/homeController">Home Controller</a>
+        <a href="<?=PROOT?>documentation/profileController">Profile Controller</a>
         <a href="<?=PROOT?>documentation/registerController">Register Controller</a>
         <a href="<?=PROOT?>documentation/restrictedController">Restricted Controller</a>
     </div>

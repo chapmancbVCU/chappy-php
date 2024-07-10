@@ -247,7 +247,16 @@ class DocumentationController extends Controller {
     }
 
     /**
-     * Action for the Register Controller classes documentation page.
+     * Action for the Profile Controller class documentation page.
+     *
+     * @return void
+     */
+    public function profileControllerAction(): void {
+        $this->view->render('documentation/profile_controller_docs');
+    }
+
+    /**
+     * Action for the Register Controller class documentation page.
      *
      * @return void
      */
@@ -265,7 +274,7 @@ class DocumentationController extends Controller {
     }
 
     /**
-     * Action for the Register Controller classes documentation page.
+     * Action for the Register Controller class documentation page.
      *
      * @return void
      */

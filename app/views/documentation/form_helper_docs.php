@@ -35,7 +35,7 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -87,7 +87,7 @@ FormHelper::button(
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -146,7 +146,7 @@ FormHelper::buttonBlock(
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -221,7 +221,7 @@ FormHelper::checkboxBlockLabelLeft(
         </tr>
     </table>
 
-<hr class="w-75 my-5">
+<hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -295,7 +295,7 @@ FormHelper::checkboxBlockLabelRight(
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -320,7 +320,7 @@ FormHelper::checkboxBlockLabelRight(
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -356,7 +356,7 @@ FormHelper::checkboxBlockLabelRight(
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -381,7 +381,7 @@ FormHelper::checkboxBlockLabelRight(
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
             <th colspan="2" class="text-center">public static function emailBlock</th>
@@ -451,7 +451,7 @@ FormHelper::emailBlock('Email',
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -475,7 +475,7 @@ FormHelper::emailBlock('Email',
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -527,7 +527,7 @@ FormHelper::hidden(
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -622,7 +622,7 @@ FormHelper::inputBlock(
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -673,7 +673,7 @@ FormHelper::output(
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -698,7 +698,7 @@ FormHelper::output(
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -780,7 +780,7 @@ FormHelper::radioInput('CSS', 'css',
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -805,7 +805,7 @@ FormHelper::radioInput('CSS', 'css',
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -884,7 +884,7 @@ FormHelper::selectBlock(
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -909,7 +909,7 @@ FormHelper::selectBlock(
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -967,7 +967,7 @@ FormHelper::submitBlock(
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -1027,7 +1027,7 @@ self::submitTag(
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
         <tr>
@@ -1188,7 +1188,7 @@ FormHelper::telBlock(
         </tr>
     </table>
 
-    <hr class="w-75 my-5">
+    <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto my-5">
         <tr>
