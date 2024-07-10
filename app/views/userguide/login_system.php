@@ -35,7 +35,7 @@
 
     <h1 id="login" class="text-center">Login</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
-        <p>The login page is the standard login setup with a remember me checkbox.</p>
+        <p>The login page is the standard login setup with a remember me checkbox.  You can get to the registration page from here. </p>
     </div>
 </div>
 <script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
