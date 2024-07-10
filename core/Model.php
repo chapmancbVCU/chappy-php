@@ -138,7 +138,7 @@ class Model {
      * the table in our database.  The default value is an empty array.
      * @return bool|array An array of object returned from an SQL query.
      */
-    public function find(array $params = []){
+    public function find(array $params = []) {
         $params = $this->_softDeleteParams($params);
 
         // Using $this will return the child class.
