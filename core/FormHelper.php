@@ -324,7 +324,7 @@ class FormHelper {
         ): string {
 
         $divString = self::stringifyAttrs($divAttrs);
-        $inputString = self::stringifyAttrs(($inputAttrs));
+        $inputString = self::stringifyAttrs($inputAttrs);
 
         $html = '<div' . $divString . '>';
         $html .= '<label for="'.$name.'">'.$label.'</label>';
