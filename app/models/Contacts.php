@@ -108,7 +108,7 @@ class Contacts extends Model {
      * @return bool|object The associative array with contact information we want to 
      * view.
      */
-    public function findByIdAndUserId(int $contact_id, int $user_id, array $params = []): bool|object {
+    public function findByIdAndUserId(int $contact_id, int $user_id, array $params = []) {
         $conditions = [
             'conditions' => 'id = ? AND user_id = ?',
             'bind' => [$contact_id, $user_id]

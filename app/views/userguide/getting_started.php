@@ -64,7 +64,7 @@ sudo chown -R %USERNAME%:%GROUP% profileImage/
                     </li>
                 </ol>
             <li>Import the database found in mvctutorial.sql.zip into SQL.</li>
-            <li>Initialize a composer project</li>
+            <li>Initialize a composer project.</li>
             <li>Install phpdotenv for environmental file support by running:
                 <pre class="mb-1 pb-1">
                     <code>
