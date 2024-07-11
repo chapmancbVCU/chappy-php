@@ -52,12 +52,18 @@
         <p>A screenshot of this page is shown below:</p>
         <figure class="d-flex flex-column justify-content-center align-items-center">
             <img src="<?=PROOT?>public/images/userGuide/profile_image.png" alt="Edit Profile Image Page">
-        <figcaption>Figure 3 - Edit Profile Image</figcaption>
+            <figcaption>Figure 3 - Edit Profile Image</figcaption>
         </figure>
     </div>
 
     <h1 id="#password" class="text-center">Update Password</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
+        <p>This view allows the user to change their password.  Complex passwords are enforced here.  
+            A screenshot of the update password screen is shown below in Figure 4.</p>
+        <figure class="d-flex flex-column justify-content-center align-items-center">
+            <img src="<?=PROOT?>public/images/userGuide/change_password.png" alt="Update Password Page">
+            <figcaption>Figure 4 - Update Password Page</figcaption>
+        </figure>
     </div>
 
 </div>
