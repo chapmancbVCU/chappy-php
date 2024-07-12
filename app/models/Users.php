@@ -86,7 +86,7 @@ class Users extends Model {
      * @return void
      */
     public function beforeSave(): void {
-        if($this->isNew()) {
+        if($this->isNew() || $this->changePassword) {
             $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         }
     }
