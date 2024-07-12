@@ -140,18 +140,18 @@ class Contacts extends Model {
 
         // Validate city
         $this->runValidation(new RequiredValidator($this, ['field' => 'city', 'message' => 'City is required']));
-        $this->runValidation((new MaxValidator($this, ['field' => 'city', 'message' => 'City must be less than 256 characters.', 'rule' => 255])));
+        $this->runValidation(new MaxValidator($this, ['field' => 'city', 'message' => 'City must be less than 256 characters.', 'rule' => 255]));
 
         // Validate state
         $this->runValidation(new RequiredValidator($this, ['field' => 'state', 'message' => 'State is required']));
-        $this->runValidation((new MaxValidator($this, ['field' => 'state', 'message' => 'City requires 2 character length abbreviation.', 'rule' => 2])));
+        $this->runValidation(new MaxValidator($this, ['field' => 'state', 'message' => 'City requires 2 character length abbreviation.', 'rule' => 2]));
 
         // Validate zip
         $this->runValidation(new RequiredValidator($this, ['field' => 'zip', 'message' => 'Zip code is required']));
-        $this->runValidation((new MaxValidator($this, ['field' => 'zip', 'message' => 'Zip code must be less than 10 characters', 'rule' => 9])));
+        $this->runValidation(new MaxValidator($this, ['field' => 'zip', 'message' => 'Zip code must be less than 10 characters', 'rule' => 9]));
 
         // Validate Email
         $this->runValidation(new RequiredValidator($this, ['field' => 'email', 'message' => 'Email is required']));
-        $this->runValidation((new MaxValidator($this, ['field' => 'email', 'message' => 'Zip code must be less than 176 characters', 'rule' => 175])));
+        $this->runValidation(new MaxValidator($this, ['field' => 'email', 'message' => 'Zip code must be less than 176 characters', 'rule' => 175]));
     }
 }
