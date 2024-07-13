@@ -18,7 +18,7 @@
             below in figure 1.
         </p>
         <figure class="d-flex flex-column justify-content-center align-items-center">
-            <img src="<?=PROOT?>public/images/userGuide/registration.png" alt="Registration screen">
+            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/registration.png" alt="Registration screen">
             <figcaption>Figure 1 - Registration Screen</figcaption>
         </figure>
         <p>Field Descriptions:</p>
