@@ -1,9 +1,9 @@
 <?php $this->setSiteTitle("Contact Management System - User Guide"); ?>
 <?php $this->start('body'); ?>
-<?php include(getcwd().DS.'app' . DS . 'views/layouts/docs_nav.php'); ?>
+<?php include(ROOT . DS . 'app' . DS . 'views/layouts/docs_nav.php'); ?>
 
 <div class="main">
-<a href="<?=PROOT?>userguide/index" class="btn btn-xs btn-secondary">User Guide Home</a>
+    <a href="<?=PROOT?>userguide/index" class="btn btn-xs btn-secondary">User Guide Home</a>
     <h1 class="text-center">Contact Management System</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded">
         Test

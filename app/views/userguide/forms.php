@@ -1,6 +1,6 @@
 <?php $this->setSiteTitle("Forms - User Guide"); ?>
 <?php $this->start('body'); ?>
-<?php include(getcwd().DS.'app' . DS . 'views/layouts/docs_nav.php'); ?>
+<?php include(ROOT . DS . 'app' . DS . 'views/layouts/docs_nav.php'); ?>
 
 <div class="main">
 <a href="<?=PROOT?>userguide/index" class="btn btn-xs btn-secondary">User Guide Home</a>
