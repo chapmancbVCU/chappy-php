@@ -1,3 +1,4 @@
+<?php $this->setSiteTitle("My Contacts"); ?>
 <?php $this->start('body'); ?>
 <h2 class="text-center">My Contacts</h2>
 <table class="table table-striped table-condensed table-bordered table-hover">
