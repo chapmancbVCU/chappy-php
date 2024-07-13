@@ -1,6 +1,6 @@
 <?php $this->setSiteTitle("Login Model - Custom MVC Framework Docs"); ?>
 <?php $this->start('body'); ?>
-<?php include(getcwd().DS.'app' . DS . 'views/layouts/docs_nav.php'); ?>
+<?php include(ROOT . DS . 'app' . DS . 'views/layouts/docs_nav.php'); ?>
 
 <div class="main">
 <a href="<?=PROOT?>documentation/models" class="btn btn-xs btn-secondary">Models</a>
