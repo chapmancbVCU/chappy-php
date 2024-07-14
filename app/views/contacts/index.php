@@ -26,7 +26,7 @@
                     <a href="<?=PROOT?>contacts/edit/<?=$contact->id?>" class="btn btn-info btn-xs">
                         <i class="fa fa-edit"></i> Edit
                     </a>
-                    <a href="<?=PROOT?>contacts/delete/<?=$contact->id?>" class="btn btn-danger btn-xs" onclick="if(!confirm('Are your sure?')){return false;}">
+                    <a href="<?=PROOT?>contacts/delete/<?=$contact->id?>" class="btn btn-danger btn-xs" onclick="if(!confirm('Are you sure?')){return false;}">
                         <i class="fa fa-trash"></i> Delete
                     </a>
                 </td>
