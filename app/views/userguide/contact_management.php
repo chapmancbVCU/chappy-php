@@ -67,7 +67,7 @@
     <h1 id="delete" class="text-center">Delete</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
         <p>When a user deletes a contact a confirmation prompt appears asking "Are you Sure?"  The 
-            user can cancel or confirm.  a screenshot of the delete contact is displayed below in 
+            user can cancel or confirm.  A screenshot of the delete contact is displayed below in 
             Figure 4.
         </p>
         <figure class="d-flex flex-column justify-content-center align-items-center">
