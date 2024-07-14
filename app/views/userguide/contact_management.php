@@ -43,7 +43,7 @@
             displays basic information for a contact.  The left side shows contact information 
             and the right side shows your contact's address in the form of an address label.  Clicking 
             on the back button will take you back to the My Contacts view.  
-            A screenshot of this view can be found below in figure 2.
+            A screenshot of this view can be found below in Figure 2.
         </p>
         <figure class="d-flex flex-column justify-content-center align-items-center">
             <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/details.png" alt="Contact details view">
@@ -66,7 +66,14 @@
 
     <h1 id="delete" class="text-center">Delete</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
-        <p>When a user deletes a contact a confirmation prompt appears asking "Are you Sure?"</p>
+        <p>When a user deletes a contact a confirmation prompt appears asking "Are you Sure?"  The 
+            user can cancel or confirm.  a screenshot of the delete contact is displayed below in 
+            Figure 4.
+        </p>
+        <figure class="d-flex flex-column justify-content-center align-items-center">
+            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/delete.png" alt="Delete contact prompt">
+            <figcaption>Figure 4 - Delete Contact Prompt</figcaption>
+        </figure>
     </div>
 </div>
 <script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
