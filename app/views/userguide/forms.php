@@ -54,9 +54,9 @@
         <p>This function accepts 3 arguments as described below:</p>
         <ol class="pl-4">
             <li>$buttonText is used to set the text of the button.</li>
-            <li>$inputAttrs can be found in most function calls.  We use this parameter to set values for attributes such as classes for styling.</li>
-            <li>$divAttrs serves the a similar purpose as $inputAttrs and can be used to describe event handlers such as onClick as seen above.  
-                Make sure when performing a function call that contains strings as arguments to escape any quotes.</li>
+            <li>$inputAttrs is an array and can be found in most function calls.  We use this parameter to set 
+                values for attributes such as classes for styling, front-side validation, and event handlers.  Make 
+                sure when performing an event handler function call that contains strings as arguments to escape any quotes.</li>
         </ol>
     </div>
 
