@@ -11,7 +11,7 @@
             <li><a href="<?=PROOT?>userguide/loginSystem">Login System</a></li>
             <li><a href="<?=PROOT?>userguide/userProfiles">User Profiles</a></li>
             <li><a href="<?=PROOT?>userguide/contactManagement">Contact Management System</a></li>
-            <li><a href="<?=PROOT?>userguide/forms">Quick Forms</a></li>
+            <li><a href="<?=PROOT?>userguide/forms">Rapid Forms</a></li>
             <li><a href="<?=PROOT?>userguide/validation">Server Side Validation</a></li>
         </ol>
     </div>

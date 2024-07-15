@@ -43,7 +43,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                Supports ability to create a styled button.  Supports ability to have functions for event handlers".
+                Supports ability to create a styled button.  Supports ability to have functions for event handlers.
                 <br><br>
                 An example function call is shown below:
                 <br>
