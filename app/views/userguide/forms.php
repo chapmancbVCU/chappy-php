@@ -47,8 +47,29 @@
         </p>
 
         <figure class="d-flex flex-column justify-content-center align-items-center">
-            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/button-function-call.png" alt="Example Button Function Call">
-            <figcaption>Figure 1 - Example Button Function Call</figcaption>
+            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/button-function-call.png" alt="Example button Function Call">
+            <figcaption>Figure 1 - Example button Function Call</figcaption>
+        </figure>
+
+        <p>This function accepts 2 arguments as described below:</p>
+        <ol class="pl-4">
+            <li>$buttonText is used to set the text of the button.</li>
+            <li>$inputAttrs is an array and can be found in most function calls.  We use this parameter to set 
+                values for attributes such as classes for styling, front-side validation, and event handlers.  Make 
+                sure when performing an event handler function call that contains strings as arguments to escape 
+                any quotes.  The default value is an empty array.
+            </li>
+        </ol>
+    </div>
+
+    <h1 id="button-block" class="text-center">buttonBlock</h1>
+    <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
+        <p>The buttonBlock function is a wrapper for the button function that adds a div around the button element.  An 
+            example function call is shown below in Figure 2.
+        </p>
+        <figure class="d-flex flex-column justify-content-center align-items-center">
+            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/button-block-function-call.png" alt="Example buttonBlock Function Call">
+            <figcaption>Figure 2 - Example buttonBlock Function Call</figcaption>
         </figure>
 
         <p>This function accepts 3 arguments as described below:</p>
@@ -56,16 +77,40 @@
             <li>$buttonText is used to set the text of the button.</li>
             <li>$inputAttrs is an array and can be found in most function calls.  We use this parameter to set 
                 values for attributes such as classes for styling, front-side validation, and event handlers.  Make 
-                sure when performing an event handler function call that contains strings as arguments to escape any quotes.</li>
+                sure when performing an event handler function call that contains strings as arguments to escape 
+                any quotes.  The default value is an empty array.
+            </li>
+            <li>$divAttrs is an array whose primary purpose is to add classes for styling the div that surrounds the button 
+                element.  The default value is an empty array.
+            </li>
         </ol>
-    </div>
-
-    <h1 id="button-block" class="text-center">buttonBlock</h1>
-    <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
     </div>
 
     <h1 id="checkbox-block-label-left" class="text-center">checkboxBlockLabelLeft</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
+        <p>Generates a checkbox where the label is on the left side.  It generates a div element that surrounds a label and input of 
+            type checkbox.  An example function call is shown below in Figure 3.</p>
+        <figure class="d-flex flex-column justify-content-center align-items-center">
+            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/checkbox-left-label-function-call.png" alt="Example checkboxBlockLabelLeft Function Call">
+            <figcaption>Figure 3 - Example checkboxBlockLabelLeft Function Call</figcaption>
+        </figure>
+
+        <p>This function accepts 6 arguments as described below:</p>
+        <ol class="pl-4">
+            <li>$label is used to set the text of the label element.</li>
+            <li>$name sets the value for the name, for, and id attributes.</li>
+            <li>$value sets the value for the data received upon form submit.  The default value is an empty string.</li>
+            <li>$checked is used to set a value of checked for a checkbox.  This value can be set upon reading information 
+                from a database or upon failed form validation.
+            </li>
+            <li>$inputAttrs is an array and can be found in most function calls.  We use this parameter to set 
+                values for attributes such as classes for styling, front-side validation, and event handlers.  The default 
+                value is an empty array.
+            </li>
+            <li>$divAttrs is an array whose primary purpose is to add classes for styling the div that surrounds the button 
+                element.  The default value is an empty array.
+            </li>
+        </ol>
     </div>
 
     <h1 id="checkbox-block-label-right" class="text-center">checkboxBlockLabelRight</h1>
