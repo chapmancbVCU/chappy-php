@@ -153,7 +153,7 @@ class FormHelper {
     }
 
     /**
-     * Checks if the csrf token exists.  This is used to verify that that has 
+     * Checks if the csrf token exists.  This is used to verify that there has 
      * been no tampering of a form's csrf token.
      *
      * @param string $token The token string we will test whether or not it 

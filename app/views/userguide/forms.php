@@ -14,7 +14,7 @@
             <li><a href="#button-block">buttonBlock</a></li>
             <li><a href="#checkbox-block-label-left">checkboxBlockLabelLeft</a></li>
             <li><a href="#checkbox-block-label-right">checkboxBlockLabelRight</a></li>
-            <li><a href="#csrf-token">csrfToken</a></li>
+            <li><a href="#csrf-input">csrfInput</a></li>
             <li><a href="#display-errors">displayErrors</a></li>
             <li><a href="#email-block">emailBlock</a></li>
             <li><a href="#hidden">hidden</a></li>
@@ -89,7 +89,9 @@
     <h1 id="checkbox-block-label-left" class="text-center">checkboxBlockLabelLeft</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
         <p>Generates a checkbox where the label is on the left side.  It generates a div element that surrounds a label and input of 
-            type checkbox.  An example function call is shown below in Figure 3.</p>
+            type checkbox.  This is idea for situations where labels can be of varying lengths.  An example function call is 
+            shown below in Figure 3.
+        </p>
         <figure class="d-flex flex-column justify-content-center align-items-center">
             <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/checkbox-left-label-function-call.png" alt="Example checkboxBlockLabelLeft Function Call">
             <figcaption>Figure 3 - Example checkboxBlockLabelLeft Function Call</figcaption>
@@ -107,7 +109,7 @@
                 values for attributes such as classes for styling, front-side validation, and event handlers.  The default 
                 value is an empty array.
             </li>
-            <li>$divAttrs is an array whose primary purpose is to add classes for styling the div that surrounds the button 
+            <li>$divAttrs is an array whose primary purpose is to add classes for styling the div that surrounds the input 
                 element.  The default value is an empty array.
             </li>
         </ol>
@@ -115,10 +117,39 @@
 
     <h1 id="checkbox-block-label-right" class="text-center">checkboxBlockLabelRight</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
+        <p>Generates a checkbox where the label is on the left side.  It generates a div element that surrounds a label and input of 
+            type checkbox.  An example function call from the login view is shown below in Figure 3.
+        </p>
+        <figure class="d-flex flex-column justify-content-center align-items-center">
+            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/checkbox-right-label-function-call.png" alt="Example checkboxBlockLabelRight Function Call">
+            <figcaption>Figure 3 - Example checkboxBlockLabelRight Function Call</figcaption>
+        </figure>
+
+        <p>This function accepts 6 arguments as described below:</p>
+        <ol class="pl-4">
+            <li>$label is used to set the text of the label element.</li>
+            <li>$name sets the value for the name, for, and id attributes.</li>
+            <li>$value sets the value for the data received upon form submit.  The default value is an empty string.</li>
+            <li>$checked is used to set a value of checked for a checkbox.  This value can be set upon reading information 
+                from a database or upon failed form validation.
+            </li>
+            <li>$inputAttrs is an array and can be found in most function calls.  We use this parameter to set 
+                values for attributes such as classes for styling, front-side validation, and event handlers.  The default 
+                value is an empty array.
+            </li>
+            <li>$divAttrs is an array whose primary purpose is to add classes for styling the div that surrounds the input 
+                element.  The default value is an empty array.
+            </li>
+        </ol>
     </div>
 
-    <h1 id="csrf-token" class="text-center">csrfToken</h1>
+    <h1 id="csrf-input" class="text-center">csrfInput</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
+        <p>Generates a CRSF token as the value for an input of type hidden.  The token is randomly generated 
+            and is used to verify if any tampering of any form has been performed.  Use this function to assist in 
+            preventing CSRF attacks.  The CRSF token is unique for every user session and is a sufficiently large 
+            string of random values.
+        </p>
     </div>
 
     <h1 id="display-errors" class="text-center">displayErrors</h1>
