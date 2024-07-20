@@ -122,7 +122,7 @@
         </p>
         <figure class="d-flex flex-column justify-content-center align-items-center">
             <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/checkbox-right-label-function-call.png" alt="Example checkboxBlockLabelRight Function Call">
-            <figcaption>Figure 3 - Example checkboxBlockLabelRight Function Call</figcaption>
+            <figcaption>Figure 4 - Example checkboxBlockLabelRight Function Call</figcaption>
         </figure>
 
         <p>This function accepts 6 arguments as described below:</p>
@@ -154,6 +154,11 @@
 
     <h1 id="display-errors" class="text-center">displayErrors</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
+        <p>The purpose of this function is to display errors related to validation.  An example can be found in Figure 5.</p>
+        <figure class="d-flex flex-column justify-content-center align-items-center">
+            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/display-errors.png" alt="Display Errors">
+            <figcaption>Figure 5 - Display Errors</figcaption>
+        </figure>
     </div>
 
     <h1 id="email-block" class="text-center">emailBlock</h1>
