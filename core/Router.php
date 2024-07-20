@@ -146,6 +146,10 @@ class Router {
      * @return void
      */
     public static function route(array $url): void {
+        if(SERVER_TYPE === 'nginx'){
+            array_shift($url);
+        }
+        
         // Extract from URL our controllers
         $controller = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]).'Controller' : DEFAULT_CONTROLLER.'Controller';
         $controller_name = str_replace('Controller', '', $controller);

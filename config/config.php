@@ -6,6 +6,7 @@
 define('DEBUG', $_ENV['DEBUG']);
 define('CONSOLE_LOGGING', $_ENV['CONSOLE_LOGGING']);            // JS console logging.
 
+define('SERVER_TYPE', $_ENV['SERVER_TYPE']);
 define('DEFAULT_CONTROLLER', $_ENV['DEFAULT_CONTROLLER']);      // Default controller if there isn't one defined in the URL.
 define('DEFAULT_LAYOUT', $_ENV['DEFAULT_LAYOUT']);              // If no layout is set in the controller use this layout.
 

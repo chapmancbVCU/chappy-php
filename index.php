@@ -40,7 +40,13 @@ spl_autoload_register('autoload');
 session_start();
 
 // Create an array from our URL.
-$url = isset($_SERVER['PATH_INFO']) ? explode('/', ltrim($_SERVER['PATH_INFO'], '/')) : [];
+switch (SERVER_TYPE) {
+    case "nginx":
+        $url = isset($_SERVER['REQUEST_URI']) ? explode('/', ltrim($_SERVER['REQUEST_URI'], '/')) : [];
+        break;
+    default:
+        $url = isset($_SERVER['PATH_INFO']) ? explode('/', ltrim($_SERVER['PATH_INFO'], '/')) : [];
+}
 
 // Determine session and cooking status.  Log in user if appropriate cookie exists.
 if(!Session::exists(CURRENT_USER_SESSION_NAME && Cookie::exists(REMEMBER_ME_COOKIE_NAME))) {
