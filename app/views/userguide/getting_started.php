@@ -81,7 +81,11 @@ composer require tinymce/tinymce
                     </code>
                 </pre>
             </li>
-            <li>Navigate to http://localhost/custom-php-mvc-framework.  If you have any issues make sure your database is setup correctly and the .env file is correct.</li>
+            <li>Navigate to http://localhost/custom-php-mvc-framework.  If you have any issues make sure your database is setup correctly and the .env file is correct.
+                <ul class="pl-4">
+                    <li>For production servers or remote access the path will be http://ip_address_or_domain_name/custom-php-mvc-framework.  You will need to make sure the ipaddress / hostname / domain name is set in PROOT variable in .env file.</li>
+                </ul>
+            </li>
         </ol>
     </div>
 </div>
