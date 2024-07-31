@@ -1,6 +1,5 @@
 <?php
 use Core\DB;
-use Core\H;
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__));
 
