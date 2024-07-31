@@ -9,11 +9,11 @@ use \stdClass;
  * extendability.
  */
 class Model {
-    protected $_db;
+    protected static $_db;
     public $id;
     protected $_modelName;
-    protected $_softDelete = false;
-    protected $_table;
+    protected static $_softDelete = false;
+    protected static $_table;
     protected $_validates = true;
     protected $_validationErrors = [];
 
@@ -23,14 +23,9 @@ class Model {
      * @param string $table The name of the table so we can work with the 
      * correct child model class.
      */
-    public function __construct(string $table) {
-        $this->_db = DB::getInstance();
-        $this->_table = $table;
-
-        /* Replace table name under scores with a space and use ucwords upper 
-           case each word of model and replaces all spaces with no space. 
-           $table = 'user_sessions => User Sessions => UserSessions */
-        $this->_modelName = str_replace(' ', '', ucwords(str_replace('_', '', $this->_table)));
+    public function __construct() {
+        $this->_modelName = str_replace(' ', '', ucwords(str_replace('_',' ', static::$_table)));
+        $this->onConstruct();
     }
 
     /**
@@ -43,9 +38,15 @@ class Model {
      * @return void
      */
     public function addErrorMessage(string $field, string $message): void {
-        $this->_validates = false;
-        $this->_validationErrors[$field] = $message;  
+        $$this->_validates = false;
+        if(array_key_exists($field,$this->_validationErrors)){
+            $this->_validationErrors[$field] .= " " . $message;
+        } else {
+            $this->_validationErrors[$field] = $message;
+        }  
     }
+
+    public function afterDelete() {}
 
     /**
      * Called before save.
@@ -60,18 +61,31 @@ class Model {
      * @param array Take values from post array and assign values.
      * @return bool Report for whether or not the operation was successful.
      */
-    public function assign(array $params): bool {
-        if(!empty($params)) {
-            foreach($params as $key => $val) {
-                if(property_exists($this, $key)) {
-                    $this->$key = $val;
+    public function assign($params, $list = [], $blackList = true) {
+        foreach($params as $key => $val) {
+            // check if there is permission to update the object
+            $whiteListed = true;
+            if(sizeof($list) > 0){
+                if($blackList){
+                        $whiteListed = !in_array($key,$list);
+                } else {
+                    $whiteListed = in_array($key,$list);
                 }
             }
-            return true;
+            if(property_exists($this,$key) && $whiteListed){
+                $this->$key = $val;
+            }
         }
-        return false;
+        return $this;
     }
 
+    /**
+     * This runs before save needs to return a boolean
+     *
+     * @return boolean 
+     */
+    public function beforeDelete() { return true; }
+    
     /**
      * Called after save.
      *
@@ -85,9 +99,10 @@ class Model {
      * @return object The data associated with an object.
      */
     public function data(): object {
-        $data = new stdClass();
-        foreach(Helper::getObjectProperties($this) as $column => $value) {
-            $data->column = $value;
+        $data = new \stdClass();
+        foreach(static::getColumns() as $column) {
+            $columnName = $column->Field;
+            $data->{$columnName} = $this->{$columnName};
         }
         return $data;
     }
@@ -101,14 +116,16 @@ class Model {
      * @return bool True if delete operation is successful.  Otherwise, we 
      * return false.
      */
-    public function delete(string $id = ''): bool {
-        if($id == '' && $this->id == '') return false;
-        $id = ($id == '') ? $this->id : $id;
-        if($this->_softDelete) {
-            return $this->update($id, ['deleted' => 1]);
+    public function delete() {
+        if($this->id == '' || !isset($this->id)) return false;
+        $this->beforeDelete();
+        if(static::$_softDelete) {
+            $deleted = $this->update(['deleted' => 1]);
+        } else {
+            $deleted = static::getDb()->delete(static::$_table, $this->id);
         }
-
-        return $this->_db->delete($this->_table, $id);
+        $this->afterDelete();
+        return $deleted;
     }
 
     /**
@@ -117,8 +134,25 @@ class Model {
      * @return array An array of objects where each one represents a column 
      * from a database table.
      */
-    public function getColumns(): array {
-        return $this->_db->getColumns($this->_table);
+    public static function getColumns() {
+        return static::getDb()->getColumns(static::$_table);
+    }
+
+    public function getColumnsForSave(){
+        $columns = static::getColumns();
+        $fields = [];
+        foreach($columns as $column){
+          $key = $column->Field;
+          $fields[$key] = $this->{$key};
+        }
+        return $fields;
+    }
+
+    public static function getDb(){
+        if(!self::$_db) {
+          self::$_db = DB::getInstance();
+        }
+        return self::$_db;
     }
 
     /**
@@ -138,12 +172,9 @@ class Model {
      * the table in our database.  The default value is an empty array.
      * @return bool|array An array of object returned from an SQL query.
      */
-    public function find(array $params = []) {
-        $params = $this->_softDeleteParams($params);
-
-        // Using $this will return the child class.
-        $resultsQuery = $this->_db->find($this->_table, $params, get_class($this));
-
+    public static function find(array $params = []) {
+        $params = static::_softDeleteParams($params);
+        $resultsQuery = static::getDb()->find(static::$_table, $params, static::class);
         if(!$resultsQuery) return [];
         return $resultsQuery;
     }
@@ -154,8 +185,8 @@ class Model {
      * @param int $id The ID of the row we want to retrieve from the database.
      * @return bool|object The row from a database.
      */
-    public function findById(int $id) {
-        return $this->findFirst(['conditions'=>"id = ?", 'bind' => [$id]]);
+    public static function findById($id) {
+        return static::findFirst(['conditions'=>"id = ?", 'bind' => [$id]]);
     }
 
     /**
@@ -165,9 +196,9 @@ class Model {
      * the table in our database.  The default value is an empty array.
      * @return bool|object An array of object returned from an SQL query.
      */
-    public function findFirst(array $params = []) {
-        $params = $this->_softDeleteParams($params);
-        $resultQuery = $this->_db->findFirst($this->_table, $params, get_class($this));
+    public static function findFirst($params = []) {
+        $params = static::_softDeleteParams($params);
+        $resultQuery = static::getDb()->findFirst(static::$_table, $params,static::class);
         return $resultQuery;
     }
 
@@ -180,7 +211,8 @@ class Model {
      */
     public function insert(array $fields): bool {
         if(empty($fields)) return false;
-        return $this->_db->insert($this->_table, $fields);
+        if(array_key_exists('id', $fields)) unset($fields['id']);
+        return static::getDb()->insert(static::$_table, $fields);
     }
 
     /**
@@ -192,6 +224,8 @@ class Model {
     public function isNew(): bool {
         return (property_exists($this, 'id') && !empty($this->id)) ? false : true;
     }
+    
+    public function onConstruct(){}
     
     /**
      * Populates object with data.
@@ -278,7 +312,7 @@ class Model {
      * @return DB The results of the database query.
      */
     public function query(string $sql, array $bind): DB {
-        return $this->_db->query($sql, $bind);
+        return static::getDb()->query($sql, $bind);
     }
 
     /**
@@ -308,22 +342,26 @@ class Model {
      */
     public function save(): bool {
         $this->validator();
-        if($this->_validates) {
+        $save = false;
+        if($this->_validates){
             $this->beforeSave();
-            $fields = Helper::getObjectProperties($this);
-
-            // Determine whether to update or insert.
-            if(property_exists($this, 'id') && $this->id != '') {
-                $save =  $this->update($this->id, $fields);
-                $this->afterSave();
-                return $save;
-            } else {
+            $fields = $this->getColumnsForSave();
+            // determine whether to update or insert
+            if($this->isNew()) {
                 $save = $this->insert($fields);
+                // populate object with the id
+                if($save){
+                    $this->id = static::getDb()->lastID();
+                }
+            } else {
+                $save = $this->update($fields);
+            }
+            // run after save
+            if($save){
                 $this->afterSave();
-                return $save;
             }
         }
-        return false;
+        return $save;
     }
 
     /**
@@ -333,10 +371,10 @@ class Model {
      * @return array $params parameters with appended conditions for soft 
      * delete.
      */
-    protected function _softDeleteParams(array $params): array {
-        if($this->_softDelete) {
-            if(array_key_exists('conditions', $params)) {
-                if(is_array($params['conditions'])) {
+    protected static function _softDeleteParams($params){
+        if(static::$_softDelete){
+            if(array_key_exists('conditions',$params)){
+                if(is_array($params['conditions'])){
                     $params['conditions'][] = "deleted != 1";
                 } else {
                     $params['conditions'] .= " AND deleted != 1";
@@ -346,6 +384,15 @@ class Model {
             }
         }
         return $params;
+    }
+
+    public function timeStamps() {
+        $dt = new \DateTime("now", new \DateTimeZone("UTC"));
+        $now = $dt->format('Y-m-d H:i:s');
+        $this->updated_at = $now;
+        if($this->isNew()) {
+            $this->created_at = $now;
+        }
     }
 
     /**
@@ -375,9 +422,9 @@ class Model {
      * @return bool True if the update operation is successful.  Otherwise, 
      * we return false.
      */
-    public function update(int $id, array $fields): bool {
-        if(empty($fields) || $id == '') return false;
-        return $this->_db->update($this->_table, $id, $fields);
+    public function update($fields) {
+        if(empty($fields) || $this->id == '') return false;
+        return static::getDb()->update(static::$_table, $this->id, $fields);
     }
 
     /**

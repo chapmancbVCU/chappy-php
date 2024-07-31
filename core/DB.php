@@ -22,7 +22,9 @@ class DB {
     private function __construct() {
         try {
             $this->_pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
-        } catch (PDOException $e) {
+            $this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->_pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        } catch(PDOException $e) {
             die($e->getMessage());
         }
     }
@@ -210,6 +212,7 @@ class DB {
      */
     public function query(string $sql, array $params = [], bool|string $class = false): DB {
         $this->_error = false;
+        Helper::cl($sql);
         if($this->_query = $this->_pdo->prepare($sql)) {
             $x = 1;
             if(count($params)) {
@@ -249,12 +252,12 @@ class DB {
      * name of the class we will build based on the name of a model.
      * @return bool A true or false value depending on a successful operation.
      */
-    protected function _read(string $table, array $params = [], bool|string $class): bool {
+    protected function _read($table, array $params = [], bool|string $class): bool {
         $conditionString = '';
         $bind = [];
         $order = '';
         $limit = '';
-        $sort = '';
+  
         // Conditions
         if(isset($params['conditions'])) {
             if(is_array($params['conditions'])) {
@@ -287,12 +290,7 @@ class DB {
             $limit = ' LIMIT ' . $params['limit'];
         }
 
-        // Sort - Untested
-        if(array_key_exists('sort', $params)) {
-            $sort = ' '. $params['sort'];
-        }
-
-        $sql = "SELECT * FROM {$table}{$conditionString}{$order}{$sort}{$limit}";
+        $sql = "SELECT * FROM {$table}{$conditionString}{$order}{$limit}";
         if($this->query($sql, $bind, $class)) {
             if(!count($this->_result)) {
                 return false;

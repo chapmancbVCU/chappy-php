@@ -14,18 +14,17 @@ use Core\FormHelper;
         <hr>
         <form class="form" action="" method="post" enctype="multipart/form-data">
             <?= FormHelper::csrfInput() ?>
-            <?= FormHelper::displayErrors($this->displayErrors) ?>
-            <?= FormHelper::inputBlock('text', "First Name", 'fname', $this->newUser->fname, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
-            <?= FormHelper::inputBlock('text', "Last Name", 'lname', $this->newUser->lname, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
-            <?= FormHelper::inputBlock('text', "Email", 'email', $this->newUser->email, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
-            <?= FormHelper::inputBlock('text', "User name", 'username', $this->newUser->username, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
+            <?= FormHelper::inputBlock('text', "First Name", 'fname', $this->newUser->fname, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
+            <?= FormHelper::inputBlock('text', "Last Name", 'lname', $this->newUser->lname, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
+            <?= FormHelper::inputBlock('text', "Email", 'email', $this->newUser->email, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
+            <?= FormHelper::inputBlock('text', "User name", 'username', $this->newUser->username, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
             <?= FormHelper::textAreaBlock("About Me", 
                 'description', 
                 $this->newUser->description, 
                 ['class' => 'form-control input-sm', 'placeholder' => 'Describe yourself here...', 'rows' => '4'], 
-                ['class' => 'form-group']); 
+                ['class' => 'form-group'], $this->displayErrors); 
             ?>
-            <?= FormHelper::inputBlock('file', "Upload Profile Image (Select none to remove)", 'profileImage', '', ['class' => 'form-control'], ['class' => 'form-group w-50']) ?>
+            <?= FormHelper::inputBlock('file', "Upload Profile Image (Select none to remove)", 'profileImage', '', ['class' => 'form-control'], ['class' => 'form-group w-50'], $this->displayErrors) ?>
             <div>
                 <h4>Password Requirements</h4>
                 <ul>
@@ -38,8 +37,8 @@ use Core\FormHelper;
                     <li>Must not contain any spaces</li>
                 </ul>
             </div>
-            <?= FormHelper::inputBlock('password', "Password", 'password', $this->newUser->password, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
-            <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->newUser->getConfirm(), ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
+            <?= FormHelper::inputBlock('password', "Password", 'password', $this->newUser->password, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
+            <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->newUser->confirm, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
             <?= FormHelper::submitBlock('Register', ['class' => 'btn btn-large btn-primary'], ['class' => 'text-right'])  ?>
         </form>
     </div>

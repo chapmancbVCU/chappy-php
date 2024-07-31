@@ -15,12 +15,15 @@ class Contacts extends Model {
     public $cell_phone;
     public $city;
     public $deleted = 0;
+    public const blackList = ['id', 'deleted'];
     public $email;
     public $fname;
     public $home_phone;
     public $id;
     public $lname;
+    protected static $_softDelete = true;
     public $state;
+    protected static $_table = 'user_sessions';
     public $user_id;
     public $work_phone;
     public $zip;
@@ -28,11 +31,11 @@ class Contacts extends Model {
     /**
      * Constructor for the Contacts class.
      */
-    public function __construct() {
-        $table = 'contacts';
-        parent::__construct($table);
-        $this->_softDelete = true;
-    }
+    // public function __construct() {
+    //     $table = 'contacts';
+    //     parent::__construct($table);
+    //     $this->_softDelete = true;
+    // }
 
     /**
      * Formats address to conform to form factor of an address label.
@@ -86,15 +89,15 @@ class Contacts extends Model {
      * default value is an empty array.
      * @return array The list of contacts that is returned from the database.
      */
-    public function findAllByUserId(int $user_id, array $params = []): array {
+    public static function findAllByUserId(int $user_id, array $params = []): array {
         $conditions = [
             'conditions' => 'user_id = ?',
-            'bind' => [$user_id]
+            'bind' => [(int)$user_id]
         ];
 
         // In case you want to add more conditions
         $conditions = array_merge($conditions, $params);
-        return $this->find($conditions);
+        return self::find($conditions);
     }
 
     /**
@@ -114,7 +117,7 @@ class Contacts extends Model {
             'bind' => [$contact_id, $user_id]
         ];
         $conditions = array_merge($conditions, $params);
-        return $this->findFirst($conditions);
+        return self::findFirst($conditions);
     }
 
     /**

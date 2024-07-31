@@ -10,17 +10,7 @@ use Core\Helper;
  * class will support tasks related to the user registration.
  */
 class RegisterController extends Controller {
-    /**
-     * Constructor for Register Controller.
-     *
-     * @param string $controller The name of the controller obtained while 
-     * parsing the URL.
-     * @param string $action The name of the action specified in the path of 
-     * the URL.
-     */
-    public function __construct(string $controller, string $action) {
-        parent::__construct($controller, $action);
-        $this->load_model('Users');
+    public function onConstruct(){
         $this->view->setLayout('default');
     }
 
@@ -32,21 +22,20 @@ class RegisterController extends Controller {
     public function loginAction(): void {
         $loginModel = new Login();
         if($this->request->isPost()) {
-            /// Form validation
+            // form validation
             $this->request->csrfCheck();
             $loginModel->assign($this->request->get());
             $loginModel->validator();
-            if($loginModel->validationPassed()) {
-                $user = $this->UsersModel->findByUsername($_POST['username']);
+            if($loginModel->validationPassed()){
+                $user = Users::findByUsername($_POST['username']);
                 if($user && password_verify($this->request->get('password'), $user->password)) {
                     $remember = $loginModel->getRememberMeChecked();
                     $user->login($remember);
                     Router::redirect('');
-                } else {
-                    $loginModel->addErrorMessage("username", "There is an error with your username or password.");
+                }  else {
+                    $loginModel->addErrorMessage('username','There is an error with your username or password');
                 }
             }
-            
         }
         $this->view->login = $loginModel;
         $this->view->displayErrors = $loginModel->getErrorMessages();
@@ -76,8 +65,8 @@ class RegisterController extends Controller {
         $newUser = new Users();
         if($this->request->isPost()) {
             $this->request->csrfCheck();
-            $newUser->assign($this->request->get());
-            $newUser->setConfirm($this->request->get('confirm'));
+            $newUser->assign($this->request->get(),Users::blackListedFormKeys);
+            $newUser->confirm =$this->request->get('confirm');
             // Accepted file types.
             $fileTypes = ['png', 'jpg', 'gif', 'bmp'];  
             $newUser->profileImage = $newUser->processFile($_FILES, "profileImage", $newUser->username, "", "images", $fileTypes);

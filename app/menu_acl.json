@@ -7,7 +7,5 @@
     "Contacts" : {
         "My Contacts" : "contacts",
         "Add Contact" : "contacts/add"
-    },
-    "Login" : "register/login",
-    "Logout" : "register/logout"
+    }
 }

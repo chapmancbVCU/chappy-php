@@ -5,7 +5,7 @@ use Core\Session;
 use Core\Router;
 use App\Models\Contacts;
 use App\Models\Users;
-
+use Core\Helper;
 /**
  * Implements support for our Contacts Controller.  It contains actions for 
  * handling user interactions that will result in CRUD operations against the 
@@ -21,10 +21,15 @@ class ContactsController extends Controller {
      * @param string $action The name of the action specified in the path of 
      * the URL.
      */
-    public function __construct(string $controller, string $action) {
-        parent::__construct($controller, $action);
+    // public function __construct(string $controller, string $action) {
+    //     parent::__construct($controller, $action);
+    //     $this->view->setLayout('default');
+    //     $this->load_model('Contacts');
+    // }
+
+    public function onConstruct(){
         $this->view->setLayout('default');
-        $this->load_model('Contacts');
+        $this->currentUser = Users::currentUser();
     }
 
     /**
@@ -102,7 +107,7 @@ class ContactsController extends Controller {
         if(!$contact) Router::redirect('contacts');
         if($this->request->isPost()) {
             $this->request->csrfCheck();
-            $contact->assign($this->request->get());
+            $contact->assign($this->request->get(), Contacts::blackList);
             if($contact->save()) {
                 Router::redirect('contacts');
             }
@@ -120,7 +125,8 @@ class ContactsController extends Controller {
      * @return void
      */
     public function indexAction(): void {
-        $contacts = $this->ContactsModel->findAllByUserId(Users::currentUser()->id, ['order'=>'lname, fname']);
+        //Helper::dnd($this->currentUser);
+        $contacts = Contacts::findAllByUserId($this->currentUser->id, ['order'=>'lname, fname']);
         $this->view->contacts = $contacts;
         $this->view->render('contacts/index');
     }

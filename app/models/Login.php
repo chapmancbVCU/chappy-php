@@ -9,15 +9,8 @@ use Core\Validators\RequiredValidator;
 class Login extends Model {
     public $password;
     public $remember_me;
+    protected static $_table = 'tmp_fake';
     public $username;
-
-    /**
-     * Constructor for the Login class.  There is no controller for the Login 
-     * model.
-     */
-    public function __construct() {
-        parent::__construct('tmp_fake');
-    }
 
     /**
      * Returns result for remember me checkbox so user stays logged in if it's

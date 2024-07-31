@@ -11,16 +11,13 @@ use Core\Helper;
         <h3 class="text-center">Log In</h3>
         <form class="form" action="<?=PROOT?>register/login" method="post">
             <?= FormHelper::csrfInput() ?>
-            <?= FormHelper::displayErrors($this->displayErrors) ?>
-            <?= FormHelper::inputBlock('text', 'Username', 'username', $this->login->username, ['class' => 'form-control'], ['class' => 'form-group']); ?>
-            <?= FormHelper::inputBlock('password', 'Password', 'password', $this->login->password,['class' => 'form-control'], ['class' => 'form-group']); ?>
-            <?= FormHelper::checkboxBlockLabelLeft('Remember Me', 'remember_me', 'on', $this->login->getRememberMeChecked(), [], ['class' => 'form-group']); ?>
+            <?= FormHelper::inputBlock('text', 'Username', 'username', $this->login->username, ['class' => 'form-control'], ['class' => 'form-group'], $this->displayErrors); ?>
+            <?= FormHelper::inputBlock('password', 'Password', 'password', $this->login->password,['class' => 'form-control'], ['class' => 'form-group'], $this->displayErrors); ?>
+            <?= FormHelper::checkboxBlockLabelLeft('Remember Me', 'remember_me', 'on', $this->login->getRememberMeChecked(), [], ['class' => 'form-group'], $this->displayErrors); ?>
             
-            
-
-            <?= FormHelper::submitBlock('Login', ['class' => 'btn btn-large btn-primary'], ['class' => 'form-group']) ?>
             <div class="d-flex justify-content-end">
-                <a href="<?=PROOT?>register/register" class="text-primary">Register</a>
+                <div class="flex-grow-1 text-body">Don't have an account? <a href="<?=PROOT?>register/register">Sign Up</a></div>
+                <?= FormHelper::submitTag('Login',['class'=>'btn btn-primary']) ?>
             </div>
         </form>
     </div>

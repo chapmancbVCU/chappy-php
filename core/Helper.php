@@ -1,6 +1,6 @@
 <?php
 namespace Core;
-
+use App\Models\Users;
 /**
  * Helper and utility functions.
  */
@@ -15,24 +15,28 @@ class Helper {
    * @return string|false Returns the contents of the active output buffer on 
    * success or false on failure.
    */
-  public static function buildMenuListItems(array $menu, string $dropdownClass=""): string|false {
+  public static function buildMenuListItems($menu,$dropdownClass=""){
     ob_start();
     $currentPage = self::currentPage();
     foreach($menu as $key => $val):
       $active = '';
+      if($key == '%USERNAME%'){
+        $key = (Users::currentUser())? "Hello " .Users::currentUser()->fname : $key;
+        
+      }
       if(is_array($val)): ?>
         <li class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?=$key?></a>
-          <div class="dropdown-menu <?=$dropdownClass?>">
-            <?php foreach($val as $k => $v):
-              $active = ($v == $currentPage)? 'active':''; ?>
-              <?php if(substr($k,0,9) == 'separator'): ?>
-                <div role="separator" class="dropdown-divider"></div>
-              <?php else: ?>
-                <a class="dropdown-item <?=$active?>" href="<?=$v?>"><?=$k?></a>
-              <?php endif; ?>
-            <?php endforeach; ?>
-          </div>
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?=$key?></a>
+        <div class="dropdown-menu <?=$dropdownClass?>">
+          <?php foreach($val as $k => $v):
+          $active = ($v == $currentPage)? 'active':''; ?>
+          <?php if($k == 'separator'): ?>
+              <div role="separator" class="dropdown-divider"></div>
+          <?php else: ?>
+              <a class="dropdown-item <?=$active?>" href="<?=$v?>"><?=$k?></a>
+          <?php endif; ?>
+          <?php endforeach; ?>
+        </div>
         </li>
       <?php else:
         $active = ($val == $currentPage)? 'active':''; ?>
@@ -54,7 +58,7 @@ class Helper {
     if(CONSOLE_LOGGING) {
       $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
       if($with_script_tags) $js_code = '<script>' . $js_code . '</script>';
-      echo $js_code;
+        echo $js_code;
     }
   }
 

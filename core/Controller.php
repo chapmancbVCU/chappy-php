@@ -27,6 +27,7 @@ class Controller extends Application {
         $this->_action = $action;
         $this->request = new Input();
         $this->view = new View();
+        $this->onConstruct();
     }
 
     /**
@@ -55,4 +56,6 @@ class Controller extends Application {
             $this->{$model.'Model'} = new $modelPath();
         }
     }
+
+    public function onConstruct(){}
 }

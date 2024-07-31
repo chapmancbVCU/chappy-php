@@ -7,6 +7,17 @@ use Core\Helper;
  * Contains functions for building form elements of various types.
  */
 class FormHelper {
+    public static function appendErrorClass($attrs,$errors,$name,$class){
+        if(array_key_exists($name,$errors)){
+          if(array_key_exists('class',$attrs)){
+            $attrs['class'] .= " " . $class;
+          } else {
+            $attrs['class'] = $class;
+          }
+        }
+        return $attrs;
+    }
+
     /**
      * Supports ability to create a styled button.  Supports ability to have 
      * functions for event handlers.
@@ -93,7 +104,8 @@ class FormHelper {
         string $value = "", 
         bool $checked = false, 
         array $inputAttrs = [], 
-        array $divAttrs = []
+        array $divAttrs = [],
+        array $errors = []
         ): string {
 
         $divString = self::stringifyAttrs($divAttrs);
@@ -102,6 +114,7 @@ class FormHelper {
 
         $html = '<div'.$divString.'>';
         $html .= '<label for="'.$name.'">'.$label.' <input type="checkbox" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.' /></label>';
+        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors,$name).'</span>';
         $html .= '</div>';
         return $html;
     }
@@ -140,7 +153,8 @@ class FormHelper {
         string $value = "", 
         bool $checked = false, 
         array $inputAttrs = [], 
-        array $divAttrs = []
+        array $divAttrs = [],
+        array $errors = []
         ): string {
 
         $divString = self::stringifyAttrs($divAttrs);
@@ -148,6 +162,7 @@ class FormHelper {
         $checkString = ($checked) ? ' checked="checked"' : '';
         $html = '<div'.$divString.'>';
         $html .='<input type="checkbox" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label for="'.$name.'">'.$label.'</label> ';
+        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors,$name).'</span>';
         $html .= '</div>';
         return $html;
     }
@@ -241,6 +256,11 @@ class FormHelper {
         return $html;
     }
 
+    public static function errorMsg($errors,$name){
+        $msg = (array_key_exists($name,$errors))? $errors[$name] : "";
+        return $msg;  
+    }
+
     /**
      * Creates a randomly generated csrf token.
      *
@@ -320,18 +340,30 @@ class FormHelper {
         string $name, 
         mixed $value = '', 
         array $inputAttrs= [], 
-        array $divAttrs = []
+        array $divAttrs = [],
+        array $errors=[]
         ): string {
 
+        $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
+        $id = str_replace('[]','',$name);
 
         $html = '<div' . $divString . '>';
-        $html .= '<label for="'.$name.'">'.$label.'</label>';
-        $html .= '<input type="'.$type.'" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
+        $html .= '<label class="control-label" for="'.$id.'">'.$label.'</label>';
+        $html .= '<input type="'.$type.'" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
+        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors,$name).'</span>';
         $html .= '</div>';
-
         return $html;
+    }
+
+    public static function optionsForSelect($options,$selectedValue){
+        $html = "";
+        foreach($options as $value => $display){
+            $selStr = ($selectedValue == $value)? ' selected="selected"' : '';
+            $html .= '<option value="'.$value.'"'.$selStr.'>'.$display.'</option>';
+        }
+        return $html;  
     }
 
     /** 
@@ -449,31 +481,16 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @return string A surrounding div and option select element.
      */
-    public static function selectBlock(string $label, 
-        string $name,
-        string $checked = "", 
-        array $options = [],
-        array $inputAttrs= [], 
-        array $divAttrs = []
-        ): string {
-
+    public static function selectBlock($label,$name,$value,$options,$inputAttrs=[],$divAttrs=[],$errors=[]){
+        $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
-        $inputString = self::stringifyAttrs(($inputAttrs));
-
+        $inputString = self::stringifyAttrs($inputAttrs);
+        $id = str_replace('[]','',$name);
         $html = '<div' . $divString . '>';
-        $html .= '<label for="'.$name.'">'.$label.'</label>';
-        $html .= '<select id="'.$name.'" name="'.$name.'" value="" '.$inputString.'>';
-        $html .= '<option>---Please select an item--</option>';
-        foreach($options as $key => $value) {
-            if($checked == $value) {
-                $html .= '<option value="'.$value.'" selected>'.$key.'</option>';
-            } else {
-                $html .= '<option value="'.$value.'">'.$key.'</option>';
-            }
-        }
-        $html .= '</select>';
+        $html .= '<label for="'.$id.'" class="control-label">' . $label . '</label>';
+        $html .= '<select id="'.$id.'" name="'.$name.'" '.$inputString.'>'.self::optionsForSelect($options,$value).'</select>';
+        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors,$name).'</span>';
         $html .= '</div>';
-        
         return $html;
     }
 
@@ -510,20 +527,15 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @param string A surrounding div and the input element of type submit.
      */
-    public static function submitBlock(string $buttonText, 
-        array $inputAttrs = [], 
-        array $divAttrs = []
-        ): string {
-
+    public static function submitBlock($buttonText, $inputAttrs=[], $divAttrs=[]){
         $divString = self::stringifyAttrs($divAttrs);
-
+        $inputString = self::stringifyAttrs($inputAttrs);
         $html = '<div'.$divString.'>';
-        $html .= self::submitTag($buttonText, $inputAttrs); 
+        $html .= '<input type="submit" value="'.$buttonText.'"'.$inputString.' />';
         $html .= '</div>';
-
         return $html;
     }
-
+    
     /**
      * Create a input element of type submit.
      * 
@@ -686,21 +698,16 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @param string A surrounding div and the input element.
      */
-    public static function textAreaBlock(string $label, 
-        string $name, 
-        mixed $value = '',
-        array $inputAttrs= [], 
-        array $divAttrs = []
-        ): string {
-
+    public static function textareaBlock($label,$name,$value,$inputAttrs=[],$divAttrs=[],$errors=[]){
+        $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
-        $inputString = self::stringifyAttrs(($inputAttrs));
-
+        $inputString = self::stringifyAttrs($inputAttrs);
+        $id = str_replace('[]','',$name);
         $html = '<div' . $divString . '>';
-        $html .= '<label for="'.$name.'">'.$label.'</label>';
-        $html .= '<textarea id="'.$name.'" name="'.$name.'" '.$inputString.'>'.$value.'</textarea>';
+        $html .= '<label for="'.$id.'" class="control-label">' . $label . '</label>';
+        $html .= '<textarea id="'.$id.'" name="'.$name.'"'.$inputString.'>'.$value.'</textarea>';
+        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors,$name).'</span>';
         $html .= '</div>';
-
         return $html;
     }
 }

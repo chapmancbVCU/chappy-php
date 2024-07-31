@@ -22,8 +22,8 @@ use Core\Helper;
 class Users extends Model {
     public $acl;
     private $changePassword = false;
-    private $_confirm;
-    private $_cookieName;
+    public $confirm;
+    public const blackListedFormKeys = ['id','deleted'];
     public static $currentLoggedInUser = null;
     public $deleted = 0;                // Set default value for db field.
     public $description;
@@ -33,39 +33,9 @@ class Users extends Model {
     public $lname;
     public $password;
     public $profileImage;
-    private $_sessionName;
+    protected static $_softDelete = true;
+    protected static $_table = 'users';
     public $username;
-    
-    /**
-     * Builds instance of Users model class.
-     *
-     * @param string $user The name of the user.  Default value is an empty 
-     * string.
-     */
-    public function __construct($user = '') {
-        $table = 'users';
-        parent::__construct($table);
-
-        $this->_sessionName = CURRENT_USER_SESSION_NAME;
-        $this->_cookieName = REMEMBER_ME_COOKIE_NAME;
-
-        // Do not delete users from db.
-        $this->_softDelete = true;
-
-        if($user != '') {
-            if(is_int($user)) {
-                $u = $this->_db->findFirst('users', ['conditions' => 'id = ?', 'bind' => [$user]], 'App\Models\Users');
-            } else {
-                $u = $this->_db->findFirst('users', ['conditions' => 'username = ?', 'bind' => [$user]], 'App\Models\Users');
-            }
-
-            if($u) {
-                foreach($u as $key => $value) {
-                    $this->$key = $value;
-                }
-            }
-        }     
-    }
 
     /**
      * Returns an array containing access control list information.  When the 
@@ -73,10 +43,22 @@ class Users extends Model {
      *
      * @return array The array containing access control list information.
      */
-    public function acls(): array {
+    public function acls() {
         if(empty($this->acl)) return [];
         return json_decode($this->acl, true);
 
+    }
+
+    public static function addAcl($user_id,$acl){
+        $user = self::findById($user_id);
+        if(!$user) return false;
+        $acls = $user->acls();
+        if(!in_array($acl,$acls)){
+          $acls[] = $acl;
+          $user->acl = json_encode($acls);
+          $user->save();
+        }
+        return true;
     }
 
     /**
@@ -86,7 +68,8 @@ class Users extends Model {
      * @return void
      */
     public function beforeSave(): void {
-        if($this->isNew() || $this->changePassword) {
+        $this->timeStamps();
+        if($this->isNew()) {
             $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         }
     }
@@ -99,8 +82,7 @@ class Users extends Model {
      */
     public static function currentUser() {
         if(!isset(self::$currentLoggedInUser) && Session::exists(CURRENT_USER_SESSION_NAME)) {
-            $user = new Users((int)Session::get(CURRENT_USER_SESSION_NAME));
-            self::$currentLoggedInUser = $user;
+            self::$currentLoggedInUser = self::findById((int)Session::get(CURRENT_USER_SESSION_NAME));
         }
         return self::$currentLoggedInUser;
     }
@@ -112,8 +94,8 @@ class Users extends Model {
      * @return bool|object An object containing information about a user from 
      * the Users table.
      */
-    public function findByUserName(string $username) {
-        return $this->findFirst(['conditions' => 'username = ?', 'bind' => [$username]]);
+    public static function findByUserName(string $username) {
+        return self::findFirst(['conditions'=> "username = ?", 'bind'=>[$username]]);
     }
 
     /**
@@ -121,9 +103,9 @@ class Users extends Model {
      *
      * @return mixed The value for $_confirm.
      */
-    public function getConfirm(): mixed {
-        return $this->_confirm;
-    }
+    // public function getConfirm(): mixed {
+    //     return $this->_confirm;
+    // }
 
     /**
      * Creates a session when the user logs in.  A new record is added to the 
@@ -135,19 +117,32 @@ class Users extends Model {
      * @return void
      */
     public function login(bool $rememberMe = false): void {
-        Session::set($this->_sessionName, $this->id);
+        Session::set(CURRENT_USER_SESSION_NAME, $this->id);
         if($rememberMe) {
             $hash = md5(uniqid() + rand(0, 100));
             $user_agent = Session::uagent_no_version();
-            Cookie::set($this->_cookieName, $hash, REMEMBER_ME_COOKIE_EXPIRY);
-            $fields = ['session' => $hash, 'user_agent' => $user_agent, 'user_id' => $this->id];
-
-            // Clean up database in case expired sessions still exists.
-            $this->_db->query("DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?", [$this->id, $user_agent]);
-            
-            // Finally insert new session into user_sessions table.
-            $this->_db->insert('user_sessions', $fields);
+            Cookie::set(REMEMBER_ME_COOKIE_NAME, $hash, REMEMBER_ME_COOKIE_EXPIRY);
+            $fields = ['session'=>$hash, 'user_agent'=>$user_agent, 'user_id'=>$this->id];
+            self::$_db->query("DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?", [$this->id, $user_agent]);
+            self::$_db->insert('user_sessions', $fields);
         }
+    }
+
+    /**
+     * Logs in user from cookie.
+     *
+     * @return Users The user associated with previous session.
+     */
+    public static function loginUserFromCookie() {
+        $userSession = UserSessions::getFromCookie();
+        if($userSession && $userSession->user_id != '') {
+            $user = self::findById((int)$userSession->user_id);
+            if($user) {
+                $user->login();
+            }
+            return $user;
+        }
+        return;
     }
 
     /**
@@ -159,12 +154,8 @@ class Users extends Model {
      */
     public function logout(): bool {
         $userSession = UserSessions::getFromCookie();
-        if($userSession) {
-            $userSession->delete();
-        }
-
-        Session::delete(CURRENT_USER_SESSION_NAME);
-
+        if($userSession) $userSession->delete();
+            Session::delete(CURRENT_USER_SESSION_NAME);
         if(Cookie::exists(REMEMBER_ME_COOKIE_NAME)) {
             Cookie::delete(REMEMBER_ME_COOKIE_NAME);
         }
@@ -172,24 +163,19 @@ class Users extends Model {
         return true;
     }
 
-    /**
-     * Logs in user from cookie.
-     *
-     * @return Users The user associated with previous session.
-     */
-    public static function loginUserFromCookie() {
-        $userSession = UserSessions::getFromCookie();
-        
-        if($userSession && $userSession->user_id != '') {
-            $user = new self((int)$userSession->user_id);
-            if($user) { 
-                $user->login();
-            }
-            return $user;
+    public static function removeAcl($user_id, $acl){
+        $user = self::findById($user_id);
+        if(!$user) return false;
+        $acls = $user->acls();
+        if(in_array($acl,$acls)){
+          $key = array_search($acl,$acls);
+          unset($acls[$key]);
+          $user->acl = json_encode($acls);
+          $user->save();
         }
-        return;
+        return true;
     }
-
+    
     /**
      * Setter function for $_confirm instance variable.
      *
@@ -197,9 +183,9 @@ class Users extends Model {
      * variable.
      * @return void
      */
-    public function setConfirm(string $value): void {
-        $this->_confirm = $value;
-    }
+    // public function setConfirm(string $value): void {
+    //     $this->_confirm = $value;
+    // }
 
     public function setChangePassword(bool $value): void {
         $this->changePassword = $value;
@@ -240,7 +226,7 @@ class Users extends Model {
             if($this->changePassword) {
                 $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => 12, 'message' => 'Password must be at least 12 characters.']));
                 $this->runValidation(new MaxValidator($this, ['field' => 'password', 'rule' => 50, 'message' => 'Password must be less than 30 characters.']));
-                $this->runValidation(new MatchesValidator($this, ['field' => 'password', 'rule' => $this->_confirm, 'message' => 'Passwords must match.']));
+                $this->runValidation(new MatchesValidator($this, ['field' => 'password', 'rule' => $this->confirm, 'message' => 'Passwords must match.']));
             }
         }
         
@@ -251,7 +237,7 @@ class Users extends Model {
             $this->runValidation(new LowerCharValidator($this, ['field' => 'password', 'message' => '1 or more complex password requirements is not satisfied.']));
             $this->runValidation(new NumberCharValidator($this, ['field' => 'password', 'message' => '1 or more complex password requirements is not satisfied.']));
             $this->runValidation(new SpecialCharValidator($this, ['field' => 'password', 'message' => '1 or more complex password requirements is not satisfied.'])); 
-            $this->runValidation(new MatchesValidator($this, ['field' => 'password', 'rule' => $this->_confirm, 'message' => 'Passwords must match.']));
+            $this->runValidation(new MatchesValidator($this, ['field' => 'password', 'rule' => $this->confirm, 'message' => 'Passwords must match.']));
         }
     }
 }

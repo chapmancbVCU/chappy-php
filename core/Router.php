@@ -81,7 +81,7 @@ class Router {
      * perform.  The default value is "index".
      * @return bool $grantAccess True if we give access, otherwise false.
      */
-    public static function hasAccess(string $controller_name, string $action_name = "index"): bool {
+    public static function hasAccess(string $controller_name, string $action_name = "index") {
         $acl_file = file_get_contents(ROOT . DS . 'app' . DS . 'acl.json');
         $acl = json_decode($acl_file, true);
         $current_user_acls = ["Guest"];
@@ -145,11 +145,7 @@ class Router {
      * controller and action to use.
      * @return void
      */
-    public static function route(array $url): void {
-        if(SERVER_TYPE === 'nginx'){
-            array_shift($url);
-        }
-        
+    public static function route(array $url): void {     
         // Extract from URL our controllers
         $controller = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]).'Controller' : DEFAULT_CONTROLLER.'Controller';
         $controller_name = str_replace('Controller', '', $controller);
