@@ -69,8 +69,8 @@ class Helper {
    */
   public static function currentPage(): string {
     $currentPage = $_SERVER['REQUEST_URI'];
-    if($currentPage == PROOT || $currentPage == PROOT.'home/index') {
-      $currentPage = PROOT . 'home';
+    if($currentPage == APP_DOMAIN || $currentPage == APP_DOMAIN.'home/index') {
+      $currentPage = APP_DOMAIN . 'home';
     }
     return $currentPage;
   }

@@ -14,7 +14,7 @@
         <?php foreach($this->contacts as $contact): ?>
             <tr>
                 <td>
-                    <a href="<?=PROOT?>contacts/details/<?=$contact->id?>">
+                    <a href="<?=APP_DOMAIN?>contacts/details/<?=$contact->id?>">
                         <?= $contact->displayName(); ?>
                     </a>
                 </td>
@@ -23,10 +23,10 @@
                 <td><?= $contact->home_phone ?></td>
                 <td><?= $contact->work_phone ?></td>
                 <td class="text-center">
-                    <a href="<?=PROOT?>contacts/edit/<?=$contact->id?>" class="btn btn-info btn-xs">
+                    <a href="<?=APP_DOMAIN?>contacts/edit/<?=$contact->id?>" class="btn btn-info btn-xs">
                         <i class="fa fa-edit"></i> Edit
                     </a>
-                    <a href="<?=PROOT?>contacts/delete/<?=$contact->id?>" class="btn btn-danger btn-xs" onclick="if(!confirm('Are you sure?')){return false;}">
+                    <a href="<?=APP_DOMAIN?>contacts/delete/<?=$contact->id?>" class="btn btn-danger btn-xs" onclick="if(!confirm('Are you sure?')){return false;}">
                         <i class="fa fa-trash"></i> Delete
                     </a>
                 </td>

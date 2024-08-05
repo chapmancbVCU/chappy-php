@@ -46,6 +46,11 @@ class Model {
         }  
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function afterDelete() {}
 
     /**
@@ -91,7 +96,7 @@ class Model {
      *
      * @return void
      */
-    public function beforeSave(): void {}
+    public function beforeSave() {}
 
     /**
      * Grab object and if we just need data for smaller result set.
@@ -138,16 +143,26 @@ class Model {
         return static::getDb()->getColumns(static::$_table);
     }
 
-    public function getColumnsForSave(){
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function getColumnsForSave() {
         $columns = static::getColumns();
         $fields = [];
-        foreach($columns as $column){
-          $key = $column->Field;
-          $fields[$key] = $this->{$key};
+        foreach($columns as $column) {
+            $key = $column->Field;
+            $fields[$key] = $this->{$key};
         }
         return $fields;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public static function getDb(){
         if(!self::$_db) {
           self::$_db = DB::getInstance();
@@ -166,6 +181,19 @@ class Model {
     }
 
     /**
+     * Undocumented function
+     *
+     * @param [type] $params
+     * @return void
+     */
+    protected static function _fetchStyleParams($params){
+        if(!isset($params['fetchStyle'])){
+            $params['fetchStyle'] = \PDO::FETCH_CLASS;
+        }
+        return $params;
+    }
+
+    /**
      * Wrapper for the find function that is found in the DB class.
      *
      * @param array $params The values for the query.  They are the fields of 
@@ -173,6 +201,7 @@ class Model {
      * @return bool|array An array of object returned from an SQL query.
      */
     public static function find(array $params = []) {
+        $params = static::_fetchStyleParams($params);
         $params = static::_softDeleteParams($params);
         $resultsQuery = static::getDb()->find(static::$_table, $params, static::class);
         if(!$resultsQuery) return [];
@@ -197,6 +226,7 @@ class Model {
      * @return bool|object An array of object returned from an SQL query.
      */
     public static function findFirst($params = []) {
+        $params = static::_fetchStyleParams($params);
         $params = static::_softDeleteParams($params);
         $resultQuery = static::getDb()->findFirst(static::$_table, $params,static::class);
         return $resultQuery;
@@ -225,6 +255,11 @@ class Model {
         return (property_exists($this, 'id') && !empty($this->id)) ? false : true;
     }
     
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function onConstruct(){}
     
     /**
@@ -386,6 +421,11 @@ class Model {
         return $params;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function timeStamps() {
         $dt = new \DateTime("now", new \DateTimeZone("UTC"));
         $now = $dt->format('Y-m-d H:i:s');

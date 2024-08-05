@@ -4,4 +4,5 @@
 /public/images/profileImage/*
 .env
 template.txt
-/public/images/userGuide/Thumbs.db*
+Thumbs.db*
+.DS_Store

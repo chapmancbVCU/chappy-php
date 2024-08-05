@@ -4,7 +4,7 @@
 
 <div class="col align-items-center justify-content-center mx-auto my-3 w-50">
     <?php if($this->user->profileImage != null):?>
-        <img src="<?=PROOT?>public/images/profileImage/<?=$this->user->profileImage?>"
+        <img src="<?=APP_DOMAIN?>public/images/profileImage/<?=$this->user->profileImage?>"
             class="img-thumbnail mx-auto my-5 d-block w-50 rounded border border-primary shadow-lg">
         </img>
     <?php endif; ?>
@@ -41,13 +41,13 @@
         </tbody>
     </table>
     <div class="mb-5 d-flex justify-content-around">
-        <a href="<?=PROOT?>profile/edit/<?=$this->user->id?>" class="btn btn-info btn-xs mx-2 mb-3">
+        <a href="<?=APP_DOMAIN?>profile/edit/<?=$this->user->id?>" class="btn btn-info btn-xs mx-2 mb-3">
             <i class="fa fa-edit"></i> Edit User Profile
         </a>
-        <a href="<?=PROOT?>profile/editProfileImage/<?=$this->user->id?>" class="btn btn-secondary btn-xs mx-2 mb-3">
+        <a href="<?=APP_DOMAIN?>profile/editProfileImage/<?=$this->user->id?>" class="btn btn-secondary btn-xs mx-2 mb-3">
             <i class="fa fa-image"></i> Edit Profile Image
         </a>
-        <a href="<?=PROOT?>profile/updatePassword/<?=$this->user->id?>" class="btn btn-danger btn-xs mx-2 mb-3">
+        <a href="<?=APP_DOMAIN?>profile/updatePassword/<?=$this->user->id?>" class="btn btn-danger btn-xs mx-2 mb-3">
             <i class="fa fa-key"></i> Update Password
         </a>
     </div>

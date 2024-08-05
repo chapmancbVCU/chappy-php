@@ -9,52 +9,52 @@
     </div>
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
         <tr>
-            <td><a href="<?=PROOT?>documentation/application" class="text-primary w-25">Application</a></td>
+            <td><a href="<?=APP_DOMAIN?>documentation/application" class="text-primary w-25">Application</a></td>
             <td>The Application class supports basic functional needs of the application.</td>
         </tr>
         <tr>
-            <td><a href="<?=PROOT?>documentation/controller" class="text-primary w-25">Controller</a></td>
+            <td><a href="<?=APP_DOMAIN?>documentation/controller" class="text-primary w-25">Controller</a></td>
             <td>This is the parent Controller class.  It describes functions that are available to all classes that extends this Controller class.</td>
         </tr>
         <tr>
-            <td><a href="<?=PROOT?>documentation/cookie" class="text-primary w-25">Cookie</a></td>
+            <td><a href="<?=APP_DOMAIN?>documentation/cookie" class="text-primary w-25">Cookie</a></td>
             <td>Manages cookies used by this application.  The $_COOKIE superglobal variable is an associative array.</td>
         </tr>
         <tr>
-            <td><a href="<?=PROOT?>documentation/db" class="text-primary w-25">DB</a></td>
+            <td><a href="<?=APP_DOMAIN?>documentation/db" class="text-primary w-25">DB</a></td>
             <td>Support database operations.</td>
         </tr>
         <tr>
-            <td><a href="<?=PROOT?>documentation/formHelper" class="text-primary w-25">FormHelper</a></td>
+            <td><a href="<?=APP_DOMAIN?>documentation/formHelper" class="text-primary w-25">FormHelper</a></td>
             <td>Contains functions for building form elements of various types.</td>
         </tr>
         <tr>
-            <td><a href="<?=PROOT?>documentation/helper" class="text-primary w-25">Helper</a></td>
+            <td><a href="<?=APP_DOMAIN?>documentation/helper" class="text-primary w-25">Helper</a></td>
             <td>Helper functions.</td>
         </tr>
         <tr>
-            <td><a href="<?=PROOT?>documentation/input" class="text-primary w-25">Input</a></td>
+            <td><a href="<?=APP_DOMAIN?>documentation/input" class="text-primary w-25">Input</a></td>
             <td>Input class handles requests to the server.</td>
         </tr>
         <tr>
-            <td><a href="<?=PROOT?>documentation/model" class="text-primary w-25">Model</a></td>
+            <td><a href="<?=APP_DOMAIN?>documentation/model" class="text-primary w-25">Model</a></td>
             <td>Parent class for our models.  Takes functions from DB wrapper and extract functionality further to make operations easier to use and improve extendability.</td>
         </tr>
         <tr>
-            <td><a href="<?=PROOT?>documentation/router" class="text-primary w-25">Router</a></td>
+            <td><a href="<?=APP_DOMAIN?>documentation/router" class="text-primary w-25">Router</a></td>
             <td>This class is responsible for routing between views.</td>
         </tr>
         <tr>
-            <td><a href="<?=PROOT?>documentation/session" class="text-primary w-25">Session</a></td>
+            <td><a href="<?=APP_DOMAIN?>documentation/session" class="text-primary w-25">Session</a></td>
             <td>Supports functions for user sessions.  This class never gets instantiated.</td>
         </tr>
         <tr>
-            <td><a href="<?=PROOT?>documentation/view" class="text-primary w-25">View</a></td>
+            <td><a href="<?=APP_DOMAIN?>documentation/view" class="text-primary w-25">View</a></td>
             <td>Handles operations related to views and its content.</td>
         </tr>
     </table>
 
-    <a href="<?=PROOT?>documentation" class="btn btn-xs btn-secondary mb-5">Docs Home</a>
+    <a href="<?=APP_DOMAIN?>documentation" class="btn btn-xs btn-secondary mb-5">Docs Home</a>
 </div>
-<script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
+<script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

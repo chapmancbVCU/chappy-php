@@ -38,7 +38,7 @@ class ProfileController extends Controller {
         }
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->user = $user;
-        $this->view->postAction = PROOT . 'profile' . DS . 'edit' . DS . $user->id;
+        $this->view->postAction = APP_DOMAIN . 'profile' . DS . 'edit' . DS . $user->id;
         $this->view->render('profile/edit');
     }
 
@@ -66,7 +66,7 @@ class ProfileController extends Controller {
         }
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->user = $user;
-        $this->view->postAction = PROOT . 'profile' . DS . 'edit_profile_image' . DS . $user->id;
+        $this->view->postAction = APP_DOMAIN . 'profile' . DS . 'edit_profile_image' . DS . $user->id;
         $this->view->render('profile/edit_profile_image');
     }
 
@@ -112,7 +112,7 @@ class ProfileController extends Controller {
         $user->setChangePassword(false);
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->user = $user;
-        $this->view->postAction = PROOT . 'profile' . DS . 'update_password' . DS . $user->id;
+        $this->view->postAction = APP_DOMAIN . 'profile' . DS . 'update_password' . DS . $user->id;
         $this->view->render('profile/update_password');
     }
 }

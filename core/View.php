@@ -6,6 +6,8 @@ use Core\Helper;
  */
 class View {
     protected $_body;
+    protected $_content = [];
+    protected $_currentBuffer;
     protected $_head;
     protected $_layout = DEFAULT_LAYOUT;
     protected $_outputBuffer;
@@ -42,9 +44,11 @@ class View {
      * a known type of content we return false;
      */
     public function content(string $type): mixed {
-        if($type == 'head') return $this->_head;
-        elseif($type == 'body') return $this->_body;
-        else return false;
+        if(array_key_exists($type,$this->_content)){
+            return $this->_content[$type];
+        } else {
+        return false;
+        }
     }
 
     /**
@@ -56,10 +60,9 @@ class View {
      * @return void
      */
     public function end(): void {
-        if($this->_outputBuffer == 'head') {
-            $this->_head = ob_get_clean();
-        } elseif($this->_outputBuffer == 'body') {
-            $this->_body = ob_get_clean();
+        if(!empty($this->_currentBuffer)){
+            $this->_content[$this->_currentBuffer] = ob_get_clean();
+            $this->_currentBuffer = null;
         } else {
             die('You must first run the start method.');
         }
@@ -135,7 +138,8 @@ class View {
      * @return void
      */
     public function start(string $type): void {
-        $this->_outputBuffer = $type;
+        if(empty($type)) die('you must define a type');
+        $this->_currentBuffer = $type;
         ob_start();
     } 
 }

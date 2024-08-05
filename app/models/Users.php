@@ -119,12 +119,14 @@ class Users extends Model {
     public function login(bool $rememberMe = false): void {
         Session::set(CURRENT_USER_SESSION_NAME, $this->id);
         if($rememberMe) {
-            $hash = md5(uniqid() + rand(0, 100));
+            $hash = md5(uniqid() . rand(0, 100));
             $user_agent = Session::uagent_no_version();
             Cookie::set(REMEMBER_ME_COOKIE_NAME, $hash, REMEMBER_ME_COOKIE_EXPIRY);
             $fields = ['session'=>$hash, 'user_agent'=>$user_agent, 'user_id'=>$this->id];
             self::$_db->query("DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?", [$this->id, $user_agent]);
-            self::$_db->insert('user_sessions', $fields);
+            $us = new UserSessions();
+            $us->assign($fields);
+            $us->save();
         }
     }
 
@@ -154,8 +156,10 @@ class Users extends Model {
      */
     public function logout(): bool {
         $userSession = UserSessions::getFromCookie();
-        if($userSession) $userSession->delete();
-            Session::delete(CURRENT_USER_SESSION_NAME);
+        if($userSession) {
+            $userSession->delete();
+        }
+        Session::delete(CURRENT_USER_SESSION_NAME);
         if(Cookie::exists(REMEMBER_ME_COOKIE_NAME)) {
             Cookie::delete(REMEMBER_ME_COOKIE_NAME);
         }

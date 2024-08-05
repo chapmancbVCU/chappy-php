@@ -52,7 +52,7 @@ class ContactsController extends Controller {
         $this->view->contact = $contact;
         $this->view->displayErrors = $contact->getErrorMessages();
         // Set action for post.
-        $this->view->postAction = PROOT . 'contacts' . DS . 'add';
+        $this->view->postAction = APP_DOMAIN . 'contacts' . DS . 'add';
         $this->view->render('contacts/add');
     }
 
@@ -114,7 +114,7 @@ class ContactsController extends Controller {
         }
         $this->view->displayErrors = $contact->getErrorMessages();
         $this->view->contact = $contact;
-        $this->view->postAction = PROOT . 'contacts' . DS . 'edit' . DS . $contact->id;
+        $this->view->postAction = APP_DOMAIN . 'contacts' . DS . 'edit' . DS . $contact->id;
         $this->view->render('contacts/edit');
     }
 

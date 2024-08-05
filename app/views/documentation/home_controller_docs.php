@@ -3,7 +3,7 @@
 <?php include(ROOT . DS . 'app' . DS . 'views/layouts/docs_nav.php'); ?>
 
 <div class="main">
-    <a href="<?=PROOT?>documentation/controllers" class="btn btn-xs btn-secondary">Controllers</a>
+    <a href="<?=APP_DOMAIN?>documentation/controllers" class="btn btn-xs btn-secondary">Controllers</a>
     <h1 class="text-center">Home Controller Class</h1>
     <div class="row align-items-center justify-content-center my-3">
         <p class="text-center w-75">Implements the index and sample ajax actions for the home page.</p>
@@ -102,7 +102,7 @@
         </tr>
     </table>
 
-    <a href="<?=PROOT?>documentation/controllers" class="btn btn-xs btn-secondary mb-5">Controllers</a>
+    <a href="<?=APP_DOMAIN?>documentation/controllers" class="btn btn-xs btn-secondary mb-5">Controllers</a>
 </div>
-<script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
+<script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

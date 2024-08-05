@@ -4,7 +4,7 @@
 
 <div class="main">
     <div class="position-fixed">
-        <a href="<?=PROOT?>userguide/index" class="btn btn-xs btn-secondary">User Guide Home</a>
+        <a href="<?=APP_DOMAIN?>userguide/index" class="btn btn-xs btn-secondary">User Guide Home</a>
     </div>
     <h1 class="text-center">Contact Management System</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
@@ -32,7 +32,7 @@
         <p>An image of the contacts home page can be found below in Figure 1.</p>
 
         <figure class="d-flex flex-column justify-content-center align-items-center">
-            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/contacts.png" alt="My Contacts Home">
+            <img class="img-fluid" src="<?=APP_DOMAIN?>public/images/userGuide/contacts.png" alt="My Contacts Home">
             <figcaption>Figure 1 - My Contacts Home</figcaption>
         </figure>
     </div>
@@ -46,7 +46,7 @@
             A screenshot of this view can be found below in Figure 2.
         </p>
         <figure class="d-flex flex-column justify-content-center align-items-center">
-            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/details.png" alt="Contact details view">
+            <img class="img-fluid" src="<?=APP_DOMAIN?>public/images/userGuide/details.png" alt="Contact details view">
             <figcaption>Figure 2 - Contact Details View</figcaption>
         </figure>
     </div>
@@ -59,7 +59,7 @@
             in a consistent and correct format.
         </p>
         <figure class="d-flex flex-column justify-content-center align-items-center">
-            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/edit.png" alt="Edit Contact view">
+            <img class="img-fluid" src="<?=APP_DOMAIN?>public/images/userGuide/edit.png" alt="Edit Contact view">
             <figcaption>Figure 3 - Edit Contact View</figcaption>
         </figure>
     </div>
@@ -71,10 +71,10 @@
             Figure 4.
         </p>
         <figure class="d-flex flex-column justify-content-center align-items-center">
-            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/delete.png" alt="Delete contact prompt">
+            <img class="img-fluid" src="<?=APP_DOMAIN?>public/images/userGuide/delete.png" alt="Delete contact prompt">
             <figcaption>Figure 4 - Delete Contact Prompt</figcaption>
         </figure>
     </div>
 </div>
-<script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
+<script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

@@ -14,6 +14,10 @@ class UserSessions extends Model{
     public $user_agent;
     public $user_id;
 
+    public function beforeSave(){
+        $this->timeStamps();
+    }
+
     /**
      * Retrieves User Session information from cookie.
      *

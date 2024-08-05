@@ -7,7 +7,16 @@ use Core\Helper;
  * Contains functions for building form elements of various types.
  */
 class FormHelper {
-    public static function appendErrorClass($attrs,$errors,$name,$class){
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @param [type] $errors
+     * @param [type] $name
+     * @param [type] $class
+     * @return void
+     */
+    public static function appendErrorClass($attrs, $errors, $name, $class){
         if(array_key_exists($name,$errors)){
           if(array_key_exists('class',$attrs)){
             $attrs['class'] .= " " . $class;
@@ -34,7 +43,7 @@ class FormHelper {
      * @return string An HTML button element with its label set and any other 
      * optional attributes set.
      */
-    public static function button(string $buttonText, array $inputAttrs = []): string {
+    public static function button($buttonText, $inputAttrs = []) {
         $inputString = self::stringifyAttrs($inputAttrs);
         return '<button type="button" '.$inputString.'>'.$buttonText.'</button>';
     }
@@ -57,11 +66,7 @@ class FormHelper {
      * @return string An HTML div surrounding a button element with its label 
      * set and any other optional attributes set.
      */
-    public static function buttonBlock(string $buttonText, 
-        array $inputAttrs = [], 
-        array $divAttrs = []
-        ): string {
-
+    public static function buttonBlock($buttonText, $inputAttrs = [], $divAttrs = []) {
         $divString = self::stringifyAttrs($divAttrs);
         $html = '<div'.$divString.'>';
         $html .= self::button($buttonText, $inputAttrs); 
@@ -99,22 +104,23 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @return string A surrounding div and the input element of type checkbox.
      */
-    public static function checkboxBlockLabelLeft(string $label, 
-        string $name, 
-        string $value = "", 
-        bool $checked = false, 
-        array $inputAttrs = [], 
-        array $divAttrs = [],
-        array $errors = []
-        ): string {
+    public static function checkboxBlockLabelLeft($label, 
+        $name, 
+        $value = "", 
+        $checked = false, 
+        $inputAttrs = [], 
+        $divAttrs = [],
+        $errors = []
+        ){
 
+        $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
-        $inputString = self::stringifyAttrs(($inputAttrs));
+        $inputString = self::stringifyAttrs($inputAttrs);
         $checkString = ($checked) ? ' checked="checked"' : '';
 
         $html = '<div'.$divString.'>';
         $html .= '<label for="'.$name.'">'.$label.' <input type="checkbox" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.' /></label>';
-        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors,$name).'</span>';
+        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
     }
@@ -157,12 +163,13 @@ class FormHelper {
         array $errors = []
         ): string {
 
+        $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
-        $inputString = self::stringifyAttrs(($inputAttrs));
+        $inputString = self::stringifyAttrs($inputAttrs);
         $checkString = ($checked) ? ' checked="checked"' : '';
         $html = '<div'.$divString.'>';
         $html .='<input type="checkbox" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label for="'.$name.'">'.$label.'</label> ';
-        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors,$name).'</span>';
+        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
     }
@@ -203,11 +210,10 @@ class FormHelper {
      * input of type checkbox.
      */
     public static function displayErrors(array $errors): string {
-        $hasErrors = (!empty($errors)) ? ' has-errors' : ''; 
+        $hasErrors = (!empty($errors))? ' has-errors' : '';
         $html = '<div class="form-errors"><ul class="bg-light'.$hasErrors.'">';
-        foreach($errors as $field =>$error) {
+        foreach($errors as $field => $error) {
             $html .= '<li class="text-danger">'.$error.'</li>';
-            $html .= '<script>jQuery("document").ready(function(){jQuery("#'.$field.'").parent().closest("div").addClass("has-error");});</script>';
         }
         $html .= '</ul></div>';
         return $html;
@@ -235,27 +241,31 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @return string A surrounding div and the input element of type email.
      */
-    public static function emailBlock(string $label, 
-        string $name, 
-        mixed $value = '', 
-        array $inputAttrs= [], 
-        array $divAttrs = []
-        ): string {
+    public static function emailBlock($label, $name, $value = '', $inputAttrs= [], $divAttrs = [], $errors = []) {
 
         // Make sure placeholder is not an attribute.
         if(array_key_exists('placeholder', $inputAttrs)) {
             throw new Exception('Can not accept placeholder attribute found in your $inputString array.');
         }
 
+        $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs(($inputAttrs));
         $html = '<div' . $divString . '>';
         $html .= '<label for="'.$name.'">'.$label.'</label>';
         $html .= '<input type="email" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$inputString.' placeholder="joe@example.com" />';
+        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $errors
+     * @param [type] $name
+     * @return void
+     */
     public static function errorMsg($errors,$name){
         $msg = (array_key_exists($name,$errors))? $errors[$name] : "";
         return $msg;  
@@ -339,12 +349,12 @@ class FormHelper {
         string $label, 
         string $name, 
         mixed $value = '', 
-        array $inputAttrs= [], 
+        array $inputAttrs = [], 
         array $divAttrs = [],
         array $errors=[]
         ): string {
 
-        $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
+        $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name,'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
         $id = str_replace('[]','',$name);
@@ -352,15 +362,22 @@ class FormHelper {
         $html = '<div' . $divString . '>';
         $html .= '<label class="control-label" for="'.$id.'">'.$label.'</label>';
         $html .= '<input type="'.$type.'" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
-        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors,$name).'</span>';
+        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
     }
 
-    public static function optionsForSelect($options,$selectedValue){
+    /**
+     * Undocumented function
+     *
+     * @param [type] $options
+     * @param [type] $selectedValue
+     * @return void
+     */
+    public static function optionsForSelect($options, $selectedValue){
         $html = "";
         foreach($options as $value => $display){
-            $selStr = ($selectedValue == $value)? ' selected="selected"' : '';
+            $selStr = ($selectedValue == $value) ? ' selected="selected"' : '';
             $html .= '<option value="'.$value.'"'.$selStr.'>'.$display.'</option>';
         }
         return $html;  
@@ -434,7 +451,7 @@ class FormHelper {
         string $name, 
         string $value, 
         bool $checked = false, 
-        array $inputAttrs = []
+        array $inputAttrs = [],
         ): string {
 
         $inputString = self::stringifyAttrs(($inputAttrs));
@@ -481,15 +498,15 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @return string A surrounding div and option select element.
      */
-    public static function selectBlock($label,$name,$value,$options,$inputAttrs=[],$divAttrs=[],$errors=[]){
-        $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
+    public static function selectBlock($label, $name, $value, $options, $inputAttrs=[], $divAttrs=[], $errors=[]){
+        $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name,' is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
-        $id = str_replace('[]','',$name);
+        $id = str_replace('[]' ,'' ,$name);
         $html = '<div' . $divString . '>';
         $html .= '<label for="'.$id.'" class="control-label">' . $label . '</label>';
-        $html .= '<select id="'.$id.'" name="'.$name.'" '.$inputString.'>'.self::optionsForSelect($options,$value).'</select>';
-        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors,$name).'</span>';
+        $html .= '<select id="'.$id.'" name="'.$name.'" '.$inputString.'>'.self::optionsForSelect($options, $value).'</select>';
+        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
     }
@@ -500,7 +517,7 @@ class FormHelper {
      * @param array $attrs The attributes we want to stringify.
      * @return string The stringified attributes.
      */
-    public static function stringifyAttrs(array $attrs): string {
+    public static function stringifyAttrs($attrs) {
         $string = '';
         foreach($attrs as $key => $val) {
             $string .= ' ' . $key . '="' . $val . '"'; 
@@ -623,18 +640,22 @@ class FormHelper {
         mixed $value = '', 
         array $inputAttrs= [], 
         array $divAttrs = [], 
-        string $args = "d"
+        string $args = "d",
+        $errors = []
         ): string {
 
         // Test if correct type is provided.
         if((strcmp($phoneType, "cell") != 0) && (strcmp($phoneType, 'home') != 0) && (strcmp($phoneType, "work") != 0)) {
             throw new Exception("Only cell, home, or work are valid phone types");
         }
+
         // Check for valid arguments d, e, h, and p
         if(!preg_match('/^[adehp]*$/', $args) == 1) {
             throw new Exception("Incorrect value in arguments field.");
         }
+
         // Test for valid args input combinations.
+        $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
         $inputString = self::stringifyAttrs(($inputAttrs));
         if(strcmp($args, 'a') == 0 && (preg_match_all('['.implode('|', ['placeholder', 'pattern', 'onkeydown']).']', $inputString) > 0)) {
             throw new Exception("Can not accept placeholder, pattern, or onkeydown attributes when args is set to a");
@@ -667,6 +688,7 @@ class FormHelper {
             $html = '<div' . $divString . '>';
             $html .= '<label for="'.$name.'">'.$label.'</label>';
             $html .= '<input type="tel" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
+            $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
             $html .= '</div>';
             return $html;
         } catch (Exception $e) { echo $e->getMessage(); }
@@ -698,7 +720,7 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @param string A surrounding div and the input element.
      */
-    public static function textareaBlock($label,$name,$value,$inputAttrs=[],$divAttrs=[],$errors=[]){
+    public static function textareaBlock($label, $name, $value, $inputAttrs=[], $divAttrs=[], $errors=[]){
         $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
@@ -706,7 +728,7 @@ class FormHelper {
         $html = '<div' . $divString . '>';
         $html .= '<label for="'.$id.'" class="control-label">' . $label . '</label>';
         $html .= '<textarea id="'.$id.'" name="'.$name.'"'.$inputString.'>'.$value.'</textarea>';
-        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors,$name).'</span>';
+        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
     }

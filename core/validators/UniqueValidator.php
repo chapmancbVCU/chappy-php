@@ -13,30 +13,31 @@ class UniqueValidator extends CustomValidator {
      * @return bool Returns true if value is not associated with a record's 
      * field that we are targeting in a database.  Otherwise, we return false.
      */
-    public function runValidation(): bool {
-        $field = (is_array($this->field)) ? $this->field[0] : $this->field;
-        $value = $this->_model->{$field};
+    public function runValidation() {
+        $value = $this->_model->{$this->field};
 
-        $conditions = ["{$field} = ?"];
+        if($value == '' || !isset($value)){
+            // this allows unique validator to be used with empty strings for fields that are not required.
+            return true;
+        }
+
+        $conditions = ["{$this->field} = ?"];
         $bind = [$value];
 
-        // Check updating record.
-        if(!empty($this->_model->id)) {
-            $conditions = "id != ?";
+        //check updating record
+        if(!empty($this->_model->id)){
+            $conditions[] = "id != ?";
             $bind[] = $this->_model->id;
         }
 
-        // This allows you to check multiple fields for uniqueness.
-        if(is_array($this->field)) {
-            array_unshift($this->field);
-            foreach($this->field as $adds) {
-                $conditions[] = "{$adds} = ?";
-                $bind[] = $this->_model->{$adds};
-            }
+        //this allows you to check multiple fields for Unique
+        foreach($this->additionalFieldData as $adds){
+            $conditions[] = "{$adds} = ?";
+            $bind[] = $this->_model->{$adds};
         }
 
-        $queryParams = ['conditions' => $conditions, 'bind' => $bind];
-        $other = $this->_model->findFirst($queryParams);
+        $queryParams = ['conditions'=>$conditions,'bind'=>$bind];
+        $other = $this->_model::findFirst($queryParams);
         return(!$other);
     }
 }

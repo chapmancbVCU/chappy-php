@@ -9,6 +9,7 @@ use Core\Helper;
 class DB {
     private $_count = 0;
     private $_error = false;
+    private $_fetchStyle = PDO::FETCH_OBJ;
     private static $_instance = null;
     private $_lastInsertID = null;
     private $_pdo;
@@ -27,6 +28,21 @@ class DB {
         } catch(PDOException $e) {
             die($e->getMessage());
         }
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param array $join
+     * @return void
+     */
+    protected function _buildJoin($join=[]){
+        $table = $join[0];
+        $condition = $join[1];
+        $alias = $join[2];
+        $type = (isset($join[3]))? strtoupper($join[3]) : "INNER";
+        $jString = "{$type} JOIN {$table} {$alias} ON {$condition}";
+        return " " . $jString;
     }
 
     /**
@@ -222,12 +238,10 @@ class DB {
                 }
             }
             if($this->_query->execute()) {
-                if($class) {
-                    // Construct results in array into class that we pass it.
-                    $this->_result = $this->_query->fetchAll(PDO::FETCH_CLASS, $class);
+                if($class && $this->_fetchStyle === PDO::FETCH_CLASS){
+                    $this->_result = $this->_query->fetchAll($this->_fetchStyle,$class);
                 } else {
-                    // We just construct an object from the results.
-                    $this->_result = $this->_query->fetchAll(PDO::FETCH_OBJ);
+                    $this->_result = $this->_query->fetchAll($this->_fetchStyle);
                 }
                 $this->_count = $this->_query->rowCount();
                 $this->_lastInsertID = $this->_pdo->lastInsertId();
@@ -253,11 +267,19 @@ class DB {
      * @return bool A true or false value depending on a successful operation.
      */
     protected function _read($table, array $params = [], bool|string $class): bool {
-        $conditionString = '';
         $bind = [];
+        $columns = '*';
+        $conditionString = '';
+        $joins = "";
         $order = '';
         $limit = '';
+        $offset = '';
   
+        //FETCH STYLE
+        if(isset($params['fetchStyle'])){
+            $this->_fetchStyle = $params['fetchStyle'];
+        }
+
         // Conditions
         if(isset($params['conditions'])) {
             if(is_array($params['conditions'])) {
@@ -275,6 +297,18 @@ class DB {
             }
         }
 
+        // columns
+        if(array_key_exists('columns',$params)){
+            $columns = $params['columns'];
+        }
+    
+        if(array_key_exists('joins',$params)){
+            foreach($params['joins'] as $join){
+                $joins .= $this->_buildJoin($join);
+            }
+            $joins .= " ";
+        }
+
         // Bind
         if(array_key_exists('bind', $params)) {
             $bind = $params['bind'];
@@ -290,7 +324,12 @@ class DB {
             $limit = ' LIMIT ' . $params['limit'];
         }
 
-        $sql = "SELECT * FROM {$table}{$conditionString}{$order}{$limit}";
+        // offset
+        if(array_key_exists('offset', $params)) {
+            $offset = ' OFFSET ' . $params['offset'];
+        }
+        
+        $sql = "SELECT {$columns} FROM {$table}{$joins}{$conditionString}{$order}{$limit}{$offset}";
         if($this->query($sql, $bind, $class)) {
             if(!count($this->_result)) {
                 return false;
@@ -345,6 +384,7 @@ class DB {
 
         if(!$this->query($sql, $values)->error()) {
             return true;
-        } else return false;
+        }
+        return false;
     }  
 }

@@ -4,7 +4,7 @@
 
 <div class="main">
 <div class="position-fixed">
-    <a href="<?=PROOT?>userguide/index" class="btn btn-xs btn-secondary">User Guide Home</a>
+    <a href="<?=APP_DOMAIN?>userguide/index" class="btn btn-xs btn-secondary">User Guide Home</a>
     </div>
     <h1 class="text-center">Rapid Forms</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
@@ -47,7 +47,7 @@
         </p>
 
         <figure class="d-flex flex-column justify-content-center align-items-center">
-            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/button-function-call.png" alt="Example button Function Call">
+            <img class="img-fluid" src="<?=APP_DOMAIN?>public/images/userGuide/button-function-call.png" alt="Example button Function Call">
             <figcaption>Figure 1 - Example button Function Call</figcaption>
         </figure>
 
@@ -68,7 +68,7 @@
             example function call is shown below in Figure 2.
         </p>
         <figure class="d-flex flex-column justify-content-center align-items-center">
-            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/button-block-function-call.png" alt="Example buttonBlock Function Call">
+            <img class="img-fluid" src="<?=APP_DOMAIN?>public/images/userGuide/button-block-function-call.png" alt="Example buttonBlock Function Call">
             <figcaption>Figure 2 - Example buttonBlock Function Call</figcaption>
         </figure>
 
@@ -93,7 +93,7 @@
             shown below in Figure 3.
         </p>
         <figure class="d-flex flex-column justify-content-center align-items-center">
-            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/checkbox-left-label-function-call.png" alt="Example checkboxBlockLabelLeft Function Call">
+            <img class="img-fluid" src="<?=APP_DOMAIN?>public/images/userGuide/checkbox-left-label-function-call.png" alt="Example checkboxBlockLabelLeft Function Call">
             <figcaption>Figure 3 - Example checkboxBlockLabelLeft Function Call</figcaption>
         </figure>
 
@@ -121,7 +121,7 @@
             type checkbox.  An example function call from the login view is shown below in Figure 3.
         </p>
         <figure class="d-flex flex-column justify-content-center align-items-center">
-            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/checkbox-right-label-function-call.png" alt="Example checkboxBlockLabelRight Function Call">
+            <img class="img-fluid" src="<?=APP_DOMAIN?>public/images/userGuide/checkbox-right-label-function-call.png" alt="Example checkboxBlockLabelRight Function Call">
             <figcaption>Figure 4 - Example checkboxBlockLabelRight Function Call</figcaption>
         </figure>
 
@@ -156,7 +156,7 @@
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
         <p>The purpose of this function is to display errors related to validation.  An example can be found in Figure 5.</p>
         <figure class="d-flex flex-column justify-content-center align-items-center">
-            <img class="img-fluid" src="<?=PROOT?>public/images/userGuide/display-errors.png" alt="Display Errors">
+            <img class="img-fluid" src="<?=APP_DOMAIN?>public/images/userGuide/display-errors.png" alt="Display Errors">
             <figcaption>Figure 5 - Display Errors</figcaption>
         </figure>
     </div>
@@ -197,5 +197,5 @@
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
     </div>
 </div>
-<script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
+<script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

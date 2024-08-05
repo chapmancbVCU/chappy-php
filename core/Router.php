@@ -27,7 +27,7 @@ class Router {
 
             // Build link item only if the user has access.
             if(self::hasAccess($controller_name, $action_name)) {
-                return PROOT . $value;
+                return APP_DOMAIN . $value;
             } 
             return false;
         }
@@ -123,11 +123,11 @@ class Router {
      */
     public static function redirect(string $location): void {
         if(!headers_sent()) {
-            header('Location: '.PROOT.$location);
+            header('Location: '.APP_DOMAIN.$location);
             exit();
         } else {
             echo '<script type="text/javascript">';;
-            echo 'window.location.href="'.PROOT.$location.'";';
+            echo 'window.location.href="'.APP_DOMAIN.$location.'";';
             echo '</script>';
             echo '<noscript>';
             echo '<meta http-equiv="refresh" content="0;url='.$location.'" />';

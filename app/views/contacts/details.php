@@ -2,7 +2,7 @@
 <?php $this->start('body'); ?>
 <div class="row align-items-center justify-content-center">
     <div class="col-md-6 bg-light p-3">
-        <a href="<?PROOT?>contacts" class="btn btn-xs btn-secondary">Back</a>
+        <a href="<?APP_DOMAIN?>contacts" class="btn btn-xs btn-secondary">Back</a>
         <h2 class="text-center"><?=$this->contact->displayName()?></h2>
         <div class="row">
             <div class="col-md-6">

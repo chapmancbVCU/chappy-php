@@ -43,19 +43,11 @@ class Controller extends Application {
         echo json_encode($res);
         exit;
     }
-    
+
     /**
-     * Loads the model provided to this controller.
+     * Undocumented function
      *
-     * @param string $model The name of the model that will used.
      * @return void
      */
-    protected function load_model(string $model): void {
-        $modelPath = 'App\Models\\' . $model;
-        if(class_exists($modelPath)) {
-            $this->{$model.'Model'} = new $modelPath();
-        }
-    }
-
     public function onConstruct(){}
 }

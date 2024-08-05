@@ -7,12 +7,12 @@
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
         <ol class="pl-4">
             <li><a href="#overview">Overview</a></li>
-            <li><a href="<?=PROOT?>userguide/gettingStarted">Getting Started</a></li>
-            <li><a href="<?=PROOT?>userguide/loginSystem">Login System</a></li>
-            <li><a href="<?=PROOT?>userguide/userProfiles">User Profiles</a></li>
-            <li><a href="<?=PROOT?>userguide/contactManagement">Contact Management System</a></li>
-            <li><a href="<?=PROOT?>userguide/forms">Rapid Forms</a></li>
-            <li><a href="<?=PROOT?>userguide/validation">Server Side Validation</a></li>
+            <li><a href="<?=APP_DOMAIN?>userguide/gettingStarted">Getting Started</a></li>
+            <li><a href="<?=APP_DOMAIN?>userguide/loginSystem">Login System</a></li>
+            <li><a href="<?=APP_DOMAIN?>userguide/userProfiles">User Profiles</a></li>
+            <li><a href="<?=APP_DOMAIN?>userguide/contactManagement">Contact Management System</a></li>
+            <li><a href="<?=APP_DOMAIN?>userguide/forms">Rapid Forms</a></li>
+            <li><a href="<?=APP_DOMAIN?>userguide/validation">Server Side Validation</a></li>
         </ol>
     </div>
 
@@ -27,5 +27,5 @@
             move on to the main features, and finally we go over the feature efforts and release notes.</p>
     </div>
 </div>
-<script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
+<script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

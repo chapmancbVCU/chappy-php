@@ -3,7 +3,7 @@
 <?php include(ROOT . DS . 'app' . DS . 'views/layouts/docs_nav.php'); ?>
 
 <div class="main">
-    <a href="<?=PROOT?>documentation/models" class="btn btn-xs btn-secondary">Models</a>
+    <a href="<?=APP_DOMAIN?>documentation/models" class="btn btn-xs btn-secondary">Models</a>
     <h1 class="text-center">Contacts Model Class</h1>
     <div class="row align-items-center justify-content-center my-3">
         <p class="text-center w-75">Supports functions for handling Contacts such as displaying information, form validation, and DB operations.</p>
@@ -280,7 +280,7 @@
         </tr>
     </table>
 
-    <a href="<?=PROOT?>documentation/models" class="btn btn-xs btn-secondary mb-5">Models</a>
+    <a href="<?=APP_DOMAIN?>documentation/models" class="btn btn-xs btn-secondary mb-5">Models</a>
 </div>
-<script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
+<script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

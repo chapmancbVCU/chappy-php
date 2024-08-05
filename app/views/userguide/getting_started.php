@@ -4,7 +4,7 @@
 
 <div class="main">
     <div class="position-fixed">
-        <a href="<?=PROOT?>userguide/index" class="btn btn-xs btn-secondary">User Guide Home</a>
+        <a href="<?=APP_DOMAIN?>userguide/index" class="btn btn-xs btn-secondary">User Guide Home</a>
     </div>
     <h1 class="text-center">Getting Started</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
@@ -83,11 +83,11 @@ composer require tinymce/tinymce
             </li>
             <li>Navigate to http://localhost/custom-php-mvc-framework.  If you have any issues make sure your database is setup correctly and the .env file is correct.
                 <ul class="pl-4">
-                    <li>For production servers or remote access the path will be http://ip_address_or_domain_name/custom-php-mvc-framework.  You will need to make sure the ipaddress / hostname / domain name is set in PROOT variable in .env file.</li>
+                    <li>For production servers or remote access the path will be http://ip_address_or_domain_name/custom-php-mvc-framework.  You will need to make sure the ipaddress / hostname / domain name is set in APP_DOMAIN variable in .env file.</li>
                 </ul>
             </li>
         </ol>
     </div>
 </div>
-<script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
+<script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

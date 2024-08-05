@@ -10,7 +10,6 @@ class Application {
      */
     public function __construct() {
         $this->_set_reporting();
-        $this->_unregister_globals();
     }
 
     /**
@@ -29,25 +28,6 @@ class Application {
             ini_set('display_errors', 0);
             ini_set('log_errors', 1);
             ini_set('error_log', ROOT . DS . 'tmp' . DS . 'logs' . DS . 'errors.log');
-        }
-    }
-
-    /**
-     * Unregister global variables that are created by default in PHP prior 
-     * to version 8.
-     *
-     * @return void
-     */
-    private function _unregister_globals(): void {
-        if(ini_get('register_globals')) {
-            $globalsArray = ['_SESSION', '_COOKIE', '_POST', '_GET' , '_REQUEST', '_SERVER', '_ENV', '_FILES'];
-            foreach($globalsArray as $global) {
-                foreach($GLOBALS[$global] as $key => $value) {
-                    if($GLOBALS[$key] === $value) {
-                        unset($GLOBALS[$key]);
-                    }
-                }
-            }
         }
     }
 }

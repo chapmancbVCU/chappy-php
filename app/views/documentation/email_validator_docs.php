@@ -3,7 +3,7 @@
 <?php include(ROOT . DS . 'app' . DS . 'views/layouts/docs_nav.php'); ?>
 
 <div class="main">
-    <a href="<?=PROOT?>documentation/validators" class="btn btn-xs btn-secondary">Validators</a>
+    <a href="<?=APP_DOMAIN?>documentation/validators" class="btn btn-xs btn-secondary">Validators</a>
     <h1 class="text-center">EmailValidator Class</h1>
     <div class="row align-items-center justify-content-center my-3">
         <p class="text-center w-75">Child class that performs validation for E-mail fields.</p>
@@ -57,7 +57,7 @@
             <td>Returns true if value is formatted as a valid E-mail.  Otherwise, we return false.</td>
         </tr>
     </table>
-    <a href="<?=PROOT?>documentation/validators" class="btn btn-xs btn-secondary mb-5">Validators</a>
+    <a href="<?=APP_DOMAIN?>documentation/validators" class="btn btn-xs btn-secondary mb-5">Validators</a>
 </div>
-<script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
+<script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

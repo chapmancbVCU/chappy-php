@@ -1,15 +1,33 @@
 <?php
 namespace App\Lib\Utilities;
 use Core\Helper;
+
+/**
+ * Undocumented class
+ */
 class Uploads {
 
-    private $_errors = [], $_files=[], $_maxAllowedSize = 5242880;
     private $_allowedImageTypes = [IMAGETYPE_GIF,IMAGETYPE_JPEG,IMAGETYPE_PNG];
+    private $_errors = [];
+    private $_files=[]; 
+    private $_maxAllowedSize = 5242880;
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $files
+     */
     public function __construct($files){
         $this->_files = self::restructureFiles($files);
     }
     
+    /**
+     * Undocumented function
+     *
+     * @param [type] $name
+     * @param [type] $message
+     * @return void
+     */
     protected function addErrorMessage($name,$message){
         if(array_key_exists($name,$this->_errors)){
             $this->_errors[$name] .= $this->_errors[$name] . " " . $message;
@@ -18,10 +36,21 @@ class Uploads {
         }
     }
     
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function getFiles(){
         return $this->_files;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $files
+     * @return void
+     */
     public static function restructureFiles($files){
         $structured = [];
         foreach($files['tmp_name'] as $key => $val){
@@ -33,11 +62,24 @@ class Uploads {
         return $structured;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function runValidation(){
         $this->validateSize();
         $this->validateImageType();
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $bucket
+     * @param [type] $name
+     * @param [type] $tmp
+     * @return void
+     */
     public function upload($bucket,$name,$tmp){
         if (!file_exists($bucket)) {
             mkdir($bucket);
@@ -45,10 +87,20 @@ class Uploads {
         move_uploaded_file($tmp,ROOT.DS.$bucket.$name);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function validates(){
         return (empty($this->_errors))? true : $this->_errors;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     protected function validateImageType(){
         foreach($this->_files as $file){
             // checking file type
@@ -60,6 +112,11 @@ class Uploads {
         }
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     protected function validateSize(){
         foreach($this->_files as $file){
             $name = $file['name'];

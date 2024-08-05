@@ -99,8 +99,8 @@ use Core\FormHelper;
     </div>
 
     <div class="col-md-12 text-right">
-        <a href="<?=PROOT?>contacts" class="btn btn-default">Cancel</a>
+        <a href="<?=APP_DOMAIN?>contacts" class="btn btn-default">Cancel</a>
         <?= FormHelper::submitTag('Save', ['class' => 'btn btn-primary']) ?>
     </div>
-    <script src="<?=PROOT?>public/js/frontEndPhoneNumberValidate.js"></script>
+    <script src="<?=APP_DOMAIN?>public/js/frontEndPhoneNumberValidate.js"></script>
 </form>

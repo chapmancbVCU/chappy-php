@@ -1,7 +1,14 @@
+
 <?php
 use Core\DB;
+use Dotenv\Dotenv;
+
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__));
+
+require_once('./vendor/autoload.php');
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->safeLoad();
 
 // load configuration and helper functions
 require_once(ROOT . DS . 'config' . DS . 'config.php');
@@ -51,6 +58,6 @@ if(sizeof($migrationsRun) == 0){
     if($isCli){
         echo "\e[0;37;42m\n\n"."    No new migrations to run.\n\e[0m\n";
     } else {
-        echo '<p style="color:#006600;">No new migrations to run.</p>';
+       echo '<p style="color:#006600;">No new migrations to run.</p>';
     }
 }

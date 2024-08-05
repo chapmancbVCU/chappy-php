@@ -8,6 +8,7 @@ use \Exception;
  * @abstract
  */
 abstract class CustomValidator {
+    public $additionalFieldData = [];
     public $field;
     protected $_model;
     public $message = '';
@@ -29,34 +30,36 @@ abstract class CustomValidator {
     public function __construct(object $model, array $params) {
         $this->_model = $model;
 
-        if(!array_key_exists('field', $params)) {
+        if(!array_key_exists('field',$params)){
             throw new Exception("You must add a field to the params array.");
         } else {
-            // Checks if field in params is an array or not.
-            $this->field = (is_array($params['field'])) ? $params['field'][0] : $params['field'];
+        if(is_array($params['field'])){
+            $this->field = $params['field'][0];
+            array_shift($params['field']);
+            $this->additionalFieldData = $params['field'];
+        } else {
+            $this->field = $params['field'];
+        }
         }
 
-        // $model is the class we are checking and field must exist within it.
-        if(!property_exists($model, $this->field)) {
+        if(!property_exists($model, $this->field)){
             throw new Exception("The field must exist in the model");
         }
 
-        // The message that is displayed upon failed validation.
-        if(!array_key_exists('message', $params)) {
-            throw new Exception("You must add a message to the params array");
+        if(!array_key_exists('msg',$params)){
+            throw new Exception("You must add a msg to the params array.");
         } else {
-            $this->message = $params['message'];
+            $this->msg = $params['msg'];
         }
 
-        // Check if the rule exists and sets the $rule instance variable.
-        if(array_key_exists('rule', $params)) {
+        if(array_key_exists('rule',$params)){
             $this->rule = $params['rule'];
         }
 
         try {
             $this->success = $this->runValidation();
         } catch(Exception $e) {
-            echo "Validation Exception on " . get_class() . ": " . $e->getMessage() . "<br>";
+            echo "Validation Exception on " . get_class() . ": " . $e->getMessage() . "<br />";
         }
     }
 

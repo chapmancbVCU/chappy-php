@@ -8,6 +8,7 @@ use Core\Helper;
  */
 abstract class Migration {
     protected $_db;
+    protected $_isCli;
 
     protected $_columnTypesMap = [
         'int' => '_intColumn', 'integer' => '_intColumn', 'tinyint' => '_tinyintColumn', 'smallint' => '_smallintColumn',
@@ -20,8 +21,9 @@ abstract class Migration {
     /**
      * Creates instance of Migration class.
      */
-    public function __construct() {
+    public function __construct($isCli) {
         $this->_db = DB::getInstance();
+        $this->_isCli = $isCli;
     }
 
     /**
@@ -51,8 +53,9 @@ abstract class Migration {
      * @param  string   $name  name of column to add index
      * @return boolean
      */
-    public function addIndex($table,$name) {
-        $sql = "ALTER TABLE {$table} ADD INDEX {$name} ({$name})";
+    public function addIndex($table,$name,$columns=false) {
+        $columns = (!$columns)? $name : $columns;
+        $sql = "ALTER TABLE {$table} ADD INDEX {$name} ({$columns})";
         $msg = "Adding Index " . $name . " To ". $table;
         $resp = !$this->_db->query($sql)->error();
         $this->_printColor($resp,$msg);
@@ -81,10 +84,22 @@ abstract class Migration {
         return $c && $u;
     }
     
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _bitColumn($attrs) {
         return "BIT(" . $attrs['size'] . ")";
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _bigintColumn($attrs) {
         return 'BIGINT';
     }
@@ -105,24 +120,54 @@ abstract class Migration {
         return $res;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _charColumn($attrs) {
         $params = $this->_parsePrecisionScale($attrs);
         return "CHAR".$params;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _dateColumn($attrs) {
         return "DATE";
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _datetimeColumn($attrs) {
         return "DATETIME";
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _decimalColumn($attrs) {
         $params = $this->_parsePrecisionScale($attrs);
         return "DECIMAL".$params;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _doubleColumn($attrs) {
         $params = $this->_parsePrecisionScale($attrs);
         return "DOUBLE".$params;
@@ -172,19 +217,43 @@ abstract class Migration {
         return $resp;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _floatColumn($attrs) {
         $params = $this->_parsePrecisionScale($attrs);
         return "FLOAT".$params;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _intColumn($attrs) {
         return "INT";
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _mediumintColumn($attrs) {
         return 'MEDIUMINT';
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _orderingColumn($attrs) {
         if(array_key_exists('after',$attrs)){
             return "AFTER " . $attrs['after'];
@@ -195,6 +264,12 @@ abstract class Migration {
         }
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _parsePrecisionScale($attrs) {
         $precision = (array_key_exists('precision',$attrs))? $attrs['precision'] : null;
         $precision = (!$precision && array_key_exists('size',$attrs))? $attrs['size'] : $precision;
@@ -205,40 +280,114 @@ abstract class Migration {
         return $params;
     }
 
-    protected function _printColor($res,$msg) {
-        $for = ($res)? "\e[0;37;" : "\e[0;37;";
-        $back = ($res)? "42m" : "41m";
+    /**
+     * Undocumented function
+     *
+     * @param [type] $res
+     * @param [type] $msg
+     * @return void
+     */
+    protected function _printColor($res,$msg){
         $title = ($res)? "SUCCESS: " : "FAIL: ";
-        echo $for.$back."\n\n"."    ".$title.$msg."\n\e[0m\n";
+    
+        if($this->_isCli){
+            $for = ($res)? "\e[0;37;" : "\e[0;37;";
+            $back = ($res)? "42m" : "41m";
+            echo $for.$back."\n\n"."    ".$title.$msg."\n\e[0m\n";
+        } else {
+            $color = ($res)? "#006600" : "#CC0000";
+            echo '<p style="color:'.$color.'">'.$title.$msg.'</p>';
+        }
+    
     }
 
+    /**
+     * run raw SQL statements
+     * @method query
+     * @param  string $sql SQL Command to run
+     * @return boolean
+     */
+    public function query($sql){
+        $msg = "Running Query: \"" . $sql ."\"";
+        $resp = !$this->_db->query($sql)->error();
+        $this->_printColor($resp,$msg);
+        return $resp;
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _smallintColumn($attrs) {
         return 'SMALLINT';
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _textColumn($attrs) {
         return "TEXT";
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _timeColumn($attrs) {
         return "TIME";
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _timestampColumn($attrs) {
         return "TIMESTAMP";
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _tinyintColumn($attrs) {
         return 'TINYINT';
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     abstract function up();
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _varcharColumn($attrs) {
         $params = $this->_parsePrecisionScale($attrs);
         return "VARCHAR".$params;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $attrs
+     * @return void
+     */
     protected function _yearColumn($attrs) {
         return "YEAR(4)";
     }

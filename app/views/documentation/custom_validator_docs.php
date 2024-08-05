@@ -3,7 +3,7 @@
 <?php include(ROOT . DS . 'app' . DS . 'views/layouts/docs_nav.php'); ?>
 
 <div class="main">
-    <a href="<?=PROOT?>documentation/validators" class="btn btn-xs btn-secondary">Validators</a>
+    <a href="<?=APP_DOMAIN?>documentation/validators" class="btn btn-xs btn-secondary">Validators</a>
     <h1 class="text-center">abstract CustomValidator Class</h1>
     <div class="row align-items-center justify-content-center my-3">
         <p class="text-center w-75">Abstract parent class for our child validation child classes.  Each child class must implement the runValidation() function.</p>
@@ -99,7 +99,7 @@
             <td class="text-center" colspan="2">None</td>
         </tr>
     </table>
-    <a href="<?=PROOT?>documentation/validators" class="btn btn-xs btn-secondary mb-5">Validators</a>
+    <a href="<?=APP_DOMAIN?>documentation/validators" class="btn btn-xs btn-secondary mb-5">Validators</a>
 </div>
-<script src="<?=PROOT?>public/js/docNavDropdown.js"></script>
+<script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

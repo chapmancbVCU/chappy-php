@@ -28,15 +28,16 @@ class Input {
      * an encoded HTML string.
      */
     public function get($input = false) {
-        if(!$input) {
-            // Return and sanitize entire request array.
+        if(!$input){
+            // return entire request array and sanitize it
             $data = [];
-            foreach($_REQUEST as $field => $value) {
-                $data[$field] = FormHelper::sanitize($value);
+            foreach($_REQUEST as $field => $value){
+                $data[$field] = trim(FormHelper::sanitize($value));
             }
             return $data;
         }
-        return FormHelper::sanitize($_REQUEST[$input]);
+    
+        return (array_key_exists($input,$_REQUEST))?trim(FormHelper::sanitize($_REQUEST[$input])) : '';
     }
 
     /**
