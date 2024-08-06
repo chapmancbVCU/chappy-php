@@ -1,9 +1,7 @@
 <?php
 namespace App\Controllers;
-use Core\Controller;
-use Core\Router;
+use Core\{Controller, Helper, Router};
 use App\Models\Users;
-use Core\Helper;
 
 /**
  * Supports ability to use user profile features and render relevant views.

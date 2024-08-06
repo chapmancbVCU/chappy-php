@@ -1,20 +1,20 @@
 <?php
 namespace App\Models;
-use Core\Cookie;
-use Core\Validators\EmailValidator;
-use Core\Validators\LowerCharValidator;
-use Core\Validators\MaxValidator;
-use Core\Validators\MatchesValidator;
-use Core\Validators\MinValidator;
-use Core\Model;
-use Core\Validators\NumberCharValidator;
-use Core\Validators\RequiredValidator;
-use Core\Session;
-use Core\Validators\SpecialCharValidator;
-use Core\Validators\UniqueValidator;
-use Core\Validators\UpperCharValidator;
+use Core\{Cookie, Helper, Model, Session};
+use Core\Validators\{
+    EmailValidator,
+    LowerCharValidator,
+    MaxValidator,
+    MatchesValidator,
+    MinValidator,
+    NumberCharValidator,
+    RequiredValidator,
+    SpecialCharValidator,
+    UniqueValidator,
+    UpperCharValidator
+};
 use App\Models\UserSessions;
-use Core\Helper;
+
 
 /**
  * Extends the Model class.  Supports functions for the Users model.

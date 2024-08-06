@@ -228,7 +228,7 @@ class DB {
      */
     public function query(string $sql, array $params = [], bool|string $class = false): DB {
         $this->_error = false;
-        Helper::cl($sql);
+        //Helper::cl($sql);
         if($this->_query = $this->_pdo->prepare($sql)) {
             $x = 1;
             if(count($params)) {

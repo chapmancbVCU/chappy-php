@@ -46,10 +46,10 @@ abstract class CustomValidator {
             throw new Exception("The field must exist in the model");
         }
 
-        if(!array_key_exists('msg',$params)){
-            throw new Exception("You must add a msg to the params array.");
+        if(!array_key_exists('message',$params)){
+            throw new Exception("You must add a message to the params array.");
         } else {
-            $this->msg = $params['msg'];
+            $this->message = $params['message'];
         }
 
         if(array_key_exists('rule',$params)){

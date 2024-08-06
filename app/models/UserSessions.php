@@ -1,8 +1,6 @@
 <?php
 namespace App\Models;
-use Core\Model;
-use Core\Session;
-use Core\Cookie;
+use Core\{Cookie, Model, Session};
 
 /**
  * Supports operations of the User Session model.  Extends the Model class.
