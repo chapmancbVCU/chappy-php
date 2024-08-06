@@ -12,21 +12,12 @@ use Core\Helper;
  * database.
  */
 class ContactsController extends Controller {
+    
     /**
-     * Constructor for the ContactsController.  It sets the default layout 
-     * and loads the Contacts model.
+     * Undocumented function
      *
-     * @param string $controller The name of the controller obtained while 
-     * parsing the URL.
-     * @param string $action The name of the action specified in the path of 
-     * the URL.
+     * @return void
      */
-    // public function __construct(string $controller, string $action) {
-    //     parent::__construct($controller, $action);
-    //     $this->view->setLayout('default');
-    //     $this->load_model('Contacts');
-    // }
-
     public function onConstruct(){
         $this->view->setLayout('default');
         $this->currentUser = Users::currentUser();
@@ -64,7 +55,7 @@ class ContactsController extends Controller {
      * @return void
      */
     public function deleteAction(int $id): void {
-        $contact = $this->ContactsModel->findByIdAndUserId((int)$id, Users::currentUser()->id);
+        $contact = Contacts::findByIdAndUserId((int)$id, Users::currentUser()->id);
         if($contact) {
             $contact->delete();
             Session::addMessage('success', 'Contact has been deleted');
@@ -79,7 +70,7 @@ class ContactsController extends Controller {
      * @return void
      */
     public function detailsAction(mixed $id): void {
-        $contact = $this->ContactsModel->findByIdAndUserId((int)$id, Users::currentUser()->id);
+        $contact = Contacts::findByIdAndUserId((int)$id, Users::currentUser()->id);
 
         // When user is not a contact we reroute to contacts index.
         if(!$contact) {
@@ -100,8 +91,8 @@ class ContactsController extends Controller {
      * edit.
      * @return void
      */
-    public function editAction(int $id): void {
-        $contact = $this->ContactsModel->findByIdAndUserId((int)$id, Users::currentUser()->id);
+    public function editAction($id) {
+        $contact = Contacts::findByIdAndUserId((int)$id, Users::currentUser()->id);
 
         // Check if contact exists
         if(!$contact) Router::redirect('contacts');

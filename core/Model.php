@@ -37,13 +37,13 @@ class Model {
      * for failed form validation.
      * @return void
      */
-    public function addErrorMessage(string $field, string $message): void {
-        $$this->_validates = false;
+    public function addErrorMessage($field,$message){
+        $this->_validates = false;
         if(array_key_exists($field,$this->_validationErrors)){
             $this->_validationErrors[$field] .= " " . $message;
         } else {
             $this->_validationErrors[$field] = $message;
-        }  
+        }
     }
 
     /**
@@ -58,7 +58,7 @@ class Model {
      *
      * @return void
      */
-    public function afterSave(): void {}
+    public function afterSave() {}
 
     /**
      * Update the object with an associative array.
@@ -71,11 +71,11 @@ class Model {
             // check if there is permission to update the object
             $whiteListed = true;
             if(sizeof($list) > 0){
-                if($blackList){
-                        $whiteListed = !in_array($key,$list);
-                } else {
+              if($blackList){
+                    $whiteListed = !in_array($key,$list);
+              } else {
                     $whiteListed = in_array($key,$list);
-                }
+              }
             }
             if(property_exists($this,$key) && $whiteListed){
                 $this->$key = $val;
@@ -103,7 +103,7 @@ class Model {
      * 
      * @return object The data associated with an object.
      */
-    public function data(): object {
+    public function data() {
         $data = new \stdClass();
         foreach(static::getColumns() as $column) {
             $columnName = $column->Field;
@@ -165,7 +165,7 @@ class Model {
      */
     public static function getDb(){
         if(!self::$_db) {
-          self::$_db = DB::getInstance();
+            self::$_db = DB::getInstance();
         }
         return self::$_db;
     }
@@ -176,7 +176,7 @@ class Model {
      * @return array An array that contains a list of items that failed form 
      * validation.
      */
-    public function getErrorMessages(): array {
+    public function getErrorMessages() {
         return $this->_validationErrors;
     }
 
@@ -187,7 +187,7 @@ class Model {
      * @return void
      */
     protected static function _fetchStyleParams($params){
-        if(!isset($params['fetchStyle'])){
+        if(!isset($params['fetchStyle'])) {
             $params['fetchStyle'] = \PDO::FETCH_CLASS;
         }
         return $params;
@@ -200,7 +200,7 @@ class Model {
      * the table in our database.  The default value is an empty array.
      * @return bool|array An array of object returned from an SQL query.
      */
-    public static function find(array $params = []) {
+    public static function find($params = []) {
         $params = static::_fetchStyleParams($params);
         $params = static::_softDeleteParams($params);
         $resultsQuery = static::getDb()->find(static::$_table, $params, static::class);
@@ -232,6 +232,14 @@ class Model {
         return $resultQuery;
     }
 
+    public static function findTotal($params=[]) {
+        $params = static::_fetchStyleParams($params);
+        $params = static::_softDeleteParams($params);
+        unset($params['limit']);
+        unset($params['offset']);
+        return static::getDb()->findTotal(static::$_table, $params);
+    }
+
     /** 
      * Wrapper for database insert function.
      * 
@@ -239,7 +247,7 @@ class Model {
      * use to populate a database record.  The default value is an empty array.
      * @return bool Report for whether or not the operation was successful.
      */
-    public function insert(array $fields): bool {
+    public function insert($fields) {
         if(empty($fields)) return false;
         if(array_key_exists('id', $fields)) unset($fields['id']);
         return static::getDb()->insert(static::$_table, $fields);
@@ -251,7 +259,7 @@ class Model {
      * @return bool Returns true if the record exists.  Otherwise, we 
      * return false.
      */
-    public function isNew(): bool {
+    public function isNew() {
         return (property_exists($this, 'id') && !empty($this->id)) ? false : true;
     }
     
@@ -268,7 +276,7 @@ class Model {
      * @param array|object $result Results from a database query.
      * @return void
      */
-    protected function populateObjData($result): void {
+    protected function populateObjData($result) {
         foreach($result as $key => $val) {
             $this->$key = $val;
         }
@@ -346,7 +354,7 @@ class Model {
      * @param array The values we want to bind in our database query.
      * @return DB The results of the database query.
      */
-    public function query(string $sql, array $bind): DB {
+    public function query($sql, $bind=[]) {
         return static::getDb()->query($sql, $bind);
     }
 
@@ -357,14 +365,11 @@ class Model {
      * @param object $validator The validator object.
      * @return void
      */
-    public function runValidation(object $validator): void {
+    public function runValidation($validator) {
         // $validator->field is the field we ar validating.
         $key = $validator->field;
-        if(!$validator->success) {
-            $this->_validates = false;
-
-            // Sets message as value for the key.
-            $this->_validationErrors[$key] = $validator->message;
+        if(!$validator->success){
+            $this->addErrorMessage($key,$validator->msg);
         }
     }
 
@@ -375,7 +380,7 @@ class Model {
      * @return bool True if the update operation is successful.  Otherwise, 
      * we return false.
      */
-    public function save(): bool {
+    public function save() {
         $this->validator();
         $save = false;
         if($this->_validates){
@@ -407,6 +412,7 @@ class Model {
      * delete.
      */
     protected static function _softDeleteParams($params){
+        if(isset($params['includeDeleted']) && $params['includeDeleted'] == true) return $params;
         if(static::$_softDelete){
             if(array_key_exists('conditions',$params)){
                 if(is_array($params['conditions'])){
@@ -473,7 +479,7 @@ class Model {
      * @return bool $_validates is true if validation is successful and 
      * false if there is a failure.
      */
-    public function validationPassed(): bool {
+    public function validationPassed() {
         return $this->_validates;
     }
 
@@ -485,7 +491,7 @@ class Model {
      * @method validator
      * @return void
      */
-    public function validator(): void {
+    public function validator() {
 
     }
 }

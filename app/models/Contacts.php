@@ -23,7 +23,7 @@ class Contacts extends Model {
     public $lname;
     protected static $_softDelete = true;
     public $state;
-    protected static $_table = 'user_sessions';
+    protected static $_table = 'contacts';
     public $user_id;
     public $work_phone;
     public $zip;
@@ -89,7 +89,7 @@ class Contacts extends Model {
      * default value is an empty array.
      * @return array The list of contacts that is returned from the database.
      */
-    public static function findAllByUserId(int $user_id, array $params = []): array {
+    public static function findAllByUserId($user_id, $params = []) {
         $conditions = [
             'conditions' => 'user_id = ?',
             'bind' => [(int)$user_id]
@@ -111,7 +111,7 @@ class Contacts extends Model {
      * @return bool|object The associative array with contact information we want to 
      * view.
      */
-    public function findByIdAndUserId(int $contact_id, int $user_id, array $params = []) {
+    public static function findByIdAndUserId($contact_id, $user_id, $params = []) {
         $conditions = [
             'conditions' => 'id = ? AND user_id = ?',
             'bind' => [$contact_id, $user_id]

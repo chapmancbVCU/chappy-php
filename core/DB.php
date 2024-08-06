@@ -25,6 +25,7 @@ class DB {
             $this->_pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
             $this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->_pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $this->_pdo->setAttribute (PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
         } catch(PDOException $e) {
             die($e->getMessage());
         }
@@ -36,7 +37,7 @@ class DB {
      * @param array $join
      * @return void
      */
-    protected function _buildJoin($join=[]){
+    protected function _buildJoin($join=[]) {
         $table = $join[0];
         $condition = $join[1];
         $alias = $join[2];
@@ -50,7 +51,7 @@ class DB {
      *
      * @return int The number of results found in an SQL query.
      */
-    public function count(): int {
+    public function count() {
         return $this->_count;
     }
 
@@ -67,7 +68,7 @@ class DB {
      * @return bool True if delete operation is successful.  Otherwise, we 
      * return false.
      */
-    public function delete(string $table, int $id): bool {
+    public function delete($table, $id) {
         $sql = "DELETE FROM {$table} WHERE id = {$id}";
 
         if(!$this->query($sql)->error()) {
@@ -132,13 +133,21 @@ class DB {
         return false;
     }
 
+    public function findTotal($table, $params=[]) {
+        $count = 0;
+        if($this->_read($table, $params, false, true)) {
+            $count = $this->first()->count;
+        }
+        return $count;
+    }
+
     /**
      * Returns first result in the _result array.
      *
      * @return array An associative array that first object in a _result.
      */
     public function first() {
-        return (!empty($this->_result)) ? $this->_result[0] : []; 
+        return (!empty($this->_result)) ? $this->_result[0] : [];
     }
 
     /**
@@ -149,7 +158,7 @@ class DB {
      * @return array An array of objects where each one represents a column 
      * from a database table.
      */
-    public function getColumns(string $table): array {
+    public function getColumns($table) {
         return $this->query("SHOW COLUMNS FROM {$table}")->results();
     }
 
@@ -226,18 +235,10 @@ class DB {
      * is not successful the $_error instance variable is set to true and is 
      * returned.
      */
-    public function query(string $sql, array $params = [], bool|string $class = false): DB {
+    public function query($sql, $binds = [],$class = false) {
         $this->_error = false;
-        //Helper::cl($sql);
-        if($this->_query = $this->_pdo->prepare($sql)) {
-            $x = 1;
-            if(count($params)) {
-                foreach($params as $param) {
-                    $this->_query->bindValue($x, $param);
-                    $x++;
-                }
-            }
-            if($this->_query->execute()) {
+        if($this->_query = $this->_pdo->prepare($sql)) {      
+            if($this->_query->execute($binds)) {
                 if($class && $this->_fetchStyle === PDO::FETCH_CLASS){
                     $this->_result = $this->_query->fetchAll($this->_fetchStyle,$class);
                 } else {
@@ -248,9 +249,9 @@ class DB {
             } else {
                 $this->_error = true;
             }
-        }
-        return $this;
-    }
+            }
+            return $this;
+      }
 
     /**
      * Supports SELECT operations that maybe ran against a SQL database.  It 
@@ -266,21 +267,21 @@ class DB {
      * name of the class we will build based on the name of a model.
      * @return bool A true or false value depending on a successful operation.
      */
-    protected function _read($table, array $params = [], bool|string $class): bool {
-        $bind = [];
+    protected function _read($table, $params=[], $class=false, $count=false) {
         $columns = '*';
-        $conditionString = '';
         $joins = "";
+        $conditionString = '';
+        $bind = [];
         $order = '';
         $limit = '';
         $offset = '';
-  
+    
         //FETCH STYLE
         if(isset($params['fetchStyle'])){
-            $this->_fetchStyle = $params['fetchStyle'];
+          $this->_fetchStyle = $params['fetchStyle'];
         }
-
-        // Conditions
+    
+        // conditions
         if(isset($params['conditions'])) {
             if(is_array($params['conditions'])) {
                 foreach($params['conditions'] as $condition) {
@@ -291,49 +292,53 @@ class DB {
             } else {
                 $conditionString = $params['conditions'];
             }
-
             if($conditionString != '') {
-                $conditionString = ' WHERE ' . $conditionString;
+                $conditionString = ' Where ' . $conditionString;
             }
         }
-
+    
         // columns
         if(array_key_exists('columns',$params)){
             $columns = $params['columns'];
         }
     
+        // joins and raw joins
         if(array_key_exists('joins',$params)){
             foreach($params['joins'] as $join){
                 $joins .= $this->_buildJoin($join);
             }
             $joins .= " ";
         }
-
-        // Bind
+    
+        if(array_key_exists('joinsRaw', $params)) {
+            foreach($params['joinsRaw'] as $raw) {
+                $joins .= ' ' .$raw;
+            }
+        }
+    
+        // bind
         if(array_key_exists('bind', $params)) {
             $bind = $params['bind'];
         }
-
-        // Order 
+    
+        // order
         if(array_key_exists('order', $params)) {
             $order = ' ORDER BY ' . $params['order'];
         }
-
-        // Limit
+    
+        // limit
         if(array_key_exists('limit', $params)) {
             $limit = ' LIMIT ' . $params['limit'];
         }
-
+    
         // offset
         if(array_key_exists('offset', $params)) {
             $offset = ' OFFSET ' . $params['offset'];
         }
-        
-        $sql = "SELECT {$columns} FROM {$table}{$joins}{$conditionString}{$order}{$limit}{$offset}";
+        $sql = ($count) ? "SELECT COUNT(*) as count " : "SELECT {$columns} ";
+        $sql .= "FROM {$table}{$joins}{$conditionString}{$order}{$limit}{$offset}";
         if($this->query($sql, $bind, $class)) {
-            if(!count($this->_result)) {
-                return false;
-            }
+            if(!count($this->_result)) return false;
             return true;
         }
         return false;
@@ -345,7 +350,7 @@ class DB {
      * @return array An array of objects that contain results of a database 
      * query.
      */
-    public function results(): array {
+    public function results() {
         return $this->_result;
     }
 
@@ -368,7 +373,7 @@ class DB {
      * @return bool True if the update operation is successful.  Otherwise, 
      * we return false.
      */
-    public function update(string $table, int $id, array $fields = []): bool {
+    public function update($table, $id, $fields = []) {
         $fieldString = '';      // Table field
         $values = [];           // Values we will bind when we build our query
 

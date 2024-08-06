@@ -7,16 +7,8 @@ use App\Models\Users;
  * Supports ability to use user profile features and render relevant views.
  */
 class ProfileController extends Controller {
-    /**
-     * Constructor for Profile Controller.
-     *
-     * @param string $controller The name of the controller obtained while 
-     * parsing the URL.
-     * @param string $action The name of the action specified in the path of 
-     * the URL.
-     */
-    public function __construct(string $controller, string $action) {
-        parent::__construct($controller, $action);
+    public function onConstruct(){
+        $this->view->setLayout('default');
     }
 
     /**
