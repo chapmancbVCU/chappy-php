@@ -14,5 +14,9 @@
         "Register" : ["logout"],
         "Contacts" : ["*"],
         "Profile" : ["*"]
+    },
+    "Admin" : {
+        "denied" : {},
+        "Admindashboard" : ["*"]
     }
 }
