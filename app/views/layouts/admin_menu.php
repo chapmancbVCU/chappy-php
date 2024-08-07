@@ -19,9 +19,9 @@
     </ul>
     <ul class="navbar-nav mr-2">
       <?= Helper::buildMenuListItems($userMenu,"dropdown-menu-right"); ?>
-      <a class="pt-1" href="<?=APP_DOMAIN?>profile"><?php
-        if(Users::currentUser()->profileImage != null): 
-          ?><img class="img-thumbnail ml-2 p-0"  style="width: 50px" src="<?=APP_DOMAIN?>public/images/profileImage/<?=Users::currentUser()->profileImage?>"></img></a>
+      <a class="pt-1" href="<?=APP_DOMAIN?>profile">
+        <?php if(Users::currentUser()->profileImage != null): ?>
+          <img class="img-thumbnail ml-2 p-0"  style="width: 50px" src="<?=APP_DOMAIN?>public/images/profileImage/<?=Users::currentUser()->profileImage?>"></img>
         <?php endif; ?>
       </a>
     </ul>
