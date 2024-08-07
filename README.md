@@ -30,7 +30,7 @@ It supports everything described above.  This sample application natively comes 
 7. Install phpdotenv for environmental file support by running: ```composer require vlucas/phpdotenv```
 8. Install TinyMCE for WYSIWYG rich text editor support: ```composer require tinymce/tinymce```
 9. Navigate to http://localhost/custom-php-mvc-framework.  If you have any issues make sure your database is setup correctly and the .env file is correct.
-   * For production servers or remote access the path will be http://ip_address_or_domain_name/custom-php-mvc-framework.  You will need to make sure the ipaddress / hostname / domain name is set in APP_DOMAIN variable in .env file.
+   * For production servers or remote access the path will be "/".  You will need to make sure the ipaddress / hostname / domain name is set in APP_DOMAIN variable in .env file.
 
 ## Goals
 1. Add additional front-end and back-end form validation (Done)
@@ -43,7 +43,7 @@ It supports everything described above.  This sample application natively comes 
 9. Add TinyMCE (Done)
 10. Add file upload support (Done)
 11. Add database migrations. (Done)
-12. Update to match original tutorial project. (In progress)
+12. Update to match original tutorial project. (Done)
 13. Add user profile (In progress)
 
 ## Credits
