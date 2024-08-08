@@ -27,7 +27,7 @@ use Core\FormHelper;
             <?= FormHelper::inputBlock('file', "Upload Profile Image (Select none to remove)", 'profileImage', '', ['class' => 'form-control'], ['class' => 'form-group w-50'], $this->displayErrors) ?>
             <div>
                 <h4>Password Requirements</h4>
-                <ul>
+                <ul class="pl-3">
                     <li>Minimum 12 characters in length</li>
                     <li>Maximum of 30 characters in length</li>
                     <li>At least 1 upper case character</li>
