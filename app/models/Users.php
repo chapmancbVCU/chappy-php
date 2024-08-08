@@ -86,7 +86,17 @@ class Users extends Model {
         }
         return self::$currentLoggedInUser;
     }
-    
+
+    public static function findAllUsers($current_user_id, $params = []) {
+        $conditions = [
+            'conditions' => 'id != ?',
+            'bind' => [(int)$current_user_id]
+        ];
+        // In case you want to add more conditions
+        $conditions = array_merge($conditions, $params);
+        return self::find($conditions);
+    }
+
     /**
      * Finds user by username in the Users table.
      *
@@ -97,15 +107,16 @@ class Users extends Model {
     public static function findByUserName(string $username) {
         return self::findFirst(['conditions'=> "username = ?", 'bind'=>[$username]]);
     }
-
-    /**
-     * Getter function for $_confirm instance variable.
-     *
-     * @return mixed The value for $_confirm.
-     */
-    // public function getConfirm(): mixed {
-    //     return $this->_confirm;
-    // }
+    
+    public static function findUserById($user_id, $params = []) {
+        $conditions = [
+            'conditions' => 'id = ?',
+            'bind' => [(int)$user_id]
+        ];
+        // In case you want to add more conditions
+        $conditions = array_merge($conditions, $params);
+        return self::findFirst($conditions);
+    }
 
     /**
      * Creates a session when the user logs in.  A new record is added to the 

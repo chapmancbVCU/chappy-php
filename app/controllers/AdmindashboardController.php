@@ -13,6 +13,7 @@ class AdmindashboardController extends Controller {
         $this->view->setLayout('admin');
         $this->currentUser = Users::currentUser();
     }
+
     /** 
      * The default action for this controller.  It performs rendering of this 
      * site's home page.
@@ -21,8 +22,13 @@ class AdmindashboardController extends Controller {
      */
     public function indexAction(): void {
         $users = Users::findAllUsers($this->currentUser->id);
-        Helper::cl($users);
         $this->view->users = $users;
         $this->view->render('admindashboard/index');
+    }
+
+    public function detailsAction($id): void {
+        $user = Users::findUserById($id);
+        $this->view->user = $user;
+        $this->view->render('admindashboard/details');
     }
 }
