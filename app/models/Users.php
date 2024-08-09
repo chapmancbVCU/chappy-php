@@ -124,6 +124,17 @@ class Users extends Model {
         return self::findFirst($conditions);
     }
 
+    public static function idToAcl($acl_value, $aclArray) {
+        Helper::cl($acl_value);
+        Helper::cl($aclArray);
+        foreach($aclArray as $key => $value) {
+            if($key == $acl_value) { 
+                return '["'.$value.'"]'; 
+
+            }
+        }
+    }
+
     /**
      * Creates a session when the user logs in.  A new record is added to the 
      * user_sessions table and a cookie is created if remember me is 

@@ -16,14 +16,17 @@ class AdmindashboardController extends Controller {
 
     public function editAction($id): void {
         $user = Users::findUserById($id);
-        $acl = new ACL();
-        $this->view->acls = ACL::getOptionsForForm($user->acl);
         $this->view->user = $user;
-        $this->view->aclId = Users::aclToId(ACL::trimACL($user->acl), $this->view->acls);
+
+        // Setup acl data.
+        $acls = ACL::getOptionsForForm($user->acl);
+        $this->view->acls = $acls;
+        $this->view->aclId = Users::aclToId(ACL::trimACL($user->acl), $acls);
         
         if($this->request->isPost()) {
             $this->request->csrfCheck();
-            $user->assign($this->request->get(), Users::blackListedFormKeys);
+            $user->assign($this->request->get(), $acls);
+            $this->view->user->acl = Users::idToAcl($_POST['acl'], ACL::getOptionsForForm($user->acl));
             if($user->save()) {
                 Router::redirect('admindashboard');
             }
@@ -33,6 +36,7 @@ class AdmindashboardController extends Controller {
         $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'edit' . DS . $user->id;
         $this->view->render('admindashboard/edit');
     }
+    
     /** 
      * The default action for this controller.  It performs rendering of this 
      * site's home page.
