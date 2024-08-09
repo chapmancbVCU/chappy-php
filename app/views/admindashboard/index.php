@@ -15,7 +15,7 @@
                 <td><?= $user->username ?></td>
                 <td><?= $user->acl ?></td>
                 <td class="text-center">
-                    <a href="<?=APP_DOMAIN?>admindashboard/edit/<?=$user->id?>" class="btn btn-info btn-xs">
+                    <a href="<?=APP_DOMAIN?>admindashboard/details/<?=$user->id?>" class="btn btn-info btn-xs">
                         <i class="fa fa-edit"></i> Edit
                     </a>
                 </td>
