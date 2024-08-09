@@ -8,18 +8,9 @@ class ACL extends Model {
     protected static $_table = 'acl';
 
     public static function getOptionsForForm() {
-        $acls = self::find([
-         //   'conditions' =>  'id = ?',
-         //   'bind' => [$user_id],
-            'order' => 'acl'
-        ]);
-        // $aclArray = ['' => ' - Select ACL -'];
-        
-        //$acls = $this->query("SELECT * FROM acl")->results();
+        $acls = self::find(['order' => 'acl']);
         $aclArray = ['' => ' - Select ACL -'];
         foreach($acls as $acl) {
-            //$aclArray[$acl->id] = $acl->id;
-            // $aclArray[$acl->id] = $acl->id;
             $aclArray[$acl->id] = $acl->acl;
         }
         return $aclArray;

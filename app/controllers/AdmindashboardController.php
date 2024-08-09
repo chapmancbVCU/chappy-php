@@ -1,18 +1,12 @@
 <?php
 namespace App\Controllers;
-use Core\Controller;
+use Core\{Controller, Router};
 use App\Models\{ACL, Users};
 use Core\Helper;
 /**
- * Implements support for our Home controller.  Functions found in this class 
- * will support tasks related to the home page.
+ * Implements support for our Admindashboard controller.
  */
 class AdmindashboardController extends Controller {
-    public function onConstruct()
-    {
-        $this->view->setLayout('admin');
-        $this->currentUser = Users::currentUser();
-    }
 
     public function detailsAction($id): void {
         $user = Users::findUserById($id);
@@ -29,7 +23,10 @@ class AdmindashboardController extends Controller {
         
         if($this->request->isPost()) {
             $this->request->csrfCheck();
-            // $acls->assign($th)
+            $user->assign($this->request->get(), Users::blackListedFormKeys);
+            if($user->save()) {
+                Router::redirect('admindashboard');
+            }
         }
 
         $this->view->displayErrors = $user->getErrorMessages();
@@ -48,5 +45,9 @@ class AdmindashboardController extends Controller {
         $this->view->render('admindashboard/index');
     }
 
-    
+    public function onConstruct()
+    {
+        $this->view->setLayout('admin');
+        $this->currentUser = Users::currentUser();
+    }
 }
