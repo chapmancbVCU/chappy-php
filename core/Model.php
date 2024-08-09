@@ -369,7 +369,7 @@ class Model {
         // $validator->field is the field we ar validating.
         $key = $validator->field;
         if(!$validator->success){
-            $this->addErrorMessage($key,$validator->msg);
+            $this->addErrorMessage($key,$validator->message);
         }
     }
 

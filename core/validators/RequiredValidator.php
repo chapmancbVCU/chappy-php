@@ -1,6 +1,7 @@
 <?php
 namespace Core\Validators;
 use Core\Validators\CustomValidator;
+use Core\Helper;
 /**
  * Child class that performs validation for fields that are required.
  */

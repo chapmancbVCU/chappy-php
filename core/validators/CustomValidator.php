@@ -1,7 +1,7 @@
 <?php
 namespace Core\Validators;
 use \Exception;
-
+use Core\Helper;
 /**
  * Abstract parent class for our child validation child classes.  Each child 
  * class must implement the runValidation() function.
@@ -10,6 +10,7 @@ use \Exception;
 abstract class CustomValidator {
     public $additionalFieldData = [];
     public $field;
+    public $includeDeleted = false;
     protected $_model;
     public $message = '';
     public $rule;
@@ -28,6 +29,7 @@ abstract class CustomValidator {
      * form is submitted during a post action.
      */
     public function __construct(object $model, array $params) {
+
         $this->_model = $model;
 
         if(!array_key_exists('field',$params)){
@@ -43,11 +45,11 @@ abstract class CustomValidator {
         }
 
         if(!property_exists($model, $this->field)){
-            throw new Exception("The field must exist in the model");
+        throw new Exception("The field must exist in the model");
         }
 
         if(!array_key_exists('message',$params)){
-            throw new Exception("You must add a message to the params array.");
+        throw new Exception("You must add a msg to the params array.");
         } else {
             $this->message = $params['message'];
         }
@@ -56,10 +58,14 @@ abstract class CustomValidator {
             $this->rule = $params['rule'];
         }
 
+        if(array_key_exists('includeDeleted',$params) && $params['includeDeleted']) {
+            $this->includeDeleted = true;
+        }
+
         try {
             $this->success = $this->runValidation();
         } catch(Exception $e) {
-            echo "Validation Exception on " . get_class() . ": " . $e->getMessage() . "<br />";
+        echo "Validation Exception on " . get_class() . ": " . $e->getMessage() . "<br />";
         }
     }
 
