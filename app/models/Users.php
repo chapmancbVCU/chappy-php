@@ -49,6 +49,12 @@ class Users extends Model {
 
     }
 
+    public static function aclToId($user_acl, $aclArray) {
+        foreach($aclArray as $key => $value) {
+            if($value == $user_acl) { return $key; }
+        }
+    }
+
     public static function addAcl($user_id,$acl){
         $user = self::findById($user_id);
         if(!$user) return false;

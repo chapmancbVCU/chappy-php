@@ -22,15 +22,16 @@ class AdmindashboardController extends Controller {
 
     public function editAction($id): void {
         $user = Users::findUserById($id);
+        $acl = new ACL();
+        $this->view->acls = ACL::getOptionsForForm($user->acl);
         $this->view->user = $user;
-        //$this->view->user->acl = ACL::trimACL($user->acl);
-        $acls = new ACL();
-        $this->view->acls = $acls->getOptionsForForm($user->acl);
-        Helper::cl($user->acl);
-        foreach($this->view->acls as $a) {
-            Helper::cl($a);
-            if($this->view->user->acl == $a) Helper::cl("match");
+        $this->view->aclId = Users::aclToId(ACL::trimACL($user->acl), $this->view->acls);
+        
+        if($this->request->isPost()) {
+            $this->request->csrfCheck();
+            // $acls->assign($th)
         }
+
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'edit' . DS . $user->id;
         $this->view->render('admindashboard/edit');
