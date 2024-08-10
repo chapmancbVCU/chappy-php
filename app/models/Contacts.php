@@ -14,6 +14,7 @@ class Contacts extends Model {
     public $address2;
     public $cell_phone;
     public $city;
+    public $created_at;
     public $deleted = 0;
     public const blackList = ['id', 'deleted'];
     public $email;
@@ -24,6 +25,7 @@ class Contacts extends Model {
     protected static $_softDelete = true;
     public $state;
     protected static $_table = 'contacts';
+    public $updated_at;
     public $user_id;
     public $work_phone;
     public $zip;
