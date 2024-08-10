@@ -106,7 +106,6 @@ class FormHelper {
      */
     public static function checkboxBlockLabelLeft($label, 
         $name, 
-        $value = "", 
         $checked = false, 
         $inputAttrs = [], 
         $divAttrs = [],
@@ -117,9 +116,9 @@ class FormHelper {
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
         $checkString = ($checked) ? ' checked="checked"' : '';
-
+        $id = str_replace('[]','',$name);
         $html = '<div'.$divString.'>';
-        $html .= '<label for="'.$name.'">'.$label.' <input type="checkbox" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.' /></label>';
+        $html .= '<label for="'.$name.'">'.$label.' <input type="checkbox" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.' /></label>';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
@@ -156,7 +155,6 @@ class FormHelper {
      */
     public static function checkboxBlockLabelRight(string $label, 
         string $name, 
-        string $value = "", 
         bool $checked = false, 
         array $inputAttrs = [], 
         array $divAttrs = [],
@@ -167,8 +165,9 @@ class FormHelper {
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
         $checkString = ($checked) ? ' checked="checked"' : '';
+        $id = str_replace('[]','',$name);
         $html = '<div'.$divString.'>';
-        $html .='<input type="checkbox" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.'><label for="'.$name.'">'.$label.'</label> ';
+        $html .='<input type="checkbox" id="'.$name.'" name="'.$id.'" value="'.$value.'"'.$checkString.$inputString.'><label for="'.$name.'">'.$label.'</label> ';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
