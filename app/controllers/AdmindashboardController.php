@@ -55,7 +55,7 @@ class AdmindashboardController extends Controller {
         $this->currentUser = Users::currentUser();
     }
 
-    public function resetPasswordAction($id) {
+    public function setResetPasswordAction($id) {
         $user = Users::findById($id);
         $this->view->user = $user;
         
@@ -67,8 +67,8 @@ class AdmindashboardController extends Controller {
                 Router::redirect('admindashboard/details/'.$this->view->user->id);
             }
         }
-
-        $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'resetPassword' . DS . $user->id;
-        $this->view->render('admindashboard/reset_password');
+        $this->view->displayErrors = $user->getErrorMessages();
+        $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'setResetPassword' . DS . $user->id;
+        $this->view->render('admindashboard/set_reset_password');
     }
 }
