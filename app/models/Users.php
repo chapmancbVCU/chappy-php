@@ -21,9 +21,10 @@ use App\Models\UserSessions;
  */
 class Users extends Model {
     public $acl;
+    public const blackListedFormKeys = ['id','deleted'];
     private $changePassword = false;
     public $confirm;
-    public const blackListedFormKeys = ['id','deleted'];
+    public $created_at;
     public static $currentLoggedInUser = null;
     public $deleted = 0;                // Set default value for db field.
     public $description;
@@ -31,10 +32,12 @@ class Users extends Model {
     public $fname;
     public $id;
     public $lname;
+    public $resetPassword = 0;
     public $password;
     public $profileImage;
     protected static $_softDelete = true;
     protected static $_table = 'users';
+    public $updated_at;
     public $username;
 
     /**
