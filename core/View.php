@@ -8,6 +8,7 @@ class View {
     protected $_body;
     protected $_content = [];
     protected $_currentBuffer;
+    public $displayErrors;
     protected $_head;
     protected $_layout = DEFAULT_LAYOUT;
     protected $_outputBuffer;
