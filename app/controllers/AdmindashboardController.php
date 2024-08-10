@@ -25,10 +25,10 @@ class AdmindashboardController extends Controller {
         
         if($this->request->isPost()) {
             $this->request->csrfCheck();
-            $user->assign($this->request->get(), $acls);
+            $user->assign($this->request->get(), Users::blackListedFormKeys);
             $this->view->user->acl = Users::idToAcl($_POST['acl'], ACL::getOptionsForForm($user->acl));
             if($user->save()) {
-                Router::redirect('admindashboard');
+                Router::redirect('admindashboard/details/'.$this->view->user->id);
             }
         }
 
@@ -36,7 +36,7 @@ class AdmindashboardController extends Controller {
         $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'edit' . DS . $user->id;
         $this->view->render('admindashboard/edit');
     }
-    
+
     /** 
      * The default action for this controller.  It performs rendering of this 
      * site's home page.
