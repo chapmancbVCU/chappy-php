@@ -118,7 +118,7 @@ class FormHelper {
         $checkString = ($checked) ? ' checked="checked"' : '';
         $id = str_replace('[]','',$name);
         $html = '<div'.$divString.'>';
-        $html .= '<label for="'.$name.'">'.$label.' <input type="checkbox" id="'.$id.'" name="'.$name.'" value="'.$value.'"'.$checkString.$inputString.' /></label>';
+        $html .= '<label for="'.$id.'">'.$label.' <input type="checkbox" id="'.$id.'" name="'.$name.'" value="on"'.$checkString.$inputString.' /></label>';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
@@ -167,7 +167,7 @@ class FormHelper {
         $checkString = ($checked) ? ' checked="checked"' : '';
         $id = str_replace('[]','',$name);
         $html = '<div'.$divString.'>';
-        $html .='<input type="checkbox" id="'.$name.'" name="'.$id.'" value="'.$value.'"'.$checkString.$inputString.'><label for="'.$name.'">'.$label.'</label> ';
+        $html .='<input type="checkbox" id="'.$name.'" name="'.$id.'" value="on"'.$checkString.$inputString.'><label for="'.$id.'">'.$label.'</label> ';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;

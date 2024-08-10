@@ -54,4 +54,21 @@ class AdmindashboardController extends Controller {
         $this->view->setLayout('admin');
         $this->currentUser = Users::currentUser();
     }
+
+    public function resetPasswordAction($id) {
+        $user = Users::findById($id);
+        $this->view->user = $user;
+        
+        if($this->request->isPost()) {
+            $this->request->csrfCheck();
+            $user->assign($this->request->get(), Users::blackListedFormKeys);
+            $user->reset_password = ($this->request->get('reset_password') == 'on') ? 1 : 0;
+            if($user->save()) {
+                Router::redirect('admindashboard/details/'.$this->view->user->id);
+            }
+        }
+
+        $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'resetPassword' . DS . $user->id;
+        $this->view->render('admindashboard/reset_password');
+    }
 }

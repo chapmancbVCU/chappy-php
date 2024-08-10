@@ -21,12 +21,6 @@ use Core\Helper;
             <?= FormHelper::inputBlock('text', "Last Name", 'lname', $this->user->lname, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
             <?= FormHelper::emailBlock("Email", 'email', $this->user->email, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
             <?= FormHelper::selectBlock('ACL', 'acl', $this->aclId, $this->acls, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors); ?>
-            <?= FormHelper::textAreaBlock("About Me", 
-                'description', 
-                $this->user->description, 
-                ['class' => 'form-control input-sm', 'placeholder' => 'Describe yourself here...', 'rows' => '4'], 
-                ['class' => 'form-group']); 
-            ?>
             <?= FormHelper::submitBlock('Update', ['class' => 'btn btn-large btn-primary'], ['class' => 'text-right'])  ?>
         </form>
     </div>

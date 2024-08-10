@@ -32,7 +32,7 @@ class Users extends Model {
     public $fname;
     public $id;
     public $lname;
-    public $resetPassword = 0;
+    public $reset_password = 0;
     public $password;
     public $profileImage;
     protected static $_softDelete = true;
@@ -136,6 +136,10 @@ class Users extends Model {
 
             }
         }
+    }
+
+    public function isChecked() {
+        return $this->reset_password === 1;
     }
 
     /**
