@@ -21,7 +21,7 @@ class ProfileController extends Controller {
         if(!$user) Router::redirect('');
         if($this->request->isPost()) {
             $this->request->csrfCheck();
-            $user->assign($this->request->get());
+            $user->assign($this->request->get(), Users::blackListedFormKeys);
             if($user->save()) {
                 Router::redirect('profile/index');
             }
@@ -43,7 +43,7 @@ class ProfileController extends Controller {
         if(!$user) Router::redirect('');
         if($this->request->isPost()) {
             $this->request->csrfCheck();
-            $user->assign($this->request->get());
+            $user->assign($this->request->get(), Users::blackListedFormKeys);
 
             // Accepted file types.
             $fileTypes = ['png', 'jpg', 'gif', 'bmp'];  
@@ -80,10 +80,12 @@ class ProfileController extends Controller {
      */
     public function updatePasswordAction(): void {
         $user = Users::currentUser();
+        $user->password = "";
+        
         if(!$user) Router::redirect('');
         if($this->request->isPost()) {
             $this->request->csrfCheck();
-            $user->assign($this->request->get());
+            $user->assign($this->request->get(), Users::blackListedFormKeys);
 
             // PW mode on for correct validation.
             $user->setChangePassword(true);
