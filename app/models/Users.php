@@ -20,7 +20,7 @@ use App\Models\UserSessions;
  * Extends the Model class.  Supports functions for the Users model.
  */
 class Users extends Model {
-    public $acl;
+    public $acl = '["Standard"]';
     public const blackListedFormKeys = ['id','deleted'];
     private $changePassword = false;
     public $confirm;
