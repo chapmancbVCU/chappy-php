@@ -20,7 +20,7 @@ use App\Models\UserSessions;
  * Extends the Model class.  Supports functions for the Users model.
  */
 class Users extends Model {
-    public $acl = '["Standard"]';
+    public $acl;
     public const blackListedFormKeys = ['id','deleted'];
     private $changePassword = false;
     public $confirm;
@@ -236,6 +236,13 @@ class Users extends Model {
 
     public function setChangePassword(bool $value): void {
         $this->changePassword = $value;
+    }
+
+    public static function setAclAtRegistration() {
+        if(Users::findTotal() == 0) {
+            return '["Admin"]';
+        }
+        return '["Standard"]';
     }
 
     /**

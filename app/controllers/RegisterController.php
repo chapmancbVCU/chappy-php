@@ -74,6 +74,7 @@ class RegisterController extends Controller {
             // Accepted file types.
             $fileTypes = ['png', 'jpg', 'gif', 'bmp'];  
             $newUser->profileImage = $newUser->processFile($_FILES, "profileImage", $newUser->username, "", "images", $fileTypes);
+            $newUser->acl = Users::setAclAtRegistration();
             if($newUser->save()) {
                 Router::redirect('register/login');
             }
