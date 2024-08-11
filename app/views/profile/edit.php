@@ -10,7 +10,6 @@ use Core\FormHelper;
 <?php $this->start('body'); ?>
 <div class="row align-items-center justify-content-center">
     <div class="col-md-6 bg-light p-3">
-        <a href="<?=APP_DOMAIN?>profile" class="btn btn-xs btn-secondary mb-3">Back</a>
         <h1 class="text-center">Edit Details for <?=$this->user->username?></h1>
         <hr>
         <form class="form" action="" method="post">
@@ -25,7 +24,10 @@ use Core\FormHelper;
                 ['class' => 'form-control input-sm', 'placeholder' => 'Describe yourself here...', 'rows' => '4'], 
                 ['class' => 'form-group']); 
             ?>
-            <?= FormHelper::submitBlock('Update', ['class' => 'btn btn-large btn-primary'], ['class' => 'text-right'])  ?>
+            <div class="col-md-12 text-right">
+                <a href="<?=APP_DOMAIN?>profile" class="btn btn-default">Cancel</a>
+                <?= FormHelper::submitTag('Update', ['class' => 'btn btn-primary'])  ?>
+            </div>
         </form>
     </div>
 </div>

@@ -11,7 +11,11 @@ use Core\FormHelper;
         <form class="form" action=<?=$this->postAction?> method="post">
             <?= FormHelper::csrfInput() ?>
             <?= FormHelper::checkboxBlockLabelLeft('Select to confirm reset password', 'reset_password', $this->user->isChecked(), [], ['class' => 'form-group'], $this->displayErrors); ?>
-            <?= FormHelper::submitTag('Reset Password',['class'=>'btn btn-primary']) ?>
+            
+            <div class="col-md-12 text-right">
+                <a href="<?=APP_DOMAIN?>admindashboard/details/<?=$this->user->id?>" class="btn btn-default">Cancel</a>
+                <?= FormHelper::submitTag('Reset Password',['class'=>'btn btn-primary']) ?>
+            </div>
         </form>
     </div>
 </div>
