@@ -24,7 +24,7 @@ use Core\FormHelper;
                 </ul>
             </div>
             <?= FormHelper::inputBlock('password', "Password", 'password', $this->user->password, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
-            <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->user->getConfirm(), ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
+            <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->user->confirm, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
             <?= FormHelper::submitBlock('Update', ['class' => 'btn btn-large btn-primary'], ['class' => 'text-right'])  ?>
         </form>
     </div>

@@ -81,6 +81,14 @@ class Users extends Model {
         if($this->isNew()) {
             $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         }
+        if($this->changePassword) {
+            $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+            $this->reset_password = 0;
+        }
+    }
+
+    public function hashPassword($password) {
+        $password = password_hash($password, PASSWORD_DEFAULT);
     }
 
     /**

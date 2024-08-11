@@ -29,8 +29,12 @@ class RegisterController extends Controller {
             if($loginModel->validationPassed()){
                 $user = Users::findByUsername($_POST['username']);
                 if($user && password_verify($this->request->get('password'), $user->password)) {
+                    if($user->reset_password == 1) {
+                        Router::redirect('register/resetPassword/'.$user->id);
+                    }
                     $remember = $loginModel->getRememberMeChecked();
                     $user->login($remember);
+
                     Router::redirect('');
                 }  else {
                     $loginModel->addErrorMessage('username','There is an error with your username or password');
@@ -65,8 +69,8 @@ class RegisterController extends Controller {
         $newUser = new Users();
         if($this->request->isPost()) {
             $this->request->csrfCheck();
-            $newUser->assign($this->request->get(),Users::blackListedFormKeys);
-            $newUser->confirm =$this->request->get('confirm');
+            $newUser->assign($this->request->get());
+            $newUser->confirm = $this->request->get('confirm');
             // Accepted file types.
             $fileTypes = ['png', 'jpg', 'gif', 'bmp'];  
             $newUser->profileImage = $newUser->processFile($_FILES, "profileImage", $newUser->username, "", "images", $fileTypes);
@@ -78,5 +82,37 @@ class RegisterController extends Controller {
         $this->view->newUser = $newUser;
         $this->view->displayErrors = $newUser->getErrorMessages();
         $this->view->render('register/register');
+    }
+
+    public function resetPasswordAction($id): void {
+        $user = Users::findById($id);
+        $user->password = "";
+        
+        if(!$user) Router::redirect('');
+        if($this->request->isPost()) {
+            $this->request->csrfCheck();
+            $user->assign($this->request->get(), Users::blackListedFormKeys);
+            
+            // PW mode on for correct validation.
+            $user->setChangePassword(true);
+            
+            // Allows password matching confirmation.
+            $user->confirm = $this->request->get('confirm');
+            //{
+               // $user->resetPassword = 0;
+            //}
+            
+            if($user->save()) {
+                // PW change mode off.
+                $user->setChangePassword(false);    
+                Router::redirect('register/login');
+            }
+        }
+        $user->resetPassword = 1;
+        $user->setChangePassword(false);
+        $this->view->displayErrors = $user->getErrorMessages();
+        $this->view->user = $user;
+        $this->view->postAction = APP_DOMAIN . 'register' . DS . 'reset_password' . DS . $user->id;
+        $this->view->render('register/reset_password');
     }
 }

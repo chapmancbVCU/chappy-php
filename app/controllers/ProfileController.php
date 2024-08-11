@@ -81,7 +81,7 @@ class ProfileController extends Controller {
     public function updatePasswordAction(): void {
         $user = Users::currentUser();
         $user->password = "";
-        
+
         if(!$user) Router::redirect('');
         if($this->request->isPost()) {
             $this->request->csrfCheck();
@@ -91,8 +91,8 @@ class ProfileController extends Controller {
             $user->setChangePassword(true);
 
             // Allows password matching confirmation.
-            $user->setConfirm($this->request->get('confirm'));
-
+            $user->confirm = $this->request->get('confirm');
+            
             if($user->save()) {
                 // PW change mode off.
                 $user->setChangePassword(false);    
