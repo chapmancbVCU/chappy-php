@@ -7,6 +7,8 @@
     <thead>
         <th>Username</th>
         <th>Access Level</th>
+        <th>Created</th>
+        <th>Last Update</th>
         <th></th>
     </thead>
     <tbody>
@@ -14,6 +16,8 @@
             <tr>
                 <td><?= $user->username ?></td>
                 <td><?= $user->acl ?></td>
+                <td><?= $user->created_at ?></td>
+                <td><?= $user->updated_at ?></td>
                 <td class="text-center">
                     <a href="<?=APP_DOMAIN?>admindashboard/details/<?=$user->id?>" class="btn btn-info btn-xs">
                         <i class="fa fa-edit"></i> Edit

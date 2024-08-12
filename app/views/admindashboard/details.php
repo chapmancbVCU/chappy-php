@@ -33,6 +33,14 @@
                 <th class="text-center">ACL</th>
                 <td class="text-center"><?=$this->user->acl?></td>
             </tr>
+            <tr>
+                <th class="text-center">Created</th>
+                <td class="text-center"><?=$this->user->created_at?></td>
+            </tr>
+            <tr>
+                <th class="text-center">Last Update</th>
+                <td class="text-center"><?=$this->user->updated_at?></td>
+            </tr>
             <?php if($this->user->description): ?>
                 <tr>
                     <th class="text-center" colspan="2">Description</th>
