@@ -10,9 +10,11 @@ class AdmindashboardController extends Controller {
 
     public function deleteAction(int $id): void {
         $user = Users::findById((int)$id, Users::currentUser()->id);
-        if($user) {
+        if($user && $user->acl != '["Admin"]') {
             $user->delete();
             Session::addMessage('success', 'User has been deleted');
+        } else {
+            Session::addMessage('danger', 'Cannot delete Admin user!');
         }
         Router::redirect('admindashboard');
     }
@@ -35,7 +37,7 @@ class AdmindashboardController extends Controller {
         if($this->request->isPost()) {
             $this->request->csrfCheck();
             $user->assign($this->request->get(), Users::blackListedFormKeys);
-            $this->view->user->acl = Users::idToAcl($_POST['acl'], ACL::getOptionsForForm($user->acl));
+            $this->view->user->acl = Users::idToAcl($_POST['acl'], $acls);
             if($user->save()) {
                 Router::redirect('admindashboard/details/'.$this->view->user->id);
             }
