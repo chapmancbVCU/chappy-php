@@ -9,13 +9,13 @@ use Core\Helper;
 class AdmindashboardController extends Controller {
 
     public function detailsAction($id): void {
-        $user = Users::findUserById($id);
+        $user = Users::findById($id);
         $this->view->user = $user;
         $this->view->render('admindashboard/details');
     }
 
     public function editAction($id): void {
-        $user = Users::findUserById($id);
+        $user = Users::findById($id);
         $this->view->user = $user;
 
         // Setup acl data.

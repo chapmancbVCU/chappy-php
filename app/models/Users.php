@@ -124,16 +124,6 @@ class Users extends Model {
     public static function findByUserName(string $username) {
         return self::findFirst(['conditions'=> "username = ?", 'bind'=>[$username]]);
     }
-    
-    public static function findUserById($user_id, $params = []) {
-        $conditions = [
-            'conditions' => 'id = ?',
-            'bind' => [(int)$user_id]
-        ];
-        // In case you want to add more conditions
-        $conditions = array_merge($conditions, $params);
-        return self::findFirst($conditions);
-    }
 
     public static function idToAcl($acl_value, $aclArray) {
         Helper::cl($acl_value);
