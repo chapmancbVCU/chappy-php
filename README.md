@@ -55,7 +55,7 @@ It supports everything described above.  This sample application natively comes 
 4. Update jQuery and Bootstrap to modern builds and add support to maintain similar look and feel of front end (Done)
 5. Add support for additional form elements in FormHelpers (In progress)
 6. Add user guide (Update as needed)
-7. Add management system for Users model to in include admin so administrators can manage other users, change user type, and perform password reset operations.
+7. Add management system for Users model to in include admin so administrators can manage other users, change user type, and perform password reset operations. (In progress)
 9. Add TinyMCE (Done)
 10. Add file upload support (Done)
 11. Add database migrations. (Done)
