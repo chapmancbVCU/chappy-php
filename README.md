@@ -15,10 +15,26 @@ It supports everything described above.  This sample application natively comes 
 1. Navigate to where your development projects are located in CMD or Terminal.
 2. Run the command ```git clone git@github.com:chapmancbVCU/custom-php-mvc-framework.git```
 3. Make a copy of .env.sample in project root and name it .env.  Fill in the following information:
+   * DB_NAME
    * DB_USER
    * DB_PASSWORD
+   * DB_HOST
    * CURRENT_USER_SESSION_NAME: should be a long string of upper and lower case characters and numbers.
    * REMEMBER_ME_COOKIE_NAME:  should be a long string of upper and lower case characters and numbers.
+4. Database Setup:
+   * Create your database and set it to what you entered for DB_NAME
+   * Create a table named migrations with an id field and a field called migrations of type varchar and size 100
+   * Apache and Nginx, run the following command from project root:
+      ```php run_migrations.php```
+   * XAMPP
+      * Within the .env file set the RUN_MIGRATIONS_FROM_BROWSER variable to true
+      * Run the following command from your browser's address bar:
+         ```http://localhost/project_name/run_migrations.php```
+   * Inspect database and make sure the following tables are created:
+      * acl
+      * contacts
+      * users
+      * user_sessions
 4. profileImage directory:
    * In CMD or Terminal navigate to public/images from project root and make a directory called "profileImage".
    * In Linux and MacOS set the appropriate permissions by running the command: ```chmod 777 profileImage```
