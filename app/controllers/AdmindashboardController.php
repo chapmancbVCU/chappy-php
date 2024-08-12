@@ -1,12 +1,21 @@
 <?php
 namespace App\Controllers;
-use Core\{Controller, Router};
+use Core\{Controller, Router, Session};
 use App\Models\{ACL, Users};
 use Core\Helper;
 /**
  * Implements support for our Admindashboard controller.
  */
 class AdmindashboardController extends Controller {
+
+    public function deleteAction(int $id): void {
+        $user = Users::findById((int)$id, Users::currentUser()->id);
+        if($user) {
+            $user->delete();
+            Session::addMessage('success', 'User has been deleted');
+        }
+        Router::redirect('admindashboard');
+    }
 
     public function detailsAction($id): void {
         $user = Users::findById($id);

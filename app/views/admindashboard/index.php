@@ -22,6 +22,9 @@
                     <a href="<?=APP_DOMAIN?>admindashboard/details/<?=$user->id?>" class="btn btn-info btn-xs">
                         <i class="fa fa-edit"></i> Edit
                     </a>
+                    <a href="<?=APP_DOMAIN?>admindashboard/delete/<?=$user->id?>" class="btn btn-danger btn-xs" onclick="if(!confirm('Are you sure?')){return false;}">
+                        <i class="fa fa-trash"></i> Delete
+                    </a>
                 </td>
             </tr>
         <?php endforeach; ?>
