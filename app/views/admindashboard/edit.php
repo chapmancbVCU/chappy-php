@@ -4,11 +4,6 @@ use Core\Helper;
 
 ?>
 <?php $this->setSiteTitle("Edit Details for ".$this->user->username); ?>
-<?php $this->start('head') ?>
-    <script src='<?=APP_DOMAIN?>vendor/tinymce/tinymce/tinymce.min.js'></script>
-    <script src='<?=APP_DOMAIN?>public/js/profileDescriptionTinyMCE.js'></script>
-<?php $this->end() ?>
-
 <?php $this->start('body'); ?>
 <div class="row align-items-center justify-content-center">
     <div class="col-md-6 bg-light p-3">
