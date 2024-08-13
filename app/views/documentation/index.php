@@ -8,7 +8,7 @@
     <div class="row align-items-center justify-content-center my-3">
         <p class="text-center w-75">The MVC documentation contains descriptions for built in classes, functions, and JavaScript</p>
     </div>
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5 table-sm">
         <tr>
             <td><a href="<?=APP_DOMAIN?>documentation/controllers" class="text-primary">Controllers</a></td>
             <td>Documentation for controller classes that provide support for interactions between model and views.</td>

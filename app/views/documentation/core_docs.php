@@ -7,7 +7,7 @@
     <div class="row align-items-center justify-content-center my-3 mx-auto">
         <p class="text-center w-75">The classes that provide primary support functions and validation for this Model View Controller (MVC) framework.</p>
     </div>
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5 table-sm">
         <tr>
             <td><a href="<?=APP_DOMAIN?>documentation/application" class="text-primary w-25">Application</a></td>
             <td>The Application class supports basic functional needs of the application.</td>

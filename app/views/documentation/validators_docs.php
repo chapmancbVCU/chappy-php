@@ -10,7 +10,7 @@
             Validation class provided by this Model View Controller (MVC) framework.
         </p>
     </div>
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mb-5 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mb-5 mx-auto table-sm">
         <tr>
             <td><a href="<?=APP_DOMAIN?>documentation/customValidator" class="text-primary w-25">Custom Validator</a></td>
             <td>Abstract parent class for our child validation child classes.  Each child class must implement the runValidation() function.</td>

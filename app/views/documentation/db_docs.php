@@ -9,7 +9,7 @@
         <p class="text-center w-75">Support database operations.</p>
     </div>
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">Extends</th>
         </tr>
@@ -66,7 +66,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function construct</th>
         </tr>
@@ -83,7 +83,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function count</th>
         </tr>
@@ -107,7 +107,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function delete</th>
         </tr>
@@ -147,7 +147,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function error</th>
         </tr>
@@ -171,7 +171,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function find</th>
         </tr>
@@ -220,7 +220,7 @@ $contacts = $db->find('users', [
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function findFirst</th>
         </tr>
@@ -253,7 +253,7 @@ $contacts = $db->find('users', [
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function first</th>
         </tr>
@@ -277,7 +277,7 @@ $contacts = $db->find('users', [
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function getColumns</th>
         </tr>
@@ -302,7 +302,7 @@ $contacts = $db->find('users', [
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function getInstance</th>
         </tr>
@@ -326,7 +326,7 @@ $contacts = $db->find('users', [
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function insert</th>
         </tr>
@@ -370,7 +370,7 @@ $contacts = $db->insert('contacts', $fields);
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function lastID</th>
         </tr>
@@ -394,7 +394,7 @@ $contacts = $db->insert('contacts', $fields);
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function query</th>
         </tr>
@@ -427,7 +427,7 @@ $contacts = $db->insert('contacts', $fields);
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">protected function read</th>
         </tr>
@@ -460,7 +460,7 @@ $contacts = $db->insert('contacts', $fields);
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function results</th>
         </tr>
@@ -484,7 +484,7 @@ $contacts = $db->insert('contacts', $fields);
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm mb-5">
         <tr>
             <th colspan="2" class="text-center">public function update</th>
         </tr>

@@ -9,7 +9,7 @@
         <p class="text-center w-75">The Application class supports basic functional needs of the application.</p>
     </div>
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">Extends</th>
         </tr>
@@ -36,7 +36,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm table-sm">
         <tr>
             <th colspan="2" class="text-center">public function construct</th>
         </tr>
@@ -53,7 +53,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm table-sm mb-5">
         <tr>
             <th colspan="2" class="text-center">private function _set_reporting</th>
         </tr>
@@ -74,30 +74,8 @@
         </tr>
     </table>
 
-    <hr class="w-75 my-5 mx-auto">
-
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
-        <tr>
-            <th colspan="2" class="text-center">private function _unregister_global</th>
-        </tr>
-        <tr>
-            <td colspan="2">Unregister global variables that are created by default in PHP prior to version 8.</td>
-        </tr>
-        <tr>
-            <th class="align-middle text-center" colspan="2">params</th>
-        </tr>
-        <tr>
-            <td class="text-center" colspan="2">None</td>
-        </tr>
-        <tr>
-            <th class="align-middle text-center w-25" colspan="2">return</th>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25">void</td>
-        </tr>
-    </table>
-
     <a href="<?=APP_DOMAIN?>documentation/core" class="btn btn-xs btn-secondary mb-5">Core</a>
+
 </div>
 <script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

@@ -4,7 +4,7 @@
 
 <div class="main">
     <h1 class="text-center">Model Classes</h1>
-    <div class="row align-items-center justify-content-center my-3 mx-auto">
+    <div class="row align-items-center justify-content-center my-3 mx-auto table-sm">
         <p class="text-center w-75">Here you will find information about the various stock models 
             that are described by this Model View Controller (MVC) framework.
         </p>
