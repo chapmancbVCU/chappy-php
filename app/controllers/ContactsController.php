@@ -1,11 +1,8 @@
 <?php
 namespace App\Controllers;
-use Core\Controller;
-use Core\Session;
-use Core\Router;
-use App\Models\Contacts;
-use App\Models\Users;
-use Core\Helper;
+use Core\{Controller, Helper, Session, Router};
+use App\Models\{Contacts, Users};
+
 /**
  * Implements support for our Contacts Controller.  It contains actions for 
  * handling user interactions that will result in CRUD operations against the 

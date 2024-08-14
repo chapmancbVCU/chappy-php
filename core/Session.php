@@ -1,5 +1,6 @@
 <?php
 namespace Core;
+
 /**
  * Supports functions for user sessions.  This class never gets instantiated.
  */

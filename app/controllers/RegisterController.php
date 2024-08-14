@@ -1,10 +1,8 @@
 <?php
 namespace App\Controllers;
-use Core\Controller;
-use Core\Router;
-use App\Models\Users;
-use App\Models\Login;
-use Core\Helper;
+use Core\{Controller, Helper, Router};
+use App\Models\{Login, Users};
+
 /**
  * Implements support for our Register controller.  Functions found in this 
  * class will support tasks related to the user registration.

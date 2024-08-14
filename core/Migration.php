@@ -1,7 +1,6 @@
 <?php
 namespace Core;
-use Core\DB;
-use Core\Helper;
+use Core\{DB, Helper};
 
 /**
  * Supports database migration operations.

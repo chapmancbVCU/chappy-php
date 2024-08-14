@@ -1,6 +1,7 @@
 <?php
 namespace Core;
 use Core\Helper;
+
 /**
  * Handles operations related to views and its content.
  */

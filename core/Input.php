@@ -1,8 +1,7 @@
 <?php
 namespace Core;
-use Core\FormHelper;
-use Core\Router;
-use Core\Helper;
+use Core\{FormHelper, Helper, Router};
+
 /**
  * Input class handles requests to the server.
  */

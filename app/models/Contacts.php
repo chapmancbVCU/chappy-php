@@ -1,9 +1,7 @@
 <?php
 namespace App\Models;
-use Core\Model;
-use Core\Validators\RequiredValidator;
-use Core\Validators\MaxValidator;
-use Core\Helper;
+use Core\{Helper, Model};
+use Core\Validators\{MaxValidator, RequiredValidator};
 
 /**
  * Extends the Model class.  Supports functions for handling Contacts such as 

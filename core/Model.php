@@ -1,7 +1,6 @@
 <?php
 namespace Core;
 use Core\Helper;
-use \stdClass;
 
 /**
  * Parent class for our models.  Takes functions from DB wrapper and extract 

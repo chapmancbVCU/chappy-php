@@ -1,8 +1,8 @@
 <?php
 namespace Core;
 use \Exception;
-use Core\Session;
-use Core\Helper;
+use Core\{Helper, Session};
+
 /**
  * Contains functions for building form elements of various types.
  */
