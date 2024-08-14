@@ -25,6 +25,24 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
+    public function aclModelAction(): void {
+        $this->view->render('documentation/acl_model_docs');
+    }
+
+    /**
+     * Action for the Application class documentation page.
+     *
+     * @return void
+     */
+    public function admindashboardControllerAction(): void {
+        $this->view->render('documentation/admin_dashboard_controller_docs');
+    }
+
+    /**
+     * Action for the Application class documentation page.
+     *
+     * @return void
+     */
     public function applicationAction(): void {
         $this->view->render('documentation/application_docs');
     }

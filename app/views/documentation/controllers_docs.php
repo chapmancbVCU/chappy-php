@@ -12,6 +12,10 @@
     </div>
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5 table-sm">
         <tr>
+            <td><a href="<?=APP_DOMAIN?>documentation/admindashboardController" class="text-primary w-25">Admindashboard Controller</a></td>
+            <td>Add description here</td>
+        </tr>
+        <tr>
             <td><a href="<?=APP_DOMAIN?>documentation/contactsController" class="text-primary w-25">Contacts Controller</a></td>
             <td>Handles views and Create, Read, Update, and Delete operations for the built in example contact management system.</td>
         </tr>

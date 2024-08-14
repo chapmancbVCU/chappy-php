@@ -50,5 +50,5 @@ class Controller extends Application {
      *
      * @return void
      */
-    public function onConstruct(): void{}
+    public function onConstruct(): void {}
 }

@@ -18,7 +18,7 @@ class ContactsController extends Controller {
      *
      * @return void
      */
-    public function onConstruct(){
+    public function onConstruct(): void {
         $this->view->setLayout('default');
         $this->currentUser = Users::currentUser();
     }

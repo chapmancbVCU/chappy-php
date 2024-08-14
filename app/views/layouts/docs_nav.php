@@ -4,6 +4,7 @@
     </button>
     <div class="dropdown-container">
         <a href="<?=APP_DOMAIN?>documentation/controllers">Overview</a>
+        <a href="<?=APP_DOMAIN?>documentation/admindashboardController">Admindashboard Controller</a>
         <a href="<?=APP_DOMAIN?>documentation/contactsController">Contacts Controller</a>
         <a href="<?=APP_DOMAIN?>documentation/homeController">Home Controller</a>
         <a href="<?=APP_DOMAIN?>documentation/profileController">Profile Controller</a>
@@ -39,6 +40,7 @@
     </button>
     <div class="dropdown-container">
         <a href="<?=APP_DOMAIN?>documentation/models">Overview</a>
+        <a href="<?=APP_DOMAIN?>documentation/aclModel">ACL Model</a>
         <a href="<?=APP_DOMAIN?>documentation/contactsModel">Contacts Model</a>
         <a href="<?=APP_DOMAIN?>documentation/loginModel">Login Model</a>
         <a href="<?=APP_DOMAIN?>documentation/usersModel">Users Model</a>

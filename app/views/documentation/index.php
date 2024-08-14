@@ -1,6 +1,6 @@
 <?php $this->setSiteTitle("Custom MVC Framework Docs"); ?>
 <?php $this->start('body'); ?>
-<?php include('docs_nav.php'); ?>
+<?php include(ROOT . DS . 'app' . DS . 'views/layouts/docs_nav.php'); ?>
 
 <div class="main">
     <h1 class="text-center">Custom MVC Framework Docs</h1>

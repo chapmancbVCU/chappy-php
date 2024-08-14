@@ -274,7 +274,7 @@ class Model {
      *
      * @return void
      */
-    public function onConstruct(){}
+    public function onConstruct(): void {}
     
     /**
      * Populates object with data.

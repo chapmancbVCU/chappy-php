@@ -10,7 +10,7 @@ use Core\Helper;
  * class will support tasks related to the user registration.
  */
 class RegisterController extends Controller {
-    public function onConstruct(){
+    public function onConstruct(): void {
         $this->view->setLayout('default');
     }
 

@@ -8,6 +8,12 @@ use Core\Helper;
  */
 class AdmindashboardController extends Controller {
 
+    /**
+     * Undocumented function
+     *
+     * @param integer $id
+     * @return void
+     */
     public function deleteAction(int $id): void {
         $user = Users::findById((int)$id, Users::currentUser()->id);
         if($user && $user->acl != '["Admin"]') {
@@ -19,12 +25,24 @@ class AdmindashboardController extends Controller {
         Router::redirect('admindashboard');
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function detailsAction($id): void {
         $user = Users::findById($id);
         $this->view->user = $user;
         $this->view->render('admindashboard/details');
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function editAction($id): void {
         $user = Users::findById($id);
         $this->view->user = $user;
@@ -60,12 +78,22 @@ class AdmindashboardController extends Controller {
         $this->view->render('admindashboard/index');
     }
 
-    public function onConstruct()
-    {
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function onConstruct(): void {
         $this->view->setLayout('admin');
         $this->currentUser = Users::currentUser();
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function setResetPasswordAction($id) {
         $user = Users::findById($id);
         $this->view->user = $user;

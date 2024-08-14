@@ -7,7 +7,7 @@ use App\Models\Users;
  * Supports ability to use user profile features and render relevant views.
  */
 class ProfileController extends Controller {
-    public function onConstruct(){
+    public function onConstruct(): void{
         $this->view->setLayout('default');
     }
 
