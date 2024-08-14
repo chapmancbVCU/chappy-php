@@ -15,7 +15,7 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function deleteAction(int $id): void {
-        $user = Users::findById((int)$id, Users::currentUser()->id);
+        $user = Users::findById((int)$id);
         if($user && $user->acl != '["Admin"]') {
             $user->delete();
             Session::addMessage('success', 'User has been deleted');
@@ -73,7 +73,7 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function indexAction(): void {
-        $users = Users::findAllUsers($this->currentUser->id);
+        $users = Users::findAllUsers(Users::currentUser()->id);
         $this->view->users = $users;
         $this->view->render('admindashboard/index');
     }
@@ -85,7 +85,6 @@ class AdmindashboardController extends Controller {
      */
     public function onConstruct(): void {
         $this->view->setLayout('admin');
-        $this->currentUser = Users::currentUser();
     }
 
     /**
