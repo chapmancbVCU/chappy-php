@@ -206,6 +206,15 @@ class DocumentationController extends Controller {
      *
      * @return void
      */
+    public function migrationAction(): void {
+        $this->view->render('documentation/migration_docs');
+    }
+
+    /**
+     * Action for the Min Validator class documentation page.
+     *
+     * @return void
+     */
     public function minValidatorAction(): void {
         $this->view->render('documentation/min_validator_docs');
     }

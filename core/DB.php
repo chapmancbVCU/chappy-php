@@ -31,7 +31,7 @@ class DB {
         }
     }
 
-    /**
+    /** ADD
      * Undocumented function
      *
      * @param array $join
@@ -133,6 +133,13 @@ class DB {
         return false;
     }
 
+    /** ADD
+     * Undocumented function
+     *
+     * @param [type] $table
+     * @param array  $params
+     * @return void
+     */
     public function findTotal($table, $params=[]) {
         $count = 0;
         if($this->_read($table, $params, false, true)) {
@@ -253,7 +260,7 @@ class DB {
             return $this;
       }
 
-    /**
+    /** UPDATE
      * Supports SELECT operations that maybe ran against a SQL database.  It 
      * supports the ability to order and limit the number of results returned 
      * from a database query.  The user can use parameters such as conditions, 
@@ -265,6 +272,7 @@ class DB {
      * the table in our database.  The default value is an empty array.
      * @param bool|string  $class A default value of false, it contains the 
      * name of the class we will build based on the name of a model.
+     * @param bool $count
      * @return bool A true or false value depending on a successful operation.
      */
     protected function _read($table, $params=[], $class=false, $count=false) {

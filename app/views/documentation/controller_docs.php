@@ -101,17 +101,16 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm mb-5">
         <tr>
-            <th colspan="2" class="text-center">protected function load_model</th>
+            <th colspan="2" class="text-center">function onConstruct</th>
         </tr>
         <tr>
-            <td colspan="2">Loads the model provided to this controller.</td>
+            <td colspan="2">Function implemented by child model classes when models are instantiated.</td>
         </tr>
         <tr>
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">string</td>
-            <td>$model The name of the model that will used.</td>
+            <td class="text-center" colspan="2">None</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>

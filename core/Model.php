@@ -17,7 +17,7 @@ class Model {
     protected $_validates = true;
     protected $_validationErrors = [];
 
-    /**
+    /** UPDATE
      * Default constructor.
      * 
      * @param string $table The name of the table so we can work with the 
@@ -46,7 +46,7 @@ class Model {
         }
     }
 
-    /**
+    /** ADD
      * Undocumented function
      *
      * @return void
@@ -84,8 +84,8 @@ class Model {
         return $this;
     }
 
-    /**
-     * This runs before save needs to return a boolean
+    /** ADD
+     * This runs before delete, needs to return a boolean
      *
      * @return boolean 
      */
@@ -112,7 +112,7 @@ class Model {
         return $data;
     }
 
-    /**
+    /** UPDATE
      * Wrapper for database delete function.  If not softDelete we set it.
      * If row is set to softDelete we call the database delete function.
      * 
@@ -133,7 +133,7 @@ class Model {
         return $deleted;
     }
 
-    /**
+    /** UPDATE
      * Gets columns from table.
      * 
      * @return array An array of objects where each one represents a column 
@@ -143,7 +143,7 @@ class Model {
         return static::getDb()->getColumns(static::$_table);
     }
 
-    /**
+    /** ADD
      * Undocumented function
      *
      * @return void
@@ -158,7 +158,7 @@ class Model {
         return $fields;
     }
 
-    /**
+    /** ADD
      * Undocumented function
      *
      * @return void
@@ -180,7 +180,7 @@ class Model {
         return $this->_validationErrors;
     }
 
-    /**
+    /** ADD
      * Undocumented function
      *
      * @param [type] $params
@@ -193,7 +193,7 @@ class Model {
         return $params;
     }
 
-    /**
+    /** UPDATE
      * Wrapper for the find function that is found in the DB class.
      *
      * @param array $params The values for the query.  They are the fields of 
@@ -208,7 +208,7 @@ class Model {
         return $resultsQuery;
     }
 
-    /**
+    /** UPDATE
      * Get result from database by primary key ID.
      *
      * @param int $id The ID of the row we want to retrieve from the database.
@@ -218,7 +218,7 @@ class Model {
         return static::findFirst(['conditions'=>"id = ?", 'bind' => [$id]]);
     }
 
-    /**
+    /** UPDATE
      * Wrapper for the findFirst function that is found in the DB class.
      *
      * @param array $params The values for the query.  They are the fields of 
@@ -232,6 +232,12 @@ class Model {
         return $resultQuery;
     }
 
+    /** ADD
+     * Undocumented function
+     *
+     * @param array $params
+     * @return void
+     */
     public static function findTotal($params=[]) {
         $params = static::_fetchStyleParams($params);
         $params = static::_softDeleteParams($params);
@@ -263,7 +269,7 @@ class Model {
         return (property_exists($this, 'id') && !empty($this->id)) ? false : true;
     }
     
-    /**
+    /** ADD
      * Undocumented function
      *
      * @return void
@@ -282,7 +288,7 @@ class Model {
         }
     }
 
-    /**
+    /** REMOVE AFTER TESTING UPDATED PROCEDURE
      * Processes, validates, and uploads a file submitted through a post 
      * request.  You can also test if the file is of a valid type using the 
      * optional $fileTypes array.  The optional $oldFile argument allows you 
@@ -347,11 +353,12 @@ class Model {
         return $target_file;
     }
 
-    /**
+    /** UPDATE
      * Wrapper for database query function.
      * 
      * @param string $sql The database query we will submit to the database.
-     * @param array The values we want to bind in our database query.
+     * @param array $query The values we want to bind in our database query.  
+     * The default value is an empty array.
      * @return DB The results of the database query.
      */
     public function query($sql, $bind=[]) {
@@ -427,7 +434,7 @@ class Model {
         return $params;
     }
 
-    /**
+    /** ADD
      * Undocumented function
      *
      * @return void
@@ -441,7 +448,7 @@ class Model {
         }
     }
 
-    /**
+    /** REMOVE AFTER TESTING UPDATED PROCEDURE
      * Removes a file during a remove/update file operation.  If there is a 
      * failure a failed to remove previous file message is set.
      *
@@ -458,7 +465,7 @@ class Model {
         }
     }
 
-    /**
+    /** UPDATE
      * Wrapper for the update function found in the DB class.
      *
      * @param int $id The primary key for the record we want to remove from a 
@@ -491,7 +498,5 @@ class Model {
      * @method validator
      * @return void
      */
-    public function validator() {
-
-    }
+    public function validator() {}
 }

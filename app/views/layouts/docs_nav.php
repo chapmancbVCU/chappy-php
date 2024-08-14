@@ -22,6 +22,7 @@
         <a href="<?=APP_DOMAIN?>documentation/formHelper">Form Helpers</a>
         <a href="<?=APP_DOMAIN?>documentation/helper">Helpers</a>
         <a href="<?=APP_DOMAIN?>documentation/input">Input</a>
+        <a href="<?=APP_DOMAIN?>documentation/migration">Migration</a>
         <a href="<?=APP_DOMAIN?>documentation/model">Model</a>
         <a href="<?=APP_DOMAIN?>documentation/router">Router</a>
         <a href="<?=APP_DOMAIN?>documentation/session">Session</a>

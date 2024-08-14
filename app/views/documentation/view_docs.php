@@ -272,7 +272,7 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm mb-5">
         <tr>
-            <th colspan="2" class="text-center">public function siteTitle</th>
+            <th colspan="2" class="text-center">public function start</th>
         </tr>
         <tr>
             <td colspan="2">When called this function establishes the beginning for a section of content.  Anything between calls of this function and end() will be included in our view.</td>

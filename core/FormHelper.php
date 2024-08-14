@@ -7,7 +7,7 @@ use Core\Helper;
  * Contains functions for building form elements of various types.
  */
 class FormHelper {
-    /**
+    /** ADD
      * Undocumented function
      *
      * @param [type] $attrs
@@ -74,7 +74,7 @@ class FormHelper {
         return $html;
     }
 
-    /**
+    /** UPDATE
      * Generates a div containing an input of type checkbox with the label to 
      * the left that is not part of a group.
      *
@@ -102,6 +102,7 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
+     * @param array $errors
      * @return string A surrounding div and the input element of type checkbox.
      */
     public static function checkboxBlockLabelLeft($label, 
@@ -124,7 +125,7 @@ class FormHelper {
         return $html;
     }
 
-    /**
+    /** UPDATE
      * Generates a div containing an input of type checkbox with the label to 
      * the right that is not part of a group.
      *
@@ -151,6 +152,7 @@ class FormHelper {
      * used for editing records.
      * @param array $inputAttrs The values used to set the class and other 
      * attributes of the input string.  The default value is an empty array.
+     * @param array $errors
      * @return string A surrounding div and the input element.
      */
     public static function checkboxBlockLabelRight(string $label, 
@@ -218,7 +220,7 @@ class FormHelper {
         return $html;
     }
 
-    /**
+    /** UPDATE
      * Renders an HTML div element that surrounds an input of type email.
      *
      * An example function call is shown below:
@@ -238,6 +240,7 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
+     * @param array $errors
      * @return string A surrounding div and the input element of type email.
      */
     public static function emailBlock($label, $name, $value = '', $inputAttrs= [], $divAttrs = [], $errors = []) {
@@ -258,7 +261,7 @@ class FormHelper {
         return $html;
     }
 
-    /**
+    /** ADD
      * Undocumented function
      *
      * @param [type] $errors
@@ -298,7 +301,7 @@ class FormHelper {
         return '<input type="hidden" name="'.$name.'" id="'.$name.'" value="'.$value.'" />';
     }
 
-    /** 
+    /** UPDATE
      * Assists in the development of forms input blocks in forms.  It accepts 
      * parameters for setting attribute tags in the form section.  Not to be 
      * used for inputs of type "Submit"  For submit inputs use the submitBlock 
@@ -342,6 +345,7 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
+     * @param array $errors
      * @return string A surrounding div and the input element.
      */
     public static function inputBlock(string $type, 
@@ -366,7 +370,7 @@ class FormHelper {
         return $html;
     }
 
-    /**
+    /** ADD
      * Undocumented function
      *
      * @param [type] $options
@@ -468,7 +472,7 @@ class FormHelper {
         return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
     }
 
-    /**
+    /** UPDATE
      * Renders a select element with a list of options.
      * 
      * An example function call is shown below:
@@ -495,6 +499,7 @@ class FormHelper {
      * select option dropdown.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
+     * @param array $errors
      * @return string A surrounding div and option select element.
      */
     public static function selectBlock($label, $name, $value, $options, $inputAttrs=[], $divAttrs=[], $errors=[]){
@@ -576,7 +581,7 @@ class FormHelper {
         return '<input type="submit" value="'.$buttonText.'"'.$inputString.' />';
     }
     
-    /**
+    /** UPDATE
      * Renders an HTML div element that surrounds an input of type tel.  The 
      * user is able to enter cell, home, and work as phone types.  Certain 
      * options can be set using the args parameter.  
@@ -629,6 +634,7 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @param string $args Arguments that influence which options are turned 
      * on.
+     * @param array $errors
      * @return string The HTML div element surrounding an input of type tel 
      * with configuration and values set based on parameters entered during 
      * function call.
@@ -640,7 +646,7 @@ class FormHelper {
         array $inputAttrs= [], 
         array $divAttrs = [], 
         string $args = "d",
-        $errors = []
+        array $errors = []
         ): string {
 
         // Test if correct type is provided.
@@ -693,7 +699,7 @@ class FormHelper {
         } catch (Exception $e) { echo $e->getMessage(); }
     }
 
-    /**
+    /** UPDATE
      * Assists in the development of textarea in forms.  It accepts parameters 
      * for setting  attribute tags in the form section.
      * 
@@ -717,6 +723,7 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
+     * @param array $errors
      * @param string A surrounding div and the input element.
      */
     public static function textareaBlock($label, $name, $value, $inputAttrs=[], $divAttrs=[], $errors=[]){

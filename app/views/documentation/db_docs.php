@@ -43,6 +43,10 @@
             <td>Boolean flag that indicates if a SQL query has resulted in an error.  Default value is false.</td>
         </tr>
         <tr>
+            <td>private $_fetchStyle</td>
+            <td>Type of fetch to perform.  The default value is PDO::FETCH_OBJ.</td>
+        </tr>
+        <tr>
             <td>private static $_instance</td>
             <td>An instance of this class set as a variable.  To be used in other class because we can't use $this.</td>
         </tr>
@@ -511,15 +515,15 @@ $contacts = $db->update('contacts', 3, $fields);
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
-            <td>$$table $table The name of the table that contains the record we want to update.</td>
+            <td>$table The name of the table that contains the record we want to update.</td>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">int</td>
-            <td>$table $table The name of the table that contains the record we want to update.</td>
+            <td>$table The name of the table that contains the record we want to update.</td>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">array</td>
-            <td>$$fields The value of the fields we want to set for the database record.  The default value is an empty array.</td>
+            <td>$fields The value of the fields we want to set for the database record.  The default value is an empty array.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>

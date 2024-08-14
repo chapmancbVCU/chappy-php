@@ -50,7 +50,7 @@
             <td>Handles soft delete operations.  When false we perform delete if true we set the delete flag to 1.  Default value is false.</td>
         </tr>
         <tr>
-            <td>protected $_table;</td>
+            <td>protected $_table</td>
             <td>The name of the table we are currently working with.</td>
         </tr>
         <tr>
@@ -284,7 +284,7 @@
             <th colspan="2" class="text-center">public function find</th>
         </tr>
         <tr>
-            <td colspan="2"></td>
+            <td colspan="2">Wrapper for the find function that is found in the DB class.</td>
         </tr>
         <tr>
             <th class="align-middle text-center" colspan="2">params</th>
@@ -484,11 +484,11 @@
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
-            <td>$sql The database query we will submit to the database.</td>
+            <td>$sql The database query we will submit to the database.  The default value is an empty array.</td>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">array</td>
-            <td>The values we want to bind in our database query.</td>
+            <td>$bind The values we want to bind in our database query.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>

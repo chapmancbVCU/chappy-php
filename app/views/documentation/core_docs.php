@@ -37,6 +37,10 @@
             <td>Input class handles requests to the server.</td>
         </tr>
         <tr>
+            <td><a href="<?=APP_DOMAIN?>documentation/migration" class="text-primary w-25">Migration</a></td>
+            <td>Add description here</td>
+        </tr>
+        <tr>
             <td><a href="<?=APP_DOMAIN?>documentation/model" class="text-primary w-25">Model</a></td>
             <td>Parent class for our models.  Takes functions from DB wrapper and extract functionality further to make operations easier to use and improve extendability.</td>
         </tr>

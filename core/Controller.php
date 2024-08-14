@@ -44,10 +44,11 @@ class Controller extends Application {
         exit;
     }
 
-    /**
-     * Undocumented function
+    /** ADD
+     * Function implemented by child model classes when models are 
+     * instantiated.
      *
      * @return void
      */
-    public function onConstruct(){}
+    public function onConstruct(): void{}
 }
