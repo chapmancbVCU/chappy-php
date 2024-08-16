@@ -9,6 +9,7 @@ use Core\Helper;
 class ACL extends Model {
     public $acl;
     public $deleted = 0;
+    protected static $_softDelete = true;
     protected static $_table = 'acl';
 
     /**

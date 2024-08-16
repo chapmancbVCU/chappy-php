@@ -2,6 +2,14 @@
   margin: 0;
   padding: 0;
 }
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
 .form-errors {
   border-radius: 8px;
   margin: 10px 25px 45px 25px;
@@ -16,6 +24,13 @@
 .form-errors li {
   list-style: none;
   font-size: 16px;
+}
+
+/* Main content */
+.main {
+  margin-left: 250px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
 }
 
 .navbar-dark .dropdown-item.active, .navbar-dark .dropdown-item:active {
@@ -57,16 +72,5 @@
   color: #f1f1f1;
 }
   
-/* Main content */
-.main {
-  margin-left: 250px; /* Same as the width of the sidenav */
-  font-size: 20px; /* Increased text to enable scrolling */
-  padding: 0px 10px;
-}
+
   
-/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-.dropdown-container {
-  display: none;
-  background-color: #262626;
-  padding-left: 8px;
-}

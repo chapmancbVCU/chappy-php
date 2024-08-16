@@ -87,6 +87,10 @@ class Users extends Model {
         }
     }
 
+    public static function getDeletedUser($id) {
+        return self::$_db->query("SELECT * FROM users where id = ? AND deleted = 1", [$id])->results();
+    }
+
     public function hashPassword($password) {
         $password = password_hash($password, PASSWORD_DEFAULT);
     }
