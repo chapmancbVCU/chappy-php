@@ -31,6 +31,7 @@ class Users extends Model {
     public $email;
     public $fname;
     public $id;
+    public $inactive = 0;
     public $lname;
     public $reset_password = 0;
     public $password;
@@ -140,7 +141,10 @@ class Users extends Model {
         }
     }
 
-    public function isChecked() {
+    public function isInactiveChecked() {
+        return $this->inactive === 1;
+    }
+    public function isResetPWChecked() {
         return $this->reset_password === 1;
     }
 

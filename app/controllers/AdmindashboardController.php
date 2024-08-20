@@ -108,18 +108,37 @@ class AdmindashboardController extends Controller {
      */
     public function setResetPasswordAction($id) {
         $user = Users::findById($id);
-        $this->view->user = $user;
         
         if($this->request->isPost()) {
             $this->request->csrfCheck();
             $user->assign($this->request->get(), Users::blackListedFormKeys);
             $user->reset_password = ($this->request->get('reset_password') == 'on') ? 1 : 0;
             if($user->save()) {
-                Router::redirect('admindashboard/details/'.$this->view->user->id);
+                Router::redirect('admindashboard/details/'.$user->id);
             }
         }
+
+        $this->view->user = $user;
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'setResetPassword' . DS . $user->id;
         $this->view->render('admindashboard/set_reset_password');
+    }
+
+    public function setStatusAction($id) {
+        $user = Users::findById($id);
+
+        if($this->request->isPost()) {
+            $this->request->csrfCheck();
+            $user->assign($this->request->get(), Users::blackListedFormKeys);
+            $user->inactive = ($this->request->get('inactive') == 'on') ? 1 : 0;
+            if($user->save()) {
+                Router::redirect('admindashboard/details/'.$user->id);
+            }
+        }
+
+        $this->view->user = $user;
+        $this->view->displayErrors = $user->getErrorMessages();
+        $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'setStatus' . DS . $user->id;
+        $this->view->render('admindashboard/set_account_status');
     }
 }

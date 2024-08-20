@@ -1,6 +1,6 @@
 <?php
 namespace App\Controllers;
-use Core\{Controller, Helper, Router};
+use Core\{Controller, Helper, Router, Session};
 use App\Models\{Login, Users};
 
 /**
@@ -29,6 +29,10 @@ class RegisterController extends Controller {
                 if($user && password_verify($this->request->get('password'), $user->password)) {
                     if($user->reset_password == 1) {
                         Router::redirect('register/resetPassword/'.$user->id);
+                    }
+                    if($user->inactive == 1) {
+                        Session::addMessage('danger', 'Account is currently inactive');
+                        Router::redirect('register/login');
                     }
                     $remember = $loginModel->getRememberMeChecked();
                     $user->login($remember);
