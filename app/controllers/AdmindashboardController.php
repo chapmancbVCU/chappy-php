@@ -18,7 +18,7 @@ class AdmindashboardController extends Controller {
         $user = Users::findById((int)$id);
         if($user && $user->acl != '["Admin"]') {
             $user->delete();
-            Session::addMessage('success', 'User has been disabled');
+            Session::addMessage('success', 'User has been deleted.');
         } else {
             Session::addMessage('danger', 'Cannot delete Admin user!');
         }
