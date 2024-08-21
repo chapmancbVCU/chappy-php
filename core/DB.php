@@ -31,11 +31,12 @@ class DB {
         }
     }
 
-    /** ADD
-     * Undocumented function
+    /** 
+     * Constructs join statements for SQL queries.
      *
-     * @param array $join
-     * @return void
+     * @param array $join Data such as table, conditions, and aliases needed 
+     * to construct join query.  Default value is an empty array.
+     * @return string The join component of a query.
      */
     protected function _buildJoin($join=[]) {
         $table = $join[0];
@@ -133,12 +134,14 @@ class DB {
         return false;
     }
 
-    /** ADD
-     * Undocumented function
+    /** 
+     * Returns number of records in a table.
      *
-     * @param [type] $table
-     * @param array  $params
-     * @return void
+     * @param string $table  The name or the table we want to perform 
+     * our query against.
+     * @param array $params The values for the query.  They are the fields of 
+     * the table in our database.  The default value is an empty array.
+     * @return int $count The number of records in a table.
      */
     public function findTotal($table, $params=[]) {
         $count = 0;

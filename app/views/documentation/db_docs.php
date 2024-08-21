@@ -89,6 +89,31 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
+            <th colspan="2" class="text-center">protected function buildJoin</th>
+        </tr>
+        <tr>
+            <td colspan="2">Constructs join statements for SQL queries.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$join Data such as table, conditions, and aliases needed to construct join query.  Default value is an empty array.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>The join component of a query.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
             <th colspan="2" class="text-center">public function count</th>
         </tr>
         <tr>
@@ -222,6 +247,7 @@ $contacts = $db->find('users', [
         </tr>
     </table>
 
+
     <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
@@ -243,15 +269,40 @@ $contacts = $db->find('users', [
             <td>$params The values for the query.  They are the fields of the table in our database.  The default value is an empty array.</td>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">string</td>
-            <td>$table The name or the table we want to perform our query against</td>
-        </tr>
-        <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">bool|array</td>
             <td>An associative array of results returned from an SQL query.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public function findTotal</th>
+        </tr>
+        <tr>
+            <td colspan="2">Returns number of records in a table.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$table The name or the table we want to perform our query against</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$params The values for the query.  They are the fields of the table in our database.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">int</td>
+            <td>$count The number of records in a table.</td>
         </tr>
     </table>
 
