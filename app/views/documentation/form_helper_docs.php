@@ -39,6 +39,43 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
+            <th colspan="2" class="text-center">public static function appendErrorClass</th>
+        </tr>
+        <tr>
+            <td colspan="2">Adds name of error classes to div associated with a form field.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$attrs The values used to set the class and other attributes of the input string.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$errors The errors array.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$name The name of the field associated with this error.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$class Name of the class used to identify errors for a form field.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$attrs Div attributes with error classes added.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
             <th colspan="2" class="text-center">public static function button</th>
         </tr>
         <tr>
@@ -213,6 +250,10 @@ FormHelper::checkboxBlockLabelLeft(
             <td>$divAttrs The values used to set the class and other attributes of the surrounding div.  The default value is an empty array.</td>
         </tr>
         <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$errors The errors array.  Default value is an empty array.</td>
+        </tr>
+        <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
@@ -285,6 +326,10 @@ FormHelper::checkboxBlockLabelRight(
         <tr>
             <td class="align-middle text-center w-25">array</td>
             <td>$divAttrs The values used to set the class and other attributes of the surrounding div.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$errors The errors array.  Default value is an empty array.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
@@ -441,6 +486,10 @@ FormHelper::emailBlock('Email',
         <tr>
             <td class="align-middle text-center w-25">array</td>
             <td>$divAttrs The values used to set the class and other attributes of the surrounding div.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$errors The errors array.  Default value is an empty array.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
@@ -612,6 +661,10 @@ FormHelper::inputBlock(
         <tr>
             <td class="align-middle text-center w-25">array</td>
             <td>$divAttrs The values used to set the class and other attributes of the surrounding div.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$errors The errors array.  Default value is an empty array.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
@@ -874,6 +927,10 @@ FormHelper::selectBlock(
         <tr>
             <td class="align-middle text-center w-25">array</td>
             <td>$divAttrs The values used to set the class and other attributes of the surrounding div.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$errors The errors array.  Default value is an empty array.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
@@ -1180,6 +1237,10 @@ FormHelper::telBlock(
             <td>$args Arguments that influence which options are turned on.</td>
         </tr>
         <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$errors The errors array.  Default value is an empty array.</td>
+        </tr>
+        <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
@@ -1251,6 +1312,10 @@ FormHelper::textAreaBlock(
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$errors The errors array.  Default value is an empty array.</td>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>

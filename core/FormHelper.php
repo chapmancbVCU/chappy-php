@@ -7,22 +7,24 @@ use Core\{Helper, Session};
  * Contains functions for building form elements of various types.
  */
 class FormHelper {
-    /** ADD
-     * Undocumented function
+    /**
+     * Adds name of error classes to div associated with a form field.
      *
-     * @param [type] $attrs
-     * @param [type] $errors
-     * @param [type] $name
-     * @param [type] $class
-     * @return void
+     * @param array $attrs The values used to set the class and other 
+     * attributes of the input string.  The default value is an empty array.
+     * @param array $errors The errors array.
+     * @param string $name The name of the field associated with this error.
+     * @param string $class Name of the class used to identify errors for a 
+     * form field.
+     * @return array $attrs Div attributes with error classes added.
      */
     public static function appendErrorClass($attrs, $errors, $name, $class){
-        if(array_key_exists($name,$errors)){
-          if(array_key_exists('class',$attrs)){
-            $attrs['class'] .= " " . $class;
-          } else {
-            $attrs['class'] = $class;
-          }
+        if(array_key_exists($name, $errors)) {
+            if(array_key_exists('class',$attrs)) {
+                $attrs['class'] .= " " . $class;
+            } else {
+                $attrs['class'] = $class;
+            }
         }
         return $attrs;
     }
@@ -102,7 +104,7 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
-     * @param array $errors
+     * @param array $errors The errors array.  Default value is an empty array.
      * @return string A surrounding div and the input element of type checkbox.
      */
     public static function checkboxBlockLabelLeft($label, 
@@ -113,7 +115,7 @@ class FormHelper {
         $errors = []
         ){
 
-        $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
+        $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name, 'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
         $checkString = ($checked) ? ' checked="checked"' : '';
@@ -152,7 +154,7 @@ class FormHelper {
      * used for editing records.
      * @param array $inputAttrs The values used to set the class and other 
      * attributes of the input string.  The default value is an empty array.
-     * @param array $errors
+     * @param array $errors The errors array.  Default value is an empty array.
      * @return string A surrounding div and the input element.
      */
     public static function checkboxBlockLabelRight(string $label, 
@@ -240,7 +242,7 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
-     * @param array $errors
+     * @param array $errors The errors array.  Default value is an empty array.
      * @return string A surrounding div and the input element of type email.
      */
     public static function emailBlock($label, $name, $value = '', $inputAttrs= [], $divAttrs = [], $errors = []) {
@@ -345,7 +347,7 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
-     * @param array $errors
+     * @param array $errors The errors array.  Default value is an empty array.
      * @return string A surrounding div and the input element.
      */
     public static function inputBlock(string $type, 
@@ -499,7 +501,7 @@ class FormHelper {
      * select option dropdown.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
-     * @param array $errors
+     * @param array $errors The errors array.  Default value is an empty array.
      * @return string A surrounding div and option select element.
      */
     public static function selectBlock($label, $name, $value, $options, $inputAttrs=[], $divAttrs=[], $errors=[]){
@@ -634,7 +636,7 @@ class FormHelper {
      * attributes of the surrounding div.  The default value is an empty array.
      * @param string $args Arguments that influence which options are turned 
      * on.
-     * @param array $errors
+     * @param array $errors The errors array.  Default value is an empty array.
      * @return string The HTML div element surrounding an input of type tel 
      * with configuration and values set based on parameters entered during 
      * function call.
@@ -723,7 +725,7 @@ class FormHelper {
      * attributes of the input string.  The default value is an empty array.
      * @param array $divAttrs The values used to set the class and other 
      * attributes of the surrounding div.  The default value is an empty array.
-     * @param array $errors
+     * @param array $errors The errors array.  Default value is an empty array.
      * @param string A surrounding div and the input element.
      */
     public static function textareaBlock($label, $name, $value, $inputAttrs=[], $divAttrs=[], $errors=[]){
