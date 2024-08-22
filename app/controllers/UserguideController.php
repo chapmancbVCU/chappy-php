@@ -3,19 +3,6 @@ namespace App\Controllers;
 use Core\Controller;
 
 class UserguideController extends Controller {
-    /**
-     * Constructor for the UserGuide Controller
-     *
-     * @param string $controller The name of the controller obtained while 
-     * parsing the URL.
-     * @param string $action The name of the action specified in the path of 
-     * the URL.
-     */
-    public function __construct(string $controller, string $action) {
-        parent::__construct($controller, $action);
-        $this->view->setLayout('default');
-    }
-
     public function contactManagementAction(): void {
         $this->view->render('userguide/contact_management');
     }
@@ -40,6 +27,15 @@ class UserguideController extends Controller {
 
     public function loginSystemAction(): void {
         $this->view->render('userguide/login_system');
+    }
+
+    /**
+     * Implements Model class' onConstruct function.
+     *
+     * @return void
+     */
+    public function onConstruct(): void {
+        $this->view->setLayout('docs');
     }
 
     public function userProfilesAction(): void {

@@ -1,6 +1,5 @@
 <?php $this->setSiteTitle("Users Model - Custom MVC Framework Docs"); ?>
 <?php $this->start('body'); ?>
-<?php include(ROOT . DS . 'app' . DS . 'views/layouts/docs_nav.php'); ?>
 
 <div class="main">
 <a href="<?=APP_DOMAIN?>documentation/models" class="btn btn-xs btn-secondary">Models</a>

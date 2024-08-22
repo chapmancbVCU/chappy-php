@@ -8,19 +8,6 @@ use Core\Controller;
  */
 class DocumentationController extends Controller {
     /**
-     * Constructor for the Documentation Controller
-     *
-     * @param string $controller The name of the controller obtained while 
-     * parsing the URL.
-     * @param string $action The name of the action specified in the path of 
-     * the URL.
-     */
-    public function __construct(string $controller, string $action) {
-        parent::__construct($controller, $action);
-        $this->view->setLayout('default');
-    }
-
-    /**
      * Action for the Application class documentation page.
      *
      * @return void
@@ -271,6 +258,15 @@ class DocumentationController extends Controller {
      */
     public function numericValidatorAction(): void {
         $this->view->render('documentation/numeric_validator_docs');
+    }
+
+    /**
+     * Implements Model class' onConstruct function.
+     *
+     * @return void
+     */
+    public function onConstruct(): void {
+        $this->view->setLayout('docs');
     }
 
     /**

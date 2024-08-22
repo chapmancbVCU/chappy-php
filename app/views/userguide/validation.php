@@ -1,6 +1,5 @@
 <?php $this->setSiteTitle("Validation - User Guide"); ?>
 <?php $this->start('body'); ?>
-<?php include(ROOT . DS . 'app' . DS . 'views/layouts/docs_nav.php'); ?>
 
 <div class="main">
     <div class="position-fixed">
