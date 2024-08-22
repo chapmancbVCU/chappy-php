@@ -45,8 +45,8 @@ class Model {
         }
     }
 
-    /** ADD
-     * Undocumented function
+    /**
+     * Called before delete.
      *
      * @return void
      */
@@ -83,10 +83,10 @@ class Model {
         return $this;
     }
 
-    /** ADD
+    /**
      * This runs before delete, needs to return a boolean
      *
-     * @return boolean 
+     * @return boolean Boolean value depending on results of operation.
      */
     public function beforeDelete() { return true; }
     
@@ -111,13 +111,13 @@ class Model {
         return $data;
     }
 
-    /** UPDATE
+    /**
      * Wrapper for database delete function.  If not softDelete we set it.
      * If row is set to softDelete we call the database delete function.
      * 
      * @param string $id The primary key for the record we want to remove from a 
      * database table.  The default value is an empty string.
-     * @return bool True if delete operation is successful.  Otherwise, we 
+     * @return bool $deleted True if delete operation is successful.  Otherwise, we 
      * return false.
      */
     public function delete() {
@@ -132,7 +132,7 @@ class Model {
         return $deleted;
     }
 
-    /** UPDATE
+    /**
      * Gets columns from table.
      * 
      * @return array An array of objects where each one represents a column 
@@ -142,10 +142,11 @@ class Model {
         return static::getDb()->getColumns(static::$_table);
     }
 
-    /** ADD
-     * Undocumented function
+    /**
+     * Gets an associative array of field values for insert or updating.
      *
-     * @return void
+     * @return array Associative array of fields from database and values 
+     * from model object.
      */
     public function getColumnsForSave() {
         $columns = static::getColumns();
@@ -157,10 +158,10 @@ class Model {
         return $fields;
     }
 
-    /** ADD
-     * Undocumented function
+    /**
+     * Returns an instance of the DB class.
      *
-     * @return void
+     * @return DB $_db The instance of the DB class.
      */
     public static function getDb(){
         if(!self::$_db) {
@@ -179,11 +180,11 @@ class Model {
         return $this->_validationErrors;
     }
 
-    /** ADD
-     * Undocumented function
+    /**
+     * Used to set default fetchStyle param.
      *
-     * @param [type] $params
-     * @return void
+     * @param array $params Query params.
+     * @return array $params Updated params.
      */
     protected static function _fetchStyleParams($params){
         if(!isset($params['fetchStyle'])) {
@@ -192,12 +193,12 @@ class Model {
         return $params;
     }
 
-    /** UPDATE
+    /**
      * Wrapper for the find function that is found in the DB class.
      *
      * @param array $params The values for the query.  They are the fields of 
      * the table in our database.  The default value is an empty array.
-     * @return bool|array An array of object returned from an SQL query.
+     * @return bool|array An array of objects returned from an SQL query.
      */
     public static function find($params = []) {
         $params = static::_fetchStyleParams($params);
@@ -207,7 +208,7 @@ class Model {
         return $resultsQuery;
     }
 
-    /** UPDATE
+    /**
      * Get result from database by primary key ID.
      *
      * @param int $id The ID of the row we want to retrieve from the database.
@@ -217,7 +218,7 @@ class Model {
         return static::findFirst(['conditions'=>"id = ?", 'bind' => [$id]]);
     }
 
-    /** UPDATE
+    /**
      * Wrapper for the findFirst function that is found in the DB class.
      *
      * @param array $params The values for the query.  They are the fields of 
@@ -231,11 +232,13 @@ class Model {
         return $resultQuery;
     }
 
-    /** ADD
-     * Undocumented function
+    /**
+     * Returns number of records in a table.  A wrapper function for 
+     * findTotal function in DB class.
      *
-     * @param array $params
-     * @return void
+     * @param array $params The values for the query.  They are the fields of 
+     * the table in our database.  The default value is an empty array.
+     * @return int The number of records in a table.
      */
     public static function findTotal($params=[]) {
         $params = static::_fetchStyleParams($params);
@@ -269,7 +272,7 @@ class Model {
     }
     
     /** ADD
-     * Undocumented function
+     * Runs when the object is constructed.
      *
      * @return void
      */
@@ -352,11 +355,11 @@ class Model {
         return $target_file;
     }
 
-    /** UPDATE
+    /**
      * Wrapper for database query function.
      * 
      * @param string $sql The database query we will submit to the database.
-     * @param array $query The values we want to bind in our database query.  
+     * @param array $bind The values we want to bind in our database query.  
      * The default value is an empty array.
      * @return DB The results of the database query.
      */
@@ -434,7 +437,7 @@ class Model {
     }
 
     /** ADD
-     * Undocumented function
+     * Sets values for timestamp fields.
      *
      * @return void
      */
@@ -464,11 +467,9 @@ class Model {
         }
     }
 
-    /** UPDATE
+    /**
      * Wrapper for the update function found in the DB class.
      *
-     * @param int $id The primary key for the record we want to remove from a 
-     * database table.
      * @param array $fields The value of the fields we want to set for the 
      * database record.  The default value is an empty array.
      * @return bool True if the update operation is successful.  Otherwise, 

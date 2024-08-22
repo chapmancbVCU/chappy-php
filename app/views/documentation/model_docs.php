@@ -112,6 +112,29 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
+            <th colspan="2" class="text-center">public function afterDelete</th>
+        </tr>
+        <tr>
+            <td colspan="2">Called before delete.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">void</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
             <th colspan="2" class="text-center">public function afterSave</th>
         </tr>
         <tr>
@@ -153,6 +176,30 @@
         <tr>
             <td class="align-middle text-center w-25">bool</td>
             <td>Report for whether or not the operation was successful.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public function beforeDelete</th>
+        </tr>
+        <tr>
+            <td colspan="2">This runs before delete, needs to return a boolean.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">bool</td>
+            <td>Boolean value depending on results of operation.</td>
         </tr>
     </table>
 
@@ -216,15 +263,14 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">string</td>
-            <td>$id The primary key for the record we want to remove from a database table.  The default value is an empty string.</td>
+            <td class="text-center" colspan="2">None</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">bool</td>
-            <td>True if delete operation is successful.  Otherwise, we return false.</td>
+            <td>$deleted True if delete operation is successful.  Otherwise, we return false.</td>
         </tr>
     </table>
 
@@ -232,7 +278,7 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
-            <th colspan="2" class="text-center">public function getColumns</th>
+            <th colspan="2" class="text-center">public static function getColumns</th>
         </tr>
         <tr>
             <td colspan="2">Gets columns from table.</td>
@@ -249,6 +295,54 @@
         <tr>
             <td class="align-middle text-center w-25">array</td>
             <td>An array of objects where each one represents a column from a database table.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function getColumnsForSave</th>
+        </tr>
+        <tr>
+            <td colspan="2">Gets an associative array of field values for insert or updating.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>Associative array of fields from database and values from model object.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function getDB</th>
+        </tr>
+        <tr>
+            <td colspan="2">Returns an instance of the DB class.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">DB</td>
+            <td>$_db The instance of the DB class.</td>
         </tr>
     </table>
 
@@ -280,7 +374,32 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
-            <th colspan="2" class="text-center">public function find</th>
+            <th colspan="2" class="text-center">public static function _fetchStyleParams</th>
+        </tr>
+        <tr>
+            <td colspan="2">Used to set default fetchStyle param.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$params Query params.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$params Updated params.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function find</th>
         </tr>
         <tr>
             <td colspan="2">Wrapper for the find function that is found in the DB class.</td>
@@ -297,7 +416,7 @@
         </tr>
         <tr>
             <td class="align-middle text-center w-25">bool|array</td>
-            <td>An array of object returned from an SQL query.</td>
+            <td>An array of objects returned from an SQL query.</td>
         </tr>
     </table>
 
@@ -305,7 +424,7 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
-            <th colspan="2" class="text-center">public function findById</th>
+            <th colspan="2" class="text-center">public static function findById</th>
         </tr>
         <tr>
             <td colspan="2">Get result from database by primary key ID.</td>
@@ -330,7 +449,7 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
-            <th colspan="2" class="text-center">public function findFirst</th>
+            <th colspan="2" class="text-center">public static function findFirst</th>
         </tr>
         <tr>
             <td colspan="2">Wrapper for the findFirst function that is found in the DB class.</td>
@@ -348,6 +467,32 @@
         <tr>
             <td class="align-middle text-center w-25">bool|object</td>
             <td>An array of object returned from an SQL query.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function findTotal</th>
+        </tr>
+        <tr>
+            <td colspan="2">Returns number of records in a table.  A wrapper function for 
+            * findTotal function in DB class.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$params The values for the query.  They are the fields of the table in our database.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">int</td>
+            <td>The number of records in a table.</td>
         </tr>
     </table>
 
@@ -397,6 +542,29 @@
         <tr>
             <td class="align-middle text-center w-25">boolean</td>
             <td>Returns true if the record exists.  Otherwise, we return false.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public function onConstruct</th>
+        </tr>
+        <tr>
+            <td colspan="2">Runs when the object is constructed.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">void</td>
         </tr>
     </table>
 
@@ -483,11 +651,11 @@
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
-            <td>$sql The database query we will submit to the database.  The default value is an empty array.</td>
+            <td>$sql The database query we will submit to the database.</td>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">array</td>
-            <td>$bind The values we want to bind in our database query.</td>
+            <td>$bind The values we want to bind in our database query.  The default value is an empty array.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
@@ -553,7 +721,7 @@
             <th colspan="2" class="text-center">protected function _softDeleteParams</th>
         </tr>
         <tr>
-            <td colspan="2">Adds to the conditions to avoid getting soft deleted rows returned</td>
+            <td colspan="2">Adds to the conditions to avoid getting soft deleted rows returned.</td>
         </tr>
         <tr>
             <th class="align-middle text-center" colspan="2">params</th>
@@ -571,6 +739,29 @@
         </tr>
     </table>
 
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public function timeStamps</th>
+        </tr>
+        <tr>
+            <td colspan="2">Sets values for timestamp fields.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">void</td>
+        </tr>
+    </table>
+    
     <hr class="w-75 my-5 mx-auto">
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
@@ -610,10 +801,6 @@
         </tr>
         <tr>
             <th class="align-middle text-center" colspan="2">params</th>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25">int</td>
-            <td>$id The primary key for the record we want to remove from a database table.</td>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">array</td>
