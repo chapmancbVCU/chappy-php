@@ -22,6 +22,5 @@ class Migration1723167263 extends Migration {
     $this->addColumn($table,'user_id','int');
     $this->addTimeStamps($table);
     $this->addIndex($table, 'user_id');
-    $this->addIndex($table, 'deleted');
   }
 }
