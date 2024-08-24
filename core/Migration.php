@@ -25,6 +25,13 @@ abstract class Migration {
         $this->_isCli = $isCli;
     }
 
+    public function aclSetup($table) {
+        if($table == 'acl') {
+            $this->_db->insert('acl', ['acl' => 'Admin', 'deleted' => 0]);
+            $this->_db->insert('acl', ['acl' => 'Standard', 'deleted' => 0]);
+        }
+    }
+
     /**
      * Add a column to a db table
      * @method addColumn

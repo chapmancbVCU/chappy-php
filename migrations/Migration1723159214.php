@@ -8,5 +8,6 @@ class Migration1723159214 extends Migration {
     $this->createTable($table);
     $this->addColumn($table, 'acl', 'varchar', ['size' => 25]);
     $this->addSoftDelete($table);
+    $this->aclSetup($table);
   }
 }
