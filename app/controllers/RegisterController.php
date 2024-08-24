@@ -1,7 +1,8 @@
 <?php
 namespace App\Controllers;
 use Core\{Controller, Helper, Router, Session};
-use App\Models\{Login, Users};
+use App\Models\{Login, ProfileImages, Users};
+use App\Lib\Utilities\Uploads;
 
 /**
  * Implements support for our Register controller.  Functions found in this 
@@ -68,16 +69,51 @@ class RegisterController extends Controller {
      * @return void
      */
     public function registerAction(): void {
+        // $newUser = new Users();
+        // if($this->request->isPost()) {
+        //     $this->request->csrfCheck();
+        //     $newUser->assign($this->request->get());
+        //     $newUser->confirm = $this->request->get('confirm');
+        //     // Accepted file types.
+        //     $fileTypes = ['png', 'jpg', 'gif', 'bmp'];  
+        //     $newUser->profileImage = $newUser->processFile($_FILES, "profileImage", $newUser->username, "", "images", $fileTypes);
+        //     $newUser->acl = Users::setAclAtRegistration();
+        //     if($newUser->save()) {
+        //         Router::redirect('register/login');
+        //     }
+        // }
+
+        // $this->view->newUser = $newUser;
+        // $this->view->displayErrors = $newUser->getErrorMessages();
+        // $this->view->render('register/register');
+
         $newUser = new Users();
         if($this->request->isPost()) {
             $this->request->csrfCheck();
+            $files = $_FILES['profileImage'];
+            if($files['tmp_name'] != '') {
+                $uploads = new Uploads($files, ProfileImages::getAllowedFileTypes(), 
+                    ProfileImages::getMaxAllowedFileSize(), false);
+                
+                $uploads->runValidation();
+                $imagesErrors = $uploads->validates();
+                if(is_array($imagesErrors)){
+                    $msg = "";
+                    foreach($imagesErrors as $name => $message){
+                        $msg .= $message . " ";
+                    }
+                    $newUser->addErrorMessage('profileImage', trim($msg));
+                }
+            }
+
             $newUser->assign($this->request->get());
             $newUser->confirm = $this->request->get('confirm');
-            // Accepted file types.
-            $fileTypes = ['png', 'jpg', 'gif', 'bmp'];  
-            $newUser->profileImage = $newUser->processFile($_FILES, "profileImage", $newUser->username, "", "images", $fileTypes);
             $newUser->acl = Users::setAclAtRegistration();
-            if($newUser->save()) {
+            $newUser->save();
+            if($newUser->validationPassed()) {
+                if($uploads) {
+                    ProfileImages::uploadProfileImage($newUser->id, $uploads);
+                }
                 Router::redirect('register/login');
             }
         }
