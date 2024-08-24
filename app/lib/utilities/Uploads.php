@@ -7,18 +7,20 @@ use Core\Helper;
  */
 class Uploads {
 
-    private $_allowedImageTypes = [IMAGETYPE_GIF,IMAGETYPE_JPEG,IMAGETYPE_PNG];
+    private $_allowedImageTypes = [];// = [IMAGETYPE_GIF,IMAGETYPE_JPEG,IMAGETYPE_PNG];
     private $_errors = [];
-    private $_files=[]; 
-    private $_maxAllowedSize = 5242880;
+    private $_files= []; 
+    private $_maxAllowedSize;// = 5242880;
 
     /**
      * Undocumented function
      *
      * @param [type] $files
      */
-    public function __construct($files){
-        $this->_files = self::restructureFiles($files);
+    public function __construct($files, $imageTypes, $maxAllowedSize, $multiple) {
+        $this->_files = self::restructureFiles($files, $multiple);
+        $this->_allowedImageTypes = $imageTypes;
+        $this->_maxAllowedSize = $maxAllowedSize;
     }
     
     /**
@@ -28,8 +30,10 @@ class Uploads {
      * @param [type] $message
      * @return void
      */
-    protected function addErrorMessage($name,$message){
-        if(array_key_exists($name,$this->_errors)){
+    protected function addErrorMessage($name,$message) {
+        // Helper::cl($name);
+        // Helper::cl($message);
+        if(array_key_exists($name, $this->_errors)) {
             $this->_errors[$name] .= $this->_errors[$name] . " " . $message;
         } else {
             $this->_errors[$name] = $message;
@@ -51,12 +55,19 @@ class Uploads {
      * @param [type] $files
      * @return void
      */
-    public static function restructureFiles($files){
+    public static function restructureFiles($files, $multiple) {
         $structured = [];
-        foreach($files['tmp_name'] as $key => $val){
+        if($multiple) {
+            foreach($files['tmp_name'] as $key => $val){
+                $structured[] = [
+                    'tmp_name'=>$files['tmp_name'][$key],'name'=>$files['name'][$key],
+                    'size'=>$files['size'][$key],'error'=>$files['error'][$key],'type'=>$files['type'][$key]
+                ];
+            }
+        } else {
             $structured[] = [
-            'tmp_name'=>$files['tmp_name'][$key],'name'=>$files['name'][$key],
-            'size'=>$files['size'][$key],'error'=>$files['error'][$key],'type'=>$files['type'][$key]
+                'tmp_name'=>$files['tmp_name'],'name'=>$files['name'],
+                'size'=>$files['size'],'error'=>$files['error'],'type'=>$files['type']
             ];
         }
         return $structured;
@@ -120,6 +131,7 @@ class Uploads {
     protected function validateSize(){
         foreach($this->_files as $file){
             $name = $file['name'];
+            // Helper::dnd($file['size']);
             if($file['size'] > $this->_maxAllowedSize){
                 $msg = $name . " is over the max allowed size of 5mb.";
                 $this->addErrorMessage($name,$msg);
