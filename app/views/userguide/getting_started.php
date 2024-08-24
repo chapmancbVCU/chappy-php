@@ -50,7 +50,6 @@ git clone git@github.com:chapmancbVCU/custom-php-mvc-framework.git
             <li>Database Setup:
                 <ol class="pl-4" type="a">
                     <li>Create your database and set it to what you entered for DB_NAME</li>
-                    <li>Create a table named migrations with an id field and a field called migrations of type varchar and size 100</li>
                     <li>Apache and Nginx:
                         <ol class="pl-4">
                             <li>Run the command from project root:

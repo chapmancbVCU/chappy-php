@@ -23,7 +23,6 @@ It supports everything described above.  This sample application natively comes 
    * REMEMBER_ME_COOKIE_NAME:  should be a long string of upper and lower case characters and numbers.
 4. Database Setup:
    * Create your database and set it to what you entered for DB_NAME
-   * Create a table named migrations with an id field and a field called migrations of type varchar and size 100
    * Apache and Nginx, run the following command from project root:
       ```php run_migrations.php```
    * XAMPP
