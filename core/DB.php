@@ -25,7 +25,7 @@ class DB {
             $this->_pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
             $this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->_pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $this->_pdo->setAttribute (PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+            $this->_pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
         } catch(PDOException $e) {
             die($e->getMessage());
         }
@@ -245,10 +245,17 @@ class DB {
      * is not successful the $_error instance variable is set to true and is 
      * returned.
      */
-    public function query($sql, $binds = [],$class = false) {
+    public function query($sql, $params = [],$class = false) {
         $this->_error = false;
-        if($this->_query = $this->_pdo->prepare($sql)) {      
-            if($this->_query->execute($binds)) {
+        if($this->_query = $this->_pdo->prepare($sql)) {
+            $x = 1;
+            if(count($params)) {
+                foreach($params as $param) {
+                $this->_query->bindValue($x, $param);
+                $x++;
+                }
+            }
+            if($this->_query->execute()) {
                 if($class && $this->_fetchStyle === PDO::FETCH_CLASS){
                     $this->_result = $this->_query->fetchAll($this->_fetchStyle,$class);
                 } else {
@@ -259,9 +266,9 @@ class DB {
             } else {
                 $this->_error = true;
             }
-            }
-            return $this;
-      }
+        }
+        return $this;
+    }
 
     /** UPDATE
      * Supports SELECT operations that maybe ran against a SQL database.  It 
