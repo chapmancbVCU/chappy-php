@@ -14,6 +14,21 @@ class ProfileImages extends Model {
     public $user_id;
     public $url;
 
+    public static function deleteById($id) {
+        $image = self::findById($id);
+        $sort = $image->sort;
+        $afterImages = self::find([
+            'conditions' => 'user_id = ? and sort > ?',
+            'bind' => [$image->user_id, $sort]
+        ]);
+        foreach($afterImages as $af) {
+            $af->sort = $af->sort - 1;
+            $af->save();
+        }
+        unlink(ROOT.DS.'uploads'.DS . 'profile_images' . DS . 'user_' . $image->user_id. DS. $image->name);
+        return $image->delete();
+    }
+    
     public static function findCurrentProfileImage($user_id) {
         return $image = self::findFirst([
             'conditions' => 'user_id = ? AND sort = 0',
@@ -37,6 +52,20 @@ class ProfileImages extends Model {
         return self::$maxAllowedFileSize;
     }
     
+    public static function updateSortByUserId($user_id, $sortOrder = []) {
+        // if($sortOrder) {
+            $images = self::findByUserId($user_id);
+            $i = 0;
+            foreach($images as $image) {
+                $val = 'image_'.$image->id;
+                $sort = (in_array($val, $sortOrder)) ? array_search($val, $sortOrder) : $i;
+                $image->sort = $sort;
+                $image->save();
+                $i++;
+            }
+        // }
+    }
+
     public static function uploadProfileImage($user_id, $uploads) {
         $lastImage = self::findFirst([
             'conditions' => "user_id = ?",
