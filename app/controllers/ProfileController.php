@@ -13,12 +13,12 @@ class ProfileController extends Controller {
     }
 
     function deleteImageAction() {
-        Helper::cl("test");
         $resp = ['success' => false];
         if($this->request->isPost()) {
+            $user = Users::currentUser();
             $id = $this->request->get('image_id');
             $image = ProfileImages::findById($id);
-            if($image) {
+            if($user) {
                 ProfileImages::deleteById($image->id);
                 $resp = ['success' => true, 'model_id' => $image->id];
             }
