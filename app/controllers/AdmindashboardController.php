@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 use Core\{Controller, Router, Session};
-use App\Models\{ACL, Users};
+use App\Models\{ACL, ProfileImages, Users};
 use Core\Helper;
 /**
  * Implements support for our Admindashboard controller.
@@ -33,6 +33,8 @@ class AdmindashboardController extends Controller {
      */
     public function detailsAction($id): void {
         $user = Users::findById($id);
+        $profileImage = ProfileImages::findCurrentProfileImage($user->id);
+        $this->view->profileImage = $profileImage;
         $this->view->user = $user;
         $this->view->render('admindashboard/details');
     }

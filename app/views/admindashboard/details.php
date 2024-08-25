@@ -10,8 +10,8 @@
 
 <div class="align-items-center justify-content-center mx-auto my-3 w-50">
     <a href="<?=APP_DOMAIN?>admindashboard/index" class="btn btn-xs btn-secondary mb-3">Back</a>
-    <?php if($this->user->profileImage != null):?>
-        <img src="<?=APP_DOMAIN?>public/images/profileImage/<?=$this->user->profileImage?>"
+    <?php if($this->profileImage != null):?>
+        <img src="<?=APP_DOMAIN.$this->profileImage->url?>"
             class="img-thumbnail mx-auto my-5 d-block w-50 rounded border border-primary shadow-lg">
         </img>
 </div>
