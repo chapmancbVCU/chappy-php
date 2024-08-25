@@ -1,7 +1,8 @@
 <?php
   use Core\Router;
   use Core\Helper;
-  use App\Models\Users;
+  use App\Models\{ProfileImages, Users};
+  $profileImage = ProfileImages::findCurrentProfileImage(Users::currentUser()->id);
   $menu = Router::getMenu('menu_acl');
   $userMenu = Router::getMenu('user_menu');
 ?>
@@ -20,8 +21,8 @@
     <ul class="navbar-nav mr-2">
       <?= Helper::buildMenuListItems($userMenu,"dropdown-menu-right"); ?>
       <a class="pt-1" href="<?=APP_DOMAIN?>profile">
-        <?php if(Users::currentUser()->profileImage != null): ?>
-          <img class="img-thumbnail ml-2 p-0"  style="width: 50px" src="<?=APP_DOMAIN?>public/images/profileImage/<?=Users::currentUser()->profileImage?>"></img>
+        <?php if($profileImage != null): ?>
+          <img class="img-thumbnail ml-2 p-0"  style="width: 50px" src="<?=APP_DOMAIN.$profileImage->url?>"></img>
         <?php endif; ?>
       </a>
     </ul>
