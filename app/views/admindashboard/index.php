@@ -1,6 +1,6 @@
 <?php $this->setSiteTitle("Administration"); ?>
 <?php $this->start('body'); ?>
-<h1>Administration</h1>
+<h1 class="text-center">Administration Dashboard</h1>
 
 <table class="table table-striped table-condensed table-bordered table-hover">
     <thead>
