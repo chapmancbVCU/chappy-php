@@ -36,7 +36,7 @@ It supports everything described above.  This sample application natively comes 
       * user_sessions
 4. profileImage directory:
    * In CMD or Terminal navigate to public/images from project root and make a directory called "profileImage".
-   * In Linux and MacOS set the appropriate permissions by running the command: ```chmod 777 profileImage```
+   * In Linux and MacOS set the appropriate permissions by running the command: ```chmod 755 profileImage```
    * In Linux and MacOS you will need to modify the owner and group.
       ```sudo chown -R %USERNAME%:%GROUP% profileImage/```
       Where  %USERNAME% is the name of the account you are developing in and %GROUP% is the name of group associated with your server.  In XAMPP it would be daemon and in Nginx it maybe nginx or a something else depending on the instructions you followed to setup your server.

@@ -89,7 +89,7 @@ http://localhost/project_name/run_migrations.php
                     <li>In Linux and MacOS set the appropriate permissions by running the command:
                         <pre class="mb-1 pb-1">
                             <code>
-chmod 777 profileImage
+chmod 755 profileImage
                             </code>
                         </pre>
                     </li>
