@@ -1,4 +1,7 @@
 {
-    "Admin Dashboard" : "admindashboard/index"
-
+    "Admin Dashboard" : "admindashboard/index",
+    "Custom MVC Docs" : {
+        "Classes and Functions" : "documentation",
+        "User Guide" : "userguide"
+    }
 }
