@@ -14,9 +14,9 @@
         <img src="<?=APP_DOMAIN.$this->profileImage->url?>"
             class="img-thumbnail mx-auto my-5 d-block w-50 rounded border border-primary shadow-lg">
         </img>
+    <?php endif; ?>
 </div>
 <div class="row align-items-center justify-content-center mx-auto my-3 w-50">
-    <?php endif; ?>
     <div class="col">
         <table class="table table-striped table-condensed table-bordered table-hover bg-light my-5 col-md-12">
             <tbody>
