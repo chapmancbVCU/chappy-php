@@ -13,9 +13,9 @@ class ProfileController extends Controller {
     }
 
     function deleteImageAction() {
+        Helper::cl("test");
         $resp = ['success' => false];
         if($this->request->isPost()) {
-            $user = Users::currentUser();
             $id = $this->request->get('image_id');
             $image = ProfileImages::findById($id);
             if($image) {
@@ -66,7 +66,6 @@ class ProfileController extends Controller {
                     ProfileImages::uploadProfileImage($user->id, $uploads);
                 }
                 $sortOrder = json_decode($_POST['images_sorted']);
-                // Helper::dnd($_POST);
                 ProfileImages::updateSortByUserId($user->id, $sortOrder);
 
                 // Redirect
@@ -78,7 +77,6 @@ class ProfileController extends Controller {
         $this->view->profileImages = $profileImages;
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->user = $user;
-        // $this->view->postAction = APP_DOMAIN . 'profile' . DS . 'edit' . DS . $user->id;
         $this->view->render('profile/edit');
     }
 

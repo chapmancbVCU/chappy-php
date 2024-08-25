@@ -15,6 +15,7 @@ class ProfileImages extends Model {
     public $url;
 
     public static function deleteById($id) {
+        
         $image = self::findById($id);
         $sort = $image->sort;
         $afterImages = self::find([
@@ -25,7 +26,7 @@ class ProfileImages extends Model {
             $af->sort = $af->sort - 1;
             $af->save();
         }
-        unlink(ROOT.DS.'uploads'.DS . 'profile_images' . DS . 'user_' . $image->user_id. DS. $image->name);
+        unlink(ROOT.DS.'public'.DS.'images'.DS.'uploads'.DS . 'profile_images' . DS . 'user_' . $image->user_id. DS. $image->name);
         return $image->delete();
     }
     
@@ -74,7 +75,6 @@ class ProfileImages extends Model {
         ]);
         $lastSort = (!$lastImage) ? 0 : $lastImage->sort;
         $path = 'public'.DS.'images'.DS.'uploads'.DS.'profile_images'.DS.'user_'.$user_id.DS;
-        // Helper::dnd($uploads->getFiles());
         foreach($uploads->getFiles() as $file) {
             $parts = explode('.',$file['name']);
             $ext = end($parts);
