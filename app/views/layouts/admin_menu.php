@@ -22,7 +22,7 @@
       <?= Helper::buildMenuListItems($userMenu,"dropdown-menu-right"); ?>
       <a class="pt-1" href="<?=APP_DOMAIN?>profile">
         <?php if($profileImage != null): ?>
-          <img class="img-thumbnail ml-2 p-0"  style="width: 50px" src="<?=APP_DOMAIN.$profileImage->url?>"></img>
+          <img class="img-thumbnail profile-img ml-2 p-0"  style="width: 50px" src="<?=APP_DOMAIN.$profileImage->url?>"></img>
         <?php endif; ?>
       </a>
     </ul>
