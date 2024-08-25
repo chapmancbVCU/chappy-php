@@ -69,24 +69,6 @@ class RegisterController extends Controller {
      * @return void
      */
     public function registerAction(): void {
-        // $newUser = new Users();
-        // if($this->request->isPost()) {
-        //     $this->request->csrfCheck();
-        //     $newUser->assign($this->request->get());
-        //     $newUser->confirm = $this->request->get('confirm');
-        //     // Accepted file types.
-        //     $fileTypes = ['png', 'jpg', 'gif', 'bmp'];  
-        //     $newUser->profileImage = $newUser->processFile($_FILES, "profileImage", $newUser->username, "", "images", $fileTypes);
-        //     $newUser->acl = Users::setAclAtRegistration();
-        //     if($newUser->save()) {
-        //         Router::redirect('register/login');
-        //     }
-        // }
-
-        // $this->view->newUser = $newUser;
-        // $this->view->displayErrors = $newUser->getErrorMessages();
-        // $this->view->render('register/register');
-
         $newUser = new Users();
         if($this->request->isPost()) {
             $this->request->csrfCheck();
