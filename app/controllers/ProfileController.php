@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 use Core\{Controller, Helper, Router};
-use App\Models\Users;
+use App\Models\{ProfileImages, Users};
 
 /**
  * Supports ability to use user profile features and render relevant views.
@@ -67,7 +67,9 @@ class ProfileController extends Controller {
      */
     public function indexAction(): void {
         $user = Users::currentUser();
+        $profileImage = ProfileImages::findCurrentProfileImage($user->id);
         if(!$user) { Router::redirect(''); }
+        $this->view->profileImage = $profileImage;
         $this->view->user = $user;
         $this->view->render('profile/index');
     }
