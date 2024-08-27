@@ -44,9 +44,6 @@
         <a href="<?=APP_DOMAIN?>profile/edit/<?=$this->user->id?>" class="btn btn-info btn-xs mx-2 mb-3">
             <i class="fa fa-edit"></i> Edit User Profile
         </a>
-        <a href="<?=APP_DOMAIN?>profile/editProfileImage/<?=$this->user->id?>" class="btn btn-secondary btn-xs mx-2 mb-3">
-            <i class="fa fa-image"></i> Edit Profile Image
-        </a>
         <a href="<?=APP_DOMAIN?>profile/updatePassword/<?=$this->user->id?>" class="btn btn-danger btn-xs mx-2 mb-3">
             <i class="fa fa-key"></i> Update Password
         </a>

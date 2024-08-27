@@ -81,34 +81,6 @@ class ProfileController extends Controller {
     }
 
     /**
-     * Renders change profile image page.  Performs task of 
-     * processing file, file upload, and database update.
-     *
-     * @return void
-     */
-    public function editProfileImageAction(): void {
-        $user = Users::currentUser();
-        if(!$user) Router::redirect('');
-        if($this->request->isPost()) {
-            $this->request->csrfCheck();
-            $user->assign($this->request->get(), Users::blackListedFormKeys);
-
-            // Accepted file types.
-            $fileTypes = ['png', 'jpg', 'gif', 'bmp'];  
-
-            // Process file.
-            $user->profileImage = $user->processFile($_FILES, "profileImage", $user->username, $user->profileImage, "images", $fileTypes);
-            if($user->save()) {
-                Router::redirect('profile/index');
-            }
-        }
-        $this->view->displayErrors = $user->getErrorMessages();
-        $this->view->user = $user;
-        $this->view->postAction = APP_DOMAIN . 'profile' . DS . 'edit_profile_image' . DS . $user->id;
-        $this->view->render('profile/edit_profile_image');
-    }
-
-    /**
      * Renders profile view for current logged in user.
      *
      * @return void
