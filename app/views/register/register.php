@@ -24,7 +24,7 @@ use Core\FormHelper;
                 ['class' => 'form-control input-sm', 'placeholder' => 'Describe yourself here...', 'rows' => '4'], 
                 ['class' => 'form-group'], $this->displayErrors); 
             ?>
-            <?= FormHelper::inputBlock('file', "Upload Profile Image (Optional)", 'profileImage', '', ['class' => 'form-control'], ['class' => 'form-group w-50'], $this->displayErrors) ?>
+            <?= FormHelper::inputBlock('file', "Upload Profile Image (Optional)", 'profileImage', '', ['class' => 'form-control', 'accept' => 'image/png image/jpeg image/png'], ['class' => 'form-group w-50'], $this->displayErrors) ?>
             <div>
                 <h4>Password Requirements</h4>
                 <ul class="pl-3">

@@ -29,7 +29,7 @@ use Core\FormHelper;
                 ['class' => 'form-group']); 
             ?>
 
-            <?= FormHelper::inputBlock('file', "Upload Profile Image (Optional)", 'profileImage', '', ['class' => 'form-control'], ['class' => 'form-group w-50'], $this->displayErrors) ?>
+            <?= FormHelper::inputBlock('file', "Upload Profile Image (Optional)", 'profileImage', '', ['class' => 'form-control', 'accept' => 'image/png image/jpeg image/png'], ['class' => 'form-group w-50'], $this->displayErrors) ?>
             <div id="sortableImages" class="row align-items-center justify-content-start p-2">
                 <?php foreach($this->profileImages as $image):?>
                     <div class="col flex-grow-0" id="image_<?=$image->id?>">
