@@ -271,9 +271,15 @@ class Users extends Model {
         $this->runValidation(new RequiredValidator($this, ['field' => 'password', 'message' => 'Password is required.'])); 
         
         if($this->isNew() || $this->changePassword) {
-            $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => PW_MIN_LENGTH, 'message' => 'Password must be at least '. PW_MIN_LENGTH.' characters.']));
-            $this->runValidation(new MaxValidator($this, ['field' => 'password', 'rule' => PW_MAX_LENGTH, 'message' => 'Password must be less than ' . PW_MAX_LENGTH. ' characters.']));
-            $this->runValidation(new LowerCharValidator($this, ['field' => 'password', 'message' => 'Must contain at least 1 lower case character.']));
+            if(SET_PW_MIN_LENGTH == 'true') {
+                $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => PW_MIN_LENGTH, 'message' => 'Password must be at least '. PW_MIN_LENGTH.' characters.']));
+            }
+            if(SET_PW_MAX_LENGTH == 'true') {
+                $this->runValidation(new MaxValidator($this, ['field' => 'password', 'rule' => PW_MAX_LENGTH, 'message' => 'Password must be less than ' . PW_MAX_LENGTH. ' characters.']));
+            }
+            if(PW_LOWER_CHAR == 'true') {
+                $this->runValidation(new LowerCharValidator($this, ['field' => 'password', 'message' => 'Must contain at least 1 lower case character.']));
+            }
             if(PW_UPPER_CHAR == 'true') {
                 $this->runValidation(new UpperCharValidator($this, ['field' => 'password', 'message' => 'Must contain at least 1 upper case character.']));
             }
