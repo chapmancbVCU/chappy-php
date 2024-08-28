@@ -35,7 +35,6 @@ class Users extends Model {
     public $lname;
     public $reset_password = 0;
     public $password;
-    public $profileImage;
     protected static $_softDelete = true;
     protected static $_table = 'users';
     public $updated_at;
