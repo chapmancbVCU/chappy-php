@@ -1,6 +1,6 @@
 <?php
 namespace Core;
-use App\Models\Users;
+use App\Models\{ProfileImages, Users};
 
 /**
  * Helper and utility functions.
@@ -99,5 +99,9 @@ class Helper {
    */
   public static function getObjectProperties(object $object): array {
     return get_object_vars($object);
+  }
+
+  public static function getProfileImage() {
+    return ProfileImages::findCurrentProfileImage(Users::currentUser()->id);
   }
 }

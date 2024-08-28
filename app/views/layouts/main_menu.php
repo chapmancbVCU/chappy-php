@@ -1,8 +1,7 @@
 <?php
   use Core\Router;
   use Core\Helper;
-  use App\Models\{ProfileImages, Users};
-  $profileImage = ProfileImages::findCurrentProfileImage(Users::currentUser()->id);
+  $profileImage = Helper::getProfileImage();
   $menu = Router::getMenu('menu_acl');
   $userMenu = Router::getMenu('user_menu');
 ?>
