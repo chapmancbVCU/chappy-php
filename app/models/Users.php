@@ -271,12 +271,18 @@ class Users extends Model {
         $this->runValidation(new RequiredValidator($this, ['field' => 'password', 'message' => 'Password is required.'])); 
         
         if($this->isNew() || $this->changePassword) {
-            $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => 12, 'message' => 'Password must be at least 12 characters.']));
-            $this->runValidation(new MaxValidator($this, ['field' => 'password', 'rule' => 50, 'message' => 'Password must be less than 30 characters.']));
-            $this->runValidation(new UpperCharValidator($this, ['field' => 'password', 'message' => 'Must contain at least 1 upper case character.']));
+            $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => PW_MIN_LENGTH, 'message' => 'Password must be at least '. PW_MIN_LENGTH.' characters.']));
+            $this->runValidation(new MaxValidator($this, ['field' => 'password', 'rule' => PW_MAX_LENGTH, 'message' => 'Password must be less than ' . PW_MAX_LENGTH. ' characters.']));
             $this->runValidation(new LowerCharValidator($this, ['field' => 'password', 'message' => 'Must contain at least 1 lower case character.']));
-            $this->runValidation(new NumberCharValidator($this, ['field' => 'password', 'message' => 'Must contain at least 1 numeric character.']));
-            $this->runValidation(new SpecialCharValidator($this, ['field' => 'password', 'message' => 'Must contain at least 1 special character.'])); 
+            if(PW_UPPER_CHAR == 'true') {
+                $this->runValidation(new UpperCharValidator($this, ['field' => 'password', 'message' => 'Must contain at least 1 upper case character.']));
+            }
+            if(PW_NUM_CHAR == 'true') {
+                $this->runValidation(new NumberCharValidator($this, ['field' => 'password', 'message' => 'Must contain at least 1 numeric character.']));
+            }
+            if(PW_SPECIAL_CHAR == 'true') {
+                $this->runValidation(new SpecialCharValidator($this, ['field' => 'password', 'message' => 'Must contain at least 1 special character.'])); 
+            }
             $this->runValidation(new MatchesValidator($this, ['field' => 'password', 'rule' => $this->confirm, 'message' => 'Passwords must match.']));
         }
     }
