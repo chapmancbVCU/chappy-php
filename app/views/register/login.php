@@ -11,9 +11,10 @@ use Core\Helper;
         <h3 class="text-center">Log In</h3>
         <form class="form" action="<?=APP_DOMAIN?>register/login" method="post">
             <?= FormHelper::csrfInput() ?>
-            <?= FormHelper::inputBlock('text', 'Username', 'username', $this->login->username, ['class' => 'form-control'], ['class' => 'form-group'], $this->displayErrors); ?>
-            <?= FormHelper::inputBlock('password', 'Password', 'password', $this->login->password,['class' => 'form-control'], ['class' => 'form-group'], $this->displayErrors); ?>
-            <?= FormHelper::checkboxBlockLabelLeft('Remember Me', 'remember_me', $this->login->getRememberMeChecked(), [], ['class' => 'form-group'], $this->displayErrors); ?>
+            <?= FormHelper::displayErrors($this->displayErrors) ?>
+            <?= FormHelper::inputBlock('text', 'Username', 'username', $this->login->username, ['class' => 'form-control'], ['class' => 'form-group']); ?>
+            <?= FormHelper::inputBlock('password', 'Password', 'password', $this->login->password,['class' => 'form-control'], ['class' => 'form-group']); ?>
+            <?= FormHelper::checkboxBlockLabelLeft('Remember Me', 'remember_me', $this->login->getRememberMeChecked(), [], ['class' => 'form-group']); ?>
             
             <div class="d-flex justify-content-end">
                 <div class="flex-grow-1 text-body">Don't have an account? <a href="<?=APP_DOMAIN?>register/register">Sign Up</a></div>
