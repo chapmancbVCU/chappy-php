@@ -20,7 +20,6 @@ define('DB_HOST', $_ENV['DB_HOST']);
 
 define('APP_DOMAIN', $_ENV['APP_DOMAIN']);                                // Set this to '/' for a live server.
 define('VERSION', $_ENV['VERSION']);
-define('MAX_FILE_UPLOAD_SIZE', $_ENV['MAX_FILE_UPLOAD_SIZE']);  // Set max file upload size.
 define('SITE_TITLE', $_ENV['SITE_TITLE']);                      // This will be used if no site title is set.
 define('MENU_BRAND', $_ENV['MENU_BRAND']);                      // Branding for menu.
 
