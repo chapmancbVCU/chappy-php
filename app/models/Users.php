@@ -87,14 +87,6 @@ class Users extends Model {
         }
     }
 
-    public static function getDeletedUser($id) {
-        return self::$_db->query("SELECT * FROM users where id = ? AND deleted = 1", [$id])->results();
-    }
-
-    public function hashPassword($password) {
-        $password = password_hash($password, PASSWORD_DEFAULT);
-    }
-
     /**
      * Checks if a user is logged in.
      *
@@ -106,6 +98,14 @@ class Users extends Model {
             self::$currentLoggedInUser = self::findById((int)Session::get(CURRENT_USER_SESSION_NAME));
         }
         return self::$currentLoggedInUser;
+    }
+
+    public static function getDeletedUser($id) {
+        return self::$_db->query("SELECT * FROM users where id = ? AND deleted = 1", [$id])->results();
+    }
+
+    public function hashPassword($password) {
+        $password = password_hash($password, PASSWORD_DEFAULT);
     }
 
     public static function findAllUsers($current_user_id, $params = []) {
