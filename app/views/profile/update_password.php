@@ -12,7 +12,7 @@ use Core\FormHelper;
             <?= FormHelper::displayErrors($this->displayErrors) ?>
             <div>
                 <h4>Password Requirements</h4>
-                <ul>
+                <ul class="pl-3">
                     <li>Minimum 12 characters in length</li>
                     <li>Maximum of 30 characters in length</li>
                     <li>At least 1 upper case character</li>
