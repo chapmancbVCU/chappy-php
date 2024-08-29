@@ -54,7 +54,7 @@ class ProfileImages extends Model {
     }
     
     public static function updateSortByUserId($user_id, $sortOrder = []) {
-        // if($sortOrder) {
+        if($sortOrder) {
             $images = self::findByUserId($user_id);
             $i = 0;
             foreach($images as $image) {
@@ -64,7 +64,7 @@ class ProfileImages extends Model {
                 $image->save();
                 $i++;
             }
-        // }
+        }
     }
 
     public static function uploadProfileImage($user_id, $uploads) {
