@@ -54,17 +54,15 @@ class ProfileImages extends Model {
     }
     
     public static function updateSortByUserId($user_id, $sortOrder = []) {
-        // if($sortOrder) {
-            $images = self::findByUserId($user_id);
-            $i = 0;
-            foreach($images as $image) {
-                $val = 'image_'.$image->id;
-                $sort = (in_array($val, $sortOrder)) ? array_search($val, $sortOrder) : $i;
-                $image->sort = $sort;
-                $image->save();
-                $i++;
-            }
-        // }
+        $images = self::findByUserId($user_id);
+        $i = 0;
+        foreach($images as $image) {
+            $val = 'image_'.$image->id;
+            $sort = (in_array($val, $sortOrder)) ? array_search($val, $sortOrder) : $i;
+            $image->sort = $sort;
+            $image->save();
+            $i++;
+        }
     }
 
     public static function uploadProfileImage($user_id, $uploads) {
