@@ -89,19 +89,6 @@ class AdmindashboardController extends Controller {
         $this->view->setLayout('admin');
     }
 
-    public function restoreAction(int $id): void {
-        $user = Users::getDeletedUser($id);
-        if($user) {
-            $user->deleted = "test";
-            //Helper::dnd($user);
-            $user->save();
-            Session::addMessage('success', 'User has been restored');
-        } else {
-            Session::addMessage('danger', 'An error has occurred!');
-        }
-        Router::redirect('admindashboard');
-    }
-
     /**
      * Undocumented function
      *

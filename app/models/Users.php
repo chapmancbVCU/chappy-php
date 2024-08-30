@@ -61,7 +61,7 @@ class Users extends Model {
     public static function addAcl($user_id,$acl){
         $user = self::findById($user_id);
         if(!$user) return false;
-            $acls = $user->acls();
+        $acls = $user->acls();
         if(!in_array($acl,$acls)){
             $acls[] = $acl;
             $user->acl = json_encode($acls);
@@ -98,10 +98,6 @@ class Users extends Model {
             self::$currentLoggedInUser = self::findById((int)Session::get(CURRENT_USER_SESSION_NAME));
         }
         return self::$currentLoggedInUser;
-    }
-
-    public static function getDeletedUser($id) {
-        return self::$_db->query("SELECT * FROM users where id = ? AND deleted = 1", [$id])->results();
     }
 
     public function hashPassword($password) {
