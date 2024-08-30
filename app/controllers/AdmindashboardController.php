@@ -3,15 +3,16 @@ namespace App\Controllers;
 use Core\{Controller, Router, Session};
 use App\Models\{ACL, ProfileImages, Users};
 use Core\Helper;
+
 /**
  * Implements support for our Admindashboard controller.
  */
 class AdmindashboardController extends Controller {
 
     /**
-     * Undocumented function
+     * Performs delete action.
      *
-     * @param integer $id
+     * @param integer $id The id for the user we want to delete.
      * @return void
      */
     public function deleteAction(int $id): void {
