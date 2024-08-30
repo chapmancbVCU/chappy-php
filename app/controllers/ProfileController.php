@@ -66,7 +66,6 @@ class ProfileController extends Controller {
                 ProfileImages::updateSortByUserId($user->id, $sortOrder);
 
                 // Redirect
-                Session::addMessage('success', 'Your profile is successfully updated!');
                 Router::redirect('profile/index');
             }
         }
