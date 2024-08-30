@@ -324,8 +324,8 @@ $contacts = $db->find('users', [
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">array</td>
-            <td>An associative array that first object in a _result.</td>
+            <td class="align-middle text-center w-25">array|object</td>
+            <td>An associative array that first that is the first object in a _result.</td>
         </tr>
     </table>
 
