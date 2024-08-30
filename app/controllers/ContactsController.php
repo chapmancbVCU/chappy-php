@@ -11,16 +11,6 @@ use App\Models\{Contacts, Users};
 class ContactsController extends Controller {
     
     /**
-     * Undocumented function
-     *
-     * @return void
-     */
-    public function onConstruct(): void {
-        $this->view->setLayout('default');
-        $this->currentUser = Users::currentUser();
-    }
-
-    /**
      * Displays view for adding a new contact, assists with form validation, 
      * and begins task for saving record to database.
      *
@@ -113,9 +103,18 @@ class ContactsController extends Controller {
      * @return void
      */
     public function indexAction(): void {
-        //Helper::dnd($this->currentUser);
         $contacts = Contacts::findAllByUserId($this->currentUser->id, ['order'=>'lname, fname']);
         $this->view->contacts = $contacts;
         $this->view->render('contacts/index');
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function onConstruct(): void {
+        $this->view->setLayout('default');
+        $this->currentUser = Users::currentUser();
     }
 }

@@ -9,10 +9,7 @@ use App\Lib\Utilities\Uploads;
  * class will support tasks related to the user registration.
  */
 class RegisterController extends Controller {
-    public function onConstruct(): void {
-        $this->view->setLayout('default');
-    }
-
+    
     /**
      * Manages login action processes.
      *
@@ -63,6 +60,10 @@ class RegisterController extends Controller {
         Router::redirect(('register/login'));
     }
 
+    public function onConstruct(): void {
+        $this->view->setLayout('default');
+    }
+    
     /**
      * Manages actions related to user registration.
      *

@@ -8,10 +8,7 @@ use App\Lib\Utilities\Uploads;
  * Supports ability to use user profile features and render relevant views.
  */
 class ProfileController extends Controller {
-    public function onConstruct(): void{
-        $this->view->setLayout('default');
-    }
-
+    
     function deleteImageAction() {
         $resp = ['success' => false];
         if($this->request->isPost()) {
@@ -94,6 +91,10 @@ class ProfileController extends Controller {
         $this->view->render('profile/index');
     }
 
+    public function onConstruct(): void{
+        $this->view->setLayout('default');
+    }
+    
     /**
      * Renders change password page.  Supports validation and database 
      * operation.
