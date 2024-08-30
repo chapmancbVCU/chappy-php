@@ -61,10 +61,10 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
-            <th colspan="2" class="text-center">public function editAction</th>
+            <th colspan="2" class="text-center">public function deleteImageAction</th>
         </tr>
         <tr>
-            <td colspan="2">Renders edit profile page and handles database updates.</td>
+            <td colspan="2">Deletes an image associated with a user's profile.</td>
         </tr>
         <tr>
             <th class="align-middle text-center" colspan="2">params</th>
@@ -84,10 +84,10 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
-            <th colspan="2" class="text-center">public function editProfileImageAction</th>
+            <th colspan="2" class="text-center">public function editAction</th>
         </tr>
         <tr>
-            <td colspan="2">Renders change profile image page.  Performs task of processing file, file upload, and database update.</td>
+            <td colspan="2">Renders edit profile page and handles database updates.</td>
         </tr>
         <tr>
             <th class="align-middle text-center" colspan="2">params</th>

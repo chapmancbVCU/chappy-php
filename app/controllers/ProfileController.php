@@ -8,8 +8,12 @@ use App\Lib\Utilities\Uploads;
  * Supports ability to use user profile features and render relevant views.
  */
 class ProfileController extends Controller {
-    
-    function deleteImageAction() {
+    /**
+     * Deletes an image associated with a user's profile.
+     *
+     * @return void
+     */
+    function deleteImageAction(): void {
         $resp = ['success' => false];
         if($this->request->isPost()) {
             $user = Users::currentUser();
