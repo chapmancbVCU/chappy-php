@@ -10,6 +10,7 @@ class ProfileImages extends Model {
     protected static $maxAllowedFileSize = 5242880;
     public $name;
     protected static $_softDelete = true;
+    public $sort;
     protected static $_table = 'profile_images';
     protected static $_uploadPath = 'public'.DS.'images'.DS.'uploads'.DS .'profile_images'.DS.'user_';
     public $url;

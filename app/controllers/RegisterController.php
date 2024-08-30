@@ -63,7 +63,7 @@ class RegisterController extends Controller {
     public function onConstruct(): void {
         $this->view->setLayout('default');
     }
-    
+
     /**
      * Manages actions related to user registration.
      *
@@ -120,9 +120,6 @@ class RegisterController extends Controller {
             
             // Allows password matching confirmation.
             $user->confirm = $this->request->get('confirm');
-            //{
-               // $user->resetPassword = 0;
-            //}
             
             if($user->save()) {
                 // PW change mode off.

@@ -7,10 +7,10 @@ use Core\Helper;
  */
 class Uploads {
 
-    private $_allowedImageTypes = [];// = [IMAGETYPE_GIF,IMAGETYPE_JPEG,IMAGETYPE_PNG];
+    private $_allowedImageTypes = [];
     private $_errors = [];
     private $_files= []; 
-    private $_maxAllowedSize;// = 5242880;
+    private $_maxAllowedSize;
 
     /**
      * Undocumented function
@@ -31,8 +31,6 @@ class Uploads {
      * @return void
      */
     protected function addErrorMessage($name,$message) {
-        // Helper::cl($name);
-        // Helper::cl($message);
         if(array_key_exists($name, $this->_errors)) {
             $this->_errors[$name] .= $this->_errors[$name] . " " . $message;
         } else {
@@ -131,7 +129,6 @@ class Uploads {
     protected function validateSize(){
         foreach($this->_files as $file){
             $name = $file['name'];
-            // Helper::dnd($file['size']);
             if($file['size'] > $this->_maxAllowedSize){
                 $msg = $name . " is over the max allowed size of 5mb.";
                 $this->addErrorMessage($name,$msg);
