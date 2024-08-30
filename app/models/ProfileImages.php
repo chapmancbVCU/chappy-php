@@ -11,8 +11,9 @@ class ProfileImages extends Model {
     public $name;
     protected static $_softDelete = true;
     protected static $_table = 'profile_images';
-    public $user_id;
+    protected static $_uploadPath = 'public'.DS.'images'.DS.'uploads'.DS .'profile_images'.DS.'user_';
     public $url;
+    public $user_id;
 
     public static function deleteById($id) {
         
@@ -26,7 +27,7 @@ class ProfileImages extends Model {
             $af->sort = $af->sort - 1;
             $af->save();
         }
-        unlink(S3_BUCKET.DS.'public'.DS.'images'.DS.'uploads'.DS . 'profile_images' . DS . 'user_' . $image->user_id. DS. $image->name);
+        unlink(ROOT.DS.self::$_uploadPath.$image->user_id.DS.$image->name);
         return $image->delete();
     }
     
@@ -72,7 +73,7 @@ class ProfileImages extends Model {
             'order' => 'sort DESC'
         ]);
         $lastSort = (!$lastImage) ? 0 : $lastImage->sort;
-        $path = 'public'.DS.'images'.DS.'uploads'.DS.'profile_images'.DS.'user_'.$user_id.DS;
+        $path = self::$_uploadPath.$user_id.DS;
         foreach($uploads->getFiles() as $file) {
             $parts = explode('.',$file['name']);
             $ext = end($parts);
