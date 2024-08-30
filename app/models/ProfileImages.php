@@ -26,7 +26,7 @@ class ProfileImages extends Model {
             $af->sort = $af->sort - 1;
             $af->save();
         }
-        unlink(ROOT.DS.'public'.DS.'images'.DS.'uploads'.DS . 'profile_images' . DS . 'user_' . $image->user_id. DS. $image->name);
+        unlink(S3_BUCKET.DS.'public'.DS.'images'.DS.'uploads'.DS . 'profile_images' . DS . 'user_' . $image->user_id. DS. $image->name);
         return $image->delete();
     }
     
