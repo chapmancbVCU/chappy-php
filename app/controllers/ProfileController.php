@@ -117,7 +117,8 @@ class ProfileController extends Controller {
             
             if($user->save()) {
                 // PW change mode off.
-                $user->setChangePassword(false);    
+                $user->setChangePassword(false);
+                Session::addMessage('success', 'Password updated!'); 
                 Router::redirect('profile/index');
             }
         }
