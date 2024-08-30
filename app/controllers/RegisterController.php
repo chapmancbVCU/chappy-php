@@ -76,7 +76,7 @@ class RegisterController extends Controller {
             $files = $_FILES['profileImage'];
             if($files['tmp_name'] != '') {
                 $uploads = new Uploads($files, ProfileImages::getAllowedFileTypes(), 
-                    ProfileImages::getMaxAllowedFileSize(), false);
+                    ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS);
                 
                 $uploads->runValidation();
                 $imagesErrors = $uploads->validates();
