@@ -154,7 +154,8 @@ class DB {
     /**
      * Returns first result in the _result array.
      *
-     * @return array|object An associative array that is first object in a _result.
+     * @return array|object An associative array that is the first object 
+     * in a _result.
      */
     public function first() {
         return (!empty($this->_result)) ? $this->_result[0] : [];
