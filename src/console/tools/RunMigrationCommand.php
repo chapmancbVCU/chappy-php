@@ -31,18 +31,12 @@ class RunMigrationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        
-        // load configuration and helper functions
+        // Load configuration and helper functions
         require_once(CONSOLE_ROOT . DS . 'config' . DS . 'config.php');
         $isCli = php_sapi_name() == 'cli';
         if(!RUN_MIGRATIONS_FROM_BROWSER && !$isCli) die('restricted');
 
-        
-
-       
-
         $db = DB::getInstance();
-
         $migrationTable = $db->query("SHOW TABLES LIKE 'migrations'")->results();
         $previousMigs = [];
         $migrationsRun = [];
@@ -53,6 +47,7 @@ class RunMigrationCommand extends Command
                 $previousMigs[] = $q->migration;
             }
         }
+        
         // get all files
         $migrations = glob('migrations'.DS.'*.php');
 
