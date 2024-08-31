@@ -10,8 +10,10 @@ define('DS', DIRECTORY_SEPARATOR);
 
 use Console\App\Commands\GenerateMigrationCommand;
 use Console\App\Commands\MakeEnvCommand;
+use Console\App\Commands\RunMigrationCommand;
  
 $app = new Application();
 $app->add(new GenerateMigrationCommand());
 $app->add(new MakeEnvCommand());
+$app->add(new RunMigrationCommand());
 $app->run();
