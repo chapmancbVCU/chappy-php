@@ -3,8 +3,6 @@
 
 require __DIR__.'/vendor/autoload.php';
 use Dotenv\Dotenv;
-
-
 use Symfony\Component\Console\Application;
 
 define('CONSOLE_ROOT', __DIR__);
