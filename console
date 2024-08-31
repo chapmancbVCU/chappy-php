@@ -7,8 +7,11 @@ use Symfony\Component\Console\Application;
 
 define('CONSOLE_ROOT', __DIR__);
 define('DS', DIRECTORY_SEPARATOR);
+
+use Console\App\Commands\GenerateMigrationCommand;
 use Console\App\Commands\MakeEnvCommand;
  
 $app = new Application();
+$app->add(new GenerateMigrationCommand());
 $app->add(new MakeEnvCommand());
 $app->run();
