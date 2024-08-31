@@ -5,3 +5,4 @@ define('CONSOLE_ROOT', __DIR__);
 define('DS', DIRECTORY_SEPARATOR);
 
 include ('src/init/setup-composer.php');
+var_dump("<br><pre>--------------------------------------------------------------------------------</pre>");
