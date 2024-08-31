@@ -4,10 +4,10 @@ namespace Console\App\Commands;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\InputArgument;
 
-//define('DS', DIRECTORY_SEPARATOR);
-//define('ROOT', dirname(__FILE__));
+/**
+ * Supports ability to generate new migration file.
+ */
 class GenerateMigrationCommand extends Command
 {
     /**
