@@ -24,6 +24,13 @@ class MakeEnvCommand extends Command
             ->setHelp('php console mk-env to create .env file');
     }
  
+    /**
+     * Executes the command
+     *
+     * @param InputInterface $input The input.
+     * @param OutputInterface $output The output.
+     * @return integer
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $filesystem = new Filesystem();
