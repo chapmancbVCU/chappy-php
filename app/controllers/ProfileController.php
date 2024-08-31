@@ -94,6 +94,11 @@ class ProfileController extends Controller {
         $this->view->render('profile/index');
     }
 
+    /**
+     * Runs when the object is constructed.
+     *
+     * @return void
+     */
     public function onConstruct(): void{
         $this->view->setLayout('default');
     }

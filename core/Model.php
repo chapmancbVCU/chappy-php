@@ -271,7 +271,7 @@ class Model {
         return (property_exists($this, 'id') && !empty($this->id)) ? false : true;
     }
     
-    /** ADD
+    /**
      * Runs when the object is constructed.
      *
      * @return void
