@@ -1,6 +1,5 @@
 #!/user/bin/env php
 <?php
-//shell_exec('composer init');
 include ('src/init/setup-composer.php');
 echo "\n\n----------------------------------------\n\n";
 echo shell_exec('php console hello-world');
