@@ -1,8 +1,8 @@
 #!/user/bin/env php
 <?php
 
-define('CONSOLE_ROOT', __DIR__);
-define('DS', DIRECTORY_SEPARATOR);
+//define('CONSOLE_ROOT', __DIR__);
+//define('DS', DIRECTORY_SEPARATOR);
 
 include ('src/init/setup-composer.php');
 echo "------------------------------------------------------------";
