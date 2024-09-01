@@ -5,7 +5,8 @@ define('CONSOLE_ROOT', __DIR__);
 define('DS', DIRECTORY_SEPARATOR);
 
 include ('src/init/setup-composer.php');
-echo "------------------------------------------------------------\n";
-
 echo "------------------------------------------------------------";
-
+include ('console');
+echo "Setting up  console";
+echo "------------------------------------------------------------";
+shell_exec('php console hello-world');

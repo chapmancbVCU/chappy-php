@@ -22,7 +22,7 @@ function autoload($className){
 }
 
 spl_autoload_register('autoload');
-
+use Console\App\Commands\HelloworldCommand;
 use Console\App\Commands\GenerateMigrationCommand;
 use Console\App\Commands\MakeEnvCommand;
 use Console\App\Commands\RunMigrationCommand;
@@ -31,4 +31,5 @@ $app = new Application();
 $app->add(new GenerateMigrationCommand());
 $app->add(new MakeEnvCommand());
 $app->add(new RunMigrationCommand());
+$app->add(new HelloworldCommand());
 $app->run();
