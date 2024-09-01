@@ -1,9 +1,4 @@
 #!/user/bin/env php
 <?php
 include ('src/init/setup-composer.php');
-echo "------------------------------------------------------------";
-//include ('console');
-echo "Setting up  console";
-echo "------------------------------------------------------------";
-$output = shell_exec('php console hello-world');
-echo $output;
+shell_exec('php console hello-world');
