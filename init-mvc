@@ -9,4 +9,4 @@ echo "------------------------------------------------------------";
 include ('console');
 echo "Setting up  console";
 echo "------------------------------------------------------------";
-shell_exec('php console hello-world');
+exec('php console hello-world');
