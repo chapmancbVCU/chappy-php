@@ -2,8 +2,8 @@
 <?php
 include ('src/init/setup-composer.php');
 echo "------------------------------------------------------------";
-include ('console');
+//include ('console');
 echo "Setting up  console";
 echo "------------------------------------------------------------";
-//$output = shell_exec('php console hello-world');
-//echo $output;
+$output = shell_exec('php console hello-world');
+echo $output;
