@@ -7,7 +7,7 @@ makeBorder('Create profile images dir');
 shell_exec('php console init:mk-profile-images-dir');
 
 makeBorder('Run initial db migrations');
-shell_exec('php console tools:run-migration');
+echo shell_exec('php console tools:run-migration');
 
 
 
