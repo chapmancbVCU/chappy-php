@@ -13,7 +13,7 @@ echo shell_exec('php console init:mk-profile-images-dir');
 
 
 function makeBorder(string $message) {
-    echo "\n\n----------------------------------------";
+    echo "\n\n----------------------------------------\n";
     echo $message;
-    echo "----------------------------------------";
+    echo "\n----------------------------------------\n";
 }
