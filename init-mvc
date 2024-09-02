@@ -6,8 +6,8 @@ include ('src/init/setup-composer.php');
 makeBorder('Create profile images dir');
 shell_exec('php console init:mk-profile-images-dir');
 
-makeBorder('Run initial db migrations');
-echo shell_exec('php console tools:run-migration');
+makeBorder('Generate .env file');
+shell_exec('php console init:mk-env');
 
 
 
