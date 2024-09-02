@@ -7,7 +7,7 @@ makeBorder('Create profile images dir');
 shell_exec('php console init:mk-profile-images-dir');
 
 makeBorder('Generate .env file');
-shell_exec('php console init:mk-env');
+shell_exec('php console tools:mk-env');
 
 
 
