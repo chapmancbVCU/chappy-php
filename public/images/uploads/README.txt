@@ -1,1 +1,0 @@
-Place holder so uploads is not gitignored.  DO NOT DELETE

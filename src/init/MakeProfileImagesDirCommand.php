@@ -17,7 +17,7 @@ class MakeProfileImagesDirCommand extends Command
  
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        mkdir(CONSOLE_ROOT.DS.'public'.DS.'images'.DS.'uploads'.DS.'profile_images', 0755);
+        mkdir(CONSOLE_ROOT.DS.'public'.DS.'images'.DS.'uploads'.DS.'profile_images', 0755, true);
         return Command::SUCCESS;
     }
 }
