@@ -2,5 +2,5 @@
 <?php
 include ('src/init/setup-composer.php');
 echo "\n\n----------------------------------------\n\n";
-echo shell_exec('php console hello-world');
+echo shell_exec('php console init:mk-profile-images-dir');
 //echo $output;
