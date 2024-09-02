@@ -1,6 +1,19 @@
 #!/user/bin/env php
 <?php
+makeBorder('Setup composer dependencies');
 include ('src/init/setup-composer.php');
-echo "\n\n----------------------------------------\n\n";
+
+makeBorder('Create profile images dir');
 echo shell_exec('php console init:mk-profile-images-dir');
 //echo $output;
+
+
+
+
+
+
+function makeBorder(string $message) {
+    echo "\n\n----------------------------------------";
+    echo $message;
+    echo "----------------------------------------";
+}
