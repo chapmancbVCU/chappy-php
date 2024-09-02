@@ -31,7 +31,7 @@ use Console\App\Commands\RunMigrationCommand;
 $app = new Application();
 $app->add(new GenerateMigrationCommand());
 $app->add(new MakeEnvCommand());
-$aoo->add(new MakeProfileImagesDirCommand());
+$app->add(new MakeProfileImagesDirCommand());
 $app->add(new RunMigrationCommand());
 $app->add(new HelloworldCommand());
 $app->run();
