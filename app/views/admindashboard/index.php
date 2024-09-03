@@ -20,7 +20,7 @@
                 <td><?= $user->created_at ?></td>
                 <td><?= $user->updated_at ?></td>
                 <td class="text-center">
-                    <a href="<?=APP_DOMAIN?>admindashboard/details/<?=$user->id?>" class="btn btn-info btn-xs w-25">
+                    <a href="<?=APP_DOMAIN?>admindashboard/details/<?=$user->id?>" class="btn btn-info btn-xs w-100">
                         <i class="fa fa-edit"></i> Edit
                     </a>
                 </td>
