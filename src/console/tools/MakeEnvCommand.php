@@ -34,7 +34,7 @@ class MakeEnvCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $filesystem = new Filesystem();
-        $filesystem->copy(CONSOLE_ROOT . DS . '.env.sample', CONSOLE_ROOT . DS . 'test.txt');
+        $filesystem->copy(CONSOLE_ROOT . DS . '.env.sample', CONSOLE_ROOT . DS . '.env');
         return Command::SUCCESS;
     }
     
