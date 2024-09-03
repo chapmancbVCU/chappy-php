@@ -5,11 +5,11 @@ use Core\Helper;
 /**
  * Handles operations related to views and its content.
  */
+#[\AllowDynamicProperties]
 class View {
     protected $_body;
     protected $_content = [];
     protected $_currentBuffer;
-    public $displayErrors;
     protected $_head;
     protected $_layout = DEFAULT_LAYOUT;
     protected $_outputBuffer;
@@ -23,14 +23,14 @@ class View {
         
     }
 
-    /**
+    /** UPDATE
      * Includes a partial for our view.  Partial views assist with code 
      * reuse.  An application of this would be forms.  The parameters are used 
      * to build the path for the partial used in this function's include 
      * statement.
      *
      * @param string $group The name of the parent view.
-     * @param string $group The name of the parent view.
+     * @param string $partial The name of the partial view.
      * @return void
      */
     public function addPartialView(string $group, string $partial) {
