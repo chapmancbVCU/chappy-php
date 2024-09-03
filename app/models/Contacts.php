@@ -12,6 +12,7 @@ class Contacts extends Model {
     public $address2;
     public $cell_phone;
     public $city;
+    public $country;
     public $created_at;
     public $deleted = 0;
     public const blackList = ['id', 'deleted'];
