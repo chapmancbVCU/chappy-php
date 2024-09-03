@@ -1,12 +1,13 @@
 <?php
 namespace Core;
 use Core\Helper;
+use stdClass;
 
 /**
  * Handles operations related to views and its content.
  */
-#[\AllowDynamicProperties]
-class View {
+// #[\AllowDynamicProperties]
+class View extends stdClass {
     protected $_body;
     protected $_content = [];
     protected $_currentBuffer;
