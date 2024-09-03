@@ -8,6 +8,7 @@ use App\Models\{Contacts, Users};
  * handling user interactions that will result in CRUD operations against the 
  * database.
  */
+#[\AllowDynamicProperties]
 class ContactsController extends Controller {
     
     /**
