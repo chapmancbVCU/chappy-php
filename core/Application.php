@@ -19,7 +19,7 @@ class Application {
      * @return void
      */
     private function _set_reporting(): void {
-        if(DEBUG) {
+        if(DEBUG == "true") {
             // error_reporting(E_ALL);
             error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED);
             ini_set('display_errors', 1);
