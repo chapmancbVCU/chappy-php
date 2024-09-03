@@ -102,6 +102,9 @@ class Helper {
   }
 
   public static function getProfileImage() {
-    return ProfileImages::findCurrentProfileImage(Users::currentUser()->id);
+    $user = Users::currentUser();
+    if($user) {
+      return ProfileImages::findCurrentProfileImage($user->id);
+    }
   }
 }
