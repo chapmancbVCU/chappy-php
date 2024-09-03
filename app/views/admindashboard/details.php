@@ -34,7 +34,7 @@
                 </tr>
                 <tr>
                     <th class="text-center">Status</th>
-                    <td class="text-center"><?= ($user->inactive == 0) ? 'Active' : 'Inactive'?></td>
+                    <td class="text-center"><?= ($this->user->inactive == 0) ? 'Active' : 'Inactive'?></td>
                 </tr>
                 <tr>
                     <th class="text-center">ACL</th>
