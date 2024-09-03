@@ -24,7 +24,7 @@ class View extends stdClass {
         
     }
 
-    /** UPDATE
+    /**
      * Includes a partial for our view.  Partial views assist with code 
      * reuse.  An application of this would be forms.  The parameters are used 
      * to build the path for the partial used in this function's include 

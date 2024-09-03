@@ -89,7 +89,7 @@
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
-            <td>$group The name of the parent view.</td>
+            <td>$partial The name of the partial view.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
