@@ -2,7 +2,7 @@
 <?php $this->setSiteTitle("Manage ACL Items"); ?>
 <?php $this->start('body'); ?>
 <h1 class="text-center">Manage ACL Items
-    <a href="<?=APP_DOMAIN?>admindashboard/addAcl/<?=$this->user->id?>" class="btn btn-info btn-xs">
+    <a href="<?=APP_DOMAIN?>admindashboard/addAcl/<?=$this->user->id?>" class="btn btn-primary btn-xs ml-5">
         <i class="fa fa-plus"></i> Add ACL
     </a>
 </h1>
@@ -15,7 +15,7 @@
         <?php foreach($this->acls as $acl): ?>
             <tr>
                 <?php if($acl->acl !== "Admin"): ?>
-                    <td><?= $acl->acl ?></td>
+                    <td class="w-50"><?= $acl->acl ?></td>
                     <td class="text-center">
                         <a href="<?=APP_DOMAIN?>admindashboard/editAcl/<?=$this->user->id?>" class="btn btn-info btn-xs">
                             <i class="fa fa-edit"></i> Edit ACL
