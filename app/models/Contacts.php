@@ -30,15 +30,6 @@ class Contacts extends Model {
     public $zip;
 
     /**
-     * Constructor for the Contacts class.
-     */
-    // public function __construct() {
-    //     $table = 'contacts';
-    //     parent::__construct($table);
-    //     $this->_softDelete = true;
-    // }
-
-    /**
      * Formats address to conform to form factor of an address label.
      *
      * @return string $html The formatted address.

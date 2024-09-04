@@ -97,23 +97,6 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
-            <th colspan="2" class="text-center">public function construct</th>
-        </tr>
-        <tr>
-            <td colspan="2">Constructor for the Contacts model class.</td>
-        </tr>
-        <tr>
-            <th class="align-middle text-center" colspan="2">params</th>
-        </tr>
-        <tr>
-            <td class="text-center" colspan="2">None</td>
-        </tr>
-    </table>
-
-    <hr class="w-75 my-5 mx-auto">
-
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
-        <tr>
             <th colspan="2" class="text-center">public function displayAddress</th>
         </tr>
         <tr>
