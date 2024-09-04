@@ -98,6 +98,16 @@ use Core\FormHelper;
         );?>
     </div>
 
+    <div class="row">
+        <?= FormHelper::inputBlock('text', 
+                'Country', 
+                'country', 
+                $this->contact->country, 
+                ['class' => 'form-control'], 
+                ['class' => 'form-group col-md-12']
+        );?>
+    </div>
+
     <div class="col-md-12 text-right">
         <a href="<?=APP_DOMAIN?>contacts" class="btn btn-default">Cancel</a>
         <?= FormHelper::submitTag('Save', ['class' => 'btn btn-primary']) ?>

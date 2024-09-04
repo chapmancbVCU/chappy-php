@@ -55,6 +55,9 @@ class Contacts extends Model {
             $address .= $this->city . ', ';
         }
         $address .= $this->state . ' ' .  $this->zip . '<br>';
+        if(!empty($this->country)) {
+            $address .= $this->country . '<br>';
+        }
 
         return $address;
     }
