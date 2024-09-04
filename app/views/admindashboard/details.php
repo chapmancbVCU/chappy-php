@@ -68,9 +68,6 @@
         <a href="<?=APP_DOMAIN?>admindashboard/edit/<?=$this->user->id?>" class="btn btn-info btn-xs mb-3 w-100 text-left">
             <i class="fa fa-edit"></i> Edit User Profile
         </a>
-        <a href="<?=APP_DOMAIN?>admindashboard/editProfileImage/<?=$this->user->id?>" class="btn btn-secondary btn-xs mb-3 w-100 text-left">
-            <i class="fa fa-image"></i> Edit Profile Image
-        </a>
         <a href="<?=APP_DOMAIN?>admindashboard/setResetPassword/<?=$this->user->id?>" class="btn btn-warning btn-xs mb-3 w-100 text-left">
             <i class="fa fa-key"></i> Reset Password
         </a>
