@@ -61,7 +61,7 @@ use Core\Helper;
     function deleteImage(image_id) {
         if(confirm("Are you sure?  This cannot be undone!")) {
             jQuery.ajax({
-                url : '<?=APP_DOMAIN?>profile/deleteImage',
+                url : '<?=APP_DOMAIN?>admindashboard/deleteImage',
                 method: "POST",
                 data : {image_id : image_id},
                 success: function(resp) {
