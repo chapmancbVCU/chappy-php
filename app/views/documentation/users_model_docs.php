@@ -105,26 +105,6 @@
             <td>public $userName</td>
             <td>The username for this user.  Represents the username field in the users table.</td>
         </tr>
-        </table>
-
-    <hr class="w-75 my-5 mx-auto">
-
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
-        <tr>
-            <th colspan="2" class="text-center">public function construct</th>
-        </tr>
-        <tr>
-            <td colspan="2">Builds instance of Users model class.</td>
-        </tr>
-        <tr>
-            <th class="align-middle text-center" colspan="2">params</th>
-        </tr>
-        <tr>
-        <tr>
-            <td class="align-middle text-center w-25">string</td>
-            <td>$user The name of the user.  Default value is an empty string.</td>
-        </tr>
-        </tr>
     </table>
 
     <hr class="w-75 my-5 mx-auto">
@@ -316,30 +296,6 @@
         <tr>
             <td class="align-middle text-center w-25">User</td>
             <td>The user associated with previous session.</td>
-        </tr>
-    </table>
-
-    <hr class="w-75 my-5 mx-auto">
-
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
-        <tr>
-            <th colspan="2" class="text-center">public function setConfirm</th>
-        </tr>
-        <tr>
-            <td colspan="2">Setter function for $_confirm instance variable.</td>
-        </tr>
-        <tr>
-            <th class="align-middle text-center" colspan="2">params</th>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25">string</td>
-            <td>$username The username we want to find in the Users table.</td>
-        </tr>
-        <tr>
-            <th class="align-middle text-center w-25" colspan="2">return</th>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25" colspan="2">void</td>
         </tr>
     </table>
 

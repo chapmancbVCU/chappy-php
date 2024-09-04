@@ -37,28 +37,6 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
-            <th colspan="2" class="text-center">public function construct</th>
-        </tr>
-        <tr>
-            <td colspan="2">Constructor for Restricted Controller.</td>
-        </tr>
-        <tr>
-            <th class="align-middle text-center" colspan="2">params</th>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25">string</td>
-            <td>$controller The name of the controller obtained while parsing the URL.</td>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25">string</td>
-            <td>$action The name of the action specified in the path of the URL.</td>
-        </tr>
-    </table>
-
-    <hr class="w-75 my-5 mx-auto">
-
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
-        <tr>
             <th colspan="2" class="text-center">public function brokenTokenAction</th>
         </tr>
         <tr>

@@ -213,17 +213,6 @@ class Users extends Model {
         }
         return true;
     }
-    
-    /**
-     * Setter function for $_confirm instance variable.
-     *
-     * @param string $value The value we will use to set $_confirm instance 
-     * variable.
-     * @return void
-     */
-    // public function setConfirm(string $value): void {
-    //     $this->_confirm = $value;
-    // }
 
     public function setChangePassword(bool $value): void {
         $this->changePassword = $value;
