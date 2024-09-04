@@ -3,6 +3,9 @@ namespace App\Models;
 use Core\{Helper, Model};
 use App\Lib\Utilities\Uploads;
 
+/**
+ * Supports CRUD operations on profile images.
+ */
 class ProfileImages extends Model {
     protected static $allowedFileTypes = [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG];
     public $deleted = 0;

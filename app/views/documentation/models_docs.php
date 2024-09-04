@@ -22,6 +22,10 @@
             <td>Supports actions and view for home controller.</td>
         </tr>
         <tr>
+            <td><a href="<?=APP_DOMAIN?>documentation/profileImagesModel" class="text-primary w-25">ProfileImages Model</a></td>
+            <td>Supports CRUD operations on profile images.</td>
+        </tr>
+        <tr>
             <td><a href="<?=APP_DOMAIN?>documentation/usersModel" class="text-primary w-25">Users Model</a></td>
             <td>Functions found in this class will support tasks related to the user registration.</td>
         </tr>

@@ -279,6 +279,15 @@ class DocumentationController extends Controller {
     }
 
     /**
+     * Action for the Profile Controller class documentation page.
+     *
+     * @return void
+     */
+    public function profileImagesModelAction(): void {
+        $this->view->render('documentation/profile_images_model_docs');
+    }
+
+    /**
      * Action for the Register Controller class documentation page.
      *
      * @return void

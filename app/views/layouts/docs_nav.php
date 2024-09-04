@@ -43,6 +43,7 @@
         <a href="<?=APP_DOMAIN?>documentation/aclModel">ACL Model</a>
         <a href="<?=APP_DOMAIN?>documentation/contactsModel">Contacts Model</a>
         <a href="<?=APP_DOMAIN?>documentation/loginModel">Login Model</a>
+        <a href="<?=APP_DOMAIN?>documentation/profileImagesModel">ProfileImages Model</a>
         <a href="<?=APP_DOMAIN?>documentation/usersModel">Users Model</a>
         <a href="<?=APP_DOMAIN?>documentation/userSessionsModel">User Sessions Model</a>
     </div>
