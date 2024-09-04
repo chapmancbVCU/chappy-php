@@ -132,6 +132,10 @@ class AdmindashboardController extends Controller {
         $this->view->render('admindashboard/index');
     }
 
+    public function manageACLsAction(): void {
+        $this->view->render('admindashboard/manage_acls');
+    }
+
     /**
      * Undocumented function
      *

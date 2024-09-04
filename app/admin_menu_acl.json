@@ -1,5 +1,8 @@
 {
-    "Admin Dashboard" : "admindashboard/index",
+    "Admin" : {
+        "Admin Dashboard" : "admindashboard/index",
+        "Manage ACLS" : "admindashboard/manageACLs"
+    },
     "Custom MVC Docs" : {
         "Classes and Functions" : "documentation",
         "User Guide" : "userguide"
