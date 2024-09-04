@@ -125,6 +125,11 @@ class Users extends Model {
         return self::findFirst(['conditions'=> "username = ?", 'bind'=>[$username]]);
     }
 
+    public static function findUserByAcl($acl) {
+        $aclName = '["'.$acl.'"]';
+        return self::$_db->query("SELECT * FROM users WHERE acl = ?", [$aclName]);
+    }
+
     public static function idToAcl($acl_value, $aclArray) {
         foreach($aclArray as $key => $value) {
             if($key == $acl_value) { 
