@@ -10,6 +10,10 @@ use Core\Helper;
  */
 class AdmindashboardController extends Controller {
 
+    public function addAclAction(): void {
+        $this->view->render('admindashboard/add_acl');
+    }
+
     /**
      * Performs delete action.
      *
@@ -58,6 +62,19 @@ class AdmindashboardController extends Controller {
         $this->view->profileImage = $profileImage;
         $this->view->user = $user;
         $this->view->render('admindashboard/details');
+    }
+
+    public function editAclAction($id): void {
+        $acl = ACL::findById($id);
+        $users = Users::findUserByAcl($acl->acl)->results();
+        if(count($users) > 0) {
+            Session::addMessage('info', "Assigned to one or more users.");
+        }
+
+        
+
+        $this->view->acl = $acl;
+        $this->view->render('admindashboard/edit_acl');
     }
 
     /**
