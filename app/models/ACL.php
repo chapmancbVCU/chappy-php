@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 use Core\Model;
+use Core\Validators\{RequiredValidator, UniqueValidator};
 use Core\Helper;
 
 /**
@@ -8,9 +9,15 @@ use Core\Helper;
  */
 class ACL extends Model {
     public $acl;
+    public $created_at;
     public $deleted = 0;
     protected static $_softDelete = true;
     protected static $_table = 'acl';
+    public $updated_at;
+
+    public function beforeSave(): void {
+        $this->timeStamps();
+    }
 
     /**
      * Generates list of ACL options based on ACL table.
@@ -41,5 +48,10 @@ class ACL extends Model {
         $acl = substr($acl, 2);
         $acl = substr_replace($acl, '', -2);
         return $acl;
+    }
+
+    public function validator(): void {
+        $this->runValidation(new UniqueValidator($this, ['field' => 'acl', 'message' => 'That acl already exists.  Please chose a new one.']));
+        $this->runValidation(new RequiredValidator($this, ['field' => 'acl', 'message' => 'ACL name is required.'])); 
     }
 }
