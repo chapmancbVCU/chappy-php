@@ -2,6 +2,7 @@
 namespace App\Controllers;
 use Core\{Controller, Router, Session};
 use App\Models\{ACL, ProfileImages, Users};
+use App\Lib\Utilities\Uploads;
 use Core\Helper;
 
 /**
@@ -27,6 +28,25 @@ class AdmindashboardController extends Controller {
     }
 
     /**
+     * Deletes an image associated with a user's profile.
+     *
+     * @return void
+     */
+    function deleteImageAction(): void {
+        $resp = ['success' => false];
+        if($this->request->isPost()) {
+            $user = Users::currentUser();
+            $id = $this->request->get('image_id');
+            $image = ProfileImages::findById($id);
+            if($user) {
+                ProfileImages::deleteById($image->id);
+                $resp = ['success' => true, 'model_id' => $image->id];
+            }
+        }
+        $this->jsonResponse($resp);
+    }
+
+    /**
      * Undocumented function
      *
      * @param [type] $id
@@ -48,22 +68,53 @@ class AdmindashboardController extends Controller {
      */
     public function editAction($id): void {
         $user = Users::findById($id);
+        if(!$user) {
+            Session::addMessage('danger', 'You do not have permission to edit this user.');
+            Router::redirect('');
+        }
+       
         $this->view->user = $user;
-
         // Setup acl data.
         $acls = ACL::getOptionsForForm($user->acl);
         $this->view->acls = $acls;
         $this->view->aclId = Users::aclToId(ACL::trimACL($user->acl), $acls);
-        
+        $profileImages = ProfileImages::findByUserId($user->id);
         if($this->request->isPost()) {
             $this->request->csrfCheck();
+            $files = $_FILES['profileImage'];
+            $isFiles = $files['tmp_name'] != '';
+            if($isFiles) {
+                $uploads = new Uploads($files, ProfileImages::getAllowedFileTypes(), 
+                    ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS);
+                
+                $uploads->runValidation();
+                $imagesErrors = $uploads->validates();
+                if(is_array($imagesErrors)){
+                    $msg = "";
+                    foreach($imagesErrors as $name => $message){
+                        $msg .= $message . " ";
+                    }
+                    $user->addErrorMessage('profileImage', trim($msg));
+                }
+            }
+
             $user->assign($this->request->get(), Users::blackListedFormKeys);
             $this->view->user->acl = Users::idToAcl($_POST['acl'], $acls);
-            if($user->save()) {
+            $user->save();
+            if($user->validationPassed()) {
+                if($isFiles) {
+                    // Upload Image
+                    ProfileImages::uploadProfileImage($user->id, $uploads);
+                }
+                $sortOrder = json_decode($_POST['images_sorted']);
+                ProfileImages::updateSortByUserId($user->id, $sortOrder);
+
                 Router::redirect('admindashboard/details/'.$this->view->user->id);
             }
         }
 
+        $this->view->profileImages = $profileImages;
+        
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'edit' . DS . $user->id;
         $this->view->render('admindashboard/edit');
