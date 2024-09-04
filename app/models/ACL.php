@@ -23,7 +23,12 @@ class ACL extends Model {
         foreach($acls as $acl) {
             $aclArray[$acl->id] = $acl->acl;
         }
-        return $aclArray;
+        //return $aclArray;
+        return $acls;
+    }
+
+    public static function getACLs() {
+        return self::find(['order' => 'acl']);
     }
 
     /**

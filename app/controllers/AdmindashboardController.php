@@ -75,7 +75,7 @@ class AdmindashboardController extends Controller {
        
         $this->view->user = $user;
         // Setup acl data.
-        $acls = ACL::getOptionsForForm($user->acl);
+        $acls = ACL::getOptionsForForm();
         $this->view->acls = $acls;
         $this->view->aclId = Users::aclToId(ACL::trimACL($user->acl), $acls);
         $profileImages = ProfileImages::findByUserId($user->id);
@@ -133,6 +133,9 @@ class AdmindashboardController extends Controller {
     }
 
     public function manageACLsAction(): void {
+        $acls = ACL::getACLs();
+        // Helper::dnd($acls);
+        $this->view->acls = $acls;
         $this->view->render('admindashboard/manage_acls');
     }
 
