@@ -17,10 +17,10 @@
                 <?php if($acl->acl !== "Admin"): ?>
                     <td class="w-50"><?= $acl->acl ?></td>
                     <td class="text-center">
-                        <a href="<?=APP_DOMAIN?>admindashboard/editAcl/<?=$this->user->id?>" class="btn btn-info btn-xs">
+                        <a href="<?=APP_DOMAIN?>admindashboard/editAcl/<?=$acl->id?>" class="btn btn-info btn-xs">
                             <i class="fa fa-edit"></i> Edit ACL
                         </a>
-                        <a href="<?=APP_DOMAIN?>admindashboard/deleteAcl/<?=$this->user->id?>" class="btn btn-danger btn-xs" onclick="if(!confirm('Are you sure?')){return false;}">
+                        <a href="<?=APP_DOMAIN?>admindashboard/deleteAcl/<?=$acl->id?>" class="btn btn-danger btn-xs" onclick="if(!confirm('Are you sure?')){return false;}">
                             <i class="fa fa-trash"></i> Delete
                         </a>
                     </td>
