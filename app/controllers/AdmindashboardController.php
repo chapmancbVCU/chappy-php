@@ -66,14 +66,26 @@ class AdmindashboardController extends Controller {
 
     public function editAclAction($id): void {
         $acl = ACL::findById($id);
+
+        // Get users so we can get number using acl and update later.
         $users = Users::findUserByAcl($acl->acl)->results();
         if(count($users) > 0) {
             Session::addMessage('info', "Assigned to one or more users.");
+            Router::redirect('admindashboard/manageAcls');
         }
 
-        
-
+        if($this->request->isPost()) {
+            $this->request->csrfCheck();
+            $acl->assign($this->request->get(), ACL::blackList);
+            $acl->save();
+            if($acl->validationPassed()) {
+                Session::addMessage('info', "ACL Name updated.");
+                Router::redirect('admindashboard/manageAcls');
+            }
+        }
+        $this->view->displayErrors = $acl->getErrorMessages();
         $this->view->acl = $acl;
+        $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'editAcl' . DS . $acl->id;
         $this->view->render('admindashboard/edit_acl');
     }
 
