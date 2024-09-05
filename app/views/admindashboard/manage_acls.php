@@ -9,13 +9,17 @@
 <table class="table table-striped table-condensed table-bordered table-hover mb-5">
     <thead>
         <th class="text-center">ACL</th>
+        <th class="text-center">Created</th>
+        <th class="text-center">Updated</th>
         <th></th>
     </thead>
     <tbody>
         <?php foreach($this->usedAcls as $acl): ?>
             <tr>
                 <?php if($acl->acl !== "Admin"): ?>
-                    <td class="w-50 text-center"><?= $acl->acl ?></td>
+                    <td class="text-center"><?= $acl->acl ?></td>
+                    <td class="text-center"><?= $acl->created_at ?></td>
+                    <td class="text-center"><?= $acl->updated_at ?></td>
                     <td class="text-center">
                         <a href="<?=APP_DOMAIN?>admindashboard/editAcl/<?=$acl->id?>" class="btn btn-info btn-xs">
                             <i class="fa fa-edit"></i> Edit ACL
@@ -34,10 +38,16 @@
 <table class="table table-striped table-condensed table-bordered table-hover">
     <thead>
         <th class="text-center">ACL</th>
+        <th class="text-center">Created</th>
+        <th class="text-center">Updated</th>
     </thead>
     <tbody>
         <?php foreach($this->unUsedAcls as $acl): ?>
-            <tr><td class="text-center w-50"><?= $acl->acl ?></td></tr>
+            <tr>
+                <td class="text-center w-50"><?= $acl->acl ?></td>
+                <td class="text-center"><?= $acl->created_at ?></td>
+                <td class="text-center"><?= $acl->updated_at ?></td>
+            </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
