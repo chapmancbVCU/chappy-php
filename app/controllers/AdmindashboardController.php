@@ -246,6 +246,7 @@ class AdmindashboardController extends Controller {
             $this->request->csrfCheck();
             $user->assign($this->request->get(), Users::blackListedFormKeys);
             $user->inactive = ($this->request->get('inactive') == 'on') ? 1 : 0;
+            $user->login_attempts = ($user->inactive == 0) ? 0 : $user->login_attempts;
             if($user->save()) {
                 Router::redirect('admindashboard/details/'.$user->id);
             }
