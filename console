@@ -24,12 +24,14 @@ function autoload($className){
 spl_autoload_register('autoload');
 use Console\App\Commands\HelloworldCommand;
 use Console\App\Commands\GenerateMigrationCommand;
+use Console\App\Commands\GenerateModelCommand;
 use Console\App\Commands\MakeEnvCommand;
 use Console\App\Commands\MakeProfileImagesDirCommand;
 use Console\App\Commands\RunMigrationCommand;
  
 $app = new Application();
 $app->add(new GenerateMigrationCommand());
+$app->add(new GenerateModelCommand());
 $app->add(new MakeEnvCommand());
 $app->add(new MakeProfileImagesDirCommand());
 $app->add(new RunMigrationCommand());
