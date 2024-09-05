@@ -26,9 +26,10 @@ abstract class Migration {
     }
 
     public function aclSetup($table) {
+        $timestamp = $this->timeStamps();
         if($table == 'acl') {
-            $this->_db->insert('acl', ['acl' => 'Admin', 'deleted' => 0]);
-            $this->_db->insert('acl', ['acl' => 'Standard', 'deleted' => 0]);
+            $this->_db->insert('acl', ['acl' => 'Admin', 'deleted' => 0, 'created_at' => $timestamp, 'updated_at' => $timestamp]);
+            $this->_db->insert('acl', ['acl' => 'Standard', 'deleted' => 0, 'created_at' => $timestamp, 'updated_at' => $timestamp]);
         }
     }
 
@@ -360,6 +361,11 @@ abstract class Migration {
         return "TIMESTAMP";
     }
 
+    public function timeStamps() {
+        $dt = new \DateTime("now", new \DateTimeZone("UTC"));
+        return $dt->format('Y-m-d H:i:s');
+    }
+    
     /**
      * Undocumented function
      *
