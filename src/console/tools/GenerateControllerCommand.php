@@ -20,8 +20,9 @@ class GenerateControllerCommand extends Command
     {
         $this->setName('tools:gen-controller')
             ->setDescription('Generates a new controller file!')
-            ->setHelp('Generates a new controller file.')
-            ->addArgument('controllername', InputArgument::REQUIRED, 'Pass the controller\'s name.');
+            ->setHelp('php console tools:gen-controller <optional_layout_name>')
+            ->addArgument('controllername', InputArgument::REQUIRED, 'Pass the controller\'s name.')
+            ->addArgument('layout', InputArgument::OPTIONAL);
     }
  
     /**
@@ -34,6 +35,12 @@ class GenerateControllerCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $controllerName = $input->getArgument('controllername');
+        $layoutInput = $input->getArgument('layout');
+        if($layoutInput) {
+            $layout = $layoutInput;
+        } else {
+            $layout = 'default';
+        }
         if (php_sapi_name() != 'cli') die('Restricted');
         $ext = ".php";
         $fullPath = CONSOLE_ROOT.DS.'app'.DS.'controllers'.DS.$controllerName.'Controller'.$ext;
@@ -45,7 +52,14 @@ use Core\Controller;
  * Undocumented class
  */
 class '.$controllerName.'Controller extends Controller {
-    
+    /**
+     * Runs when the object is constructed.
+     *
+     * @return void
+     */
+    public function onConstruct(): void{
+        $this->view->setLayout(\''.$layout.'\');
+    }
 }
 ';
         if(!file_exists($fullPath)) {
