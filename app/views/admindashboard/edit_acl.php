@@ -6,14 +6,7 @@
 
 <div class="row align-items-center justify-content-center">
     <div class="col-md-6 bg-light p-3">
-        <form class="form" action=<?=$this->postAction?> method="post">
-            <?= FormHelper::csrfInput() ?>
-            <?= FormHelper::inputBlock('text', "ACL", 'acl', $this->acl->acl, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
-            <div class="col-md-12 text-right">
-                <a href="<?=APP_DOMAIN?>admindashboard/manageACLs" class="btn btn-default">Cancel</a>
-                <?= FormHelper::submitTag('Update',['class'=>'btn btn-primary']) ?>
-            </div>
-        </form>
+        <?php $this->addPartialView('admindashboard', 'acl'); ?>
     </div>
 </div>
 <?php $this->end(); ?>
