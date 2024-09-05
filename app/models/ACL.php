@@ -31,8 +31,7 @@ class ACL extends Model {
         foreach($acls as $acl) {
             $aclArray[$acl->id] = $acl->acl;
         }
-        //return $aclArray;
-        return $acls;
+        return $aclArray;
     }
 
     public static function getACLs() {
