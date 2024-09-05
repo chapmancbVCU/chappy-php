@@ -51,7 +51,9 @@ class RegisterController extends Controller {
                             }
                         }
                     }
-                    else $loginModel->addErrorMessage('username','There is an error with your username or password');
+                    else {
+                        $loginModel->addErrorMessage('username','There is an error with your username or password');
+                    }
                 }
             }
         }
