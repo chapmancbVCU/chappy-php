@@ -107,4 +107,9 @@ class Helper {
       return ProfileImages::findCurrentProfileImage($user->id);
     }
   }
+
+  public static function timeStamps() {
+    $dt = new \DateTime("now", new \DateTimeZone("UTC"));
+    return $dt->format('Y-m-d H:i:s');
+}
 }
