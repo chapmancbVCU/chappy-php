@@ -17,6 +17,7 @@ class RegisterController extends Controller {
      */
     public function loginAction(): void {
         $loginModel = new Login();
+        $maxLoginAttempts = 5;
         if($this->request->isPost()) {
             // form validation
             $this->request->csrfCheck();
@@ -31,17 +32,27 @@ class RegisterController extends Controller {
                     if($user->inactive == 1) {
                         Session::addMessage('danger', 'Account is currently inactive');
                         Router::redirect('register/login');
-                    }
+                    } 
                     $remember = $loginModel->getRememberMeChecked();
                     $user->login_attempts = 0;
                     $user->save();
                     $user->login($remember);
                     Router::redirect('');
                 }  else {
-                    $user->login_attempts = $user->login_attempts + 1;
-                    if($user->save()) {
-                        $loginModel->addErrorMessage('username','There is an error with your username or password');
+                    if($user) {
+                        $user->login_attempts = $user->login_attempts + 1;
+                        if($user->login_attempts > $maxLoginAttempts) {
+                            $user->inactive = 1;
+                        }
+                        if($user->save()) {
+                            if($user->login_attempts > 0 && $user->login_attempts < $maxLoginAttempts) {
+                                $loginModel->addErrorMessage('username', 'There is an error with your username or password.');
+                            } else {
+                                $loginModel->addErrorMessage('username', 'Your account has been locked due to too many failed login attempts.');
+                            }
+                        }
                     }
+                    else $loginModel->addErrorMessage('username','There is an error with your username or password');
                 }
             }
         }
