@@ -180,7 +180,7 @@ class AdmindashboardController extends Controller {
 
     /** 
      * The default action for this controller.  It performs rendering of this 
-     * site's home page.
+     * site's admin dashboard page.
      * 
      * @return void
      */
@@ -192,7 +192,17 @@ class AdmindashboardController extends Controller {
 
     public function manageACLsAction(): void {
         $acls = ACL::getACLs();
-        $this->view->acls = $acls;
+        $usedAcls = [];
+        $unUsedAcls = [];
+        foreach($acls as $acl) {
+            if(count(Users::findUserByAcl($acl->acl)->results()) == 0) {
+                array_push($usedAcls, $acl);
+            } else {
+                array_push($unUsedAcls, $acl);
+            }
+        }
+        $this->view->usedAcls = $usedAcls;
+        $this->view->unUsedAcls = $unUsedAcls;
         $this->view->render('admindashboard/manage_acls');
     }
 

@@ -1,21 +1,21 @@
 <?php use Core\Helper; ?>
-<?php $this->setSiteTitle("Manage ACL Items"); ?>
+<?php $this->setSiteTitle("Manage ACLs"); ?>
 <?php $this->start('body'); ?>
-<h1 class="text-center">Manage ACL Items
+<h1 class="text-center">Manage ACLs
     <a href="<?=APP_DOMAIN?>admindashboard/addAcl/<?=$this->user->id?>" class="btn btn-primary btn-xs ml-5">
         <i class="fa fa-plus"></i> Add ACL
     </a>
 </h1>
-<table class="table table-striped table-condensed table-bordered table-hover">
+<table class="table table-striped table-condensed table-bordered table-hover mb-5">
     <thead>
-        <th>ACL</th>
+        <th class="text-center">ACL</th>
         <th></th>
     </thead>
     <tbody>
-        <?php foreach($this->acls as $acl): ?>
+        <?php foreach($this->usedAcls as $acl): ?>
             <tr>
                 <?php if($acl->acl !== "Admin"): ?>
-                    <td class="w-50"><?= $acl->acl ?></td>
+                    <td class="w-50 text-center"><?= $acl->acl ?></td>
                     <td class="text-center">
                         <a href="<?=APP_DOMAIN?>admindashboard/editAcl/<?=$acl->id?>" class="btn btn-info btn-xs">
                             <i class="fa fa-edit"></i> Edit ACL
@@ -26,6 +26,18 @@
                     </td>
                 <?php endif; ?>
             </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
+<h2 class="text-center">ACLs In Use</h2>
+<table class="table table-striped table-condensed table-bordered table-hover">
+    <thead>
+        <th class="text-center">ACL</th>
+    </thead>
+    <tbody>
+        <?php foreach($this->unUsedAcls as $acl): ?>
+            <tr><td class="text-center w-50"><?= $acl->acl ?></td></tr>
         <?php endforeach; ?>
     </tbody>
 </table>
