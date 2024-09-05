@@ -11,6 +11,19 @@ use Core\Helper;
 class AdmindashboardController extends Controller {
 
     public function addAclAction(): void {
+        $acl = new ACL();
+        if($this->request->isPost()) {
+            $this->request->csrfCheck();
+            $acl->assign($this->request->get());
+            if($acl->save()) {
+                Session::addMessage('success', 'ACL added!');
+                Router::redirect('admindashboard/manageAcls');
+            }
+        }
+
+        $this->view->acl = $acl;
+        $this->view->displayErrors = $acl->getErrorMessages();
+        $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'addAcl';
         $this->view->render('admindashboard/add_acl');
     }
 
