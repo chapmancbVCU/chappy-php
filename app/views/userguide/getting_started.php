@@ -37,7 +37,14 @@ git clone git@github.com:chapmancbVCU/custom-php-mvc-framework.git
                     </code>
 </pre>
             </li>
-            <li>Make a copy of .env.sample in project root and name it .env.  Fill in the following information:
+            <li>Run the command:
+<pre class="mb-1 pb-1">
+                    <code>
+php init-mvc
+                    </code>
+</pre>               
+            </li>
+            <li>If necessary, make a copy of .env.sample in project root and name it .env.  Fill in the following information:
                 <ol class="pl-4" type="a">
                     <li>DB_NAME</li>
                     <li>DB_USER</li>
@@ -55,7 +62,7 @@ git clone git@github.com:chapmancbVCU/custom-php-mvc-framework.git
                             <li>Run the command from project root:
 <pre class="mb-1 pb-1">
                     <code>
-php run_migrations.php
+php console tools:run-migration
                     </code>
 </pre>
                             </li>
@@ -63,11 +70,10 @@ php run_migrations.php
                     </li>
                     <li>XAMPP
                         <ol class="pl-4" type="a">
-                            <li>Within the .env file set the RUN_MIGRATIONS_FROM_BROWSER variable to true</li>
-                            <li>Run the following command from your browser's address bar:
+                        <li>Run the command from project root:
 <pre class="mb-1 pb-1">
                     <code>
-http://localhost/project_name/run_migrations.php
+php console tools:run-migration
                     </code>
 </pre>
                             </li>
@@ -77,16 +83,18 @@ http://localhost/project_name/run_migrations.php
                         <ol class="pl-4" type="a">
                             <li>acl</li>
                             <li>contacts</li>
+                            <li>migrations</li>
+                            <li>profile_images</li>
                             <li>users</li>
                             <li>user_sessions</li>
                         </ol>
                     </li>
                 </ol>
             </li>
-            <li>profileImage directory:</li>
+            <li>profileImage directory:
                 <ol class="pl-4" type="a">
-                    <li>In CMD or Terminal navigate to public/images from project root and make a directory called <q>profileImage</q>.</li>
-                    <li>In Linux and MacOS set the appropriate permissions by running the command:
+                    <li>In CMD or Terminal navigate to public/images from project root and make sure the <q>profileImage</q> directory exists.  If not create it.</li>
+                    <li>In you needed to manually create the profileImage directory in MacOS or Linux:
                         <pre class="mb-1 pb-1">
                             <code>
 chmod 755 profileImage
@@ -103,21 +111,6 @@ sudo chown -R %USERNAME%:%GROUP% profileImage/
                         Where %USERNAME% is the name of the account you are developing in and %GROUP% is the name of group associated with your server.  In XAMPP it would be daemon and in Nginx it maybe nginx or a something else depending on the instructions you followed to setup your server.
                     </li>
                 </ol>
-            <li>Import the database found in mvctutorial.sql.zip into SQL.</li>
-            <li>Initialize a composer project.</li>
-            <li>Install phpdotenv for environmental file support by running:
-                <pre class="mb-1 pb-1">
-                    <code>
-composer require vlucas/phpdotenv
-                    </code>
-                </pre>
-            </li>
-            <li>Install TinyMCE for WYSIWYG rich text editor support:
-                <pre class="mb-1 pb-1">
-                    <code>
-composer require tinymce/tinymce
-                    </code>
-                </pre>
             </li>
             <li>Navigate to http://localhost/custom-php-mvc-framework.  If you have any issues make sure your database is setup correctly and the .env file is correct.
                 <ol class="pl-4" type="a">
