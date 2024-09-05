@@ -33,6 +33,7 @@ class Users extends Model {
     public $id;
     public $inactive = 0;
     public $lname;
+    public $login_attempts = 0;
     public $reset_password = 0;
     public $password;
     protected static $_softDelete = true;

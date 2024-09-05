@@ -33,11 +33,15 @@ class RegisterController extends Controller {
                         Router::redirect('register/login');
                     }
                     $remember = $loginModel->getRememberMeChecked();
+                    $user->login_attempts = 0;
+                    $user->save();
                     $user->login($remember);
-
                     Router::redirect('');
                 }  else {
-                    $loginModel->addErrorMessage('username','There is an error with your username or password');
+                    $user->login_attempts = $user->login_attempts + 1;
+                    if($user->save()) {
+                        $loginModel->addErrorMessage('username','There is an error with your username or password');
+                    }
                 }
             }
         }
