@@ -209,7 +209,7 @@ class Users extends Model {
     public static function removeAcl($user_id, $acl){
         $user = self::findById($user_id);
         if(!$user) return false;
-            $acls = $user->acls();
+        $acls = $user->acls();
         if(in_array($acl,$acls)){
             $key = array_search($acl,$acls);
             unset($acls[$key]);
