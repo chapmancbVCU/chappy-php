@@ -17,7 +17,7 @@
         <?php foreach($this->usedAcls as $acl): ?>
             <tr>
                 <?php if($acl->acl !== "Admin"): ?>
-                    <td class="text-center"><?= $acl->acl ?></td>
+                    <td class="text-center w-50"><?= $acl->acl ?></td>
                     <td class="text-center"><?= $acl->created_at ?></td>
                     <td class="text-center"><?= $acl->updated_at ?></td>
                     <td class="text-center">
