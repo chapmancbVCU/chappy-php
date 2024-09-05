@@ -371,7 +371,7 @@ class Model {
         return $params;
     }
 
-    /** ADD
+    /**
      * Sets values for timestamp fields.
      *
      * @return void
