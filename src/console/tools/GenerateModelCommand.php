@@ -41,6 +41,9 @@ class GenerateModelCommand extends Command
 namespace App\Models;
 use Core\Model;
 
+/**
+ * Undocumented class
+ */
 class '.$modelName.' extends Model {
     
 }
