@@ -51,8 +51,14 @@ class AdmindashboardController extends Controller {
         $users = Users::findUserByAcl($acl->acl)->results();
         if(count($users) > 0) {
             Session::addMessage('info', "Cannot delete ". $acl->acl. ", assigned to one or more users.");
-            Router::redirect('admindashboard/manageAcls');
         }
+        if($acl) {
+            $acl->delete();
+            Session::addMessage('success', 'ACL has been deleted');
+        } else {
+            Session::addMessage('danger', 'You do not have permission to perform this action.');
+        }
+        Router::redirect('admindashboard/manageAcls');
     }
     /**
      * Deletes an image associated with a user's profile.
