@@ -31,6 +31,16 @@ class AdmindashboardController extends Controller {
         Router::redirect('admindashboard');
     }
 
+    function deleteAclAction($id): void {
+        $acl = ACL::findById($id);
+
+        // Get users so we can get number using acl and update later.
+        $users = Users::findUserByAcl($acl->acl)->results();
+        if(count($users) > 0) {
+            Session::addMessage('info', "Cannot delete ". $acl->acl. ", assigned to one or more users.");
+            Router::redirect('admindashboard/manageAcls');
+        }
+    }
     /**
      * Deletes an image associated with a user's profile.
      *
@@ -70,15 +80,15 @@ class AdmindashboardController extends Controller {
         // Get users so we can get number using acl and update later.
         $users = Users::findUserByAcl($acl->acl)->results();
         if(count($users) > 0) {
-            Session::addMessage('info', "Assigned to one or more users.");
+            Session::addMessage('info', "Cannot update ". $acl->acl.", assigned to one or more users.");
             Router::redirect('admindashboard/manageAcls');
         }
 
         if($this->request->isPost()) {
             $this->request->csrfCheck();
             $acl->assign($this->request->get(), ACL::blackList);
-            $acl->save();
-            if($acl->validationPassed()) {
+            
+            if($acl->save()) {
                 Session::addMessage('info', "ACL Name updated.");
                 Router::redirect('admindashboard/manageAcls');
             }
@@ -163,7 +173,6 @@ class AdmindashboardController extends Controller {
 
     public function manageACLsAction(): void {
         $acls = ACL::getACLs();
-        // Helper::dnd($acls);
         $this->view->acls = $acls;
         $this->view->render('admindashboard/manage_acls');
     }
