@@ -377,8 +377,7 @@ class Model {
      * @return void
      */
     public function timeStamps() {
-        $dt = new \DateTime("now", new \DateTimeZone("UTC"));
-        $now = $dt->format('Y-m-d H:i:s');
+        $now = Helper::timeStamps();
         $this->updated_at = $now;
         if($this->isNew()) {
             $this->created_at = $now;

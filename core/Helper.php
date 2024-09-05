@@ -108,6 +108,11 @@ class Helper {
     }
   }
 
+  /** ADD
+   * Generates a timestamp.
+   *
+   * @return string A timestamp in the format Y-m-d H:i:s UTC time.
+   */
   public static function timeStamps() {
     $dt = new \DateTime("now", new \DateTimeZone("UTC"));
     return $dt->format('Y-m-d H:i:s');
