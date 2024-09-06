@@ -108,6 +108,15 @@ class Helper {
     }
   }
 
+  /**ADD
+   * Returns dashed border.
+   *
+   * @return string A dashed border.
+   */
+  public static function printBorder() {
+    return '--------------------------------------------------';
+  }
+
   /** ADD
    * Generates a timestamp.
    *
