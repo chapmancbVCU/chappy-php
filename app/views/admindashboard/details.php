@@ -41,6 +41,14 @@
                     <td class="text-center"><?=$this->user->acl?></td>
                 </tr>
                 <tr>
+                    <th class="text-center">Login Attempts</th>
+                    <td class="text-center"><?=$this->user->login_attempts?></td>
+                </tr>
+                <tr>
+                    <th class="text-center">Password Reset</th>
+                    <td class="text-center"><?=($this->user->reset_password == 0) ? 'Off' : 'On'?></td>
+                </tr>
+                <tr>
                     <th class="text-center">Created</th>
                     <td class="text-center"><?=$this->user->created_at?></td>
                 </tr>
@@ -71,7 +79,7 @@
         <a href="<?=APP_DOMAIN?>admindashboard/setResetPassword/<?=$this->user->id?>" class="btn btn-warning btn-xs mb-3 w-100 text-left">
             <i class="fa fa-key"></i> Reset Password
         </a>
-        <a href="<?=APP_DOMAIN?>admindashboard/setStatus/<?=$this->user->id?>" class="btn btn-primary btn-xs mb-3 w-100 text-left">
+        <a href="<?=APP_DOMAIN?>admindashboard/setStatus/<?=$this->user->id?>" class="btn btn-primary btn-xs mb-5 w-100 text-left">
             <i class="fa fa-unlock"></i> Set Account Status
         </a>
         <a href="<?=APP_DOMAIN?>admindashboard/delete/<?=$this->user->id?>" class="btn btn-danger btn-xs mb-3 w-100 text-left" onclick="if(!confirm('Are you sure?')){return false;}">
