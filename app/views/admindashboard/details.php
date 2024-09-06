@@ -73,16 +73,16 @@
     </div>
     
     <div class="col col-md-4 mb-5">
-        <a href="<?=APP_DOMAIN?>admindashboard/edit/<?=$this->user->id?>" class="btn btn-info btn-xs mb-3 w-100 text-left">
+        <a href="<?=APP_DOMAIN?>admindashboard/edit/<?=$this->user->id?>" class="btn btn-info btn-xs mb-2 w-100 text-left">
             <i class="fa fa-edit"></i> Edit User Profile
         </a>
-        <a href="<?=APP_DOMAIN?>admindashboard/setResetPassword/<?=$this->user->id?>" class="btn btn-warning btn-xs mb-3 w-100 text-left">
+        <a href="<?=APP_DOMAIN?>admindashboard/setResetPassword/<?=$this->user->id?>" class="btn btn-warning btn-xs my-2 w-100 text-left">
             <i class="fa fa-key"></i> Reset Password
         </a>
-        <a href="<?=APP_DOMAIN?>admindashboard/setStatus/<?=$this->user->id?>" class="btn btn-primary btn-xs mb-5 w-100 text-left">
+        <a href="<?=APP_DOMAIN?>admindashboard/setStatus/<?=$this->user->id?>" class="btn btn-primary btn-xs mb-5 mt-2 w-100 text-left">
             <i class="fa fa-unlock"></i> Set Account Status
         </a>
-        <a href="<?=APP_DOMAIN?>admindashboard/delete/<?=$this->user->id?>" class="btn btn-danger btn-xs mb-3 w-100 text-left" onclick="if(!confirm('Are you sure?')){return false;}">
+        <a href="<?=APP_DOMAIN?>admindashboard/delete/<?=$this->user->id?>" class="btn btn-danger btn-xs mt-5 w-100 text-left" onclick="if(!confirm('Are you sure?')){return false;}">
             <i class="fa fa-trash"></i> Delete
         </a>
     </div>
