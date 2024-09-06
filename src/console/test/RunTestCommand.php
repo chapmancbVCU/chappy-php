@@ -38,7 +38,7 @@ class RunTestCommand extends Command
         $filePath = 'tests'.DS.$testName.'.php';
         $command = 'php vendor/bin/phpunit '.$filePath;
         $output->writeln(sprintf($command));
-        shell_exec($command);
+        $output->writeln(shell_exec($command));
         return Command::SUCCESS;
     }
 }
