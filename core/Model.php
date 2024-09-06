@@ -7,6 +7,7 @@ use Core\Helper;
  * functionality further to make operations easier to use and improve 
  * extendability.
  */
+#[\AllowDynamicProperties]
 class Model {
     protected static $_db;
     public $id;
