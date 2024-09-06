@@ -170,6 +170,20 @@ class Users extends Model {
         }
     }
 
+    public static function loginAttempts($user, $loginModel) {
+        $user->login_attempts = $user->login_attempts + 1;
+        if($user->login_attempts >= MAX_LOGIN_ATTEMPTS) {
+            $user->inactive = 1; 
+        }
+        $user->save();
+        if($user->login_attempts > 0 && $user->login_attempts < MAX_LOGIN_ATTEMPTS) {
+            $loginModel->addErrorMessage('username', 'There is an error with your username or password.');
+        } else {
+            $loginModel->addErrorMessage('username', 'Your account has been locked due to too many failed login attempts.');
+        }
+        return $loginModel;
+    }
+
     /**
      * Logs in user from cookie.
      *
