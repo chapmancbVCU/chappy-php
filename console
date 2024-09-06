@@ -30,6 +30,7 @@ use Console\App\Commands\MakeEnvCommand;
 use Console\App\Commands\MakeProfileImagesDirCommand;
 use Console\App\Commands\MakeTestCommand;
 use Console\App\Commands\RunMigrationCommand;
+use Console\App\Commands\RunTestCommand;
  
 $app = new Application();
 $app->add(new GenerateControllerCommand());
@@ -39,5 +40,6 @@ $app->add(new MakeEnvCommand());
 $app->add(new MakeProfileImagesDirCommand());
 $app->add(new MakeTestCommand());
 $app->add(new RunMigrationCommand());
+$app->add(new RunTestCommand());
 $app->add(new HelloworldCommand());
 $app->run();
