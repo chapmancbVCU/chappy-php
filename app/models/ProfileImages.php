@@ -77,6 +77,7 @@ class ProfileImages extends Model {
             'order' => 'sort DESC'
         ]);
         $lastSort = (!$lastImage) ? 0 : $lastImage->sort;
+        // Helper::dnd($_uploadPath);
         $path = self::$_uploadPath.$user_id.DS;
         foreach($uploads->getFiles() as $file) {
             $parts = explode('.',$file['name']);
