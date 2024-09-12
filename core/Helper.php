@@ -101,6 +101,11 @@ class Helper {
     return get_object_vars($object);
   }
 
+  /**
+   * Retrieves URL user's current profile image.
+   * 
+   * @return string The URL for the profile image.
+   */
   public static function getProfileImage() {
     $user = Users::currentUser();
     if($user) {

@@ -140,7 +140,7 @@
    
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm mb-5">
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function getObjectProperties</th>
         </tr>
@@ -160,6 +160,78 @@
         <tr>
             <td class="align-middle text-center w-25">array</td>
             <td>An associative array of defined object accessible non-static properties for the specified object in scope. If a property have not been assigned a value, it will be returned with a null value.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function getProfileImage</th>
+        </tr>
+        <tr>
+            <td colspan="2">Retrieves URL user's current profile image.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>The URL for the profile image.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function printBorder</th>
+        </tr>
+        <tr>
+            <td colspan="2">Returns dashed border.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>A dashed border.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm mb-5">
+        <tr>
+            <th colspan="2" class="text-center">public static function timeStamps</th>
+        </tr>
+        <tr>
+            <td colspan="2">Generates a timestamp.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>A timestamp in the format Y-m-d H:i:s UTC time.</td>
         </tr>
     </table>
 
