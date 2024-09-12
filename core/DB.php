@@ -283,7 +283,8 @@ class DB {
      * the table in our database.  The default value is an empty array.
      * @param bool|string  $class A default value of false, it contains the 
      * name of the class we will build based on the name of a model.
-     * @param bool $count
+     * @param bool $count Boolean switch for turning on support for count 
+     * operations.  Default value is false.
      * @return bool A true or false value depending on a successful operation.
      */
     protected function _read($table, $params=[], $class=false, $count=false) {

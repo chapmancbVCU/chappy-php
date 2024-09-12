@@ -483,7 +483,7 @@ $contacts = $db->insert('contacts', $fields);
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
-            <th colspan="2" class="text-center">protected function read</th>
+            <th colspan="2" class="text-center">protected function _read</th>
         </tr>
         <tr>
             <td colspan="2">Supports SELECT operations that maybe ran against a SQL database.  It supports the ability to order and limit the number of results returned from a database query.  The user can use parameters such as conditions, bind, order, limit, and sort.</td>
@@ -502,6 +502,10 @@ $contacts = $db->insert('contacts', $fields);
         <tr>
             <td class="align-middle text-center w-25">bool|string</td>
             <td>$class A default value of false, it contains the name of the class we will build based on the name of a model.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">bool</td>
+            <td>$count Boolean switch for turning on support for count operations.  Default value is false.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
