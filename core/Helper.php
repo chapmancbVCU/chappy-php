@@ -113,7 +113,7 @@ class Helper {
     }
   }
 
-  /**ADD
+  /**
    * Returns dashed border.
    *
    * @return string A dashed border.
@@ -122,7 +122,7 @@ class Helper {
     return '--------------------------------------------------';
   }
 
-  /** ADD
+  /**
    * Generates a timestamp.
    *
    * @return string A timestamp in the format Y-m-d H:i:s UTC time.
