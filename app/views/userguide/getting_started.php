@@ -17,7 +17,7 @@
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
         <ol class="pl-4">
             <li>Apache Server, development environment such as XAMPP, or Nginx</li>
-            <li>PHP 7; PHP 8 has some issues with some things being deprecated such as dynamic creation of variables</li>
+            <li>PHP 8.3</li>
             <li>SQL/MariaDB</li>
             <li>OS: MacOS, Linux, Windows 10+</li>
             <li>SQL Management software</li>
@@ -108,7 +108,7 @@ chmod 755 profileImage
 sudo chown -R %USERNAME%:%GROUP% profileImage/
                             </code>
                         </pre>
-                        Where %USERNAME% is the name of the account you are developing in and %GROUP% is the name of group associated with your server.  In XAMPP it would be daemon and in Nginx it maybe nginx or a something else depending on the instructions you followed to setup your server.
+                        With XAMPP your username will work along with daemon as the group.  Apache both has to be www-data.  Not tested with nginx yet.
                     </li>
                 </ol>
             </li>
