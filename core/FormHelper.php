@@ -76,7 +76,7 @@ class FormHelper {
         return $html;
     }
 
-    /** UPDATE
+    /**
      * Generates a div containing an input of type checkbox with the label to 
      * the left that is not part of a group.
      *
@@ -127,7 +127,7 @@ class FormHelper {
         return $html;
     }
 
-    /** UPDATE
+    /**
      * Generates a div containing an input of type checkbox with the label to 
      * the right that is not part of a group.
      *
@@ -222,7 +222,7 @@ class FormHelper {
         return $html;
     }
 
-    /** UPDATE
+    /**
      * Renders an HTML div element that surrounds an input of type email.
      *
      * An example function call is shown below:
@@ -263,15 +263,15 @@ class FormHelper {
         return $html;
     }
 
-    /** ADD
-     * Undocumented function
+    /**
+     * Renders an error message for a particular form field.
      *
-     * @param [type] $errors
-     * @param [type] $name
-     * @return void
+     * @param array $errors The error array.
+     * @param string $name Used to search errors array for key/form field.
+     * @return string $msg The error message for a particular field.
      */
-    public static function errorMsg($errors,$name){
-        $msg = (array_key_exists($name,$errors))? $errors[$name] : "";
+    public static function errorMsg($errors, $name){
+        $msg = (array_key_exists($name, $errors)) ? $errors[$name] : "";
         return $msg;  
     }
 
@@ -303,7 +303,7 @@ class FormHelper {
         return '<input type="hidden" name="'.$name.'" id="'.$name.'" value="'.$value.'" />';
     }
 
-    /** UPDATE
+    /**
      * Assists in the development of forms input blocks in forms.  It accepts 
      * parameters for setting attribute tags in the form section.  Not to be 
      * used for inputs of type "Submit"  For submit inputs use the submitBlock 
@@ -474,7 +474,7 @@ class FormHelper {
         return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
     }
 
-    /** UPDATE
+    /**
      * Renders a select element with a list of options.
      * 
      * An example function call is shown below:
@@ -583,7 +583,7 @@ class FormHelper {
         return '<input type="submit" value="'.$buttonText.'"'.$inputString.' />';
     }
     
-    /** UPDATE
+    /**
      * Renders an HTML div element that surrounds an input of type tel.  The 
      * user is able to enter cell, home, and work as phone types.  Certain 
      * options can be set using the args parameter.  
@@ -701,7 +701,7 @@ class FormHelper {
         } catch (Exception $e) { echo $e->getMessage(); }
     }
 
-    /** UPDATE
+    /**
      * Assists in the development of textarea in forms.  It accepts parameters 
      * for setting  attribute tags in the form section.
      * 

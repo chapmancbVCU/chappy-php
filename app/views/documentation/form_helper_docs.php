@@ -503,6 +503,35 @@ FormHelper::emailBlock('Email',
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
+            <th colspan="2" class="text-center">public static function errorMsg</th>
+        </tr>
+        <tr>
+            <td colspan="2">Renders an error message for a particular form field.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$errors The error array.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$name Used to search errors array for key/form field.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$msg The error message for a particular field.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
             <th colspan="2" class="text-center">public static function generateToken</th>
         </tr>
         <tr>
@@ -709,8 +738,7 @@ FormHelper::output(
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
-            <td>$name Sets the value for the name attributes for this 
-            * input.</td>
+            <td>$name Sets the value for the name attributes for this input.</td>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
