@@ -17,11 +17,8 @@ class Model {
     protected $_validates = true;
     protected $_validationErrors = [];
 
-    /** UPDATE
+    /**
      * Default constructor.
-     * 
-     * @param string $table The name of the table so we can work with the 
-     * correct child model class.
      */
     public function __construct() {
         $this->_modelName = str_replace(' ', '', ucwords(str_replace('_',' ', static::$_table)));
@@ -413,7 +410,6 @@ class Model {
      * will not proceed.  This function is just a signature and must be 
      * implemented by models that run form validation because since it is 
      * called from within this class.
-     * @method validator
      * @return void
      */
     public function validator() {}

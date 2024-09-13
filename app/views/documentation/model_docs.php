@@ -75,8 +75,7 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">string</td>
-            <td>$table The name of the table so we can work with the correct child model class.</td>
+            <td class="text-center" colspan="2">None</td>
         </tr>
     </table>
 
