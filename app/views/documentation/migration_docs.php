@@ -241,7 +241,7 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">string</td>
+            <td class="align-middle text-center w-25">array</td>
             <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
         </tr>
         <tr>
@@ -291,7 +291,7 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">string</td>
+            <td class="align-middle text-center w-25">array</td>
             <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
         </tr>
         <tr>
@@ -316,7 +316,7 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">string</td>
+            <td class="align-middle text-center w-25">array</td>
             <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
         </tr>
         <tr>
@@ -341,7 +341,7 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">string</td>
+            <td class="align-middle text-center w-25">array</td>
             <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
         </tr>
         <tr>
@@ -366,7 +366,7 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">string</td>
+            <td class="align-middle text-center w-25">array</td>
             <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
         </tr>
         <tr>
@@ -379,6 +379,464 @@
     </table>
 
     <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public function dropColumn</th>
+        </tr>
+        <tr>
+            <td colspan="2">Drop column from table.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$table name of db table.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$name name of column to drop.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">bool</td>
+            <td>T$resp The response.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public function dropIndex</th>
+        </tr>
+        <tr>
+            <td colspan="2">Drop index from table.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$table name of db table.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$name name of column to drop index.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">bool</td>
+            <td>$resp The response.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public function dropTable</th>
+        </tr>
+        <tr>
+            <td colspan="2">Drops a table in the database.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$table name of table to be dropped.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">bool</td>
+            <td>$resp The response.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">protected function _floatColumn</th>
+        </tr>
+        <tr>
+            <td colspan="2">Setup float column.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>The string used to configure field and its properties.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">protected function _intColumn</th>
+        </tr>
+        <tr>
+            <td colspan="2">Setup int column.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>The string used to configure field and its properties.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">protected function _mediumintColumn</th>
+        </tr>
+        <tr>
+            <td colspan="2">Setup medium int column.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>The string used to configure field and its properties.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">protected function _orderingColumn</th>
+        </tr>
+        <tr>
+            <td colspan="2">Setup ordering column.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>The string used to configure field and its properties.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">protected function _parsePrecisionScale</th>
+        </tr>
+        <tr>
+            <td colspan="2">Setup precision scale.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>The string used to configure field and its properties.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">protected function _printColor</th>
+        </tr>
+        <tr>
+            <td colspan="2">Prints color surrounding response output depending on success or failure.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$res The type of response.  It can be SUCCESS or FAIL.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$msg The message associated with the response.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25" colspan="2">void</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public function query</th>
+        </tr>
+        <tr>
+            <td colspan="2">Run raw SQL statements</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$sql SQL Command to run</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">bool</td>
+            <td>$resp The response.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">protected function _smallintColumn</th>
+        </tr>
+        <tr>
+            <td colspan="2">Setup small int column.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>The string used to configure field and its properties.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">protected function _textColumn</th>
+        </tr>
+        <tr>
+            <td colspan="2">Setup text column.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>The string used to configure field and its properties.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">protected function _timeColumn</th>
+        </tr>
+        <tr>
+            <td colspan="2">Setup time column.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>The string used to configure field and its properties.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">protected function _timestampColumn</th>
+        </tr>
+        <tr>
+            <td colspan="2">Setup timestamp column.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>The string used to configure field and its properties.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">protected function _tinyintColumn</th>
+        </tr>
+        <tr>
+            <td colspan="2">Setup tinyint column.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>The string used to configure field and its properties.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">abstract function up</th>
+        </tr>
+        <tr>
+            <td colspan="2">Abstract function for migrations.  Must be implemented by child classes.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25" colspan="2">void</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">protected function _varcharColumn</th>
+        </tr>
+        <tr>
+            <td colspan="2">Setup varchar column.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>The string used to configure field and its properties.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm mb-5">
+        <tr>
+            <th colspan="2" class="text-center">protected function _yearColumn</th>
+        </tr>
+        <tr>
+            <td colspan="2">Setup year column.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$attrs Attributes such as size, precision, scale, before, after, definition.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>The string used to configure field and its properties.</td>
+        </tr>
+    </table>
+
 </div>
 
 <script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>

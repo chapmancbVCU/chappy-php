@@ -42,9 +42,10 @@ abstract class Migration {
     }
 
     /**
-     * Add a column to a db table
-     * @param string $table Name of db table
-     * @param string $name  Name of the column
+     * Add a column to a db table.
+     * 
+     * @param string $table Name of db table.
+     * @param string $name  Name of the column.
      * @param string $type  Type of column varchar, text, int, tinyint, smallint, mediumint, bigint
      * @param array $attrs Attributes such as size, precision, scale, before, after, definition
      * @return bool $resp The response.
@@ -62,6 +63,7 @@ abstract class Migration {
     
     /**
      * Add Index to db table.
+     * 
      * @param string $table db table name.
      * @param string $name name of column to add index.
      * @return bool $resp The response.
@@ -77,6 +79,7 @@ abstract class Migration {
 
     /**
      * Adds deleted column to db table to be used for soft deleting rows.
+     * 
      * @param string $table name of table to add soft delete to.
      * @return void
      */
@@ -87,6 +90,7 @@ abstract class Migration {
 
     /**
      * Adds created_at and updated_at columns to db table.
+     * 
      * @param string $table name of db table.
      * @return bool Reports status of operation.
      */
@@ -99,7 +103,7 @@ abstract class Migration {
     /**
      * Setup bit column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _bitColumn($attrs) {
@@ -109,7 +113,7 @@ abstract class Migration {
     /**
      * Setup big int column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _bigintColumn($attrs) {
@@ -118,6 +122,7 @@ abstract class Migration {
 
     /**
      * Creates a table in the database.
+     * 
      * @param  string $table name of the db table.
      * @return bool $resp The response.
      */
@@ -126,15 +131,15 @@ abstract class Migration {
             id INT AUTO_INCREMENT,
             PRIMARY KEY (id)
         )  ENGINE=INNODB;";
-        $res = !$this->_db->query($sql)->error();
-        $this->_printColor($res,"Creating Table " . $table);
-        return $res;
+        $resp = !$this->_db->query($sql)->error();
+        $this->_printColor($resp,"Creating Table " . $table);
+        return $resp;
     }
 
     /**
      * Setup char column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _charColumn($attrs) {
@@ -145,7 +150,7 @@ abstract class Migration {
     /**
      * Setup date column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _dateColumn($attrs) {
@@ -155,7 +160,7 @@ abstract class Migration {
     /**
      * Setup datetime column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _datetimeColumn($attrs) {
@@ -165,7 +170,7 @@ abstract class Migration {
     /**
      * Setup decimal column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _decimalColumn($attrs) {
@@ -176,7 +181,7 @@ abstract class Migration {
     /**
      * Setup double column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _doubleColumn($attrs) {
@@ -185,11 +190,11 @@ abstract class Migration {
     }
 
     /**
-     * Drop Column from table
-     * @method dropColumn
-     * @param  string     $table name of db table
-     * @param  string     $name  name of column to drop
-     * @return bool
+     * Drop column from table.
+     * 
+     * @param string $table name of db table.
+     * @param string $name name of column to drop.
+     * @return bool $resp The response.
      */
     public function dropColumn($table, $name) {
         $sql = "ALTER TABLE {$table} DROP COLUMN {$name};";
@@ -200,11 +205,11 @@ abstract class Migration {
     }
 
     /**
-     * Drops index from table
-     * @method dropIndex
-     * @param  string    $table db table name
-     * @param  string    $name  name of column to drop index
-     * @return bool
+     * Drops index from table.
+     * 
+     * @param string $table db table name.
+     * @param string $name name of column to drop index.
+     * @return bool $resp The response.
      */
     public function dropIndex($table, $name) {
         $sql = "DROP INDEX {$name} ON {$table}";
@@ -215,10 +220,10 @@ abstract class Migration {
     }
 
     /**
-     * Drops a table in the database
-     * @method dropTable
-     * @param  string    $table name of table to be dropped
-     * @return bool
+     * Drops a table in the database.
+     * 
+     * @param string $table name of table to be dropped.
+     * @return bool $resp The response.
      */
     public function dropTable($table) {
         $sql = "DROP TABLE IF EXISTS {$table}";
@@ -229,9 +234,9 @@ abstract class Migration {
     }
 
     /**
-     * Undocumented function
+     * Setup float column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _floatColumn($attrs) {
@@ -240,9 +245,9 @@ abstract class Migration {
     }
 
     /**
-     * Undocumented function
+     * Setup int column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _intColumn($attrs) {
@@ -250,9 +255,9 @@ abstract class Migration {
     }
 
     /**
-     * Undocumented function
+     * Setup medium int column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _mediumintColumn($attrs) {
@@ -260,9 +265,9 @@ abstract class Migration {
     }
 
     /**
-     * Undocumented function
+     * Setup ordering column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _orderingColumn($attrs) {
@@ -276,9 +281,9 @@ abstract class Migration {
     }
 
     /**
-     * Undocumented function
+     * Setup precision scale.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _parsePrecisionScale($attrs) {
@@ -292,10 +297,10 @@ abstract class Migration {
     }
 
     /**
-     * Undocumented function
+     * Prints color surrounding response output depending on success or failure.
      *
-     * @param [type] $res
-     * @param [type] $msg
+     * @param string $res The type of response.  It can be SUCCESS or FAIL.
+     * @param string $msg The message associated with the response.
      * @return void
      */
     protected function _printColor($res,$msg){
@@ -313,10 +318,10 @@ abstract class Migration {
     }
 
     /**
-     * run raw SQL statements
-     * @method query
-     * @param  string $sql SQL Command to run
-     * @return bool
+     * Run raw SQL statements
+     * 
+     * @param string $sql SQL Command to run
+     * @return bool $resp The response.
      */
     public function query($sql){
         $msg = "Running Query: \"" . $sql ."\"";
@@ -326,9 +331,9 @@ abstract class Migration {
     }
 
     /**
-     * Undocumented function
+     * Setup small int column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _smallintColumn($attrs) {
@@ -336,9 +341,9 @@ abstract class Migration {
     }
 
     /**
-     * Undocumented function
+     * Setup text column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _textColumn($attrs) {
@@ -346,9 +351,9 @@ abstract class Migration {
     }
 
     /**
-     * Undocumented function
+     * Setup time column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _timeColumn($attrs) {
@@ -356,9 +361,9 @@ abstract class Migration {
     }
 
     /**
-     * Undocumented function
+     * Setup timestamp column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _timestampColumn($attrs) {
@@ -366,9 +371,9 @@ abstract class Migration {
     }
 
     /**
-     * Undocumented function
+     * Setup tinyint column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _tinyintColumn($attrs) {
@@ -376,16 +381,16 @@ abstract class Migration {
     }
 
     /**
-     * Undocumented function
+     * Abstract function for migrations.  Must be implemented by child classes.
      *
      * @return void
      */
     abstract function up();
 
     /**
-     * Undocumented function
+     * Setup varchar column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _varcharColumn($attrs) {
@@ -394,9 +399,9 @@ abstract class Migration {
     }
 
     /**
-     * Undocumented function
+     * Setup year column.
      *
-     * @param string $attrs Attributes such as size, precision, scale, before, after, definition.
+     * @param array $attrs Attributes such as size, precision, scale, before, after, definition.
      * @return string The string used to configure field and its properties.
      */
     protected function _yearColumn($attrs) {
