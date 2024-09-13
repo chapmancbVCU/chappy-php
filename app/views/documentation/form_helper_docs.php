@@ -616,7 +616,7 @@ FormHelper::hidden(
                 <br><br>
                 Types of inputs supported:
                 <br>
-                <ol>
+                <ol class="pl-5">
                     <li>Color</li>
                     <li>date</li>
                     <li>datetime-local</li>
@@ -1123,7 +1123,7 @@ self::submitTag(
                 <br><br>
                 Arguments supported:
                 <br>
-                <ul>
+                <ul class="pl-5">
                     <li>a - All default options turned on. </li>
                     <li>d - All options are off.</li>
                     <li>e - Default event listener turned on for enforcing phone format requirements.</li>
