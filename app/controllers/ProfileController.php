@@ -104,8 +104,7 @@ class ProfileController extends Controller {
     }
     
     /**
-     * Renders change password page.  Supports validation and database 
-     * operation.
+     * Renders change password page for current logged in user.
      *
      * @return void
      */
