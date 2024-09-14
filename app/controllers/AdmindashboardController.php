@@ -33,7 +33,7 @@ class AdmindashboardController extends Controller {
     }
 
     /**
-     * Performs delete action.
+     * Performs delete action on a user.
      *
      * @param integer $id The id for the user we want to delete.
      * @return void
@@ -49,8 +49,14 @@ class AdmindashboardController extends Controller {
         Router::redirect('admindashboard');
     }
 
+    /**
+     * Deletes ACL from acl table.
+     *
+     * @param int $id The id for the ACL we want to delete.
+     * @return void
+     */
     function deleteAclAction($id): void {
-        $acl = ACL::findById($id);
+        $acl = ACL::findById((int)$id);
 
         // Get users so we can get number using acl and update later.
         $users = Users::findUserByAcl($acl->acl)->results();
@@ -71,7 +77,7 @@ class AdmindashboardController extends Controller {
      *
      * @return void
      */
-    function deleteImageAction(): void {
+    public function deleteImageAction(): void {
         $resp = ['success' => false];
         if($this->request->isPost()) {
             $user = Users::currentUser();
@@ -86,21 +92,27 @@ class AdmindashboardController extends Controller {
     }
 
     /**
-     * Undocumented function
+     * Presents information about a particular user's profile.
      *
-     * @param [type] $id
+     * @param int $id The id of the user whose details we want to view.
      * @return void
      */
     public function detailsAction($id): void {
-        $user = Users::findById($id);
+        $user = Users::findById((int)$id);
         $profileImage = ProfileImages::findCurrentProfileImage($user->id);
         $this->view->profileImage = $profileImage;
         $this->view->user = $user;
         $this->view->render('admindashboard/details');
     }
 
+    /**
+     * Supports ability to edit ACLs not assigned to a user through a web form.
+     *
+     * @param int $id The id of the ACL we want to modify.
+     * @return void
+     */
     public function editAclAction($id): void {
-        $acl = ACL::findById($id);
+        $acl = ACL::findById((int)$id);
 
         // Get users so we can get number using acl and update later.
         $users = Users::findUserByAcl($acl->acl)->results();
@@ -125,13 +137,13 @@ class AdmindashboardController extends Controller {
     }
 
     /**
-     * Undocumented function
+     * Supports ability for administrators to edit user profiles.
      *
-     * @param [type] $id
+     * @param int $id The id of the user whose profile we want to modify.
      * @return void
      */
     public function editAction($id): void {
-        $user = Users::findById($id);
+        $user = Users::findById((int)$id);
         if(!$user) {
             Session::addMessage('danger', 'You do not have permission to edit this user.');
             Router::redirect('');
@@ -213,7 +225,7 @@ class AdmindashboardController extends Controller {
     }
 
     /**
-     * Undocumented function
+     * Runs when the object is constructed.
      *
      * @return void
      */
@@ -222,13 +234,15 @@ class AdmindashboardController extends Controller {
     }
 
     /**
-     * Undocumented function
+     * Support ability to toggle on or off the reset password flag for a 
+     * particular user.
      *
-     * @param [type] $id
+     * @param int $id The id of the user whose reset password flag we want to 
+     * modify.
      * @return void
      */
     public function setResetPasswordAction($id) {
-        $user = Users::findById($id);
+        $user = Users::findById((int)$id);
         
         if($this->request->isPost()) {
             $this->request->csrfCheck();
