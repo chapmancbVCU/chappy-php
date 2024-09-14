@@ -10,6 +10,11 @@ use Core\Helper;
  */
 class AdmindashboardController extends Controller {
 
+    /**
+     * Renders add acl view and adds ACL to acl table.
+     *
+     * @return void
+     */
     public function addAclAction(): void {
         $acl = new ACL();
         if($this->request->isPost()) {
@@ -60,6 +65,7 @@ class AdmindashboardController extends Controller {
         }
         Router::redirect('admindashboard/manageAcls');
     }
+
     /**
      * Deletes an image associated with a user's profile.
      *
