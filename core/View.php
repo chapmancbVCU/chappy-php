@@ -6,7 +6,6 @@ use stdClass;
 /**
  * Handles operations related to views and its content.
  */
-// #[\AllowDynamicProperties]
 class View extends stdClass {
     protected $_body;
     protected $_content = [];
