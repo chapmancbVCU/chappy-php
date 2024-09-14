@@ -129,11 +129,12 @@ class RegisterController extends Controller {
             
             if($user->save()) {
                 // PW change mode off.
+                $user->reset_password = 0;
                 $user->setChangePassword(false);    
                 Router::redirect('register/login');
             }
         }
-        $user->resetPassword = 1;
+
         $user->setChangePassword(false);
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->user = $user;
