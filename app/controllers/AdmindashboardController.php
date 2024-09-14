@@ -259,8 +259,15 @@ class AdmindashboardController extends Controller {
         $this->view->render('admindashboard/set_reset_password');
     }
 
+    /**
+     * Sets active status for a particular user.  The administrator can 
+     * toggle the setting on or off using a web form.
+     *
+     * @param int $id The id of the user we want to activate or inactivate.
+     * @return void
+     */
     public function setStatusAction($id) {
-        $user = Users::findById($id);
+        $user = Users::findById((int)$id);
 
         if($this->request->isPost()) {
             $this->request->csrfCheck();
