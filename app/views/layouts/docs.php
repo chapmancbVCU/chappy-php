@@ -31,5 +31,6 @@ use Core\FormHelper;
     <script src="<?=APP_DOMAIN?>public/js/alerts/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="<?=APP_DOMAIN?>public/js/bootstrap-4.6.2/bootstrap.min.js"></script>
     <script src="<?=APP_DOMAIN?>public/js/alerts/alertMsg.min.js?v=<?=VERSION?>"></script>
+    <script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
   </body>
 </html>

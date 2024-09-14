@@ -59,5 +59,4 @@
 
     <a href="<?=APP_DOMAIN?>documentation" class="btn btn-xs btn-secondary mb-5">Docs Home</a>
 </div>
-<script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

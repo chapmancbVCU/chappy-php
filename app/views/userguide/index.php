@@ -26,5 +26,4 @@
             move on to the main features, and finally we go over the feature efforts and release notes.</p>
     </div>
 </div>
-<script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

@@ -68,5 +68,4 @@
     </div>
 
 </div>
-<script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

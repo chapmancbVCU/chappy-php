@@ -178,5 +178,4 @@
     </table>
     <a href="<?=APP_DOMAIN?>documentation/controllers" class="btn btn-xs btn-secondary mb-5">Controllers</a>
 </div>
-<script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

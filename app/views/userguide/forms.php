@@ -196,5 +196,4 @@
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
     </div>
 </div>
-<script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

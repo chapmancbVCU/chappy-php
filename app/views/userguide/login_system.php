@@ -39,5 +39,4 @@
         <p>The login page is the standard login setup with a remember me checkbox.  You can get to the registration page from here. </p>
     </div>
 </div>
-<script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>

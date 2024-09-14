@@ -100,5 +100,4 @@
     </table>
     <a href="<?=APP_DOMAIN?>documentation/validators" class="btn btn-xs btn-secondary mb-5">Validators</a>
 </div>
-<script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
 <?php $this->end(); ?>
