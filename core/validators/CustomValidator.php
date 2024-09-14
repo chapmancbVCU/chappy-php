@@ -65,7 +65,7 @@ abstract class CustomValidator {
         try {
             $this->success = $this->runValidation();
         } catch(Exception $e) {
-        echo "Validation Exception on " . get_class() . ": " . $e->getMessage() . "<br />";
+            echo "Validation Exception on " . get_class() . ": " . $e->getMessage() . "<br />";
         }
     }
 
