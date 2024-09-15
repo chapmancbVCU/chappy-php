@@ -66,6 +66,11 @@ class RegisterController extends Controller {
         Router::redirect(('register/login'));
     }
 
+    /**
+     * Runs when the object is constructed.
+     *
+     * @return void
+     */
     public function onConstruct(): void {
         $this->view->setLayout('default');
     }
@@ -112,8 +117,15 @@ class RegisterController extends Controller {
         $this->view->render('register/register');
     }
 
+    /**
+     * Supports ability to reset passwords when a user attempts to 
+     * login when account is locked.
+     *
+     * @param int $id The id of the user whose password we want to reset.
+     * @return void
+     */
     public function resetPasswordAction($id): void {
-        $user = Users::findById($id);
+        $user = Users::findById((int)$id);
         $user->password = "";
         
         if(!$user) Router::redirect('');

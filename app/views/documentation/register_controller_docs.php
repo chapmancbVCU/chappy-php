@@ -83,6 +83,29 @@
     </table>
 
     <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public function onConstruct</th>
+        </tr>
+        <tr>
+            <td colspan="2">Runs when the object is constructed.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">void</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
     
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm mb-5">
         <tr>
@@ -96,6 +119,30 @@
         </tr>
         <tr>
             <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">void</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm mb-5">
+        <tr>
+            <th colspan="2" class="text-center">public function resetPasswordAction</th>
+        </tr>
+        <tr>
+            <td colspan="2">Supports ability to reset passwords when a user attempts to  login when account is locked.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">int</td>
+            <td>$id The id of the user whose password we want to reset.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
