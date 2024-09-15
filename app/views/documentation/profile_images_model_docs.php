@@ -203,7 +203,61 @@
     </table>
 
     <hr class="w-75 my-5 mx-auto">
-    
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function updateSortByUserId</th>
+        </tr>
+        <tr>
+            <td colspan="2">Getter function for $maxAllowedFileSize.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">int</td>
+            <td>$user_id The id of the user whose profile images we want to sort.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">int</td>
+            <td>$sortOrder An array containing sort values for a profile image.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">void</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function uploadProfileImage</th>
+        </tr>
+        <tr>
+            <td colspan="2">Performs upload operation for a profile image.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">int</td>
+            <td>$user_id The id of the user that the upload operation is performed upon.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">Uploads</td>
+            <td>$uploads The instance of the Uploads class for this upload.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">void</td>
+        </tr>
+    </table>
+
     <a href="<?=APP_DOMAIN?>documentation/models" class="btn btn-xs btn-secondary mb-5">Models</a>
 </div>
 <?php $this->end(); ?>

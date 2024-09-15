@@ -90,6 +90,15 @@ class ProfileImages extends Model {
         return self::$maxAllowedFileSize;
     }
     
+    /**
+     * Updates sort order by user id.
+     *
+     * @param int $user_id The id of the user whose profile images we want 
+     * to sort.
+     * @param array $sortOrder An array containing sort values for a profile 
+     * image.
+     * @return void
+     */
     public static function updateSortByUserId($user_id, $sortOrder = []) {
         $images = self::findByUserId($user_id);
         $i = 0;
@@ -102,6 +111,15 @@ class ProfileImages extends Model {
         }
     }
 
+    /**
+     * Performs upload operation for a profile image.
+     *
+     * @param id $user_id The id of the user that the upload operation 
+     * is performed upon.
+     * @param Uploads $uploads The instance of the Uploads class for this 
+     * upload.
+     * @return void
+     */
     public static function uploadProfileImage($user_id, $uploads) {
         $lastImage = self::findFirst([
             'conditions' => "user_id = ?",
