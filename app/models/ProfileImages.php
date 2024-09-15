@@ -1,7 +1,6 @@
 <?php
 namespace App\Models;
 use Core\{Helper, Model};
-use App\Lib\Utilities\Uploads;
 
 /**
  * Supports CRUD operations on profile images.
@@ -19,8 +18,14 @@ class ProfileImages extends Model {
     public $url;
     public $user_id;
 
+    /**
+     * Deletes a profile image by id.
+     *
+     * @param int $id The id of the image we want to delete.
+     * @return bool Result of delete operation.  True if success, otherwise 
+     * false.
+     */
     public static function deleteById($id) {
-        
         $image = self::findById($id);
         $sort = $image->sort;
         $afterImages = self::find([
@@ -35,6 +40,14 @@ class ProfileImages extends Model {
         return $image->delete();
     }
     
+    /**
+     * Returns currently set profile image for a user.
+     *
+     * @param int $user_id The id of the user whose profile image we want to 
+     * retrieve.
+     * @return bool|array The associative array for the profile image's 
+     * record.
+     */
     public static function findCurrentProfileImage($user_id) {
         return $image = self::findFirst([
             'conditions' => 'user_id = ? AND sort = 0',
@@ -77,7 +90,6 @@ class ProfileImages extends Model {
             'order' => 'sort DESC'
         ]);
         $lastSort = (!$lastImage) ? 0 : $lastImage->sort;
-        // Helper::dnd($_uploadPath);
         $path = self::$_uploadPath.$user_id.DS;
         foreach($uploads->getFiles() as $file) {
             $parts = explode('.',$file['name']);

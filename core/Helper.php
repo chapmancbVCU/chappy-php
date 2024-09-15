@@ -104,7 +104,8 @@ class Helper {
   /**
    * Retrieves URL user's current profile image.
    * 
-   * @return string The URL for the profile image.
+   * @return bool|array The associative array for the profile image's 
+   * record.
    */
   public static function getProfileImage() {
     $user = Users::currentUser();

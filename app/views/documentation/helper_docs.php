@@ -182,8 +182,8 @@
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">string</td>
-            <td>The URL for the profile image.</td>
+            <td class="align-middle text-center w-25">bool|array</td>
+            <td>The associative array for the profile image's record.</td>
         </tr>
     </table>
 

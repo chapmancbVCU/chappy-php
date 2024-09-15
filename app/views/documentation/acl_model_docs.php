@@ -48,7 +48,11 @@
         </tr>
         <tr>
             <td>public $deleted</td>
-            <td>With an initial value of 0, when set to 1 the corresponding field in the users table is set. Supports ability to soft delete.</td>
+            <td>With an initial value of 0, when set to 1 the corresponding field in the acl table is set. Supports ability to soft delete.</td>
+        </tr>
+        <tr>
+            <td>public $id</td>
+            <td>The integer primary key for this acl. Represents the id field in the acl database table.</td>
         </tr>
         <tr>
             <td>protected static $_softDelete</td>

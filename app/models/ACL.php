@@ -12,6 +12,7 @@ class ACL extends Model {
     public const blackList = ['id', 'deleted'];
     public $created_at;
     public $deleted = 0;
+    public $id;
     protected static $_softDelete = true;
     protected static $_table = 'acl';
     public $updated_at;
