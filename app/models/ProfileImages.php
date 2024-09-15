@@ -55,6 +55,14 @@ class ProfileImages extends Model {
         ]);
     }
 
+    /**
+     * Finds all profile images for a user.
+     *
+     * @param int $user_id The id of the user whose profile images we want to 
+     * retrieve.
+     * @return bool|array The associative array of profile image records for a 
+     * user.
+     */
     public static function findByUserId($user_id) {
         return $images = self::find([
             'conditions' => 'user_id = ?',
@@ -63,10 +71,21 @@ class ProfileImages extends Model {
         ]);
     }
 
+    /**
+     * Getter function for $allowedFileTypes array
+     *
+     * @return array $allowedFileTypes The array of allowed file types.
+     */
     public static function getAllowedFileTypes() {
         return self::$allowedFileTypes;
     }
 
+    /**
+     * Getter function for $maxAllowedFileSize.
+     *
+     * @return int $maxAllowedFileSize The max file size for an individual 
+     * file.
+     */
     public static function getMaxAllowedFileSize() {
         return self::$maxAllowedFileSize;
     }

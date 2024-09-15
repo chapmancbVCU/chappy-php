@@ -132,6 +132,78 @@
 
     <hr class="w-75 my-5 mx-auto">
 
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function findByUserId</th>
+        </tr>
+        <tr>
+            <td colspan="2">Finds all profile images for a user.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">bool|array</td>
+            <td>The associative array of profile image records for a user.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function findByUserId</th>
+        </tr>
+        <tr>
+            <td colspan="2">Finds all profile images for a user.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">bool|array</td>
+            <td>The associative array of profile image records for a user.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function getMaxAllowedFileSize</th>
+        </tr>
+        <tr>
+            <td colspan="2">Getter function for $maxAllowedFileSize.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$maxAllowedFileSize The max file size for an individual file.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+    
     <a href="<?=APP_DOMAIN?>documentation/models" class="btn btn-xs btn-secondary mb-5">Models</a>
 </div>
 <?php $this->end(); ?>
