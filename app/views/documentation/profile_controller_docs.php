@@ -1,4 +1,4 @@
-<?php $this->setSiteTitle("Contacts Controller - Custom MVC Framework Docs"); ?>
+<?php $this->setSiteTitle("Profile Controller - Custom MVC Framework Docs"); ?>
 <?php $this->start('body'); ?>
 
 <div class="main">
