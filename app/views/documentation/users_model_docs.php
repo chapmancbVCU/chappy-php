@@ -50,6 +50,10 @@
             <td>Access control list level.  Represents the acl field in the users table.</td>
         </tr>
         <tr>
+            <td>public const blackListedFormKeys</td>
+            <td>List of fields we don't want to update. For this model they are id and deleted.</td>
+        </tr>
+        <tr>
             <td>private $changePassword</td>
             <td>Boolean flag when set to true allows operations needed for changing password.  Currently used to assist in validation when changing a password.</td>
         </tr>
@@ -58,8 +62,8 @@
             <td>Used by registration process for representing confirm field for password.</td>
         </tr>
         <tr>
-            <td>private $_cookieName</td>
-            <td>Value of cookie for current session.</td>
+            <td>public $created_at</td>
+            <td>Timestamp for when this record was created.</td>
         </tr>
         <tr>
             <td>private static $currentLoggedInUser</td>
@@ -86,20 +90,36 @@
             <td>The integer primary key for this user.  Represents the id field in the users database table.</td>
         </tr>
         <tr>
+            <td>public $inactive</td>
+            <td>Tiny int value that represents whether or not a user's account is active or inactive.</td>
+        </tr>
+        <tr>
             <td>public $lname</td>
             <td>This user's last name.  Represents the lname field in the contacts database table.</td>
+        </tr>
+        <tr>
+            <td>public $login_attempts</td>
+            <td>Tracks failed login attempts for a user.</td>
+        </tr>
+        <tr>
+            <td>pubic $reset_password</td>
+            <td>Tiny int value that when set to 1 causes user to be prompted to set a new password.</td>
         </tr>
         <tr>
             <td>public $password</td>
             <td>The password for this user.  Represents the password field in the users database table.</td>
         </tr>
         <tr>
-            <td>public $profileImage</td>
-            <td>Stores value for profileImage name.  Represents the profileImage field in the users database table.</td>
+            <td>protected static $_softDelete</td>
+            <td>Handles soft delete operations. When false we perform delete if true we set the delete flag to 1. Default value is false.</td>
         </tr>
         <tr>
-            <td>private $_sessionName </td>
-            <td>The name for the current session.  Represents the session filed associated with this user in the user_sessions table.</td>
+            <td>protected static $_table</td>
+            <td>The name of the table for this model. Currently set to users.</td>
+        </tr>
+        <tr>
+            <td>public $updated_at</td>
+            <td>Timestamp for when this record was last updated.</td>
         </tr>
         <tr>
             <td>public $userName</td>
@@ -135,10 +155,68 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
+            <th colspan="2" class="text-center">public static function aclToId</th>
+        </tr>
+        <tr>
+            <td colspan="2">Gets id for user assigned ACL.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$user_acl The user's current ACL.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$aclArray An associative array of acls.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">int</td>
+            <td>$key The id of the ACL.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function addAcl</th>
+        </tr>
+        <tr>
+            <td colspan="2">Add ACL to user's acl field as an element of an array.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">int</td>
+            <td>$user_id The id of the user whose acl field we want to modify.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$acl The name of the new ACL.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">bool</td>
+            <td>True or false depending on success of operation.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
             <th colspan="2" class="text-center">public function beforeSave</th>
         </tr>
         <tr>
-            <td colspan="2">Implements beforeSave function described in Model parent class.  Ensures password is not in plain text but a hashed one.</td>
+            <td colspan="2">Implements beforeSave function described in Model parent class.  Ensures password is not in plain text but a hashed one.  The reset_password flag is also set to 0.</td>
         </tr>
         <tr>
             <th class="align-middle text-center" colspan="2">params</th>
@@ -182,7 +260,60 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
-            <th colspan="2" class="text-center">public function findByUserName</th>
+            <th colspan="2" class="text-center">public function hashPassword</th>
+        </tr>
+        <tr>
+            <td colspan="2">Hashes password.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$password Original password submitted on a registration or update password form.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">void</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public function findAllUsersExceptCurrent</th>
+        </tr>
+        <tr>
+            <td colspan="2">Retrieves a list of all users except current logged in user.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">int</td>
+            <td>$current_user_id The id of the currently logged in user.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$params Used to build conditions for database query.  The default value is an empty array.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>The list of users that is returned from the database.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function findByUserName</th>
         </tr>
         <tr>
             <td colspan="2">Finds user by username in the Users table.</td>
@@ -200,6 +331,31 @@
         <tr>
             <td class="align-middle text-center w-25">bool|object</td>
             <td>An object containing information about a user from the Users table.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function findUserByAcl</th>
+        </tr>
+        <tr>
+            <td colspan="2">Retrieves a list of users who are assigned to a particular acl.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$acl The ACL we want to use in our query.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">object</td>
+            <td>An individual user who is assigned to an acl.</td>
         </tr>
     </table>
 

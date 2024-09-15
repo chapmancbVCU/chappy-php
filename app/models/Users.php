@@ -53,13 +53,28 @@ class Users extends Model {
 
     }
 
+    /**
+     * Gets id for user assigned ACL.
+     *
+     * @param string $user_acl The user's current ACL.
+     * @param array $aclArray An associative array of acls.
+     * @return int $key The id of the ACL.
+     */
     public static function aclToId($user_acl, $aclArray) {
         foreach($aclArray as $key => $value) {
             if($value == $user_acl) { return $key; }
         }
     }
 
-    public static function addAcl($user_id,$acl){
+    /**
+     * Add ACL to user's acl field as an element of an array.
+     *
+     * @param int $user_id The id of the user whose acl field we want to 
+     * modify.
+     * @param string $acl The name of the new ACL.
+     * @return bool True or false depending on success of operation.
+     */
+    public static function addAcl($user_id,$acl) {
         $user = self::findById($user_id);
         if(!$user) return false;
         $acls = $user->acls();
@@ -71,9 +86,10 @@ class Users extends Model {
         return true;
     }
 
-    /**UPDATE to include reset_password flag.
+    /**
      * Implements beforeSave function described in Model parent class.  
-     * Ensures password is not in plain text but a hashed one.
+     * Ensures password is not in plain text but a hashed one.  The 
+     * reset_password flag is also set to 0.
      *
      * @return void
      */
@@ -101,11 +117,26 @@ class Users extends Model {
         return self::$currentLoggedInUser;
     }
 
+    /**
+     * Hashes password.
+     *
+     * @param string $password Original password submitted on a registration 
+     * or update password form.
+     * @return void
+     */
     public function hashPassword($password) {
         $password = password_hash($password, PASSWORD_DEFAULT);
     }
 
-    public static function findAllUsers($current_user_id, $params = []) {
+    /**
+     * Retrieves a list of all users except current logged in user.
+     *
+     * @param int $current_user_id The id of the currently logged in user.
+     * @param array $params Used to build conditions for database query.  The 
+     * default value is an empty array.
+     * @return array The list of users that is returned from the database.
+     */
+    public static function findAllUsersExceptCurrent($current_user_id, $params = []) {
         $conditions = [
             'conditions' => 'id != ?',
             'bind' => [(int)$current_user_id]
@@ -126,6 +157,12 @@ class Users extends Model {
         return self::findFirst(['conditions'=> "username = ?", 'bind'=>[$username]]);
     }
 
+    /**
+     * Retrieves a list of users who are assigned to a particular acl.
+     *
+     * @param string $acl The ACL we want to use in our query.
+     * @return object An individual user who is assigned to an acl.
+     */
     public static function findUserByAcl($acl) {
         $aclName = '["'.$acl.'"]';
         return self::$_db->query("SELECT * FROM users WHERE acl = ?", [$aclName]);
@@ -133,16 +170,14 @@ class Users extends Model {
 
     public static function idToAcl($acl_value, $aclArray) {
         foreach($aclArray as $key => $value) {
-            if($key == $acl_value) { 
-                return '["'.$value.'"]'; 
-
-            }
+            if($key == $acl_value) { return '["'.$value.'"]'; }
         }
     }
 
     public function isInactiveChecked() {
         return $this->inactive === 1;
     }
+
     public function isResetPWChecked() {
         return $this->reset_password === 1;
     }
@@ -234,15 +269,15 @@ class Users extends Model {
         return true;
     }
 
-    public function setChangePassword(bool $value): void {
-        $this->changePassword = $value;
-    }
-
     public static function setAclAtRegistration() {
         if(Users::findTotal() == 0) {
             return '["Admin"]';
         }
         return '["Standard"]';
+    }
+
+    public function setChangePassword(bool $value): void {
+        $this->changePassword = $value;
     }
 
     /**

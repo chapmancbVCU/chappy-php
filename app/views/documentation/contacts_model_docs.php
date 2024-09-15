@@ -184,9 +184,6 @@
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="text-center" colspan="2">None</td>
-        </tr>
-        <tr>
             <td class="align-middle text-center w-25">int</td>
             <td>$user_id The ID user associated with this contact.</td>
         </tr>
