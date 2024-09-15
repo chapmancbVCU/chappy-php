@@ -71,7 +71,7 @@ class Users extends Model {
         return true;
     }
 
-    /**
+    /**UPDATE to include reset_password flag.
      * Implements beforeSave function described in Model parent class.  
      * Ensures password is not in plain text but a hashed one.
      *

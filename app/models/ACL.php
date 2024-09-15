@@ -16,6 +16,12 @@ class ACL extends Model {
     protected static $_table = 'acl';
     public $updated_at;
 
+    /**
+     * Implements beforeSave function described in Model parent class.  
+     * Ensures timestamps are created and updated.
+     *
+     * @return void
+     */
     public function beforeSave(): void {
         $this->timeStamps();
     }
@@ -34,15 +40,20 @@ class ACL extends Model {
         return $aclArray;
     }
 
+    /**
+     * Retrieves list of all ACLs sorted by the acl field.
+     *
+     * @return array The list of ACLs that is returned from the database.
+     */
     public static function getACLs() {
         return self::find(['order' => 'acl']);
     }
 
     /**
      * Trims quotes and brackets off of ACL until we figure out better way.
-     *
-     * @param [type] $acl
-     * @return void
+     * Plan to depreciate after future updates.
+     * @param string $acl The ACL field from a record in the Users table.
+     * @return string $acl The acl after quotes and brackets are removed.
      */
     public static function trimACL($acl) {
         $acl = substr($acl, 2);
@@ -50,6 +61,11 @@ class ACL extends Model {
         return $acl;
     }
 
+    /**
+     * Ensures fields are required and unique.
+     *
+     * @return void
+     */
     public function validator(): void {
         $this->runValidation(new UniqueValidator($this, ['field' => 'acl', 'message' => 'That acl already exists.  Please chose a new one.']));
         $this->runValidation(new RequiredValidator($this, ['field' => 'acl', 'message' => 'ACL name is required.'])); 
