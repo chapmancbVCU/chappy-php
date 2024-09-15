@@ -203,7 +203,7 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function indexAction(): void {
-        $users = Users::findAllUsers(Users::currentUser()->id);
+        $users = Users::findAllUsersExceptCurrent(Users::currentUser()->id);
         $this->view->users = $users;
         $this->view->render('admindashboard/index');
     }
