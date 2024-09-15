@@ -114,7 +114,7 @@ class ProfileImages extends Model {
     /**
      * Performs upload operation for a profile image.
      *
-     * @param id $user_id The id of the user that the upload operation 
+     * @param int $user_id The id of the user that the upload operation 
      * is performed upon.
      * @param Uploads $uploads The instance of the Uploads class for this 
      * upload.
