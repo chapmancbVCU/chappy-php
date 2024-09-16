@@ -7,7 +7,7 @@ use Core\Helper;
  */
 class Uploads {
     private string $_bucket;
-    private array $_allowedImageTypes = [];
+    private array $_allowedFileTypes = [];
     private array $_errors = [];
     private array $_files= []; 
     private int $_maxAllowedSize;
@@ -23,9 +23,9 @@ class Uploads {
      * @param bool $multiple A boolean flag to set whether or not we are 
      * working with a single file upload or an array regarding form setup.
      */
-    public function __construct(array|string $files, array $imageTypes, int $maxAllowedSize, bool $multiple, string $bucket) {
+    public function __construct(array|string $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket) {
         $this->_files = self::restructureFiles($files, $multiple);
-        $this->_allowedImageTypes = $imageTypes;
+        $this->_allowedFileTypes = $fileTypes;
         $this->_maxAllowedSize = $maxAllowedSize;
         $this->_bucket = $bucket;
     }
@@ -123,7 +123,7 @@ class Uploads {
     protected function validateImageType(): void { 
         foreach($this->_files as $file) {
             // checking file type
-            if(!in_array(exif_imagetype($file['tmp_name']), $this->_allowedImageTypes)){
+            if(!in_array(exif_imagetype($file['tmp_name']), $this->_allowedFileTypes)){
                 $name = $file['name'];
                 $msg = $name . " is not an allowed file type. Please use a jpeg, gif, or png.";
                 $this->addErrorMessage($name, $msg);
