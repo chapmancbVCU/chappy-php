@@ -158,7 +158,7 @@
             <th colspan="2" class="text-center">public static function aclToId</th>
         </tr>
         <tr>
-            <td colspan="2">Gets id for user assigned ACL.</td>
+            <td colspan="2">Gets id for user assigned ACL and assist in setup of web form for updating user's ACL.</td>
         </tr>
         <tr>
             <th class="align-middle text-center" colspan="2">params</th>
@@ -169,7 +169,7 @@
         </tr>
         <tr>
             <td class="align-middle text-center w-25">array</td>
-            <td>$aclArray An associative array of acls.</td>
+            <td>$aclArray Array of ACLs in format that can be used to populate dropdown forms.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
@@ -260,30 +260,6 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
-            <th colspan="2" class="text-center">public function hashPassword</th>
-        </tr>
-        <tr>
-            <td colspan="2">Hashes password.</td>
-        </tr>
-        <tr>
-            <th class="align-middle text-center" colspan="2">params</th>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25">string</td>
-            <td>$password Original password submitted on a registration or update password form.</td>
-        </tr>
-        <tr>
-            <th class="align-middle text-center w-25" colspan="2">return</th>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25">void</td>
-        </tr>
-    </table>
-
-    <hr class="w-75 my-5 mx-auto">
-
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
-        <tr>
             <th colspan="2" class="text-center">public function findAllUsersExceptCurrent</th>
         </tr>
         <tr>
@@ -363,10 +339,63 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
-            <th colspan="2" class="text-center">public function getConfirm</th>
+            <th colspan="2" class="text-center">public function hashPassword</th>
         </tr>
         <tr>
-            <td colspan="2">Getter function for $_confirm instance variable.</td>
+            <td colspan="2">Hashes password.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$password Original password submitted on a registration or update password form.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">void</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function idToAcl</th>
+        </tr>
+        <tr>
+            <td colspan="2">Take id from form post and return ACL in format that can be added to users table.  May not necessarily be actual id of ACL in acl table.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">int</td>
+            <td>$acl_value The value for ACL from form POST.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$aclArray Array of ACLs in format that can be used to populate dropdown forms.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$key The id of the ACL.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public function isInactiveChecked</th>
+        </tr>
+        <tr>
+            <td colspan="2">Assists in setting value of inactive field based on POST.</td>
         </tr>
         <tr>
             <th class="align-middle text-center" colspan="2">params</th>
@@ -378,8 +407,32 @@
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">mixed</td>
-            <td>The value for $_confirm.</td>
+            <td class="align-middle text-center w-25">int</td>
+            <td>$inactive The value for inactive based on value received from POST.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public function isResetPWChecked</th>
+        </tr>
+        <tr>
+            <td colspan="2">Assists in setting value of reset_password field based on POST.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="2">None</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">int</td>
+            <td>$reset_password The value for reset_password based on value received from POST.</td>
         </tr>
     </table>
 
@@ -411,23 +464,28 @@
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
-            <th colspan="2" class="text-center">public function logout</th>
+            <th colspan="2" class="text-center">public static function loginAttempts</th>
         </tr>
         <tr>
-            <td colspan="2">Perform logout operation on current logged in user.  The record for the current logged in user is removed from the user_session table and the corresponding cookie is deleted.</td>
+            <td colspan="2">Tests for login attempts and sets session messages when there is a failed attempt or when account is locked.</td>
         </tr>
         <tr>
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25" colspan="2">none</td>
+            <td class="align-middle text-center w-25">User</td>
+            <td>$user The user whose login attempts we are tracking.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">Login</td>
+            <td>$loginModel The model that will be responsible for displaying messages.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
         </tr>
         <tr>
-            <td class="align-middle text-center w-25">bool</td>
-            <td>Returns true if operation is successful.</td>
+            <td class="align-middle text-center w-25">Login</td>
+            <td>$loginModel The Login model after login in attempt test and session messages are assigned.</td>
         </tr>
     </table>
 
@@ -452,6 +510,107 @@
         <tr>
             <td class="align-middle text-center w-25">User</td>
             <td>The user associated with previous session.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public function logout</th>
+        </tr>
+        <tr>
+            <td colspan="2">Perform logout operation on current logged in user.  The record for the current logged in user is removed from the user_session table and the corresponding cookie is deleted.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25" colspan="2">none</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">bool</td>
+            <td>Returns true if operation is successful.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function removeAcl</th>
+        </tr>
+        <tr>
+            <td colspan="2">Add ACL to user's acl field as an element of an array.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">int</td>
+            <td>$user_id The id of the user whose acl field we want to modify.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$acl The name of the ACL to be removed.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">bool</td>
+            <td>True or false depending on success of operation.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public static function setAclAtRegistration</th>
+        </tr>
+        <tr>
+            <td colspan="2">Sets ACL at registration.  If users table is empty the default value is Admin.  Otherwise, we set the value to Standard.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25" colspan="2">none</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>The value of the ACL we are setting upon registration of a user.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
+            <th colspan="2" class="text-center">public function setChangePassword</th>
+        </tr>
+        <tr>
+            <td colspan="2">Setter function for $changePassword.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">bool</td>
+            <td>$value The value we will assign to $changePassword.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">void</td>
         </tr>
     </table>
 

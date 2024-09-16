@@ -54,10 +54,12 @@ class Users extends Model {
     }
 
     /**
-     * Gets id for user assigned ACL.
+     * Gets id for user assigned ACL and assist in setup of web form 
+     * for updating user's ACL.
      *
      * @param string $user_acl The user's current ACL.
-     * @param array $aclArray An associative array of acls.
+     * @param array $aclArray Array of ACLs in format that can be used to 
+     * populate dropdown forms.
      * @return int $key The id of the ACL.
      */
     public static function aclToId($user_acl, $aclArray) {
@@ -118,17 +120,6 @@ class Users extends Model {
     }
 
     /**
-     * Hashes password.
-     *
-     * @param string $password Original password submitted on a registration 
-     * or update password form.
-     * @return void
-     */
-    public function hashPassword($password) {
-        $password = password_hash($password, PASSWORD_DEFAULT);
-    }
-
-    /**
      * Retrieves a list of all users except current logged in user.
      *
      * @param int $current_user_id The id of the currently logged in user.
@@ -168,16 +159,50 @@ class Users extends Model {
         return self::$_db->query("SELECT * FROM users WHERE acl = ?", [$aclName]);
     }
 
+    /**
+     * Hashes password.
+     *
+     * @param string $password Original password submitted on a registration 
+     * or update password form.
+     * @return void
+     */
+    public function hashPassword($password) {
+        $password = password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    /**
+     * Take id from form post and return ACL in format that can be added to 
+     * users table.  May not necessarily be actual id of ACL in acl table.
+     *
+     * @param int $acl_value The value for ACL from form POST.
+     * @param array $aclArray Array of ACLs in format that can be used to 
+     * populate dropdown forms.
+     * @return string The value of the ACL that is compatible with the users 
+     * table.
+     */
     public static function idToAcl($acl_value, $aclArray) {
         foreach($aclArray as $key => $value) {
             if($key == $acl_value) { return '["'.$value.'"]'; }
         }
     }
 
+    /**
+     * Assists in setting value of inactive field based on POST.
+     *
+     * @return $inactive The value for inactive based on value received from 
+     * POST.
+     */
     public function isInactiveChecked() {
         return $this->inactive === 1;
     }
 
+    /**
+     * Assists in setting value of reset_password field based on 
+     * POST.
+     *
+     * @return $reset_password The value for reset_password based on value 
+     * received from POST.
+     */
     public function isResetPWChecked() {
         return $this->reset_password === 1;
     }
@@ -205,6 +230,16 @@ class Users extends Model {
         }
     }
 
+    /**
+     * Tests for login attempts and sets session messages when there is a 
+     * failed attempt or when account is locked.
+     *
+     * @param User $user The user whose login attempts we are tracking.
+     * @param Login $loginModel The model that will be responsible for 
+     * displaying messages.
+     * @return Login $loginModel The Login model after login in attempt test 
+     * and session messages are assigned.
+     */
     public static function loginAttempts($user, $loginModel) {
         if($user->login_attempts >= MAX_LOGIN_ATTEMPTS) {
             $user->inactive = 1; 
@@ -256,6 +291,13 @@ class Users extends Model {
         return true;
     }
 
+    /**
+     * Removes ACL from user's acl field array.
+     *
+     * @param int $user_id The id of the user whose acl field we want to modify.
+     * @param string $acl The name of the ACL to be removed.
+     * @return void
+     */
     public static function removeAcl($user_id, $acl){
         $user = self::findById($user_id);
         if(!$user) return false;
@@ -269,6 +311,13 @@ class Users extends Model {
         return true;
     }
 
+    /**
+     * Sets ACL at registration.  If users table is empty the default 
+     * value is Admin.  Otherwise, we set the value to Standard.
+     *
+     * @return string The value of the ACL we are setting upon 
+     * registration of a user.
+     */
     public static function setAclAtRegistration() {
         if(Users::findTotal() == 0) {
             return '["Admin"]';
@@ -276,6 +325,12 @@ class Users extends Model {
         return '["Standard"]';
     }
 
+    /**
+     * Setter function for $changePassword.
+     *
+     * @param bool $value The value we will assign to $changePassword.
+     * @return void
+     */
     public function setChangePassword(bool $value): void {
         $this->changePassword = $value;
     }
