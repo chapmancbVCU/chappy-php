@@ -11,7 +11,7 @@
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
         <tr>
             <td><a href="<?=APP_DOMAIN?>documentation/aclModel" class="text-primary w-25">ACL Model</a></td>
-            <td>Add description here</td>
+            <td>Describes ACL model.</td>
         </tr>
         <tr>
             <td><a href="<?=APP_DOMAIN?>documentation/contactsModel" class="text-primary w-25">Contacts Model</a></td>

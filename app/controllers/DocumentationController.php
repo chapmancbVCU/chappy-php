@@ -176,7 +176,7 @@ class DocumentationController extends Controller {
      * @return void
      */
     public function libAction(): void {
-        $this->view->render('documentation/lib');
+        $this->view->render('documentation/lib_docs');
     }
 
     /**

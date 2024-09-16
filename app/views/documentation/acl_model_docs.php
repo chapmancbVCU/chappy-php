@@ -5,7 +5,7 @@
     <a href="<?=APP_DOMAIN?>documentation/models" class="btn btn-xs btn-secondary">Models</a>
     <h1 class="text-center">ACL Model Class</h1>
     <div class="row align-items-center justify-content-center my-3">
-        <p class="text-center w-75">Add description here</p>
+        <p class="text-center w-75">Describes ACL model.</p>
     </div>
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
