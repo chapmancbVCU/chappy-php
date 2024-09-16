@@ -171,6 +171,15 @@ class DocumentationController extends Controller {
     }
 
     /**
+     * Action for Lib page.
+     *
+     * @return void
+     */
+    public function libAction(): void {
+        $this->view->render('documentation/lib');
+    }
+
+    /**
      * Action for the Login Model class documentation page.
      *
      * @return void
@@ -350,6 +359,15 @@ class DocumentationController extends Controller {
         $this->view->render('documentation/unique_char_validator_docs');
     }
     
+    /**
+     * Action for the Uploads class documentation page.
+     *
+     * @return void
+     */
+    public function uploadsAction(): void {
+        $this->view->render('documentation/uploads_docs');
+    }
+
     /**
      * Action for the  Validator class documentation page.
      *

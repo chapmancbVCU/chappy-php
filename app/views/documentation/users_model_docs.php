@@ -2,7 +2,7 @@
 <?php $this->start('body'); ?>
 
 <div class="main">
-<a href="<?=APP_DOMAIN?>documentation/models" class="btn btn-xs btn-secondary">Models</a>
+    <a href="<?=APP_DOMAIN?>documentation/models" class="btn btn-xs btn-secondary">Models</a>
     <h1 class="text-center">Users Model Class</h1>
     <div class="row align-items-center justify-content-center my-3">
         <p class="text-center w-75">Implements support for our Contact Controller.  It contains actions for handling user interactions that will result in CRUD operations against the database.</p>

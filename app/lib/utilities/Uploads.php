@@ -91,11 +91,11 @@ class Uploads {
     }
 
     /**
-     * Undocumented function
+     * Performs file upload.
      *
-     * @param [type] $bucket
-     * @param [type] $name
-     * @param [type] $tmp
+     * @param string $path Directory where file will exist when uploaded.
+     * @param string $uploadName The actual name for the file when uploaded.
+     * @param string $fileName The temporary file name.
      * @return void
      */
     public function upload($path, $uploadName, $fileName): void {

@@ -35,6 +35,13 @@
     <div class="dropdown-container">
         <a href="<?=APP_DOMAIN?>documentation/javaScript">Overview</a>
     </div>
+    <button class="dropdown-btn">Lib
+        <i class="float-right pr-1 dropdown-toggle"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="<?=APP_DOMAIN?>documentation/lib">Overview</a>
+        <a href="<?=APP_DOMAIN?>documentation/uploads">Uploads</a>
+    </div>
     <button class="dropdown-btn">Models
         <i class="float-right pr-1 dropdown-toggle"></i>
     </button>

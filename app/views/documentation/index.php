@@ -19,6 +19,10 @@
             <td>Core components for this MVC framework.  Here you will find parent parent and helper classes that facilitate operations for this framework.</td>
         </tr>
         <tr>
+            <td><a href="<?=APP_DOMAIN?>documentation/lib" class="text-primary">Lib</a></td>
+            <td>Helpers, utilities, and other miscellaneous files or classes.</td>
+        </tr>
+        <tr>
             <td><a href="<?=APP_DOMAIN?>documentation/javaScript" class="text-primary">JavaScript</a></td>
             <td>Descriptions for any JavaScript files can be found here.</td>
         </tr>
