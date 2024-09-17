@@ -13,7 +13,7 @@ class Uploads {
     private int $_maxAllowedSize;
 
     /**
-     * Creates instance of Uploads class
+     * Creates instance of Uploads class.
      *
      * @param array $files Array of files to be uploaded.
      * @param array $imageTypes An array containing a list of acceptable file 
@@ -57,12 +57,12 @@ class Uploads {
     /**
      * Restructures files input from post into an array that can be processed.
      *
-     * @param array|string $files A single or an array of elements in the 
+     * @param array $files A single or an array of elements in the 
      * $_FILES variable whose information will be restructured so we can 
      * process.
      * @return array $structured the restructured array.
      */
-    public static function restructureFiles(array|string $files, bool $multiple) {
+    public static function restructureFiles(array $files, bool $multiple) {
         $structured = [];
         if($multiple) {
             foreach($files['tmp_name'] as $key => $val){
@@ -80,7 +80,7 @@ class Uploads {
         return $structured;
     }
 
-    /**
+    /**Update to support other file types.
      * Performs validation tasks.
      *
      * @return void
