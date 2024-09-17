@@ -1,9 +1,11 @@
 <?php $this->start('body'); ?>
-<h1 class="text-center">Welcome to MVC framework!</h1>
+<h1 class="text-center">chappy.php</h1>
 
 <div class="row align-items-center justify-content-center my-5">
-  <p class="text-center w-75">The Model View Controller is a style of programming that allows developers to efficiently manage interactions between users, the user interface, and the database of a web application.  The models manages the data, logic and rules of the application.  The views are what the user sees and interacts with.  Finally, the controller manages interactions between the user, views, and models.</p>
-  <p class="text-center w-75">This sample application natively comes with support for user login, registration, sessions associated with each user, sample contact management system, and documentation.</p>
+  <p class="text-center w-75">chappy.php is a whole new Model View Controller framework tailored to all of the fellows of the internet.  
+    Our goal is to provide a light weight and easily expandable framework for any PHP developer.  No longer do you have to become familiar 
+    with syntax needed to work with other frameworks in the market.  Just roll up your selves and start writing PHP code.
+  </p>
 </div>
 
 <div class="d-flex flex-column w-75 mx-auto">
@@ -29,14 +31,14 @@
       <img class="card-img-top" src="<?=APP_DOMAIN?>public/images/home/contacts.png" alt="Contacts page">
       <div class="card-body">
         <h5 class="card-title">Sample MVC App</h5>
-        <p class="card-text">The sample contact management systems demonstrates how to use all features of this MVC framework.</p>
+        <p class="card-text">The sample contact management systems includes a sample code base to introduce you to how to easily work with this framework..</p>
       </div>
     </div>
     <div class="card mb-5 border border-primary rounded-lg shadow-lg" style="width: 30rem;">
       <img class="card-img-top" src="<?=APP_DOMAIN?>public/images/home/register.png" alt="User registration page">
       <div class="card-body">
         <h5 class="card-title">User Management System</h5>
-        <p class="card-text">Register and manage users with ease.  Use built in validation to enforce strong password requirements.</p>
+        <p class="card-text">Register new users and administer their permissions with ease using our Access Control Level tools.</p>
       </div>
     </div>
   </div>
@@ -45,8 +47,8 @@
    <div class="card mb-5 border border-primary rounded-lg shadow-lg" style="width: 30rem;">
       <img class="card-img-top" src="<?=APP_DOMAIN?>public/images/home/documentation.png" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">MVC Documentation</h5>
-        <p class="card-text">Descriptions of all functions and classes that come with this MVC framework.</p>
+        <h5 class="card-title">Documentation</h5>
+        <p class="card-text">Descriptions of all functions and classes that come with chappy.php along with a complete users guide.</p>
       </div>
     </div>
     <div class="card mb-5 border border-primary rounded-lg shadow-lg" style="width: 30rem;">
