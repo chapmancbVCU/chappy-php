@@ -21,19 +21,21 @@
             <li><a href="<?=APP_DOMAIN?>userguide/controllers">Controllers</a></li>
             <li><a href="<?=APP_DOMAIN?>userguide/acl">Access Control</a></li>
             <li><a href="<?=APP_DOMAIN?>userguide/uploads">Uploads</a></li>
+            <li><a href="<?=APP_DOMAIN?>userguide/phpunit">PHPUnit</a></li>
             <li><a href="<?=APP_DOMAIN?>userguide/javascript">JavaScript</a></li>
         </ol>
     </div>
 
     <h1 id="overview" class="text-center">Overview</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
-        <p>This simple and complete Model View Controller (MVC) Framework is everything you need to 
-            quickly get started on your projects.  With built in server-side validation, user registration,
-            and rapid form development support you have a solid foundation.
+        <p>The chappy.php Framework is everything you need to quickly get started on your projects.  
+            With built in server-side validation, user registration, administrative features,
+            and rapid form development support you have a solid foundation to build apps of any scale.
         </p>
-        <p>This guide goes over all of the major features of this MVC framework along with example 
+        <p>This guide goes over all of the major features of chappy.php along with example 
             function calls to help you get started.  Starting with getting started and installation we 
-            move on to the main features, and finally we go over the feature efforts and release notes.</p>
+            move on to the main features, and finally we go over the feature efforts and release notes.
+        </p>
     </div>
 </div>
 <?php $this->end(); ?>
