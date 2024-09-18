@@ -12,6 +12,16 @@
             <li><a href="<?=APP_DOMAIN?>userguide/contactManagement">Contact Management System</a></li>
             <li><a href="<?=APP_DOMAIN?>userguide/forms">Rapid Forms</a></li>
             <li><a href="<?=APP_DOMAIN?>userguide/validation">Server Side Validation</a></li>
+            <li>Below no views yet</li>
+            <li><a href="<?=APP_DOMAIN?>userguide/console">Console</a></li>
+            <li><a href="<?=APP_DOMAIN?>userguide/administration">Administration</a></li>
+            <li><a href="<?=APP_DOMAIN?>userguide/sessionMessages">Session Messages</a></li>
+            <li><a href="<?=APP_DOMAIN?>userguide/views">Views</a></li>
+            <li><a href="<?=APP_DOMAIN?>userguide/models">Models</a></li>
+            <li><a href="<?=APP_DOMAIN?>userguide/controllers">Controllers</a></li>
+            <li><a href="<?=APP_DOMAIN?>userguide/acl">Access Control</a></li>
+            <li><a href="<?=APP_DOMAIN?>userguide/uploads">Uploads</a></li>
+            <li><a href="<?=APP_DOMAIN?>userguide/javascript">JavaScript</a></li>
         </ol>
     </div>
 
