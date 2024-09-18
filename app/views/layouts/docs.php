@@ -13,8 +13,6 @@ use Core\FormHelper;
     <link rel="icon" href="<?=APP_DOMAIN?>public/images/favicon/noun-mvc-5340614.png">
     <link rel="stylesheet" href="<?=APP_DOMAIN?>public/css/bootstrap-4.6.2/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="<?=APP_DOMAIN?>public/css/styles.css?v=<?=VERSION?>" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="<?=APP_DOMAIN?>public/css/alerts/alertMsg.min.css?v=<?=VERSION?>" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="<?=APP_DOMAIN?>public/css/font-awesome-4.7.0/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
 
     <?= $this->content('head'); ?>
 
@@ -22,15 +20,10 @@ use Core\FormHelper;
   <body class="d-flex flex-column min-vh-100">
     <?php include 'main_menu.php' ?>
     <div class="container-fluid" style="min-height:cal(100% - 125px);">
-      <?= Session::displayMessage() ?>
       <?php include(ROOT . DS . 'app' . DS . 'views' . DS . 'layouts' . DS . 'docs_nav.php'); ?>
       <?= $this->content('body'); ?>
     </div>
-    <?php //include 'footer.php'; ?>
-    <script src="<?=APP_DOMAIN?>public/js/jQuery-3.7.1/jQuery-3.7.1.min.js"></script>
-    <script src="<?=APP_DOMAIN?>public/js/alerts/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="<?=APP_DOMAIN?>public/js/bootstrap-4.6.2/bootstrap.min.js"></script>
-    <script src="<?=APP_DOMAIN?>public/js/alerts/alertMsg.min.js?v=<?=VERSION?>"></script>
     <script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
   </body>
 </html>
