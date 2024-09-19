@@ -83,6 +83,16 @@
         <a href="<?=APP_DOMAIN?>userguide/contactManagement">Contact Management System</a>
         <a href="<?=APP_DOMAIN?>userguide/forms">Quick Forms</a>
         <a href="<?=APP_DOMAIN?>userguide/validation">Server Side Validation</a>
+        <a href="<?=APP_DOMAIN?>userguide/console">Console</a>
+        <a href="<?=APP_DOMAIN?>userguide/administration">Administration</a>
+        <a href="<?=APP_DOMAIN?>userguide/sessionMessages">Session Messages</a>
+        <a href="<?=APP_DOMAIN?>userguide/views">Views</a>
+        <a href="<?=APP_DOMAIN?>userguide/models">Models</a>
+        <a href="<?=APP_DOMAIN?>userguide/controllers">Controllers</a>
+        <a href="<?=APP_DOMAIN?>userguide/acl">Access Control</a>
+        <a href="<?=APP_DOMAIN?>userguide/uploads">Uploads</a>
+        <a href="<?=APP_DOMAIN?>userguide/phpunit">PHPUnit</a>
+        <a href="<?=APP_DOMAIN?>userguide/javascript">JavaScript</a>
     </div>
     <a href="http://php.net/manual/en">PHP Docs<a>
 </div>
