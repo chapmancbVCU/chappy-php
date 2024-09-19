@@ -7,7 +7,10 @@
     </div>
     <h1 class="text-center">Session Messages</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
-        Test
+        <ol class="pl-4">
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+        </ol>
     </div>
 </div>
 <?php $this->end(); ?>
