@@ -1,8 +1,8 @@
 {
-    "name": "chadchapman/custom-php-mvc-framework",
+    "name": "chadchapman/chappy-php",
     "autoload": {
         "psr-4": {
-            "Chadchapman\\CustomPhpMvcFramework\\": "src/",
+            "Chadchapman\\ChappyPhp\\": "src/",
             "Console\\": "/src"
         },
         "classmap": ["src"]
