@@ -44,19 +44,6 @@
         </ol>
     </div>
 
-    <h1 id="#image" class="text-center">Add/Update Profile Image</h1>
-    <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
-        <p>The edit profile image allows the user to select either png, jpg, gif, or bmp image 
-            types.  The $fileTypes array can be modified within the editProfileImageAction 
-            function inside the ProfileController class.</p>
-        <p>If you do not choose an image and click "upload" the current image will be removed.</p>
-        <p>A screenshot of this page is shown below:</p>
-        <figure class="d-flex flex-column justify-content-center align-items-center">
-            <img class="img-fluid" src="<?=APP_DOMAIN?>public/images/userGuide/profile_image.png" alt="Edit Profile Image Page">
-            <figcaption>Figure 3 - Edit Profile Image</figcaption>
-        </figure>
-    </div>
-
     <h1 id="#password" class="text-center">Update Password</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
         <p>This view allows the user to change their password.  Complex passwords are enforced here.  
