@@ -9,7 +9,6 @@
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
         <ol class="pl-4">
         <li><a href="#overview">Overview</a></li>
-        <li><a href="#usage">Usage</a></li>
         </ol>
     </div>
 
@@ -27,7 +26,11 @@ php console ${command_name} ${argument}
 php console test:run-test Test
         </code>
 </pre>
-        <p>Where <q>Test</q> is the name of the file containing the test.  Typing <q>php console</q> in the command line at project root will display all of the available commands.</p>
+        <p>Where <q>Test</q> is the name of the file containing the test.  Typing <q>php console</q> in the command line at project 
+            root will display all of the available commands.  Each of the supported command will be covered in their respective sections 
+            in this user guide.
+        </p>
+        <p>If there is a command you would like for us to support you can submit an issue <a href="https://github.com/chapmancbVCU/chappy-php/issues">here</a>.</p>
     </div>
 </div>
 <?php $this->end(); ?>
