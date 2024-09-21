@@ -41,6 +41,8 @@
             <li>Last Name: User's last name and it's a required field.</li>
             <li>E-mail: User's Email and it's a required field</li>
             <li>Description: Optional field where the user can describe themselves.</li>
+            <li>Upload Profile Image (Optional)</li>
+            <li>Manage profile images.  Image on left is current image.  You can drag an image to the left most position to set it as the current profile image.</li>
         </ol>
     </div>
 
