@@ -21,7 +21,7 @@ class RunTestCommand extends Command
     {
         $this->setName('test:run-test')
             ->setDescription('Performs the phpunit test.')
-            ->setHelp('php console test:mk-test <test_file_name>')
+            ->setHelp('php console test:run-test <test_file_name>')
             ->addArgument('testname', InputArgument::REQUIRED, 'Pass the test file\'s name.');
     }
  
