@@ -40,7 +40,7 @@ git clone git@github.com:chapmancbVCU/custom-php-mvc-framework.git
             <li>Run the command:
 <pre class="mb-1 pb-1">
                     <code>
-php init-mvc
+php init-chappy
                     </code>
 </pre>               
             </li>
