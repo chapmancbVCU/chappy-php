@@ -203,6 +203,7 @@ FormHelper::checkboxBlockLabelLeft(
     $this->login->getRememberMeChecked(), 
     [], 
     ['class' => 'form-group']
+    , $this->displayErrors
 );
 </code>
                 </pre>
@@ -282,6 +283,7 @@ FormHelper::checkboxBlockLabelRight(
     $this->login->getRememberMeChecked(), 
     [], 
     ['class' => 'form-group']
+    , $this->displayErrors
 );
 </code>
                 </pre>
@@ -442,7 +444,8 @@ FormHelper::emailBlock('Email',
     'email', 
     $this->contact->email, 
     ['class' => 'form-control'], 
-    ['class' => 'form-group col-md-6']
+    ['class' => 'form-group col-md-6'], 
+    $this->displayErrors
 );
 </code>
                 </pre>
@@ -643,7 +646,8 @@ FormHelper::inputBlock(
     'example_name', 
     example_value, 
     ['class' => 'form-control'], 
-    ['class' => 'form-group']
+    ['class' => 'form-group'], 
+    $this->displayErrors
 );
 </code>
                 </pre>
@@ -905,7 +909,8 @@ FormHelper::selectBlock(
     $_POST["test"],
     ['A' => 'a','B' => 'b', 'C' => 'c'], 
     ['class' => 'form-control'], 
-    ['class' => 'form-group']
+    ['class' => 'form-group'], 
+    $this->displayErrors
 );
 </code>
                 </pre>
@@ -1296,7 +1301,8 @@ FormHelper::textAreaBlock(
     example_value, 
     ['class' => 'form-control input-sm', 
         'placeholder' => 'foo'], 
-    ['class' => 'form-group']
+    ['class' => 'form-group'], 
+    $this->displayErrors
 );
 </code>
                 </pre>

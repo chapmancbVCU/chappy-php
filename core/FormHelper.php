@@ -81,7 +81,7 @@ class FormHelper {
      * the left that is not part of a group.
      *
      * An example function call is shown below:
-     * FormHelper::checkboxBlockLabelRight('Remember Me', 'remember_me', 'on', $this->login->getRememberMeChecked(), [], ['class' => 'form-group']);
+     * FormHelper::checkboxBlockLabelRight('Remember Me', 'remember_me', 'on', $this->login->getRememberMeChecked(), [], ['class' => 'form-group'], $this->displayErrors);
      * 
      * Example HTML output is shown below:
      * <div class="form-group">
@@ -132,7 +132,7 @@ class FormHelper {
      * the right that is not part of a group.
      *
      * An example function call is shown below:
-     * FormHelper::checkboxBlockLabelRight('Remember Me', 'remember_me', $this->login->getRememberMeChecked(), [], ['class' => 'form-group mr-1']);
+     * FormHelper::checkboxBlockLabelRight('Remember Me', 'remember_me', $this->login->getRememberMeChecked(), [], ['class' => 'form-group mr-1'], $this->displayErrors);
      * 
      * Example HTML output is shown below:
      * <div>
@@ -226,7 +226,7 @@ class FormHelper {
      * Renders an HTML div element that surrounds an input of type email.
      *
      * An example function call is shown below:
-     * FormHelper::emailBlock('Email', 'email', $this->contact->email, ['class' => 'form-control'], ['class' => 'form-group col-md-6']);
+     * FormHelper::emailBlock('Email', 'email', $this->contact->email, ['class' => 'form-control'], ['class' => 'form-group col-md-6'], $this->displayErrors);
      * 
      * Example HTML output is shown below:
      * <label for="email">Email</label><input type="email" id="email" name="email" value="" class="form-control" placeholder="joe_@_example.com" />
@@ -327,7 +327,7 @@ class FormHelper {
      * 15. week
      * 
      * An example function call is shown below:
-     * FormHelper::inputBlock('text', 'Example', 'example_name', example_value, ['class' => 'form-control'], ['class' => 'form-group']);
+     * FormHelper::inputBlock('text', 'Example', 'example_name', example_value, ['class' => 'form-control'], ['class' => 'form-group'], $this->displayErrors);
      * 
      * Example HTML output is shown below:
      * <div class="form-group">
@@ -478,7 +478,7 @@ class FormHelper {
      * Renders a select element with a list of options.
      * 
      * An example function call is shown below:
-     * FormHelper::selectBlock("Test", "test", $_POST["test"],['A' => 'a','B' => 'b', 'C' => 'c'], ['class' => 'form-control'], ['class' => 'form-group']);
+     * FormHelper::selectBlock("Test", "test", $_POST["test"],['A' => 'a','B' => 'b', 'C' => 'c'], ['class' => 'form-control'], ['class' => 'form-group'], $this->displayErrors);
      *
      * Example HTML output is shown below:
      * <div class="form-group">
@@ -706,7 +706,7 @@ class FormHelper {
      * for setting  attribute tags in the form section.
      * 
      * An example function call is shown below:
-     * FormHelper::textAreaBlock("Example", 'example_name', example_value, ['class' => 'form-control input-sm', 'placeholder' => 'foo'], ['class' => 'form-group']);
+     * FormHelper::textAreaBlock("Example", 'example_name', example_value, ['class' => 'form-control input-sm', 'placeholder' => 'foo'], ['class' => 'form-group'], $this->displayErrors);
      * 
      * Example HTML output is shown below:
      * <div class="form-group">
