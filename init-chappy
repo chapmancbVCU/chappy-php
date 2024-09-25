@@ -1,0 +1,21 @@
+#!/user/bin/env php
+<?php
+makeBorder('Setup composer dependencies');
+include ('src/init/setup-composer.php');
+
+makeBorder('Create profile images dir');
+shell_exec('php console init:mk-profile-images-dir');
+
+makeBorder('Generate .env file');
+shell_exec('php console tools:mk-env');
+
+
+
+
+
+
+function makeBorder(string $message) {
+    echo "\n\n----------------------------------------\n";
+    echo $message;
+    echo "\n----------------------------------------\n";
+}
