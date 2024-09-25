@@ -33,6 +33,9 @@ If you need help search using a combination of keywords that include Laravel, se
    * DB_HOST
    * CURRENT_USER_SESSION_NAME: should be a long string of upper and lower case characters and numbers.
    * REMEMBER_ME_COOKIE_NAME:  should be a long string of upper and lower case characters and numbers.
+   * For XAMPP set APP_DOMAIN to 'http://localhost/chappy-php'.  On live servers set it to '/'.
+   * Set SERVER_TYPE to 'apache' on Apache and XAMPP.  For Nginx make sure it is set to 'nginx' if you are using $_['PATH_INFO'] instead of $_SERVER['REQUEST_URI'].
+   * You can also configure password complexity requirements, MAX_LOGIN_ATTEMPTS, and name for S3_BUCKET here as well.
 5. Database Setup:
    * Create your database and set it to what you entered for DB_NAME
    * Apache and Nginx, run the following command from project root:
@@ -48,14 +51,14 @@ If you need help search using a combination of keywords that include Laravel, se
       * profile_images
       * users
       * user_sessions
-6. profileImage directory:
+6. profile_images directory:
    * In CMD or Terminal navigate to public/images/uploads from project root and make sure the "profile_images" directory exists. If not create it.
-   * Set the correct permissions for the profile_images directory in MacOS or Linux: ```chmod 755 profileImage```
+   * Set the correct permissions for the profile_images directory in MacOS or Linux: ```chmod 755 profile_images```
    * In Linux and MacOS you will need to modify the owner and group.
       ```sudo chown -R %USERNAME%:%GROUP% profile_images/```
       With XAMPP your username will work along with daemon as the group. Apache both has to be www-data. Not tested with nginx yet.
-7. Navigate to http://localhost/chappy-php.  If you have any issues make sure your database is setup correctly and the .env file is correct.
-   * For production servers or remote access the path will be http://ip_address_or_domain_name.  You will need to make sure the ipaddress / hostname / domain name is set in APP_DOMAIN variable in .env file.
+7. For XAMPP navigate to http://localhost/chappy-php.  If you have any issues make sure your database is setup correctly and the .env file is correct.
+   * For production servers or remote access the path will be http://ip_address_or_domain_name.  You will need to make sure the APP_DOMAIN variable is set to '/' in .env file.
 
 ## Goals
 1. Add additional front-end and back-end form validation (Done)

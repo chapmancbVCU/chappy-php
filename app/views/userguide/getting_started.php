@@ -54,6 +54,9 @@ php init-chappy
                     <li>DB_HOST</li>
                     <li>CURRENT_USER_SESSION_NAME: should be a long string of upper and lower case characters and numbers.</li>
                     <li>REMEMBER_ME_COOKIE_NAME:  should be a long string of upper and lower case characters and numbers.</li>
+                    <li>For XAMPP set APP_DOMAIN to 'http://localhost/chappy-php'.  On live servers set it to '/'.</li>
+                    <li>Set SERVER_TYPE to 'apache' on Apache and XAMPP.  For Nginx make sure it is set to 'nginx' if you are using $_['PATH_INFO'] instead of $_SERVER['REQUEST_URI'].</li>
+                    <li>You can also configure password complexity requirements, MAX_LOGIN_ATTEMPTS, and name for S3_BUCKET here as well.</li>
                 </ol>
             </li>
             <li>Database Setup:
@@ -114,9 +117,9 @@ sudo chown -R %USERNAME%:%GROUP% profile_images/
                     </li>
                 </ol>
             </li>
-            <li>Navigate to http://localhost/chappy-php.  If you have any issues make sure your database is setup correctly and the .env file is correct.
+            <li>For XAMPP navigate to http://localhost/chappy-php.  If you have any issues make sure your database is setup correctly and the .env file is correct.
                 <ol class="pl-4" type="a">
-                    <li>For production servers or remote access the path will be http://ip_address_or_domain_name.  You will need to make sure the ipaddress / hostname / domain name is set in APP_DOMAIN variable in .env file.</li>
+                    <li>For production servers or remote access the path will be http://ip_address_or_domain_name.</li>
                 <ol>
             </li>
         </ol>
