@@ -11,17 +11,29 @@ The Model View Controller is a style of programming that allows developers to ef
 ## What does this MVC support?
 It supports everything described above.  This sample application natively comes with support for user login, registration, and sessions associated with each user.
 
+## System Requirements
+1. Apache Server, development environment such as XAMPP, or Nginx
+2. PHP 8.3
+3. SQL/MariaDB
+4. OS: MacOS, Linux, Windows 10+
+5. SQL Management software
+6. Composer
+7. git
+
+If you need help search using a combination of keywords that include Laravel, server type such as Nginx or Apache, and name of OS.  They will list out all PHP related dependencies needed for Apache and Nginx.
+
 ## Getting Started
 1. Navigate to where your development projects are located in CMD or Terminal.
-2. Run the command ```git clone git@github.com:chapmancbVCU/custom-php-mvc-framework.git```
-3. Make a copy of .env.sample in project root and name it .env.  Fill in the following information:
+2. Run the command ```git clone git@github.com:chapmancbVCU/chappy-php.git```
+3. Run the command: ```php init-chappy```
+4. Make a copy of .env.sample in project root and name it .env.  Fill in the following information:
    * DB_NAME
    * DB_USER
    * DB_PASSWORD
    * DB_HOST
    * CURRENT_USER_SESSION_NAME: should be a long string of upper and lower case characters and numbers.
    * REMEMBER_ME_COOKIE_NAME:  should be a long string of upper and lower case characters and numbers.
-4. Database Setup:
+5. Database Setup:
    * Create your database and set it to what you entered for DB_NAME
    * Apache and Nginx, run the following command from project root:
       ```php run_migrations.php```
@@ -32,20 +44,18 @@ It supports everything described above.  This sample application natively comes 
    * Inspect database and make sure the following tables are created:
       * acl
       * contacts
+      * migrations
+      * profile_images
       * users
       * user_sessions
-4. profileImage directory:
-   * In CMD or Terminal navigate to public/images from project root and make a directory called "profileImage".
-   * In Linux and MacOS set the appropriate permissions by running the command: ```chmod 755 profileImage```
+6. profileImage directory:
+   * In CMD or Terminal navigate to public/images/uploads from project root and make sure the "profile_images" directory exists. If not create it.
+   * Set the correct permissions for the profile_images directory in MacOS or Linux: ```chmod 755 profileImage```
    * In Linux and MacOS you will need to modify the owner and group.
-      ```sudo chown -R %USERNAME%:%GROUP% profileImage/```
-      Where  %USERNAME% is the name of the account you are developing in and %GROUP% is the name of group associated with your server.  In XAMPP it would be daemon and in Nginx it maybe nginx or a something else depending on the instructions you followed to setup your server.
-5. Import the database found in mvctutorial.sql.zip into SQL.
-6. Initialize a composer project.
-7. Install phpdotenv for environmental file support by running: ```composer require vlucas/phpdotenv```
-8. Install TinyMCE for WYSIWYG rich text editor support: ```composer require tinymce/tinymce```
-9. Navigate to http://localhost/custom-php-mvc-framework.  If you have any issues make sure your database is setup correctly and the .env file is correct.
-   * For production servers or remote access the path will be "/".  You will need to make sure the ipaddress / hostname / domain name is set in APP_DOMAIN variable in .env file.
+      ```sudo chown -R %USERNAME%:%GROUP% profile_images/```
+      With XAMPP your username will work along with daemon as the group. Apache both has to be www-data. Not tested with nginx yet.
+7. Navigate to http://localhost/chappy-php.  If you have any issues make sure your database is setup correctly and the .env file is correct.
+   * For production servers or remote access the path will be http://ip_address_or_domain_name.  You will need to make sure the ipaddress / hostname / domain name is set in APP_DOMAIN variable in .env file.
 
 ## Goals
 1. Add additional front-end and back-end form validation (Done)

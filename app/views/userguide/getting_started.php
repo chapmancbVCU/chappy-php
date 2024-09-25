@@ -24,6 +24,8 @@
             <li>Composer</li>
             <li>git</li>
         </ol>
+
+        <p>If you need help search using a combination of keywords that include Laravel, server type such as Nginx or Apache, and name of OS.  They will list out all PHP related dependencies needed for Apache and Nginx.</p>
     </div>
 
     <h1 id="setup" class="text-center">Setup</h1>
@@ -91,13 +93,13 @@ php console tools:run-migration
                     </li>
                 </ol>
             </li>
-            <li>profileImage directory:
+            <li>profile_images directory:
                 <ol class="pl-4" type="a">
-                    <li>In CMD or Terminal navigate to public/images from project root and make sure the <q>profileImage</q> directory exists.  If not create it.</li>
-                    <li>In you needed to manually create the profileImage directory in MacOS or Linux:
+                    <li>In CMD or Terminal navigate to public/images/uploads from project root and make sure the <q>profile_images</q> directory exists.  If not create it.</li>
+                    <li>Set the correct permissions for the profile_images directory in MacOS or Linux:
                         <pre class="mb-1 pb-1">
                             <code>
-chmod 755 profileImage
+chmod 755 profile_images
                             </code>
                         </pre>
                     </li>
@@ -105,16 +107,16 @@ chmod 755 profileImage
                         In Linux and MacOS you will need to modify the owner and group. 
                         <pre class="mb-1 pb-1">
                             <code>
-sudo chown -R %USERNAME%:%GROUP% profileImage/
+sudo chown -R %USERNAME%:%GROUP% profile_images/
                             </code>
                         </pre>
                         With XAMPP your username will work along with daemon as the group.  Apache both has to be www-data.  Not tested with nginx yet.
                     </li>
                 </ol>
             </li>
-            <li>Navigate to http://localhost/custom-php-mvc-framework.  If you have any issues make sure your database is setup correctly and the .env file is correct.
+            <li>Navigate to http://localhost/chappy-php.  If you have any issues make sure your database is setup correctly and the .env file is correct.
                 <ol class="pl-4" type="a">
-                    <li>For production servers or remote access the path will be http://ip_address_or_domain_name/custom-php-mvc-framework.  You will need to make sure the ipaddress / hostname / domain name is set in APP_DOMAIN variable in .env file.</li>
+                    <li>For production servers or remote access the path will be http://ip_address_or_domain_name.  You will need to make sure the ipaddress / hostname / domain name is set in APP_DOMAIN variable in .env file.</li>
                 <ol>
             </li>
         </ol>
