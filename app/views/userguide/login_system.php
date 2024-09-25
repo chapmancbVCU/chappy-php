@@ -36,7 +36,11 @@
 
     <h1 id="login" class="text-center">Login</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
-        <p>The login page is the standard login setup with a remember me checkbox.  You can get to the registration page from here. </p>
+        <p>The login page is the standard login setup with a remember me checkbox.  Once you login you can access parts of the application 
+            that are allowed for your access control level.  The number of failed attempts allowed can be set by your administrator.  If 
+            you are an administrator and you get locked out and there are no other administrators you can set the inactive field to 0 and 
+            login_attempts to 0 in the record associated with your user account.
+        </p>
     </div>
 </div>
 <?php $this->end(); ?>
