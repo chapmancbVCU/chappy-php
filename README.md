@@ -25,7 +25,8 @@ If you need help search using a combination of keywords that include Laravel, se
 ## Getting Started
 1. Navigate to where your development projects are located in CMD or Terminal.
 2. Run the command ```git clone git@github.com:chapmancbVCU/chappy-php.git```
-3. Run the command: ```php init-chappy```
+3. cd to newly cloned directory.
+3. From project root run the command: ```php init-chappy```
 4. Make a copy of .env.sample in project root and name it .env.  Fill in the following information:
    * DB_NAME
    * DB_USER

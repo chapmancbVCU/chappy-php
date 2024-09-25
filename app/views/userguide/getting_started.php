@@ -39,7 +39,8 @@ git clone git@github.com:chapmancbVCU/custom-php-mvc-framework.git
                     </code>
 </pre>
             </li>
-            <li>Run the command:
+            <li>cd to newly cloned directory.</li>
+            <li>From project root run the command:
 <pre class="mb-1 pb-1">
                     <code>
 php init-chappy
