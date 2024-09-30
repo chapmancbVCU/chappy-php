@@ -63,27 +63,12 @@ php init-chappy
             <li>Database Setup:
                 <ol class="pl-4" type="a">
                     <li>Create your database and set it to what you entered for DB_NAME</li>
-                    <li>Apache and Nginx:
-                        <ol class="pl-4">
-                            <li>Run the command from project root:
+                    <li>Run the command from project root to create initial tables:
 <pre class="mb-1 pb-1">
                     <code>
 php console tools:run-migration
                     </code>
 </pre>
-                            </li>
-                        </ol>
-                    </li>
-                    <li>XAMPP
-                        <ol class="pl-4" type="a">
-                        <li>Run the command from project root:
-<pre class="mb-1 pb-1">
-                    <code>
-php console tools:run-migration
-                    </code>
-</pre>
-                            </li>
-                        </ol>
                     </li>
                     <li>Inspect database and make sure the following tables are created:
                         <ol class="pl-4" type="a">

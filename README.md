@@ -39,12 +39,8 @@ If you need help search using a combination of keywords that include Laravel, se
    * You can also configure password complexity requirements, MAX_LOGIN_ATTEMPTS, and name for S3_BUCKET here as well.
 5. Database Setup:
    * Create your database and set it to what you entered for DB_NAME
-   * Apache and Nginx, run the following command from project root:
-      ```php run_migrations.php```
-   * XAMPP
-      * Within the .env file set the RUN_MIGRATIONS_FROM_BROWSER variable to true
-      * Run the following command from your browser's address bar:
-         ```http://localhost/project_name/run_migrations.php```
+   * Run the command from project root to create initial tables:
+      ```php console tools:run-migration```
    * Inspect database and make sure the following tables are created:
       * acl
       * contacts
