@@ -1,7 +1,12 @@
-# custom-php-mvc-framework
-Model View Controller (MVC) framework based on tutorials I have been following from Freeskills on YT.
+# chappy.php
+chappy.php is a whole new Model View Controller framework tailored to all of the fellows of the internet. Our goal is to provide a light weight and easily expandable framework for any PHP developer. No longer do you have to become familiar with syntax needed to work with other frameworks in the market. Just roll up your selves and start writing PHP code.
 
-Beginning on Friday, June 15, 2024 all updates are driven by me unless other contributors are involved.
+Originally a fork of the Ruah PHP MVC framework based on the MVC PHP Framework tutorial series on the Freeskills YouTube channel, we have worked hard to add additional support and features.  This includes:
+1. Expanded server side validation support
+2. Rapid form creation for several different form element types
+3. User profiles
+4. Administration features
+5. A console, similar to Laravel's Artisan, for performing command line interface based operations
 
 Complete documentation including the "Getting Started" guild describe below can be found within the framework after setup.
 
