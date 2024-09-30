@@ -8,6 +8,8 @@ Originally a fork of the Ruah PHP MVC framework based on the MVC PHP Framework t
 4. Administration features
 5. A console, similar to Laravel's Artisan, for performing command line interface based operations
 
+If you have a feature that you would like to be supported please create a request under the Issues tab.
+
 Complete documentation including the "Getting Started" guild describe below can be found within the framework after setup.
 
 ## About
