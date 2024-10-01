@@ -85,10 +85,7 @@ class Uploads {
      *
      * @return void
      */
-    public function runValidation(): void {
-        //$this->validateSize();
-        //$this->validateImageType();
-    }
+    public function runValidation(): void { }
 
     /**
      * Performs file upload.
@@ -136,13 +133,5 @@ class Uploads {
      *
      * @return void
      */
-    protected function validateSize(): void {
-        // foreach($this->_files as $file){
-        //     $name = $file['name'];
-        //     if($file['size'] > $this->_maxAllowedSize){
-        //         $msg = $name . " is over the max allowed size of 5mb.";
-        //         $this->addErrorMessage($name,$msg);
-        //     }
-        // }
-    }
+    protected function validateSize(): void { }
 }
