@@ -7,10 +7,10 @@ use Core\Helper;
  */
 class Uploads {
     private string $_bucket;
-    private array $_allowedFileTypes = [];
+    protected array $_allowedFileTypes = [];
     private array $_errors = [];
-    private array $_files= []; 
-    private int $_maxAllowedSize;
+    protected array $_files= []; 
+    protected int $_maxAllowedSize;
 
     /**
      * Creates instance of Uploads class.
@@ -44,10 +44,6 @@ class Uploads {
             $this->_errors[$name] = $message;
         }
     }
-    
-    public function getAllowedFileTypes() {
-        return $this->_allowedFileTypes;
-    }
 
     /**
      * Getter function for the $_files array.
@@ -56,10 +52,6 @@ class Uploads {
      */
     public function getFiles(): array {
         return $this->_files;
-    }
-
-    public function getMaxAllowedSize(): int {
-        return $this->_maxAllowedSize;
     }
 
     /**

@@ -23,9 +23,9 @@ class UploadProfileImage extends Uploads {
      * @return void
      */
     protected function validateImageType(): void { 
-        foreach($this->getFiles() as $file) {
+        foreach($this->_files as $file) {
             // checking file type
-            if(!in_array(exif_imagetype($file['tmp_name']), $this->getAllowedFileTypes())){
+            if(!in_array(exif_imagetype($file['tmp_name']), $this->_allowedFileTypes)){
                 $name = $file['name'];
                 $msg = $name . " is not an allowed file type. Please use a jpeg, gif, or png.";
                 $this->addErrorMessage($name, $msg);
@@ -39,9 +39,9 @@ class UploadProfileImage extends Uploads {
      * @return void
      */
     protected function validateSize(): void {
-        foreach($this->getFiles() as $file){
+        foreach($this->_files as $file){
             $name = $file['name'];
-            if($file['size'] > $this->getMaxAllowedSize()){
+            if($file['size'] > $this->_maxAllowedSize){
                 $msg = $name . " is over the max allowed size of 5mb.";
                 $this->addErrorMessage($name,$msg);
             }
