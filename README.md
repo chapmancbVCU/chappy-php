@@ -64,14 +64,14 @@ If you need help search using a combination of keywords that include Laravel, se
 2. Resolve issue for warnings about creating of dynamic properties so the framework is fully compatible with PHP 8
 3. Test with nginx (In progress)
 4. Update jQuery and Bootstrap to modern builds and add support to maintain similar look and feel of front end (Done)
-5. Add support for additional form elements in FormHelpers (In progress)
+5. Add support for additional form elements in FormHelpers (Done)
 6. Add user guide (Update as needed)
-7. Add management system for Users model to in include admin so administrators can manage other users, change user type, and perform password reset operations. (In progress)
+7. Add management system for Users model to in include admin so administrators can manage other users, change user type, and perform password reset operations. (Done)
 9. Add TinyMCE (Done)
 10. Add file upload support (Done)
 11. Add database migrations. (Done)
 12. Update to match original tutorial project. (Done)
-13. Add user profile (In progress)
+13. Add user profile (Done)
 
 ## Credits
 1. “mvc” icon by iconixar, from thenounproject.com.
