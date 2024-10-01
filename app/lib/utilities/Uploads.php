@@ -45,6 +45,10 @@ class Uploads {
         }
     }
     
+    public function getAllowedFileTypes() {
+        return $this->_allowedFileTypes;
+    }
+
     /**
      * Getter function for the $_files array.
      *
@@ -52,6 +56,10 @@ class Uploads {
      */
     public function getFiles(): array {
         return $this->_files;
+    }
+
+    public function getMaxAllowedSize(): int {
+        return $this->_maxAllowedSize;
     }
 
     /**
@@ -86,8 +94,8 @@ class Uploads {
      * @return void
      */
     public function runValidation(): void {
-        $this->validateSize();
-        $this->validateImageType();
+        //$this->validateSize();
+        //$this->validateImageType();
     }
 
     /**
@@ -120,16 +128,16 @@ class Uploads {
      *
      * @return void
      */
-    protected function validateImageType(): void { 
-        foreach($this->_files as $file) {
-            // checking file type
-            if(!in_array(exif_imagetype($file['tmp_name']), $this->_allowedFileTypes)){
-                $name = $file['name'];
-                $msg = $name . " is not an allowed file type. Please use a jpeg, gif, or png.";
-                $this->addErrorMessage($name, $msg);
-            }
-        }
-    }
+    // protected function validateImageType(): void { 
+    //     foreach($this->_files as $file) {
+    //         // checking file type
+    //         if(!in_array(exif_imagetype($file['tmp_name']), $this->_allowedFileTypes)){
+    //             $name = $file['name'];
+    //             $msg = $name . " is not an allowed file type. Please use a jpeg, gif, or png.";
+    //             $this->addErrorMessage($name, $msg);
+    //         }
+    //     }
+    // }
 
     /**
      * Validates file size and sets error message if file is too large.
@@ -137,12 +145,12 @@ class Uploads {
      * @return void
      */
     protected function validateSize(): void {
-        foreach($this->_files as $file){
-            $name = $file['name'];
-            if($file['size'] > $this->_maxAllowedSize){
-                $msg = $name . " is over the max allowed size of 5mb.";
-                $this->addErrorMessage($name,$msg);
-            }
-        }
+        // foreach($this->_files as $file){
+        //     $name = $file['name'];
+        //     if($file['size'] > $this->_maxAllowedSize){
+        //         $msg = $name . " is over the max allowed size of 5mb.";
+        //         $this->addErrorMessage($name,$msg);
+        //     }
+        // }
     }
 }

@@ -2,7 +2,7 @@
 namespace App\Controllers;
 use Core\{Controller, Router, Session};
 use App\Models\{ACL, ProfileImages, Users};
-use App\Lib\Utilities\Uploads;
+use App\Lib\Utilities\UploadProfileImage;
 use Core\Helper;
 
 /**
@@ -160,7 +160,7 @@ class AdmindashboardController extends Controller {
             $files = $_FILES['profileImage'];
             $isFiles = $files['tmp_name'] != '';
             if($isFiles) {
-                $uploads = new Uploads($files, ProfileImages::getAllowedFileTypes(), 
+                $uploads = new UploadProfileImage($files, ProfileImages::getAllowedFileTypes(), 
                     ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS);
                 
                 $uploads->runValidation();

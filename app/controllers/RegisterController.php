@@ -2,7 +2,7 @@
 namespace App\Controllers;
 use Core\{Controller, Helper, Router, Session};
 use App\Models\{Login, ProfileImages, Users};
-use App\Lib\Utilities\Uploads;
+use App\Lib\Utilities\UploadProfileImage;
 
 /**
  * Implements support for our Register controller.  Functions found in this 
@@ -86,7 +86,7 @@ class RegisterController extends Controller {
             $this->request->csrfCheck();
             $files = $_FILES['profileImage'];
             if($files['tmp_name'] != '') {
-                $uploads = new Uploads($files, ProfileImages::getAllowedFileTypes(), 
+                $uploads = new UploadProfileImage($files, ProfileImages::getAllowedFileTypes(), 
                     ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS);
                 
                 $uploads->runValidation();

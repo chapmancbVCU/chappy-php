@@ -2,7 +2,7 @@
 namespace App\Controllers;
 use Core\{Controller, Helper, Router, Session};
 use App\Models\{ProfileImages, Users};
-use App\Lib\Utilities\Uploads;
+use App\Lib\Utilities\UploadProfileImage;
 
 /**
  * Supports ability to use user profile features and render relevant views.
@@ -45,7 +45,7 @@ class ProfileController extends Controller {
             $files = $_FILES['profileImage'];
             $isFiles = $files['tmp_name'] != '';
             if($isFiles) {
-                $uploads = new Uploads($files, ProfileImages::getAllowedFileTypes(), 
+                $uploads = new UploadProfileImage($files, ProfileImages::getAllowedFileTypes(), 
                     ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS);
                 
                 $uploads->runValidation();
