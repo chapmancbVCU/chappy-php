@@ -7,16 +7,11 @@ Originally a fork of the Ruah PHP MVC framework based on the MVC PHP Framework t
 3. User profiles
 4. Administration features
 5. A console, similar to Laravel's Artisan, for performing command line interface based operations
+6. Sessions associated with each user
 
 If you have a feature that you would like to be supported please create a request under the Issues tab.
 
 Complete documentation including the "Getting Started" guild describe below can be found within the framework after setup.
-
-## About
-The Model View Controller is a style of programming that allows developers to efficiently manage interactions between users, the user interface, and the database of a web application.  The models manages the data, logic and rules of the application.  The views are what the user sees and interacts with.  Finally, the controller manages interactions between the user, views, and models.
-
-## What does this MVC support?
-It supports everything described above.  This sample application natively comes with support for user login, registration, and sessions associated with each user.
 
 ## System Requirements
 1. Apache Server, development environment such as XAMPP, or Nginx
