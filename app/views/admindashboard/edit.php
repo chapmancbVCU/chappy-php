@@ -31,7 +31,6 @@ use Core\Helper;
             ?>
 
             <?= FormHelper::selectBlock('ACL', 'acl', $this->aclId, $this->acls, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors); ?>
-            <?= FormHelper::inputBlock('file', "Upload Profile Image (Optional)", 'profileImage', '', ['class' => 'form-control', 'accept' => 'image/png image/jpeg image/png'], ['class' => 'form-group w-50'], $this->displayErrors) ?>
             
             <div id="sortableImages" class="row align-items-center justify-content-start p-2">
                 <?php foreach($this->profileImages as $image):?>

@@ -157,31 +157,9 @@ class AdmindashboardController extends Controller {
         $profileImages = ProfileImages::findByUserId($user->id);
         if($this->request->isPost()) {
             $this->request->csrfCheck();
-            $files = $_FILES['profileImage'];
-            $isFiles = $files['tmp_name'] != '';
-            if($isFiles) {
-                $uploads = new UploadProfileImage($files, ProfileImages::getAllowedFileTypes(), 
-                    ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS);
-                
-                $uploads->runValidation();
-                $imagesErrors = $uploads->validates();
-                if(is_array($imagesErrors)){
-                    $msg = "";
-                    foreach($imagesErrors as $name => $message){
-                        $msg .= $message . " ";
-                    }
-                    $user->addErrorMessage('profileImage', trim($msg));
-                }
-            }
-
             $user->assign($this->request->get(), Users::blackListedFormKeys);
             $this->view->user->acl = Users::idToAcl($_POST['acl'], $acls);
-            $user->save();
-            if($user->validationPassed()) {
-                if($isFiles) {
-                    // Upload Image
-                    ProfileImages::uploadProfileImage($user->id, $uploads);
-                }
+            if($user->save()) {
                 $sortOrder = json_decode($_POST['images_sorted']);
                 ProfileImages::updateSortByUserId($user->id, $sortOrder);
 
@@ -190,7 +168,6 @@ class AdmindashboardController extends Controller {
         }
 
         $this->view->profileImages = $profileImages;
-        
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'edit' . DS . $user->id;
         $this->view->render('admindashboard/edit');
