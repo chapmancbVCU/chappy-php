@@ -712,6 +712,35 @@ FormHelper::inputBlock(
 
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
+            <th colspan="2" class="text-center">public static function optionsForSelect</th>
+        </tr>
+        <tr>
+            <td colspan="2">Generates an HTML output element.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center" colspan="2">params</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$options An array of options for the select.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$selectedValue The currently selected value.</td>
+        </tr>
+        <tr>
+            <th class="align-middle text-center w-25" colspan="2">return</th>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">string</td>
+            <td>$html A string containing options for select.</td>
+        </tr>
+    </table>
+
+    <hr class="w-75 my-5 mx-auto">
+
+    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+        <tr>
             <th colspan="2" class="text-center">public static function output</th>
         </tr>
         <tr>

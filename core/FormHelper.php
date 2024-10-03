@@ -372,11 +372,11 @@ class FormHelper {
         return $html;
     }
 
-    /** ADD
-     * Undocumented function
+    /**
+     * Generates options for select.
      *
-     * @param [type] $options
-     * @param [type] $selectedValue
+     * @param array $options An array of options for the select.
+     * @param string $selectedValue The currently selected value.
      * @return void
      */
     public static function optionsForSelect($options, $selectedValue){
