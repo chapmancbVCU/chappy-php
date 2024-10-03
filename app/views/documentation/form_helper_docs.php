@@ -440,7 +440,8 @@ FormHelper::checkboxBlockLabelRight(
                 <br>
                 <pre class="my-0">
 <code>
-FormHelper::emailBlock('Email', 
+FormHelper::emailBlock(
+    'Email', 
     'email', 
     $this->contact->email, 
     ['class' => 'form-control'], 
