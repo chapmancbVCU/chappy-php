@@ -195,10 +195,56 @@
 
     <h1 id="input-block" class="text-center">inputBlock</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
+        <p>A generic input block that supports the following input types:</p>
+        <ol class="pl-5">
+            <li>Color</li>
+            <li>date</li>
+            <li>datetime-local</li>
+            <li>email</li>
+            <li>file</li>
+            <li>month</li>
+            <li>number</li>
+            <li>password</li>
+            <li>range</li>
+            <li>search</li>
+            <li>tel</li>
+            <li>text</li>
+            <li>time</li>
+            <li>url</li>
+            <li>week</li>
+        </ol>
+        <p>An example function call is show below in figure 8:</p>
+        <figure class="d-flex flex-column justify-content-center align-items-center">
+            <img class="img-fluid" src="<?=APP_DOMAIN?>public/images/userGuide/input-block.png" alt="Input Block">
+            <figcaption>Figure 8 - Input Block</figcaption>
+        </figure>
+        <p>This function accepts 7 arguments as described below:</p>
+        <ol class="pl-4">
+            <li>$type The input type we want to generate.</li>
+            <li>$label is used to set the text of the label element.</li>
+            <li>$name sets the value for the name, for, and id attributes.</li>
+            <li>The value we want to set. We can use this to set the value of the value attribute during form validation. Default value is the empty string. 
+                It can be set with values during form validation and forms used for editing records.</li>
+            <li>$inputAttrs The values used to set the class and other attributes of the input string. The default value is an empty array.</li>
+            <li>$divAttrs The values used to set the class and other attributes of the surrounding div. The default value is an empty array.</li>
+            <li>$errors The errors array. Default value is an empty array.</li>
+        </ol>
     </div>
 
     <h1 id="output" class="text-center">output</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
+        <p>Generates an HTML output element.  The output element is a container that can inject the results of a calculator or the outcome of a user action.  
+            An example function call is shown below:
+        </p>
+        <figure class="d-flex flex-column justify-content-center align-items-center">
+            <img class="img-fluid" src="<?=APP_DOMAIN?>public/images/userGuide/output-element.png" alt="Output Element">
+            <figcaption>Figure 9 - Output Element</figcaption>
+        </figure>
+        <p>This function accepts 2 arguments as described below:</p>
+        <ol class="pl-4">
+            <li>$name Sets the value for the name attributes for this </li>
+            <li>$for Sets the value for the for attribute.</li>
+        </ol>
     </div>
 
     <h1 id="radio-input" class="text-center">radioInput</h1>
