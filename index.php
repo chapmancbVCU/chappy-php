@@ -51,7 +51,7 @@ switch (SERVER_TYPE) {
 // Determine session and cooking status.  Log in user if appropriate cookie exists.
 if(!Session::exists(CURRENT_USER_SESSION_NAME && Cookie::exists(REMEMBER_ME_COOKIE_NAME))) {
     $user = Users::loginUserFromCookie();
-    if($user->inactive == 1) {
+    if($user != null && $user->inactive == 1) {
         $user->logout();
     }
 }
