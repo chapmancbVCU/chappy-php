@@ -56,7 +56,7 @@ php init-chappy
                     <li>CURRENT_USER_SESSION_NAME: should be a long string of upper and lower case characters and numbers.</li>
                     <li>REMEMBER_ME_COOKIE_NAME:  should be a long string of upper and lower case characters and numbers.</li>
                     <li>For XAMPP set APP_DOMAIN to 'http://localhost/chappy-php'.  On live servers set it to '/'.</li>
-                    <li>Set SERVER_TYPE to 'apache' on Apache and XAMPP.  For Nginx make sure it is set to 'nginx' if you are using $_['PATH_INFO'] instead of $_SERVER['REQUEST_URI'].</li>
+                    <li>Set SERVER_TYPE to 'apache' on Apache and XAMPP.  For Nginx make sure it is set to 'nginx' if you are using $_SERVER['PATH_INFO'] instead of $_SERVER['REQUEST_URI'].</li>
                     <li>You can also configure password complexity requirements, MAX_LOGIN_ATTEMPTS, and name for S3_BUCKET here as well.</li>
                 </ol>
             </li>

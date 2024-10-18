@@ -29,7 +29,7 @@ If you need help search using a combination of keywords that include Laravel, se
 2. Run the command ```git clone git@github.com:chapmancbVCU/chappy-php.git```
 3. cd to newly cloned directory.
 3. From project root run the command: ```php init-chappy```
-4. Make a copy of .env.sample in project root and name it .env.  Fill in the following information:
+4. If necessary, make a copy of .env.sample in project root and name it .env.  Fill in the following information:
    * DB_NAME
    * DB_USER
    * DB_PASSWORD
@@ -37,7 +37,7 @@ If you need help search using a combination of keywords that include Laravel, se
    * CURRENT_USER_SESSION_NAME: should be a long string of upper and lower case characters and numbers.
    * REMEMBER_ME_COOKIE_NAME:  should be a long string of upper and lower case characters and numbers.
    * For XAMPP set APP_DOMAIN to 'http://localhost/chappy-php'.  On live servers set it to '/'.
-   * Set SERVER_TYPE to 'apache' on Apache and XAMPP.  For Nginx make sure it is set to 'nginx' if you are using $_['PATH_INFO'] instead of $_SERVER['REQUEST_URI'].
+   * Set SERVER_TYPE to 'apache' on Apache and XAMPP.  For Nginx make sure it is set to 'nginx' if you are using $_SERVER['PATH_INFO'] instead of $_SERVER['REQUEST_URI'].
    * You can also configure password complexity requirements, MAX_LOGIN_ATTEMPTS, and name for S3_BUCKET here as well.
 5. Database Setup:
    * Create your database and set it to what you entered for DB_NAME
