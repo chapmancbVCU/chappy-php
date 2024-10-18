@@ -17,7 +17,7 @@ class RunMigrationCommand extends Command
      */
     protected function configure(): void
     {
-        $this->setName('tools:run-migration')
+        $this->setName('migrate')
             ->setDescription('Runs a Database Migration!')
             ->setHelp('Runs a Database Migration');
     }
