@@ -23,10 +23,7 @@
 
         <?php if(PW_SPECIAL_CHAR == "true"):?>
             <li>Must contain at least 1 special character</li>
-        <?php endif; ?>
-
-        <?php if(SET_PW_MAX_LENGTH == "true"):?>   
-            <li>Must not contain any spaces</li>
-        <?php endif; ?>
+        <?php endif; ?>  
+        <li>Must not contain any spaces</li>
     </ul>
 </div>
