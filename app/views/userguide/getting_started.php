@@ -66,7 +66,7 @@ php init-chappy
                     <li>Run the command from project root to create initial tables:
 <pre class="mb-1 pb-1">
                     <code>
-php console tools:run-migration
+php console migrate
                     </code>
 </pre>
                     </li>

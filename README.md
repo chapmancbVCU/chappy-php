@@ -42,7 +42,7 @@ If you need help search using a combination of keywords that include Laravel, se
 5. Database Setup:
    * Create your database and set it to what you entered for DB_NAME
    * Run the command from project root to create initial tables:
-      ```php console tools:run-migration```
+      ```php console migrate```
    * Inspect database and make sure the following tables are created:
       * acl
       * contacts
