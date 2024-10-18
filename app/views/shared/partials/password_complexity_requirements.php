@@ -6,7 +6,7 @@
         <?php endif; ?>
 
         <?php if(SET_PW_MAX_LENGTH == "true"):?>
-            <li>Maximum of <?= PW_MIN_LENGTH ?> characters in length</li>
+            <li>Maximum of <?= PW_MAX_LENGTH ?> characters in length</li>
         <?php endif; ?>
 
         <?php if(PW_UPPER_CHAR == "true"):?>
