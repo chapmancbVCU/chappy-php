@@ -76,6 +76,14 @@ class Helper {
     return $currentPage;
   }
 
+  public static function diffForHumans($time) {
+    Helper::cl($time);
+    Helper::cl(TIME_ZONE);
+    $dt = new \DateTime($time, new \DateTimeZone(TIME_ZONE)); 
+    Helper::cl($dt->format('F jS, Y h:i:s'));
+    return $dt->format('F jS, Y h:i:s');  
+  }
+
   /**
    * Performs var_dump of parameter and kills the page.
    * 
@@ -131,5 +139,5 @@ class Helper {
   public static function timeStamps() {
     $dt = new \DateTime("now", new \DateTimeZone("UTC"));
     return $dt->format('Y-m-d H:i:s');
-}
+  }
 }

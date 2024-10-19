@@ -1,3 +1,6 @@
+<?php 
+use Core\Helper;
+?>
 <?php $this->setSiteTitle("Administration"); ?>
 <?php $this->start('body'); ?>
 <h1 class="text-center">Administration Dashboard</h1>
@@ -17,8 +20,8 @@
                 <td><?= $user->username ?></td>
                 <td><?= $user->acl ?></td>
                 <td><?= ($user->inactive == 0) ? 'Active' : 'Inactive'?></td>
-                <td><?= $user->created_at ?></td>
-                <td><?= $user->updated_at ?></td>
+                <td><?= Helper::diffForHumans($user->created_at) ?></td>
+                <td><?= Helper::diffForHumans($user->updated_at) ?></td>
                 <td class="text-center">
                     <a href="<?=APP_DOMAIN?>admindashboard/details/<?=$user->id?>" class="btn btn-info btn-xs w-100">
                         <i class="fa fa-user"></i> Details
