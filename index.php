@@ -16,7 +16,12 @@ $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 // Load configuration and helper functions.
-require_once(ROOT . DS . 'config' . DS . 'config.php');
+$array =  array('config', 'database', 'session');
+
+foreach ($array as $value) {
+    require_once(ROOT . DS . 'config' . DS . $value . '.php');
+}
+
 
 /**
  * Auto-loading of classes using PSR-4 Support.
