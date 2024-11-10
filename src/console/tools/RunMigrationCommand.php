@@ -32,7 +32,7 @@ class RunMigrationCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         // Load configuration and helper functions
-        require_once(ROOT . DS . 'config' . DS . 'database.php');
+       // require_once(ROOT . DS . 'config' . DS . 'database.php');
         $isCli = php_sapi_name() == 'cli';
         //if(!RUN_MIGRATIONS_FROM_BROWSER && !$isCli) die('restricted');
 
