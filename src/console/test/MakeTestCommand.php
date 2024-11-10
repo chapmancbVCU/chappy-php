@@ -36,7 +36,7 @@ class MakeTestCommand extends Command
         $testName = $input->getArgument('testname');
         if (php_sapi_name() != 'cli') die('Restricted');
         $ext = ".php";
-        $fullPath = CONSOLE_ROOT.DS.'tests'.DS.$testName.$ext;
+        $fullPath = ROOT.DS.'tests'.DS.$testName.$ext;
         $content = '<?php
 namespace Tests;
 use PHPUnit\Framework\TestCase;

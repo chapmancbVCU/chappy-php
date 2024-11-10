@@ -43,7 +43,7 @@ class GenerateControllerCommand extends Command
         }
         if (php_sapi_name() != 'cli') die('Restricted');
         $ext = ".php";
-        $fullPath = CONSOLE_ROOT.DS.'app'.DS.'controllers'.DS.$controllerName.'Controller'.$ext;
+        $fullPath = ROOT.DS.'app'.DS.'controllers'.DS.$controllerName.'Controller'.$ext;
         $content = '<?php
 namespace App\Controllers;
 use Core\Controller;

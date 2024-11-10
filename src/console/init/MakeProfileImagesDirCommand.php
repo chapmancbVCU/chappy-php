@@ -17,7 +17,7 @@ class MakeProfileImagesDirCommand extends Command
  
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $path = CONSOLE_ROOT.DS.'public'.DS.'images'.DS.'uploads'.DS.'profile_images';
+        $path = ROOT.DS.'public'.DS.'images'.DS.'uploads'.DS.'profile_images';
         if(!file_exists($path)) {
             mkdir($path, 0755, true);
         }

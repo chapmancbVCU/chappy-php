@@ -36,7 +36,7 @@ class GenerateModelCommand extends Command
         $modelName = $input->getArgument('modelname');
         if (php_sapi_name() != 'cli') die('Restricted');
         $ext = ".php";
-        $fullPath = CONSOLE_ROOT.DS.'app'.DS.'models'.DS.$modelName.$ext;
+        $fullPath = ROOT.DS.'app'.DS.'models'.DS.$modelName.$ext;
         $content = '<?php
 namespace App\Models;
 use Core\Model;
