@@ -117,7 +117,7 @@ class AdmindashboardController extends Controller {
         // Get users so we can get number using acl and update later.
         $users = Users::findUserByAcl($acl->acl)->results();
         if(count($users) > 0) {
-            Session::addMessage('info', "Cannot update ". $acl->acl.", assigned to one or more users.");
+            Session::addMessage('danger', "Cannot update ". $acl->acl.", assigned to one or more users.");
             Router::redirect('admindashboard/manageAcls');
         }
 
