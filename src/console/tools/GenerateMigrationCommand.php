@@ -34,7 +34,7 @@ class GenerateMigrationCommand extends Command
         if (php_sapi_name() != 'cli') die('Restricted');
         $fileName = "Migration".time();
         $ext = ".php";
-        $fullPath = CONSOLE_ROOT.DS.'migrations'.DS.$fileName.$ext;
+        $fullPath = ROOT.DS.'migrations'.DS.$fileName.$ext;
         $content = '<?php
 namespace Migrations;
 use Core\Migration;

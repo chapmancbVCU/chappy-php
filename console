@@ -5,17 +5,17 @@ require __DIR__.'/vendor/autoload.php';
 use Dotenv\Dotenv;
 use Symfony\Component\Console\Application;
 
-define('CONSOLE_ROOT', __DIR__);
+define('ROOT', __DIR__);
 define('DS', DIRECTORY_SEPARATOR);
 
-$dotenv = Dotenv::createImmutable(CONSOLE_ROOT);
+$dotenv = Dotenv::createImmutable(ROOT);
 $dotenv->safeLoad();
 
 function autoload($className){
     $classAry = explode('\\',$className);
     $class = array_pop($classAry);
     $subPath = strtolower(implode(DS,$classAry));
-    $path = CONSOLE_ROOT . DS . $subPath . DS . $class . '.php';
+    $path = ROOT . DS . $subPath . DS . $class . '.php';
     if(file_exists($path)){
         require_once($path);
     }
