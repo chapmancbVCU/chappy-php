@@ -110,11 +110,16 @@ class ProfileController extends Controller {
      */
     public function updatePasswordAction(): void {
         $user = Users::currentUser();
-        $user->password = "";
 
         if(!$user) Router::redirect('');
         if($this->request->isPost()) {
             $this->request->csrfCheck();
+
+            // Verify password and display message if incorrect.
+            if($user && !password_verify($this->request->get('current_password'), $user->password)) {
+                Session::addMessage('danger', 'There was an error when entering your current password');
+                Router::redirect('profile/updatePassword/'.$user->id);
+            }
             $user->assign($this->request->get(), Users::blackListedFormKeys);
 
             // PW mode on for correct validation.

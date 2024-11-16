@@ -11,8 +11,9 @@ use Core\FormHelper;
         <form class="form" action="" method="post">
             <?= FormHelper::csrfInput() ?>
             <?= FormHelper::displayErrors($this->displayErrors) ?>
-            <?= FormHelper::inputBlock('password', "Password", 'password', $this->user->password, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
-            <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->user->confirm, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
+            <?= FormHelper::inputBlock('password', "Current Password", 'current_password', $this->current_password, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
+            <?= FormHelper::inputBlock('password', "Password", 'password', $this->new_password, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
+            <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->confirm, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
             
             <div class="col-md-12 text-right">
                 <a href="<?=APP_DOMAIN?>profile" class="btn btn-default">Cancel</a>
