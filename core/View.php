@@ -37,6 +37,16 @@ class View extends stdClass {
         include ROOT . DS . 'app' . DS . 'views' . DS . $group . DS . 'partials' . DS . $partial . '.php';
     }
     
+    /** ADD
+     * Undocumented function
+     *
+     * @param string $component
+     * @return void
+     */
+    public function component(string $component) {
+        include ROOT . DS . 'app' . DS . 'views' . DS . 'components' . DS . $component . '.php';
+    }
+
     /**
      * The content of the page.  The two types are head and body.  If 
      * necessary, we can implement additional types of content.

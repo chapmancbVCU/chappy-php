@@ -16,7 +16,7 @@ $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 // Load configuration and helper functions.
-$array =  array('config', 'database', 'session');
+$array =  array('config', 'database', 'session', 'password');
 
 foreach ($array as $value) {
     require_once(ROOT . DS . 'config' . DS . $value . '.php');

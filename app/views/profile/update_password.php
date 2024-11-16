@@ -7,7 +7,7 @@ use Core\FormHelper;
     <div class="col-md-6 bg-light p-3">
         <h1 class="text-center">Change Password for <?=$this->user->username?></h1>
         <hr>  
-        <?php $this->addPartialView('shared', 'password_complexity_requirements'); ?>
+        <?php $this->component('password_complexity_requirements'); ?>
         <form class="form" action="" method="post">
             <?= FormHelper::csrfInput() ?>
             <?= FormHelper::displayErrors($this->displayErrors) ?>

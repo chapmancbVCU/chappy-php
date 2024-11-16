@@ -25,7 +25,7 @@ use Core\FormHelper;
                 ['class' => 'form-group'], $this->displayErrors); 
             ?>
             <?= FormHelper::inputBlock('file', "Upload Profile Image (Optional)", 'profileImage', '', ['class' => 'form-control', 'accept' => 'image/png image/jpeg image/png'], ['class' => 'form-group w-50'], $this->displayErrors) ?>
-            <?php $this->addPartialView('shared', 'password_complexity_requirements'); ?>
+            <?php $this->component('password_complexity_requirements'); ?>
             <?= FormHelper::inputBlock('password', "Password", 'password', $this->newUser->password, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
             <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->newUser->confirm, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
             <?= FormHelper::submitBlock('Register', ['class' => 'btn btn-large btn-primary'], ['class' => 'text-right'])  ?>
