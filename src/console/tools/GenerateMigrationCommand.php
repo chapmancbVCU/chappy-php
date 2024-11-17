@@ -47,6 +47,11 @@ class '.$fileName.' extends Migration {
         $table = \''.$tableName.'\';
         $this->createTable($table);
     }
+
+    public function down() {
+        $table = \''.$tableName.'\';
+        $this->dropTable($table);
+    }
 }
 ';
         $resp = file_put_contents($fullPath, $content);
