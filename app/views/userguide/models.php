@@ -22,12 +22,13 @@
 
 <pre class="mb-1 pb-1">
         <code>
-php console tools:gen-model ModelName
+php console make:model ModelName
         </code>
 </pre>
         <p>Remember, models are classes and the first letter in the model's name needs to be upper case.  
-            After you run the command a new model file will be generated under app\models.  
-            The output file for the command described above is shown below:
+            After you run the command a new model file will be generated under app\models.  The make:model 
+            command will guess what the name of your table is so be sure to double check the $table variable's 
+            value is correct.  The output file for the command described above is shown below:
         </p>
 
 <pre class="mb-1 pb-1">
@@ -90,6 +91,10 @@ class ModelName extends Model {
             Model class you automatically get access to functions that assist with database operations.  
             Functions you create and those from the Model class are commonly used within action functions within 
             controller classes.
+        </p>
+
+        <p>This class comes with a public const blackList variable that is an array.  You can populate this 
+            array with fields you don't want updated inadvertently on POST.  More on this in the controller's section.
         </p>
     </div>
 </div>
