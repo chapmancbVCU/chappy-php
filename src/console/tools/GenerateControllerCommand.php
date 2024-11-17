@@ -5,7 +5,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
-
+use Symfony\Component\Console\Input\InputOption;
 /**
  * Supports ability to generate new migration file.
  */
@@ -22,7 +22,12 @@ class GenerateControllerCommand extends Command
             ->setDescription('Generates a new controller file!')
             ->setHelp('php console tools:gen-controller <optional_layout_name>')
             ->addArgument('controllername', InputArgument::REQUIRED, 'Pass the controller\'s name.')
-            ->addArgument('layout', InputArgument::OPTIONAL);
+            //->addArgument('layout', InputArgument::OPTIONAL);
+            ->addOption(
+                'layout',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'My layout');
     }
  
     /**
@@ -35,7 +40,7 @@ class GenerateControllerCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $controllerName = $input->getArgument('controllername');
-        $layoutInput = $input->getArgument('layout');
+        $layoutInput = $input->getOption('layout');
         if($layoutInput) {
             $layout = $layoutInput;
         } else {
