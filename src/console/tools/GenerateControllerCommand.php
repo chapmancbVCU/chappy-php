@@ -22,7 +22,6 @@ class GenerateControllerCommand extends Command
             ->setDescription('Generates a new controller file!')
             ->setHelp('php console tools:gen-controller <optional_layout_name>')
             ->addArgument('controllername', InputArgument::REQUIRED, 'Pass the controller\'s name.')
-            //->addArgument('layout', InputArgument::OPTIONAL);
             ->addOption(
                 'layout',
                 null,
