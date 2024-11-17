@@ -18,7 +18,7 @@ class GenerateModelCommand extends Command
      */
     protected function configure(): void
     {
-        $this->setName('tools:gen-model')
+        $this->setName('make:model')
             ->setDescription('Generates a new model file!')
             ->setHelp('Generates a new model file.')
             ->addArgument('modelname', InputArgument::REQUIRED, 'Pass the model\'s name.');

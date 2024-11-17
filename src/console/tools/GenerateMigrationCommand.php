@@ -18,7 +18,7 @@ class GenerateMigrationCommand extends Command
      */
     protected function configure(): void
     {
-        $this->setName('tools:gen-migration')
+        $this->setName('make:migration')
             ->setDescription('Generates a Database Migration!')
             ->setHelp('Generates a new Database Migration')
             ->addArgument('table_name', InputArgument::REQUIRED, 'Pass the table\'s name.');

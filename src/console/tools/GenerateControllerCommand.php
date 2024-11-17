@@ -18,9 +18,9 @@ class GenerateControllerCommand extends Command
      */
     protected function configure(): void
     {
-        $this->setName('tools:gen-controller')
+        $this->setName('make:controller')
             ->setDescription('Generates a new controller file!')
-            ->setHelp('php console tools:gen-controller --layout=<optional_layout_name>')
+            ->setHelp('php console make:controller --layout=<optional_layout_name>')
             ->addArgument('controllername', InputArgument::REQUIRED, 'Pass the controller\'s name.')
             ->addOption(
                 'layout',
