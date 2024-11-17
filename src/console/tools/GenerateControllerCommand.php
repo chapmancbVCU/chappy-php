@@ -20,7 +20,7 @@ class GenerateControllerCommand extends Command
     {
         $this->setName('tools:gen-controller')
             ->setDescription('Generates a new controller file!')
-            ->setHelp('php console tools:gen-controller <optional_layout_name>')
+            ->setHelp('php console tools:gen-controller --layout=<optional_layout_name>')
             ->addArgument('controllername', InputArgument::REQUIRED, 'Pass the controller\'s name.')
             ->addOption(
                 'layout',
