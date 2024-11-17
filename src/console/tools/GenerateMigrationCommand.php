@@ -49,8 +49,7 @@ class '.$fileName.' extends Migration {
     }
 
     public function down() {
-        $table = \''.$tableName.'\';
-        $this->dropTable($table);
+        $this->dropTable(\''.$tableName.'\');
     }
 }
 ';
