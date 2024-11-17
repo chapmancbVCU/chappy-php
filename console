@@ -36,7 +36,6 @@ function autoload($className){
 }
 
 spl_autoload_register('autoload');
-use Console\App\Commands\HelloworldCommand;
 use Console\App\Commands\GenerateControllerCommand;
 use Console\App\Commands\GenerateMigrationCommand;
 use Console\App\Commands\GenerateModelCommand;
@@ -55,5 +54,4 @@ $app->add(new MakeProfileImagesDirCommand());
 $app->add(new MakeTestCommand());
 $app->add(new RunMigrationCommand());
 $app->add(new RunTestCommand());
-$app->add(new HelloworldCommand());
 $app->run();
