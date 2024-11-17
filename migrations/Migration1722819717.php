@@ -21,4 +21,8 @@ class Migration1722819717 extends Migration {
         $this->addIndex($table,'created_at');
         $this->addIndex($table,'updated_at');
     }
+
+    public function down() {
+        $this->dropTable('users');
+      }
 }

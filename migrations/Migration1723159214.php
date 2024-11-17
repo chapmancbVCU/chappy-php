@@ -11,4 +11,8 @@ class Migration1723159214 extends Migration {
     $this->addTimeStamps($table);
     $this->aclSetup($table);
   }
+
+  public function down() {
+    $this->dropTable('acl');
+  }
 }

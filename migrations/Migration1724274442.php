@@ -12,4 +12,8 @@ class Migration1724274442 extends Migration {
     $this->addColumn($table, 'name', 'varchar', ['size' => 255]);
     $this->addSoftDelete($table);
   }
+
+  public function down() {
+    $this->dropTable('profile_images');
+  }
 }

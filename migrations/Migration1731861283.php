@@ -13,4 +13,8 @@ class Migration1731861283 extends Migration {
         $this->addIndex($table, 'user_id');
         $this->addIndex($table, 'session');
     }
+
+    public function down() {
+        $this->dropTable('user_sessions');
+      }
 }

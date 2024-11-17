@@ -23,4 +23,8 @@ class Migration1723167263 extends Migration {
     $this->addTimeStamps($table);
     $this->addIndex($table, 'user_id');
   }
+
+  public function down() {
+    $this->dropTable('contacts');
+  }
 }

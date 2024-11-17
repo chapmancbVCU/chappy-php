@@ -9,4 +9,8 @@ class Migration1722819683 extends Migration {
       $this->addColumn($table, 'migration', 'varchar',['size'=>35]);
       $this->addIndex($table,'migration');
     }
+
+    public function down() {
+      $this->dropTable('migrations');
+    }
 }
