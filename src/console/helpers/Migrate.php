@@ -2,6 +2,8 @@
 namespace Console\App\Helpers;
 
 use Core\DB;
+use RecursiveIteratorIterator;
+use RecursiveDirectoryIterator;
 use Symfony\Component\Console\Command\Command;
 
 class Migrate {
@@ -74,6 +76,21 @@ class Migrate {
                 $migrationsRun[] = $klassNamespace;
             }
         }
+        // self::removeDir(ROOT.DS.'public'.DS.'images'.DS.'uploads'.DS .'profile_images'.DS);
         return Command::SUCCESS;
     }
+
+    // public static function removeDir(string $dir): void {
+    //     $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+    //     $files = new RecursiveIteratorIterator($it,
+    //                  RecursiveIteratorIterator::CHILD_FIRST);
+    //     foreach($files as $file) {
+    //         if ($file->isDir()){
+    //             rmdir($file->getPathname());
+    //         } else {
+    //             unlink($file->getPathname());
+    //         }
+    //     }
+    //     rmdir($dir);
+    // }
 }
