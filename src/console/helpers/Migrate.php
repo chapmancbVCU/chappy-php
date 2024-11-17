@@ -56,7 +56,6 @@ class Migrate {
         $db = DB::getInstance();
         $migrationTable = $db->query("SHOW TABLES LIKE 'migrations'")->results();
         $previousMigs = [];
-        $migrationsRun = [];
 
         if(empty($migrationTable)){
             echo "\e[0;37;42m\n\n"."    Empty database.  No tables to drop.\n\e[0m\n";
@@ -73,7 +72,6 @@ class Migrate {
                 $klassNamespace = 'Migrations\\'.$klass;
                 $mig = new $klassNamespace($isCli);
                 $mig->down();
-                $migrationsRun[] = $klassNamespace;
             }
         }
         // self::removeDir(ROOT.DS.'public'.DS.'images'.DS.'uploads'.DS .'profile_images'.DS);
