@@ -7,7 +7,7 @@ use Console\App\Helpers\Migrate;
 /**
  * Supports ability to run a migration file.
  */
-class RunMigrationCommand extends Command
+class MigrateRefreshCommand extends Command
 {
     /**
      * Configures the command.
@@ -16,9 +16,9 @@ class RunMigrationCommand extends Command
      */
     protected function configure(): void
     {
-        $this->setName('migrate')
-            ->setDescription('Runs a Database Migration!')
-            ->setHelp('Runs a Database Migration');
+        $this->setName('migrate:refresh')
+            ->setDescription('Drops all tables and runs a Database Migration!')
+            ->setHelp('Drops all tables and runs a Database Migration');
     }
  
     /**
@@ -30,6 +30,10 @@ class RunMigrationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $status = Migrate::dropAllTables();
+        if($status == Command::FAILURE) {
+            return $status;
+        }
         return Migrate::migrate();
     }
 }

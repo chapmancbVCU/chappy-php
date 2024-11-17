@@ -4,10 +4,11 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Console\App\Helpers\Migrate;
+
 /**
  * Supports ability to run a migration file.
  */
-class RunMigrationCommand extends Command
+class DropTablesCommand extends Command
 {
     /**
      * Configures the command.
@@ -16,9 +17,9 @@ class RunMigrationCommand extends Command
      */
     protected function configure(): void
     {
-        $this->setName('migrate')
-            ->setDescription('Runs a Database Migration!')
-            ->setHelp('Runs a Database Migration');
+        $this->setName('migrate:drop-all')
+            ->setDescription('Drops all database tables')
+            ->setHelp('Drops all database tables');
     }
  
     /**
@@ -30,6 +31,6 @@ class RunMigrationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return Migrate::migrate();
+        return Migrate::dropAllTables();
     }
 }

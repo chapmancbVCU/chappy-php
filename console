@@ -36,22 +36,26 @@ function autoload($className){
 }
 
 spl_autoload_register('autoload');
+use Console\App\Commands\DropTablesCommand;
 use Console\App\Commands\GenerateControllerCommand;
 use Console\App\Commands\GenerateMigrationCommand;
 use Console\App\Commands\GenerateModelCommand;
 use Console\App\Commands\MakeEnvCommand;
 use Console\App\Commands\MakeProfileImagesDirCommand;
 use Console\App\Commands\MakeTestCommand;
+use Console\App\Commands\MigrateRefreshCommand;
 use Console\App\Commands\RunMigrationCommand;
 use Console\App\Commands\RunTestCommand;
  
 $app = new Application();
+$app->add(new DropTablesCommand());
 $app->add(new GenerateControllerCommand());
 $app->add(new GenerateMigrationCommand());
 $app->add(new GenerateModelCommand());
 $app->add(new MakeEnvCommand());
 $app->add(new MakeProfileImagesDirCommand());
 $app->add(new MakeTestCommand());
+$app->add(new MigrateRefreshCommand());
 $app->add(new RunMigrationCommand());
 $app->add(new RunTestCommand());
 $app->run();
