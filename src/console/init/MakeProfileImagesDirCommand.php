@@ -19,7 +19,7 @@ class MakeProfileImagesDirCommand extends Command
     {
         $path = ROOT.DS.'public'.DS.'images'.DS.'uploads'.DS.'profile_images';
         if(!file_exists($path)) {
-            mkdir($path, 0755, true);
+            mkdir($path, 0775, true);
         }
         return Command::SUCCESS;
     }

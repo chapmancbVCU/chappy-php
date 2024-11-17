@@ -52,7 +52,7 @@ If you need help search using a combination of keywords that include Laravel, se
       * user_sessions
 6. profile_images directory:
    * In CMD or Terminal navigate to public/images/uploads from project root and make sure the "profile_images" directory exists. If not create it.
-   * Set the correct permissions for the profile_images directory in MacOS or Linux: ```chmod 755 profile_images```
+   * Set the correct permissions for the profile_images directory in MacOS or Linux: ```chmod 775 profile_images```
    * In Linux and MacOS you will need to modify the owner and group.
       ```sudo chown -R %USERNAME%:%GROUP% profile_images/```
       With XAMPP your username will work along with daemon as the group. Apache both has to be www-data. Not tested with nginx yet.

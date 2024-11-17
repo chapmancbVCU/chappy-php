@@ -88,7 +88,7 @@ php console migrate
                     <li>Set the correct permissions for the profile_images directory in MacOS or Linux:
                         <pre class="mb-1 pb-1">
                             <code>
-chmod 755 profile_images
+chmod 775 profile_images
                             </code>
                         </pre>
                     </li>
