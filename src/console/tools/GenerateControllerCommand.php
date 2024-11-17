@@ -26,7 +26,7 @@ class GenerateControllerCommand extends Command
                 'layout',
                 null,
                 InputOption::VALUE_OPTIONAL,
-                'My layout');
+                'Layout for views associated with controller.');
     }
  
     /**
