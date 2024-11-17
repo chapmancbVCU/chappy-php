@@ -59,9 +59,12 @@ class GenerateControllerCommand extends Command
         $resource = $input->getParameterOption('--resource', 'no_resource') ?? 'default';
         if($resource == 'no_resource') {
             $content = $this->defaultTemplate($controllerName, $layout);
-        } 
-         else {
+        } else if ($resource == 'default') {
             $content = $this->resourceTemplate($controllerName, $layout);
+        }
+         else {
+            var_dump("--resource does not accept a value");
+            return Command::FAILURE;
         }
 
         if(!file_exists($fullPath)) {
