@@ -2,6 +2,7 @@
 namespace Console\App\Commands;
  
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -19,7 +20,8 @@ class GenerateMigrationCommand extends Command
     {
         $this->setName('tools:gen-migration')
             ->setDescription('Generates a Database Migration!')
-            ->setHelp('Generates a new Database Migration');
+            ->setHelp('Generates a new Database Migration')
+            ->addArgument('table_name', InputArgument::REQUIRED, 'Pass the table\'s name.');
     }
  
     /**
@@ -31,6 +33,7 @@ class GenerateMigrationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $tableName = $input->getArgument('table_name');
         if (php_sapi_name() != 'cli') die('Restricted');
         $fileName = "Migration".time();
         $ext = ".php";
@@ -41,7 +44,8 @@ use Core\Migration;
 
 class '.$fileName.' extends Migration {
     public function up() {
-
+        $table = \''.$tableName.'\';
+        $this->createTable($table);
     }
 }
 ';
