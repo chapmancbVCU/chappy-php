@@ -16,5 +16,5 @@ class Migration1731861283 extends Migration {
 
     public function down() {
         $this->dropTable('user_sessions');
-      }
+    }
 }
