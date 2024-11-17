@@ -3,11 +3,9 @@ namespace Console\App\Helpers;
 
 use Core\DB;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 class Migrate {
-    public static function migrate(InputInterface $input, OutputInterface $output): int {
+    public static function migrate(): int {
         // Load configuration and helper functions
         // require_once(ROOT . DS . 'config' . DS . 'database.php');
         $isCli = php_sapi_name() == 'cli';

@@ -31,6 +31,6 @@ class RunMigrationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return Migrate::migrate($input, $output);
+        return Migrate::migrate();
     }
 }
