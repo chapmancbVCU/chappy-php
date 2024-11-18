@@ -44,6 +44,7 @@ use Console\App\Commands\MakeEnvCommand;
 use Console\App\Commands\MakeProfileImagesDirCommand;
 use Console\App\Commands\MakeTestCommand;
 use Console\App\Commands\MigrateRefreshCommand;
+use Console\App\Commands\RemoveProfileImagesCommand;
 use Console\App\Commands\RunMigrationCommand;
 use Console\App\Commands\RunTestCommand;
  
@@ -56,6 +57,7 @@ $app->add(new MakeEnvCommand());
 $app->add(new MakeProfileImagesDirCommand());
 $app->add(new MakeTestCommand());
 $app->add(new MigrateRefreshCommand());
+$app->add(new RemoveProfileImagesCommand());
 $app->add(new RunMigrationCommand());
 $app->add(new RunTestCommand());
 $app->run();
