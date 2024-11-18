@@ -20,7 +20,7 @@ class GenerateControllerCommand extends Command
     {
         $this->setName('make:controller')
             ->setDescription('Generates a new controller file!')
-            ->setHelp('php console make:controller --layout=<optional_layout_name>')
+            ->setHelp('php console make:controller MyController, add --layout=<optional_layout_name> to set layout, and --resource to generate CRUD functions')
             ->addArgument('controllername', InputArgument::REQUIRED, 'Pass the controller\'s name.')
             ->addOption(
                 'layout',
