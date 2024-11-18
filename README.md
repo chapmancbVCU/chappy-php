@@ -1,5 +1,5 @@
 # chappy.php
-chappy.php is a whole new Model View Controller framework tailored to all of the fellows of the internet. Our goal is to provide a light weight and easily expandable framework for any PHP developer. No longer do you have to become familiar with syntax needed to work with other frameworks in the market. Just roll up your selves and start writing PHP code.
+chappy.php is a whole new Model View Controller framework tailored to all of the fellows of the internet. Our goal is to provide a light weight and easily expandable framework for any PHP developer. 
 
 Originally a fork of the Ruah PHP MVC framework based on the MVC PHP Framework tutorial series on the Freeskills YouTube channel, we have worked hard to add additional support and features.  This includes:
 1. Expanded server side validation support

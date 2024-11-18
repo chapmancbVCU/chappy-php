@@ -3,8 +3,7 @@
 
 <div class="row align-items-center justify-content-center my-5">
   <p class="text-center w-75">chappy.php is a whole new Model View Controller framework tailored to all of the fellows of the internet.  
-    Our goal is to provide a light weight and easily expandable framework for any PHP developer.  No longer do you have to become familiar 
-    with syntax needed to work with other frameworks in the market.  Just roll up your selves and start writing PHP code.
+    Our goal is to provide a light weight and easily expandable framework for any PHP developer.
   </p>
 </div>
 
