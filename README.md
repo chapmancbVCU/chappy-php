@@ -73,6 +73,9 @@ If you need help search using a combination of keywords that include Laravel, se
 12. Update to match original tutorial project. (Done)
 13. Add user profile (Done)
 
+## Contact
+I can be reached regarding this framework at chad.chapman2010@gmail.com.  You are also welcome to open up an issue at https://github.com/chapmancbVCU/chappy-php/issues
+
 ## Credits
 1. “mvc” icon by iconixar, from thenounproject.com.
 2. Freeskills on YT (https://www.youtube.com/playlist?list=PLFPkAJFH7I0keB1qpWk5qVVUYdNLTEUs3)
