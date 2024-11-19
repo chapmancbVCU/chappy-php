@@ -1,10 +1,11 @@
 <?php
 namespace Console\App\Commands;
  
+use Console\App\Helpers\Model;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\InputArgument;
 
 /**
  * Supports ability to generate new migration file.
@@ -37,52 +38,8 @@ class GenerateModelCommand extends Command
         if (php_sapi_name() != 'cli') die('Restricted');
         $ext = ".php";
         $fullPath = ROOT.DS.'app'.DS.'models'.DS.$modelName.$ext;
-        $content = '<?php
-namespace App\Models;
-use Core\Model;
 
-/**
- * 
- */
-class '.$modelName.' extends Model {
-
-    // Fields you don\'t want saved on form submit
-    // public const blackList = [];
-
-    // Set to name of database table.
-    protected static $_table = \''.lcfirst($modelName).'\';
-
-    // Soft delete
-    // protected static $_softDelete = true;
-    
-    // Fields from your database
-
-    public function afterDelete(): void {
-        //
-    }
-
-    public function afterSave(): void {
-        //
-    }
-
-    public function beforeDelete(): void {
-        //
-    }
-
-    public function beforeSave(): void {
-        //
-    }
-
-    /**
-     * Performs validation for the '.$modelName.' model.
-     *
-     * @return void
-     */
-    public function validator(): void {
-        //
-    }
-}
-';
+        $content = Model::makeModel($modelName);
         if(!file_exists($fullPath)) {
             $resp = file_put_contents($fullPath, $content);
         } else {
