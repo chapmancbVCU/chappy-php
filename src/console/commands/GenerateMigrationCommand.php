@@ -1,6 +1,7 @@
 <?php
 namespace Console\App\Commands;
  
+use Console\App\Helpers\Migrate;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -33,28 +34,6 @@ class GenerateMigrationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $tableName = $input->getArgument('table_name');
-        if (php_sapi_name() != 'cli') die('Restricted');
-        $fileName = "Migration".time();
-        $ext = ".php";
-        $fullPath = ROOT.DS.'migrations'.DS.$fileName.$ext;
-        $content = '<?php
-namespace Migrations;
-use Core\Migration;
-
-class '.$fileName.' extends Migration {
-    public function up() {
-        $table = \''.$tableName.'\';
-        $this->createTable($table);
-    }
-
-    public function down() {
-        $this->dropTable(\''.$tableName.'\');
-    }
-}
-';
-        $resp = file_put_contents($fullPath, $content);
-
-        return Command::SUCCESS;
+        return Migrate::makeMigration($input, $output);
     }
 }
