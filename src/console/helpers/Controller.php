@@ -2,8 +2,8 @@
 namespace Console\App\Helpers;
 
 class Controller {
-    public static function defaultTemplate($controllerName, $layout) {
-        $content = '<?php
+    public static function defaultTemplate(string $controllerName, string $layout): string {
+        return '<?php
 namespace App\Controllers;
 use Core\Controller;
 
@@ -21,11 +21,10 @@ class '.$controllerName.'Controller extends Controller {
     }
 }
 ';
-    return $content;
     }
 
-    public static function resourceTemplate($controllerName, $layout) {
-        $content = '<?php
+    public static function resourceTemplate(string $controllerName, string $layout): string {
+        return '<?php
 namespace App\Controllers;
 use Core\Controller;
 
@@ -63,6 +62,5 @@ class '.$controllerName.'Controller extends Controller {
     }
 }
 ';
-    return $content;
     }
 }
