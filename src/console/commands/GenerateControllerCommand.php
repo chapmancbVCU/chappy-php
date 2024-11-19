@@ -63,7 +63,7 @@ class GenerateControllerCommand extends Command
         } else if ($resource == 'default') {
             $content = Controller::resourceTemplate($controllerName, $layout);
         }
-         else {
+        else {
             var_dump("--resource does not accept a value");
             return Command::FAILURE;
         }
