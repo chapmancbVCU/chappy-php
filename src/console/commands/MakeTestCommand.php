@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 
 /**
- * Supports ability to generate new migration file.
+ * Supports ability to generate new test file.
  */
 class MakeTestCommand extends Command
 {
