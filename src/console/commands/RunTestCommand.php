@@ -1,10 +1,11 @@
 <?php
 namespace Console\App\Commands;
 use Core\Helper;
+use Console\App\Helpers\Test;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\InputArgument;
 
 /**
  * Supports ability to run a phpunit test with only the name of the test 
@@ -19,9 +20,9 @@ class RunTestCommand extends Command
      */
     protected function configure(): void
     {
-        $this->setName('test:run-test')
+        $this->setName('test')
             ->setDescription('Performs the phpunit test.')
-            ->setHelp('php console test:run-test <test_file_name> without the .php extension.')
+            ->setHelp('php console test <test_file_name> without the .php extension.')
             ->addArgument('testname', InputArgument::REQUIRED, 'Pass the test file\'s name.');
     }
  
@@ -34,13 +35,6 @@ class RunTestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $testName = $input->getArgument('testname');
-        $command = 'php vendor/bin/phpunit tests'.DS.$testName.'.php';
-        $output->writeln(Helper::printBorder());
-        $output->writeln(sprintf('Running command: '.$command));
-        $output->writeln(Helper::printBorder());
-        $output->writeln(shell_exec($command));
-        $output->writeln(Helper::printBorder());
-        return Command::SUCCESS;
+        return Test::runTest($input, $output);
     }
 }

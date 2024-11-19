@@ -1,10 +1,11 @@
 <?php
 namespace Console\App\Commands;
  
+use Console\App\Helpers\Test;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\InputArgument;
 
 /**
  * Supports ability to generate new test file.
@@ -18,9 +19,9 @@ class MakeTestCommand extends Command
      */
     protected function configure(): void
     {
-        $this->setName('test:mk-test')
+        $this->setName('make:test')
             ->setDescription('Generates a new test file!')
-            ->setHelp('php console test:mk-test <test_name>')
+            ->setHelp('php console make:test <test_name>')
             ->addArgument('testname', InputArgument::REQUIRED, 'Pass the test\'s name.');
     }
  
@@ -37,16 +38,7 @@ class MakeTestCommand extends Command
         if (php_sapi_name() != 'cli') die('Restricted');
         $ext = ".php";
         $fullPath = ROOT.DS.'tests'.DS.$testName.$ext;
-        $content = '<?php
-namespace Tests;
-use PHPUnit\Framework\TestCase;
-
-/**
- * Undocumented class
- */
-class '.$testName.' extends TestCase {
-}
-';
+        $content = Test::makeTest($testName);
         if(!file_exists($fullPath)) {
             $resp = file_put_contents($fullPath, $content);
         } else {
