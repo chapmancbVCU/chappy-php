@@ -4,7 +4,6 @@ namespace Console\App\Helpers;
 use Core\DB;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 class Migrate {
     public static function dropAllTables(): int {
@@ -35,7 +34,7 @@ class Migrate {
         return Command::SUCCESS;
     }
 
-    public static function makeMigration(InputInterface $input, OutputInterface $output): int {
+    public static function makeMigration(InputInterface $input): int {
         $tableName = $input->getArgument('table_name');
         if (php_sapi_name() != 'cli') die('Restricted');
         $fileName = "Migration".time();

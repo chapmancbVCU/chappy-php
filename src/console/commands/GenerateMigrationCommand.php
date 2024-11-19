@@ -34,6 +34,6 @@ class GenerateMigrationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return Migrate::makeMigration($input, $output);
+        return Migrate::makeMigration($input);
     }
 }
