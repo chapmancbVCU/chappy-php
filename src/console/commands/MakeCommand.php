@@ -33,7 +33,7 @@ class MakeCommand extends Command
         $commandName = $input->getArgument('command-name');
         if (php_sapi_name() != 'cli') die('Restricted');
         $ext = ".php";
-        $fullPath = ROOT.DS.'src'.DS.'console'.DS.'commands'.DS.$commandName.$ext;
+        $fullPath = ROOT.DS.'src'.DS.'console'.DS.'commands'.DS.$commandName.'Command'.$ext;
         $content = '<?php
 namespace Console\App\Commands;
  
@@ -46,7 +46,7 @@ use Symfony\Component\Console\Input\InputOption;
 /**
  * Undocumented class
  */
-class '.$commandName.' extends Command {
+class '.$commandName.'Command extends Command {
     /**
      * Configures the command.
      *
