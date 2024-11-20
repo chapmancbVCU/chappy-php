@@ -1,6 +1,7 @@
 <?php
 namespace Console\App\Commands;
  
+use Core\Helper;
 use Console\App\Helpers\Controller;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -32,7 +33,8 @@ class GenerateControllerCommand extends Command
                 'resource',
                 null,
                 InputOption::VALUE_OPTIONAL,
-                'Add CRUD functions'
+                'Add CRUD functions',
+                false
             );
     }
  
@@ -57,13 +59,17 @@ class GenerateControllerCommand extends Command
         $fullPath = ROOT.DS.'app'.DS.'controllers'.DS.$controllerName.'Controller'.$ext;
 
         // Test if --resource flag is set and generate appropriate version of file
-        $resource = $input->getParameterOption('--resource', 'no_resource') ?? 'default';
-        if($resource == 'no_resource') {
+        $resource = $input->getOption('resource');
+
+        
+        if($resource === false) {
+            // No option
             $content = Controller::defaultTemplate($controllerName, $layout);
-        } else if ($resource == 'default') {
+        } else if ($resource === null) {
+            // Option with no argument
             $content = Controller::resourceTemplate($controllerName, $layout);
-        }
-        else {
+        } else {
+            // Option with argument
             var_dump("--resource does not accept a value");
             return Command::FAILURE;
         }
