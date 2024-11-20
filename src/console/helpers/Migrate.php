@@ -2,10 +2,24 @@
 namespace Console\App\Helpers;
 
 use Core\DB;
+use PDO;
+use PDOException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
 class Migrate {
+    public static function createDatabase(string $host, string $user, string $dbName, $password): int {
+        try {
+            $db = new PDO("mysql:host=".$host, $user, $password);
+            $db->exec("CREATE DATABASE `$dbName`;");
+        } catch(PDOException $e) {
+            echo "\e[0;37;42m\n\n"."   ".$e->getMessage().".\n\e[0m\n";
+            return Command::FAILURE;
+        }
+        echo "\e[0;37;42m\n\n"."   The ".$dbName." database was successfully created.\n\e[0m\n";
+        return Command::SUCCESS;
+    }
+
     public static function dropAllTables(): int {
         // Load configuration and helper functions
         $isCli = php_sapi_name() == 'cli';
