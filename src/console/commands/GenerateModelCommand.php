@@ -2,6 +2,7 @@
 namespace Console\App\Commands;
  
 use Console\App\Helpers\Model;
+use Console\App\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -43,10 +44,11 @@ class GenerateModelCommand extends Command
         if(!file_exists($fullPath)) {
             $resp = file_put_contents($fullPath, $content);
         } else {
-            var_dump("File already exists");
+            Tools::info('Controller already exists');
             return Command::FAILURE;
         }
 
+        Tools::info('Model created');
         return Command::SUCCESS;
     }
 }

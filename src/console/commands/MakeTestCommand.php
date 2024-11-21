@@ -2,6 +2,7 @@
 namespace Console\App\Commands;
  
 use Console\App\Helpers\Test;
+use Console\App\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -42,10 +43,11 @@ class MakeTestCommand extends Command
         if(!file_exists($fullPath)) {
             $resp = file_put_contents($fullPath, $content);
         } else {
-            var_dump("File already exists");
+            Tools::info('File already exists', 'red');
             return Command::FAILURE;
         }
 
+        Tools::info('New test file successfully created');
         return Command::SUCCESS;
     }
 }

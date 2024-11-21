@@ -12,9 +12,10 @@ class ProfileImageDir {
         if(!file_exists(self::$_path)) {
             mkdir(self::$_path, 0775, true);
         } else {
-            echo "\e[0;37;42m\n\n"."    The profile_images directory already exists.\n\e[0m\n";
+            Tools::info('The profile_images directory already exists.', 'red');
             return Command::FAILURE;
         }
+        Tools::info('profile_images directory created');
         return Command::SUCCESS;
     }
 
@@ -29,6 +30,7 @@ class ProfileImageDir {
                 unlink($file->getPathname());
             }
         }
+        Tools::info('All profile images have been deleted.');
         return Command::SUCCESS;
     }
 }

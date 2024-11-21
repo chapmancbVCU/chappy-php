@@ -1,7 +1,7 @@
 <?php
 namespace Console\App\Commands;
  
-use Core\Helper;
+use Console\App\Helpers\Tools;
 use Console\App\Helpers\Controller;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -58,12 +58,11 @@ class GenerateControllerCommand extends Command
         if($layoutInput === false) {
             $layout = 'default';
         } else if ($layoutInput === null) {
-            //var_dump("Please supply name of layout");
-            echo "\e[0;37;41m\n\n"."   Please supply name of layout.\n\e[0m\n";
+            Tools::info('Please supply name of layout.', 'red');
             return Command::FAILURE;
         } else {
             if($layoutInput === '') {
-                echo "\e[0;37;41m\n\n"."   Please supply name of layout.\n\e[0m\n";
+                Tools::info('Please supply name of layout.', 'red');
                 return Command::FAILURE;
             }
             $layout = $layoutInput;
@@ -79,17 +78,17 @@ class GenerateControllerCommand extends Command
             $content = Controller::resourceTemplate($controllerName, $layout);
         } else {
             // Option with argument
-            var_dump("--resource does not accept a value");
+            Tools::info('--resource does not accept a value.', 'red');
             return Command::FAILURE;
         }
 
         if(!file_exists($fullPath)) {
             $resp = file_put_contents($fullPath, $content);
         } else {
-            var_dump("File already exists");
+            Tools::info('Controller already exists', 'red');
             return Command::FAILURE;
         }
-
+        Tools::info('Controller created');
         return Command::SUCCESS;
     }
 

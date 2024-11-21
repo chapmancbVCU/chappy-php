@@ -13,10 +13,10 @@ class Migrate {
             $db = new PDO("mysql:host=".$host, $user, $password);
             $db->exec("CREATE DATABASE `$dbName`;");
         } catch(PDOException $e) {
-            echo "\e[0;37;42m\n\n"."   ".$e->getMessage().".\n\e[0m\n";
+            Tools::info($e->getMessage(), 'red');
             return Command::FAILURE;
         }
-        echo "\e[0;37;42m\n\n"."   The ".$dbName." database was successfully created.\n\e[0m\n";
+        Tools::info("The ".$dbName." database was successfully created.");
         return Command::SUCCESS;
     }
 
@@ -29,7 +29,7 @@ class Migrate {
         $previousMigs = [];
 
         if(empty($migrationTable)){
-            echo "\e[0;37;42m\n\n"."    Empty database.  No tables to drop.\n\e[0m\n";
+            Tools::info('Empty database.  No tables to drop.', 'red');
             return Command::FAILURE;
         }
         
@@ -45,6 +45,8 @@ class Migrate {
                 $mig->down();
             }
         }
+
+        Tools::info('All tables have been dropped');
         return Command::SUCCESS;
     }
 
@@ -70,7 +72,7 @@ class '.$fileName.' extends Migration {
 }
 ';
         $resp = file_put_contents($fullPath, $content);
-
+        Tools::info('New migration file created');
         return Command::SUCCESS;
     }
 
@@ -106,11 +108,7 @@ class '.$fileName.' extends Migration {
         }
 
         if(sizeof($migrationsRun) == 0){
-            if($isCli){
-                echo "\e[0;37;42m\n\n"."    No new migrations to run.\n\e[0m\n";
-            } else {
-            echo '<p style="color:#006600;">No new migrations to run.</p>';
-            }
+            Tools::info('No new migrations to run.', 'red');
         }
 
         return Command::SUCCESS;

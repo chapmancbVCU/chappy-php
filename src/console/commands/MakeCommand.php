@@ -1,6 +1,7 @@
 <?php
 namespace Console\App\Commands;
- 
+
+use Console\App\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -73,10 +74,11 @@ class '.$commandName.'Command extends Command {
         if(!file_exists($fullPath)) {
             $resp = file_put_contents($fullPath, $content);
         } else {
-            var_dump("File already exists");
+            Tools::info('Command already exists', 'red');
             return Command::FAILURE;
         }
 
+        Tools::info('Command successfully created');
         return Command::SUCCESS;
     }
 }
