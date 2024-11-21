@@ -1,6 +1,7 @@
 <?php
 namespace Core;
 use Core\{DB, Helper};
+use Console\App\Helpers\Tools;
 
 /**
  * Supports database migration operations.
@@ -306,15 +307,11 @@ abstract class Migration {
     protected function _printColor($res,$msg){
         $title = ($res)? "SUCCESS: " : "FAIL: ";
     
-        if($this->_isCli){
-            $for = ($res)? "\e[0;37;" : "\e[0;37;";
-            $back = ($res)? "42m" : "41m";
-            echo $for.$back."\n\n"."    ".$title.$msg."\n\e[0m\n";
+        if($res == 'SUCCESS') {
+            Tools::info($title.$msg);
         } else {
-            $color = ($res)? "#006600" : "#CC0000";
-            echo '<p style="color:'.$color.'">'.$title.$msg.'</p>';
+            Tools::info($title.$msg, 'red');
         }
-    
     }
 
     /**
