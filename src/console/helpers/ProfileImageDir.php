@@ -25,10 +25,15 @@ class ProfileImageDir {
                      RecursiveIteratorIterator::CHILD_FIRST);
         foreach($files as $file) {
             if ($file->isDir()){
-                rmdir($file->getPathname());
+                $response = rmdir($file->getPathname());
             } else {
-                unlink($file->getPathname());
+                $response = unlink($file->getPathname());
             }
+        }
+
+        if($response == false) {
+            Tools::info('Failure ocurred when deleting images.', 'red');
+            return Command::FAILURE;
         }
         Tools::info('All profile images have been deleted.');
         return Command::SUCCESS;
