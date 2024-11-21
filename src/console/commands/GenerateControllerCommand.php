@@ -61,6 +61,10 @@ class GenerateControllerCommand extends Command
             var_dump("Please supply name of layout");
             return Command::FAILURE;
         } else {
+            if($layoutInput === '') {
+                var_dump("Please supply name of layout");
+                return Command::FAILURE;
+            }
             $layout = $layoutInput;
         }
 
