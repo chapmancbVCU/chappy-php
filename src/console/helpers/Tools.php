@@ -10,7 +10,7 @@ class Tools {
         return '--------------------------------------------------';
     }
 
-    public static function info(string $message, string $background = 'green', $text = 'light-grey') {
+    public static function info(string $message, string $background = BACKGROUND_COLOR, $text = TEXT_COLOR) {
         $backgroundColor = [
             'black' => '40',
             'red' => '41',

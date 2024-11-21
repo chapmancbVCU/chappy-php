@@ -1,0 +1,3 @@
+<?php
+define('BACKGROUND_COLOR', $_ENV['BACKGROUND_COLOR']);
+define('TEXT_COLOR', $_ENV['TEXT_COLOR']);
