@@ -189,30 +189,6 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
-        <tr>
-            <th colspan="2" class="text-center">public static function printBorder</th>
-        </tr>
-        <tr>
-            <td colspan="2">Returns dashed border.</td>
-        </tr>
-        <tr>
-            <th class="align-middle text-center" colspan="2">params</th>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25" colspan="2">None</td>
-        </tr>
-        <tr>
-            <th class="align-middle text-center w-25" colspan="2">return</th>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25">string</td>
-            <td>A dashed border.</td>
-        </tr>
-    </table>
-
-    <hr class="w-75 my-5 mx-auto">
-
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm mb-5">
         <tr>
             <th colspan="2" class="text-center">public static function timeStamps</th>

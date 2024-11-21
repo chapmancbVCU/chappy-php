@@ -123,15 +123,6 @@ class Helper {
   }
 
   /**
-   * Returns dashed border.
-   *
-   * @return string A dashed border.
-   */
-  public static function printBorder() {
-    return '--------------------------------------------------';
-  }
-
-  /**
    * Generates a timestamp.
    *
    * @return string A timestamp in the format Y-m-d H:i:s UTC time.
