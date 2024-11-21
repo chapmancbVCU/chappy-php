@@ -28,7 +28,8 @@ class GenerateControllerCommand extends Command
                 'layout',
                 null,
                 InputOption::VALUE_OPTIONAL,
-                'Layout for views associated with controller.')
+                'Layout for views associated with controller.',
+                false)
             ->addOption(
                 'resource',
                 null,
@@ -48,20 +49,23 @@ class GenerateControllerCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $controllerName = $input->getArgument('controllername');
-        $layoutInput = $input->getOption('layout');
-        if($layoutInput) {
-            $layout = $layoutInput;
-        } else {
-            $layout = 'default';
-        }
+
         if (php_sapi_name() != 'cli') die('Restricted');
-        $ext = ".php";
-        $fullPath = ROOT.DS.'app'.DS.'controllers'.DS.$controllerName.'Controller'.$ext;
+        $fullPath = ROOT.DS.'app'.DS.'controllers'.DS.$controllerName.'Controller.php';
+        
+        // Test if --layout is properly set
+        $layoutInput = $input->getOption('layout');
+        if($layoutInput === false) {
+            $layout = 'default';
+        } else if ($layoutInput === null) {
+            var_dump("Please supply name of layout");
+            return Command::FAILURE;
+        } else {
+            $layout = $layoutInput;
+        }
 
         // Test if --resource flag is set and generate appropriate version of file
         $resource = $input->getOption('resource');
-
-        
         if($resource === false) {
             // No option
             $content = Controller::defaultTemplate($controllerName, $layout);
