@@ -20,6 +20,10 @@ class Migrate {
         return Command::SUCCESS;
     }
 
+    public static function createUser(): int {
+        return Command::SUCCESS;
+    }
+
     public static function dropAllTables(): int {
         // Load configuration and helper functions
         $isCli = php_sapi_name() == 'cli';
