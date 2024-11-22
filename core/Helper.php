@@ -56,11 +56,9 @@ class Helper {
    * @return void
    */
   public static function cl(mixed $output, bool $with_script_tags = true): void {
-    if(CONSOLE_LOGGING) {
-      $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
-      if($with_script_tags) $js_code = '<script>' . $js_code . '</script>';
-        echo $js_code;
-    }
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
+    if($with_script_tags) $js_code = '<script>' . $js_code . '</script>';
+      echo $js_code;
   }
 
   /**

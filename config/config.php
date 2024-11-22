@@ -4,7 +4,6 @@
  */
 
 define('DEBUG', $_ENV['DEBUG']);
-define('CONSOLE_LOGGING', $_ENV['CONSOLE_LOGGING']);            // JS console logging.
 
 // this should be set to false for security reasons. If you need to run migrations from the browser you can set this to true, then run migrations, then set it back to false.
 define('RUN_MIGRATIONS_FROM_BROWSER', $_ENV['RUN_MIGRATIONS_FROM_BROWSER']);
