@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputOption;
 /**
  * Undocumented class
  */
-class MakeDBUserCommandCommand extends Command {
+class MakeDBUserCommand extends Command {
     /**
      * Configures the command.
      *
