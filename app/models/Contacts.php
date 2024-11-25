@@ -29,6 +29,10 @@ class Contacts extends Model {
     public $work_phone;
     public $zip;
 
+    public function beforeSave(): void {
+        $this->timeStamps();
+    }
+    
     /**
      * Formats address to conform to form factor of an address label.
      *
