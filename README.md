@@ -37,7 +37,6 @@ If you need help search using a combination of keywords that include Laravel, se
    * CURRENT_USER_SESSION_NAME: should be a long string of upper and lower case characters and numbers.
    * REMEMBER_ME_COOKIE_NAME:  should be a long string of upper and lower case characters and numbers.
    * For XAMPP set APP_DOMAIN to 'http://localhost/chappy-php'.  On live servers set it to '/'.
-   * Set SERVER_TYPE to 'apache' on Apache and XAMPP.  For Nginx make sure it is set to 'nginx' if you are using $_SERVER['PATH_INFO'] instead of $_SERVER['REQUEST_URI'].
    * You can also configure password complexity requirements, MAX_LOGIN_ATTEMPTS, and name for S3_BUCKET here as well.
 5. Database Setup:
    * Create your database and set it to what you entered for DB_NAME
