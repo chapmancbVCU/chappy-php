@@ -7,7 +7,7 @@ use Core\Cookie;
 use Core\Router;
 use App\Models\Users;
 use Dotenv\Dotenv;
-// Boiler plate imports.
+
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__));
 
