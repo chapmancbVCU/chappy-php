@@ -8,7 +8,6 @@ define('DEBUG', $_ENV['DEBUG']);
 // this should be set to false for security reasons. If you need to run migrations from the browser you can set this to true, then run migrations, then set it back to false.
 define('RUN_MIGRATIONS_FROM_BROWSER', $_ENV['RUN_MIGRATIONS_FROM_BROWSER']);
 
-define('SERVER_TYPE', $_ENV['SERVER_TYPE']);
 define('DEFAULT_CONTROLLER', $_ENV['DEFAULT_CONTROLLER']);      // Default controller if there isn't one defined in the URL.
 define('DEFAULT_LAYOUT', $_ENV['DEFAULT_LAYOUT']);              // If no layout is set in the controller use this layout.
 
