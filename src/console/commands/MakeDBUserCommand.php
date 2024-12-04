@@ -1,12 +1,13 @@
 <?php
 namespace Console\App\Commands;
  
+use Console\App\Helpers\Tools;
 use Console\App\Helpers\Migrate;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Undocumented class
@@ -32,7 +33,7 @@ class MakeDBUserCommand extends Command {
             ->addOption(
                 'db',
                 null,
-                InputOption::VALUE_OPTIONAL,
+                InputOption::VALUE_REQUIRED,
                 'Database for user',
                 false)
             ->addOption(
@@ -62,8 +63,28 @@ class MakeDBUserCommand extends Command {
         // Handle username with password
         $user = $input->getArgument('username');
 
-        // Grant all on db to user and flush privileges
+        // Get required password input
+        $password = $input->getOption('password');
+        if($password === false) {
+            Tools::info('Please supply a password', 'red');
+            return Command::FAILURE;
+        } else if ($password === null) {
+            Tools::info('Please supply a password', 'red');
+            return Command::FAILURE;
+        }
 
+        // Get required database name input
+        $dbName = $input->getOption('db');
+        if($dbName === false) {
+            Tools::info('Please supply a name for the database', 'red');
+            return Command::FAILURE;
+        } else if ($dbName === null) {
+            Tools::info('Please supply a name for the database', 'red');
+            return Command::FAILURE;
+        }
+
+        // Grant all on db to user and flush privileges
+        // return Migrate::createUser(DB_HOST, $user, $dbName, DB_PASSWORD);
         return Command::SUCCESS;
     }
 }

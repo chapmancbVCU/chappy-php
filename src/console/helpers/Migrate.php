@@ -8,7 +8,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
 class Migrate {
-    public static function createDatabase(string $host, string $user, string $dbName, $password): int {
+    public static function createDatabase(string $host, string $user, string $dbName, string $password): int {
         try {
             $db = new PDO("mysql:host=".$host, $user, $password);
             $db->exec("CREATE DATABASE `$dbName`;");
@@ -20,7 +20,7 @@ class Migrate {
         return Command::SUCCESS;
     }
 
-    public static function createUser(): int {
+    public static function createUser(string $host, string $user, string $dbName, string $password): int {
 
         // try {
         //     $dbh = new PDO("mysql:host=$host", $root, $root_password);
@@ -35,6 +35,16 @@ class Migrate {
         // catch (PDOException $e) {
         //     die("DB ERROR: " . $e->getMessage());
         // }
+
+        try {
+            $db = new PDO("mysql:host=".$host, $user, $password);
+            $db->exec("CREATE USER '$user'@'$host' IDENTIFIED BY '$password';
+                GRANT ALL ON `$dbName`.* TO '$user'@'$host';");
+        } catch(PDOException $e) {
+            Tools::info($e->getMessage(), 'red');
+            return Command::FAILURE;
+        }
+        Tools::info("The ".$user." was successfully created.");
         return Command::SUCCESS;
     }
 
