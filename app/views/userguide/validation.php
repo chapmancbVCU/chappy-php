@@ -10,6 +10,7 @@
         <ol class="pl-4">
             <li><a href="#overview">Overview</a></li>
             <li><a href="#setup">Setup</a></li>
+            <li><a href="#validators">Validation Rules</a></li>
         </ol>
     </div>
 
@@ -35,7 +36,7 @@
 
     <h1 id="setup" class="text-center">Setup</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
-        Let's use the addAction function for an example ContactsController class as an example.  
+        Let's use the addAction function from an example ContactsController class.  
         As shown below on line 32, we have a displayErrors property for the View class.  We generally set 
         this value to a function call called getErrorMessages on the model.  In this case, we 
         are using the $contacts model because we want to add a new contact.
@@ -66,6 +67,51 @@
             <img class="img-fluid" src="<?=APP_DOMAIN?>public/images/userGuide/display-errors-example.png" alt="Form validation error example">
             <figcaption>Figure 3 - Form validation error example</figcaption>
         </figure>
+    </div>
+
+    <h1 id="validators" class="text-center">Validation Rules</h1>
+    <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
+        First step is to create a validator function in your model class.  The structure looks as follows:
+<pre class="mb-1 pb-1 bg-dark text-white">
+            <code>
+public function validator(): void {
+    // Enter your validation function calls here.
+}
+            </code>
+</pre>    
+        You can easily create a model with this function already created from the console by running the following command:
+<pre class="mb-1 pb-1 bg-dark text-white">
+            <code>
+php console make:model ${Modelname}
+            </code>
+</pre>  
+        Let's use the MaxValidator for the First Name field in the Contacts model as an example:
+<pre class="mb-1 pb-1 bg-dark text-white">
+            <code>
+$this->runValidation(new MaxValidator($this, ['field' => 'fname', 'rule' => 150, 'message' => 'First name must be less than 150 characters.']));
+            </code>
+</pre>   
+        <p>The function call requires two parameters.  The $this keyword and an associative array.  
+        Within the associative array you need to define the field, sometimes rule, and a message.  
+        Let's look at the field.  Notice that it is a key value pair whose value is the 
+        database field or model class' instance variable called fname.  The rule is similar and you 
+        can adjust the rule based on how you define this field in the database.  Finally, the message 
+        key value pair is used to set the the language displayed to the user when validation fails.  
+        Within reason, industry standards always recommend utilizing both front end and server side 
+        validation.</p>
+
+        <p>You can also group several fields together and iterate through them with a foreach loop:</p>
+<pre class="mb-1 pb-1 bg-dark text-white">
+            <code>
+$requiredFields = ['fname' => 'First Name', 'lname' => 'Last Name', 
+    'address' => 'Address', 'city' => 'City', 'state' => 'State', 
+    'zip' => 'Zip', 'email' => 'Email'];
+    
+    foreach($requiredFields as $field => $display) {
+        $this->runValidation(new RequiredValidator($this,['field'=>$field,'message'=>$display." is required."]));
+    }
+            </code>
+</pre>
     </div>
 </div>
 <?php $this->end(); ?>

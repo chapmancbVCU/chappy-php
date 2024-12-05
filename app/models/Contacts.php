@@ -155,7 +155,6 @@ class Contacts extends Model {
             'zip' => 'Zip', 'email' => 'Email'];
         foreach($requiredFields as $field => $display) {
             $this->runValidation(new RequiredValidator($this,['field'=>$field,'message'=>$display." is required."]));
-
         }
     }
 }
