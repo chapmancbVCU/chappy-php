@@ -7,6 +7,7 @@
         <ol class="pl-4">
             <li><a href="#overview">Overview</a></li>
             <li><a href="<?=APP_DOMAIN?>userguide/gettingStarted">Getting Started</a></li>
+            <li><a href="<?=APP_DOMAIN?>userguide/database">Database Operations</a></li>
             <li><a href="<?=APP_DOMAIN?>userguide/loginSystem">Login System</a></li>
             <li><a href="<?=APP_DOMAIN?>userguide/userProfiles">User Profiles</a></li>
             <li><a href="<?=APP_DOMAIN?>userguide/contactManagement">Contact Management System</a></li>

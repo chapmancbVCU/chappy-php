@@ -19,6 +19,10 @@ class UserguideController extends Controller {
     public function controllersAction(): void {
         $this->view->render('userguide/controllers');
     }
+
+    public function databaseAction(): void {
+        $this->view->render('userguide/database');
+    }
     public function formsAction(): void {
         $this->view->render('userguide/forms');
     } 

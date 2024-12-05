@@ -78,6 +78,7 @@
     <div class="dropdown-container">
         <a href="<?=APP_DOMAIN?>userguide/">Overview</a>
         <a href="<?=APP_DOMAIN?>userguide/gettingStarted">Getting Started</a>
+        <a href="<?=APP_DOMAIN?>userguide/database">Database Operations</a>
         <a href="<?=APP_DOMAIN?>userguide/loginSystem">Login System</a>
         <a href="<?=APP_DOMAIN?>userguide/userProfiles">User Profiles</a>
         <a href="<?=APP_DOMAIN?>userguide/contactManagement">Contact Management System</a>
