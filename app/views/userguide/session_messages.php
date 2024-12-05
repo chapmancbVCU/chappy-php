@@ -36,9 +36,8 @@
             for how to perform this task is shown below:
         </p>
 <pre class="mb-1 pb-1">
-        <code>
-Session::addMessage('success', 'Contact has been deleted');
-        </code>
+<code class="language-php line-numbers">Session::addMessage('success', 'Contact has been deleted');
+</code>
 </pre>
         <p>The result of performing the action is shown below in Figure 1.</p>
         <figure class="d-flex flex-column justify-content-center align-items-center">
@@ -52,8 +51,7 @@ Session::addMessage('success', 'Contact has been deleted');
             use this to delete an image is shown below:
         </p>
 <pre class="mb-1 pb-1">
-        <code>
-function deleteImage(image_id) {
+<code class="language-php line-numbers">function deleteImage(image_id) {
     if(confirm("Are you sure?  This cannot be undone!")) {
         jQuery.ajax({
             url : '<?=APP_DOMAIN?>admindashboard/deleteImage',
@@ -69,7 +67,7 @@ function deleteImage(image_id) {
         });
     }
 }
-        </code>
+</code>
 </pre>
         <p>The result of calling this function is shown below in Figure 2.</p>
         <figure class="d-flex flex-column justify-content-center align-items-center">

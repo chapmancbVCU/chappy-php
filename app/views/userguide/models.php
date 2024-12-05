@@ -21,9 +21,8 @@
         </p>
 
 <pre class="mb-1 pb-1">
-        <code>
-php console make:model ModelName
-        </code>
+<code class="language-php line-numbers">php console make:model ModelName
+</code>
 </pre>
         <p>Remember, models are classes and the first letter in the model's name needs to be upper case.  
             After you run the command a new model file will be generated under app\models.  The make:model 
@@ -32,8 +31,7 @@ php console make:model ModelName
         </p>
 
 <pre class="mb-1 pb-1">
-        <code>
-namespace App\Models;
+<code class="language-php line-numbers">namespace App\Models;
 use Core\Model;
 
 /**
@@ -77,8 +75,7 @@ class ModelName extends Model {
         //
     }
 }
-
-        </code>
+</code>
 </pre>
     </div>
 

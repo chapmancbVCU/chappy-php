@@ -16,15 +16,13 @@
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
         <p>The console command is used to manage and perform tasks related to this framework.  You can run a console command following the following syntax: </p>
 <pre class="mb-1 pb-1">
-        <code>
-php console ${command_name} ${argument}
-        </code>
+<code class="language-php line-numbers">php console ${command_name} ${argument}
+</code>
 </pre>
         <p>An example of a command that requires arguments is demonstrated below:</p>
 <pre class="mb-1 pb-1">
-        <code>
-php console test:run-test Test
-        </code>
+<code class="language-php line-numbers">php console test:run-test Test
+</code>
 </pre>
         <p>Where <q>Test</q> is the name of the file containing the test.  Typing <q>php console</q> in the command line at project 
             root will display all of the available commands.  Each of the supported command will be covered in their respective sections 

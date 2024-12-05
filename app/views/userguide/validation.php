@@ -73,22 +73,19 @@
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
         First step is to create a validator function in your model class.  The structure looks as follows:
 <pre class="mb-1 pb-1">
-<code class="language-php line-numbers">
-public function validator(): void {
+<code class="language-php line-numbers">public function validator(): void {
     // Enter your validation function calls here.
 }
 </code>
 </pre>    
         You can easily create a model with this function already created from the console by running the following command:
 <pre class="mb-1 pb-1" >
-<code class="language-php line-numbers">
-php console make:model ${Modelname}
+<code class="language-php line-numbers">php console make:model ${Modelname}
 </code>
 </pre>  
         Let's use the MaxValidator for the First Name field in the Contacts model as an example:
 <pre class="mb-1 pb-1">
-<code class="language-php line-numbers">
-$this->runValidation(new MaxValidator($this, ['field' => 'fname', 'rule' => 150, 'message' => 'First name must be less than 150 characters.']));
+<code class="language-php line-numbers">$this->runValidation(new MaxValidator($this, ['field' => 'fname', 'rule' => 150, 'message' => 'First name must be less than 150 characters.']));
 </code>
 </pre>   
         <p>The function call requires two parameters.  The $this keyword and an associative array.  
@@ -102,15 +99,13 @@ $this->runValidation(new MaxValidator($this, ['field' => 'fname', 'rule' => 150,
 
         <p>You can also group several fields together and iterate through them with a foreach loop:</p>
 <pre class="mb-1 pb-1 ">
-<code class="language-php line-numbers">
-$requiredFields = ['fname' => 'First Name', 'lname' => 'Last Name', 
+<code class="language-php line-numbers">$requiredFields = ['fname' => 'First Name', 'lname' => 'Last Name', 
     'address' => 'Address', 'city' => 'City', 'state' => 'State', 
     'zip' => 'Zip', 'email' => 'Email'];
 
 foreach($requiredFields as $field => $display) {
     $this->runValidation(new RequiredValidator($this,['field'=>$field,'message'=>$display." is required."]));
-}
-    </code>
+}</code>
 </pre>
     </div>
 </div>

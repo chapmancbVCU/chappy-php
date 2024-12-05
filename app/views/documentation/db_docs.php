@@ -145,11 +145,10 @@
                 <br><br>
                 Example setup:
                 <br>
-                <pre class="my-0">
-<code>
-    $contacts = $db->delete('contacts', 3);
+<pre class="my-0">
+<code class="language-php line-numbers">$contacts = $db->delete('contacts', 3);
 </code>
-                </pre>
+</pre>
             </td>
         </tr>
         <tr>
@@ -209,9 +208,8 @@
                 <br><br>
                 Example setup:
                 <br>
-                <pre class="my-0">
-<code>
-$contacts = $db->find('users', [
+<pre class="my-0">
+<code class="language-php line-numbers">$contacts = $db->find('users', [
     'conditions' => ["email = ?"],
     'bind' => ['chad.chapman@email.com'],
     'order' => "username",
@@ -219,7 +217,7 @@ $contacts = $db->find('users', [
     'sort' => 'DESC'
 ]);
 </code>
-                </pre>
+</pre>
             </td>
         </tr>
         <tr>
@@ -390,16 +388,15 @@ $contacts = $db->find('users', [
                 <br><br>
                 Example setup:
                 <br>
-                <pre class="my-0">
-<code>
-$fields = [
+<pre class="my-0">
+<code class="language-php line-numbers">$fields = [
     'fname' => 'John',
     'lname' => 'Doe',
     'email' => 'example@email.com'
     ];
 $contacts = $db->insert('contacts', $fields);
 </code>
-                </pre>
+</pre>
             </td>
         </tr>
         <tr>
@@ -552,16 +549,14 @@ $contacts = $db->insert('contacts', $fields);
                 <br><br>
                 Example setup:
                 <br>
-                <pre class="my-0">
-<code>
-Example setup:
-$fields = [
+<pre class="my-0">
+<code class="language-php line-numbers">$fields = [
     'fname' => 'John',
     'email' => 'example@email.com'
 ];
 $contacts = $db->update('contacts', 3, $fields);
 </code>
-                </pre>
+</pre>
             </td>
         </tr>
         <tr>
