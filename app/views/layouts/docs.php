@@ -13,8 +13,10 @@ use Core\FormHelper;
     <link rel="icon" href="<?=APP_DOMAIN?>public/images/favicon/noun-mvc-5340614.png">
     <link rel="stylesheet" href="<?=APP_DOMAIN?>public/css/bootstrap-4.6.2/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="<?=APP_DOMAIN?>public/css/styles.css?v=<?=VERSION?>" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?=APP_DOMAIN?>public/css/prism.css" media="screen" title="no title" charset="utf-8">
     <script src="<?=APP_DOMAIN?>public/js/jQuery-3.7.1/jQuery-3.7.1.min.js"></script>
     <script src="<?=APP_DOMAIN?>public/js/bootstrap-4.6.2/bootstrap.min.js"></script>
+    <script src="<?=APP_DOMAIN?>public/js/prism.js"></script>
     <?= $this->content('head'); ?>
 
   </head>

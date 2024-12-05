@@ -72,24 +72,24 @@
     <h1 id="validators" class="text-center">Validation Rules</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
         First step is to create a validator function in your model class.  The structure looks as follows:
-<pre class="mb-1 pb-1 bg-dark text-white">
-            <code>
+<pre class="mb-1 pb-1">
+<code class="language-php line-numbers">
 public function validator(): void {
     // Enter your validation function calls here.
 }
-            </code>
+</code>
 </pre>    
         You can easily create a model with this function already created from the console by running the following command:
-<pre class="mb-1 pb-1 bg-dark text-white">
-            <code>
+<pre class="mb-1 pb-1" >
+<code class="language-php line-numbers">
 php console make:model ${Modelname}
-            </code>
+</code>
 </pre>  
         Let's use the MaxValidator for the First Name field in the Contacts model as an example:
-<pre class="mb-1 pb-1 bg-dark text-white">
-            <code>
+<pre class="mb-1 pb-1">
+<code class="language-php line-numbers">
 $this->runValidation(new MaxValidator($this, ['field' => 'fname', 'rule' => 150, 'message' => 'First name must be less than 150 characters.']));
-            </code>
+</code>
 </pre>   
         <p>The function call requires two parameters.  The $this keyword and an associative array.  
         Within the associative array you need to define the field, sometimes rule, and a message.  
@@ -101,16 +101,16 @@ $this->runValidation(new MaxValidator($this, ['field' => 'fname', 'rule' => 150,
         validation.</p>
 
         <p>You can also group several fields together and iterate through them with a foreach loop:</p>
-<pre class="mb-1 pb-1 bg-dark text-white">
-            <code>
+<pre class="mb-1 pb-1 ">
+<code class="language-php line-numbers">
 $requiredFields = ['fname' => 'First Name', 'lname' => 'Last Name', 
     'address' => 'Address', 'city' => 'City', 'state' => 'State', 
     'zip' => 'Zip', 'email' => 'Email'];
-    
-    foreach($requiredFields as $field => $display) {
-        $this->runValidation(new RequiredValidator($this,['field'=>$field,'message'=>$display." is required."]));
-    }
-            </code>
+
+foreach($requiredFields as $field => $display) {
+    $this->runValidation(new RequiredValidator($this,['field'=>$field,'message'=>$display." is required."]));
+}
+    </code>
 </pre>
     </div>
 </div>
