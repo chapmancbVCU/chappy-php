@@ -83,7 +83,7 @@
                 <br><br>
                 An example function call is shown below:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">FormHelper::button(
     "Click Me!", 
     ['class' => 'btn btn-large btn-primary', 
@@ -92,7 +92,7 @@
 </code>
 </pre>
                 Example HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">&lt;button type="button" 
     class="btn btn-large btn-primary" 
     onClick="alert('Hello World!')"&gt;Click Me!
@@ -133,7 +133,7 @@
                 <br><br>
                 An example function call is shown below:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">FormHelper::buttonBlock(
     "Click Me!", 
     ['class' => 'btn btn-large btn-primary', 
@@ -143,7 +143,7 @@
 </code>
 </pre>
                 Example HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">&lt;div class="form-group"&gt; 
     &lt;button type="button"  
         class="btn btn-large btn-primary"
@@ -190,7 +190,7 @@
                 <br><br>
                 An example function call is shown below:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">FormHelper::checkboxBlockLabelLeft(
     'Remember Me', 
     'remember_me', 
@@ -203,7 +203,7 @@
 </code>
 </pre>
                 Example HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">&lt;div class="form-group"&gt; 
     &lt;label for="remember_me">Remember Me 
         &lt;input type="checkbox" 
@@ -268,7 +268,7 @@
                 <br><br>
                 An example function call is shown below:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">FormHelper::checkboxBlockLabelRight(
     'Remember Me', 
     'remember_me', 
@@ -281,7 +281,7 @@
 </code>
 </pre>
                 Example HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">
 &lt;div class="form-group"&gt;
     &lt;input type="checkbox" 
@@ -369,7 +369,7 @@
             <td colspan="2">
                 A hidden input to represent the csrf token in a web form.
                 Example HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">
 &lt;input type="hidden" 
     name="csrf_token" 
@@ -431,7 +431,7 @@
                 <br><br>
                 An example function call is shown below:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">FormHelper::emailBlock(
     'Email', 
     'email', 
@@ -443,7 +443,7 @@
 </code>
 </pre>
                 Example HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">&lt;div class="form-group"&gt; 
     &lt;label for="email"&gt;Email&lt;/label&gt;
     &lt;input type="email" 
@@ -559,7 +559,7 @@
                 <br><br>
                 An example function call is shown below:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">FormHelper::hidden(
     "example_name", 
     "example_value"
@@ -567,7 +567,7 @@
 </code>
 </pre>
                 Example HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">&lt;input type="hidden"
     name="example_name" 
     id="example_name" 
@@ -628,7 +628,7 @@
                 </ol>
             
             <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">FormHelper::inputBlock(
     'text', 
     'Example', 
@@ -641,7 +641,7 @@
 </code>
 </pre>
                 Example HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">&lt;div class="form-group"&gt; 
     &lt;label for="example">Example&lt;/label&gt; 
     &lt;input type="text" 
@@ -735,7 +735,7 @@
                 <br><br>
                 An example function call is shown below:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">FormHelper::output(
     "my_name", 
     "for_value"
@@ -743,7 +743,7 @@
 </code>
 </pre>
                 Example HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">&lt;output name="my_name" 
     for="for_value"&gt;
 &lt;/output&gt;
@@ -808,7 +808,7 @@
                 <br><br>
                 An example function call is shown below:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">FormHelper::radioInput('HTML', 'html', 
     'fav_language', "HTML", $check1, 
     ['class' => 'form-group mr-1']
@@ -820,7 +820,7 @@ FormHelper::radioInput('CSS', 'css',
 </code>
 </pre>
                 Example HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">&lt;input type="radio" 
     id="html" 
     name="fav_language" 
@@ -914,7 +914,7 @@ FormHelper::radioInput('CSS', 'css',
                 <br><br>
                 An example function call is shown below:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">FormHelper::selectBlock(
     "Test", 
     "test", 
@@ -927,7 +927,7 @@ FormHelper::radioInput('CSS', 'css',
 </code>
 </pre>
                 Example HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">&lt;div class="form-group"&gt; 
 &lt;label for="test"&gt;Test&lt;/label&gt;
     &lt;select id="test" 
@@ -1021,7 +1021,7 @@ FormHelper::radioInput('CSS', 'css',
                 <br><br>
                 An example function call is shown below:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">FormHelper::submitBlock(
     "Save", 
     ['class'=>'btn btn-primary'], 
@@ -1030,7 +1030,7 @@ FormHelper::radioInput('CSS', 'css',
 </code>
 </pre>
                 Example HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">&lt;div class="text-right"&gt;
     &lt;input type="submit" 
         value="Save" 
@@ -1077,7 +1077,7 @@ FormHelper::radioInput('CSS', 'css',
                 <br><br>
                 An example function call is shown below:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">FormHelper::submitTag(
     "Save", 
     ['class'=>'btn btn-primary']
@@ -1085,7 +1085,7 @@ FormHelper::radioInput('CSS', 'css',
 </code>
 </pre>
                 or
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">self::submitTag(
     "Save", 
     ['class'=>'btn btn-primary']
@@ -1093,7 +1093,7 @@ FormHelper::radioInput('CSS', 'css',
 </code>
 </pre>
                 Example HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">&lt;input type="submit" 
     value="Save" 
     class="btn btn-primary" 
@@ -1146,7 +1146,7 @@ FormHelper::radioInput('CSS', 'css',
                 <br><br>
                 An example function call where no arguments are set is shown below:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">FormHelper::telBlock(
     'cell', 
     'Cell Phone', 
@@ -1158,7 +1158,7 @@ FormHelper::radioInput('CSS', 'css',
 </code>
 </pre>
                 The corresponding HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">&lt;div class="form-group"&gt; 
     &lt;label for="cell_phone"&gt;Cell Phone&lt;/label&gt;
     &lt;input type="tel" 
@@ -1174,7 +1174,7 @@ FormHelper::radioInput('CSS', 'css',
                 <br><br>
                 An example function call where two options are set and other is set with the inputAttrs array is shown below:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">FormHelper::telBlock(
     'home', 
     'Home Phone', 
@@ -1187,7 +1187,7 @@ FormHelper::radioInput('CSS', 'css',
 </code>
 </pre>
                 The corresponding HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">&lt;div class="form-group"&gt; 
     &lt;label for="home_phone"&gt;Home Phone&lt;/label&gt;
     &lt;input type="tel" 
@@ -1206,7 +1206,7 @@ FormHelper::radioInput('CSS', 'css',
                 <br><br>
                 An example function call where 'a' flag is set is shown below:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">FormHelper::telBlock(
     'work', 
     'Work Phone', 
@@ -1219,7 +1219,7 @@ FormHelper::radioInput('CSS', 'css',
 </code>
 </pre>
                 The corresponding HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">&lt;div class="form-group"&gt; 
     &lt;label for="work_phone"&gt;Work Phone&lt;/label&gt;
     &lt;input type="tel" 
@@ -1293,7 +1293,7 @@ FormHelper::radioInput('CSS', 'css',
                 <br><br>
                 An example function call is shown below:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">FormHelper::textAreaBlock(
     "Example", 
     'example_name', 
@@ -1306,7 +1306,7 @@ FormHelper::radioInput('CSS', 'css',
 </code>
 </pre>
                 Example HTML output is shown below:
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-html line-numbers">
 &lt;div class="form-group"&gt;
     &lt;label for="example_name">Example&lt;/label&gt;

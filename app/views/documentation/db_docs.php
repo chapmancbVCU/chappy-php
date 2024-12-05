@@ -145,7 +145,7 @@
                 <br><br>
                 Example setup:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">$contacts = $db->delete('contacts', 3);
 </code>
 </pre>
@@ -208,7 +208,7 @@
                 <br><br>
                 Example setup:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">$contacts = $db->find('users', [
     'conditions' => ["email = ?"],
     'bind' => ['chad.chapman@email.com'],
@@ -388,7 +388,7 @@
                 <br><br>
                 Example setup:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">$fields = [
     'fname' => 'John',
     'lname' => 'Doe',
@@ -549,7 +549,7 @@ $contacts = $db->insert('contacts', $fields);
                 <br><br>
                 Example setup:
                 <br>
-<pre class="my-0">
+<pre class="my-3 mx-3">
 <code class="language-php line-numbers">$fields = [
     'fname' => 'John',
     'email' => 'example@email.com'
