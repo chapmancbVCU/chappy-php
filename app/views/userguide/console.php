@@ -42,7 +42,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>migrate</td>
+                    <td><a href="<?=APP_DOMAIN?>userguide/database#migration">migrate</a></td>
                     <td>Runs a Database Migration!</td>
                 </tr>
                 <tr>
