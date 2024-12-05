@@ -33,14 +33,14 @@
         <ol class="pl-4">
             <li>Navigate to where your development projects are located in CMD or Terminal</li>
             <li>Run the command:
-<pre class="mb-1 pb-1">
+<pre class="my-3 pb-1">
 <code class="language-php line-numbers">git clone git@github.com:chapmancbVCU/custom-php-mvc-framework.git
 </code>
 </pre>
             </li>
             <li>cd to newly cloned directory.</li>
             <li>From project root run the command:
-<pre class="mb-1 pb-1">
+<pre class="my-3 pb-1">
 <code class="language-php line-numbers">php init-chappy
 </code>
 </pre>               
@@ -61,7 +61,7 @@
                 <ol class="pl-4" type="a">
                     <li>Create your database and set it to what you entered for DB_NAME</li>
                     <li>Run the command from project root to create initial tables:
-<pre class="mb-1 pb-1">
+<pre class="my-3 pb-1">
 <code class="language-php line-numbers">php console migrate
 </code>
 </pre>
@@ -82,14 +82,14 @@
                 <ol class="pl-4" type="a">
                     <li>In CMD or Terminal navigate to public/images/uploads from project root and make sure the <q>profile_images</q> directory exists.  If not create it.</li>
                     <li>Set the correct permissions for the profile_images directory in MacOS or Linux:
-<pre class="mb-1 pb-1">
+<pre class="my-3 pb-1">
 <code class="language-php line-numbers">chmod 775 profile_images
 </code>
 </pre>
                     </li>
                     <li>
                         In Linux and MacOS you will need to modify the owner and group. 
-<pre class="mb-1 pb-1">
+<pre class="my-3 pb-1">
 <code class="language-php line-numbers">sudo chown -R %USERNAME%:%GROUP% profile_images/
 </code>
 </pre>
