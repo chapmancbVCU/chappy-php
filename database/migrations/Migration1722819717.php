@@ -1,5 +1,5 @@
 <?php
-namespace Migrations;
+namespace Database\Migrations;
 use Core\Migration;
 
 class Migration1722819717 extends Migration {
