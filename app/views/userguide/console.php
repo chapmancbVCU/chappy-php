@@ -70,7 +70,7 @@
                     <td>Create a new database user (Coming soon!)</td>
                 </tr>
                 <tr>
-                    <td>make:migration</td>
+                    <td><a href="<?=APP_DOMAIN?>userguide/database#create-migration">make:migration</a></td>
                     <td>Generates a Database Migration!</td>
                 </tr>
                 <tr>
