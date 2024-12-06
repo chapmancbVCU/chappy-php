@@ -10,6 +10,7 @@
         <ol class="pl-4">
             <li><a href="#overview">Overview</a></li>
             <li><a href="#migration">Migration</a></li>
+            <li><a href="#create-migration">Create Migration</a></li>
         </ol>
     </div>
 
@@ -58,6 +59,16 @@ DB_HOST='127.0.0.1'
         <p>Performing either of these commands will result in status messages being displayed in the 
             console.
         </p>
+    </div>
+
+    <h1 id="create-migration" class="text-center">Create Migration</h1>
+    <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
+        <p>Create a migration by running the make:migration command.  An example is shown below for a table called foo:</p>
+<pre class="my-3 pb-1">
+<code class="language-php line-numbers">php console make:migration foo
+</code>
+</pre>       
+
     </div>
 </div>
 <?php $this->end(); ?>
