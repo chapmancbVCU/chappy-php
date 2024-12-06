@@ -36,15 +36,28 @@ DB_HOST='127.0.0.1'
         <p>Next, create the database.  If your database is on your local host you can run the make:db command.  
             An example is shown below:
         </p>
-        <pre class="my-3 pb-1">
+<pre class="my-3 pb-1">
 <code class="language-php line-numbers">php console make:db chappy
 </code>
 </pre>
         <p>Finally, you can run the migrate command shown below:</p>
-        <pre class="my-3 pb-1">
+<pre class="my-3 pb-1">
 <code class="language-php line-numbers">php console migrate
 </code>
 </pre>
+        <p>If you make a mistake or need a fresh start you can perform a refresh as described below:</p>
+<pre class="my-3 pb-1">
+<code class="language-php line-numbers">php console migrate:refresh
+</code>
+</pre>
+        <p>Finally, if you just want to drop tables perform the following command:</p>
+<pre class="my-3 pb-1">
+<code class="language-php line-numbers">php console migrate:drop-all
+</code>
+</pre>
+        <p>Performing either of these commands will result in status messages being displayed in the 
+            console.
+        </p>
     </div>
 </div>
 <?php $this->end(); ?>
