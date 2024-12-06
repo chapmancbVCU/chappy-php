@@ -61,7 +61,7 @@ If you need help search using a combination of keywords that include Laravel, se
 ## Goals
 1. Add additional front-end and back-end form validation (Done)
 2. Resolve issue for warnings about creating of dynamic properties so the framework is fully compatible with PHP 8
-3. Test with nginx (In progress)
+3. Test with nginx (Done)
 4. Update jQuery and Bootstrap to modern builds and add support to maintain similar look and feel of front end (Done)
 5. Add support for additional form elements in FormHelpers (Done)
 6. Add user guide (Update as needed)
@@ -71,6 +71,7 @@ If you need help search using a combination of keywords that include Laravel, se
 11. Add database migrations. (Done)
 12. Update to match original tutorial project. (Done)
 13. Add user profile (Done)
+14. Additional console command support
 
 ## Contact
 I can be reached regarding this framework at chad.chapman2010@gmail.com.  You are also welcome to open up an issue at https://github.com/chapmancbVCU/chappy-php/issues
