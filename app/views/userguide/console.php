@@ -62,7 +62,7 @@
                     <td>Generates a new controller file!</td>
                 </tr>
                 <tr>
-                    <td>make:db</td>
+                    <td><a href="<?=APP_DOMAIN?>userguide/database#migration">make:db</a></td>
                     <td>Creates a new database</td>
                 </tr>
                 <tr>
@@ -74,7 +74,7 @@
                     <td>Generates a Database Migration!</td>
                 </tr>
                 <tr>
-                    <td>make:model</td>
+                    <td><a href="<?=APP_DOMAIN?>userguide/models#overview">make:model</a></td>
                     <td>Generates a new model file!</td>
                 </tr>
                 <tr>
@@ -82,11 +82,11 @@
                     <td>Generates a new test file!</td>
                 </tr>
                 <tr>
-                    <td>migrate:drop-all</td>
+                    <td><a href="<?=APP_DOMAIN?>userguide/database#migration">migrate:drop-all</a></td>
                     <td>Drops all database tables</td>
                 </tr>
                 <tr>
-                    <td>migrate:refresh</td>
+                    <td><a href="<?=APP_DOMAIN?>userguide/database#migration">migrate:refresh</a></td>
                     <td>Drops all tables and runs a Database Migration!</td>
                 </tr>
                 <tr>
