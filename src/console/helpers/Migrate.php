@@ -62,13 +62,13 @@ class Migrate {
         }
         
         // get all files
-        $migrations = glob('migrations'.DS.'*.php');
+        $migrations = glob('database'.DS.'migrations'.DS.'*.php');
 
         foreach($migrations as $fileName){
-            $klass = str_replace('migrations'.DS,'',$fileName);
+            $klass = str_replace('database'.DS.'migrations'.DS,'',$fileName);
             $klass = str_replace('.php','',$klass);
             if(!in_array($klass,$previousMigs)){
-                $klassNamespace = 'Migrations\\'.$klass;
+                $klassNamespace = 'Database\\Migrations\\'.$klass;
                 $mig = new $klassNamespace($isCli);
                 $mig->down();
             }
@@ -83,9 +83,9 @@ class Migrate {
         if (php_sapi_name() != 'cli') die('Restricted');
         $fileName = "Migration".time();
         $ext = ".php";
-        $fullPath = ROOT.DS.'migrations'.DS.$fileName.$ext;
+        $fullPath = ROOT.DS.'database'.DS.'migrations'.DS.$fileName.$ext;
         $content = '<?php
-namespace Migrations;
+namespace Database\Migrations;
 use Core\Migration;
 
 class '.$fileName.' extends Migration {
@@ -121,13 +121,13 @@ class '.$fileName.' extends Migration {
         }
         
         // get all files
-        $migrations = glob('migrations'.DS.'*.php');
+        $migrations = glob('database'.DS.'migrations'.DS.'*.php');
 
         foreach($migrations as $fileName){
-            $klass = str_replace('migrations'.DS,'',$fileName);
+            $klass = str_replace('database'.DS.'migrations'.DS,'',$fileName);
             $klass = str_replace('.php','',$klass);
             if(!in_array($klass,$previousMigs)){
-                $klassNamespace = 'Migrations\\'.$klass;
+                $klassNamespace = 'Database\\Migrations\\'.$klass;
                 $mig = new $klassNamespace($isCli);
                 $mig->up();
                 $db->insert('migrations',['migration'=>$klass]);
