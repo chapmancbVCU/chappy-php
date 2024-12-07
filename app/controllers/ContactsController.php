@@ -2,13 +2,12 @@
 namespace App\Controllers;
 use Core\{Controller, Helper, Session, Router};
 use App\Models\{Contacts, Users};
-
 /**
  * Implements support for our Contacts Controller.  It contains actions for 
  * handling user interactions that will result in CRUD operations against the 
  * database.
  */
-#[\AllowDynamicProperties]
+
 class ContactsController extends Controller {
     
     /**

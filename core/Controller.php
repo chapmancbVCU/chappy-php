@@ -6,6 +6,7 @@ use Core\Application;
  * This is the parent Controller class.  It describes functions that are 
  * available to all classes that extends this Controller class.
  */
+#[\AllowDynamicProperties]
 class Controller extends Application {
     protected $_action;
     protected $_controller;
