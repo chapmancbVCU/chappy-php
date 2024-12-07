@@ -51,6 +51,11 @@ DB_HOST='127.0.0.1'
 <code class="language-php line-numbers">php console migrate:refresh
 </code>
 </pre>
+        <p>Performing a the migrate and refresh commands will add a new record to a migrations table whose 
+            purpose is to track all previous migrations.  When you create a one or more new migrations only 
+            those will be executed.  You can also modify an existing table with a new migration.  More one 
+            building your own migrations will be covered in the next section called Create Migration.
+        </p>
         <p>Finally, if you just want to drop tables perform the following command:</p>
 <pre class="my-3 pb-1">
 <code class="language-php line-numbers">php console migrate:drop-all
@@ -68,7 +73,75 @@ DB_HOST='127.0.0.1'
 <code class="language-php line-numbers">php console make:migration foo
 </code>
 </pre>       
+        <p>Once you perform this action a migration class is created with two functions called up and down.  Up is used 
+            to create a new table or update an existing one.  Down drops an existing table.  We usually don't modify the 
+            down function. The output from the previous command is shown below:
+        </p>
 
+<pre class="my-3 pb-1">
+<code class="language-php line-numbers">namespace Database\Migrations;
+use Core\Migration;
+
+class Migration1733521897 extends Migration {
+    public function up() {
+        $table = 'foo';
+        $this->createTable($table);
+    }
+
+    public function down() {
+        $this->dropTable('foo');
+    }
+}
+</code>
+</pre>
+        <p>The up function automatically creates a $table variable set to the value you entered when you ran the make:migration command 
+            along with a function call to create the table.  In the code snippet below we added some fields.
+        </p>
+<pre class="my-3 pb-1">
+<code class="language-php line-numbers">namespace Database\Migrations;
+use Core\Migration;
+
+class Migration1733521897 extends Migration {
+    public function up() {
+        $table = 'foo';
+        $this->createTable($table);
+        $this->addColumn($table,'bar','varchar',['size'=>150]);
+        $this->addTimeStamps($table);
+        $this->addSoftDelete($table);
+        $this->addColumn($table,'user_id','int');
+        $this->addIndex($table,'user_id');
+    }
+
+    public function down() {
+        $this->dropTable('foo');
+    }
+}
+</code>
+</pre>
+        <p><strong>addColumn</strong> is the most common function that is used.  On line 8 we call this function to create a field 
+            called 'bar' whose type is varchar.  The last argument is the optional attributes parameter.  It is an 
+            associative array and in this case we set the size.  Other supported attributes are precision, scale, before, 
+            after, and definition.
+        </p>
+        <p><strong>addTimeStamps</strong> as shown on line 9 creates 'created_at' and 'updated_at' fields.  <strong>softDelete</strong> 
+            is used as a setting where you want to removed a record from being returned from any database query.  It serves as a safety 
+            net that allows you to permanently delete the record later or preserve for later use.
+        </p>
+        <p>The function call on line 11 adds a user_id field and the next line sets this field as an index.  It is a common way to 
+            create relationships with this and the Laravel framework.
+        </p>
+
+        <p>Run the migration and the console output, if successful, will be shown below:</p>
+        <figure class="d-flex flex-column justify-content-center align-items-center">
+            <img class="img-fluid" src="<?=APP_DOMAIN?>public/images/userGuide/migrate_output.png" alt="Migration command output">
+            <figcaption>Figure 1 - Migration command output</figcaption>
+        </figure>
+
+        <p>Open your database management software package and you will see that the table has been created.</p>
+        <figure class="d-flex flex-column justify-content-center align-items-center">
+            <img class="img-fluid" src="<?=APP_DOMAIN?>public/images/userGuide/foo-table.png" alt="New database table">
+            <figcaption>Figure 2 - New database table after migration was performed</figcaption>
+        </figure>
     </div>
 </div>
 <?php $this->end(); ?>

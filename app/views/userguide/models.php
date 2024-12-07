@@ -16,12 +16,12 @@
     <h1 id="overview" class="text-center">Overview</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
         <p>This framework supports models for interacting with a database.  Whenever you create a new 
-            table you will need to create a new model.  To create a new model run the the following 
-            command:
+            table you will need to create a new model.  Let's use the table 'foo' that was created under 
+            the Database Operations section.  To create a new model run the the following command:
         </p>
 
 <pre class="mb-1 pb-1">
-<code class="language-php line-numbers">php console make:model ModelName
+<code class="language-php line-numbers">php console make:model Foo
 </code>
 </pre>
         <p>Remember, models are classes and the first letter in the model's name needs to be upper case.  
@@ -37,13 +37,13 @@ use Core\Model;
 /**
  * 
  */
-class ModelName extends Model {
+class Foo extends Model {
 
     // Fields you don't want saved on form submit
     // public const blackList = [];
 
     // Set to name of database table.
-    protected static $_table = 'modelName';
+    protected static $_table = 'foo';
 
     // Soft delete
     // protected static $_softDelete = true;
