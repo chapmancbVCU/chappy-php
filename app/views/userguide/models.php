@@ -27,7 +27,8 @@
         <p>Remember, models are classes and the first letter in the model's name needs to be upper case.  
             After you run the command a new model file will be generated under app\models.  The make:model 
             command will guess what the name of your table is so be sure to double check the $table variable's 
-            value is correct.  The output file for the command described above is shown below:
+            value is correct.  The output file for the command with modifications tailored to the foo table 
+            described above is shown below:
         </p>
 
 <pre class="mb-1 pb-1">
@@ -40,15 +41,19 @@ use Core\Model;
 class Foo extends Model {
 
     // Fields you don't want saved on form submit
-    // public const blackList = [];
+    public const blackList = ['id', 'deleted'];
 
     // Set to name of database table.
     protected static $_table = 'foo';
 
     // Soft delete
-    // protected static $_softDelete = true;
+    protected static $_softDelete = true;
     
     // Fields from your database
+    public bar;
+    public created_at;
+    public id;
+    public updated_at;
 
     public function afterDelete(): void {
         //
@@ -92,6 +97,11 @@ class Foo extends Model {
 
         <p>This class comes with a public const blackList variable that is an array.  You can populate this 
             array with fields you don't want updated inadvertently on POST.  More on this in the controller's section.
+        </p>
+
+        <p>Models also support functions for tasks you want to perform before and after delete and update 
+            operations.  Finally, the validator function supports server side validation tasks.  More 
+            information about validation can be found <a href="<?=APP_DOMAIN?>userguide/validation">here</a>.
         </p>
     </div>
 </div>
