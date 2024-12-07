@@ -17,7 +17,8 @@
     <h1 id="overview" class="text-center">Overview</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
         <p>This page goes over the available ways users can manage a database with chappy.php  Using the 
-            console, you can perform migrations, drop tables, and other tasks.
+            console, you can perform migrations, drop tables, and other tasks.  A complete description of all 
+            Migration class function can be found <a href="<?=APP_DOMAIN?>documentation/migration">here</a>.
         </p>
     </div>
 
