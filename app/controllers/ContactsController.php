@@ -56,7 +56,7 @@ class ContactsController extends Controller {
      * @param mixed $id The id for contact whose information we want to display.
      * @return void
      */
-    public function detailsAction(mixed $id): void {
+    public function detailsAction(int $id): void {
         $contact = Contacts::findByIdAndUserId((int)$id, Users::currentUser()->id);
 
         // When user is not a contact we reroute to contacts index.
