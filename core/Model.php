@@ -57,10 +57,13 @@ class Model {
      */
     public function afterSave() {}
 
-    /**
+    /** UPDATE
      * Update the object with an associative array.
      * 
-     * @param array Take values from post array and assign values.
+     * @param array $params Take values from post array and assign values.
+     * @param array $list A list of values to blacklist or whitelist.
+     * @param boolean $blackList When set to true the values in the $list array is 
+     * blacklisted.  Otherwise they are whitelisted.
      * @return bool Report for whether or not the operation was successful.
      */
     public function assign($params, $list = [], $blackList = true) {
