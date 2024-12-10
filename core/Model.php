@@ -220,6 +220,25 @@ class Model {
     }
 
     /**
+     * Retrieves list of all records within a table related to a logged in user.
+     *
+     * @param int $user_id The ID user associated with this contact.
+     * @param array $params Used to build conditions for database query.  The 
+     * default value is an empty array.
+     * @return array The list of records that is returned from the database.
+     */
+    public static function findAllByUserId($user_id, $params = []) {
+        $conditions = [
+            'conditions' => 'user_id = ?',
+            'bind' => [(int)$user_id]
+        ];
+
+        // In case you want to add more conditions
+        $conditions = array_merge($conditions, $params);
+        return self::find($conditions);
+    }
+
+    /**
      * Wrapper for the findFirst function that is found in the DB class.
      *
      * @param array $params The values for the query.  They are the fields of 

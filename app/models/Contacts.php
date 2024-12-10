@@ -88,16 +88,16 @@ class Contacts extends Model {
      * default value is an empty array.
      * @return array The list of contacts that is returned from the database.
      */
-    public static function findAllByUserId($user_id, $params = []) {
-        $conditions = [
-            'conditions' => 'user_id = ?',
-            'bind' => [(int)$user_id]
-        ];
+    // public static function findAllByUserId($user_id, $params = []) {
+    //     $conditions = [
+    //         'conditions' => 'user_id = ?',
+    //         'bind' => [(int)$user_id]
+    //     ];
 
-        // In case you want to add more conditions
-        $conditions = array_merge($conditions, $params);
-        return self::find($conditions);
-    }
+    //     // In case you want to add more conditions
+    //     $conditions = array_merge($conditions, $params);
+    //     return self::find($conditions);
+    // }
 
     /**
      * Retrieves information for a contact that is associate with a 
