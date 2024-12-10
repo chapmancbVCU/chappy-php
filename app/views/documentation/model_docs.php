@@ -167,7 +167,15 @@
         </tr>
         <tr>
             <td class="align-middle text-center w-25">array</td>
-            <td>Take values from post array and assign values.</td>
+            <td>$list Take values from post array and assign values.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">array</td>
+            <td>$list A list of values to blacklist or whitelist.</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center w-25">boolean</td>
+            <td>$blackList When set to true the values in the $list array is blacklisted.  Otherwise they are whitelisted.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
