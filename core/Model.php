@@ -57,7 +57,7 @@ class Model {
      */
     public function afterSave() {}
 
-    /** UPDATE
+    /**
      * Update the object with an associative array.
      * 
      * @param array $params Take values from post array and assign values.
