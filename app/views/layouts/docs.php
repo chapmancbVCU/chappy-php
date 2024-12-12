@@ -10,7 +10,7 @@ use Core\FormHelper;
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title><?=$this->siteTitle()?></title>
-    <link rel="icon" href="<?=APP_DOMAIN?>public/images/favicon/noun-mvc-5340614.png">
+    <link rel="icon" href="<?=APP_DOMAIN?>public/noun-mvc-5340614.png">
     <link rel="stylesheet" href="<?=APP_DOMAIN?>public/css/bootstrap-4.6.2/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="<?=APP_DOMAIN?>public/css/styles.css?v=<?=VERSION?>" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="<?=APP_DOMAIN?>public/css/prism.css" media="screen" title="no title" charset="utf-8">
