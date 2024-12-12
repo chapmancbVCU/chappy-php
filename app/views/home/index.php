@@ -1,5 +1,8 @@
 <?php $this->start('body'); ?>
-<h1 class="text-center">chappy.php</h1>
+<div class="col-12 mx-auto text-center">
+  <img class="w-50" src="<?=APP_DOMAIN?>public/images/home/logo.png" alt="Example FormHelper function call">
+</div>
+
 
 <div class="row align-items-center justify-content-center my-5">
   <p class="text-center w-75">chappy.php is a whole new Model View Controller framework tailored to all of the fellows of the internet.  
