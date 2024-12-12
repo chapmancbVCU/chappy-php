@@ -1,7 +1,3 @@
-<?php 
-use Core\Session;
-use Core\FormHelper;
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
