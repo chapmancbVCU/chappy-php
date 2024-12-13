@@ -1,6 +1,7 @@
 /.vscode
 /vendor/
 /public/images/uploads/profile_images/
+/node_modules
 .env
 template.txt
 Thumbs.db*
