@@ -1,4 +1,5 @@
 {
+    "Home" : "home",
     "Admin" : {
         "Admin Dashboard" : "admindashboard/index",
         "Manage ACLS" : "admindashboard/manageACLs"
