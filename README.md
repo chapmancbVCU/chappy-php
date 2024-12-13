@@ -49,13 +49,16 @@ If you need help search using a combination of keywords that include Laravel, se
       * profile_images
       * users
       * user_sessions
-6. profile_images directory:
+6. Vite support
+   * Run command ```npm init```
+   * Run command ```npm install```
+7. profile_images directory:
    * In CMD or Terminal navigate to public/images/uploads from project root and make sure the "profile_images" directory exists. If not create it.
    * Set the correct permissions for the profile_images directory in MacOS or Linux: ```chmod 775 profile_images```
    * In Linux and MacOS you will need to modify the owner and group.
       ```sudo chown -R %USERNAME%:%GROUP% profile_images/```
       With XAMPP your username will work along with daemon as the group. Apache both has to be www-data. Not tested with nginx yet.
-7. For XAMPP navigate to http://localhost/chappy-php.  If you have any issues make sure your database is setup correctly and the .env file is correct.
+8. For XAMPP navigate to http://localhost/chappy-php.  If you have any issues make sure your database is setup correctly and the .env file is correct.
    * For production servers or remote access the path will be http://ip_address_or_domain_name.  You will need to make sure the APP_DOMAIN variable is set to '/' in .env file.
 
 ## Goals
