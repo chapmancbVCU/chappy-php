@@ -78,6 +78,22 @@
                     </li>
                 </ol>
             </li>
+            <li>Vite Support
+                <ol class="pl-4" type="a">
+                    <li>Run command:
+<pre class="my-3 pb-1">
+<code class="language-php line-numbers">npm init
+</code>
+</pre>                       
+                    </li>
+                    <li>Run command:
+<pre class="my-3 pb-1">
+<code class="language-php line-numbers">npm install
+</code>
+</pre>                       
+                    </li>
+                </ol>
+            </li>
             <li>profile_images directory:
                 <ol class="pl-4" type="a">
                     <li>In CMD or Terminal navigate to public/images/uploads from project root and make sure the <q>profile_images</q> directory exists.  If not create it.</li>
