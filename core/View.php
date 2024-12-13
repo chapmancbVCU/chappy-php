@@ -34,7 +34,7 @@ class View extends stdClass {
      * @return void
      */
     public function addPartialView(string $group, string $partial) {
-        include ROOT . DS . 'app' . DS . 'views' . DS . $group . DS . 'partials' . DS . $partial . '.php';
+        include ROOT . DS . 'resources' . DS . 'views' . DS . $group . DS . 'partials' . DS . $partial . '.php';
     }
     
     /** ADD
@@ -44,7 +44,7 @@ class View extends stdClass {
      * @return void
      */
     public function component(string $component) {
-        include ROOT . DS . 'app' . DS . 'views' . DS . 'components' . DS . $component . '.php';
+        include ROOT . DS . 'resources' . DS . 'views' . DS . 'components' . DS . $component . '.php';
     }
 
     /**
@@ -87,7 +87,7 @@ class View extends stdClass {
      * @return void
      */
     public function insertView(string $path): void {
-        include ROOT . DS . 'app' . DS . 'views' . DS . $path . '.php';
+        include ROOT . DS . 'resources' . DS . 'views' . DS . $path . '.php';
     }
 
     /**
@@ -103,9 +103,9 @@ class View extends stdClass {
         $viewString = implode(DS, $viewArray);
 
         // Include view and layouts
-        if(file_exists(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php')) {
-            include(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php');
-            include(ROOT . DS . 'app' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php');
+        if(file_exists(ROOT . DS . 'resources' . DS . 'views' . DS . $viewString . '.php')) {
+            include(ROOT . DS . 'resources' . DS . 'views' . DS . $viewString . '.php');
+            include(ROOT . DS . 'resources' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php');
         } else {
             die('The view \"' . $viewName . '\" does not exist');
         }

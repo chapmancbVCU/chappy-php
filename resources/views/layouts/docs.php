@@ -7,19 +7,19 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title><?=$this->siteTitle()?></title>
     <link rel="icon" href="<?=APP_DOMAIN?>public/noun-mvc-5340614.png">
-    <link rel="stylesheet" href="<?=APP_DOMAIN?>public/css/bootstrap-4.6.2/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="<?=APP_DOMAIN?>public/css/styles.css?v=<?=VERSION?>" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="<?=APP_DOMAIN?>public/css/prism.css" media="screen" title="no title" charset="utf-8">
-    <script src="<?=APP_DOMAIN?>public/js/jQuery-3.7.1/jQuery-3.7.1.min.js"></script>
-    <script src="<?=APP_DOMAIN?>public/js/bootstrap-4.6.2/bootstrap.min.js"></script>
-    <script src="<?=APP_DOMAIN?>public/js/prism.js"></script>
+    <link rel="stylesheet" href="<?=APP_DOMAIN?>resources/css/bootstrap-4.6.2/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?=APP_DOMAIN?>resources/css/styles.css?v=<?=VERSION?>" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?=APP_DOMAIN?>resources/css/prism.css" media="screen" title="no title" charset="utf-8">
+    <script src="<?=APP_DOMAIN?>resources/js/jQuery-3.7.1/jQuery-3.7.1.min.js"></script>
+    <script src="<?=APP_DOMAIN?>resources/js/bootstrap-4.6.2/bootstrap.min.js"></script>
+    <script src="<?=APP_DOMAIN?>resources/js/prism.js"></script>
     <?= $this->content('head'); ?>
 
   </head>
   <body class="d-flex flex-column min-vh-100">
     <?php include 'main_menu.php' ?>
     <div class="container-fluid" style="min-height:cal(100% - 125px);">
-      <?php include(ROOT . DS . 'app' . DS . 'views' . DS . 'layouts' . DS . 'docs_nav.php'); ?>
+      <?php include(ROOT . DS . 'resources' . DS . 'views' . DS . 'layouts' . DS . 'docs_nav.php'); ?>
       <?= $this->content('body'); ?>
     </div>
     <script src="<?=APP_DOMAIN?>public/js/docNavDropdown.js"></script>
