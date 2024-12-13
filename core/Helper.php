@@ -83,13 +83,19 @@ class Helper {
     return $dt->format('F jS, Y h:i:s');  
   }
 
+  /**Update
+   * Undocumented function
+   *
+   * @param [type] ...$vars
+   * @return void
+   */
   public static function dump(...$vars): void {
     foreach ($vars as $var) {
       VarDumper::dump($var);
     }
   }
 
-  /**
+  /** Update
    * Performs var_dump of parameter and kills the page.
    * 
    * @param mixed $data Contains the data we wan to print to the page.
