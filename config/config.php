@@ -4,7 +4,7 @@
  */
 
 define('DEBUG', $_ENV['DEBUG']);
-
+define('APP_ENV', $_ENV['APP_ENV']);
 // this should be set to false for security reasons. If you need to run migrations from the browser you can set this to true, then run migrations, then set it back to false.
 define('RUN_MIGRATIONS_FROM_BROWSER', $_ENV['RUN_MIGRATIONS_FROM_BROWSER']);
 
