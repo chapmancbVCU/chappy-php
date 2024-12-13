@@ -41,7 +41,7 @@ function autoload($className) {
     }
 }
 spl_autoload_register('autoload');
-require_once __DIR__ . '/core/lib/viteHelper.php';
+require_once __DIR__ . '/core/lib/helpers.php';
 session_start();
 
 // Create an array from our URL.
