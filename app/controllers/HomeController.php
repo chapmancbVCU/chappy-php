@@ -14,7 +14,6 @@ class HomeController extends Controller {
      * @return void
      */
     public function indexAction(): void {
-        // Helper::dnd(php_uname());
         $this->view->render('home/index');
     }
 

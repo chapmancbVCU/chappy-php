@@ -1,6 +1,7 @@
 <?php
 namespace Core;
 use App\Models\{ProfileImages, Users};
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * Helper and utility functions.
@@ -82,17 +83,27 @@ class Helper {
     return $dt->format('F jS, Y h:i:s');  
   }
 
+  public static function dump(...$vars): void {
+    foreach ($vars as $var) {
+      VarDumper::dump($var);
+    }
+  }
+
   /**
    * Performs var_dump of parameter and kills the page.
    * 
    * @param mixed $data Contains the data we wan to print to the page.
    * @return void
    */
-  public static function dnd(mixed $data): void {
-    echo "<pre>";
-    var_dump($data);
-    echo "<pre>";
-    die();
+  public static function dnd(...$vars): void {
+    // echo "<pre>";
+    // var_dump($data);
+    // echo "<pre>";
+    // die();
+    foreach ($vars as $var) {
+      VarDumper::dump($var);
+    }
+    die(1); // Terminate the script
   }
 
   /**
