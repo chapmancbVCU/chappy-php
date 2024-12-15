@@ -15,9 +15,9 @@ use Core\FormHelper;
         <script type="module" src="http://localhost:5173/@vite/client"></script>
         <script type="module" src="<?= vite('resources/js/app.js') ?>"></script>
     <?php else: ?>
-        <!-- Production: Include compiled assets -->
-        <link rel="stylesheet" href="<?= vite('resources/css/app.css') ?>">
-        <script type="module" src="<?= vite('resources/js/app.js') ?>"></script>
+      <!-- Production: Include compiled assets -->
+      <link rel="stylesheet" href="<?= APP_DOMAIN.'resources/css/app.css' ?>">
+      <script type="module" src="<?= APP_DOMAIN.'resources/js/app.js' ?>"></script>
     <?php endif; ?>
     <link rel="stylesheet" href="<?=APP_DOMAIN?>node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="<?=APP_DOMAIN?>resources/css/alerts/alertMsg.min.css?v=<?=VERSION?>" media="screen" title="no title" charset="utf-8">
