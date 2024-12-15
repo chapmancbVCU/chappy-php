@@ -106,11 +106,11 @@ class Helper {
    * 
    *
    * @param [type] $time
-   * @param string $format
+   * @param string $format The format expected by Carbon::parse
    * @return void
    */
-  public static function formatTime($time, $format = 'Y-m-d H:i:s') { 
-    return Carbon::parse($time, 'UTC')->timezone(TIME_ZONE)->format($format);  
+  public static function formatTime($time) { 
+    return Carbon::parse($time, 'UTC')->timezone(TIME_ZONE)->format('Y-m-d H:i:s');  
   }
 
   /**
