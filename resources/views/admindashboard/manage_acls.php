@@ -18,8 +18,8 @@
             <tr>
                 <?php if($acl->acl !== "Admin"): ?>
                     <td class="text-center w-50"><?= $acl->acl ?></td>
-                    <td class="text-center"><?= $acl->created_at ?></td>
-                    <td class="text-center"><?= $acl->updated_at ?></td>
+                    <td class="text-center"><?= Helper::timeAgo($acl->created_at) ?></td>
+                    <td class="text-center"><?= Helper::timeAgo($acl->updated_at) ?></td>
                     <td class="text-center">
                         <a href="<?=APP_DOMAIN?>admindashboard/editAcl/<?=$acl->id?>" class="btn btn-info btn-xs">
                             <i class="fa fa-edit"></i> Edit ACL
@@ -45,8 +45,8 @@
         <?php foreach($this->unUsedAcls as $acl): ?>
             <tr>
                 <td class="text-center w-50"><?= $acl->acl ?></td>
-                <td class="text-center"><?= $acl->created_at ?></td>
-                <td class="text-center"><?= $acl->updated_at ?></td>
+                <td class="text-center"><?= Helper::timeAgo($acl->created_at) ?></td>
+                <td class="text-center"><?= Helper::timeAgo($acl->updated_at) ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

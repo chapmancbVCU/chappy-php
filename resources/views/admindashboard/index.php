@@ -20,8 +20,8 @@ use Core\Helper;
                 <td><?= $user->username ?></td>
                 <td><?= $user->acl ?></td>
                 <td><?= ($user->inactive == 0) ? 'Active' : 'Inactive'?></td>
-                <td><?= Helper::diffForHumans($user->created_at) ?></td>
-                <td><?= Helper::diffForHumans($user->updated_at) ?></td>
+                <td><?= Helper::timeAgo($user->created_at) ?></td>
+                <td><?= Helper::timeAgo($user->updated_at) ?></td>
                 <td class="text-center">
                     <a href="<?=APP_DOMAIN?>admindashboard/details/<?=$user->id?>" class="btn btn-info btn-xs w-100">
                         <i class="fa fa-user"></i> Details

@@ -46,11 +46,11 @@
                 </tr>
                 <tr>
                     <th class="text-center">Created</th>
-                    <td class="text-center"><?= Helper::diffForHumans($this->user->created_at) ?></td>
+                    <td class="text-center"><?= Helper::timeAgo($this->user->created_at) ?></td>
                 </tr>
                 <tr>
                     <th class="text-center">Last Update</th>
-                    <td class="text-center"><?= Helper::diffForHumans($this->user->updated_at) ?></td>
+                    <td class="text-center"><?= Helper::timeAgo($this->user->updated_at) ?></td>
                 </tr>
                 <?php if($this->user->description): ?>
                     <tr>
