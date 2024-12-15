@@ -112,5 +112,5 @@ use Core\FormHelper;
         <a href="<?=APP_DOMAIN?>contacts" class="btn btn-default">Cancel</a>
         <?= FormHelper::submitTag('Save', ['class' => 'btn btn-primary']) ?>
     </div>
-    <script src="<?=APP_DOMAIN?>public/js/frontEndPhoneNumberValidate.js"></script>
+    <script src="<?=APP_DOMAIN?>resources/js/frontEndPhoneNumberValidate.js"></script>
 </form>
