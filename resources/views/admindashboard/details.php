@@ -1,10 +1,6 @@
 <?php use Core\Helper; ?>
 
 <?php $this->setSiteTitle($this->user->username . " Details"); ?>
-<?php $this->start('head') ?>
-    <script src='<?=APP_DOMAIN?>vendor/tinymce/tinymce/tinymce.min.js'></script>
-    <script src='<?=APP_DOMAIN?>public/js/profileDescriptionTinyMCE.js'></script>
-<?php $this->end() ?>
 <?php $this->start('body'); ?>
 <h1 class="text-center">Details for <?=$this->user->username?></h1>
 
