@@ -18,10 +18,10 @@ $userMenu = Router::getMenu('user_menu');
       <?= Helper::buildMenuListItems($menu); ?>
     </ul>
     <ul class="navbar-nav me-2">
-      <?= Helper::buildMenuListItems($userMenu,"dropdown-menu-end"); ?>
+      <?= Helper::buildMenuListItems($userMenu, "dropdown-menu-end"); ?>
       <a class="pt-1" href="<?=APP_DOMAIN?>profile">
-        <?php if($profileImage != null): ?>
-          <img class="img-thumbnail profile-img ms-2 p-0"  style="width: 50px" src="<?=APP_DOMAIN.$profileImage->url?>"></img>
+        <?php if ($profileImage != null): ?>
+          <img class="img-thumbnail profile-img ms-2 p-0" style="width: 50px" src="<?=APP_DOMAIN . $profileImage->url?>"></img>
         <?php endif; ?>
       </a>
     </ul>

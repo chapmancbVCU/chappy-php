@@ -19,11 +19,11 @@ use Core\FormHelper;
         <link rel="stylesheet" href="<?= vite('resources/css/app.css') ?>">
         <script type="module" src="<?= vite('resources/js/app.js') ?>"></script>
     <?php endif; ?>
-    <link rel="stylesheet" href="<?=APP_DOMAIN?>resources/css/bootstrap-4.6.2/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?=APP_DOMAIN?>node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="<?=APP_DOMAIN?>resources/css/alerts/alertMsg.min.css?v=<?=VERSION?>" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="<?=APP_DOMAIN?>resources/css/font-awesome-4.7.0/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
     <script src="<?=APP_DOMAIN?>resources/js/jQuery-3.7.1/jQuery-3.7.1.min.js"></script>
-    <script src="<?=APP_DOMAIN?>resources/js/alerts/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="<?=APP_DOMAIN?>node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="<?=APP_DOMAIN?>resources/js/bootstrap-4.6.2/bootstrap.min.js"></script>
     <script src="<?=APP_DOMAIN?>resources/js/alerts/alertMsg.min.js?v=<?=VERSION?>"></script>
     <?= $this->content('head'); ?>
