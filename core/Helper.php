@@ -29,21 +29,25 @@ class Helper {
       }
       if(is_array($val)): ?>
         <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?=$key?></a>
-        <div class="dropdown-menu <?=$dropdownClass?>">
-          <?php foreach($val as $k => $v):
-          $active = ($v == $currentPage)? 'active':''; ?>
-          <?php if($k == 'separator'): ?>
-              <div role="separator" class="dropdown-divider"></div>
-          <?php else: ?>
-              <a class="dropdown-item <?=$active?>" href="<?=$v?>"><?=$k?></a>
-          <?php endif; ?>
-          <?php endforeach; ?>
-        </div>
-        </li>
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <?=$key?>
+        </a>
+        <ul class="dropdown-menu <?=$dropdownClass?>">
+            <?php foreach ($val as $k => $v): 
+                $active = ($v == $currentPage) ? 'active' : ''; ?>
+                <?php if ($k == 'separator'): ?>
+                    <li><hr class="dropdown-divider"></li>
+                <?php else: ?>
+                    <li><a class="dropdown-item <?=$active?>" href="<?=$v?>"><?=$k?></a></li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    </li>
       <?php else:
-        $active = ($val == $currentPage)? 'active':''; ?>
-        <li class="nav-item"><a class="nav-link <?=$active?>" href="<?=$val?>"><?=$key?></a></li>
+        $active = ($val == $currentPage) ? 'active' : ''; ?>
+        <li class="nav-item">
+            <a class="nav-link <?=$active?>" href="<?=$val?>"><?=$key?></a>
+        </li>
       <?php endif; ?>
     <?php endforeach;
     return ob_get_clean();
