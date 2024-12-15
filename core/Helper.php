@@ -106,14 +106,14 @@ class Helper {
     die(1); // Terminate the script
   }
 
-  /**ADD
+  /**
    * 
    *
    * @param [type] $time
    * @param string $format
    * @return void
    */
-  public static function formatTime($time, $format = 'Y-m-d H:i:s') {
+  public static function formatTime($time, $format = 'F jS, Y h:i:s') {
     $dt = new \DateTime($time, new \DateTimeZone(TIME_ZONE)); 
     return Carbon::parse($dt)->format($format);  
   }
