@@ -8,7 +8,7 @@ use Core\Helper;
     <link rel="stylesheet" href="<?=APP_DOMAIN?>resources/css/profileImage.css?v=<?=VERSION?>" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="<?=APP_DOMAIN?>resources/css/jquery-ui/jquery-ui.min.css">
     <script src='<?=APP_DOMAIN?>vendor/tinymce/tinymce/tinymce.min.js'></script>
-    <script src='<?=APP_DOMAIN?>public/js/profileDescriptionTinyMCE.js'></script>
+    <script src='<?=APP_DOMAIN?>resources/js/profileDescriptionTinyMCE.js'></script>
     <script type="text/javascript" src="<?=APP_DOMAIN?>resources/js/jquery-ui/jquery-ui.min.js"></script>
 <?php $this->end() ?>
 <?php $this->start('body'); ?>
