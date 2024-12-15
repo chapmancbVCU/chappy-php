@@ -2,13 +2,13 @@
 <?php $this->start('body'); ?>
 
 <div class="main">
-    <a href="<?=APP_DOMAIN?>documentation/core" class="btn btn-xs btn-secondary">Core</a>
+    <a href="<?=APP_DOMAIN?>documentation/core" class="btn btn-sm btn-secondary">Core</a>
     <h1 class="text-center">Application Class</h1>
     <div class="row align-items-center justify-content-center my-3">
         <p class="text-center w-75">The Application class supports basic functional needs of the application.</p>
     </div>
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">Extends</th>
         </tr>
@@ -35,7 +35,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm table-sm">
+    <table class="table table-striped table-bordered table-hover w-75 mx-auto table-sm table-sm">
         <tr>
             <th colspan="2" class="text-center">public function construct</th>
         </tr>
@@ -52,7 +52,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm table-sm mb-5">
+    <table class="table table-striped table-bordered table-hover w-75 mx-auto table-sm table-sm mb-5">
         <tr>
             <th colspan="2" class="text-center">private function _set_reporting</th>
         </tr>
@@ -73,6 +73,6 @@
         </tr>
     </table>
 
-    <a href="<?=APP_DOMAIN?>documentation/core" class="btn btn-xs btn-secondary mb-5">Core</a>
+    <a href="<?=APP_DOMAIN?>documentation/core" class="btn btn-sm btn-secondary mb-5">Core</a>
 </div>
 <?php $this->end(); ?>
