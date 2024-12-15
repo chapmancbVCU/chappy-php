@@ -1,5 +1,6 @@
 <?php
 namespace Core;
+use Carbon\Carbon;
 use App\Models\{ProfileImages, Users};
 use Symfony\Component\VarDumper\VarDumper;
 
@@ -75,13 +76,6 @@ class Helper {
     return $currentPage;
   }
 
-  public static function diffForHumans($time) {
-    Helper::cl($time);
-    Helper::cl(TIME_ZONE);
-    $dt = new \DateTime($time, new \DateTimeZone(TIME_ZONE)); 
-    Helper::cl($dt->format('F jS, Y h:i:s'));
-    return $dt->format('F jS, Y h:i:s');  
-  }
 
   /**Update
    * Undocumented function
@@ -112,6 +106,18 @@ class Helper {
     die(1); // Terminate the script
   }
 
+  /**ADD
+   * 
+   *
+   * @param [type] $time
+   * @param string $format
+   * @return void
+   */
+  public static function formatTime($time, $format = 'Y-m-d H:i:s') {
+    $dt = new \DateTime($time, new \DateTimeZone(TIME_ZONE)); 
+    return Carbon::parse($dt)->format($format);  
+  }
+
   /**
    * Gets the properties of the given object
    *
@@ -136,6 +142,18 @@ class Helper {
       return ProfileImages::findCurrentProfileImage($user->id);
     }
   }
+
+  /**ADD
+   * Add
+   *
+   * @param [type] $time
+   * @return void
+   */
+  public static function timeAgo($time)
+    {
+      $dt = new \DateTime($time, new \DateTimeZone(TIME_ZONE)); 
+      return Carbon::parse($dt)->diffForHumans();
+    }
 
   /**
    * Generates a timestamp.
