@@ -38,12 +38,12 @@ class View extends stdClass {
     }
     
     /** ADD
-     * Undocumented function
+     * Includes a component into a view.
      *
-     * @param string $component
+     * @param string $component The name of the component.
      * @return void
      */
-    public function component(string $component) {
+    public function component(string $component): void {
         include ROOT . DS . 'resources' . DS . 'views' . DS . 'components' . DS . $component . '.php';
     }
 
