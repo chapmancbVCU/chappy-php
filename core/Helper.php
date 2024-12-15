@@ -102,14 +102,13 @@ class Helper {
     die(1); // Terminate the script
   }
 
-  /**
-   * 
+  /** ADD
+   * Returns string in Y-m-d H:i:s using correct timezone.
    *
-   * @param [type] $time
-   * @param string $format The format expected by Carbon::parse
+   * @param string $time String in format Y-m-d H:i:s using UTC.
    * @return void
    */
-  public static function formatTime($time) { 
+  public static function formatTime(string $time): string { 
     return Carbon::parse($time, 'UTC')->timezone(TIME_ZONE)->format('Y-m-d H:i:s');  
   }
 
@@ -139,12 +138,13 @@ class Helper {
   }
 
   /**ADD
-   * Add
+   * Accepts UTC time in format Y-m-d H:i:s and returns a string describing  
+   * how much time has elapsed.
    *
-   * @param [type] $time
+   * @param string $time String in format Y-m-d H:i:s using UTC
    * @return void
    */
-  public static function timeAgo($time)
+  public static function timeAgo(string $time): string
   {
     return Carbon::parse(new \DateTime($time, new \DateTimeZone('UTC')))->diffForHumans();
   }
