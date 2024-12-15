@@ -2,7 +2,7 @@
 <?php $this->start('body'); ?>
 
 <div class="main">
-    <a href="<?=APP_DOMAIN?>documentation/validators" class="btn btn-xs btn-secondary">Validators</a>
+    <a href="<?=APP_DOMAIN?>documentation/validators" class="btn btn-sm btn-secondary">Validators</a>
     <h1 class="text-center">RequiredValidator Class</h1>
     <div class="row align-items-center justify-content-center my-3">
         <p class="text-center w-75">Child class that performs validation for fields that are required.</p>
@@ -58,6 +58,6 @@
     </table>
 
 
-    <a href="<?=APP_DOMAIN?>documentation/validators" class="btn btn-xs btn-secondary mb-5">Validators</a>
+    <a href="<?=APP_DOMAIN?>documentation/validators" class="btn btn-sm btn-secondary mb-5">Validators</a>
 </div>
 <?php $this->end(); ?>

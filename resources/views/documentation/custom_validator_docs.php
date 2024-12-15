@@ -2,7 +2,7 @@
 <?php $this->start('body'); ?>
 
 <div class="main">
-    <a href="<?=APP_DOMAIN?>documentation/validators" class="btn btn-xs btn-secondary">Validators</a>
+    <a href="<?=APP_DOMAIN?>documentation/validators" class="btn btn-sm btn-secondary">Validators</a>
     <h1 class="text-center">abstract CustomValidator Class</h1>
     <div class="row align-items-center justify-content-center my-3">
         <p class="text-center w-75">Abstract parent class for our child validation child classes.  Each child class must implement the runValidation() function.</p>
@@ -98,6 +98,6 @@
             <td class="text-center" colspan="2">None</td>
         </tr>
     </table>
-    <a href="<?=APP_DOMAIN?>documentation/validators" class="btn btn-xs btn-secondary mb-5">Validators</a>
+    <a href="<?=APP_DOMAIN?>documentation/validators" class="btn btn-sm btn-secondary mb-5">Validators</a>
 </div>
 <?php $this->end(); ?>

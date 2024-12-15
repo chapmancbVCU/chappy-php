@@ -2,7 +2,7 @@
 <?php $this->start('body'); ?>
 
 <div class="main">
-    <a href="<?=APP_DOMAIN?>documentation/models" class="btn btn-xs btn-secondary">Models</a>
+    <a href="<?=APP_DOMAIN?>documentation/models" class="btn btn-sm btn-secondary">Models</a>
     <h1 class="text-center">Contacts Model Class</h1>
     <div class="row align-items-center justify-content-center my-3">
         <p class="text-center w-75">Supports functions for handling Contacts such as displaying information, form validation, and DB operations.</p>
@@ -259,6 +259,6 @@
         </tr>
     </table>
 
-    <a href="<?=APP_DOMAIN?>documentation/models" class="btn btn-xs btn-secondary mb-5">Models</a>
+    <a href="<?=APP_DOMAIN?>documentation/models" class="btn btn-sm btn-secondary mb-5">Models</a>
 </div>
 <?php $this->end(); ?>

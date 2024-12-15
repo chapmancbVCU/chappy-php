@@ -2,7 +2,7 @@
 <?php $this->start('body'); ?>
 
 <div class="main">
-    <a href="<?=APP_DOMAIN?>documentation/core" class="btn btn-xs btn-secondary">Core</a>
+    <a href="<?=APP_DOMAIN?>documentation/core" class="btn btn-sm btn-secondary">Core</a>
     <h1 class="text-center">Abstract Migration Class</h1>
     <div class="row align-items-center justify-content-center my-3">
         <p class="text-center w-75">Supports database migration operations.</p>

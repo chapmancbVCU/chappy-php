@@ -23,7 +23,7 @@ use Core\Helper;
                 <td><?= Helper::timeAgo($user->created_at) ?></td>
                 <td><?= Helper::timeAgo($user->updated_at) ?></td>
                 <td class="text-center">
-                    <a href="<?=APP_DOMAIN?>admindashboard/details/<?=$user->id?>" class="btn btn-info btn-xs w-100">
+                    <a href="<?=APP_DOMAIN?>admindashboard/details/<?=$user->id?>" class="btn btn-info btn-sm w-100">
                         <i class="fa fa-user"></i> Details
                     </a>
                 </td>

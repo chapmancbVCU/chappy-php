@@ -23,10 +23,10 @@
                 <td><?= $contact->home_phone ?></td>
                 <td><?= $contact->work_phone ?></td>
                 <td class="text-center">
-                    <a href="<?=APP_DOMAIN?>contacts/edit/<?=$contact->id?>" class="btn btn-info btn-xs">
+                    <a href="<?=APP_DOMAIN?>contacts/edit/<?=$contact->id?>" class="btn btn-info btn-sm">
                         <i class="fa fa-edit"></i> Edit
                     </a>
-                    <a href="<?=APP_DOMAIN?>contacts/delete/<?=$contact->id?>" class="btn btn-danger btn-xs" onclick="if(!confirm('Are you sure?')){return false;}">
+                    <a href="<?=APP_DOMAIN?>contacts/delete/<?=$contact->id?>" class="btn btn-danger btn-sm" onclick="if(!confirm('Are you sure?')){return false;}">
                         <i class="fa fa-trash"></i> Delete
                     </a>
                 </td>

@@ -7,6 +7,6 @@
         <p class="text-center w-75">Description</p>
     </div>
 
-    <a href="<?=APP_DOMAIN?>documentation" class="btn btn-xs btn-secondary mb-5">Docs Home</a>
+    <a href="<?=APP_DOMAIN?>documentation" class="btn btn-sm btn-secondary mb-5">Docs Home</a>
 </div>
 <?php $this->end(); ?>
