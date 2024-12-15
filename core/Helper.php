@@ -77,10 +77,10 @@ class Helper {
   }
 
 
-  /**Update
-   * Undocumented function
+  /** Update
+   * Dumps content but continues execution.
    *
-   * @param [type] ...$vars
+   * @param mixed ...$var Contains the data we wan to print to the page.
    * @return void
    */
   public static function dump(...$vars): void {
@@ -92,14 +92,10 @@ class Helper {
   /** Update
    * Performs var_dump of parameter and kills the page.
    * 
-   * @param mixed $data Contains the data we wan to print to the page.
+   * @param mixed ...$var Contains the data we wan to print to the page.
    * @return void
    */
-  public static function dnd(...$vars): void {
-    // echo "<pre>";
-    // var_dump($data);
-    // echo "<pre>";
-    // die();
+  public static function dnd(mixed ...$vars): void {
     foreach ($vars as $var) {
       VarDumper::dump($var);
     }
@@ -113,9 +109,8 @@ class Helper {
    * @param string $format
    * @return void
    */
-  public static function formatTime($time, $format = 'F jS, Y h:i:s') {
-    $dt = new \DateTime($time, new \DateTimeZone(TIME_ZONE)); 
-    return Carbon::parse($dt)->format($format);  
+  public static function formatTime($time, $format = 'Y-m-d H:i:s') { 
+    return Carbon::parse($time, 'UTC')->timezone(TIME_ZONE)->format($format);  
   }
 
   /**
@@ -150,10 +145,9 @@ class Helper {
    * @return void
    */
   public static function timeAgo($time)
-    {
-      $dt = new \DateTime($time, new \DateTimeZone(TIME_ZONE)); 
-      return Carbon::parse($dt)->diffForHumans();
-    }
+  {
+    return Carbon::parse(new \DateTime($time, new \DateTimeZone('UTC')))->diffForHumans();
+  }
 
   /**
    * Generates a timestamp.
