@@ -19,15 +19,15 @@ use Core\Helper;
         <form class="form" action=<?=$this->postAction?> method="post">
             <?= FormHelper::csrfInput() ?>
             <input type="hidden" id="images_sorted" name="images_sorted" value="" />
-            <?= FormHelper::inputBlock('text', "First Name", 'fname', $this->user->fname, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
-            <?= FormHelper::inputBlock('text', "Last Name", 'lname', $this->user->lname, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
-            <?= FormHelper::emailBlock("Email", 'email', $this->user->email, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
+            <?= FormHelper::inputBlock('text', "First Name", 'fname', $this->user->fname, ['class' => 'form-control input-sm'], ['class' => 'form-group mb-3'], $this->displayErrors) ?>
+            <?= FormHelper::inputBlock('text', "Last Name", 'lname', $this->user->lname, ['class' => 'form-control input-sm'], ['class' => 'form-group mb-3'], $this->displayErrors) ?>
+            <?= FormHelper::emailBlock("Email", 'email', $this->user->email, ['class' => 'form-control input-sm'], ['class' => 'form-group mb-3'], $this->displayErrors) ?>
             
             <?= FormHelper::textAreaBlock("Description", 
                 'description', 
                 $this->user->description, 
                 ['class' => 'form-control input-sm', 'placeholder' => 'Update user\'s description...', 'rows' => '4'], 
-                ['class' => 'form-group']); 
+                ['class' => 'form-group mb-3']); 
             ?>
 
             <?= FormHelper::selectBlock('ACL', 'acl', $this->aclId, $this->acls, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors); ?>
