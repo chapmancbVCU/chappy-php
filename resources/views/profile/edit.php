@@ -19,17 +19,17 @@ use Core\FormHelper;
             <?= FormHelper::csrfInput() ?>
             <input type="hidden" id="images_sorted" name="images_sorted" value="" />
             <?= FormHelper::displayErrors($this->displayErrors) ?>
-            <?= FormHelper::inputBlock('text', "First Name", 'fname', $this->user->fname, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
-            <?= FormHelper::inputBlock('text', "Last Name", 'lname', $this->user->lname, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
-            <?= FormHelper::emailBlock("Email", 'email', $this->user->email, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
+            <?= FormHelper::inputBlock('text', "First Name", 'fname', $this->user->fname, ['class' => 'form-control input-sm'], ['class' => 'form-group mb-3']) ?>
+            <?= FormHelper::inputBlock('text', "Last Name", 'lname', $this->user->lname, ['class' => 'form-control input-sm'], ['class' => 'form-group mb-3']) ?>
+            <?= FormHelper::emailBlock("Email", 'email', $this->user->email, ['class' => 'form-control input-sm'], ['class' => 'form-group mb-3']) ?>
             <?= FormHelper::textAreaBlock("About Me", 
                 'description', 
                 $this->user->description, 
                 ['class' => 'form-control input-sm', 'placeholder' => 'Describe yourself here...', 'rows' => '4'], 
-                ['class' => 'form-group']); 
+                ['class' => 'form-group mb-3']); 
             ?>
 
-            <?= FormHelper::inputBlock('file', "Upload Profile Image (Optional)", 'profileImage', '', ['class' => 'form-control', 'accept' => 'image/png image/jpeg image/png'], ['class' => 'form-group w-50'], $this->displayErrors) ?>
+            <?= FormHelper::inputBlock('file', "Upload Profile Image (Optional)", 'profileImage', '', ['class' => 'form-control', 'accept' => 'image/png image/jpeg image/png'], ['class' => 'form-group mb-3'], $this->displayErrors) ?>
             <div id="sortableImages" class="row align-items-center justify-content-start p-2">
                 <?php foreach($this->profileImages as $image):?>
                     <div class="col flex-grow-0" id="image_<?=$image->id?>">
