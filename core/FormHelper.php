@@ -535,10 +535,10 @@ class FormHelper {
      * Generates a div containing an input of type submit.
      * 
      * An example function call is shown below:
-     * FormHelper::submitBlock("Save", ['class'=>'btn btn-primary'], ['class'=>'text-right']);
+     * FormHelper::submitBlock("Save", ['class'=>'btn btn-primary'], ['class'=>'text-end']);
      * 
      * Example HTML output is shown below:
-     * <div class="text-right">
+     * <div class="text-end">
      *     <input type="submit" value="Save" class="btn btn-primary" />
      * </div>
      * 

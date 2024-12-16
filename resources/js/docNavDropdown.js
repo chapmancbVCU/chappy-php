@@ -1,15 +1,19 @@
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-const dropdown = document.getElementsByClassName("dropdown-btn");
-let i;
+document.addEventListener("DOMContentLoaded", () => {
+  const dropdowns = document.querySelectorAll(".dropdown-btn");
 
-for (i = 0; i < dropdown.length; i++) {
-  dropdown[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    const dropdownContent = this.nextElementSibling;
-    if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
-    } else {
-      dropdownContent.style.display = "block";
-    }
+  dropdowns.forEach((dropdown) => {
+    dropdown.addEventListener("click", function () {
+      // Toggle the "active" class for the clicked dropdown button
+      this.classList.toggle("active");
+
+      // Find the next sibling element (assumes it's the dropdown content)
+      const dropdownContent = this.nextElementSibling;
+
+      if (dropdownContent) {
+        dropdownContent.classList.toggle("show");
+      }
+    });
   });
-}
+});
+

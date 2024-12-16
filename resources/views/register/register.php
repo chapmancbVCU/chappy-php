@@ -28,7 +28,7 @@ use Core\FormHelper;
             <?php $this->component('password_complexity_requirements'); ?>
             <?= FormHelper::inputBlock('password', "Password", 'password', $this->newUser->password, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
             <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->newUser->confirm, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors) ?>
-            <?= FormHelper::submitBlock('Register', ['class' => 'btn btn-large btn-primary'], ['class' => 'text-right'])  ?>
+            <?= FormHelper::submitBlock('Register', ['class' => 'btn btn-large btn-primary'], ['class' => 'text-end'])  ?>
         </form>
     </div>
 </div>

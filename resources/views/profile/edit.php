@@ -41,7 +41,7 @@ use Core\FormHelper;
                 <?php endforeach; ?>
             </div>
 
-            <div class="col-md-12 text-right">
+            <div class="col-md-12 text-end">
                 <a href="<?=APP_DOMAIN?>profile" class="btn btn-default">Cancel</a>
                 <?= FormHelper::submitTag('Update', ['class' => 'btn btn-primary'])  ?>
             </div>

@@ -12,7 +12,7 @@ use Core\FormHelper;
             <?= FormHelper::csrfInput() ?>
             <?= FormHelper::checkboxBlockLabelLeft('Select to activate/deactivate account', 'inactive', $this->user->isInactiveChecked(), [], ['class' => 'form-group'], $this->displayErrors); ?>
             
-            <div class="col-md-12 text-right">
+            <div class="col-md-12 text-end">
                 <a href="<?=APP_DOMAIN?>admindashboard/details/<?=$this->user->id?>" class="btn btn-default">Cancel</a>
                 <?= FormHelper::submitTag('Activate / Deactivate',['class'=>'btn btn-primary']) ?>
             </div>

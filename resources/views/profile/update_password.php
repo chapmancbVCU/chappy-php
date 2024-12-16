@@ -15,7 +15,7 @@ use Core\FormHelper;
             <?= FormHelper::inputBlock('password', "Password", 'password', $this->new_password, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
             <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->confirm, ['class' => 'form-control input-sm'], ['class' => 'form-group']) ?>
             
-            <div class="col-md-12 text-right">
+            <div class="col-md-12 text-end">
                 <a href="<?=APP_DOMAIN?>profile" class="btn btn-default">Cancel</a>
                 <?= FormHelper::submitTag('Update', ['class' => 'btn btn-primary'])  ?>
             </div>

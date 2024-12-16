@@ -108,7 +108,7 @@ use Core\FormHelper;
         );?>
     </div>
 
-    <div class="col-md-12 text-right">
+    <div class="col-md-12 text-end mt-3">
         <a href="<?=APP_DOMAIN?>contacts" class="btn btn-default">Cancel</a>
         <?= FormHelper::submitTag('Save', ['class' => 'btn btn-primary']) ?>
     </div>

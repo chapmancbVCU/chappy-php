@@ -1025,13 +1025,13 @@ FormHelper::radioInput('CSS', 'css',
 <code class="language-php line-numbers">FormHelper::submitBlock(
     "Save", 
     ['class'=>'btn btn-primary'], 
-    ['class'=>'text-right']
+    ['class'=>'text-end']
 );
 </code>
 </pre>
                 Example HTML output is shown below:
 <pre class="my-3 mx-3">
-<code class="language-html line-numbers">&lt;div class="text-right"&gt;
+<code class="language-html line-numbers">&lt;div class="text-end"&gt;
     &lt;input type="submit" 
         value="Save" 
         class="btn btn-primary" 
