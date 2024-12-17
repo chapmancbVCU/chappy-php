@@ -30,6 +30,6 @@
       <?php include(ROOT . DS . 'resources' . DS . 'views' . DS . 'layouts' . DS . 'docs_nav.php'); ?>
       <?= $this->content('body'); ?>
     </div>
-    <script src="<?=APP_DOMAIN?>resources/js/docNavDropdown.js"></script>
+    
   </body>
 </html>
