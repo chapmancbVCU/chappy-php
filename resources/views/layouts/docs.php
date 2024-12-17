@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="<?=APP_DOMAIN?>node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="preload" href="<?=APP_DOMAIN?>resources/css/prism.css" as="style">
     <link rel="stylesheet" href="<?=APP_DOMAIN?>resources/css/prism.css" media="screen" title="no title" charset="utf-8">
-    
     <script src="<?=APP_DOMAIN?>node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="<?=APP_DOMAIN?>node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="<?=APP_DOMAIN?>resources/js/prism.js"></script>
@@ -28,7 +27,7 @@
   </head>
   <body class="d-flex flex-column min-vh-100">
     <?php $this->component('main_menu') ?>
-    <div class="container-fluid" style="min-height:calc(100% - 125px);">
+    <div class="container-fluid min-vh-100" >
       <?php $this->component('docs_nav'); ?>
       <?= $this->content('body'); ?>
     </div>
