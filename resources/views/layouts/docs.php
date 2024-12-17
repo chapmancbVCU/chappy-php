@@ -27,7 +27,7 @@
   <body class="d-flex flex-column min-vh-100">
     <?php include 'main_menu.php' ?>
     <div class="container-fluid" style="min-height:calc(100% - 125px);">
-      <?php include(ROOT . DS . 'resources' . DS . 'views' . DS . 'layouts' . DS . 'docs_nav.php'); ?>
+      <?php $this->component('docs_nav'); ?>
       <?= $this->content('body'); ?>
     </div>
     
