@@ -31,7 +31,7 @@ use Core\FormHelper;
   </head>
   <body class="d-flex flex-column min-vh-100">
     <?php include 'main_menu.php' ?>
-    <div class="container-fluid" style="min-height:cal(100% - 125px);">
+    <div class="container-fluid" style="min-height:calc(100% - 125px);">
       <?= Session::displayMessage() ?>
       <?= $this->content('body'); ?>
     </div>
