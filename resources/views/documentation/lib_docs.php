@@ -11,7 +11,7 @@
     <h3 class="text-center">Utilities</h3>
     <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5 table-sm">
         <tr>
-            <td><a href="<?=APP_DOMAIN?>documentation/uploads" class="text-primary w-25">Uploads</a></td>
+            <td><a href="<?=APP_DOMAIN?>documentation/uploads" class="link-primary w-25">Uploads</a></td>
             <td>Provides support for file uploads.</td>
         </tr>
     </table>
