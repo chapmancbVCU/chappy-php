@@ -2,6 +2,7 @@
     "Home" : "home",
     "Custom MVC Docs" : {
         "Classes and Functions" : "documentation",
+        "separator" : " ",
         "User Guide" : "userguide"
     },
     "Contacts" : {
