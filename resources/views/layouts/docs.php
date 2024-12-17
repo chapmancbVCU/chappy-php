@@ -15,7 +15,9 @@
       <link rel="stylesheet" href="<?= vite('resources/css/app.css') ?>">
       <script type="module" src="<?= vite('resources/js/app.js') ?>"></script>
     <?php endif; ?>
+    <link rel="preload" href="<?=APP_DOMAIN?>node_modules/bootstrap/dist/css/bootstrap.min.css" as="style">
     <link rel="stylesheet" href="<?=APP_DOMAIN?>node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="preload" href="<?=APP_DOMAIN?>resources/css/prism.css" as="style">
     <link rel="stylesheet" href="<?=APP_DOMAIN?>resources/css/prism.css" media="screen" title="no title" charset="utf-8">
     <script src="<?=APP_DOMAIN?>resources/js/jQuery-3.7.1/jQuery-3.7.1.min.js"></script>
     <script src="<?=APP_DOMAIN?>node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
