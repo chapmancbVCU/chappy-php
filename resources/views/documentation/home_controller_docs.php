@@ -8,7 +8,7 @@
         <p class="text-center w-75">Implements the index and sample ajax actions for the home page.</p>
     </div>
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">Extends</th>
         </tr>
@@ -35,7 +35,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function indexAction</th>
         </tr>
@@ -58,7 +58,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm mb-5">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm mb-5">
         <tr>
             <th colspan="2" class="text-center">public function testAjaxAction</th>
         </tr>

@@ -8,7 +8,7 @@
         <p class="text-center w-75">Supports CRUD operations on profile images.</p>
     </div>
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">Extends</th>
         </tr>
@@ -82,7 +82,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function deleteById</th>
         </tr>
@@ -107,7 +107,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function findCurrentProfileImage</th>
         </tr>
@@ -132,7 +132,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function findByUserId</th>
         </tr>
@@ -156,7 +156,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function findByUserId</th>
         </tr>
@@ -180,7 +180,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function getMaxAllowedFileSize</th>
         </tr>
@@ -204,7 +204,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function updateSortByUserId</th>
         </tr>
@@ -232,7 +232,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function uploadProfileImage</th>
         </tr>

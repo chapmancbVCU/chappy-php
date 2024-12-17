@@ -8,7 +8,7 @@
         <p class="text-center w-75">Implements support for our Contact Controller.  It contains actions for handling user interactions that will result in CRUD operations against the database.</p>
     </div>
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">Extends</th>
         </tr>
@@ -129,7 +129,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function acls</th>
         </tr>
@@ -153,7 +153,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function aclToId</th>
         </tr>
@@ -182,7 +182,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function addAcl</th>
         </tr>
@@ -211,7 +211,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function beforeSave</th>
         </tr>
@@ -234,7 +234,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function currentUser</th>
         </tr>
@@ -258,7 +258,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function findAllUsersExceptCurrent</th>
         </tr>
@@ -287,7 +287,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function findByUserName</th>
         </tr>
@@ -312,7 +312,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function findUserByAcl</th>
         </tr>
@@ -337,7 +337,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function hashPassword</th>
         </tr>
@@ -361,7 +361,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function idToAcl</th>
         </tr>
@@ -390,7 +390,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function isInactiveChecked</th>
         </tr>
@@ -414,7 +414,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function isResetPWChecked</th>
         </tr>
@@ -438,7 +438,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function login</th>
         </tr>
@@ -462,7 +462,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function loginAttempts</th>
         </tr>
@@ -491,7 +491,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function loginUserFromCookie</th>
         </tr>
@@ -515,7 +515,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function logout</th>
         </tr>
@@ -539,7 +539,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function removeAcl</th>
         </tr>
@@ -568,7 +568,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public static function setAclAtRegistration</th>
         </tr>
@@ -592,7 +592,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function setChangePassword</th>
         </tr>
@@ -616,7 +616,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm mb-5">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm mb-5">
         <tr>
             <th colspan="2" class="text-center">public function validator</th>
         </tr>

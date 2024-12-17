@@ -8,7 +8,7 @@
         <p class="text-center w-75">This is the parent Controller class.  It describes functions that are available to all classes that extends this Controller class.</p>
     </div>
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">Extends</th>
         </tr>
@@ -52,7 +52,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function construct</th>
         </tr>
@@ -74,7 +74,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function jsonResponse</th>
         </tr>
@@ -98,7 +98,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm mb-5">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm mb-5">
         <tr>
             <th colspan="2" class="text-center">function onConstruct</th>
         </tr>

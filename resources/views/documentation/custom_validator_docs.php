@@ -8,7 +8,7 @@
         <p class="text-center w-75">Abstract parent class for our child validation child classes.  Each child class must implement the runValidation() function.</p>
     </div>
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">Extends</th>
         </tr>
@@ -56,7 +56,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
             <th colspan="2" class="text-center">public function construct</th>
         </tr>
@@ -78,7 +78,7 @@
 
     <hr class="w-75 my-5 mx-auto">
 
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto table-sm mb-5">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm mb-5">
         <tr>
             <th colspan="2" class="text-center">abstract function runValidation</th>
         </tr>

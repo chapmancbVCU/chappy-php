@@ -35,7 +35,7 @@
     <h1 id="summary" class="text-center">Summary of Available Commands</h1>
     <div class="mb-5 mt-3 w-75 bg-light mx-auto border rounded p-4">
         <p>Below is a list of available commands.  Most items in this list contains a link to the page that describes an individual command.</p>
-        <table class="table table-striped table-condensed table-bordered table-hover mx-auto table-sm my-2">
+        <table class="table table-striped  table-bordered table-hover mx-auto table-sm my-2">
             <thead>
                 <th class="w-25 text-center">Command</th>
                 <th class="text-center">Description</th>

@@ -8,7 +8,7 @@
             that are described by this Model View Controller (MVC) framework.
         </p>
     </div>
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto mb-5">
         <tr>
             <td><a href="<?=APP_DOMAIN?>documentation/aclModel" class="link-primary w-25">ACL Model</a></td>
             <td>Describes ACL model.</td>

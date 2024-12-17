@@ -5,7 +5,7 @@ use Core\Helper;
 <?php $this->start('body'); ?>
 <h1 class="text-center">Administration Dashboard</h1>
 
-<table class="table table-striped table-condensed table-bordered table-hover">
+<table class="table table-striped  table-bordered table-hover">
     <thead>
         <th>Username</th>
         <th>Access Level</th>

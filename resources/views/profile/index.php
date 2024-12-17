@@ -8,7 +8,7 @@
             class="img-thumbnail mx-auto my-5 d-block w-50 rounded border border-primary shadow-lg">
         </img>
     <?php endif; ?>
-    <table class="table table-striped table-condensed table-bordered table-hover bg-light my-5">
+    <table class="table table-striped  table-bordered table-hover bg-light my-5">
         <tbody>
             <tr>
                 <th class="text-center">First Name</th>

@@ -9,7 +9,7 @@
             that are provided by this Model View Controller (MVC) framework.
         </p>
     </div>
-    <table class="table table-striped table-condensed table-bordered table-hover w-75 mx-auto mb-5 table-sm">
+    <table class="table table-striped  table-bordered table-hover w-75 mx-auto mb-5 table-sm">
         <tr>
             <td><a href="<?=APP_DOMAIN?>documentation/admindashboardController" class="link-primary w-25">Admindashboard Controller</a></td>
             <td>Add description here</td>
