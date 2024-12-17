@@ -75,7 +75,7 @@
     <button class="dropdown-btn btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#dropdownUserGuide">User Guide
         <i class="float-right pr-1 dropdown-toggle"></i>
     </button>
-    <div id="dropdownValidator" class="collapse">
+    <div id="dropdownUserGuide" class="collapse">
         <a href="<?=APP_DOMAIN?>userguide/">Overview</a>
         <a href="<?=APP_DOMAIN?>userguide/gettingStarted">Getting Started</a>
         <a href="<?=APP_DOMAIN?>userguide/database">Database Operations</a>
