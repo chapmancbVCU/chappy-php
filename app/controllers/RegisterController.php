@@ -36,7 +36,7 @@ class RegisterController extends Controller {
                     $user->login_attempts = 0;
                     $user->save();
                     $user->login($remember);
-                    Router::redirect('/home');
+                    Router::redirect('');
                 }  else {
                     if($user) {
                         $loginModel = Users::loginAttempts($user, $loginModel);
