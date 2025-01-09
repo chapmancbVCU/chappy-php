@@ -66,7 +66,7 @@
   </head>
   <body class="d-flex flex-column min-vh-100">
     <?php $this->component('main_menu') ?>
-    <div class="container-fluid min-vh-100" >
+    <div class="container-fluid" style="min-height:calc(100% - 125px);">
       <?php $this->component('docs_nav'); ?>
       <?= $this->content('body'); ?>
     </div>
