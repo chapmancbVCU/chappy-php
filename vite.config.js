@@ -18,6 +18,7 @@ export default defineConfig({
             // Watch for changes in your views directory
             ignored: ['!**/resources/views/**'],
         },
+        cors: true,
     },
     plugins: [
         FullReload(['resources/views/**/*.php']), // Watch PHP view files
