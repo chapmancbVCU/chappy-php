@@ -4,7 +4,7 @@
     <div class="col-md-6 bg-light p-3">
         <h2 class="text-center">Add A Contact</h2>
         <hr>
-        <?php $this->addPartialView('contacts', 'form'); ?>
+        <?php $this->component('contacts_form'); ?>
     </div>
 </div>
 <?php $this->end(); ?>
