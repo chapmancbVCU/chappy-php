@@ -6,7 +6,7 @@
 
 <div class="row align-items-center justify-content-center">
     <div class="col-md-6 bg-light p-3">
-        <?php $this->addPartialView('admindashboard', 'acl'); ?>
+        <?php $this->component('acl_form'); ?>
     </div>
 </div>
 <?php $this->end(); ?>
