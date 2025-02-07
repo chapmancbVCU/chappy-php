@@ -12,7 +12,7 @@
     <table class="table table-striped  table-bordered table-hover w-75 mx-auto mb-5 table-sm">
         <tr>
             <td><a href="<?=APP_DOMAIN?>documentation/admindashboardController" class="link-primary w-25">Admindashboard Controller</a></td>
-            <td>Add description here</td>
+            <td>Supports actions associated with administration roles.</td>
         </tr>
         <tr>
             <td><a href="<?=APP_DOMAIN?>documentation/contactsController" class="link-primary w-25">Contacts Controller</a></td>
@@ -24,7 +24,7 @@
         </tr>
         <tr>
             <td><a href="<?=APP_DOMAIN?>documentation/profileController" class="link-primary w-25">Profile Controller</a></td>
-            <td>Functions found in this class will support tasks related to the user registration.</td>
+            <td>Functions found in this class will support tasks related to the user profiles.</td>
         </tr>
         <tr>
             <td><a href="<?=APP_DOMAIN?>documentation/registerController" class="link-primary w-25">Register Controller</a></td>
