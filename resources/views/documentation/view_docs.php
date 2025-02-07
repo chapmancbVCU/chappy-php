@@ -75,21 +75,17 @@
 
     <table class="table table-striped  table-bordered table-hover w-75 mx-auto table-sm">
         <tr>
-            <th colspan="2" class="text-center">public function addPartialView</th>
+            <th colspan="2" class="text-center">public function component</th>
         </tr>
         <tr>
-            <td colspan="2">Includes a partial for our view.  Partial views assist with code reuse.  An application of this would be forms.  The parameters are used to build the path for the partial used in this function's include statement.</td>
+            <td colspan="2">Includes a component into a view.</td>
         </tr>
         <tr>
             <th class="align-middle text-center" colspan="2">params</th>
         </tr>
         <tr>
             <td class="align-middle text-center w-25">string</td>
-            <td>$group The name of the parent view.</td>
-        </tr>
-        <tr>
-            <td class="align-middle text-center w-25">string</td>
-            <td>$partial The name of the partial view.</td>
+            <td>$component The name of the component.</td>
         </tr>
         <tr>
             <th class="align-middle text-center w-25" colspan="2">return</th>
