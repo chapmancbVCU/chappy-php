@@ -76,7 +76,7 @@ class FormHelper {
         return $html;
     }
 
-    /**
+    /** UPDATE
      * Generates a div containing an input of type checkbox with the label to 
      * the left that is not part of a group.
      *
@@ -112,7 +112,8 @@ class FormHelper {
         $checked = false, 
         $inputAttrs = [], 
         $divAttrs = [],
-        $errors = []
+        $errors = [],
+        $value = "on"
         ){
 
         $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name, 'is-invalid');
@@ -121,13 +122,13 @@ class FormHelper {
         $checkString = ($checked) ? ' checked="checked"' : '';
         $id = str_replace('[]','',$name);
         $html = '<div'.$divString.'>';
-        $html .= '<label for="'.$id.'">'.$label.' <input type="checkbox" id="'.$id.'" name="'.$name.'" value="on"'.$checkString.$inputString.' /></label>';
+        $html .= '<label for="'.$id.'">'.$label.' <input type="checkbox" id="'.$id.'" name="'.$name.'" value='.$value.''.$checkString.$inputString.' /></label>';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
     }
 
-    /**
+    /** UPDATE
      * Generates a div containing an input of type checkbox with the label to 
      * the right that is not part of a group.
      *
@@ -162,7 +163,8 @@ class FormHelper {
         bool $checked = false, 
         array $inputAttrs = [], 
         array $divAttrs = [],
-        array $errors = []
+        array $errors = [],
+        $value = "on"
         ): string {
 
         $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
@@ -171,7 +173,7 @@ class FormHelper {
         $checkString = ($checked) ? ' checked="checked"' : '';
         $id = str_replace('[]','',$name);
         $html = '<div'.$divString.'>';
-        $html .='<input type="checkbox" id="'.$name.'" name="'.$id.'" value="on"'.$checkString.$inputString.'><label for="'.$id.'">'.$label.'</label> ';
+        $html .='<input type="checkbox" id="'.$name.'" name="'.$id.'" value='.$value.''.$checkString.$inputString.'><label for="'.$id.'">'.$label.'</label> ';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
@@ -467,11 +469,14 @@ class FormHelper {
     /**
      * Sanitizes potentially harmful string of characters.
      * 
-     * @param mixed $dirty The potentially dirty string.
+     * @param string $dirty The potentially dirty string.
      * @return string The sanitized version of the dirty string.
      */
-    public static function sanitize(mixed $dirty): string {
-        return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
+    public static function sanitize($dirty): string|array {
+        if (is_array($dirty)) {
+            return array_map([self::class, 'sanitize'], $dirty); // Recursively sanitize arrays
+        }
+        return htmlentities((string)$dirty, ENT_QUOTES, 'UTF-8');
     }
 
     /**

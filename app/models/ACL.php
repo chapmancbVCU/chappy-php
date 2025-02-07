@@ -27,14 +27,14 @@ class ACL extends Model {
         $this->timeStamps();
     }
 
-    /**
+    /** UPDATE
      * Generates list of ACL options based on ACL table.
      *
-     * @return void
+     * @return array Used to populate options for form.  Compatible with 
+     * dropdown and checkbox group elements.
      */
     public static function getOptionsForForm() {
         $acls = self::find(['order' => 'acl']);
-        $aclArray = ['' => ' - Select ACL -'];
         foreach($acls as $acl) {
             $aclArray[$acl->id] = $acl->acl;
         }

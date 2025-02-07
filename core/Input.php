@@ -27,17 +27,33 @@ class Input {
      * an encoded HTML string.
      */
     public function get($input = false) {
-        if(!$input){
-            // return entire request array and sanitize it
+        if (!$input) {
+            // Return entire request array and sanitize it
             $data = [];
-            foreach($_REQUEST as $field => $value){
-                $data[$field] = trim(FormHelper::sanitize($value));
+            foreach ($_REQUEST as $field => $value) {
+                if (is_array($value)) {
+                    // Recursively sanitize arrays
+                    $data[$field] = array_map([FormHelper::class, 'sanitize'], $value);
+                } else {
+                    // Only trim if it's a string
+                    $data[$field] = trim(FormHelper::sanitize($value));
+                }
             }
             return $data;
         }
     
-        return (array_key_exists($input,$_REQUEST))?trim(FormHelper::sanitize($_REQUEST[$input])) : '';
+        // Handle single input field
+        if (isset($_REQUEST[$input])) {
+            $value = $_REQUEST[$input];
+            if (is_array($value)) {
+                return array_map([FormHelper::class, 'sanitize'], $value);
+            }
+            return trim(FormHelper::sanitize($value));
+        }
+    
+        return '';
     }
+    
 
     /**
      * Returns the request element within the $_SERVER superglobal array.

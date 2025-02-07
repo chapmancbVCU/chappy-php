@@ -144,32 +144,54 @@ class AdmindashboardController extends Controller {
      */
     public function editAction($id): void {
         $user = Users::findById((int)$id);
-        if(!$user) {
+    
+        if (!$user) {
             Session::addMessage('danger', 'You do not have permission to edit this user.');
             Router::redirect('');
         }
-       
+    
         $this->view->user = $user;
-        // Setup acl data.
+    
+        // Fetch all available ACLs
         $acls = ACL::getOptionsForForm();
         $this->view->acls = $acls;
-        $this->view->aclId = Users::aclToId(ACL::trimACL($user->acl), $acls);
+    
+        // Decode stored ACL JSON string into an array
+        $userAcls = json_decode($user->acl, true);
+        if (!is_array($userAcls)) {
+            $userAcls = [];
+        }
+    
+        $this->view->userAcls = array_map('strval', $userAcls); // Ensure values are strings
         $profileImages = ProfileImages::findByUserId($user->id);
-        if($this->request->isPost()) {
+    
+        if ($this->request->isPost()) {
             $this->request->csrfCheck();
             $user->assign($this->request->get(), Users::blackListedFormKeys);
-            $this->view->user->acl = Users::idToAcl($_POST['acl'], $acls);
-            if($user->save()) {
+    
+            // Handle ACL updates from checkboxes
+            $newAcls = $_POST['acls'] ?? [];
+            foreach ($acls as $aclKey => $aclName) {
+                if (in_array($aclKey, $newAcls) && !in_array($aclKey, $userAcls)) {
+                    Users::addAcl($user->id, $aclKey);
+                } elseif (!in_array($aclKey, $newAcls) && in_array($aclKey, $userAcls)) {
+                    Users::removeAcl($user->id, $aclKey);
+                }
+            }
+            // Save updated ACLs
+            $user->acl = json_encode($newAcls);
+            
+            if ($user->save()) {
                 $sortOrder = json_decode($_POST['images_sorted']);
                 ProfileImages::updateSortByUserId($user->id, $sortOrder);
-
-                Router::redirect('admindashboard/details/'.$this->view->user->id);
+                Router::redirect('admindashboard/details/' . $user->id);
             }
         }
-
+    
         $this->view->profileImages = $profileImages;
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'edit' . DS . $user->id;
+    
         $this->view->render('admindashboard/edit');
     }
 

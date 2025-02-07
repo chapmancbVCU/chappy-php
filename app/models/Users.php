@@ -160,6 +160,21 @@ class Users extends Model {
     }
 
     /**
+     * Checks if the user has a specific ACL assigned.
+     *
+     * @param string $acl The ACL to check.
+     * @return bool True if the user has the ACL, otherwise false.
+     */
+    public function hasAcl($acl) {
+        $userAcls = json_decode($this->acl, true);
+    
+        if (!is_array($userAcls)) {
+            return false; // Ensures it always returns a boolean
+        }
+        return in_array($acl, $userAcls, true);
+    }
+    
+    /**
      * Hashes password.
      *
      * @param string $password Original password submitted on a registration 

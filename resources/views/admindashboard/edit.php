@@ -30,12 +30,18 @@ use Core\Helper;
                 ['class' => 'form-group mb-3']); 
             ?>
 
-            <?= FormHelper::selectBlock('ACL', 'acl', $this->aclId, $this->acls, ['class' => 'form-control input-sm'], ['class' => 'form-group'], $this->displayErrors); ?>
+            <!-- ACL Management Section -->
+            <div class="form-group mb-3">
+                <label>Manage ACLs:</label>
+                <?php foreach ($this->acls as $aclKey => $aclName): ?>
+                    <?= FormHelper::checkboxBlockLabelLeft($aclName, "acls[]", $this->user->hasAcl($aclName), [], ['class' => 'form-check'], $this->displayErrors, $aclName
+                    ); ?>
+                <?php endforeach; ?>
+            </div>
             
             <div id="sortableImages" class="row align-items-center justify-content-start p-2">
                 <?php foreach($this->profileImages as $image):?>
                     <div class="col flex-grow-0" id="image_<?=$image->id?>">
-                        <span class="delete-button" onclick="deleteImage('<?=$image->id?>')"><i class="fa fa-times"></i></span>
                         <div class="edit-image-wrapper <?= ($image->sort == 0) ? 'current-profile-img' : ''?>" data-id="<?=$image->id?>">
                             <img src="<?=APP_DOMAIN.$image->url?>" />
                         </div>
