@@ -1,8 +1,9 @@
 <?php
 namespace Core;
 use \PDO;
-use \PDOException;
+use Exception;
 use Core\Helper;
+use \PDOException;
 /**
  * Support database operations.
  */
@@ -27,7 +28,7 @@ class DB {
             $this->_pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $this->_pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
         } catch(PDOException $e) {
-            die($e->getMessage());
+            throw new Exception($e->getMessage());
         }
     }
 
