@@ -1,7 +1,8 @@
 <?php
 namespace Core;
-use Core\Helper;
 use stdClass;
+use Exception;
+use Core\Helper;
 
 /**
  * Handles operations related to views and its content.
@@ -93,7 +94,7 @@ class View extends stdClass {
             include(ROOT . DS . 'resources' . DS . 'views' . DS . $viewString . '.php');
             include(ROOT . DS . 'resources' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php');
         } else {
-            die('The view \"' . $viewName . '\" does not exist');
+            throw new Exception('The view \"' . $viewName . '\" does not exist');
         }
     }
 

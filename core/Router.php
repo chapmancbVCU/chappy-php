@@ -1,7 +1,8 @@
 <?php
 namespace Core;
-use App\Models\Users;
+use Exception;
 use Core\Session;
+use App\Models\Users;
 
 /**
  * This class is responsible for routing between views.
@@ -145,38 +146,43 @@ class Router {
      * controller and action to use.
      * @return void
      */
-    public static function route(array $url): void {     
-        // Extract from URL our controllers
-        $controller = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]).'Controller' : DEFAULT_CONTROLLER.'Controller';
-        $controller_name = str_replace('Controller', '', $controller);
-        array_shift($url);
+    public static function route(array $url): void {   
+        try {
 
-        // action - now first element of array.
-        $action = (isset($url[0]) && $url[0] != '') ? $url[0] . 'Action' : 'indexAction';
-        $action_name = (isset($url[0]) && $url[0] != '') ? $url[0] : 'index';
-        array_shift($url);
-
-        // ACL check
-        $grantAccess = self::hasAccess($controller_name, $action_name);
-        if(!$grantAccess) {
-            $controller = ACCESS_RESTRICTED.'Controller';
-            $controller_name = ACCESS_RESTRICTED;
-            $action = 'indexAction';
-        }
-
-        // Params - any params will now be passed into our action.
-        $queryParams = $url;
-        $controller = 'App\Controllers\\' . $controller;
-        
-        // Use to pass in controller name and action
-        $dispatch = new $controller($controller_name, $action);
-
-        if(method_exists($controller, $action)) {
-            /* Call method on dispatch object.  Our method is the action being called.
-             * $queryParams support ability to add parameters to our actions. */
-            call_user_func_array([$dispatch, $action], $queryParams);
-        } else {
-            die('That method does not exist in the controller \"' . $controller_name . '\"');
-        }
+            // Extract from URL our controllers
+            $controller = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]).'Controller' : DEFAULT_CONTROLLER.'Controller';
+            $controller_name = str_replace('Controller', '', $controller);
+            array_shift($url);
+    
+            // action - now first element of array.
+            $action = (isset($url[0]) && $url[0] != '') ? $url[0] . 'Action' : 'indexAction';
+            $action_name = (isset($url[0]) && $url[0] != '') ? $url[0] : 'index';
+            array_shift($url);
+    
+            // ACL check
+            $grantAccess = self::hasAccess($controller_name, $action_name);
+            if(!$grantAccess) {
+                $controller = ACCESS_RESTRICTED.'Controller';
+                $controller_name = ACCESS_RESTRICTED;
+                $action = 'indexAction';
+            }
+    
+            // Params - any params will now be passed into our action.
+            $queryParams = $url;
+            $controller = 'App\Controllers\\' . $controller;
+            
+            // Use to pass in controller name and action
+            $dispatch = new $controller($controller_name, $action);
+    
+            if(method_exists($controller, $action)) {
+                /* Call method on dispatch object.  Our method is the action being called.
+                 * $queryParams support ability to add parameters to our actions. */
+                call_user_func_array([$dispatch, $action], $queryParams);
+            } else {
+                throw new Exception("Method '$action_name' does not exist in the controller '$controller_name'.");
+            }
+        } catch (Exception $e) {
+            throw $e;
+        }  
     }
 }

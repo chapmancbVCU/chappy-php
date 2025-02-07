@@ -7,6 +7,8 @@ use Core\Cookie;
 use Core\Router;
 use App\Models\Users;
 use Dotenv\Dotenv;
+use Whoops\Run;
+use Whoops\Handler\PrettyPageHandler;
 
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__));
@@ -22,6 +24,10 @@ foreach ($array as $value) {
     require_once(ROOT . DS . 'config' . DS . $value . '.php');
 }
 
+// Initialize Whoops error handler
+$whoops = new Run();
+$whoops->pushHandler(new PrettyPageHandler());
+$whoops->register();
 
 /**
  * Auto-loading of classes using PSR-4 Support.
