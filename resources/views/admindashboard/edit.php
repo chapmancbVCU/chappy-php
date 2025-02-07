@@ -34,7 +34,7 @@ use Core\Helper;
             <div class="form-group mb-3">
                 <label>Manage ACLs:</label>
                 <?php foreach ($this->acls as $aclKey => $aclName): ?>
-                    <?= FormHelper::checkboxBlockLabelLeft($aclName, "acls[]", $this->user->hasAcl($aclName), [], ['class' => 'form-check'], $this->displayErrors, $aclName
+                    <?= FormHelper::checkboxBlockLabelRight($aclName, "acls[]", $aclName, $this->user->hasAcl($aclName), [], ['class' => 'form-check'], $this->displayErrors, 
                     ); ?>
                 <?php endforeach; ?>
             </div>

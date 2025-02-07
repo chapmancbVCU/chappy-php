@@ -76,7 +76,7 @@ class FormHelper {
         return $html;
     }
 
-    /** UPDATE
+    /**
      * Generates a div containing an input of type checkbox with the label to 
      * the left that is not part of a group.
      *
@@ -109,11 +109,11 @@ class FormHelper {
      */
     public static function checkboxBlockLabelLeft($label, 
         $name, 
+        $value = "",
         $checked = false, 
         $inputAttrs = [], 
         $divAttrs = [],
         $errors = [],
-        $value = "on"
         ){
 
         $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name, 'is-invalid');
@@ -128,16 +128,16 @@ class FormHelper {
         return $html;
     }
 
-    /** UPDATE
+    /**
      * Generates a div containing an input of type checkbox with the label to 
      * the right that is not part of a group.
      *
      * An example function call is shown below:
-     * FormHelper::checkboxBlockLabelRight('Remember Me', 'remember_me', $this->login->getRememberMeChecked(), [], ['class' => 'form-group mr-1'], $this->displayErrors);
+     * FormHelper::checkboxBlockLabelRight('Remember Me', 'remember_me', 'on', $this->login->getRememberMeChecked(), [], ['class' => 'form-group mr-1'], $this->displayErrors);
      * 
      * Example HTML output is shown below:
      * <div>
-     *     <input type="checkbox" id="remember_me" name="remember_me" value="" class="form-group mr-1">
+     *     <input type="checkbox" id="remember_me" name="remember_me" value="on" class="form-group mr-1">
      *     <label for="remember_me">Remember Me</label>
      * </div> 
      * 
@@ -160,11 +160,11 @@ class FormHelper {
      */
     public static function checkboxBlockLabelRight(string $label, 
         string $name, 
+        string $value = "",
         bool $checked = false, 
         array $inputAttrs = [], 
         array $divAttrs = [],
         array $errors = [],
-        $value = "on"
         ): string {
 
         $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
@@ -173,7 +173,7 @@ class FormHelper {
         $checkString = ($checked) ? ' checked="checked"' : '';
         $id = str_replace('[]','',$name);
         $html = '<div'.$divString.'>';
-        $html .='<input type="checkbox" id="'.$name.'" name="'.$id.'" value='.$value.''.$checkString.$inputString.'><label for="'.$id.'">'.$label.'</label> ';
+        $html .='<input type="checkbox" id="'.$name.'" name="'.$id.'" value='.$value.''.$checkString.$inputString.'> <label for="'.$id.'">'.$label.'</label> ';
         $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
         $html .= '</div>';
         return $html;
