@@ -223,7 +223,10 @@ class FormHelper {
             $logError  .= $error . ' ';
         }
         $html .= '</ul></div>';
-        Logger::log("Form validation failed: " . $logError, 'warning');
+        if($hasErrors != '') {
+            Logger::log("Form validation failed: " . $logError, 'warning');
+        }
+        
         return $html;
     }
 
