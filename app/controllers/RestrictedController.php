@@ -1,7 +1,7 @@
 <?php 
 namespace App\Controllers;
 use Core\Controller;
-
+use Core\Lib\Logger;
 /**
  * Implements support for the Restricted controller.  Interactions that the 
  * user performs that are restricted will result in a relevant view being 
@@ -14,6 +14,7 @@ class RestrictedController extends Controller {
      * @return void
      */
     public function badTokenAction(): void {
+        Logger::log('Your token is corrupted', 'danger');
         $this->view->render('restricted/badToken');
     }
     
@@ -23,6 +24,7 @@ class RestrictedController extends Controller {
      * @return void
      */
     public function indexAction(): void {
+        Logger::log('You do not have permission to access this page.', 'warning');
         $this->view->render('restricted/index');
     }
 }
