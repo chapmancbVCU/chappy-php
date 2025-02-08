@@ -149,12 +149,9 @@ class Router {
      */
     public static function route(array $url, string $requestPath): void {   
         try {
-            $requestMethod = $_SERVER['REQUEST_METHOD'];
-            //$requestUri = $_SERVER['REQUEST_URI'];
-            $clientIp = $_SERVER['REMOTE_ADDR'];
+            // Log requests sent to server
             $userId = Session::exists(CURRENT_USER_SESSION_NAME) ? Session::get(CURRENT_USER_SESSION_NAME) : 'Guest';
-
-            Logger::log("Incoming Request: Method: $requestMethod | URL: $requestPath | IP: $clientIp | User: $userId", 'info');
+            Logger::log("Incoming Request: Method: ".$_SERVER['REQUEST_METHOD']." | URL: $requestPath | IP: ".$_SERVER['REMOTE_ADDR']." | User: $userId", 'info');
             
             // Extract from URL our controllers
             $controller = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]).'Controller' : DEFAULT_CONTROLLER.'Controller';
