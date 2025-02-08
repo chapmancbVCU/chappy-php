@@ -4,7 +4,6 @@
         "Home" : ["*"],
         "Register" : ["login", "register", "resetPassword"],
         "Restricted" : ["*"],
-        "Documentation" : ["*"],
         "Userguide" : ["*"]
     },
     "LoggedIn" : {
