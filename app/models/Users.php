@@ -324,6 +324,7 @@ class Users extends Model {
             Cookie::delete(REMEMBER_ME_COOKIE_NAME);
         }
         self::$currentLoggedInUser = null;
+        Logger::log("User {$this->id} ({$this->username}) logged out.", 'info');
         return true;
     }
 

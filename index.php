@@ -73,8 +73,8 @@ register_shutdown_function(function () {
 if(!Session::exists(CURRENT_USER_SESSION_NAME) && Cookie::exists(REMEMBER_ME_COOKIE_NAME)) {
     $user = Users::loginUserFromCookie();
     
-    if ($user) {
-        if ($user->inactive == 1) {
+    if($user) {
+        if($user->inactive == 1) {
             $user->logout();
             Logger::log("Inactive user attempted auto-login: User ID {$user->id}", 'warning');
         } else {
