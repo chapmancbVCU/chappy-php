@@ -1,7 +1,7 @@
 <?php
 namespace Core\Lib\Utilities;
 use Core\Helper;
-
+use Core\Lib\Logger;
 /**
  * Provides support for file uploads.
  */
@@ -38,6 +38,7 @@ class Uploads {
      * @return void
      */
     protected function addErrorMessage(string $name, string $message): void {
+        Logger::log("Upload error: $message", 'error'); // Log validation errors
         if(array_key_exists($name, $this->_errors)) {
             $this->_errors[$name] .= $this->_errors[$name] . " " . $message;
         } else {
@@ -96,10 +97,17 @@ class Uploads {
      * @return void
      */
     public function upload($path, $uploadName, $fileName): void {
+        Logger::log("Attempting to upload file: $uploadName | Path: $path", 'info');
         if (!file_exists($path)) {
             mkdir($path);
         }
-        move_uploaded_file($fileName, $this->_bucket.$path.$uploadName);
+        
+        $destination = $this->_bucket.$path.$uploadName;
+        if(move_uploaded_file($fileName, $destination)) {
+            Logger::log("File uploaded successfully: $uploadName | Destination: $destination", 'info');
+        } else {
+            Logger::log("File upload failed: Could not move $uploadName to $destination", 'error');
+        }
     }
 
     /**
