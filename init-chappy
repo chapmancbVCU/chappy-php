@@ -9,7 +9,7 @@ shell_exec('php console init:mk-profile-images-dir');
 makeBorder('Generate .env file');
 shell_exec('php console tools:mk-env');
 
-
+shell_exec('chmod -R 777 logs');
 
 
 
