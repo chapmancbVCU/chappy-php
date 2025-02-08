@@ -14,15 +14,15 @@ class UploadProfileImage extends Uploads {
 
     public function runValidation(): void {
         $this->validateSize();
-        $this->validateImageType();
+        $this->validateFileType();
     }
 
     /**
-     * Validates image type and sets error message if file type is invalid.
+     * Validates file type and sets error message if file type is invalid.
      *
      * @return void
      */
-    protected function validateImageType(): void { 
+    protected function validateFileType(): void { 
         foreach($this->_files as $file) {
             // checking file type
             if(!in_array(exif_imagetype($file['tmp_name']), $this->_allowedFileTypes)){

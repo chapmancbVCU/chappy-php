@@ -121,6 +121,13 @@ class Uploads {
     }
 
     /**
+     * Validates file type and sets error message if file type is invalid.
+     *
+     * @return void
+     */
+    protected function validateFileType(): void {}
+
+    /**
      * Validates file size and sets error message if file is too large.
      *
      * @return void
