@@ -55,8 +55,10 @@ $requestPath = array_key_exists('PATH_INFO', $_SERVER) ? $_SERVER['PATH_INFO'] :
 $url = isset($requestPath) ? explode('/', ltrim($requestPath, '/')) : [];
 
 // Determine session and cooking status.  Log in user if appropriate cookie exists.
-if(!Session::exists(CURRENT_USER_SESSION_NAME && Cookie::exists(REMEMBER_ME_COOKIE_NAME))) {
+if(!Session::exists(CURRENT_USER_SESSION_NAME) && Cookie::exists(REMEMBER_ME_COOKIE_NAME)) {
     $user = Users::loginUserFromCookie();
+
+    // Log out inactive users immediately after login
     if($user != null && $user->inactive == 1) {
         $user->logout();
     }
