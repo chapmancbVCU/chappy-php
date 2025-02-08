@@ -1,5 +1,5 @@
 <?php
-namespace App\Lib\Utilities;
+namespace Core\Lib\Utilities;
 use Core\Helper;
 
 /**

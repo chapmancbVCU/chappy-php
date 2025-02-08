@@ -2,7 +2,7 @@
 namespace App\Controllers;
 use Core\{Controller, Helper, Router, Session};
 use App\Models\{ProfileImages, Users};
-use App\Lib\Utilities\UploadProfileImage;
+use Core\Lib\Utilities\UploadProfileImage;
 
 /**
  * Supports ability to use user profile features and render relevant views.

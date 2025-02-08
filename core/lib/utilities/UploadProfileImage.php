@@ -1,7 +1,7 @@
 <?php
-namespace App\Lib\Utilities;
+namespace Core\Lib\Utilities;
 
-use App\Lib\Utilities\Uploads;
+use Core\Lib\Utilities\Uploads;
 /**
  * 
  * 
