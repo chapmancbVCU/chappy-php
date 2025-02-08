@@ -2,7 +2,7 @@
 <?php $this->setSiteTitle("Manage ACLs"); ?>
 <?php $this->start('body'); ?>
 <h1 class="text-center">Manage ACLs
-    <a href="<?=APP_DOMAIN?>admindashboard/addAcl/<?=$this->user->id?>" class="btn btn-primary btn-sm ml-5">
+    <a href="<?=APP_DOMAIN?>admindashboard/addAcl/" class="btn btn-primary btn-sm ml-5">
         <i class="fa fa-plus"></i> Add ACL
     </a>
 </h1>
