@@ -349,7 +349,7 @@ class Users extends Model {
 
     /**
      * Sets ACL at registration.  If users table is empty the default 
-     * value is Admin.  Otherwise, we set the value to Standard.
+     * value is Admin.  Otherwise, we set the value to "".
      *
      * @return string The value of the ACL we are setting upon 
      * registration of a user.
@@ -358,7 +358,7 @@ class Users extends Model {
         if(Users::findTotal() == 0) {
             return '["Admin"]';
         }
-        return '["Standard"]';
+        return '[""]';
     }
 
     /**

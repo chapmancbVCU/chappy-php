@@ -573,7 +573,7 @@
             <th colspan="2" class="text-center">public static function setAclAtRegistration</th>
         </tr>
         <tr>
-            <td colspan="2">Sets ACL at registration.  If users table is empty the default value is Admin.  Otherwise, we set the value to Standard.</td>
+            <td colspan="2">Sets ACL at registration.  If users table is empty the default value is Admin.  Otherwise, we set the value to "".</td>
         </tr>
         <tr>
             <th class="align-middle text-center" colspan="2">params</th>

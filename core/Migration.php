@@ -38,7 +38,6 @@ abstract class Migration {
         $timestamp = Helper::timeStamps();
         if($table == 'acl') {
             $this->_db->insert('acl', ['acl' => 'Admin', 'deleted' => 0, 'created_at' => $timestamp, 'updated_at' => $timestamp]);
-            $this->_db->insert('acl', ['acl' => 'Standard', 'deleted' => 0, 'created_at' => $timestamp, 'updated_at' => $timestamp]);
         }
     }
 
