@@ -24,7 +24,6 @@ class RestrictedController extends Controller {
      * @return void
      */
     public function indexAction(): void {
-        Logger::log('You do not have permission to access this page.', 'warning');
         $this->view->render('restricted/index');
     }
 }

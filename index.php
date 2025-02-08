@@ -90,7 +90,7 @@ $url = isset($requestPath) ? explode('/', ltrim($requestPath, '/')) : [];
 
 // Route the request
 try {
-    Router::route($url);
+    Router::route($url, $requestPath);
 } catch (Exception $e) {
     Logger::log("Unhandled Exception: " . $e->getMessage(), 'error');
     throw $e; // Let Whoops handle it

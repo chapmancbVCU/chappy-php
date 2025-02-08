@@ -1,6 +1,7 @@
 <?php
 namespace Core;
 use Exception;
+use Core\Lib\Logger;
 use Core\Session;
 use App\Models\Users;
 
@@ -137,7 +138,7 @@ class Router {
         }
     }
 
-    /**
+    /** UPDATE
      * Supports operations for routing.  It parses the url to determine which 
      * page needs to be rendered.  That path is parsed to determine 
      * the correct controller and action to use.
@@ -146,9 +147,15 @@ class Router {
      * controller and action to use.
      * @return void
      */
-    public static function route(array $url): void {   
+    public static function route(array $url, string $requestPath): void {   
         try {
+            $requestMethod = $_SERVER['REQUEST_METHOD'];
+            //$requestUri = $_SERVER['REQUEST_URI'];
+            $clientIp = $_SERVER['REMOTE_ADDR'];
+            $userId = Session::exists(CURRENT_USER_SESSION_NAME) ? Session::get(CURRENT_USER_SESSION_NAME) : 'Guest';
 
+            Logger::log("Incoming Request: Method: $requestMethod | URL: $requestPath | IP: $clientIp | User: $userId", 'info');
+            
             // Extract from URL our controllers
             $controller = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]).'Controller' : DEFAULT_CONTROLLER.'Controller';
             $controller_name = str_replace('Controller', '', $controller);
@@ -162,6 +169,7 @@ class Router {
             // ACL check
             $grantAccess = self::hasAccess($controller_name, $action_name);
             if(!$grantAccess) {
+                Logger::log("Access Denied: User '$userId' attempted to use a controller that does not exists or access a restricted area '$controller_name/$action_name'", 'warning');
                 $controller = ACCESS_RESTRICTED.'Controller';
                 $controller_name = ACCESS_RESTRICTED;
                 $action = 'indexAction';
@@ -170,10 +178,10 @@ class Router {
             // Params - any params will now be passed into our action.
             $queryParams = $url;
             $controller = 'App\Controllers\\' . $controller;
-            
+
             // Use to pass in controller name and action
             $dispatch = new $controller($controller_name, $action);
-    
+            
             if(method_exists($controller, $action)) {
                 /* Call method on dispatch object.  Our method is the action being called.
                  * $queryParams support ability to add parameters to our actions. */
@@ -182,6 +190,7 @@ class Router {
                 throw new Exception("Method '$action_name' does not exist in the controller '$controller_name'.");
             }
         } catch (Exception $e) {
+            Logger::log("Unhandled Exception in Router: " . $e->getMessage(), 'error');
             throw $e;
         }  
     }
