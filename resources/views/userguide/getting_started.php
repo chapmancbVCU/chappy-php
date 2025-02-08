@@ -113,17 +113,11 @@
                     </li>
                 </ol>
             </li>
-            <li>If the logs directory is not created perform the following steps at the project root:
+            <li>If the logs directory is not created perform the following step at the project root:
                 <ol class="pl-4" type="a">
                     <li>
 <pre class="my-3 pb-1">
-<code class="language-php line-numbers">mkdir -p logs
-</code>
-</pre>
-                    </li>
-                    <li>
-<pre class="my-3 pb-1">
-<code class="language-php line-numbers">hmod -R 777 logs
+<code class="language-php line-numbers">chmod -R 777 logs
 </code>
 </pre>
                     </li>
