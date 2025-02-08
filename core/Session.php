@@ -1,6 +1,6 @@
 <?php
 namespace Core;
-
+use Core\Lib\Logger;
 /**
  * Supports functions for user sessions.  This class never gets instantiated.
  */
@@ -15,6 +15,7 @@ class Session {
      */
     public static function addMessage(string $type, string $message): void {
         $sessionName = 'alert-' . $type;
+        Logger::log($message, $type);
         self::set($sessionName, $message);
     }
 
