@@ -1,13 +1,24 @@
 # chappy.php
 chappy.php is a whole new Model View Controller framework tailored to all of the fellows of the internet. Our goal is to provide a light weight and easily expandable framework for any PHP developer. 
 
-Originally a fork of the Ruah PHP MVC framework based on the MVC PHP Framework tutorial series on the Freeskills YouTube channel, we have worked hard to add additional support and features.  This includes:
-1. Expanded server side validation support
-2. Rapid form creation for several different form element types
-3. User profiles
-4. Administration features
-5. A console, similar to Laravel's Artisan, for performing command line interface based operations
-6. Sessions associated with each user
+Originally a fork of the Ruah PHP MVC framework based on the MVC PHP Framework tutorial series on the Freeskills YouTube channel, we have worked hard to add additional support and features.  This framework includes the following features:
+1. Custom form handling
+2. Dynamic routing
+3. Custom request handling
+4. Session and flash messages
+5. Symfony based Command Line Interface (CLI)
+6. Server-side validation
+7. User accounts
+8. Administrator user role
+9. Database migrations
+10. Layouts and components
+11. Access Control Levels (ACLs)
+12. Unit test support
+13. Debugging tools
+14. Strong Security practices (CSRF protection, sanitization, and blacklist/whitelist filtering)
+15. File upload support
+16. API documentation
+17. User guid
 
 If you have a feature that you would like to be supported please create a request under the Issues tab.
 
