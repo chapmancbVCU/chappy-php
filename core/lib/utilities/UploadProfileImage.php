@@ -1,6 +1,7 @@
 <?php
 namespace Core\Lib\Utilities;
 
+use Core\Helper;
 use Core\Lib\Utilities\Uploads;
 /**
  * 
@@ -23,11 +24,16 @@ class UploadProfileImage extends Uploads {
      * @return void
      */
     protected function validateFileType(): void { 
+        $reportTypes = [];
+        foreach($this->_allowedFileTypes as $type) {
+            array_push($reportTypes, image_type_to_mime_type($type));
+        }
+
         foreach($this->_files as $file) {
             // checking file type
             if(!in_array(exif_imagetype($file['tmp_name']), $this->_allowedFileTypes)){
                 $name = $file['name'];
-                $msg = $name . " is not an allowed file type. Please use a jpeg, gif, or png.";
+                $msg = $name . " is not an allowed file type. Please use the following types: " . implode(', ', $reportTypes);
                 $this->addErrorMessage($name, $msg);
             }
         }
