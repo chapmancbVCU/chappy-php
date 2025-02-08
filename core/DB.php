@@ -3,6 +3,7 @@ namespace Core;
 use \PDO;
 use Exception;
 use Core\Helper;
+use Core\Lib\Logger;
 use \PDOException;
 /**
  * Support database operations.
@@ -249,15 +250,18 @@ class DB {
      */
     public function query($sql, $params = [],$class = false) {
         $this->_error = false;
+        $startTime = microtime(true); // Start timing query execution
+
         if($this->_query = $this->_pdo->prepare($sql)) {
             $x = 1;
             if(count($params)) {
                 foreach($params as $param) {
-                $this->_query->bindValue($x, $param);
-                $x++;
+                    $this->_query->bindValue($x, $param);
+                    $x++;
                 }
             }
             if($this->_query->execute()) {
+                $executionTime = microtime(true) - $startTime; // Calculate execution time
                 if($class && $this->_fetchStyle === PDO::FETCH_CLASS){
                     $this->_result = $this->_query->fetchAll($this->_fetchStyle,$class);
                 } else {
@@ -265,10 +269,20 @@ class DB {
                 }
                 $this->_count = $this->_query->rowCount();
                 $this->_lastInsertID = $this->_pdo->lastInsertId();
+
+                // Log successful query execution
+                Logger::log("Executed Query: $sql | Params: " . json_encode($params) . " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s", 'debug');
             } else {
                 $this->_error = true;
+
+                // Log query execution failure
+            Logger::log("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . json_encode($params), 'error');
             }
+        } else {
+            // Log query preparation failure
+            Logger::log("Failed to prepare query: $sql | Params: " . json_encode($params), 'error');
         }
+
         return $this;
     }
 
