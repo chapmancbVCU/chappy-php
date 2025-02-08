@@ -16,7 +16,7 @@ Originally a fork of the Ruah PHP MVC framework based on the MVC PHP Framework t
 12. Unit test support
 13. Debugging tools
 14. Strong Security practices (CSRF protection, sanitization, and blacklist/whitelist filtering)
-15. File upload support
+15. Single and multiple file upload support
 16. API documentation
 17. User guid
 
