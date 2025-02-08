@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 use Core\{Cookie, Helper, Model, Session};
+use Core\Lib\Logger;
 use Core\Validators\{
     EmailValidator,
     LowerCharValidator,
@@ -232,7 +233,26 @@ class Users extends Model {
      * @return void
      */
     public function login(bool $rememberMe = false): void {
+        $user = self::findFirst([
+            'conditions' => 'username = ?',
+            'bind' => [$this->username]
+        ]);
+
+        if (!$user) {
+            Logger::log("Failed login attempt: Username '{$this->username}' not found.", 'warning');
+        }
+
+        // if (!password_verify($this->password, $user->password)) {
+        //     Logger::log("Failed login attempt: Incorrect password for user ID {$user->id} ({$user->username}).", 'warning');
+        // }
+
+        if ($user->inactive == 1) {
+            Logger::log("Failed login attempt: Inactive account for user ID {$user->id} ({$user->username}).", 'warning');
+        }
+
         Session::set(CURRENT_USER_SESSION_NAME, $this->id);
+        Logger::log("User {$user->id} ({$user->username}) logged in successfully.", 'info');
+        
         if($rememberMe) {
             $hash = md5(uniqid() . rand(0, 100));
             $user_agent = Session::uagent_no_version();
@@ -242,6 +262,7 @@ class Users extends Model {
             $us = new UserSessions();
             $us->assign($fields);
             $us->save();
+            Logger::log("Remember Me token set for user {$user->id} ({$user->username}).", 'info');
         }
     }
 
