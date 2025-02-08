@@ -1,6 +1,6 @@
 <?php
 namespace App\Models;
-use Core\{Cookie, Helper, Model, Session};
+use Core\{Cookie, Helper, Model, Router, Session};
 use Core\Lib\Logger;
 use Core\Validators\{
     EmailValidator,
@@ -280,10 +280,10 @@ class Users extends Model {
         if($user->login_attempts >= MAX_LOGIN_ATTEMPTS) {
             $user->inactive = 1; 
         }
-        if($user->login_attempts > 0 && $user->login_attempts < MAX_LOGIN_ATTEMPTS) {
+        if($user->login_attempts < MAX_LOGIN_ATTEMPTS) {
             $loginModel->addErrorMessage('username', 'There is an error with your username or password.');
         } else {
-            $loginModel->addErrorMessage('username', 'Your account has been locked due to too many failed login attempts.');
+            Session::addMessage('danger', 'Your account has been locked due to too many failed login attempts.');
         }
         $user->login_attempts = $user->login_attempts + 1;
         $user->save();
