@@ -121,22 +121,6 @@ class Uploads {
     }
 
     /**
-     * Validates image type and sets error message if file type is invalid.
-     *
-     * @return void
-     */
-    // protected function validateImageType(): void { 
-    //     foreach($this->_files as $file) {
-    //         // checking file type
-    //         if(!in_array(exif_imagetype($file['tmp_name']), $this->_allowedFileTypes)){
-    //             $name = $file['name'];
-    //             $msg = $name . " is not an allowed file type. Please use a jpeg, gif, or png.";
-    //             $this->addErrorMessage($name, $msg);
-    //         }
-    //     }
-    // }
-
-    /**
      * Validates file size and sets error message if file is too large.
      *
      * @return void
