@@ -1,5 +1,6 @@
 /.vscode
 /vendor/
+/cache/
 /public/images/uploads/profile_images/
 /node_modules
 .env
