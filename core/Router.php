@@ -10,6 +10,43 @@ use App\Models\Users;
  */
 class Router {
     /**
+     * Routing function for pages related to API.
+     *
+     * @param array $requestPath The path for API related pages.
+     * @return void
+     */
+    private static function docsRouting($requestPath): void {
+        $filePath = __DIR__ . '/resources/views/api-docs/' . str_replace('/api-docs/', '', $requestPath);
+    
+        // Redirect root `/api-docs` to `/resources/views/api-docs/index.html`
+        if ($filePath === __DIR__ . '/resources/views/api-docs/' || $filePath === __DIR__ . '/resources/views/api-docs') {
+            $filePath .= '/index.html';
+        }
+    
+        // Serve static assets (CSS, JS, images)
+        if (preg_match('/\.(css|js|png|jpg|jpeg|gif|svg|ico)$/', $filePath)) {
+            if (file_exists($filePath)) {
+                $mimeType = mime_content_type($filePath);
+                header("Content-Type: $mimeType");
+                readfile($filePath);
+            } else {
+                header("HTTP/1.0 404 Not Found");
+                echo "<h1>404 - File Not Found</h1>";
+            }
+            exit();
+        }
+    
+        // Serve HTML documentation pages
+        if (file_exists($filePath)) {
+            readfile($filePath);
+        } else {
+            header("HTTP/1.0 404 Not Found");
+            echo "<h1>404 - Documentation Not Found</h1>";
+        }
+        exit();
+    }
+
+    /**
      * Gets link based on value from acl.
      * 
      * @param string $value item in acl that will be used to create a 
@@ -149,35 +186,9 @@ class Router {
      */
     public static function route(array $url, string $requestPath): void {   
         try {
+            // Routing for API
             if (strpos($requestPath, '/api-docs') === 0) {
-                $filePath = __DIR__ . '/resources/views/api-docs/' . str_replace('/api-docs/', '', $requestPath);
-            
-                // Redirect root `/api-docs` to `/resources/views/api-docs/index.html`
-                if ($filePath === __DIR__ . '/resources/views/api-docs/' || $filePath === __DIR__ . '/resources/views/api-docs') {
-                    $filePath .= '/index.html';
-                }
-            
-                // Serve static assets (CSS, JS, images)
-                if (preg_match('/\.(css|js|png|jpg|jpeg|gif|svg|ico)$/', $filePath)) {
-                    if (file_exists($filePath)) {
-                        $mimeType = mime_content_type($filePath);
-                        header("Content-Type: $mimeType");
-                        readfile($filePath);
-                    } else {
-                        header("HTTP/1.0 404 Not Found");
-                        echo "<h1>404 - File Not Found</h1>";
-                    }
-                    exit();
-                }
-            
-                // Serve HTML documentation pages
-                if (file_exists($filePath)) {
-                    readfile($filePath);
-                } else {
-                    header("HTTP/1.0 404 Not Found");
-                    echo "<h1>404 - Documentation Not Found</h1>";
-                }
-                exit();
+                self::docsRouting($requestPath);
             }
             
             // Log requests sent to server
