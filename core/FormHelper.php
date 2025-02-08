@@ -2,7 +2,7 @@
 namespace Core;
 use \Exception;
 use Core\{Helper, Session};
-
+use Core\Lib\Logger;
 /**
  * Contains functions for building form elements of various types.
  */
@@ -217,10 +217,13 @@ class FormHelper {
     public static function displayErrors(array $errors): string {
         $hasErrors = (!empty($errors))? ' has-errors' : '';
         $html = '<div class="form-errors"><ul class="bg-light'.$hasErrors.'">';
+        $logError = '';
         foreach($errors as $field => $error) {
             $html .= '<li class="text-danger">'.$error.'</li>';
+            $logError  .= $error . ' ';
         }
         $html .= '</ul></div>';
+        Logger::log("Form validation failed: " . $logError, 'warning');
         return $html;
     }
 
