@@ -19,6 +19,7 @@ Originally a fork of the Ruah PHP MVC framework based on the MVC PHP Framework t
 15. Single and multiple file upload support
 16. API documentation
 17. User guide
+18. Logging
 
 If you have a feature that you would like to be supported please create a request under the Issues tab.
 
