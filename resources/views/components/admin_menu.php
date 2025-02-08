@@ -11,11 +11,13 @@ $userMenu = Router::getMenu('user_menu');
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand" href="<?=APP_DOMAIN?>home"><?=MENU_BRAND?></a>
-
+ 
+  
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="main_menu">
     <ul class="navbar-nav me-auto">
       <?= Helper::buildMenuListItems($menu); ?>
+      <a href="http://localhost/api-docs" class="nav-link">API</a>
     </ul>
     <ul class="navbar-nav me-2">
       <?= Helper::buildMenuListItems($userMenu, "dropdown-menu-end"); ?>

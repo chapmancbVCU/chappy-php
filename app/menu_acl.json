@@ -1,13 +1,9 @@
 {
     "Home" : "home",
-    "Custom MVC Docs" : {
-        "Classes and Functions" : "documentation",
-        "separator" : " ",
-        "User Guide" : "userguide"
-    },
     "Contacts" : {
         "My Contacts" : "contacts",
         "Add Contact" : "contacts/add"
     },
-    "Admin" : "admindashboard/index"
+    "Admin" : "admindashboard/index",
+    "User Guide" : "userguide"
 }
