@@ -1,8 +1,9 @@
 <?php
 namespace App\Controllers;
-use Core\{Controller, Helper, Router, Session};
+use Core\Lib\Logger;
+use Core\Lib\Utilities\UploadProfileImage;
 use App\Models\{Login, ProfileImages, Users};
-use App\Lib\Utilities\UploadProfileImage;
+use Core\{Controller, Helper, Router, Session};
 
 /**
  * Implements support for our Register controller.  Functions found in this 
@@ -43,6 +44,7 @@ class RegisterController extends Controller {
                     }
                     else {
                         $loginModel->addErrorMessage('username','There is an error with your username or password');
+                        Logger::log('User failed to log in', 'warning');
                     }
                 }
             }

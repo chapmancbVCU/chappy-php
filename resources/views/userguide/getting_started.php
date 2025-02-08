@@ -113,6 +113,22 @@
                     </li>
                 </ol>
             </li>
+            <li>If the logs directory is not created perform the following steps at the project root:
+                <ol class="pl-4" type="a">
+                    <li>
+<pre class="my-3 pb-1">
+<code class="language-php line-numbers">mkdir -p logs
+</code>
+</pre>
+                    </li>
+                    <li>
+<pre class="my-3 pb-1">
+<code class="language-php line-numbers">hmod -R 777 logs
+</code>
+</pre>
+                    </li>
+                </ol>
+            </li>
             <li>For XAMPP navigate to http://localhost/chappy-php.  If you have any issues make sure your database is setup correctly and the .env file is correct.
                 <ol class="pl-4" type="a">
                     <li>For production servers or remote access the path will be http://ip_address_or_domain_name.</li>
