@@ -5,9 +5,17 @@ use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 use Symfony\Component\Console\Command\Command;
 
+/**
+ * Contains functions for creating and deleting the profile images directory.
+ */
 class ProfileImageDir {
     private static $_path = ROOT.DS.'public'.DS.'images'.DS.'uploads'.DS.'profile_images';
 
+    /**
+     * Performs mkdir operation on the profile images directory
+     *
+     * @return integer A value that indicates success, invalid, or failure.
+     */
     public static function mkdirProfileImages(): int {
         if(!file_exists(self::$_path)) {
             mkdir(self::$_path, 0775, true);
@@ -19,6 +27,11 @@ class ProfileImageDir {
         return Command::SUCCESS;
     }
 
+    /**
+     * Performs rmdir operation on the profile images directory.
+     *
+     * @return integer A value that indicates success, invalid, or failure.
+     */
     public static function rmdirProfileImageDirectories(): int {
         $it = new RecursiveDirectoryIterator(self::$_path, RecursiveDirectoryIterator::SKIP_DOTS);
         $files = new RecursiveIteratorIterator($it,

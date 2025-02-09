@@ -1,5 +1,9 @@
 <?php
 namespace Console\App\Helpers;
+
+/**
+ * Contains functions for miscellaneous tasks.
+ */
 class Tools {
     /**
      * Returns dashed border.
@@ -10,7 +14,20 @@ class Tools {
         return '--------------------------------------------------';
     }
 
-    public static function info(string $message, string $background = BACKGROUND_COLOR, $text = TEXT_COLOR) {
+    /**
+     * Generates output messages for console commands.
+     *
+     * @param string $message The message we want to show.
+     * @param string $background The background color.  This function 
+     * supports black, red, green, yellow, blue, magenta, cyan, and 
+     * light-grey
+     * @param string $text The color of the text.  This function supports 
+     * black, white, dark-grey, red, green, brown, blue, magenta, cyan, 
+     * light-cyan, light-grey, light-red, light green, light-blue, and 
+     * light-magenta.
+     * @return void
+     */
+    public static function info(string $message, string $background = BACKGROUND_COLOR, $text = TEXT_COLOR): void {
         $backgroundColor = [
             'black' => '40',
             'red' => '41',

@@ -1,7 +1,17 @@
 <?php
 namespace Console\App\Helpers;
 
+/**
+ * Helper class for controller related console commands.
+ */
 class Controller {
+    /**
+     * The default template for a new controller.
+     *
+     * @param string $controllerName The name of the controller.
+     * @param string $layout The layout to be set.
+     * @return string The contents for a new controller.
+     */
     public static function defaultTemplate(string $controllerName, string $layout): string {
         return '<?php
 namespace App\Controllers;
@@ -23,6 +33,13 @@ class '.$controllerName.'Controller extends Controller {
 ';
     }
 
+    /**
+     * The template that contains additional useful functions for a controller.
+     *
+     * @param string $controllerName The name of the controller.
+     * @param string $layout The layout to be set.
+     * @return string The contents for a new controller.
+     */
     public static function resourceTemplate(string $controllerName, string $layout): string {
         return '<?php
 namespace App\Controllers;

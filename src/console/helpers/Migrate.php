@@ -7,6 +7,9 @@ use PDOException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
+/**
+ * Helper class for migration related console commands.
+ */
 class Migrate {
     public static function createDatabase(string $host, string $user, string $dbName, string $password): int {
         try {
@@ -48,6 +51,11 @@ class Migrate {
         return Command::SUCCESS;
     }
 
+    /**
+     * Drops all migrations.
+     *
+     * @return integer A value that indicates success, invalid, or failure.
+     */
     public static function dropAllTables(): int {
         // Load configuration and helper functions
         $isCli = php_sapi_name() == 'cli';
@@ -78,6 +86,12 @@ class Migrate {
         return Command::SUCCESS;
     }
 
+    /**
+     * Generates a new migration.
+     *
+     * @param InputInterface $input 
+     * @return integer A value that indicates success, invalid, or failure.
+     */
     public static function makeMigration(InputInterface $input): int {
         $tableName = $input->getArgument('table_name');
         if (php_sapi_name() != 'cli') die('Restricted');
@@ -104,6 +118,11 @@ class '.$fileName.' extends Migration {
         return Command::SUCCESS;
     }
 
+    /**
+     * Performs migration operation.
+     *
+     * @return integer A value that indicates success, invalid, or failure.
+     */
     public static function migrate(): int {
         // Load configuration and helper functions
         $isCli = php_sapi_name() == 'cli';

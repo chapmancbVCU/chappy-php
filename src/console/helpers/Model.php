@@ -1,7 +1,16 @@
 <?php
 namespace Console\App\Helpers;
 
+/**
+ * Helper class for model related console commands.
+ */
 class Model {
+    /**
+     * The default template for a new model.
+     *
+     * @param string $modelName The name of the model.
+     * @return string The contents for a new model.
+     */
     public static function makeModel(string $modelName): string {
         return '<?php
 namespace App\Models;
