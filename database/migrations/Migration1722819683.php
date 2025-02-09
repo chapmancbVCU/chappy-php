@@ -7,7 +7,7 @@ use Core\Migration;
  */
 class Migration1722819683 extends Migration {
     /**
-     * Performs an action.
+     * Performs a migration.
      *
      * @return void
      */
@@ -19,7 +19,7 @@ class Migration1722819683 extends Migration {
     }
 
     /**
-     * Undo a migration action.
+     * Undo a migration task.
      *
      * @return void
      */
