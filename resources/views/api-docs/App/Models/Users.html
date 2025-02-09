@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>App\Models\Users | Custom PHP MVC Framework API Documentation</title>
+    <title>App\Models\Users | Chappy.php API</title>
 
             <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
@@ -57,7 +57,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../../index.html">Custom PHP MVC Framework API Documentation</a>
+                <a class="navbar-brand" href="../../index.html">Chappy.php API</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-elements">
                 <ul class="nav navbar-nav">
@@ -666,17 +666,6 @@ for updating user's ACL.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;string
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_idToAcl">idToAcl</a>(int $acl_value, array $aclArray)
-        
-                                            <p><p>Take id from form post and return ACL in format that can be added to
-users table.  May not necessarily be actual id of ACL in acl table.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
                     
                 </div>
                 <div class="col-md-8">
@@ -1007,7 +996,7 @@ blacklisted.  Otherwise they are whitelisted.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_beforeSave">
-        <div class="location">at line 99</div>
+        <div class="location">at line 98</div>
         <code>                    void
     <strong>beforeSave</strong>()
         </code>
@@ -1818,7 +1807,7 @@ false if there is a failure.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validator">
-        <div class="location">at line 380</div>
+        <div class="location">at line 363</div>
         <code>                    void
     <strong>validator</strong>()
         </code>
@@ -1850,7 +1839,7 @@ false if there is a failure.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_acls">
-        <div class="location">at line 51</div>
+        <div class="location">at line 50</div>
         <code>                    array
     <strong>acls</strong>()
         </code>
@@ -1883,7 +1872,7 @@ $acl instance variable is empty an empty array is returned.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_aclToId">
-        <div class="location">at line 66</div>
+        <div class="location">at line 65</div>
         <code>        static            int
     <strong>aclToId</strong>(string $user_acl, array $aclArray)
         </code>
@@ -1932,7 +1921,7 @@ populate dropdown forms.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_addAcl">
-        <div class="location">at line 80</div>
+        <div class="location">at line 79</div>
         <code>        static            bool
     <strong>addAcl</strong>(int $user_id, string $acl)
         </code>
@@ -1980,7 +1969,7 @@ modify.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_currentUser">
-        <div class="location">at line 116</div>
+        <div class="location">at line 115</div>
         <code>        static            object|null
     <strong>currentUser</strong>()
         </code>
@@ -2013,7 +2002,7 @@ logged in user from users table.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_findAllUsersExceptCurrent">
-        <div class="location">at line 131</div>
+        <div class="location">at line 130</div>
         <code>        static            array
     <strong>findAllUsersExceptCurrent</strong>(int $current_user_id, array $params = [])
         </code>
@@ -2061,7 +2050,7 @@ default value is an empty array.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_findByUserName">
-        <div class="location">at line 148</div>
+        <div class="location">at line 147</div>
         <code>        static            bool|object
     <strong>findByUserName</strong>(string $username)
         </code>
@@ -2104,7 +2093,7 @@ the Users table.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_findUserByAcl">
-        <div class="location">at line 158</div>
+        <div class="location">at line 157</div>
         <code>        static            object
     <strong>findUserByAcl</strong>(string $acl)
         </code>
@@ -2146,7 +2135,7 @@ the Users table.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_hasAcl">
-        <div class="location">at line 169</div>
+        <div class="location">at line 168</div>
         <code>                    bool
     <strong>hasAcl</strong>(string $acl)
         </code>
@@ -2188,7 +2177,7 @@ the Users table.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_hashPassword">
-        <div class="location">at line 185</div>
+        <div class="location">at line 184</div>
         <code>                    void
     <strong>hashPassword</strong>(string $password)
         </code>
@@ -2230,58 +2219,8 @@ or update password form.</p></td>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_idToAcl">
-        <div class="location">at line 199</div>
-        <code>        static            string
-    <strong>idToAcl</strong>(int $acl_value, array $aclArray)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Take id from form post and return ACL in format that can be added to
-users table.  May not necessarily be actual id of ACL in acl table.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>int</td>
-                <td>$acl_value</td>
-                <td><p>The value for ACL from form POST.</p></td>
-            </tr>
-                    <tr>
-                <td>array</td>
-                <td>$aclArray</td>
-                <td><p>Array of ACLs in format that can be used to
-populate dropdown forms.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td><p>The value of the ACL that is compatible with the users
-table.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_isInactiveChecked">
-        <div class="location">at line 211</div>
+        <div class="location">at line 194</div>
         <code>                    
     <strong>isInactiveChecked</strong>()
         </code>
@@ -2304,7 +2243,7 @@ table.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_isResetPWChecked">
-        <div class="location">at line 222</div>
+        <div class="location">at line 205</div>
         <code>                    
     <strong>isResetPWChecked</strong>()
         </code>
@@ -2328,7 +2267,7 @@ POST.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_login">
-        <div class="location">at line 235</div>
+        <div class="location">at line 218</div>
         <code>                    void
     <strong>login</strong>(bool $rememberMe = false)
         </code>
@@ -2373,7 +2312,7 @@ found in login form.  Default value is false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_loginAttempts">
-        <div class="location">at line 279</div>
+        <div class="location">at line 262</div>
         <code>        static            <a href="../../App/Models/Login.html"><abbr title="App\Models\Login">Login</abbr></a>
     <strong>loginAttempts</strong>(<abbr title="App\Models\User">User</abbr> $user, <a href="../../App/Models/Login.html"><abbr title="App\Models\Login">Login</abbr></a> $loginModel)
         </code>
@@ -2423,7 +2362,7 @@ and session messages are assigned.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_loginUserFromCookie">
-        <div class="location">at line 298</div>
+        <div class="location">at line 281</div>
         <code>        static            <a href="../../App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a>
     <strong>loginUserFromCookie</strong>()
         </code>
@@ -2455,7 +2394,7 @@ and session messages are assigned.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_logout">
-        <div class="location">at line 317</div>
+        <div class="location">at line 300</div>
         <code>                    bool
     <strong>logout</strong>()
         </code>
@@ -2489,7 +2428,7 @@ corresponding cookie is deleted.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_removeAcl">
-        <div class="location">at line 338</div>
+        <div class="location">at line 321</div>
         <code>        static            void
     <strong>removeAcl</strong>(int $user_id, string $acl)
         </code>
@@ -2536,7 +2475,7 @@ corresponding cookie is deleted.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_setAclAtRegistration">
-        <div class="location">at line 358</div>
+        <div class="location">at line 341</div>
         <code>        static            string
     <strong>setAclAtRegistration</strong>()
         </code>
@@ -2570,7 +2509,7 @@ registration of a user.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_setChangePassword">
-        <div class="location">at line 371</div>
+        <div class="location">at line 354</div>
         <code>                    void
     <strong>setChangePassword</strong>(bool $value)
         </code>

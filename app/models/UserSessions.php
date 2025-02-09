@@ -12,7 +12,12 @@ class UserSessions extends Model{
     public $user_agent;
     public $user_id;
 
-    public function beforeSave(){
+    /**
+     * Called before save.
+     *
+     * @return void
+     */
+    public function beforeSave(): void {
         $this->timeStamps();
     }
 

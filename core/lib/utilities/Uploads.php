@@ -81,7 +81,7 @@ class Uploads {
         return $structured;
     }
 
-    /**Update to support other file types.
+    /**
      * Performs validation tasks.
      *
      * @return void

@@ -29,6 +29,11 @@ class Contacts extends Model {
     public $work_phone;
     public $zip;
 
+    /**
+     * Called before save.
+     *
+     * @return void
+     */
     public function beforeSave(): void {
         $this->timeStamps();
     }
@@ -77,27 +82,6 @@ class Contacts extends Model {
     public function displayName(): string {
         return $this->fname . ' ' . $this->lname;
     }
-
-    /**
-     * Retrieves list of all contacts related to a logged in user.  Using 
-     * additional parameters you can order by fields within the Contacts 
-     * table or set other conditions.
-     *
-     * @param int $user_id The ID user associated with this contact.
-     * @param array $params Used to build conditions for database query.  The 
-     * default value is an empty array.
-     * @return array The list of contacts that is returned from the database.
-     */
-    // public static function findAllByUserId($user_id, $params = []) {
-    //     $conditions = [
-    //         'conditions' => 'user_id = ?',
-    //         'bind' => [(int)$user_id]
-    //     ];
-
-    //     // In case you want to add more conditions
-    //     $conditions = array_merge($conditions, $params);
-    //     return self::find($conditions);
-    // }
 
     /**
      * Retrieves information for a contact that is associate with a 

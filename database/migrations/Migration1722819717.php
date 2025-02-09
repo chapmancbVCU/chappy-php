@@ -2,7 +2,15 @@
 namespace Database\Migrations;
 use Core\Migration;
 
+/**
+ * Migration class for the users table.
+ */
 class Migration1722819717 extends Migration {
+    /**
+     * Performs a migration task.
+     *
+     * @return void
+     */
     public function up() {
         $table = "users";
         $this->createTable($table);
@@ -22,6 +30,11 @@ class Migration1722819717 extends Migration {
         $this->addIndex($table,'updated_at');
     }
 
+    /**
+     * Undo a migration task.
+     *
+     * @return void
+     */
     public function down() {
         $this->dropTable('users');
       }

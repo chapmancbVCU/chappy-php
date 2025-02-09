@@ -27,13 +27,13 @@ class ACL extends Model {
         $this->timeStamps();
     }
 
-    /** UPDATE
-     * Generates list of ACL options based on ACL table.
-     *
-     * @return array Used to populate options for form.  Compatible with 
+    /**
+     * Generates list of ACL options based on ACL table.  Compatible with 
      * dropdown and checkbox group elements.
+     *
+     * @return array $aclArray The array containing ACLs from ACL table.
      */
-    public static function getOptionsForForm() {
+    public static function getOptionsForForm(): array {
         $acls = self::find(['order' => 'acl']);
         foreach($acls as $acl) {
             $aclArray[$acl->id] = $acl->acl;
@@ -46,20 +46,8 @@ class ACL extends Model {
      *
      * @return array The list of ACLs that is returned from the database.
      */
-    public static function getACLs() {
+    public static function getACLs(): array {
         return self::find(['order' => 'acl']);
-    }
-
-    /**
-     * Trims quotes and brackets off of ACL until we figure out better way.
-     * Plan to depreciate after future updates.
-     * @param string $acl The ACL field from a record in the Users table.
-     * @return string $acl The acl after quotes and brackets are removed.
-     */
-    public static function trimACL($acl) {
-        $acl = substr($acl, 2);
-        $acl = substr_replace($acl, '', -2);
-        return $acl;
     }
 
     /**

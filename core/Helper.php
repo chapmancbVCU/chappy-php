@@ -81,7 +81,7 @@ class Helper {
   }
 
 
-  /** Update
+  /**
    * Dumps content but continues execution.
    *
    * @param mixed ...$var Contains the data we wan to print to the page.
@@ -93,20 +93,20 @@ class Helper {
     }
   }
 
-  /** Update
+  /**
    * Performs var_dump of parameter and kills the page.
    * 
    * @param mixed ...$var Contains the data we wan to print to the page.
    * @return void
    */
-  public static function dnd(mixed ...$vars): void {
+  public static function dd(mixed ...$vars): void {
     foreach ($vars as $var) {
       VarDumper::dump($var);
     }
     die(1); // Terminate the script
   }
 
-  /** ADD
+  /**
    * Returns string in Y-m-d H:i:s using correct timezone.
    *
    * @param string $time String in format Y-m-d H:i:s using UTC.
@@ -141,7 +141,7 @@ class Helper {
     }
   }
 
-  /**ADD
+  /**
    * Accepts UTC time in format Y-m-d H:i:s and returns a string describing  
    * how much time has elapsed.
    *

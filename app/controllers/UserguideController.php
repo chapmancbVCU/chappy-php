@@ -2,6 +2,9 @@
 namespace App\Controllers;
 use Core\Controller;
 
+/**
+ * Provides support for actions related to rendering user guide views.
+ */
 class UserguideController extends Controller {
     public function aclAction(): void {
         $this->view->render('userguide/acl');

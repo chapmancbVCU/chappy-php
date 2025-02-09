@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>App\Models\ACL | Custom PHP MVC Framework API Documentation</title>
+    <title>App\Models\ACL | Chappy.php API</title>
 
             <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
@@ -57,7 +57,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../../index.html">Custom PHP MVC Framework API Documentation</a>
+                <a class="navbar-brand" href="../../index.html">Chappy.php API</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-elements">
                 <ul class="nav navbar-nav">
@@ -480,8 +480,8 @@ cause this function to return false.</p></p>                </div>
                 <div class="col-md-8">
                     <a href="#method_getOptionsForForm">getOptionsForForm</a>()
         
-                                            <p><p>UPDATE
-Generates list of ACL options based on ACL table.</p></p>                </div>
+                                            <p><p>Generates list of ACL options based on ACL table.  Compatible with
+dropdown and checkbox group elements.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -492,16 +492,6 @@ Generates list of ACL options based on ACL table.</p></p>                </div>
                     <a href="#method_getACLs">getACLs</a>()
         
                                             <p><p>Retrieves list of all ACLs sorted by the acl field.</p></p>                </div>
-                <div class="col-md-2"></div>
-            </div>
-                    <div class="row">
-                <div class="col-md-2 type">
-                    static&nbsp;string
-                </div>
-                <div class="col-md-8">
-                    <a href="#method_trimACL">trimACL</a>(string $acl)
-        
-                                            <p><p>Trims quotes and brackets off of ACL until we figure out better way.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -1549,7 +1539,7 @@ false if there is a failure.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validator">
-        <div class="location">at line 70</div>
+        <div class="location">at line 58</div>
         <code>                    void
     <strong>validator</strong>()
         </code>
@@ -1591,8 +1581,8 @@ false if there is a failure.</p></td>
             
 
         <div class="method-description">
-                            <p><p>UPDATE
-Generates list of ACL options based on ACL table.</p></p>                        
+                            <p><p>Generates list of ACL options based on ACL table.  Compatible with
+dropdown and checkbox group elements.</p></p>                        
         </div>
         <div class="tags">
             
@@ -1601,8 +1591,7 @@ Generates list of ACL options based on ACL table.</p></p>
                     <table class="table table-condensed">
         <tr>
             <td>array</td>
-            <td><p>Used to populate options for form.  Compatible with
-dropdown and checkbox group elements.</p></td>
+            <td><p>$aclArray The array containing ACLs from ACL table.</p></td>
         </tr>
     </table>
 
@@ -1635,48 +1624,6 @@ dropdown and checkbox group elements.</p></td>
         <tr>
             <td>array</td>
             <td><p>The list of ACLs that is returned from the database.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_trimACL">
-        <div class="location">at line 59</div>
-        <code>        static            string
-    <strong>trimACL</strong>(string $acl)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Trims quotes and brackets off of ACL until we figure out better way.</p></p>                <p><p>Plan to depreciate after future updates.</p></p>        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>string</td>
-                <td>$acl</td>
-                <td><p>The ACL field from a record in the Users table.</p></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td><p>$acl The acl after quotes and brackets are removed.</p></td>
         </tr>
     </table>
 

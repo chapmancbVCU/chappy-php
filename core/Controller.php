@@ -45,7 +45,7 @@ class Controller extends Application {
         exit;
     }
 
-    /** ADD
+    /**
      * Function implemented by child model classes when models are 
      * instantiated.
      *

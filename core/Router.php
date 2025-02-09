@@ -175,13 +175,16 @@ class Router {
         }
     }
 
-    /** UPDATE
+    /**
      * Supports operations for routing.  It parses the url to determine which 
      * page needs to be rendered.  That path is parsed to determine 
      * the correct controller and action to use.
      * 
      * @param array $url The path that contains information about the 
      * controller and action to use.
+     * @param string $requestPath The original URL retrieved from the 
+     * $_SERVER['PATH_INFO] $_SERVER['REQUEST_URI] elements in the 
+     * global $_SERVER array.
      * @return void
      */
     public static function route(array $url, string $requestPath): void {   

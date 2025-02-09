@@ -2,7 +2,15 @@
 namespace Database\Migrations;
 use Core\Migration;
 
+/**
+ * Migration class for the migrations table.
+ */
 class Migration1722819683 extends Migration {
+    /**
+     * Performs an action.
+     *
+     * @return void
+     */
     public function up() {
       $table = "migrations";
       $this->createTable($table);
@@ -10,6 +18,11 @@ class Migration1722819683 extends Migration {
       $this->addIndex($table,'migration');
     }
 
+    /**
+     * Undo a migration action.
+     *
+     * @return void
+     */
     public function down() {
       $this->dropTable('migrations');
     }

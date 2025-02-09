@@ -13,6 +13,12 @@ class UploadProfileImage extends Uploads {
         parent::__construct($files, $fileTypes, $maxAllowedSize, $multiple, $bucket);
     }
 
+    /**
+     * Performs validation on profile image uploads.  This function focuses on 
+     * file size and file type.
+     *
+     * @return void
+     */
     public function runValidation(): void {
         $this->validateSize();
         $this->validateFileType();

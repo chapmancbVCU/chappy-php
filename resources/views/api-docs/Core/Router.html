@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Core\Router | Custom PHP MVC Framework API Documentation</title>
+    <title>Core\Router | Chappy.php API</title>
 
             <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css">
@@ -57,7 +57,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../index.html">Custom PHP MVC Framework API Documentation</a>
+                <a class="navbar-brand" href="../index.html">Chappy.php API</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-elements">
                 <ul class="nav navbar-nav">
@@ -141,8 +141,7 @@ and grants access if that is the case.</p></p>                </div>
                 <div class="col-md-8">
                     <a href="#method_route">route</a>(array $url, string $requestPath)
         
-                                            <p><p>UPDATE
-Supports operations for routing.  It parses the url to determine which
+                                            <p><p>Supports operations for routing.  It parses the url to determine which
 page needs to be rendered.  That path is parsed to determine
 the correct controller and action to use.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -155,7 +154,7 @@ the correct controller and action to use.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_getMenu">
-        <div class="location">at line 45</div>
+        <div class="location">at line 82</div>
         <code>        static            array
     <strong>getMenu</strong>(string $menu)
         </code>
@@ -198,7 +197,7 @@ of user.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_hasAccess">
-        <div class="location">at line 86</div>
+        <div class="location">at line 123</div>
         <code>        static            bool
     <strong>hasAccess</strong>(string $controller_name, string $action_name = &quot;index&quot;)
         </code>
@@ -249,7 +248,7 @@ perform.  The default value is &quot;index&quot;.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_redirect">
-        <div class="location">at line 126</div>
+        <div class="location">at line 163</div>
         <code>        static            void
     <strong>redirect</strong>(string $location)
         </code>
@@ -291,7 +290,7 @@ perform.  The default value is &quot;index&quot;.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_route">
-        <div class="location">at line 150</div>
+        <div class="location">at line 190</div>
         <code>        static            void
     <strong>route</strong>(array $url, string $requestPath)
         </code>
@@ -301,8 +300,7 @@ perform.  The default value is &quot;index&quot;.</p></td>
             
 
         <div class="method-description">
-                            <p><p>UPDATE
-Supports operations for routing.  It parses the url to determine which
+                            <p><p>Supports operations for routing.  It parses the url to determine which
 page needs to be rendered.  That path is parsed to determine
 the correct controller and action to use.</p></p>                        
         </div>
@@ -319,7 +317,9 @@ controller and action to use.</p></td>
                     <tr>
                 <td>string</td>
                 <td>$requestPath</td>
-                <td></td>
+                <td><p>The original URL retrieved from the
+$_SERVER['PATH_INFO] $_SERVER['REQUEST_URI] elements in the
+global $_SERVER array.</p></td>
             </tr>
             </table>
 

@@ -2,7 +2,15 @@
 namespace Database\Migrations;
 use Core\Migration;
 
+/**
+ * Migration class for the profile_images table.
+ */
 class Migration1724274442 extends Migration {
+  /**
+   * Performs a migration.
+   *
+   * @return void
+   */
   public function up() {
     $table = 'profile_images';
     $this->createTable($table);
@@ -13,6 +21,11 @@ class Migration1724274442 extends Migration {
     $this->addSoftDelete($table);
   }
 
+  /**
+   * Undo a migration task.
+   *
+   * @return void
+   */
   public function down() {
     $this->dropTable('profile_images');
   }

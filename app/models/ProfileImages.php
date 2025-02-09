@@ -3,7 +3,7 @@ namespace App\Models;
 use Core\{Helper, Model};
 
 /**
- * Supports CRUD operations on profile images.
+ * Supports CRUD operations on profile image records.
  */
 class ProfileImages extends Model {
     protected static $allowedFileTypes = [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG];

@@ -16,7 +16,6 @@ use Core\Validators\{
 };
 use App\Models\UserSessions;
 
-
 /**
  * Extends the Model class.  Supports functions for the Users model.
  */
@@ -184,22 +183,6 @@ class Users extends Model {
      */
     public function hashPassword($password) {
         $password = password_hash($password, PASSWORD_DEFAULT);
-    }
-
-    /**
-     * Take id from form post and return ACL in format that can be added to 
-     * users table.  May not necessarily be actual id of ACL in acl table.
-     *
-     * @param int $acl_value The value for ACL from form POST.
-     * @param array $aclArray Array of ACLs in format that can be used to 
-     * populate dropdown forms.
-     * @return string The value of the ACL that is compatible with the users 
-     * table.
-     */
-    public static function idToAcl($acl_value, $aclArray) {
-        foreach($aclArray as $key => $value) {
-            if($key == $acl_value) { return '["'.$value.'"]'; }
-        }
     }
 
     /**

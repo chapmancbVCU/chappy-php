@@ -109,7 +109,7 @@ class ContactsController extends Controller {
     }
 
     /**
-     * Undocumented function
+     * Runs when the object is constructed.
      *
      * @return void
      */

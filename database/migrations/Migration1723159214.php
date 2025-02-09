@@ -2,7 +2,15 @@
 namespace Database\Migrations;
 use Core\Migration;
 
+/**
+ * Migration class for the acl table.
+ */
 class Migration1723159214 extends Migration {
+  /**
+   * Performs a migration.
+   *
+   * @return void
+   */
   public function up() {
     $table = 'acl';
     $this->createTable($table);
@@ -12,6 +20,11 @@ class Migration1723159214 extends Migration {
     $this->aclSetup($table);
   }
 
+  /**
+   * Undo a migration task.
+   *
+   * @return void
+   */
   public function down() {
     $this->dropTable('acl');
   }
