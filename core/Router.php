@@ -16,11 +16,12 @@ class Router {
      * @return void
      */
     private static function docsRouting($requestPath): void {
-        $filePath = __DIR__ . '/resources/views/api-docs/' . str_replace('/api-docs/', '', $requestPath);
+        $apiPath = 'resources' . DS . 'views' . DS . 'api-docs';
+        $filePath = ROOT . DS . $apiPath . DS . str_replace('/api-docs/', '', $requestPath);
     
         // Redirect root `/api-docs` to `/resources/views/api-docs/index.html`
-        if ($filePath === __DIR__ . '/resources/views/api-docs/' || $filePath === __DIR__ . '/resources/views/api-docs') {
-            $filePath .= '/index.html';
+        if ($filePath === $apiPath. DS || $filePath === ROOT . DS . $apiPath) {
+            $filePath .= DS . 'index.html';
         }
     
         // Serve static assets (CSS, JS, images)
