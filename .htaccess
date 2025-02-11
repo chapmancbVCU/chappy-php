@@ -1,7 +1,15 @@
 RewriteEngine On
 
+# Ensure Apache serves static files directly before passing to PHP
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Serve Doctum API documentation from resources/views/api-docs/
+RewriteRule ^api-docs/(.*)$ resources/views/api-docs/$1 [L]
+
+# Handle other requests using the Router.php file
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond $1 !^(config|public|vendor|core|src|database|resources|robots\.txt)
-
 RewriteRule ^(.+)$ index.php/$1 [L]
