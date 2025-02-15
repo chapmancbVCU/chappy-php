@@ -16,42 +16,19 @@ class Router {
      * @return void
      */
     private static function docsRouting(string $requestPath): void {
-        // Define paths
-        $docsBasePath = ROOT . DS . 'resources' . DS . 'views' . DS . 'docs'; // Daux.io
-        $apiDocsBasePath = ROOT . DS . 'resources' . DS . 'view' . DS . 'api-docs'; // Doctum
+        $apiPath = 'resources' . DS . 'views' . DS . 'api-docs';
+        $filePath = ROOT . DS . $apiPath . DS . str_replace('/api-docs/', '', $requestPath);
     
-        $basePath = "";
-        $relativePath = "";
-    
-        // Determine the correct documentation type
-        if (strpos($requestPath, '/api-docs') === 0) {
-            $basePath = $apiDocsBasePath;
-            $relativePath = substr($requestPath, strlen('/api-docs'));
-        } elseif (strpos($requestPath, '/docs') === 0) {
-            $basePath = $docsBasePath;
-            $relativePath = substr($requestPath, strlen('/docs'));
-        } else {
-            header("HTTP/1.0 404 Not Found");
-            echo "<h1>404 - Documentation Not Found</h1>";
-            exit();
+        // Redirect root `/api-docs` to `/resources/views/api-docs/index.html`
+        if ($filePath === $apiPath. DS || $filePath === ROOT . DS . $apiPath) {
+            $filePath .= DS . 'index.html';
         }
-    
-        // Construct the file path correctly
-        $filePath = rtrim($basePath, DS) . DS . ltrim($relativePath, DS);
-        Logger::log("Base Path: $basePath | File Path: $filePath", 'debug');
-        // Redirect `/docs` or `/api-docs` to their respective index.html
-        if ($filePath === $basePath || $filePath === $basePath . DS) {
-            $filePath .= 'index.html';
-            Helper::dd($filePath);
-        }
-    
-        // Debugging: Log the actual file path being served
-        Logger::log("Serving documentation file: " . $filePath, 'info');
     
         // Serve static assets (CSS, JS, images)
         if (preg_match('/\.(css|js|png|jpg|jpeg|gif|svg|ico)$/', $filePath)) {
             if (file_exists($filePath)) {
-                header("Content-Type: " . mime_content_type($filePath));
+                $mimeType = mime_content_type($filePath);
+                header("Content-Type: $mimeType");
                 readfile($filePath);
             } else {
                 header("HTTP/1.0 404 Not Found");
@@ -219,7 +196,7 @@ class Router {
     }
         try {
             // Handle documentation routes
-            if (strpos($requestPath, '/docs') === 0 || strpos($requestPath, '/api-docs') === 0) {
+            if (strpos($requestPath, '/api-docs') === 0) {
                 self::docsRouting($requestPath);
             }
             

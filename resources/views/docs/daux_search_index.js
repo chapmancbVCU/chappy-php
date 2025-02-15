@@ -1,1 +1,0 @@
-load_search_index({"pages":[{"title":"content","text":"#Welcome to My Documentation This is an example documentation page powered by Daux.io.","tags":"","url":"content\/index.html"}]});

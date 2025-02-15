@@ -1,7 +1,0 @@
-{
-    "docs_directory": "content",
-    "output_directory": "../../resources/views/docs",
-    "static": true,
-    "theme": "default"
-  }
-  
