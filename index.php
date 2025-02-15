@@ -25,11 +25,6 @@ foreach ($array as $value) {
     require_once(ROOT . DS . 'config' . DS . $value . '.php');
 }
 
-// Initialize Whoops error handler
-$whoops = new Run();
-$whoops->pushHandler(new PrettyPageHandler());
-$whoops->register();
-
 /**
  * Auto-loading of classes using PSR-4 Support.
  *
@@ -83,6 +78,11 @@ if(!Session::exists(CURRENT_USER_SESSION_NAME) && Cookie::exists(REMEMBER_ME_COO
         }
     }
 }
+
+// Initialize Whoops error handler
+$whoops = new Run();
+$whoops->pushHandler(new PrettyPageHandler());
+$whoops->register();
 
 // Create an array from our URL.
 $requestPath = array_key_exists('PATH_INFO', $_SERVER) ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
