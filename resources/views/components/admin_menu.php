@@ -17,7 +17,7 @@ $userMenu = Router::getMenu('user_menu');
   <div class="collapse navbar-collapse" id="main_menu">
     <ul class="navbar-nav me-auto">
       <?= Helper::buildMenuListItems($menu); ?>
-      <a href="http://localhost/api-docs/index.html" class="nav-link">API</a>
+      <a href="<?=APP_DOMAIN?>api-docs/index.html" class="nav-link">API</a>
     </ul>
     <ul class="navbar-nav me-2">
       <?= Helper::buildMenuListItems($userMenu, "dropdown-menu-end"); ?>

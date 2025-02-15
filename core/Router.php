@@ -191,9 +191,10 @@ class Router {
      */
     public static function route(array $url, string $requestPath): void {   
         // Ignore static asset requests (CSS, JS, fonts, images)
-    if (preg_match('/\.(css|js|png|jpg|jpeg|gif|svg|ico|woff2|woff|ttf|eot)$/', $requestPath)) {
-        return;
-    }
+        if (preg_match('/\.(css|js|png|jpg|jpeg|gif|svg|ico|woff2|woff|ttf|eot)$/', $requestPath)) {
+            return;
+        }
+        
         try {
             // Handle documentation routes
             if (strpos($requestPath, '/api-docs') === 0) {
