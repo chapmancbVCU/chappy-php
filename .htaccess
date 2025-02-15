@@ -8,7 +8,6 @@ RewriteRule \.(css|js|png|jpg|jpeg|gif|svg|ico|woff2|woff|ttf|eot)$ - [L]
 RewriteRule ^api-docs/(.*)$ resources/views/api-docs/$1 [L]
 
 # Ensure /api-docs/ automatically serves index.html
-DirectoryIndex index.html
 RewriteRule ^api-docs/?$ resources/views/api-docs/index.html [L]
 
 # Serve Daux.io documentation correctly from /content/
