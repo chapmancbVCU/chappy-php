@@ -38,10 +38,11 @@ class Router {
     
         // Construct the file path correctly
         $filePath = rtrim($basePath, DS) . DS . ltrim($relativePath, DS);
-    
+        Logger::log("Base Path: $basePath | File Path: $filePath", 'debug');
         // Redirect `/docs` or `/api-docs` to their respective index.html
         if ($filePath === $basePath || $filePath === $basePath . DS) {
             $filePath .= 'index.html';
+            Helper::dd($filePath);
         }
     
         // Debugging: Log the actual file path being served
@@ -212,6 +213,10 @@ class Router {
      * @return void
      */
     public static function route(array $url, string $requestPath): void {   
+        // Ignore static asset requests (CSS, JS, fonts, images)
+    if (preg_match('/\.(css|js|png|jpg|jpeg|gif|svg|ico|woff2|woff|ttf|eot)$/', $requestPath)) {
+        return;
+    }
         try {
             // Handle documentation routes
             if (strpos($requestPath, '/docs') === 0 || strpos($requestPath, '/api-docs') === 0) {
