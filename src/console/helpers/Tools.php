@@ -1,6 +1,8 @@
 <?php
 namespace Console\App\Helpers;
 
+use Core\Lib\Logger;
+
 /**
  * Contains functions for miscellaneous tasks.
  */
@@ -60,6 +62,7 @@ class Tools {
         
         if(array_key_exists($background, $backgroundColor) && array_key_exists($text, $textColor)) {
             echo "\e[".$textColor[$text].";".$backgroundColor[$background]."m\n\n"."   ".$message."\n\e[0m\n";
+            Logger::log($message, 'info');
         } else {
             echo "\e[0;37;41m\n\n"."   Invalid background or text color.\n\e[0m\n";
         }
