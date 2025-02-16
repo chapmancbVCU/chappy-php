@@ -6,12 +6,12 @@ They will list out all PHP related dependencies needed for Apache and Nginx.
 1. Navigate to where your development projects are located in CMD or Terminal.
 2. Run the command 
 
-```git clone git@github.com:chapmancbVCU/chappy-php.git```
+   ```git clone git@github.com:chapmancbVCU/chappy-php.git```
 
 3. cd to newly cloned directory.
 3. From project root run the command: 
 
-```php init-chappy```
+   ```php init-chappy```
 
 4. If necessary, make a copy of .env.sample in project root and name it .env.  Fill in the following information:
    * DB_NAME
@@ -38,17 +38,17 @@ They will list out all PHP related dependencies needed for Apache and Nginx.
 6. Vite support
    * Run command 
    
-   ```npm init```
+      ```npm init```
 
    * Run command 
    
-   ```npm install```
+      ```npm install```
 
 7. profile_images directory:
    * In CMD or Terminal navigate to public/images/uploads from project root and make sure the "profile_images" directory exists. If not create it.
    * Set the correct permissions for the profile_images directory in MacOS or Linux: 
    
-   ```chmod 775 profile_images```
+      ```chmod 775 profile_images```
 
    * In Linux and MacOS you will need to modify the owner and group.
 
