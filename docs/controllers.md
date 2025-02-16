@@ -90,7 +90,9 @@ The URL path equivalent you will see in the address bar is as follows:
 
 ```http://hostname/model_name/action_name```
 
+
 This controller has a couple of ways to perform the Read operation from the CRUD paradigm. We perform reads in the indexAction and detailsAction. Let's go over the detailsAction function first.
+
 
 ```php
 public function detailsAction(int $id): void {
