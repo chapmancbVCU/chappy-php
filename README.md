@@ -1,8 +1,7 @@
 <div style="text-align: center;">
   <img src="public/logo.png" alt="Chappy.php logo">
 </div>
-
-
+<br>
 [Visit our Wiki](https://chapmancbVCU.github.io/chappy-php/)
 
 
