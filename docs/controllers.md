@@ -90,7 +90,6 @@ The URL path equivalent you will see in the address bar is as follows: ```http:/
 
 This controller has a couple of ways to perform the Read operation from the CRUD paradigm. We perform reads in the indexAction and detailsAction. Let's go over the detailsAction function first.
 
-
 ```php
 public function detailsAction(int $id): void {
     $contact = Contacts::findByIdAndUserId((int)$id, Users::currentUser()->id);
@@ -105,9 +104,7 @@ public function detailsAction(int $id): void {
 }
 ```
 
-For this action we are interested in displaying information for a particular contact. Note that this function has a parameter name id of type int. This function obtains this parameter from the URL path as shown below:
-
-```http://hostname/contacts/details/1```
+For this action we are interested in displaying information for a particular contact. Note that this function has a parameter name id of type int. This function obtains this parameter from the URL path as shown here:```http://hostname/contacts/details/1```
 
 Parsing out this path we see the expected identifier for contacts and the action name of details. The third part is interpreted as a parameter. In this case it is the id for the contact whose details we want to display. Next, we use the contact's model to obtain the record. This function on line 2 requires the id we initially passed along with the id of the current user.
 
