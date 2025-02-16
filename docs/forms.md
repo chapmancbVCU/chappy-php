@@ -43,6 +43,7 @@ This function accepts 6 arguments as described below:
 4. $checked is used to set a value of checked for a checkbox. This value can be set upon reading information from a database or upon 5. failed form validation.
 5. $inputAttrs is an array and can be found in most function calls. We use this parameter to set values for attributes such as classes for styling, front-side validation, and event handlers. The default value is an empty array.
 6. $divAttrs is an array whose primary purpose is to add classes for styling the div that surrounds the input element. The default value is an empty array.
+7. $errors The errors array. Default value is an empty array.
 
 # checkboxBlockLabelRight (update screenshot and add 7th argument)
 Generates a checkbox where the label is on the left side. It generates a div element that surrounds a label and input of type checkbox. An example function call from the login view is shown below in Figure 4.
@@ -58,3 +59,43 @@ This function accepts 6 arguments as described below:
 4. $checked is used to set a value of checked for a checkbox. This value can be set upon reading information from a database or upon 5. failed form validation.
 5. $inputAttrs is an array and can be found in most function calls. We use this parameter to set values for attributes such as classes for styling, front-side validation, and event handlers. The default value is an empty array.
 6. $divAttrs is an array whose primary purpose is to add classes for styling the div that surrounds the input element. The default value is an empty array.
+7. $errors The errors array. Default value is an empty array.
+
+# csrfInput
+Generates a CRSF token as the value for an input of type hidden. The token is randomly generated and is used to verify if any tampering of any form has been performed. Use this function to assist in preventing CSRF attacks. The CRSF token is unique for every user session and is a sufficiently large string of random values.
+
+# displayErrors
+The purpose of this function is to display errors related to validation. An example can be found in Figure 5.
+
+<div style="text-align: center;">
+  <img src="assets/display-errors.png" alt="Display errors example">
+  <p style="font-style: italic;">Figure 5 - Display errors example</p>
+</div>
+
+# emailBlock
+Use this function to create styled E-mail form inputs. An example function call is shown below in Figure 6.
+
+<div style="text-align: center;">
+  <img src="assets/display-errors.png" alt="E-mail block example function call">
+  <p style="font-style: italic;">Figure 6 - E-mail block example function call</p>
+</div>
+
+This function accepts 6 arguments as described below:
+1. $label is used to set the text of the label element.
+2. $name sets the value for the name, for, and id attributes.
+The value we want to set. We can use this to set the value of the value attribute during form validation. Default value is the empty 3. string. It can be set with values during form validation and forms used for editing records.
+4. $inputAttrs The values used to set the class and other attributes of the input string. The default value is an empty array.
+5. $divAttrs The values used to set the class and other attributes of the surrounding div. The default value is an empty array.
+6. $errors The errors array. Default value is an empty array.
+
+# hidden
+Generates a hidden element. An example function call is shown below in figure 7:
+
+<div style="text-align: center;">
+  <img src="assets/hidden.png" alt="Hidden input function call">
+  <p style="font-style: italic;">Figure 7 - Hidden input function call</p>
+</div>
+
+This function accepts 2 arguments as described below:
+1. $name sets the value for the name, for, and id attributes.
+2. $value The value for the value attribute.
