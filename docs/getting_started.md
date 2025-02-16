@@ -6,12 +6,16 @@ They will list out all PHP related dependencies needed for Apache and Nginx.
 1. Navigate to where your development projects are located in CMD or Terminal.
 2. Run the command 
 
-   ```git clone git@github.com:chapmancbVCU/chappy-php.git```
+   ```bash
+   git clone git@github.com:chapmancbVCU/chappy-php.git
+   ```
 
 3. cd to newly cloned directory.
 3. From project root run the command: 
 
-   ```php init-chappy```
+   ```bash
+   php init-chappy
+   ```
 
 4. If necessary, make a copy of .env.sample in project root and name it .env.  Fill in the following information:
    * DB_NAME

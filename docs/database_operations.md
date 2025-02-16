@@ -4,7 +4,7 @@ This page goes over the available ways users can manage a database with chappy.p
 ## Migration
 Performing a database migration is the first task you will perform after establishing a new project. Before you begin you will need to open the .env file and enter some information about the database. An example is shown below:
 
-```
+```bash
 DB_NAME=my_db_name
 DB_USER=my_db_user_name
 DB_PASSWORD=my_secure_password
@@ -15,24 +15,32 @@ Next, create the database using your preferred method.  We like to use phpMyAdmi
 
 Finally, you can run the migrate command shown below:
 
-```php console migrate```
+```bash
+php console migrate
+```
 
 If you make a mistake or need a fresh start you can perform a refresh as described below:
 
-```php console migrate:refresh```
+```bash
+php console migrate:refresh
+```
 
 Performing a the migrate and refresh commands will add a new record to a migrations table whose purpose is to track all previous migrations. When you create a one or more new migrations only those will be executed. You can also modify an existing table with a new migration. More one building your own migrations will be covered in the next section called Create Migration.
 
 Finally, if you just want to drop tables perform the following command:
 
-```php console migrate:drop-all```
+```bash
+php console migrate:drop-all
+```
 
 Performing either of these commands will result in status messages being displayed in the console.
 
 ## Creating A New Migration
 Create a migration by running the make:migration command. An example is shown below for a table called foo:
 
-```php console make:migration foo```
+```bash
+php console make:migration foo
+```
 
 Once you perform this action a migration class is created with two functions called up and down. Up is used to create a new table or update an existing one. Down drops an existing table. We usually don't modify the down function. The output from the previous command is shown below:
 
