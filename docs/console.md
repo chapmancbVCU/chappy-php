@@ -17,8 +17,17 @@ If there is a command you would like for us to support you can submit an issue [
 Below is a list of available commands. Most items in this list contains a link to the page that describes an individual command.
 
 | Command | Description |
-|---------|-------------|
+|:-------:|-------------|
 | migrate | Runs a Database Migration |
 | test | Performs a phpunit test |
 | init:mk-profile-images-dir | Builds Profile Image Dir |
+| make:api | Generates or updates api-docs |
 | make:command | Generates a new command class |
+| make:controller| Generates a new controller class |
+| make:migration | Generates a Database Migration |
+| make:model | Generates a new model file |
+| make:test | Generates a new test class |
+| migrate:drop-all | Drops all database tables |
+| migrate:refresh | Drops all tables and runs a Database Migration |
+| tools:mk-env | Creates the .env file |
+| tools:rm-profile-images | Removes all profile images |
