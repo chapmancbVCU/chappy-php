@@ -3,7 +3,7 @@
 </div>
 <br>
 [Visit our Wiki](https://chapmancbVCU.github.io/chappy-php/)
-
+<br>
 
 chappy.php is a whole new Model View Controller framework tailored to all of the fellows of the internet. Our goal is to provide a light weight and easily expandable framework for any PHP developer. 
 
