@@ -30,6 +30,7 @@ function autoload($className){
 }
 
 spl_autoload_register('autoload');
+use Console\App\Commands\APICommand;
 use Console\App\Commands\DropTablesCommand;
 use Console\App\Commands\GenerateControllerCommand;
 use Console\App\Commands\GenerateMigrationCommand;
@@ -46,6 +47,7 @@ use Console\App\Commands\RunMigrationCommand;
 use Console\App\Commands\RunTestCommand;
  
 $app = new Application();
+$app->add(new APICommand());
 $app->add(new DropTablesCommand());
 $app->add(new GenerateControllerCommand());
 $app->add(new GenerateMigrationCommand());

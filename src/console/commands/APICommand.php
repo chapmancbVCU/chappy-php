@@ -1,11 +1,10 @@
 <?php
 namespace Console\App\Commands;
  
+use Console\App\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Performs the command for generating api-docs: 
@@ -20,7 +19,9 @@ class APICommand extends Command {
      */
     protected function configure(): void
     {
-        //
+        $this->setName('make:api')
+            ->setDescription('Generates or updates api-docs')
+            ->setHelp('run php console make:api to generate or update api-docs');
     }
 
     /**
@@ -32,6 +33,8 @@ class APICommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        //
+        shell_exec('php doctum.phar update doctum.php');
+        Tools::info('Doctum api-docs generated');
+        return Command::SUCCESS;
     }
 }
