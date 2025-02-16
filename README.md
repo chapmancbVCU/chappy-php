@@ -1,6 +1,5 @@
 <div style="text-align: center;">
-  <img src="public/logo.png" alt="New database table">
-  <p style="font-style: italic;">Figure 2 - New database table after migration was performed</p>
+  <img src="public/logo.png" alt="Chappy.php logo">
 </div>
 [Visit our Wiki](https://chapmancbVCU.github.io/chappy-php/)
 
