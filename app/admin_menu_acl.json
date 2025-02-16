@@ -3,6 +3,5 @@
     "Admin" : {
         "Admin Dashboard" : "admindashboard/index",
         "Manage ACLS" : "admindashboard/manageACLs"
-    },
-    "User Guide" : "userguide"
+    }
 }
