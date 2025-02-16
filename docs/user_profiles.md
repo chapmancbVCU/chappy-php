@@ -8,7 +8,7 @@ The user profile contains basic information for a user. You can add fields to th
 This view presents to the user the ability to update profile, profile image, and their password. The default layout for this view is shown below in Figure 1.
 
 <div style="text-align: center;">
-  <img src="assets/user_profile.png" alt="User profile view">
+  <img src="assets/user-profile.png" alt="User profile view">
   <p style="font-style: italic;">Figure 1 - User profile view</p>
 </div>
 
@@ -16,7 +16,7 @@ This view presents to the user the ability to update profile, profile image, and
 At the edit profile page the user can edit their details. A screenshot is shown below in figure 2.
 
 <div style="text-align: center;">
-  <img src="assets/edit_profile.png" alt="Edit profile view">
+  <img src="assets/edit-profile.png" alt="Edit profile view">
   <p style="font-style: italic;">Figure 2 - Edit profile view</p>
 </div>
 
@@ -32,6 +32,6 @@ Field Descriptions:
 This view allows the user to change their password. Complex passwords are enforced here. A screenshot of the update password screen is shown below in Figure 4.
 
 <div style="text-align: center;">
-  <img src="assets/change_password.png" alt="Change password view">
+  <img src="assets/change-password.png" alt="Change password view">
   <p style="font-style: italic;">Figure 3 - Change password view</p>
 </div>
