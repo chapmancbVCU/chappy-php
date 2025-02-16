@@ -30,3 +30,24 @@ Finally, if you just want to drop tables perform the following command:
 Performing either of these commands will result in status messages being displayed in the console.
 
 ## Creating A New Migration
+Create a migration by running the make:migration command. An example is shown below for a table called foo:
+
+```php console make:migration foo```
+
+Once you perform this action a migration class is created with two functions called up and down. Up is used to create a new table or update an existing one. Down drops an existing table. We usually don't modify the down function. The output from the previous command is shown below:
+
+```php
+namespace Database\Migrations;
+use Core\Migration;
+
+class Migration1733521897 extends Migration {
+    public function up() {
+        $table = 'foo';
+        $this->createTable($table);
+    }
+
+    public function down() {
+        $this->dropTable('foo');
+    }
+}
+```
