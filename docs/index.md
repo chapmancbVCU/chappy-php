@@ -18,5 +18,4 @@ Get to any resource within the Chappy.php Wiki from here.
 16. [User Registration and Authentication](https://chapmancbVCU.github.io/chappy-php/user_registration_and_authentication)
 17. [Views](https://chapmancbVCU.github.io/chappy-php/views) - Under construction
 
-Visit us on GitHub!
 [Visit us on GitHub!](https://github.com/chapmancbVCU/chappy-php)
