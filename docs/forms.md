@@ -14,3 +14,16 @@ This function creates a button with no surrounding HTML div element. It supports
 This function accepts 2 arguments as described below:
 1. $buttonText is used to set the text of the button.
 2. $inputAttrs is an array and can be found in most function calls. We use this parameter to set values for attributes such as classes for styling, front-side validation, and event handlers. Make sure when performing an event handler function call that contains strings as arguments to escape any quotes. The default value is an empty array.
+
+# buttonBlock
+The buttonBlock function is a wrapper for the button function that adds a div around the button element. An example function call is shown below in Figure 2.
+
+<div style="text-align: center;">
+  <img src="assets/button-block-function-call.png" alt="Example buttonBlock function call">
+  <p style="font-style: italic;">Figure 2 - Example buttonBlock function call</p>
+</div>
+
+This function accepts 3 arguments as described below:
+1. $buttonText is used to set the text of the button.
+2. $inputAttrs is an array and can be found in most function calls. We use this parameter to set values for attributes such as classes for styling, front-side validation, and event handlers. Make sure when performing an event handler function call that contains strings as arguments to escape any quotes. The default value is an empty array.
+3. $divAttrs is an array whose primary purpose is to add classes for styling the div that surrounds the button element. The default value is an empty array.
