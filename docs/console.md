@@ -31,16 +31,3 @@ Below is a list of available commands. Most items in this list contains a link t
 | migrate:refresh | Drops all tables and runs a Database Migration |
 | tools:mk-env | Creates the .env file |
 | tools:rm-profile-images | Removes all profile images |
-
-<div style="margin-left: auto; margin-right: auto">
-    <table>
-        <tr>
-            <th style="text-align: center;">Command</th>
-            <th style="text-align: center;">Description</th>
-        </tr>
-        <tr>
-            <td style="text-align: center;">migrate</td>
-            <td>Runs a Database Migration</td>
-        </tr>
-    </table>
-</div>
