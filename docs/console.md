@@ -38,5 +38,9 @@ Below is a list of available commands. Most items in this list contains a link t
             <th style="text-align: center;">Command</th>
             <th style="text-align: center;">Description</th>
         </tr>
+        <tr>
+            <td style="text-align: center;">migrate</td>
+            <td>Runs a Database Migration</td>
+        </tr>
     </table>
 </div>
