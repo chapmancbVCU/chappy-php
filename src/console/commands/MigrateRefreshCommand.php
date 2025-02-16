@@ -5,7 +5,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Console\App\Helpers\Migrate;
 /**
- * Supports ability to run a migration file.
+ * Supports ability to drop all tables and recreate them.
  */
 class MigrateRefreshCommand extends Command
 {

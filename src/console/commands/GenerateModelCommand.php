@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Supports ability to generate new migration file.
+ * Supports ability to generate new model class.
  */
 class GenerateModelCommand extends Command
 {

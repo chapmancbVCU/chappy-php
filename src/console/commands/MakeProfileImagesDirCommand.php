@@ -6,6 +6,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Console\App\Helpers\ProfileImageDir;
  
+/**
+ * Used during project initialization for the purpose for creating a new 
+ * profile images directory.
+ */
 class MakeProfileImagesDirCommand extends Command
 {
     protected function configure()
