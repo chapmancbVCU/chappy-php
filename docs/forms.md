@@ -99,3 +99,57 @@ Generates a hidden element. An example function call is shown below in figure 7:
 This function accepts 2 arguments as described below:
 1. $name sets the value for the name, for, and id attributes.
 2. $value The value for the value attribute.
+
+# inputBlock
+1. A generic input block that supports the following input types:
+2. Color
+3. date
+4. datetime-local
+5. email
+6. file
+7. month
+8. number
+9. password
+10. range
+11. search
+12. tel
+13. text
+14. time
+15. url
+16. week
+
+An example function call is show below in figure 8:
+<div style="text-align: center;">
+  <img src="assets/input-block.png" alt="Input block function call">
+  <p style="font-style: italic;">Figure 8 - Input block function call</p>
+</div>
+
+This function accepts 7 arguments as described below:
+1. $type The input type we want to generate.
+2. $label is used to set the text of the label element.
+3. $name sets the value for the name, for, and id attributes.
+4. $value The value we want to set. We can use this to set the value of the value attribute during form validation. Default value is the empty string. It can be set with values during form validation and forms used for editing records.
+5. $inputAttrs The values used to set the class and other attributes of the input string. The default value is an empty array.
+6. $divAttrs The values used to set the class and other attributes of the surrounding div. The default value is an empty array.
+7. $errors The errors array. Default value is an empty array.
+
+# output
+Generates an HTML output element. The output element is a container that can inject the results of a calculator or the outcome of a user action. An example function call is shown below in figure 9:
+<div style="text-align: center;">
+  <img src="assets/output-element.png" alt="Output element function call">
+  <p style="font-style: italic;">Figure 9 - Output element function call</p>
+</div>
+
+This function accepts 2 arguments as described below:
+1. $name Sets the value for the name attributes for this
+2. $for Sets the value for the for attribute.
+
+# radioInput
+
+# selectBlock
+
+# submitBlock
+
+# submitTag
+
+# textAreaBlock
