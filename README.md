@@ -40,6 +40,10 @@ Complete documentation including the "Getting Started" guild describe below can 
 ## Contact
 I can be reached regarding this framework at chad.chapman2010@gmail.com.  You are also welcome to open up an issue at https://github.com/chapmancbVCU/chappy-php/issues
 
+## Social Media
+LinkedIn: https://www.linkedin.com/in/chadchapman2010/
+Youtube: https://www.youtube.com/@chappy-php
+
 ## Credits
 1. “mvc” icon by iconixar, from thenounproject.com.
 2. Freeskills on YT (https://www.youtube.com/playlist?list=PLFPkAJFH7I0keB1qpWk5qVVUYdNLTEUs3)
