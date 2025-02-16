@@ -14,9 +14,9 @@ Get to any resource within the Chappy.php Wiki from here.
 11. [Session and Flash Messages](https://chapmancbVCU.github.io/chappy-php/session_and_flash_messages)
 12. [Unit Tests](https://chapmancbVCU.github.io/chappy-php/unit_tests)
 13. [Uploads](https://chapmancbVCU.github.io/chappy-php/uploads)
-14. [User Profiles]
-14. [User Registration and Authentication](https://chapmancbVCU.github.io/chappy-php/user_registration_and_authentication)
-14. [Views](https://chapmancbVCU.github.io/chappy-php/views)
+15. [User Profiles](https://chapmancbVCU.github.io/chappy-php/user-profiles)
+16. [User Registration and Authentication](https://chapmancbVCU.github.io/chappy-php/user_registration_and_authentication)
+17. [Views](https://chapmancbVCU.github.io/chappy-php/views)
 
 # Visit us on GitHub!
 [Chappy.php](https://github.com/chapmancbVCU/chappy-php)
