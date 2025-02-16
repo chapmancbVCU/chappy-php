@@ -4,7 +4,7 @@ This page goes over the available ways users can manage a database with chappy.p
 ## Migration
 Performing a database migration is the first task you will perform after establishing a new project. Before you begin you will need to open the .env file and enter some information about the database. An example is shown below:
 
-```bash
+```
 DB_NAME=my_db_name
 DB_USER=my_db_user_name
 DB_PASSWORD=my_secure_password
@@ -15,32 +15,24 @@ Next, create the database using your preferred method.  We like to use phpMyAdmi
 
 Finally, you can run the migrate command shown below:
 
-```bash
-php console migrate
-```
+```php console migrate```
 
 If you make a mistake or need a fresh start you can perform a refresh as described below:
 
-```bash
-php console migrate:refresh
-```
+```php console migrate:refresh```
 
 Performing a the migrate and refresh commands will add a new record to a migrations table whose purpose is to track all previous migrations. When you create a one or more new migrations only those will be executed. You can also modify an existing table with a new migration. More one building your own migrations will be covered in the next section called Create Migration.
 
 Finally, if you just want to drop tables perform the following command:
 
-```bash
-php console migrate:drop-all
-```
+```php console migrate:drop-all```
 
 Performing either of these commands will result in status messages being displayed in the console.
 
 ## Creating A New Migration
 Create a migration by running the make:migration command. An example is shown below for a table called foo:
 
-```bash
-php console make:migration foo
-```
+```php console make:migration foo```
 
 Once you perform this action a migration class is created with two functions called up and down. Up is used to create a new table or update an existing one. Down drops an existing table. We usually don't modify the down function. The output from the previous command is shown below:
 
@@ -59,3 +51,36 @@ class Migration1733521897 extends Migration {
     }
 }
 ```
+
+The up function automatically creates a $table variable set to the value you entered when you ran the make:migration command along with a function call to create the table. In the code snippet below we added some fields.
+
+```php
+namespace Database\Migrations;
+use Core\Migration;
+
+class Migration1733521897 extends Migration {
+    public function up() {
+        $table = 'foo';
+        $this->createTable($table);
+        $this->addColumn($table,'bar','varchar',['size'=>150]);
+        $this->addTimeStamps($table);
+        $this->addSoftDelete($table);
+        $this->addColumn($table,'user_id','int');
+        $this->addIndex($table,'user_id');
+    }
+
+    public function down() {
+        $this->dropTable('foo');
+    }
+}
+```
+
+**addColumn** is the most common function that is used. On line 8 we call this function to create a field called 'bar' whose type is varchar. The last argument is the optional attributes parameter. It is an associative array and in this case we set the size. Other supported attributes are precision, scale, before, after, and definition.
+
+**addTimeStamps** as shown on line 9 creates 'created_at' and 'updated_at' fields. **softDelete** is used as a setting where you want to removed a record from being returned from any database query. It serves as a safety net that allows you to permanently delete the record later or preserve for later use.
+
+The function call on line 11 adds a user_id field and the next line sets this field as an index. It is a common way to create relationships with this and the Laravel framework.
+
+Run the migration and the console output, if successful, will be shown below:
+
+[[https://github.com/chapmancbVCU/chappy-php/docs/images/migrate_output.png]]
