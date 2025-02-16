@@ -1,4 +1,4 @@
-# Table of contents.
+# Table of contents
 Get to any resource within the Chappy.php Wiki from here.
 
 1. [Access Control Levels (ACLs)](https://chapmancbVCU.github.io/chappy-php/access_control_levels)
