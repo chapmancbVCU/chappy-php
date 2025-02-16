@@ -83,5 +83,7 @@ The function call on line 11 adds a user_id field and the next line sets this fi
 
 Run the migration and the console output, if successful, will be shown below:
 
-![Migrate output example](assets/migrate-output.png)
-
+<div style="text-align: center;">
+  <img src="assets/migrate-output.png" alt="Migrate output example" width="600">
+  <p style="font-style: italic;">Figure 1: Console output after running the migrate command.</p>
+</div>
