@@ -32,7 +32,7 @@ Below is a list of available commands. Most items in this list contains a link t
 | tools:mk-env | Creates the .env file |
 | tools:rm-profile-images | Removes all profile images |
 
-<div style="text-align: center;">
+<div style="margin-left: auto; margin-right: auto">
     <table>
         <tr>
             <th style="text-align: center;">Command</th>
