@@ -83,4 +83,4 @@ The function call on line 11 adds a user_id field and the next line sets this fi
 
 Run the migration and the console output, if successful, will be shown below:
 
-[[/images/migrate_output.png]]
+[[https://github.com/chapmancbVCU/chappy-php/blob/main/docs/images/migrate_output.png]]
