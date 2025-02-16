@@ -19,3 +19,6 @@ Below is a list of available commands. Most items in this list contains a link t
 | Command | Description |
 |---------|-------------|
 | migrate | Runs a Database Migration |
+| test | Performs a phpunit test |
+| init:mk-profile-images-dir | Builds Profile Image Dir |
+| make:command | Generates a new command class |
