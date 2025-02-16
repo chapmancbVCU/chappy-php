@@ -84,6 +84,13 @@ The function call on line 11 adds a user_id field and the next line sets this fi
 Run the migration and the console output, if successful, will be shown below:
 
 <div style="text-align: center;">
-  <img src="assets/migrate-output.png" alt="Migrate output example" width="600">
+  <img src="assets/migrate-output.png" alt="Migrate output example">
   <p style="font-style: italic;">Figure 1: Console output after running the migrate command.</p>
+</div>
+
+Open your database management software package and you will see that the table has been created.
+
+<div style="text-align: center;">
+  <img src="assets/foo-table.png" alt="New database table">
+  <p style="font-style: italic;">Figure 2 - New database table after migration was performed</p>
 </div>
