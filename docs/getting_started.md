@@ -37,6 +37,8 @@ They will list out all PHP related dependencies needed for Apache and Nginx.
       ```sudo chown -R %USERNAME%:%GROUP% profile_images/```
       With XAMPP your username will work along with daemon as the group. Apache both has to be www-data. Not tested with nginx yet.
 7. If the logs directory is not created perform the following steps at the project root run:
-   * ```chmod -R 777 logs``
+   
+   ```chmod -R 777 logs``
+   
 8. For XAMPP navigate to http://localhost/chappy-php.  If you have any issues make sure your database is setup correctly and the .env file is correct.
    * For production servers or remote access the path will be http://ip_address_or_domain_name.  You will need to make sure the APP_DOMAIN variable is set to '/' in .env file.
