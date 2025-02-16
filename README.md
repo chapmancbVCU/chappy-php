@@ -48,7 +48,6 @@ Complete documentation including the "Getting Started" guild describe below can 
 I can be reached regarding this framework at chad.chapman2010@gmail.com.  You are also welcome to open up an issue at https://github.com/chapmancbVCU/chappy-php/issues
 
 ## Social Media
-LinkedIn: https://www.linkedin.com/in/chadchapman2010/
 Youtube: https://www.youtube.com/@chappy-php
 
 ## Credits
