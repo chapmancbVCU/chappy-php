@@ -1,7 +1,22 @@
-# Forms (In progress)
+# Forms
 Table of contents
 1. [Overview](#overview)
-2. [Button](#button)
+2. [button](#button)
+3. [buttonBlock](#buttonblock)
+4. [checkboxBlockLabelLeft](#checkboxBlockLabelLeft)
+5. [checkboxBlockLabelRight](#checkboxblocklabelright)
+6. [csrfInput](#csrfinput)
+7. [displayError](#displayerrors)
+8. [emailBlock](#emailblock)
+9. [hidden](#hidden)
+10. [inputBlock](#inputblock)
+11. [output](#output)
+12. [radioInput](#radioinput)
+13. [selectBlock](#selectblock)
+14. [submitBlock](#submitblock)
+15. [submitTag](#submittag)
+16. [telBlock](#telblock)
+17. [textAreaBlock](#textareablock)
 
 ## Overview
 The Rapid Forms feature of this Model View Controller (MVC) Framework allows the user to quickly create and style forms. This guide thoroughly describes the ability to create these HTML form elements along with a description and examples. All form inputs will automatically be sanitized and validation checks will be performed.  If you would like support for additional features please create an issue [here](https://github.com/chapmancbVCU/chappy-php/issues).
