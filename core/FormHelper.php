@@ -505,7 +505,7 @@ class FormHelper {
      * @param string $label Sets the label for this input.
      * @param string $name Sets the value for the name, for, and id attributes 
      * for this input.
-     * @param string $checked The value we want to set as selected.
+     * @param string $value The value we want to set as selected.
      * @param array $inputAttrs The values used to set the class and other 
      * attributes of the input string.  The default value is an empty array.
      * @param array $options The list of options we will use to populate the 
