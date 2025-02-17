@@ -1,6 +1,3 @@
-<div style="text-align: center;">
-  <img src="../public/logo.png" alt="Chappy.php logo">
-</div>
 # Table of contents
 Get to any resource within the Chappy.php Wiki from here.
 
