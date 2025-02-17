@@ -18,7 +18,7 @@ class Logger {
     public static function log(string $message, string $level = 'info'): void {
         if(DEBUG == "true") {
             $date = date('Y-m-d H:i:s');
-            $logMessage = "[$date] [$level] $message" . PHP_EOL;
+            $logMessage = "[$date - GMT] [$level] $message" . PHP_EOL;
             $logDir = dirname(self::$logFile);
     
             // Debug: Check directory existence
