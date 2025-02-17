@@ -1,1 +1,3 @@
 # JavaScript
+
+## Table of contents

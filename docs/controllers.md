@@ -1,9 +1,14 @@
 # Controllers
 
-# Overview
+## Table of contents
+1. [Overview](#overview)
+2. [Controller File](#controller-file)
+3. [Example](#example)
+
+## Overview <span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
 This framework supports controllers to manage the interactions between views and models.
 
-# Controller File
+## Controller File <span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
 Let's begin by creating a new controller using all available options and arguments:
 
 ```php console make:controller Foo --layout=admin --resource```
@@ -53,7 +58,7 @@ The first function you see is the onConstruct. Any default settings you need for
 
 All of the other functions supports the default index action and the Create, Read, Update, and Delete (CRUD) operations. With this framework we require that functions that represent actions end with the word Action. Otherwise, the route function is unable to work correctly.
 
-# Example
+## Example <span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
 ```php
 public function addAction(): void {
     $contact = new Contacts();

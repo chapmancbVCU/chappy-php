@@ -1,6 +1,10 @@
 # Console
 
-## Overview
+## Table of contents
+1. [Overview](#overview)
+2. [Summary of Available Commands](#summary-of-available-commands)
+
+## Overview <span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
 The console command is used to manage and perform tasks related to this framework. You can run a console command following the following syntax:
 
 ```php console ${command_name} ${argument}```
@@ -13,7 +17,7 @@ Where Test is the name of the file containing the test. Typing php console in th
 
 If there is a command you would like for us to support you can submit an issue [here](https://github.com/chapmancbVCU/chappy-php/issues).
 
-## Summary of Available Commands
+## Summary of Available Commands <span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
 Below is a list of available commands. Most items in this list contains a link to the page that describes an individual command.
 
 | Command | Description |

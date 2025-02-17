@@ -1,1 +1,3 @@
 # Views
+
+## Table of contents
