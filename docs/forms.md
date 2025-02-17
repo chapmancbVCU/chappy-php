@@ -145,6 +145,26 @@ This function accepts 2 arguments as described below:
 2. $for Sets the value for the for attribute.
 
 # radioInput
+Creates an input element of type radio with an accompanying label element. Compatible with radio button groups.  An example function call is shown below in figure 10:
+
+<div style="text-align: center;">
+  <img src="assets/radio-button.png" alt="Radio button function call">
+  <p style="font-style: italic;">Figure 10 - Radio button function call</p>
+</div>
+
+This function accepts 2 arguments as described below:
+1. $label Sets the label for this input.
+2. $id	The id attribute for the radio input element.
+3. $name	Sets the value for the name, for, and id attributes for this input.
+4. $value The value we want to set. We can use this to set the value of the value attribute during form validation. Default value is the empty string. It can be set with values during form validation and forms used for editing records.
+5. $checked The value for the checked attribute. If true this attribute will be set as checked="checked". The default value is false. It can be set with values during form validation and forms used for editing records.
+6. $inputAttrs	The values used to set the class and other attributes of the input string. The default value is an empty array.
+
+The example code below demonstrates how a radio button groups is used.
+```php
+FormHelper::radioInput('HTML', 'html', 'fav_language', "HTML", $check1, ['class' => 'form-group mr-1']); 
+FormHelper::radioInput('CSS', 'css', 'fav_language', "CSS", $check2, ['class' => 'form-group mr-1']);
+```
 
 # selectBlock
 
