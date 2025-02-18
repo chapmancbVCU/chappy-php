@@ -43,6 +43,7 @@ use Console\App\Commands\MigrateRefreshCommand;
 use Console\App\Commands\RemoveProfileImagesCommand;
 use Console\App\Commands\RunMigrationCommand;
 use Console\App\Commands\RunTestCommand;
+use Console\App\Commands\ServeUserGuideCommand;
  
 $app = new Application();
 $app->add(new APICommand());
@@ -58,4 +59,5 @@ $app->add(new MigrateRefreshCommand());
 $app->add(new RemoveProfileImagesCommand());
 $app->add(new RunMigrationCommand());
 $app->add(new RunTestCommand());
+$app->add(new ServeUserGuideCommand);
 $app->run();
