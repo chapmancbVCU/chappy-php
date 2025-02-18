@@ -183,3 +183,11 @@ If using a custom domain:
 1. Add a `CNAME` file inside `docs/` containing your domain.
 2. Update **DNS settings** to point to GitHub’s IPs.
 3. Enable **HTTPS** in **GitHub Pages settings**.
+
+## 11. Troubleshooting
+In my particular case I had to export gems using the following commands:
+```sh
+echo 'export GEM_HOME=$HOME/gems' >> ~/.bashrc
+echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
