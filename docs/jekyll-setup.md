@@ -1,4 +1,4 @@
-# Setting Up Jekyll for the PHP MVC Framework User Guide
+# User Guide Setup
 
 This guide explains how to set up **Jekyll** to serve the PHP MVC framework's user guide both **locally** and on **GitHub Pages**, ensuring compatibility with GitHub’s environment.
 
