@@ -149,7 +149,7 @@ public function editAction($id) {
 
 The first step is to get the contact record and make sure it's associated with the current user. The other difference is in the assign function on line 8. Notice the second parameter Contacts::blackList. This is an array that is found in the Contact's model and is used to protect certain database fields from being inadvertently updated.
 
-The Delete operation is also very simple. In the example below you will find the findByIdAndUserId function again along with the setup of the confirmation Session Message.  More about Session Messages can be found [here](https://chapmancbvcu.github.io/chappy-php/session_and_flash_messages).
+The Delete operation is also very simple. In the example below you will find the findByIdAndUserId function again along with the setup of the confirmation Session Message.  More about Session Messages can be found [here](session_and_flash_messages).
 
 ```php
 public function deleteAction(int $id): void {
