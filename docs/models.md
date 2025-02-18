@@ -67,4 +67,4 @@ The model class that is generated as a template for creating your models. First 
 
 This class comes with a public const blackList variable that is an array. You can populate this array with fields you don't want updated inadvertently on POST. More on this in the controller's section.
 
-Models also support functions for tasks you want to perform before and after delete and update operations. Finally, the validator function supports server side validation tasks. More information about validation can be found [here](https://chapmancbvcu.github.io/chappy-php/server_side_validation).
+Models also support functions for tasks you want to perform before and after delete and update operations. Finally, the validator function supports server side validation tasks. More information about validation can be found [here](server_side_validation).
