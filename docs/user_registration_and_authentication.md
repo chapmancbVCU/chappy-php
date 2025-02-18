@@ -1,4 +1,4 @@
-# User Registration and Authentication
+<h1 style="font-size: 50px; text-align: center;">User Registration and Authentication</h1>
 
 ## Table of contents
 1. [Overview](#overview)

@@ -1,4 +1,4 @@
-# User Guide Setup
+<h1 style="font-size: 50px; text-align: center;">User Guide Setup</h1>
 
 This guide explains how to set up **Jekyll** to serve the PHP MVC framework's user guide both **locally** and on **GitHub Pages**, ensuring compatibility with GitHub’s environment.
 

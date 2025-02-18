@@ -1,4 +1,4 @@
-# User Profiles
+<h1 style="font-size: 50px; text-align: center;">User Profiles</h1>
 
 ## Table of contents
 1. [Overview](#overview)

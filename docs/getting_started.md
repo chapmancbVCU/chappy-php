@@ -1,4 +1,4 @@
-# Getting Started
+<h1 style="font-size: 50px; text-align: center;">Getting Started</h1>
 
 Here we provide the resources needed to get your project up and running.  While we work to improve out product and add content 
 to the wiki you can search using a combination of keywords that include Laravel, server type such as Nginx or Apache, and name of OS.  

@@ -1,4 +1,4 @@
-# Table of contents
+<h1 style="font-size: 50px; text-align: center;">Table of Contents</h1>
 Get to any resource within the Chappy.php Wiki from here.
 
 1. [Access Control Levels (ACLs)](access_control_levels) - Under construction
