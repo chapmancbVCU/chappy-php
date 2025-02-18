@@ -14,6 +14,7 @@ Get to any resource within the Chappy.php Wiki from here.
 11. [Session and Flash Messages](https://chapmancbVCU.github.io/chappy-php/session_and_flash_messages)
 12. [Unit Tests](https://chapmancbVCU.github.io/chappy-php/unit_tests) - Coming soon
 13. [Uploads](https://chapmancbVCU.github.io/chappy-php/uploads) - Coming soon
+14. [User Guide Setup With Jekyll](https://chapmancbVCU.github.io/chappy-php/jekyll-setup)
 15. [User Profiles](https://chapmancbVCU.github.io/chappy-php/user_profiles)
 16. [User Registration and Authentication](https://chapmancbVCU.github.io/chappy-php/user_registration_and_authentication)
 17. [Views](https://chapmancbVCU.github.io/chappy-php/views) - Coming soon
