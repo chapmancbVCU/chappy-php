@@ -121,10 +121,15 @@ exclude:
 
 ## 6. Serve Jekyll Locally
 
-To preview the guide locally:
+To preview the guide locally from within the docs directory:
 ```sh
 bundle exec jekyll serve --livereload
 ```
+or under project root:
+```sh
+php console serve:docs
+```
+
 
 Then open:
 - **For project sites:** `http://localhost:4000/your-repo-name/`
