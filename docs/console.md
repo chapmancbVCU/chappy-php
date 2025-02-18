@@ -33,5 +33,6 @@ Below is a list of available commands. Most items in this list contains a link t
 | make:test | Generates a new test class |
 | migrate:drop-all | Drops all database tables |
 | migrate:refresh | Drops all tables and runs a Database Migration |
+| serve:docs | Locally serves jekyll based user guide locally |
 | tools:mk-env | Creates the .env file |
 | tools:rm-profile-images | Removes all profile images |
