@@ -2,7 +2,7 @@
 Get to any resource within the Chappy.php Wiki from here.
 
 1. [Access Control Levels (ACLs)](https://chapmancbVCU.github.io/chappy-php/access_control_levels) - Under construction
-2. [Administration](https://chapmancbVCU.github.io/chappy-php/administration) - Under construction
+2. [Administration](administration) - Under construction
 3. [Console](https://chapmancbVCU.github.io/chappy-php/console)
 4. [Controllers](https://chapmancbVCU.github.io/chappy-php/controllers)
 5. [Database Operations](https://chapmancbVCU.github.io/chappy-php/database_operations)
