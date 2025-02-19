@@ -1,7 +1,6 @@
 <?php
 namespace Console\App\Commands;
  
-use Console\App\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -21,7 +20,7 @@ class ServeUserGuideCommand extends Command {
     {
         $this->setName('serve:docs')
             ->setDescription('Serves user guide locally')
-            ->setHelp('run serve:docs to serve user guide locally');
+            ->setHelp('run php console serve:docs to serve user guide locally');
     }
 
     /**
