@@ -9,7 +9,7 @@ use Symfony\Component\Console\Command\Command;
  * Contains functions for creating and deleting the profile images directory.
  */
 class ProfileImageDir {
-    private static $_path = ROOT.DS.'public'.DS.'images'.DS.'uploads'.DS.'profile_images';
+    private static $_path = ROOT.DS.'storage'.DS.'app'.DS.'private'.DS .'profile_images';
 
     /**
      * Performs mkdir operation on the profile images directory
