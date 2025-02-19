@@ -15,4 +15,9 @@ Administration features can be accessed by any user who belongs to the admin gro
 7. Manage Access Control Levels (ACLs)
 
 ## Administration Dashboard <a id="admin-dashboard"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
-The administration dashboard is easily accessible by any user in the admin group by clicking on the <q>Admin</q> link in the navigation panel.  Once at the Administration Dashboard the user is presented with a list of all users.
+The administration dashboard is easily accessible by any user in the admin group by clicking on the <q>Admin</q> link in the navigation panel.  Once at the Administration Dashboard the user is presented with a list of all users.  An example of the Administration Dashboard view is shown below in figure 1:
+
+<div style="text-align: center;">
+  <img src="assets/admin-dashboard-index.png" alt="Administration dashboard index view">
+  <p style="font-style: italic;">Figure 1 - Administration dashboard index view</p>
+</div>
