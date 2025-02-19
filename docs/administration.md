@@ -2,6 +2,7 @@
 
 ## Table of contents
 1. [Overview](#overview)
+2. [Administration Dashboard](#admin-dashboard)
 
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
 Administration features can be accessed by any user who belongs to the admin group.  This frame work supports the ability for administrators to perform the following tasks:
@@ -12,3 +13,6 @@ Administration features can be accessed by any user who belongs to the admin gro
 5. Activate or deactivate users
 6. Delete users
 7. Manage Access Control Levels (ACLs)
+
+## Administration Dashboard <a id="admin-dashboard"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+The administration dashboard is easily accessible by any user in the admin group by clicking on the <q>Admin</q> link in the navigation panel.  Once at the Administration Dashboard the user is presented with a list of all users.
