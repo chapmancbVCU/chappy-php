@@ -13,5 +13,5 @@ RewriteRule ^docs/?$ resources/views/docs/content/index.html [L]
 # Handle all other requests using Router.php
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond $1 !^(config|public|vendor|core|src|database|resources|robots\.txt)
+RewriteCond $1 !^(config|public|vendor|core|src|database|resources|storage|tests|node_modules|robots\.txt)
 RewriteRule ^(.+)$ index.php/$1 [L]
