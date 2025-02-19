@@ -121,14 +121,15 @@ class FormHelper {
         $inputString = self::stringifyAttrs($inputAttrs);
         $checkString = ($checked) ? ' checked="checked"' : '';
     
-        // Ensure correct array name format for multiple checkbox selection
-        $nameWithBrackets = strpos($name, '[]') === false ? $name . '[]' : $name; 
+        // Determine if it's a multiple checkbox group
+        $isMultiple = str_ends_with($name, '[]');
+        $nameWithBrackets = $isMultiple ? $name : htmlspecialchars($name); 
         $id = str_replace('[]', '', $name); // Ensure unique ID
     
         $html = '<div' . $divString . '>';
         $html .= '<label for="' . htmlspecialchars($id) . '">';
         $html .= htmlspecialchars($label) . ' ';
-        $html .= '<input type="checkbox" id="' . htmlspecialchars($id) . '" name="' . htmlspecialchars($nameWithBrackets) . '" value="' . htmlspecialchars($value) . '"' . $checkString . $inputString . ' />';
+        $html .= '<input type="checkbox" id="' . htmlspecialchars($id) . '" name="' . $nameWithBrackets . '" value="' . htmlspecialchars($value) . '"' . $checkString . $inputString . ' />';
         $html .= '</label>';
         $html .= '<span class="invalid-feedback">' . self::errorMsg($errors, $name) . '</span>';
         $html .= '</div>';
@@ -179,13 +180,14 @@ class FormHelper {
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
         $checkString = ($checked) ? ' checked="checked"' : '';
-        
-        // Ensure correct array name format for multiple checkbox selection
-        $nameWithBrackets = strpos($name, '[]') === false ? $name . '[]' : $name; 
+    
+        // Determine if it's a multiple checkbox group
+        $isMultiple = str_ends_with($name, '[]');
+        $nameWithBrackets = $isMultiple ? $name : htmlspecialchars($name); 
         $id = str_replace('[]', '', $name); // Ensure unique ID
     
         $html = '<div' . $divString . '>';
-        $html .= '<input type="checkbox" id="' . htmlspecialchars($id) . '" name="' . htmlspecialchars($nameWithBrackets) . '" value="' . htmlspecialchars($value) . '"' . $checkString . $inputString . '> ';
+        $html .= '<input type="checkbox" id="' . htmlspecialchars($id) . '" name="' . $nameWithBrackets . '" value="' . htmlspecialchars($value) . '"' . $checkString . $inputString . '> ';
         $html .= '<label for="' . htmlspecialchars($id) . '">' . htmlspecialchars($label) . '</label>';
         $html .= '<span class="invalid-feedback">' . self::errorMsg($errors, $name) . '</span>';
         $html .= '</div>';
