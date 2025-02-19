@@ -14,7 +14,7 @@ class ProfileImages extends Model {
     protected static $_softDelete = true;
     public $sort;
     protected static $_table = 'profile_images';
-    protected static $_uploadPath = 'public'.DS.'images'.DS.'uploads'.DS .'profile_images'.DS.'user_';
+    protected static $_uploadPath = 'storage'.DS.'app'.DS.'private'.DS .'profile_images'.DS.'user_';
     public $url;
     public $user_id;
 
