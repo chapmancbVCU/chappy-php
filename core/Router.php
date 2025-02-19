@@ -128,6 +128,7 @@ class Router {
         $current_user_acls = ["Guest"];
         $grantAccess = false;
 
+        // Bug here after migrate:refresh and cookie still exists.
         if(Session::exists(CURRENT_USER_SESSION_NAME)) {
             $current_user_acls[] = "LoggedIn";
             foreach(Users::currentUser()->acls() as $a) {
