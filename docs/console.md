@@ -4,7 +4,7 @@
 1. [Overview](#overview)
 2. [Summary of Available Commands](#summary-of-available-commands)
 
-## Overview <span style="float: right; font-size: 14px;"><a href="#table-of-contents">Table of Contents</a></span>
+## Overview <span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
 The console command is used to manage and perform tasks related to this framework. You can run a console command following the following syntax:
 
 ```php console ${command_name} ${argument}```
