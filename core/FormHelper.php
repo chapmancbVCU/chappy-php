@@ -120,11 +120,19 @@ class FormHelper {
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
         $checkString = ($checked) ? ' checked="checked"' : '';
-        $id = str_replace('[]','',$name);
-        $html = '<div'.$divString.'>';
-        $html .= '<label for="'.$id.'">'.$label.' <input type="checkbox" id="'.$id.'" name="'.$name.'" value='.$value.''.$checkString.$inputString.' /></label>';
-        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
+    
+        // Ensure correct array name format for multiple checkbox selection
+        $nameWithBrackets = strpos($name, '[]') === false ? $name . '[]' : $name; 
+        $id = str_replace('[]', '', $name); // Ensure unique ID
+    
+        $html = '<div' . $divString . '>';
+        $html .= '<label for="' . htmlspecialchars($id) . '">';
+        $html .= htmlspecialchars($label) . ' ';
+        $html .= '<input type="checkbox" id="' . htmlspecialchars($id) . '" name="' . htmlspecialchars($nameWithBrackets) . '" value="' . htmlspecialchars($value) . '"' . $checkString . $inputString . ' />';
+        $html .= '</label>';
+        $html .= '<span class="invalid-feedback">' . self::errorMsg($errors, $name) . '</span>';
         $html .= '</div>';
+        
         return $html;
     }
 
@@ -167,15 +175,21 @@ class FormHelper {
         array $errors = [],
         ): string {
 
-        $inputAttrs = self::appendErrorClass($inputAttrs,$errors,$name,'is-invalid');
+        $inputAttrs = self::appendErrorClass($inputAttrs, $errors, $name, 'is-invalid');
         $divString = self::stringifyAttrs($divAttrs);
         $inputString = self::stringifyAttrs($inputAttrs);
         $checkString = ($checked) ? ' checked="checked"' : '';
-        $id = str_replace('[]','',$name);
-        $html = '<div'.$divString.'>';
-        $html .='<input type="checkbox" id="'.$name.'" name="'.$id.'" value='.$value.''.$checkString.$inputString.'> <label for="'.$id.'">'.$label.'</label> ';
-        $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
+        
+        // Ensure correct array name format for multiple checkbox selection
+        $nameWithBrackets = strpos($name, '[]') === false ? $name . '[]' : $name; 
+        $id = str_replace('[]', '', $name); // Ensure unique ID
+    
+        $html = '<div' . $divString . '>';
+        $html .= '<input type="checkbox" id="' . htmlspecialchars($id) . '" name="' . htmlspecialchars($nameWithBrackets) . '" value="' . htmlspecialchars($value) . '"' . $checkString . $inputString . '> ';
+        $html .= '<label for="' . htmlspecialchars($id) . '">' . htmlspecialchars($label) . '</label>';
+        $html .= '<span class="invalid-feedback">' . self::errorMsg($errors, $name) . '</span>';
         $html .= '</div>';
+        
         return $html;
     }
 

@@ -161,7 +161,8 @@ class AdmindashboardController extends Controller {
         if (!is_array($userAcls)) {
             $userAcls = [];
         }
-    
+        $userAcls = array_map('strval', $userAcls);
+
         $this->view->userAcls = array_map('strval', $userAcls); // Ensure values are strings
         $profileImages = ProfileImages::findByUserId($user->id);
     
@@ -171,13 +172,20 @@ class AdmindashboardController extends Controller {
     
             // Handle ACL updates from checkboxes
             $newAcls = $_POST['acls'] ?? [];
+            if (!is_array($newAcls)) {
+                $newAcls = [];
+            }
+            $newAcls = array_map('strval', $newAcls);
             foreach ($acls as $aclKey => $aclName) {
-                if (in_array($aclKey, $newAcls) && !in_array($aclKey, $userAcls)) {
-                    Users::addAcl($user->id, $aclKey);
-                } elseif (!in_array($aclKey, $newAcls) && in_array($aclKey, $userAcls)) {
-                    Users::removeAcl($user->id, $aclKey);
+                $aclKeyStr = (string)$aclKey;
+    
+                if (in_array($aclKeyStr, $newAcls, true) && !in_array($aclKeyStr, $userAcls, true)) {
+                    Users::addAcl($user->id, $aclKeyStr);
+                } elseif (!in_array($aclKeyStr, $newAcls, true) && in_array($aclKeyStr, $userAcls, true)) {
+                    Users::removeAcl($user->id, $aclKeyStr);
                 }
             }
+            
             // Save updated ACLs
             $user->acl = json_encode($newAcls);
             
