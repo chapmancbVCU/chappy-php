@@ -3,7 +3,7 @@
 ## Table of contents
 1. [Overview](#overview)
 
-## Overview <span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Overview <a id="overview"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
 Administration features can be accessed by any user who belongs to the admin group.  This frame work supports the ability for administrators to perform the following tasks:
 1. Access the administration dashboard
 2. View list of all users

@@ -5,7 +5,7 @@
 2. [Setup](#setup)
 3. [Validation Rules](#validation-rules)
 
-## Overview <span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Overview <a id="overview"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
 Server side validation supports the frameworks ability to check if values for an input field on a form meet specific requirements. The most commonly used check is required. A list of supported checks is shown below:
 1. Email - checks if string is in valid email format.
 2. Lower Character - Checks if a string contains at least 1 lower case character.
@@ -19,7 +19,7 @@ Server side validation supports the frameworks ability to check if values for an
 10. Unique - Checks database on form submit and verifies a value is unique (ex: user name)
 11. Upper Character - Checks if a string contains at least 1 upper case character.
 
-## Setup <span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Setup <a id="setup"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
 Let's use the addAction function from an example ContactsController class. As shown below on line 32, we have a displayErrors property for the View class. We generally set this value to a function call called getErrorMessages on the model. In this case, we are using the $contacts model because we want to add a new contact.
 
 <div style="text-align: center;">
@@ -45,7 +45,7 @@ The result of submitting a form without entering required input is shown below. 
   <p style="font-style: italic;">Figure 3 - Front end messages</p>
 </div>
 
-## Validation Rules <span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Validation Rules <a id="validation-rules"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
 First step is to create a validator function in your model class. The structure looks as follows:
 
 ```php
