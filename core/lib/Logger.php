@@ -5,7 +5,8 @@ namespace Core\Lib;
  * Supports the ability to produce logging.
  */
 class Logger {
-    private static $logFile = ROOT . DS  . 'logs' . DS . 'app.log'; // Ensure correct path
+    // Ensure correct path across all platforms
+    private static $logFile = ROOT.DS.'storage'.DS.'logs'.DS.'app.log'; 
 
     /**
      * Performs operations for adding content to log files.
