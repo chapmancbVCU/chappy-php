@@ -11,46 +11,6 @@ use Symfony\Component\Console\Input\InputInterface;
  * Helper class for migration related console commands.
  */
 class Migrate {
-    public static function createDatabase(string $host, string $user, string $dbName, string $password): int {
-        try {
-            $db = new PDO("mysql:host=".$host, $user, $password);
-            $db->exec("CREATE DATABASE `$dbName`;");
-        } catch(PDOException $e) {
-            Tools::info($e->getMessage(), 'red');
-            return Command::FAILURE;
-        }
-        Tools::info("The ".$dbName." database was successfully created.");
-        return Command::SUCCESS;
-    }
-
-    public static function createUser(string $host, string $user, string $dbName, string $password): int {
-
-        // try {
-        //     $dbh = new PDO("mysql:host=$host", $root, $root_password);
-    
-        //     $dbh->exec("CREATE DATABASE `$db`;
-        //             CREATE USER '$user'@'localhost' IDENTIFIED BY '$pass';
-        //             GRANT ALL ON `$db`.* TO '$user'@'localhost';
-        //             FLUSH PRIVILEGES;")
-        //     or die(print_r($dbh->errorInfo(), true));
-    
-        // }
-        // catch (PDOException $e) {
-        //     die("DB ERROR: " . $e->getMessage());
-        // }
-
-        try {
-            $db = new PDO("mysql:host=".$host, $user, $password);
-            $db->exec("CREATE USER '$user'@'$host' IDENTIFIED BY '$password';
-                GRANT ALL ON `$dbName`.* TO '$user'@'$host';");
-        } catch(PDOException $e) {
-            Tools::info($e->getMessage(), 'red');
-            return Command::FAILURE;
-        }
-        Tools::info("The ".$user." was successfully created.");
-        return Command::SUCCESS;
-    }
-
     /**
      * Drops all migrations.
      *
