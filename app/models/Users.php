@@ -53,19 +53,12 @@ class Users extends Model {
 
     }
 
-    /**
-     * Gets id for user assigned ACL and assist in setup of web form 
-     * for updating user's ACL.
-     *
-     * @param string $user_acl The user's current ACL.
-     * @param array $aclArray Array of ACLs in format that can be used to 
-     * populate dropdown forms.
-     * @return int $key The id of the ACL.
-     */
-    public static function aclToId($user_acl, $aclArray) {
-        foreach($aclArray as $key => $value) {
-            if($value == $user_acl) { return $key; }
+    
+    public static function aclToArray($acls) {
+        if (!is_array($acls)) {
+            $acls = [];
         }
+        return array_map('strval', $acls);
     }
 
     /**

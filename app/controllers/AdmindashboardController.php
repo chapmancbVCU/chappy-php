@@ -158,10 +158,7 @@ class AdmindashboardController extends Controller {
     
         // Decode stored ACL JSON string into an array
         $userAcls = json_decode($user->acl, true);
-        if (!is_array($userAcls)) {
-            $userAcls = [];
-        }
-        $userAcls = array_map('strval', $userAcls);
+        $userAcls = Users::aclToArray($userAcls);
 
         $this->view->userAcls = array_map('strval', $userAcls); // Ensure values are strings
         $profileImages = ProfileImages::findByUserId($user->id);
@@ -172,10 +169,8 @@ class AdmindashboardController extends Controller {
     
             // Handle ACL updates from checkboxes
             $newAcls = $_POST['acls'] ?? [];
-            if (!is_array($newAcls)) {
-                $newAcls = [];
-            }
-            $newAcls = array_map('strval', $newAcls);
+            $newAcls = Users::aclToArray($newAcls);
+            
             foreach ($acls as $aclKey => $aclName) {
                 $aclKeyStr = (string)$aclKey;
     
