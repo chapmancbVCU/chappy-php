@@ -131,8 +131,18 @@ class Router {
         // Bug here after migrate:refresh and cookie still exists.
         if(Session::exists(CURRENT_USER_SESSION_NAME)) {
             $current_user_acls[] = "LoggedIn";
-            foreach(Users::currentUser()->acls() as $a) {
-                $current_user_acls[] = $a;
+            $currentUser = Users::currentUser();
+
+            /**
+             * Checks if session exists.  If app is loaded after a 
+             * migrate:refresh and cookie still exists then cookie gets deleted.
+             */
+            if ($currentUser) { 
+                foreach($currentUser->acls() as $userAcl) {
+                    $current_user_acls[] = $userAcl;
+                }
+            } else {
+                Session::delete(CURRENT_USER_SESSION_NAME);
             }
         }
 
