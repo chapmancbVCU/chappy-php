@@ -1,6 +1,6 @@
 <?php
 namespace App\Models;
-use Core\{Cookie, Helper, Model, Router, Session};
+use Core\{Cookie, Helper, Model, Session};
 use Core\Lib\Logger;
 use Core\Validators\{
     EmailValidator,

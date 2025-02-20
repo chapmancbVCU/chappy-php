@@ -2,7 +2,6 @@
 namespace App\Controllers;
 use Core\{Controller, Router, Session};
 use App\Models\{ACL, ProfileImages, Users};
-use App\Lib\Utilities\UploadProfileImage;
 use Core\Helper;
 
 /**
