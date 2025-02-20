@@ -306,6 +306,27 @@ class Users extends Model {
     }
 
     /**
+     * Manages the adding and removing of ACLs.
+     *
+     * @param array $acls ACLs stored in acl table.
+     * @param Users $user The user we want to modify 
+     * @param array $newAcls The new ACLs for the user.
+     * @param array $userAcls The user's existing ACLs.
+     * @return void
+     */
+    public static function manageAcls(array $acls, Users $user, array $newAcls, array $userAcls): void {
+        foreach ($acls as $aclName) {
+            $aclKeyStr = (string)$aclName;
+            if (in_array($aclKeyStr, $newAcls, true) && !in_array($aclKeyStr, $userAcls, true)) {
+                self::addAcl($user->id, $aclKeyStr);
+            } elseif (!in_array($aclKeyStr, $newAcls, true) && in_array($aclKeyStr, $userAcls, true)) {
+                self::removeAcl($user->id, $aclKeyStr);
+            }
+        }
+    }
+
+
+    /**
      * Removes ACL from user's acl field array.
      *
      * @param int $user_id The id of the user whose acl field we want to modify.

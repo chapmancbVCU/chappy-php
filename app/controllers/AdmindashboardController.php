@@ -170,16 +170,7 @@ class AdmindashboardController extends Controller {
             // Handle ACL updates from checkboxes
             $newAcls = $_POST['acls'] ?? [];
             $newAcls = Users::aclToArray($newAcls);
-            
-            foreach ($acls as $aclKey => $aclName) {
-                $aclKeyStr = (string)$aclKey;
-    
-                if (in_array($aclKeyStr, $newAcls, true) && !in_array($aclKeyStr, $userAcls, true)) {
-                    Users::addAcl($user->id, $aclKeyStr);
-                } elseif (!in_array($aclKeyStr, $newAcls, true) && in_array($aclKeyStr, $userAcls, true)) {
-                    Users::removeAcl($user->id, $aclKeyStr);
-                }
-            }
+            Users::manageAcls($acls, $user, $newAcls, $userAcls);
             
             // Save updated ACLs
             $user->acl = json_encode($newAcls);
