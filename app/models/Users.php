@@ -223,10 +223,6 @@ class Users extends Model {
             Logger::log("Failed login attempt: Username '{$this->username}' not found.", 'warning');
         }
 
-        // if (!password_verify($this->password, $user->password)) {
-        //     Logger::log("Failed login attempt: Incorrect password for user ID {$user->id} ({$user->username}).", 'warning');
-        // }
-
         if ($user->inactive == 1) {
             Logger::log("Failed login attempt: Inactive account for user ID {$user->id} ({$user->username}).", 'warning');
         }
