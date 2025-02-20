@@ -734,6 +734,16 @@ corresponding cookie is deleted.</p></p>                </div>
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
+                    <a href="#method_manageAcls">manageAcls</a>(array $acls, <a href="../../App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a> $user, array $newAcls, array $userAcls)
+        
+                                            <p><p>Manages the adding and removing of ACLs.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
                     <a href="#method_removeAcl">removeAcl</a>(int $user_id, string $acl)
         
                                             <p><p>Removes ACL from user's acl field array.</p></p>                </div>
@@ -1806,7 +1816,7 @@ false if there is a failure.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validator">
-        <div class="location">at line 361</div>
+        <div class="location">at line 378</div>
         <code>                    void
     <strong>validator</strong>()
         </code>
@@ -2304,7 +2314,7 @@ found in login form.  Default value is false.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_loginAttempts">
-        <div class="location">at line 260</div>
+        <div class="location">at line 256</div>
         <code>        static            <a href="../../App/Models/Login.html"><abbr title="App\Models\Login">Login</abbr></a>
     <strong>loginAttempts</strong>(<abbr title="App\Models\User">User</abbr> $user, <a href="../../App/Models/Login.html"><abbr title="App\Models\Login">Login</abbr></a> $loginModel)
         </code>
@@ -2354,7 +2364,7 @@ and session messages are assigned.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_loginUserFromCookie">
-        <div class="location">at line 279</div>
+        <div class="location">at line 275</div>
         <code>        static            <a href="../../App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a>
     <strong>loginUserFromCookie</strong>()
         </code>
@@ -2386,7 +2396,7 @@ and session messages are assigned.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_logout">
-        <div class="location">at line 298</div>
+        <div class="location">at line 294</div>
         <code>                    bool
     <strong>logout</strong>()
         </code>
@@ -2419,8 +2429,65 @@ corresponding cookie is deleted.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_manageAcls">
+        <div class="location">at line 317</div>
+        <code>        static            void
+    <strong>manageAcls</strong>(array $acls, <a href="../../App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a> $user, array $newAcls, array $userAcls)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Manages the adding and removing of ACLs.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$acls</td>
+                <td><p>ACLs stored in acl table.</p></td>
+            </tr>
+                    <tr>
+                <td><a href="../../App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a></td>
+                <td>$user</td>
+                <td><p>The user we want to modify</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$newAcls</td>
+                <td><p>The new ACLs for the user.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$userAcls</td>
+                <td><p>The user's existing ACLs.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_removeAcl">
-        <div class="location">at line 319</div>
+        <div class="location">at line 336</div>
         <code>        static            void
     <strong>removeAcl</strong>(int $user_id, string $acl)
         </code>
@@ -2467,7 +2534,7 @@ corresponding cookie is deleted.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_setAclAtRegistration">
-        <div class="location">at line 339</div>
+        <div class="location">at line 356</div>
         <code>        static            string
     <strong>setAclAtRegistration</strong>()
         </code>
@@ -2501,7 +2568,7 @@ registration of a user.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_setChangePassword">
-        <div class="location">at line 352</div>
+        <div class="location">at line 369</div>
         <code>                    void
     <strong>setChangePassword</strong>(bool $value)
         </code>
