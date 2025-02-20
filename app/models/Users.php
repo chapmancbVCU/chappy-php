@@ -53,8 +53,13 @@ class Users extends Model {
 
     }
 
-    
-    public static function aclToArray($acls) {
+    /**
+     * Ensures that we are always dealing with an array of ACLs
+     *
+     * @param mixed $acls An array or any type that we want to add to an array.
+     * @return array An array of acls.
+     */
+    public static function aclToArray(mixed $acls): array {
         if (!is_array($acls)) {
             $acls = [];
         }
