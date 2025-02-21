@@ -10,6 +10,7 @@
 7. [Account Status](#account-status)
 8. [Delete Account](#delete-account)
 9. [Manage Access Control Levels (ACLs)](#manage-acls)
+
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
 Administration features can be accessed by any user who belongs to the admin group.  This frame work supports the ability for administrators to perform the following tasks:
 1. Access the administration dashboard
@@ -54,14 +55,14 @@ The edit details view is also similar to the equivalent view for the user profil
 
 Take note of the Manage ACLs section in the figure above.  It is represented as a checkbox group to allow multiple access control levels for individual users.  Learn more about ACLs [here](access_control_levels)
 
-## Reset Password <a id="reset-password"></a><span style="float: right; font-size: 14px;">[Table of Contents]
+## Reset Password <a id="reset-password"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)
 This view has a form with a checkbox that enables administrators to set or unset the reset_password field for a particular user.
 
-## Account Status <a id="account-status"></a><span style="float: right; font-size: 14px;">[Table of Contents]
+## Account Status <a id="account-status"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)
 This view has a form with a checkbox that enables administrators to activate or deactivate an account.  Accounts get deactivated after a user exceeds a number of allowed login attempts that the administrator is able to set in the project's configuration file.  The administrator can also deactivate an account at anytime using the form found in this view.
 
-## Delete Account <a id="delete-account"></a><span style="float: right; font-size: 14px;">[Table of Contents]
+## Delete Account <a id="delete-account"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)
 Administrators have permission to delete an account.  The database uses a soft delete feature that removes the delete account for all listings without actually removing the record.
 
-## Manage Access Control Levels (ACLs) <a id="manage-acls"></a><span style="float: right; font-size: 14px;">[Table of Contents]
+## Manage Access Control Levels (ACLs) <a id="manage-acls"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)
 This view provides the ability to manage ACLs that are available to this framework.  More about ACLs can be found in the [ACLs](access_control_levels) section of the user guide.
