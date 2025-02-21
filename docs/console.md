@@ -7,11 +7,15 @@
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
 The console command is used to manage and perform tasks related to this framework. You can run a console command following the following syntax:
 
-```php console ${command_name} ${argument}```
+```sh
+php console ${command_name} ${argument}
+```
 
 An example of a command that requires arguments is demonstrated below:
 
-```php console test:run-test Test```
+```sh
+php console test:run-test Test
+```
 
 Where Test is the name of the file containing the test. Typing php console in the command line at project root will display all of the available commands. Each of the supported command will be covered in their respective sections in this user guide.
 
