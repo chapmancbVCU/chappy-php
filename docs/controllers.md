@@ -11,7 +11,9 @@ This framework supports controllers to manage the interactions between views and
 ## Controller File <a id="controller-file"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
 Let's begin by creating a new controller using all available options and arguments:
 
-```php console make:controller Foo --layout=admin --resource```
+```sh
+php console make:controller Foo --layout=admin --resource
+```
 
 The first argument is the name and the first letter should always be upper case. It is used to create the name of the controller class. The --layout option is optional. If you do not use this option the layout is set to default. Finally, the --resource option creates boilerplate functions that you can use. The file created by running this command is shown below:
 

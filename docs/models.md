@@ -7,7 +7,9 @@
 ## <a id="overview"></a>Overview <span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
 This framework supports models for interacting with a database. Whenever you create a new table you will need to create a new model. Let's use the table 'foo' that was created under the Database Operations section. To create a new model run the the following command:
 
-```php console make:model Foo```
+```sh
+php console make:model Foo
+```
 
 Remember, models are classes and the first letter in the model's name needs to be upper case. After you run the command a new model file will be generated under app\models. The make:model command will guess what the name of your table is so be sure to double check the $table variable's value is correct. The output file for the command with modifications tailored to the foo table described above is shown below:
 
