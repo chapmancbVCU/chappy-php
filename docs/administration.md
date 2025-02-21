@@ -32,3 +32,9 @@ When using the administration features the user has access to the Administration
 </div>
 
 ## Profile Details
+When you click in the details button for a user you are sent to the administrator's profile view for a particular user.  It is similar to the view you get when visiting your own profile but includes additional features for password reset, account status, and account deletion.  You also see other details such as number of login attempts since the last successful login, status of password reset flag for the user, creation and update date information, and account status.  An example of this view is shown in figure 3.
+
+<div style="text-align: center;">
+  <img src="assets/admin-profile-details.png" alt="Administration view of profile">
+  <p style="font-style: italic;">Figure 2 - Administration view of profile</p>
+</div>
