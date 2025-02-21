@@ -2,7 +2,7 @@
 Get to any resource within the Chappy.php Wiki from here.
 
 1. [Access Control Levels (ACLs)](access_control_levels) - Under construction
-2. [Administration](administration) - Under construction
+2. [Administration](administration)
 3. [Console](console)
 4. [Controllers](controllers)
 5. [Database Operations](database_operations)
