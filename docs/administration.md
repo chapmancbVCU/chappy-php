@@ -3,6 +3,7 @@
 ## Table of contents
 1. [Overview](#overview)
 2. [Administration Dashboard](#admin-dashboard)
+3. [Administration Menu](#admin-menu)
 
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
 Administration features can be accessed by any user who belongs to the admin group.  This frame work supports the ability for administrators to perform the following tasks:
@@ -21,3 +22,13 @@ The administration dashboard is easily accessible by any user in the admin group
   <img src="assets/admin-dashboard-index.png" alt="Administration dashboard index view">
   <p style="font-style: italic;">Figure 1 - Administration dashboard index view</p>
 </div>
+
+# Administration Menu<a id="admin-menu"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+When using the administration features the user has access to the Administration Menu in the navigation bar.  It contains links to the Administration Dashboard and a view for managing ACLs.  An image of the Administration Menu is shown in figure 2.
+
+<div style="text-align: center;">
+  <img src="assets/admin-menu.png" alt="Administration navbar menu">
+  <p style="font-style: italic;">Figure 2 - Administration navbar menu</p>
+</div>
+
+## Profile Details
