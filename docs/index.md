@@ -8,7 +8,7 @@ Get to any resource within the Chappy.php Wiki from here.
 5. [Database Operations](database_operations)
 6. [Forms](forms)
 7. [Getting Started](getting_started)
-8. [JavaScript](javascript) - Coming soon
+8. [JavaScript](javascript)
 9. [Models](models)
 10. [Server Side Validation](server_side_validation)
 11. [Session and Flash Messages](session_and_flash_messages)
