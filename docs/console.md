@@ -26,8 +26,6 @@ Below is a list of available commands. Most items in this list contains a link t
 
 | Command | Description |
 |:-------:|-------------|
-| migrate | Runs a Database Migration |
-| test | Performs a phpunit test |
 | init:mk-profile-images-dir | Builds Profile Image Dir |
 | make:api | Generates or updates api-docs |
 | make:command | Generates a new command class |
@@ -35,8 +33,10 @@ Below is a list of available commands. Most items in this list contains a link t
 | make:migration | Generates a Database Migration |
 | make:model | Generates a new model file |
 | make:test | Generates a new test class |
+| migrate | Runs a Database Migration |
 | migrate:drop-all | Drops all database tables |
 | migrate:refresh | Drops all tables and runs a Database Migration |
 | serve:docs | Locally serves jekyll based user guide locally |
+| test | Performs a phpunit test |
 | tools:mk-env | Creates the .env file |
 | tools:rm-profile-images | Removes all profile images |
