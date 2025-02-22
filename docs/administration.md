@@ -11,7 +11,7 @@
 8. [Delete Account](#delete-account)
 9. [Manage Access Control Levels (ACLs)](#manage-acls)
 
-## Overview <a id="overview"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Administration features can be accessed by any user who belongs to the admin group.  This frame work supports the ability for administrators to perform the following tasks:
 1. Access the administration dashboard
 2. View list of all users
@@ -21,7 +21,7 @@ Administration features can be accessed by any user who belongs to the admin gro
 6. Delete users
 7. Manage Access Control Levels (ACLs)
 
-## Administration Dashboard <a id="admin-dashboard"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Administration Dashboard <a id="admin-dashboard"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The administration dashboard is easily accessible by any user in the admin group by clicking on the <q>Admin</q> link in the navigation panel.  Once at the Administration Dashboard the user is presented with a list of all users.  An example of the Administration Dashboard view is shown below in figure 1:
 
 <div style="text-align: center;">
@@ -29,7 +29,7 @@ The administration dashboard is easily accessible by any user in the admin group
   <p style="font-style: italic;">Figure 1 - Administration dashboard index view</p>
 </div>
 
-## Administration Menu <a id="admin-menu"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Administration Menu <a id="admin-menu"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 When using the administration features the user has access to the Administration Menu in the navigation bar.  It contains links to the Administration Dashboard and a view for managing ACLs.  An image of the Administration Menu is shown in figure 2.
 
 <div style="text-align: center;">
@@ -37,7 +37,7 @@ When using the administration features the user has access to the Administration
   <p style="font-style: italic;">Figure 2 - Administration navbar menu</p>
 </div>
 
-## Profile Details <a id="profile-details"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Profile Details <a id="profile-details"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 When you click in the details button for a user you are sent to the administrator's profile view for a particular user.  It is similar to the view you get when visiting your own profile but includes additional features for password reset, account status, and account deletion.  You also see other details such as number of login attempts since the last successful login, status of password reset flag for the user, creation and update date information, and account status.  An example of this view is shown in figure 3.
 
 <div style="text-align: center;">
@@ -45,7 +45,7 @@ When you click in the details button for a user you are sent to the administrato
   <p style="font-style: italic;">Figure 3 - Administration view of profile</p>
 </div>
 
-## Edit Details <a id="edit-details"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Edit Details <a id="edit-details"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The edit details view is also similar to the equivalent view for the user profile details view.  The difference is administrators have the ability to manage Access Control Levels (ACLs) for a user.  An example of this view is shown below in figure 4.
 
 <div style="text-align: center;">
@@ -55,14 +55,14 @@ The edit details view is also similar to the equivalent view for the user profil
 
 Take note of the Manage ACLs section in the figure above.  It is represented as a checkbox group to allow multiple access control levels for individual users.  Learn more about ACLs [here](access_control_levels)
 
-## Reset Password <a id="reset-password"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)
+## Reset Password <a id="reset-password"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)
 This view has a form with a checkbox that enables administrators to set or unset the reset_password field for a particular user.
 
-## Account Status <a id="account-status"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)
+## Account Status <a id="account-status"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)
 This view has a form with a checkbox that enables administrators to activate or deactivate an account.  Accounts get deactivated after a user exceeds a number of allowed login attempts that the administrator is able to set in the project's configuration file.  The administrator can also deactivate an account at anytime using the form found in this view.
 
-## Delete Account <a id="delete-account"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)
+## Delete Account <a id="delete-account"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)
 Administrators have permission to delete an account.  The database uses a soft delete feature that removes the delete account for all listings without actually removing the record.
 
-## Manage Access Control Levels (ACLs) <a id="manage-acls"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)
+## Manage Access Control Levels (ACLs) <a id="manage-acls"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)
 This view provides the ability to manage ACLs that are available to this framework.  More about ACLs can be found in the [ACLs](access_control_levels) section of the user guide.

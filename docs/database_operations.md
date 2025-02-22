@@ -6,10 +6,10 @@
 2. [Migration](#migration)
 3. [Creating A New Migration](#creating-a-new-migration)
 
-## Overview <a id="overview"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 This page goes over the available ways users can manage a database with chappy.php Using the console, you can perform migrations, drop tables, and other tasks. A complete description of all Migration class function can be within the project API Documentation.
 
-## Migration <a id="migration"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Migration <a id="migration"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Performing a database migration is the first task you will perform after establishing a new project. Before you begin you will need to open the .env file and enter some information about the database. An example is shown below:
 
 ```
@@ -37,7 +37,7 @@ Finally, if you just want to drop tables perform the following command:
 
 Performing either of these commands will result in status messages being displayed in the console.
 
-## Creating A New Migration <a id="creating-a-new-migration"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Creating A New Migration <a id="creating-a-new-migration"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Create a migration by running the make:migration command. An example is shown below for a table called foo:
 
 ```php console make:migration foo```

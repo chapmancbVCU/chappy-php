@@ -4,7 +4,7 @@
 1. [Overview](#overview)
 2. [Usage](#usage)
 
-## Overview <a id="overview"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Session messages provides support for displaying information to the user in a div element styled using Bootstrap alert classes. Examples are shown below:
 
 <div style="text-align: center;">
@@ -12,7 +12,7 @@ Session messages provides support for displaying information to the user in a di
   <p style="font-style: italic;">Figure 1 - Available colors for flash messages</p>
 </div>
 
-## Usage <a id="usage"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Usage <a id="usage"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 When using with PHP you must first call the addMessage function form the Session class. An example for how to perform this task is shown below:
 
 ```php

@@ -5,10 +5,10 @@
 2. [Controller File](#controller-file)
 3. [Example](#example)
 
-## Overview <a id="overview"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 This framework supports controllers to manage the interactions between views and models.
 
-## Controller File <a id="controller-file"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Controller File <a id="controller-file"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Let's begin by creating a new controller using all available options and arguments:
 
 ```sh
@@ -60,7 +60,7 @@ The first function you see is the onConstruct. Any default settings you need for
 
 All of the other functions supports the default index action and the Create, Read, Update, and Delete (CRUD) operations. With this framework we require that functions that represent actions end with the word Action. Otherwise, the route function is unable to work correctly.
 
-## Example <a id="example"></a><span style="float: right; font-size: 14px;">[Table of Contents](#table-of-contents)</span>
+## Example <a id="example"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 ```php
 public function addAction(): void {
     $contact = new Contacts();
