@@ -28,6 +28,7 @@ use Core\Helper;
                 <?php endforeach; ?>
             </div>
             
+            <!-- Manage profile images section -->
             <?= $this->component('manage_profile_images'); ?>
 
             <div class="col-md-12 text-end">

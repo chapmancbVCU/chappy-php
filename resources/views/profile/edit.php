@@ -16,8 +16,10 @@ use Core\FormHelper;
         <h1 class="text-center">Edit Details for <?=$this->user->username?></h1>
         <hr>
         <form class="form" action="" method="POST" enctype="multipart/form-data">
-            
+            <!-- Primary profile details -->
             <?= $this->component('edit_profile_details'); ?>
+            
+            <!-- Manage profile images section -->
             <?= FormHelper::inputBlock('file', "Upload Profile Image (Optional)", 'profileImage', '', ['class' => 'form-control', 'accept' => 'image/png image/jpeg image/png'], ['class' => 'form-group mb-3'], $this->displayErrors) ?>
             <?= $this->component('manage_profile_images') ?>
 
