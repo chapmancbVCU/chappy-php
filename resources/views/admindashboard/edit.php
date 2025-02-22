@@ -17,6 +17,7 @@ use Core\Helper;
         <h1 class="text-center">Edit Details for <?=$this->user->username?></h1>
         <hr>
         <form class="form" action=<?=$this->postAction?> method="post">
+            <!-- Primary profile details -->
             <?= $this->component('edit_profile_details'); ?>
 
             <!-- ACL Management Section -->
