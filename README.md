@@ -30,6 +30,7 @@ Originally a fork of the Ruah PHP MVC framework based on the MVC PHP Framework t
 16. API documentation
 17. User guide
 18. Logging
+19. Vite asset bundling
 
 If you have a feature that you would like to be supported please create a request under the Issues tab.
 
@@ -43,6 +44,7 @@ Complete documentation including the "Getting Started" guild describe below can 
 5. SQL Management software
 6. Composer
 7. git
+8. Node Package Manager (npm)
 
 ## Contact
 I can be reached regarding this framework at chad.chapman2010@gmail.com.  You are also welcome to open up an issue at https://github.com/chapmancbVCU/chappy-php/issues
