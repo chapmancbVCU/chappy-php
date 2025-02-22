@@ -6,10 +6,11 @@ use App\Models\{Login, ProfileImages, Users};
 use Core\{Controller, Helper, Router, Session};
 
 /**
- * Implements support for our Register controller.  Functions found in this 
- * class will support tasks related to the user registration.
+ * Implements support for our Auth controller.  Functions found in this 
+ * class will support tasks related to the user registration and 
+ * authentication.
  */
-class RegisterController extends Controller {
+class AuthController extends Controller {
     
     /**
      * Manages login action processes.
@@ -27,11 +28,11 @@ class RegisterController extends Controller {
                 $user = Users::findByUsername($_POST['username']);
                 if($user && password_verify($this->request->get('password'), $user->password)) {
                     if($user->reset_password == 1) {
-                        Router::redirect('register/resetPassword/'.$user->id);
+                        Router::redirect('auth/resetPassword/'.$user->id);
                     }
                     if($user->inactive == 1) {
                         Session::addMessage('danger', 'Account is currently inactive');
-                        Router::redirect('register/login');
+                        Router::redirect('auth/login');
                     } 
                     $remember = $loginModel->getRememberMeChecked();
                     $user->login_attempts = 0;
@@ -51,7 +52,7 @@ class RegisterController extends Controller {
         }
         $this->view->login = $loginModel;
         $this->view->displayErrors = $loginModel->getErrorMessages();
-        $this->view->render('register/login');
+        $this->view->render('auth/login');
     }
 
     /**
@@ -65,7 +66,7 @@ class RegisterController extends Controller {
         if(Users::currentUser()) {
             Users::currentUser()->logout();
         }
-        Router::redirect(('register/login'));
+        Router::redirect(('auth/login'));
     }
 
     /**
@@ -110,13 +111,13 @@ class RegisterController extends Controller {
                 if($uploads) {
                     ProfileImages::uploadProfileImage($newUser->id, $uploads);
                 }
-                Router::redirect('register/login');
+                Router::redirect('auth/login');
             }
         }
 
         $this->view->newUser = $newUser;
         $this->view->displayErrors = $newUser->getErrorMessages();
-        $this->view->render('register/register');
+        $this->view->render('auth/register');
     }
 
     /**
@@ -145,14 +146,14 @@ class RegisterController extends Controller {
                 // PW change mode off.
                 $user->reset_password = 0;
                 $user->setChangePassword(false);    
-                Router::redirect('register/login');
+                Router::redirect('auth/login');
             }
         }
 
         $user->setChangePassword(false);
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->user = $user;
-        $this->view->postAction = APP_DOMAIN . 'register' . DS . 'reset_password' . DS . $user->id;
-        $this->view->render('register/reset_password');
+        $this->view->postAction = APP_DOMAIN . 'auth' . DS . 'reset_password' . DS . $user->id;
+        $this->view->render('auth/reset_password');
     }
 }

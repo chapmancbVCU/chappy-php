@@ -70,7 +70,7 @@ class View extends stdClass {
     /**
      * Inserts a partial into another partial.
      *
-     * @param string $path Path to view.  Example: register/register
+     * @param string $path Path to view.  Example: auth/register
      * @return void
      */
     public function insertView(string $path): void {

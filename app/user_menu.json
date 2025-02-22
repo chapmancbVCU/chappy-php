@@ -1,9 +1,9 @@
 {
-    "Login" : "register/login",
-    "Register" : "register/register",
+    "Login" : "auth/login",
+    "Register" : "auth/register",
     "%USERNAME%" : {
       "Profile" : "profile",
-      "Logout" : "register/logout"
+      "Logout" : "auth/logout"
     }
   }
   

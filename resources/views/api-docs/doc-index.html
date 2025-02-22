@@ -110,7 +110,10 @@
         <dl id="indexA"><dt><a href="App/Controllers/AdmindashboardController.html"><abbr title="App\Controllers\AdmindashboardController">AdmindashboardController</abbr></a> &mdash; <em>Class in namespace <a href="App/Controllers.html">App\Controllers</a></em></dt>
                     <dd><p>Implements support for our Admindashboard controller.</p></dd><dt><a href="App/Controllers/AdmindashboardController.html#method_addAclAction">
 <abbr title="App\Controllers\AdmindashboardController">AdmindashboardController</abbr>::addAclAction</a>() &mdash; <em>Method in class <a href="App/Controllers/AdmindashboardController.html"><abbr title="App\Controllers\AdmindashboardController">AdmindashboardController</abbr></a></em></dt>
-                    <dd><p>Renders add acl view and adds ACL to acl table.</p></dd><dt><a href="App/Controllers/ContactsController.html#method_addAction">
+                    <dd><p>Renders add acl view and adds ACL to acl table.</p></dd><dt><a href="App/Controllers/AuthController.html"><abbr title="App\Controllers\AuthController">AuthController</abbr></a> &mdash; <em>Class in namespace <a href="App/Controllers.html">App\Controllers</a></em></dt>
+                    <dd><p>Implements support for our Auth controller.  Functions found in this
+class will support tasks related to the user registration and
+authentication.</p></dd><dt><a href="App/Controllers/ContactsController.html#method_addAction">
 <abbr title="App\Controllers\ContactsController">ContactsController</abbr>::addAction</a>() &mdash; <em>Method in class <a href="App/Controllers/ContactsController.html"><abbr title="App\Controllers\ContactsController">ContactsController</abbr></a></em></dt>
                     <dd><p>Displays view for adding a new contact, assists with form validation,
 and begins task for saving record to database.</p></dd><dt><a href="App/Models/ACL.html"><abbr title="App\Models\ACL">ACL</abbr></a> &mdash; <em>Class in namespace <a href="App/Models.html">App\Models</a></em></dt>
@@ -519,10 +522,10 @@ or submitTag functions.</p></dd><dt><a href="Core/Input.html"><abbr title="Core\
         <dl id="indexJ"><dt><a href="Core/Controller.html#method_jsonResponse">
 <abbr title="Core\Controller">Controller</abbr>::jsonResponse</a>() &mdash; <em>Method in class <a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a></em></dt>
                     <dd><p>Sample jsonResponse for supporting AJAX requests.</p></dd>        </dl><h2 id="letterL">L</h2>
-        <dl id="indexL"><dt><a href="App/Controllers/RegisterController.html#method_loginAction">
-<abbr title="App\Controllers\RegisterController">RegisterController</abbr>::loginAction</a>() &mdash; <em>Method in class <a href="App/Controllers/RegisterController.html"><abbr title="App\Controllers\RegisterController">RegisterController</abbr></a></em></dt>
-                    <dd><p>Manages login action processes.</p></dd><dt><a href="App/Controllers/RegisterController.html#method_logoutAction">
-<abbr title="App\Controllers\RegisterController">RegisterController</abbr>::logoutAction</a>() &mdash; <em>Method in class <a href="App/Controllers/RegisterController.html"><abbr title="App\Controllers\RegisterController">RegisterController</abbr></a></em></dt>
+        <dl id="indexL"><dt><a href="App/Controllers/AuthController.html#method_loginAction">
+<abbr title="App\Controllers\AuthController">AuthController</abbr>::loginAction</a>() &mdash; <em>Method in class <a href="App/Controllers/AuthController.html"><abbr title="App\Controllers\AuthController">AuthController</abbr></a></em></dt>
+                    <dd><p>Manages login action processes.</p></dd><dt><a href="App/Controllers/AuthController.html#method_logoutAction">
+<abbr title="App\Controllers\AuthController">AuthController</abbr>::logoutAction</a>() &mdash; <em>Method in class <a href="App/Controllers/AuthController.html"><abbr title="App\Controllers\AuthController">AuthController</abbr></a></em></dt>
                     <dd><p>Manages logout action for a user.  It checks if a user is currently
 logged.  No matter of the result, the user gets redirected to the
 login screen.</p></dd><dt>$<a href="App/Models/Contacts.html#property_lname">
@@ -604,12 +607,12 @@ numeric character in the field.</p></dd><dt><a href="Core/Validators/NumericVali
 values.</p></dd>        </dl><h2 id="letterO">O</h2>
         <dl id="indexO"><dt><a href="App/Controllers/AdmindashboardController.html#method_onConstruct">
 <abbr title="App\Controllers\AdmindashboardController">AdmindashboardController</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="App/Controllers/AdmindashboardController.html"><abbr title="App\Controllers\AdmindashboardController">AdmindashboardController</abbr></a></em></dt>
+                    <dd><p>Runs when the object is constructed.</p></dd><dt><a href="App/Controllers/AuthController.html#method_onConstruct">
+<abbr title="App\Controllers\AuthController">AuthController</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="App/Controllers/AuthController.html"><abbr title="App\Controllers\AuthController">AuthController</abbr></a></em></dt>
                     <dd><p>Runs when the object is constructed.</p></dd><dt><a href="App/Controllers/ContactsController.html#method_onConstruct">
 <abbr title="App\Controllers\ContactsController">ContactsController</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="App/Controllers/ContactsController.html"><abbr title="App\Controllers\ContactsController">ContactsController</abbr></a></em></dt>
                     <dd><p>Runs when the object is constructed.</p></dd><dt><a href="App/Controllers/ProfileController.html#method_onConstruct">
 <abbr title="App\Controllers\ProfileController">ProfileController</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="App/Controllers/ProfileController.html"><abbr title="App\Controllers\ProfileController">ProfileController</abbr></a></em></dt>
-                    <dd><p>Runs when the object is constructed.</p></dd><dt><a href="App/Controllers/RegisterController.html#method_onConstruct">
-<abbr title="App\Controllers\RegisterController">RegisterController</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="App/Controllers/RegisterController.html"><abbr title="App\Controllers\RegisterController">RegisterController</abbr></a></em></dt>
                     <dd><p>Runs when the object is constructed.</p></dd><dt><a href="Core/Controller.html#method_onConstruct">
 <abbr title="Core\Controller">Controller</abbr>::onConstruct</a>() &mdash; <em>Method in class <a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a></em></dt>
                     <dd><p>Function implemented by child model classes when models are
@@ -638,12 +641,10 @@ binding, execute, and fetch.</p></dd><dt><a href="Core/Migration.html#method_que
                     <dd><p>Run raw SQL statements</p></dd><dt><a href="Core/Model.html#method_query">
 <abbr title="Core\Model">Model</abbr>::query</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
                     <dd><p>Wrapper for database query function.</p></dd>        </dl><h2 id="letterR">R</h2>
-        <dl id="indexR"><dt><a href="App/Controllers/RegisterController.html"><abbr title="App\Controllers\RegisterController">RegisterController</abbr></a> &mdash; <em>Class in namespace <a href="App/Controllers.html">App\Controllers</a></em></dt>
-                    <dd><p>Implements support for our Register controller.  Functions found in this
-class will support tasks related to the user registration.</p></dd><dt><a href="App/Controllers/RegisterController.html#method_registerAction">
-<abbr title="App\Controllers\RegisterController">RegisterController</abbr>::registerAction</a>() &mdash; <em>Method in class <a href="App/Controllers/RegisterController.html"><abbr title="App\Controllers\RegisterController">RegisterController</abbr></a></em></dt>
-                    <dd><p>Manages actions related to user registration.</p></dd><dt><a href="App/Controllers/RegisterController.html#method_resetPasswordAction">
-<abbr title="App\Controllers\RegisterController">RegisterController</abbr>::resetPasswordAction</a>() &mdash; <em>Method in class <a href="App/Controllers/RegisterController.html"><abbr title="App\Controllers\RegisterController">RegisterController</abbr></a></em></dt>
+        <dl id="indexR"><dt><a href="App/Controllers/AuthController.html#method_registerAction">
+<abbr title="App\Controllers\AuthController">AuthController</abbr>::registerAction</a>() &mdash; <em>Method in class <a href="App/Controllers/AuthController.html"><abbr title="App\Controllers\AuthController">AuthController</abbr></a></em></dt>
+                    <dd><p>Manages actions related to user registration.</p></dd><dt><a href="App/Controllers/AuthController.html#method_resetPasswordAction">
+<abbr title="App\Controllers\AuthController">AuthController</abbr>::resetPasswordAction</a>() &mdash; <em>Method in class <a href="App/Controllers/AuthController.html"><abbr title="App\Controllers\AuthController">AuthController</abbr></a></em></dt>
                     <dd><p>Supports ability to reset passwords when a user attempts to
 login when account is locked.</p></dd><dt><a href="App/Controllers/RestrictedController.html"><abbr title="App\Controllers\RestrictedController">RestrictedController</abbr></a> &mdash; <em>Class in namespace <a href="App/Controllers.html">App\Controllers</a></em></dt>
                     <dd><p>Implements support for the Restricted controller.  Interactions that the
