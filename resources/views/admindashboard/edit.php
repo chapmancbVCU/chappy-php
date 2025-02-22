@@ -17,18 +17,7 @@ use Core\Helper;
         <h1 class="text-center">Edit Details for <?=$this->user->username?></h1>
         <hr>
         <form class="form" action=<?=$this->postAction?> method="post">
-            <?= FormHelper::csrfInput() ?>
-            <input type="hidden" id="images_sorted" name="images_sorted" value="" />
-            <?= FormHelper::inputBlock('text', "First Name", 'fname', $this->user->fname, ['class' => 'form-control input-sm'], ['class' => 'form-group mb-3'], $this->displayErrors) ?>
-            <?= FormHelper::inputBlock('text', "Last Name", 'lname', $this->user->lname, ['class' => 'form-control input-sm'], ['class' => 'form-group mb-3'], $this->displayErrors) ?>
-            <?= FormHelper::emailBlock("Email", 'email', $this->user->email, ['class' => 'form-control input-sm'], ['class' => 'form-group mb-3'], $this->displayErrors) ?>
-            
-            <?= FormHelper::textAreaBlock("Description", 
-                'description', 
-                $this->user->description, 
-                ['class' => 'form-control input-sm', 'placeholder' => 'Update user\'s description...', 'rows' => '4'], 
-                ['class' => 'form-group mb-3']); 
-            ?>
+            <?= $this->component('edit_profile_details'); ?>
 
             <!-- ACL Management Section -->
             <div class="form-group mb-3">
@@ -39,16 +28,7 @@ use Core\Helper;
                 <?php endforeach; ?>
             </div>
             
-            <div id="sortableImages" class="row align-items-center justify-content-start p-2">
-                <?php foreach($this->profileImages as $image):?>
-                    <div class="col flex-grow-0" id="image_<?=$image->id?>">
-                    <span class="btn-danger" onclick="deleteImage('<?=$image->id?>')"><i class="fa fa-times"></i></span>
-                        <div class="edit-image-wrapper <?= ($image->sort == 0) ? 'current-profile-img' : ''?>" data-id="<?=$image->id?>">
-                            <img src="<?=APP_DOMAIN.$image->url?>" />
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+            <?= $this->component('manage_profile_images'); ?>
 
             <div class="col-md-12 text-end">
                 <a href="<?=APP_DOMAIN?>admindashboard/details/<?=$this->user->id?>" class="btn btn-default">Cancel</a>
@@ -58,6 +38,6 @@ use Core\Helper;
     </div>
 </div>
 
-<?php $this->component('manage_profile_images') ?>
+
 
 <?php $this->end(); ?>

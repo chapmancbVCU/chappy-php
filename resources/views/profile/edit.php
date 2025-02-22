@@ -16,30 +16,10 @@ use Core\FormHelper;
         <h1 class="text-center">Edit Details for <?=$this->user->username?></h1>
         <hr>
         <form class="form" action="" method="POST" enctype="multipart/form-data">
-            <?= FormHelper::csrfInput() ?>
-            <input type="hidden" id="images_sorted" name="images_sorted" value="" />
-            <?= FormHelper::displayErrors($this->displayErrors) ?>
-            <?= FormHelper::inputBlock('text', "First Name", 'fname', $this->user->fname, ['class' => 'form-control input-sm'], ['class' => 'form-group mb-3']) ?>
-            <?= FormHelper::inputBlock('text', "Last Name", 'lname', $this->user->lname, ['class' => 'form-control input-sm'], ['class' => 'form-group mb-3']) ?>
-            <?= FormHelper::emailBlock("Email", 'email', $this->user->email, ['class' => 'form-control input-sm'], ['class' => 'form-group mb-3']) ?>
-            <?= FormHelper::textAreaBlock("About Me", 
-                'description', 
-                $this->user->description, 
-                ['class' => 'form-control input-sm', 'placeholder' => 'Describe yourself here...', 'rows' => '4'], 
-                ['class' => 'form-group mb-3']); 
-            ?>
-
+            
+            <?= $this->component('edit_profile_details'); ?>
             <?= FormHelper::inputBlock('file', "Upload Profile Image (Optional)", 'profileImage', '', ['class' => 'form-control', 'accept' => 'image/png image/jpeg image/png'], ['class' => 'form-group mb-3'], $this->displayErrors) ?>
-            <div id="sortableImages" class="row align-items-center justify-content-start p-2">
-                <?php foreach($this->profileImages as $image):?>
-                    <div class="col flex-grow-0" id="image_<?=$image->id?>">
-                        <span class="btn-danger" onclick="deleteImage('<?=$image->id?>')"><i class="fa fa-times"></i></span>
-                        <div class="edit-image-wrapper <?= ($image->sort == 0) ? 'current-profile-img' : ''?>" data-id="<?=$image->id?>">
-                            <img src="<?=APP_DOMAIN.$image->url?>" />
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+            <?= $this->component('manage_profile_images') ?>
 
             <div class="col-md-12 text-end">
                 <a href="<?=APP_DOMAIN?>profile" class="btn btn-default">Cancel</a>
@@ -49,5 +29,5 @@ use Core\FormHelper;
     </div>
 </div>
 
-<?php $this->component('manage_profile_images') ?>
+
 <?php $this->end(); ?>
