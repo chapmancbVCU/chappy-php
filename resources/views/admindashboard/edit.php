@@ -11,6 +11,7 @@ use Core\Helper;
     <script src='<?=APP_DOMAIN?>resources/js/profileDescriptionTinyMCE.js'></script>
     <script type="text/javascript" src="<?=APP_DOMAIN?>resources/js/jquery-ui/jquery-ui.min.js"></script>
 <?php $this->end() ?>
+
 <?php $this->start('body'); ?>
 <div class="row align-items-center justify-content-center">
     <div class="col-md-6 bg-light p-3">
