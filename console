@@ -44,6 +44,7 @@ use Console\App\Commands\RemoveLogsCommand;
 use Console\App\Commands\RemoveProfileImagesCommand;
 use Console\App\Commands\RunMigrationCommand;
 use Console\App\Commands\RunTestCommand;
+use Console\App\Commands\SeedCommand;
 use Console\App\Commands\ServeUserGuideCommand;
 use Console\App\Commands\UploadsCommand;
  
@@ -62,6 +63,7 @@ $app->add(new RemoveLogsCommand());
 $app->add(new RemoveProfileImagesCommand());
 $app->add(new RunMigrationCommand());
 $app->add(new RunTestCommand());
+$app->add(new SeedCommand());
 $app->add(new ServeUserGuideCommand);
 $app->add(new UploadsCommand());
 $app->run();
