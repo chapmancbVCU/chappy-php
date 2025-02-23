@@ -31,6 +31,7 @@ Originally a fork of the Ruah PHP MVC framework based on the MVC PHP Framework t
 17. User guide
 18. Logging
 19. Vite asset bundling
+20. Pagination support
 
 If you have a feature that you would like to be supported please create a request under the Issues tab.
 
