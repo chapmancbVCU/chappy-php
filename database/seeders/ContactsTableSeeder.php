@@ -7,9 +7,11 @@ use App\Models\Contacts;
 
 /**
  * Seeder for contacts table.
+ * 
+ * @return void
  */
 class ContactsTableSeeder extends Seeder {
-    public function run() {
+    public function run(): void {
         $faker = Faker::create();
         
         $numberOfContacts = 5;
