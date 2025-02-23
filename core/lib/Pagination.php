@@ -53,7 +53,7 @@ class Pagination {
      *
      * @return string The HTML markup for the pagination controls.
      */
-    public static function pagination($current_page, $total_pages, $base_url = '?page=') {
+    public static function pagination(int $current_page, int $total_pages, string $base_url = '?page=') {
         $html = '<nav aria-label="Page navigation">';
         $html .= '<ul class="pagination justify-content-center">';
 
