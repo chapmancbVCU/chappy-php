@@ -37,18 +37,23 @@ The `Gemfile` manages Jekyll dependencies. Ensure it contains:
 
 ```ruby
 source "https://rubygems.org"
+```
 
 # Use the GitHub Pages gem, which includes Jekyll
+```ruby
 gem "github-pages", group: :jekyll_plugins
-
+```
 # Minima is included with GitHub Pages, so you don't need to specify a version.
+```ruby
 gem "minima"
 
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
 end
+```
 
 # Windows and JRuby fixes
+```ruby
 platforms :mingw, :x64_mingw, :mswin, :jruby do
   gem "tzinfo", ">= 1", "< 3"
   gem "tzinfo-data"
@@ -57,13 +62,6 @@ end
 gem "wdm", "~> 0.1", platforms: [:mingw, :x64_mingw, :mswin]
 gem "http_parser.rb", "~> 0.6.0", platforms: [:jruby]
 ```
-
-### Why this works:
-- It **removes direct Jekyll installation** (`gem "jekyll"`) since GitHub Pages manages Jekyll automatically.
-- It **ensures compatibility with GitHub Pages** by using `github-pages`.
-- It **keeps Minima included** without forcing a specific version.
-
----
 
 ## 4. Install Dependencies
 
@@ -76,8 +74,6 @@ Now install the correct versions:
 ```sh
 bundle install
 ```
-
----
 
 ## 5. Configure `_config.yml`
 
@@ -146,8 +142,6 @@ git commit -m "Set up Jekyll for framework guide"
 git push origin main
 ```
 
----
-
 ## 8. Enable GitHub Pages
 
 1. Go to your repository on **GitHub**.
@@ -161,8 +155,6 @@ Your site will be available at:
 - `https://yourusername.github.io/your-repo-name/`
 - OR `https://yourusername.github.io/` (for user/org sites).
 
----
-
 ## 9. Verify Deployment
 
 After a few minutes, visit:
@@ -173,8 +165,6 @@ To check for issues:
 ```sh
 bundle exec github-pages health-check
 ```
-
----
 
 ## 10. (Optional) Custom Domain
 
