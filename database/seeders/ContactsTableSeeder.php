@@ -11,6 +11,11 @@ use Console\App\Helpers\Tools;
  * @return void
  */
 class ContactsTableSeeder extends Seeder {
+    /**
+     * Runs the database seeder
+     *
+     * @return void
+     */
     public function run(): void {
         $faker = Faker::create('en_us');
         
