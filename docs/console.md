@@ -37,6 +37,7 @@ Below is a list of available commands. Most items in this list contains a link t
 | migrate | Runs a Database Migration |
 | migrate:drop-all | Drops all database tables |
 | migrate:refresh | Drops all tables and runs a Database Migration |
+| seed:run | Runs database seeders |
 | serve:docs | Locally serves jekyll based user guide locally |
 | test | Performs a phpunit test |
 | tools:mk-env | Creates the .env file |
