@@ -18,9 +18,11 @@ class UploadProfileImage extends Uploads {
      * @param bool $multiple A boolean flag to set whether or not we are 
      * working with a single file upload or an array regarding form setup.
      * @param string $bucket The location where the files will be stored.
+     * @param string $sizeMsg The message describing the maximum allowable 
+     * size usually described as <size_as_an_int><bytes|mb|gb> (e.g.: 5mb).
      */
-    public function __construct(array|string $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket) {
-        parent::__construct($files, $fileTypes, $maxAllowedSize, $multiple, $bucket);
+    public function __construct(array|string $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket, string $sizeMsg) {
+        parent::__construct($files, $fileTypes, $maxAllowedSize, $multiple, $bucket, $sizeMsg);
     }
 
     /**
@@ -51,21 +53,6 @@ class UploadProfileImage extends Uploads {
                 $name = $file['name'];
                 $msg = $name . " is not an allowed file type. Please use the following types: " . implode(', ', $reportTypes);
                 $this->addErrorMessage($name, $msg);
-            }
-        }
-    }
-
-    /**
-     * Validates file size and sets error message if file is too large.
-     *
-     * @return void
-     */
-    protected function validateSize(): void {
-        foreach($this->_files as $file){
-            $name = $file['name'];
-            if($file['size'] > $this->_maxAllowedSize){
-                $msg = $name . " is over the max allowed size of 5mb.";
-                $this->addErrorMessage($name,$msg);
             }
         }
     }

@@ -46,7 +46,7 @@ class ProfileController extends Controller {
             $isFiles = $files['tmp_name'] != '';
             if($isFiles) {
                 $uploads = new UploadProfileImage($files, ProfileImages::getAllowedFileTypes(), 
-                    ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS);
+                    ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS, "5mb");
                 
                 $uploads->runValidation();
                 $imagesErrors = $uploads->validates();

@@ -11,6 +11,7 @@ class Uploads {
     private array $_errors = [];
     protected array $_files= []; 
     protected int $_maxAllowedSize;
+    protected string $sizeMsg;
 
     /**
      * Creates instance of Uploads class.
@@ -23,12 +24,15 @@ class Uploads {
      * @param bool $multiple A boolean flag to set whether or not we are 
      * working with a single file upload or an array regarding form setup.
      * @param string $bucket The location where the files will be stored.
+     * @param string $sizeMsg The message describing the maximum allowable 
+     * size usually described as <size_as_an_int><bytes|mb|gb> (e.g.: 5mb).
      */
-    public function __construct(array|string $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket) {
+    public function __construct(array|string $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket, string $sizeMsg) {
         $this->_files = self::restructureFiles($files, $multiple);
         $this->_allowedFileTypes = $fileTypes;
         $this->_maxAllowedSize = $maxAllowedSize;
         $this->_bucket = $bucket;
+        $this->sizeMsg = $sizeMsg;
     }
     
     /**
@@ -133,5 +137,13 @@ class Uploads {
      *
      * @return void
      */
-    protected function validateSize(): void { }
+    protected function validateSize(): void {
+        foreach($this->_files as $file){
+            $name = $file['name'];
+            if($file['size'] > $this->_maxAllowedSize){
+                $msg = $name . " is over the max allowed size of " . $this->sizeMsg . ".";
+                $this->addErrorMessage($name,$msg);
+            }
+        } 
+    }
 }
