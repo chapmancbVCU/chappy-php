@@ -32,6 +32,7 @@ Below is a list of available commands. Most items in this list contains a link t
 | make:controller| Generates a new controller class |
 | make:migration | Generates a Database Migration |
 | make:model | Generates a new model file |
+| make:seeder | Creates a new database seeder class |
 | make:test | Generates a new test class |
 | make:upload | Create class that extends Uploads |
 | migrate | Runs a Database Migration |
