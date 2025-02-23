@@ -104,7 +104,8 @@ class ContactsController extends Controller {
      */
     public function indexAction(): void {
         // Determine current page (default to 1)
-        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $getPage = $this->request->get('page');
+        $page =  $getPage != null ? $getPage : 1;
         $limit = 2; // Number of contacts per page
         $offset = ($page - 1) * $limit;
 
