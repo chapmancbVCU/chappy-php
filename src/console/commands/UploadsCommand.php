@@ -44,7 +44,7 @@ use Core\Lib\Utilities\Uploads;
 /**
  * Supports the ability to upload ' . $uploadName . ' files.
  */
-public class Upload'.$uploadName.' extends Uploads {
+class Upload'.$uploadName.' extends Uploads {
     /**
      * Creates instance of Upload'.$uploadName.' class.
      *
