@@ -14,12 +14,12 @@ class ContactsTableSeeder extends Seeder {
     public function run(): void {
         $faker = Faker::create('en_us');
         
-        $numberOfContacts = 5;
+        $numberOfContacts = 10;
         for($i = 0; $i < $numberOfContacts; $i++) {
             $contact = new Contacts();
             $contact->fname = $faker->name;
             $contact->lname = $faker->name;
-            $contact->email = $faker->unique()->safeEmail;
+            $contact->email = $faker->safeEmail;
             $contact->address = $faker->streetAddress;
             $contact->city = $faker->city;
             $contact->state = $faker->stateAbbr;
