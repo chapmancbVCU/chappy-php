@@ -12,7 +12,7 @@ use Console\App\Helpers\Tools;
  */
 class ContactsTableSeeder extends Seeder {
     public function run(): void {
-        $faker = Faker::create();
+        $faker = Faker::create('en_us');
         
         $numberOfContacts = 5;
         for($i = 0; $i < $numberOfContacts; $i++) {
@@ -20,10 +20,10 @@ class ContactsTableSeeder extends Seeder {
             $contact->fname = $faker->name;
             $contact->lname = $faker->name;
             $contact->email = $faker->unique()->safeEmail;
-            $contact->address = $faker->address;
+            $contact->address = $faker->streetAddress;
             $contact->city = $faker->city;
-            $contact->state = 'VA';
-            $contact->zip = '12345';
+            $contact->state = $faker->stateAbbr;
+            $contact->zip = $faker->postcode;
             $contact->home_phone = $faker->phoneNumber;
             $contact->user_id = 1;
             $contact->save();
