@@ -114,7 +114,7 @@ class ContactsController extends Controller {
         ]);
 
         // Retrieve paginated contacts using the base model’s find method
-        $pagination = new Pagination($page, 2, $totalItems);
+        $pagination = new Pagination($page, 10, $totalItems);
         $contacts = Contacts::find($pagination->paginationParams(
             'user_id = ?', 
             [$this->currentUser->id], 
