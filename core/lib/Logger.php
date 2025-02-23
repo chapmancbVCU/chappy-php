@@ -17,7 +17,7 @@ class Logger {
      * @return void
      */
     public static function log(string $message, string $level = 'info'): void {
-        if(DEBUG == "true") {
+        if(DEBUG == "true" && !defined('CONSOLE_COMMAND')) {
             $date = date('Y-m-d H:i:s');
             $logMessage = "[$date - GMT] [$level] $message" . PHP_EOL;
             $logDir = dirname(self::$logFile);
