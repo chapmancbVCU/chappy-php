@@ -88,11 +88,11 @@ class Upload'.$uploadName.' extends Uploads {
         if(!file_exists($fullPath)) {
             $resp = file_put_contents($fullPath, $content);
         } else {
-            Tools::info('Command already exists', 'red');
+            Tools::info('Upload class already exists', 'red');
             return Command::FAILURE;
         }
 
-        Tools::info('Command successfully created');
+        Tools::info('Upload class successfully created');
         return Command::SUCCESS;
     }
 }
