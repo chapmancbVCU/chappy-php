@@ -103,8 +103,34 @@ class ContactsController extends Controller {
      * @return void
      */
     public function indexAction(): void {
-        $contacts = Contacts::findAllByUserId($this->currentUser->id, ['order'=>'lname, fname']);
+        // Determine current page (default to 1)
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $limit = 2; // Number of contacts per page
+        $offset = ($page - 1) * $limit;
+
+        // Build conditions including pagination parameters
+        $params = [
+            'conditions' => 'user_id = ?',
+            'bind'       => [$this->currentUser->id],
+            'order'      => 'lname, fname',
+            'limit'      => $limit,
+            'offset'     => $offset
+        ];
+
+        // Retrieve paginated contacts using the base model’s find method
+        $contacts = Contacts::find($params);
+
+        // Get the total number of contacts for the user
+        $total_items = Contacts::findTotal([
+            'conditions' => 'user_id = ?',
+            'bind'       => [$this->currentUser->id]
+        ]);
+        $total_pages = ceil($total_items / $limit);
+
+        // Pass data to the view
         $this->view->contacts = $contacts;
+        $this->view->current_page = $page;
+        $this->view->total_pages = $total_pages;
         $this->view->render('contacts/index');
     }
 
