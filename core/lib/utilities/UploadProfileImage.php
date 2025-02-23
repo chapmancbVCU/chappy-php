@@ -4,11 +4,21 @@ namespace Core\Lib\Utilities;
 use Core\Helper;
 use Core\Lib\Utilities\Uploads;
 /**
- * 
- * 
- * @property $_files
+ * Supports the ability to upload a single profile image at a time.
  */
 class UploadProfileImage extends Uploads {
+    /**
+     * Creates instance of UploadProfileImage class.
+     *
+     * @param array|string $files Array of files or the name to be uploaded.
+     * @param array $imageTypes An array containing a list of acceptable file 
+     * types for a particular upload action.
+     * @param int $maxAllowedSize Maximum allowable size for a particular 
+     * file.  This can vary depending on requirements.
+     * @param bool $multiple A boolean flag to set whether or not we are 
+     * working with a single file upload or an array regarding form setup.
+     * @param string $bucket The location where the files will be stored.
+     */
     public function __construct(array|string $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket) {
         parent::__construct($files, $fileTypes, $maxAllowedSize, $multiple, $bucket);
     }

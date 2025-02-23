@@ -15,13 +15,14 @@ class Uploads {
     /**
      * Creates instance of Uploads class.
      *
-     * @param array $files Array of files to be uploaded.
+     * @param array|string $files Array of files to be uploaded.
      * @param array $imageTypes An array containing a list of acceptable file 
      * types for a particular upload action.
      * @param int $maxAllowedSize Maximum allowable size for a particular 
      * file.  This can vary depending on requirements.
      * @param bool $multiple A boolean flag to set whether or not we are 
      * working with a single file upload or an array regarding form setup.
+     * @param string $bucket The location where the files will be stored.
      */
     public function __construct(array|string $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket) {
         $this->_files = self::restructureFiles($files, $multiple);
