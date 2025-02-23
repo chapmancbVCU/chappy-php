@@ -13,7 +13,7 @@ class DBSeeder {
         $seederName = $input->getArgument('seeder-name');
         if (php_sapi_name() != 'cli') die('Restricted');
         $ext = ".php";
-        $fullPath = ROOT.DS.'database'.DS.'seeders'.DS.$seederName.'TableSeeder'.$ext;
+        $fullPath = ROOT.DS.'database'.DS.'seeders'.DS.ucfirst($seederName).'TableSeeder'.$ext;
         $content = '<?php
 namespace Database\Seeders;
 
