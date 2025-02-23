@@ -123,8 +123,7 @@ class ContactsController extends Controller {
 
         // Configure the view
         $this->view->contacts = $contacts;
-        $this->view->current_page = $page;
-        $this->view->total_pages = $pagination->totalPages();
+        $this->view->pagination = Pagination::pagination($page, $pagination->totalPages());
         $this->view->render('contacts/index');
     }
 

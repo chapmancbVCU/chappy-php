@@ -36,5 +36,5 @@
     </tbody>
 </table>
 
-<?= Pagination::pagination($this->current_page, $this->total_pages) ?>
+<?= $this->pagination ?>
 <?php $this->end(); ?>
