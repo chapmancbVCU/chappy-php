@@ -93,23 +93,11 @@
     
         
 
+            <div class="description">
+            <p><p>Supports the ability to upload a single profile image at a time.</p></p>                    </div>
             
         
     
-            <h2>Properties</h2>
-
-            <table class="table table-condensed">
-                    <tr>
-                <td class="type" id="property__files">
-                                                                                
-                                                                                
-                                    </td>
-                <td>$_files</td>
-                <td class="last"></td>
-                <td></td>
-            </tr>
-            </table>
-
     
             <h2>Methods</h2>
 
@@ -119,9 +107,9 @@
                     
                 </div>
                 <div class="col-md-8">
-                    <a href="#method___construct">__construct</a>(<abbr title="Core\Lib\Utilities\array|string">array|string</abbr> $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket)
+                    <a href="#method___construct">__construct</a>(<abbr title="Core\Lib\Utilities\array|string">array|string</abbr> $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket, string $sizeMsg)
         
-                                            <p><p>Creates instance of Uploads class.</p></p>                </div>
+                                            <p><p>Creates instance of UploadProfileImage class.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -187,9 +175,9 @@ file size and file type.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 12</div>
+        <div class="location">at line 24</div>
         <code>                    
-    <strong>__construct</strong>(<abbr title="Core\Lib\Utilities\array|string">array|string</abbr> $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket)
+    <strong>__construct</strong>(<abbr title="Core\Lib\Utilities\array|string">array|string</abbr> $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket, string $sizeMsg)
         </code>
     </h3>
     <div class="details">    
@@ -197,7 +185,7 @@ file size and file type.</p></p>                </div>
             
 
         <div class="method-description">
-                            <p><p>Creates instance of Uploads class.</p></p>                        
+                            <p><p>Creates instance of UploadProfileImage class.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -228,7 +216,13 @@ working with a single file upload or an array regarding form setup.</p></td>
                     <tr>
                 <td>string</td>
                 <td>$bucket</td>
-                <td></td>
+                <td><p>The location where the files will be stored.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$sizeMsg</td>
+                <td><p>The message describing the maximum allowable
+size usually described as <size_as_an_int>&lt;bytes|mb|gb&gt; (e.g.: 5mb).</p></td>
             </tr>
             </table>
 
@@ -243,7 +237,7 @@ working with a single file upload or an array regarding form setup.</p></td>
                     <div class="method-item">
                     <h3 id="method_getFiles">
         <div class="location">in <a href="../../../Core/Lib/Utilities/Uploads.html#method_getFiles">
-<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a> at line 54</div>
+<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a> at line 59</div>
         <code>                    array
     <strong>getFiles</strong>()
         </code>
@@ -276,7 +270,7 @@ working with a single file upload or an array regarding form setup.</p></td>
                     <div class="method-item">
                     <h3 id="method_restructureFiles">
         <div class="location">in <a href="../../../Core/Lib/Utilities/Uploads.html#method_restructureFiles">
-<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a> at line 66</div>
+<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a> at line 71</div>
         <code>        static            array
     <strong>restructureFiles</strong>(array $files, bool $multiple)
         </code>
@@ -325,7 +319,7 @@ process.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_runValidation">
-        <div class="location">at line 22</div>
+        <div class="location">at line 34</div>
         <code>                    void
     <strong>runValidation</strong>()
         </code>
@@ -359,7 +353,7 @@ file size and file type.</p></p>
                     <div class="method-item">
                     <h3 id="method_upload">
         <div class="location">in <a href="../../../Core/Lib/Utilities/Uploads.html#method_upload">
-<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a> at line 99</div>
+<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a> at line 104</div>
         <code>                    void
     <strong>upload</strong>(string $path, string $uploadName, string $fileName)
         </code>
@@ -412,7 +406,7 @@ file size and file type.</p></p>
                     <div class="method-item">
                     <h3 id="method_validates">
         <div class="location">in <a href="../../../Core/Lib/Utilities/Uploads.html#method_validates">
-<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a> at line 119</div>
+<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a> at line 124</div>
         <code>                    bool|array
     <strong>validates</strong>()
         </code>

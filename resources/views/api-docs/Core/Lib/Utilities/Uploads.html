@@ -107,7 +107,7 @@
                     
                 </div>
                 <div class="col-md-8">
-                    <a href="#method___construct">__construct</a>(<abbr title="Core\Lib\Utilities\array|string">array|string</abbr> $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket)
+                    <a href="#method___construct">__construct</a>(<abbr title="Core\Lib\Utilities\array|string">array|string</abbr> $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket, string $sizeMsg)
         
                                             <p><p>Creates instance of Uploads class.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -170,9 +170,9 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 26</div>
+        <div class="location">at line 30</div>
         <code>                    
-    <strong>__construct</strong>(<abbr title="Core\Lib\Utilities\array|string">array|string</abbr> $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket)
+    <strong>__construct</strong>(<abbr title="Core\Lib\Utilities\array|string">array|string</abbr> $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket, string $sizeMsg)
         </code>
     </h3>
     <div class="details">    
@@ -211,7 +211,13 @@ working with a single file upload or an array regarding form setup.</p></td>
                     <tr>
                 <td>string</td>
                 <td>$bucket</td>
-                <td></td>
+                <td><p>The location where the files will be stored.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$sizeMsg</td>
+                <td><p>The message describing the maximum allowable
+size usually described as <size_as_an_int>&lt;bytes|mb|gb&gt; (e.g.: 5mb).</p></td>
             </tr>
             </table>
 
@@ -225,7 +231,7 @@ working with a single file upload or an array regarding form setup.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_getFiles">
-        <div class="location">at line 54</div>
+        <div class="location">at line 59</div>
         <code>                    array
     <strong>getFiles</strong>()
         </code>
@@ -257,7 +263,7 @@ working with a single file upload or an array regarding form setup.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_restructureFiles">
-        <div class="location">at line 66</div>
+        <div class="location">at line 71</div>
         <code>        static            array
     <strong>restructureFiles</strong>(array $files, bool $multiple)
         </code>
@@ -306,7 +312,7 @@ process.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_runValidation">
-        <div class="location">at line 89</div>
+        <div class="location">at line 94</div>
         <code>                    void
     <strong>runValidation</strong>()
         </code>
@@ -338,7 +344,7 @@ process.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_upload">
-        <div class="location">at line 99</div>
+        <div class="location">at line 104</div>
         <code>                    void
     <strong>upload</strong>(string $path, string $uploadName, string $fileName)
         </code>
@@ -390,7 +396,7 @@ process.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validates">
-        <div class="location">at line 119</div>
+        <div class="location">at line 124</div>
         <code>                    bool|array
     <strong>validates</strong>()
         </code>
