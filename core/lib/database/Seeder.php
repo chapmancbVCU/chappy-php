@@ -2,7 +2,7 @@
 namespace Core\Lib\Database;
 
 use Core\DB;
-
+use Console\App\Helpers\Tools;
 /**
  * Abstract class for seeders.
  */
@@ -34,10 +34,10 @@ abstract class Seeder {
     protected function call(string $seederClass): void {
         if(class_exists($seederClass)) {
             $seeder = new $seederClass();
-            echo "Running {$seederClass}...\n";
+            Tools::info("Running {$seederClass}");
             $seeder->run();
         } else {
-            echo "Seeder class {$seederClass} not found.\n";
+            Tools::info("Seeder class {$seederClass} not found.", 'red');
         }
     }
 }

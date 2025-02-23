@@ -4,7 +4,7 @@ namespace Database\Seeders;
 use Faker\Factory as Faker;
 use Core\Lib\Database\Seeder;
 use App\Models\Contacts;
-
+use Console\App\Helpers\Tools;
 /**
  * Seeder for contacts table.
  * 
@@ -28,6 +28,6 @@ class ContactsTableSeeder extends Seeder {
             $contact->user_id = 1;
             $contact->save();
         }
-        echo "Seeded contacts table.\n";
+        Tools::info("Seeded contacts table.");
     }
 }
