@@ -11,7 +11,7 @@ class UploadProfileImage extends Uploads {
      * Creates instance of UploadProfileImage class.
      *
      * @param array|string $files Array of files or the name to be uploaded.
-     * @param array $imageTypes An array containing a list of acceptable file 
+     * @param array $fileTypes An array containing a list of acceptable file 
      * types for a particular upload action.
      * @param int $maxAllowedSize Maximum allowable size for a particular 
      * file.  This can vary depending on requirements.
