@@ -23,8 +23,8 @@ class ContactsTableSeeder extends Seeder {
         $i = 0;
         while($i < $numberOfContacts) {
             $contact = new Contacts();
-            $contact->fname = $faker->name;
-            $contact->lname = $faker->name;
+            $contact->fname = $faker->firstName;
+            $contact->lname = $faker->lastName;
             $contact->email = $faker->unique()->safeEmail;
             $contact->address = $faker->streetAddress;
             $contact->city = $faker->city;
