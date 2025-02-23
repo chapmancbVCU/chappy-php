@@ -15,18 +15,22 @@ class ContactsTableSeeder extends Seeder {
         $faker = Faker::create('en_us');
         
         $numberOfContacts = 10;
-        for($i = 0; $i < $numberOfContacts; $i++) {
+        $i = 0;
+        while($i < $numberOfContacts) {
             $contact = new Contacts();
             $contact->fname = $faker->name;
             $contact->lname = $faker->name;
-            $contact->email = $faker->safeEmail;
+            $contact->email = $faker->unique()->safeEmail;
             $contact->address = $faker->streetAddress;
             $contact->city = $faker->city;
             $contact->state = $faker->stateAbbr;
             $contact->zip = $faker->postcode;
             $contact->home_phone = $faker->phoneNumber;
             $contact->user_id = 1;
-            $contact->save();
+
+            if($contact->save()) {
+                $i++;
+            }
         }
         Tools::info("Seeded contacts table.");
     }
