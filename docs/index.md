@@ -13,7 +13,7 @@ Get to any resource within the Chappy.php Wiki from here.
 10. [Server Side Validation](server_side_validation)
 11. [Session and Flash Messages](session_and_flash_messages)
 12. [Unit Tests](unit_tests)
-13. [Uploads](uploads) - Coming soon
+13. [Uploads](uploads)
 14. [User Guide Setup With Jekyll](jekyll-setup)
 15. [User Profiles](user_profiles)
 16. [User Registration and Authentication](user_registration_and_authentication)
