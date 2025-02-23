@@ -1,4 +1,4 @@
-<?php use Core\Helper; ?>
+<?php use Core\Lib\Pagination; ?>
 <?php $this->setSiteTitle("My Contacts"); ?>
 <?php $this->start('body'); ?>
 <h2 class="text-center">My Contacts</h2>
@@ -36,5 +36,5 @@
     </tbody>
 </table>
 
-<?= Helper::pagination($this->current_page, $this->total_pages) ?>
+<?= Pagination::pagination($this->current_page, $this->total_pages) ?>
 <?php $this->end(); ?>

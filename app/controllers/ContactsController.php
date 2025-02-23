@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 use Core\{Controller, Helper, Session, Router};
+use Core\Lib\Pagination;
 use App\Models\{Contacts, Users};
 /**
  * Implements support for our Contacts Controller.  It contains actions for 
@@ -103,35 +104,27 @@ class ContactsController extends Controller {
      * @return void
      */
     public function indexAction(): void {
-        // Determine current page (default to 1)
-        $getPage = $this->request->get('page');
-        $page =  $getPage != null ? $getPage : 1;
-        $limit = 2; // Number of contacts per page
-        $offset = ($page - 1) * $limit;
-
-        // Build conditions including pagination parameters
-        $params = [
-            'conditions' => 'user_id = ?',
-            'bind'       => [$this->currentUser->id],
-            'order'      => 'lname, fname',
-            'limit'      => $limit,
-            'offset'     => $offset
-        ];
-
-        // Retrieve paginated contacts using the base model’s find method
-        $contacts = Contacts::find($params);
+        // Determine current page
+        $page = Pagination::currentPage($this->request);
 
         // Get the total number of contacts for the user
-        $total_items = Contacts::findTotal([
+        $totalItems = Contacts::findTotal([
             'conditions' => 'user_id = ?',
             'bind'       => [$this->currentUser->id]
         ]);
-        $total_pages = ceil($total_items / $limit);
 
-        // Pass data to the view
+        // Retrieve paginated contacts using the base model’s find method
+        $pagination = new Pagination($page, 2, $totalItems);
+        $contacts = Contacts::find($pagination->paginationParams(
+            'user_id = ?', 
+            [$this->currentUser->id], 
+            'lname, fname')
+        );
+
+        // Configure the view
         $this->view->contacts = $contacts;
         $this->view->current_page = $page;
-        $this->view->total_pages = $total_pages;
+        $this->view->total_pages = $pagination->totalPages();
         $this->view->render('contacts/index');
     }
 

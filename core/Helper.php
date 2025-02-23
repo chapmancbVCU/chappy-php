@@ -142,66 +142,6 @@ class Helper {
   }
 
   /**
-   * Renders Bootstrap 5 pagination controls.
-   *
-   * @param int    $current_page The current page number.
-   * @param int    $total_pages  The total number of pages.
-   * @param string $base_url     The base URL for pagination links. Default is '?page='.
-   *
-   * @return string The HTML markup for the pagination controls.
-   */
-  public static function pagination($current_page, $total_pages, $base_url = '?page=') {
-    $html = '<nav aria-label="Page navigation">';
-    $html .= '<ul class="pagination justify-content-center">';
-
-    // Previous Button
-    if ($current_page <= 1) {
-      $html .= '<li class="page-item disabled">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>';
-    } else {
-      $html .= '<li class="page-item">
-                  <a class="page-link" href="' . $base_url . ($current_page - 1) . '" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>';
-    }
-
-    // Page Number Links
-    for ($i = 1; $i <= $total_pages; $i++) {
-      if ($i == $current_page) {
-        $html .= '<li class="page-item active">
-                    <a class="page-link" href="' . $base_url . $i . '">' . $i . '</a>
-                  </li>';
-      } else {
-        $html .= '<li class="page-item">
-                    <a class="page-link" href="' . $base_url . $i . '">' . $i . '</a>
-                  </li>';
-      }
-    }
-
-    // Next Button
-    if ($current_page >= $total_pages) {
-      $html .= '<li class="page-item disabled">
-                  <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>';
-    } else {
-      $html .= '<li class="page-item">
-                  <a class="page-link" href="' . $base_url . ($current_page + 1) . '" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>';
-    }
-
-    $html .= '</ul></nav>';
-    return $html;
-  }
-
-  /**
    * Accepts UTC time in format Y-m-d H:i:s and returns a string describing  
    * how much time has elapsed.
    *
