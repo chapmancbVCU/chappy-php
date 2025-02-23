@@ -79,7 +79,9 @@ class Upload'.$uploadName.' extends Uploads {
      * @return void
      */
     protected function validateFileType(): void { 
-        // Implement file type validation here.  See user guide for example.
+        // Setup file type reporting.
+
+        // Perform validation and set error messages.
     }
 }
 ';
