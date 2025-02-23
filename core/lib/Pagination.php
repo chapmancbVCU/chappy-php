@@ -47,9 +47,9 @@ class Pagination {
     /**
      * Renders Bootstrap 5 pagination controls.
      *
-     * @param int    $current_page The current page number.
-     * @param int    $total_pages  The total number of pages.
-     * @param string $base_url     The base URL for pagination links. Default is '?page='.
+     * @param int $current_page The current page number.
+     * @param int $total_pages The total number of pages.
+     * @param string $base_url The base URL for pagination links. Default is '?page='.
      *
      * @return string The HTML markup for the pagination controls.
      */
