@@ -6,6 +6,7 @@
 3. [Setting Up the Seeder Class](#seeder-class-setup)
 4. [Setting Up the DatabaseSeeder Class](#database-seeder)
 5. [Running a Database Seeder](#running-seeder)
+
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 This framework supports the ability to seed a database with fake data utilizing a package called FakerPHP.  Consult their documentation [here](https://fakerphp.org/) for more information about what they support.  Using this package, along with the native support for Seeder classes you are able to populate tables in your database with test seeder data.
 
