@@ -14,10 +14,10 @@ This framework supports the ability to seed a database with fake data utilizing 
 You can easily create a new database seeder by running the the make:seeder console command.  This command has the following format:
 
 ```sh
-php console make:seeder ${seeder-name}
+php console make:seeder ${seederName}
 ```
 
-The seeder-name is the name of your model and the table you want to populate with data.  We will use the Contact management system as an example.  Running the following command,
+The seederName is the name of your model and the table you want to populate with data.  We will use the Contact management system as an example.  Running the following command,
 
 ```sh
 php console make:seeder Contacts
