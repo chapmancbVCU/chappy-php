@@ -6,6 +6,7 @@ Get to any resource within the Chappy.php Wiki from here.
 3. [Console](console)
 4. [Controllers](controllers)
 5. [Database Operations](database_operations)
+    * A. [Database Seeders](database_seeders)
 6. [Forms](forms)
 7. [Getting Started](getting_started)
 8. [JavaScript](javascript)
