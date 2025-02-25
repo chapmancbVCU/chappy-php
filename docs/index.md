@@ -6,7 +6,7 @@ Get to any resource within the Chappy.php Wiki from here.
 3. [Console](console)
 4. [Controllers](controllers)
 5. [Database Operations](database_operations)
-    * A. [Database Seeders](database_seeders)
+    * [Database Seeders](database_seeders)
 6. [Forms](forms)
 7. [Getting Started](getting_started)
 8. [JavaScript](javascript)
@@ -18,6 +18,9 @@ Get to any resource within the Chappy.php Wiki from here.
 14. [User Guide Setup With Jekyll](jekyll-setup)
 15. [User Profiles](user_profiles)
 16. [User Registration and Authentication](user_registration_and_authentication)
-17. [Views, Components, and Layouts](views) - Coming soon
-
+17. [Views Introduction](views_intro) - Coming soon
+    * [Views](views)
+    * [Components](components)
+    * [Layouts](layouts)
+    * [Pagination](pagination)
 [Visit us on GitHub!](https://github.com/chapmancbVCU/chappy-php)
