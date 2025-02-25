@@ -16,7 +16,6 @@ $iterator = Finder::create()
         'node_modules',
         'config',
         'public',
-        'node_modules',
         'logs',
         'cache',
         'resources/views/api-docs']
