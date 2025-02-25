@@ -33,6 +33,7 @@ Originally a fork of the Ruah PHP MVC framework based on the MVC PHP Framework t
 19. Vite asset bundling
 20. Pagination support
 21. Database seeders
+22. Contact Management System app for testbed purposes
 
 If you have a feature that you would like to be supported please create a request under the Issues tab.
 
