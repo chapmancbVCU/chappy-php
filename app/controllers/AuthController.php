@@ -90,7 +90,7 @@ class AuthController extends Controller {
             $files = $_FILES['profileImage'];
             if($files['tmp_name'] != '') {
                 $uploads = new UploadProfileImage($files, ProfileImages::getAllowedFileTypes(), 
-                    ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS);
+                    ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS, "5mb");
                 
                 $uploads->runValidation();
                 $imagesErrors = $uploads->validates();
