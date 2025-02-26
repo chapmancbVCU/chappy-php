@@ -1,5 +1,5 @@
 <?php
-namespace Console\App\Helpers;
+namespace Console\Helpers;
 
 use Core\DB;
 use PDO;

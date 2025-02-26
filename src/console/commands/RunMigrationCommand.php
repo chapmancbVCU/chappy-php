@@ -3,7 +3,7 @@ namespace Console\Commands;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Console\App\Helpers\Migrate;
+use Console\Helpers\Migrate;
 /**
  * Supports ability to run a migration file.
  */

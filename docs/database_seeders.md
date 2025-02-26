@@ -30,7 +30,7 @@ namespace Database\Seeders;
 
 use Faker\Factory as Faker;
 use Core\Lib\Database\Seeder;
-use Console\App\Helpers\Tools;
+use Console\Helpers\Tools;
 
 // Import your model
 use App\Models\Contacts;

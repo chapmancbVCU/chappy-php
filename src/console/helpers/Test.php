@@ -1,6 +1,6 @@
 <?php
-namespace Console\App\Helpers;
-use Console\App\Helpers\Tools;
+namespace Console\Helpers;
+use Console\Helpers\Tools;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Command\Command;

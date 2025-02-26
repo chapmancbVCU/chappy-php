@@ -2,7 +2,7 @@
 namespace Core\Lib\Database;
 
 use Core\DB;
-use Console\App\Helpers\Tools;
+use Console\Helpers\Tools;
 /**
  * Abstract class for seeders.
  */

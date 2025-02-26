@@ -1,8 +1,8 @@
 <?php
 namespace Console\Commands;
  
-use Console\App\Helpers\Tools;
-use Console\App\Helpers\Controller;
+use Console\Helpers\Tools;
+use Console\Helpers\Controller;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;

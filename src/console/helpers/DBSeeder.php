@@ -1,5 +1,5 @@
 <?php
-namespace Console\App\Helpers;
+namespace Console\Helpers;
 
 use Database\Seeders\DatabaseSeeder;
 use Symfony\Component\Console\Command\Command;
@@ -19,7 +19,7 @@ namespace Database\Seeders;
 
 use Faker\Factory as Faker;
 use Core\Lib\Database\Seeder;
-use Console\App\Helpers\Tools;
+use Console\Helpers\Tools;
 
 // Import your model
 use App\Models\\'.ucfirst($seederName).';

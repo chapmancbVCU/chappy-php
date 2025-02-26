@@ -1,5 +1,5 @@
 <?php
-namespace Console\App\Helpers;
+namespace Console\Helpers;
 
 /**
  * Helper class for controller related console commands.

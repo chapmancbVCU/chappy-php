@@ -4,7 +4,7 @@ namespace Database\Seeders;
 use Faker\Factory as Faker;
 use Core\Lib\Database\Seeder;
 use App\Models\Contacts;
-use Console\App\Helpers\Tools;
+use Console\Helpers\Tools;
 /**
  * Seeder for contacts table.
  * 

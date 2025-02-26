@@ -4,7 +4,7 @@ namespace Console\Commands;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Console\App\Helpers\ProfileImageDir;
+use Console\Helpers\ProfileImageDir;
 
 /**
  * Run this after performing the migrate:refresh command to delete all 

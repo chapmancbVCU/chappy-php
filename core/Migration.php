@@ -1,7 +1,7 @@
 <?php
 namespace Core;
 use Core\{DB, Helper};
-use Console\App\Helpers\Tools;
+use Console\Helpers\Tools;
 
 /**
  * Supports database migration operations.
