@@ -1,5 +1,5 @@
 <?php
-namespace Console\App\Commands;
+namespace Console\Commands;
 use Core\Helper;
 use Console\App\Helpers\Test;
 use Symfony\Component\Console\Command\Command;

@@ -1,5 +1,5 @@
 <?php
-namespace Console\App\Commands;
+namespace Console\Commands;
  
 use Console\App\Helpers\Migrate;
 use Symfony\Component\Console\Command\Command;

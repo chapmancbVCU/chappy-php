@@ -1,5 +1,5 @@
 <?php
-namespace Console\App\Commands;
+namespace Console\Commands;
 
 use Console\App\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
@@ -39,7 +39,7 @@ class MakeCommand extends Command
         $ext = ".php";
         $fullPath = ROOT.DS.'src'.DS.'console'.DS.'commands'.DS.$commandName.'Command'.$ext;
         $content = '<?php
-namespace Console\App\Commands;
+namespace Console\Commands;
  
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

@@ -1,21 +1,21 @@
-#!/user/bin/env php
+#!/usr/bin/env php
 <?php
+
+require __DIR__ . '/vendor/autoload.php';
 
 use Dotenv\Dotenv;
 use Symfony\Component\Console\Application;
 
 define('DS', DIRECTORY_SEPARATOR);
-define('ROOT', dirname(__FILE__));
+define('ROOT', __DIR__);
 
-require_once('vendor/autoload.php');
+// Load environment variables
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-// Load configuration and helper functions.
-$array =  array('config', 'database', 'console');
-
-foreach ($array as $value) {
-    require_once(ROOT . DS . 'config' . DS . $value . '.php');
+// Load configuration files
+foreach (glob(ROOT . DS . 'config' . DS . '*.php') as $configFile) {
+    require_once $configFile;
 }
 
 function autoload($className){
@@ -29,42 +29,19 @@ function autoload($className){
 }
 
 spl_autoload_register('autoload');
-use Console\App\Commands\APICommand;
-use Console\App\Commands\DropTablesCommand;
-use Console\App\Commands\GenerateControllerCommand;
-use Console\App\Commands\GenerateMigrationCommand;
-use Console\App\Commands\GenerateModelCommand;
-use Console\App\Commands\MakeCommand;
-use Console\App\Commands\MakeEnvCommand;
-use Console\App\Commands\MakeProfileImagesDirCommand;
-use Console\App\Commands\MakeSeederCommand;
-use Console\App\Commands\MakeTestCommand;
-use Console\App\Commands\MigrateRefreshCommand;
-use Console\App\Commands\RemoveLogsCommand;
-use Console\App\Commands\RemoveProfileImagesCommand;
-use Console\App\Commands\RunMigrationCommand;
-use Console\App\Commands\RunTestCommand;
-use Console\App\Commands\SeedCommand;
-use Console\App\Commands\ServeUserGuideCommand;
-use Console\App\Commands\UploadsCommand;
- 
+
+// Initialize Symfony Console application
 $app = new Application();
-$app->add(new APICommand());
-$app->add(new DropTablesCommand());
-$app->add(new GenerateControllerCommand());
-$app->add(new GenerateMigrationCommand());
-$app->add(new GenerateModelCommand());
-$app->add(new MakeCommand());
-$app->add(new MakeEnvCommand());
-$app->add(new MakeProfileImagesDirCommand());
-$app->add(new MakeSeederCommand());
-$app->add(new MakeTestCommand());
-$app->add(new MigrateRefreshCommand());
-$app->add(new RemoveLogsCommand());
-$app->add(new RemoveProfileImagesCommand());
-$app->add(new RunMigrationCommand());
-$app->add(new RunTestCommand());
-$app->add(new SeedCommand());
-$app->add(new ServeUserGuideCommand);
-$app->add(new UploadsCommand());
+
+// Dynamically load and add command classes
+$commandNamespace = 'Console\\Commands';
+$commandDir = ROOT . DS . 'src' . DS . 'console' . DS . 'commands';
+
+foreach (glob($commandDir . DS . '*.php') as $commandFile) {
+    $commandClass = $commandNamespace . '\\' . pathinfo($commandFile, PATHINFO_FILENAME);
+    if (class_exists($commandClass)) {
+        $app->add(new $commandClass());
+    }
+}
+
 $app->run();
