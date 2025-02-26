@@ -1,7 +1,6 @@
 #!/user/bin/env php
 <?php
 
-require __DIR__.'/vendor/autoload.php';
 use Dotenv\Dotenv;
 use Symfony\Component\Console\Application;
 
