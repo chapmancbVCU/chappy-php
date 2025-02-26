@@ -1,6 +1,8 @@
 <?php
 namespace Console\Helpers;
 
+use Symfony\Component\Console\Command\Command;
+
 /**
  * Contains functions for miscellaneous tasks.
  */
@@ -62,6 +64,25 @@ class Tools {
             echo "\e[".$textColor[$text].";".$backgroundColor[$background]."m\n\n"."   ".$message."\n\e[0m\n";
         } else {
             echo "\e[0;37;41m\n\n"."   Invalid background or text color.\n\e[0m\n";
+        }
+    }
+
+    /**
+     * Generates files for console commands
+     *
+     * @param string $path Where the file will be written.
+     * @param string $content The contents of the file to be created.
+     * @param string $name The name of the file, class, or other relevant information.
+     * @return int
+     */
+    public static function writeFile(string $path, string $content, string $name): int {
+        if(!file_exists($path)) {
+            $resp = file_put_contents($path, $content);
+            Tools::info(ucfirst($name) . ' successfully created');
+            return Command::SUCCESS;
+        } else {
+            Tools::info(ucfirst($name) . ' already exists', 'red');
+            return Command::FAILURE;
         }
     }
 }
