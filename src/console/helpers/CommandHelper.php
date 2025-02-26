@@ -66,6 +66,41 @@ class '.$commandName.'Command extends Command {
 
         Tools::info('Command successfully created');
         return Command::SUCCESS;
-    
+    }
+
+    /**
+     * Generates new class that contains functions that support multiple 
+     * console commands.
+     *
+     * @param InputInterface $input The name of the command helper class.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeHelper(InputInterface $input): int {
+        $helperName = $input->getArgument('helper-name');
+        if (php_sapi_name() != 'cli') die('Restricted');
+        $ext = ".php";
+        $fullPath = ROOT.DS.'src'.DS.'console'.DS.'helpers'.DS.$helperName.$ext;
+        $content = '<?php
+namespace Console\Helpers;
+
+use Symfony\Component\Console\Command\Command;
+
+/**
+ * 
+ */
+class '. ucfirst($helperName).' {
+
+}
+';
+
+        if(!file_exists($fullPath)) {
+            $resp = file_put_contents($fullPath, $content);
+        } else {
+            Tools::info('Command helper already exists', 'red');
+            return Command::FAILURE;
+        }
+
+        Tools::info('Command helper successfully created');
+        return Command::SUCCESS;
     }
 }

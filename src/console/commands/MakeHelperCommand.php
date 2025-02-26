@@ -1,6 +1,7 @@
 <?php
 namespace Console\Commands;
- 
+
+use Console\Helpers\CommandHelper;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -18,7 +19,10 @@ class MakeHelperCommand extends Command {
      */
     protected function configure(): void
     {
-        //
+        $this->setName('make:command-helper')
+            ->setDescription('Generates a class that supports multiple commands')
+            ->setHelp('php console make:command-helper <helper_name>')
+            ->addArgument('helper-name', InputArgument::REQUIRED, 'Pass the command helper\'s name');
     }
 
     /**
@@ -30,6 +34,6 @@ class MakeHelperCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        //
+        return CommandHelper::makeHelper($input);
     }
 }
