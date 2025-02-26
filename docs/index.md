@@ -19,7 +19,7 @@ Get to any resource within the Chappy.php Wiki from here.
 15. [User Profiles](user_profiles)
 16. [User Registration and Authentication](user_registration_and_authentication)
 17. [Views Introduction](views_intro)
-    * [api-docs and doctum API Generation](doctum) - Coming soon
+    * [api-docs and doctum API Generation](doctum)
     * [Components](components) - Coming soon
     * [Layouts](layouts) - Coming soon
     * [Navigation Bar](nav_bar) - Coming soon
