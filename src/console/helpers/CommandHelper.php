@@ -76,7 +76,7 @@ class '.$commandName.'Command extends Command {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeHelper(InputInterface $input): int {
-        $helperName = $input->getArgument('helper-name');
+        $helperName = ucfirst($input->getArgument('helper-name'));
         if (php_sapi_name() != 'cli') die('Restricted');
         $ext = ".php";
         $fullPath = ROOT.DS.'src'.DS.'console'.DS.'helpers'.DS.$helperName.$ext;
@@ -88,7 +88,7 @@ use Symfony\Component\Console\Command\Command;
 /**
  * 
  */
-class '. ucfirst($helperName).' {
+class '. $helperName.' {
 
 }
 ';
