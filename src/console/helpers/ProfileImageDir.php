@@ -14,7 +14,7 @@ class ProfileImageDir {
     /**
      * Performs mkdir operation on the profile images directory
      *
-     * @return integer A value that indicates success, invalid, or failure.
+     * @return int A value that indicates success, invalid, or failure.
      */
     public static function mkdirProfileImages(): int {
         if(!file_exists(self::$_path)) {
@@ -30,7 +30,7 @@ class ProfileImageDir {
     /**
      * Performs rmdir operation on the profile images directory.
      *
-     * @return integer A value that indicates success, invalid, or failure.
+     * @return int A value that indicates success, invalid, or failure.
      */
     public static function rmdirProfileImageDirectories(): int {
         $it = new RecursiveDirectoryIterator(self::$_path, RecursiveDirectoryIterator::SKIP_DOTS);

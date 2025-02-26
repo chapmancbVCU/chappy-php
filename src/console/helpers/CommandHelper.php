@@ -14,7 +14,7 @@ class CommandHelper {
      * Generates new class that extends Command.
      *
      * @param InputInterface $input The name of the Command child class.
-     * @return int
+     * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeCommand(InputInterface $input): int {
         $commandName = $input->getArgument('command-name');
@@ -49,7 +49,7 @@ class '.$commandName.'Command extends Command {
      *
      * @param InputInterface $input The input.
      * @param OutputInterface $output The output.
-     * @return integer
+     * @return int A value that indicates success, invalid, or failure.
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {

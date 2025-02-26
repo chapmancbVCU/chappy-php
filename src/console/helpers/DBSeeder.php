@@ -9,6 +9,12 @@ use Symfony\Component\Console\Input\InputInterface;
  */
 class DBSeeder {
 
+    /**
+     * Creates a class for seeding a database.
+     *
+     * @param InputInterface $input The input for getting name of seeder class.
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeSeeder(InputInterface $input): int {
         $seederName = $input->getArgument('seeder-name');
         if (php_sapi_name() != 'cli') die('Restricted');
@@ -67,7 +73,7 @@ class '.ucfirst($seederName).'TableSeeder extends Seeder {
     /**
      * Runs command for seeding database.
      *
-     * @return integer
+     * @return int A value that indicates success, invalid, or failure.
      */
     public static function seed(): int {
         $seeder = new DatabaseSeeder();

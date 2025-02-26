@@ -12,6 +12,11 @@ use Console\Helpers\ProfileImageDir;
  */
 class RemoveProfileImagesCommand extends Command
 {
+    /**
+     * Configures the command.
+     *
+     * @return void
+     */
     protected function configure()
     {
         $this->setName('tools:rm-profile-images')
@@ -19,6 +24,13 @@ class RemoveProfileImagesCommand extends Command
             ->setHelp('Might need to use sudo on linux/mac -> sudo php console tools:rm-profile-images.');
     }
  
+    /**
+     * Executes the command
+     *
+     * @param InputInterface $input The input.
+     * @param OutputInterface $output The output.
+     * @return int A value that indicates success, invalid, or failure.
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         return ProfileImageDir::rmdirProfileImageDirectories();

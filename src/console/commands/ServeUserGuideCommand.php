@@ -28,7 +28,7 @@ class ServeUserGuideCommand extends Command {
      *
      * @param InputInterface $input The input.
      * @param OutputInterface $output The output.
-     * @return integer
+     * @return int A value that indicates success, invalid, or failure.
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {

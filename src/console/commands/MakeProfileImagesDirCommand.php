@@ -12,7 +12,12 @@ use Console\Helpers\ProfileImageDir;
  */
 class MakeProfileImagesDirCommand extends Command
 {
-    protected function configure()
+    /**
+     * Configures the command.
+     *
+     * @return void
+     */
+    protected function configure(): void
     {
         $this->setName('init:mk-profile-images-dir')
             ->setDescription('Builds Profile Image Dir')

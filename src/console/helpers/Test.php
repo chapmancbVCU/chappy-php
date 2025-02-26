@@ -34,7 +34,7 @@ class '.$testName.' extends TestCase {
      * @param InputInterface $input Input obtained from the console used to 
      * set name of unit test we want to run.
      * @param OutputInterface $output The results of the test.
-     * @return integer A value that indicates success, invalid, or failure.
+     * @return int A value that indicates success, invalid, or failure.
      */
     public static function runTest(InputInterface $input, OutputInterface $output) {
         $testName = $input->getArgument('testname');

@@ -14,7 +14,7 @@ class Migrate {
     /**
      * Drops all migrations.
      *
-     * @return integer A value that indicates success, invalid, or failure.
+     * @return int A value that indicates success, invalid, or failure.
      */
     public static function dropAllTables(): int {
         // Load configuration and helper functions
@@ -50,7 +50,7 @@ class Migrate {
      * Generates a new migration.
      *
      * @param InputInterface $input 
-     * @return integer A value that indicates success, invalid, or failure.
+     * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeMigration(InputInterface $input): int {
         $tableName = $input->getArgument('table_name');
