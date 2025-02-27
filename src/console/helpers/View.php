@@ -71,4 +71,60 @@ class View {
             'Layout'
         );
     }
-}
+
+    /**
+     * Generates a new menu file
+     *
+     * @param InputInterface $input The name of the menu.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeMenu(InputInterface $input): int {
+        $menuName = $input->getArgument('menu-name');
+        if (php_sapi_name() != 'cli') die('Restricted');
+
+        return Tools::writeFile(
+            ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($menuName)."_menu.php",
+            self::menu($menuName),
+            "Menu file "
+        );
+    }
+
+    /**
+     * Returns a string containing contents for a menu.
+     *
+     * @param string $menuName The name for a new menu.
+     * @return string The contents for a new menu.
+     */
+    public static function menu(string $menuName): string {
+        return '<?php
+use Core\Router;
+use Core\Helper;
+$profileImage = Helper::getProfileImage();
+$menu = Router::getMenu(\''.$menuName.'_menu_acl\');
+$userMenu = Router::getMenu(\'user_menu\');
+?>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-5">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_menu" aria-controls="main_menu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="<?=APP_DOMAIN?>home"><?=MENU_BRAND?></a>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="main_menu">
+    <ul class="navbar-nav me-auto">
+      <?= Helper::buildMenuListItems($menu); ?>
+    </ul>
+    <ul class="navbar-nav me-2">
+      <?= Helper::buildMenuListItems($userMenu, "dropdown-menu-end"); ?>
+      <a class="pt-1" href="<?=APP_DOMAIN?>profile">
+        <?php if ($profileImage != null): ?>
+          <img class="img-thumbnail profile-img ms-2 p-0" style="width: 50px" src="<?=APP_DOMAIN . $profileImage->url?>"></img>
+        <?php endif; ?>
+      </a>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+';
+    }
+ }

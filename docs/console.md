@@ -32,7 +32,8 @@ Below is a list of available commands. Most items in this list contains a link t
 | make:command | Generates a new command class |
 | make:command-helper | Generates helper class that supports console commands |
 | make:controller| Generates a new controller class |
-| make:layout : Generates a new layout |
+| make:layout | Generates a new layout |
+| make:menu | Generates a new menu file |
 | make:migration | Generates a Database Migration |
 | make:model | Generates a new model file |
 | make:seeder | Creates a new database seeder class |
