@@ -48,10 +48,8 @@ class GenerateControllerCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $controllerName = $input->getArgument('controllername');
-
+        $controllerName = ucfirst($input->getArgument('controllername'));
         if (php_sapi_name() != 'cli') die('Restricted');
-        $fullPath = ROOT.DS.'app'.DS.'controllers'.DS.$controllerName.'Controller.php';
         
         // Test if --layout is properly set
         $layoutInput = $input->getOption('layout');
@@ -68,6 +66,8 @@ class GenerateControllerCommand extends Command
             $layout = $layoutInput;
         }
 
+        $layout = strtolower($layout);     // First character is always lower case.
+        
         // Test if --resource flag is set and generate appropriate version of file
         $resource = $input->getOption('resource');
         if($resource === false) {
@@ -82,15 +82,11 @@ class GenerateControllerCommand extends Command
             return Command::FAILURE;
         }
 
-        if(!file_exists($fullPath)) {
-            $resp = file_put_contents($fullPath, $content);
-        } else {
-            Tools::info('Controller already exists', 'red');
-            return Command::FAILURE;
-        }
-        Tools::info('Controller created');
-        return Command::SUCCESS;
-    }
-
-    
+        // Generate Controller class
+        return Tools::writeFile(
+            ROOT.DS.'app'.DS.'controllers'.DS.$controllerName.'Controller.php',
+            $content,
+            "Controller"
+        );
+    }  
 }

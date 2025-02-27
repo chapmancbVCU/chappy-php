@@ -16,11 +16,37 @@ class DBSeeder {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeSeeder(InputInterface $input): int {
-        $seederName = $input->getArgument('seeder-name');
+        $seederName = ucfirst($input->getArgument('seeder-name'));
         if (php_sapi_name() != 'cli') die('Restricted');
-        $ext = ".php";
-        $fullPath = ROOT.DS.'database'.DS.'seeders'.DS.ucfirst($seederName).'TableSeeder'.$ext;
-        $content = '<?php
+
+        // Generate Seeder class
+        return Tools::writeFile(
+            ROOT.DS.'database'.DS.'seeders'.DS.$seederName.'TableSeeder.php',
+            self::seeder($seederName),
+            'Seeder'
+        );
+    }
+    
+    /**
+     * Runs command for seeding database.
+     *
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function seed(): int {
+        $seeder = new DatabaseSeeder();
+        $seeder->run();
+        Tools::info('Database seeding complete');
+        return Command::SUCCESS;
+    }
+
+    /**
+     * Returns a string containing contents of a new Seeder class.
+     *
+     * @param string $seederName The name of the Seeder class.
+     * @return string The contents of the seeder class.
+     */
+    public static function seeder(string $seederName): string {
+        return '<?php
 namespace Database\Seeders;
 
 use Faker\Factory as Faker;
@@ -59,26 +85,5 @@ class '.ucfirst($seederName).'TableSeeder extends Seeder {
     }
 }
 ';
-        if(!file_exists($fullPath)) {
-            $resp = file_put_contents($fullPath, $content);
-        } else {
-            Tools::info('Seeder class already exists', 'red');
-            return Command::FAILURE;
-        }
-
-        Tools::info('Seeder class successfully created');
-        return Command::SUCCESS;
-    }
-    
-    /**
-     * Runs command for seeding database.
-     *
-     * @return int A value that indicates success, invalid, or failure.
-     */
-    public static function seed(): int {
-        $seeder = new DatabaseSeeder();
-        $seeder->run();
-        Tools::info('Database seeding complete');
-        return Command::SUCCESS;
     }
 }

@@ -53,29 +53,16 @@ class Migrate {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeMigration(InputInterface $input): int {
-        $tableName = $input->getArgument('table_name');
+        $tableName = strtolower($input->getArgument('table_name'));
         if (php_sapi_name() != 'cli') die('Restricted');
+        
+        // Generate Migration class
         $fileName = "Migration".time();
-        $ext = ".php";
-        $fullPath = ROOT.DS.'database'.DS.'migrations'.DS.$fileName.$ext;
-        $content = '<?php
-namespace Database\Migrations;
-use Core\Migration;
-
-class '.$fileName.' extends Migration {
-    public function up() {
-        $table = \''.$tableName.'\';
-        $this->createTable($table);
-    }
-
-    public function down() {
-        $this->dropTable(\''.$tableName.'\');
-    }
-}
-';
-        $resp = file_put_contents($fullPath, $content);
-        Tools::info('New migration file created');
-        return Command::SUCCESS;
+        return Tools::writeFile(
+            ROOT.DS.'database'.DS.'migrations'.DS.$fileName.'.php',
+            self::migrationClass($fileName, $tableName),
+            'Migration'
+        );
     }
 
     /**
@@ -119,5 +106,30 @@ class '.$fileName.' extends Migration {
         }
 
         return Command::SUCCESS;
+    }
+
+    /**
+     * Generates a new Migration class.
+     *
+     * @param string $fileName The file name for the Migration class.
+     * @param string $tableName The name of the table for the migration.
+     * @return string The contents of the new Migration class.
+     */
+    public static function migrationClass(string $fileName, string $tableName): string {
+        return '<?php
+namespace Database\Migrations;
+use Core\Migration;
+
+class '.$fileName.' extends Migration {
+    public function up() {
+        $table = \''.$tableName.'\';
+        $this->createTable($table);
+    }
+
+    public function down() {
+        $this->dropTable(\''.$tableName.'\');
+    }
+}
+';
     }
 }

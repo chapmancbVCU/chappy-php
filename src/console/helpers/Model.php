@@ -19,7 +19,7 @@ use Core\Model;
 /**
  * 
  */
-class '.$modelName.' extends Model {
+class '.ucfirst($modelName).' extends Model {
 
     // Fields you don\'t want saved on form submit
     // public const blackList = [];

@@ -73,7 +73,7 @@ class Tools {
      * @param string $path Where the file will be written.
      * @param string $content The contents of the file to be created.
      * @param string $name The name of the file, class, or other relevant information.
-     * @return int
+     * @return int A value that indicates success, invalid, or failure.
      */
     public static function writeFile(string $path, string $content, string $name): int {
         if(!file_exists($path)) {

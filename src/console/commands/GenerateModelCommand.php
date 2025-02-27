@@ -37,18 +37,12 @@ class GenerateModelCommand extends Command
     {
         $modelName = $input->getArgument('modelname');
         if (php_sapi_name() != 'cli') die('Restricted');
-        $ext = ".php";
-        $fullPath = ROOT.DS.'app'.DS.'models'.DS.$modelName.$ext;
 
-        $content = Model::makeModel($modelName);
-        if(!file_exists($fullPath)) {
-            $resp = file_put_contents($fullPath, $content);
-        } else {
-            Tools::info('Controller already exists');
-            return Command::FAILURE;
-        }
-
-        Tools::info('Model created');
-        return Command::SUCCESS;
+        // Generate the Model class
+        return Tools::writeFile(
+            ROOT.DS.'app'.DS.'models'.DS.$modelName.'.php',
+            Model::makeModel($modelName),
+            'Model'
+        );
     }
 }

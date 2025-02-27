@@ -35,19 +35,14 @@ class MakeTestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $testName = $input->getArgument('testname');
+        $testName = ucfirst($input->getArgument('testname'));
         if (php_sapi_name() != 'cli') die('Restricted');
-        $ext = ".php";
-        $fullPath = ROOT.DS.'tests'.DS.$testName.$ext;
-        $content = Test::makeTest($testName);
-        if(!file_exists($fullPath)) {
-            $resp = file_put_contents($fullPath, $content);
-        } else {
-            Tools::info('File already exists', 'red');
-            return Command::FAILURE;
-        }
-
-        Tools::info('New test file successfully created');
-        return Command::SUCCESS;
+        
+        // Generate unit test class
+        Tools::writeFile(
+            ROOT.DS.'tests'.DS.$testName.'.php',
+            Test::makeTest($testName),
+            'Test'
+        );
     }
 }
