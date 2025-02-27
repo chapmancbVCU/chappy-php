@@ -63,10 +63,8 @@ class GenerateControllerCommand extends Command
                 Tools::info('Please supply name of layout.', 'red');
                 return Command::FAILURE;
             }
-            $layout = $layoutInput;
+            $layout = strtolower($layoutInput);
         }
-
-        $layout = strtolower($layout);     // First character is always lower case.
         
         // Test if --resource flag is set and generate appropriate version of file
         $resource = $input->getOption('resource');
