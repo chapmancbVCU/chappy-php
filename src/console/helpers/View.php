@@ -89,6 +89,11 @@ class View {
         );
     }
 
+    public static function makeMenuAcl(InputInterface $input): int {
+        $menuName = $input->getArgument('menu-name');
+        if (php_sapi_name() != 'cli') die('Restricted');
+    }
+
     /**
      * Returns a string containing contents for a menu.
      *
@@ -125,6 +130,22 @@ $userMenu = Router::getMenu(\'user_menu\');
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
+';
+    }
+
+    /**
+     * Returns a string containing contents of a json menu acl file.
+     *
+     * @param string $menuName The name of the acl file that matches your 
+     * menu name
+     * @return string The contents of the json menu acl file.
+     */
+    public static function menuAcl(string $menuName): string {
+        return '
+{
+    "Home" : "home",
+    "'.ucfirst($menuName).'" :        
+}      
 ';
     }
  }
