@@ -100,7 +100,7 @@
                                                 <li><a href="#letterT">T</a></li>
                                                 <li><a href="#letterU">U</a></li>
                                                 <li><a href="#letterV">V</a></li>
-                                                <li class="disabled"><a href="#letterW">W</a></li>
+                                                <li><a href="#letterW">W</a></li>
                                                 <li class="disabled"><a href="#letterX">X</a></li>
                                                 <li class="disabled"><a href="#letterY">Y</a></li>
                                                 <li class="disabled"><a href="#letterZ">Z</a></li>
@@ -555,7 +555,9 @@ failed attempt or when account is locked.</p></dd><dt><a href="App/Models/Users.
 <abbr title="App\Models\Users">Users</abbr>::logout</a>() &mdash; <em>Method in class <a href="App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a></em></dt>
                     <dd><p>Perform logout operation on current logged in user.  The record for the
 current logged in user is removed from the user_session table and the
-corresponding cookie is deleted.</p></dd><dt><a href="Core/DB.html#method_lastID">
+corresponding cookie is deleted.</p></dd><dt><a href="Console/Helpers/View.html#method_layout">
+<abbr title="Console\Helpers\View">View</abbr>::layout</a>() &mdash; <em>Method in class <a href="Console/Helpers/View.html"><abbr title="Console\Helpers\View">View</abbr></a></em></dt>
+                    <dd><p>Returns a string containing contents for a layout.</p></dd><dt><a href="Core/DB.html#method_lastID">
 <abbr title="Core\DB">DB</abbr>::lastID</a>() &mdash; <em>Method in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
                     <dd><p>The primary key ID of the last insert operation.</p></dd><dt><a href="Core/Lib/Logger.html"><abbr title="Core\Lib\Logger">Logger</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib.html">Core\Lib</a></em></dt>
                     <dd><p>Supports the ability to produce logging.</p></dd><dt><a href="Core/Lib/Logger.html#method_log">
@@ -571,7 +573,8 @@ lower case character in the field.</p></dd>        </dl><h2 id="letterM">M</h2>
                     <dd><p>Supports ability to create new console command.</p></dd><dt><a href="Console/Commands/MakeEnvCommand.html"><abbr title="Console\Commands\MakeEnvCommand">MakeEnvCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Supports ability to copy .env.sample file and name it
 .env.</p></dd><dt><a href="Console/Commands/MakeHelperCommand.html"><abbr title="Console\Commands\MakeHelperCommand">MakeHelperCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
-                    <dd><p>Undocumented class</p></dd><dt><a href="Console/Commands/MakeProfileImagesDirCommand.html"><abbr title="Console\Commands\MakeProfileImagesDirCommand">MakeProfileImagesDirCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
+                    <dd><p>Undocumented class</p></dd><dt><a href="Console/Commands/MakeLayoutCommand.html"><abbr title="Console\Commands\MakeLayoutCommand">MakeLayoutCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
+                    <dd><p>Generates a new layout.</p></dd><dt><a href="Console/Commands/MakeProfileImagesDirCommand.html"><abbr title="Console\Commands\MakeProfileImagesDirCommand">MakeProfileImagesDirCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Used during project initialization for the purpose for creating a new
 profile images directory.</p></dd><dt><a href="Console/Commands/MakeSeederCommand.html"><abbr title="Console\Commands\MakeSeederCommand">MakeSeederCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Undocumented class</p></dd><dt><a href="Console/Commands/MakeTestCommand.html"><abbr title="Console\Commands\MakeTestCommand">MakeTestCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
@@ -588,14 +591,20 @@ console commands.</p></dd><dt><a href="Console/Helpers/DBSeeder.html#method_make
 <abbr title="Console\Helpers\Migrate">Migrate</abbr>::makeMigration</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
                     <dd><p>Generates a new migration.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_migrate">
 <abbr title="Console\Helpers\Migrate">Migrate</abbr>::migrate</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
-                    <dd><p>Performs migration operation.</p></dd><dt><a href="Console/Helpers/Model.html"><abbr title="Console\Helpers\Model">Model</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
+                    <dd><p>Performs migration operation.</p></dd><dt><a href="Console/Helpers/Migrate.html#method_migrationClass">
+<abbr title="Console\Helpers\Migrate">Migrate</abbr>::migrationClass</a>() &mdash; <em>Method in class <a href="Console/Helpers/Migrate.html"><abbr title="Console\Helpers\Migrate">Migrate</abbr></a></em></dt>
+                    <dd><p>Generates a new Migration class.</p></dd><dt><a href="Console/Helpers/Model.html"><abbr title="Console\Helpers\Model">Model</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
                     <dd><p>Helper class for model related console commands.</p></dd><dt><a href="Console/Helpers/Model.html#method_makeModel">
 <abbr title="Console\Helpers\Model">Model</abbr>::makeModel</a>() &mdash; <em>Method in class <a href="Console/Helpers/Model.html"><abbr title="Console\Helpers\Model">Model</abbr></a></em></dt>
                     <dd><p>The default template for a new model.</p></dd><dt><a href="Console/Helpers/ProfileImageDir.html#method_mkdirProfileImages">
 <abbr title="Console\Helpers\ProfileImageDir">ProfileImageDir</abbr>::mkdirProfileImages</a>() &mdash; <em>Method in class <a href="Console/Helpers/ProfileImageDir.html"><abbr title="Console\Helpers\ProfileImageDir">ProfileImageDir</abbr></a></em></dt>
                     <dd><p>Performs mkdir operation on the profile images directory</p></dd><dt><a href="Console/Helpers/Test.html#method_makeTest">
 <abbr title="Console\Helpers\Test">Test</abbr>::makeTest</a>() &mdash; <em>Method in class <a href="Console/Helpers/Test.html"><abbr title="Console\Helpers\Test">Test</abbr></a></em></dt>
-                    <dd><p>The template for a new TestCase class.</p></dd><dt><a href="Core/Migration.html"><abbr title="Core\Migration">Migration</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
+                    <dd><p>The template for a new TestCase class.</p></dd><dt><a href="Console/Helpers/Uploads.html#method_makeUpload">
+<abbr title="Console\Helpers\Uploads">Uploads</abbr>::makeUpload</a>() &mdash; <em>Method in class <a href="Console/Helpers/Uploads.html"><abbr title="Console\Helpers\Uploads">Uploads</abbr></a></em></dt>
+                    <dd><p>Generates a new class for supporting file uploads.</p></dd><dt><a href="Console/Helpers/View.html#method_makeLayout">
+<abbr title="Console\Helpers\View">View</abbr>::makeLayout</a>() &mdash; <em>Method in class <a href="Console/Helpers/View.html"><abbr title="Console\Helpers\View">View</abbr></a></em></dt>
+                    <dd><p>Generates a new layout file.</p></dd><dt><a href="Core/Migration.html"><abbr title="Core\Migration">Migration</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
                     <dd><p>Supports database migration operations.</p></dd><dt><a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
                     <dd><p>Parent class for our models.  Takes functions from DB wrapper and extract
 functionality further to make operations easier to use and improve
@@ -787,7 +796,9 @@ value is Admin.  Otherwise, we set the value to &quot;&quot;.</p></dd><dt><a hre
                     <dd><p>Runs the command for seeding database with random data.</p></dd><dt><a href="Console/Commands/ServeUserGuideCommand.html"><abbr title="Console\Commands\ServeUserGuideCommand">ServeUserGuideCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Performs the command for serving user guide locally:</p></dd><dt><a href="Console/Helpers/DBSeeder.html#method_seed">
 <abbr title="Console\Helpers\DBSeeder">DBSeeder</abbr>::seed</a>() &mdash; <em>Method in class <a href="Console/Helpers/DBSeeder.html"><abbr title="Console\Helpers\DBSeeder">DBSeeder</abbr></a></em></dt>
-                    <dd><p>Runs command for seeding database.</p></dd><dt><a href="Core/Cookie.html#method_set">
+                    <dd><p>Runs command for seeding database.</p></dd><dt><a href="Console/Helpers/DBSeeder.html#method_seeder">
+<abbr title="Console\Helpers\DBSeeder">DBSeeder</abbr>::seeder</a>() &mdash; <em>Method in class <a href="Console/Helpers/DBSeeder.html"><abbr title="Console\Helpers\DBSeeder">DBSeeder</abbr></a></em></dt>
+                    <dd><p>Returns a string containing contents of a new Seeder class.</p></dd><dt><a href="Core/Cookie.html#method_set">
 <abbr title="Core\Cookie">Cookie</abbr>::set</a>() &mdash; <em>Method in class <a href="Core/Cookie.html"><abbr title="Core\Cookie">Cookie</abbr></a></em></dt>
                     <dd><p>Sets a cookie to the $_COOKIE superglobal variable.  Information that
 it needs are its name, a value, and the amount of time we want this
@@ -876,7 +887,8 @@ how much time has elapsed.</p></dd><dt><a href="Core/Helper.html#method_timeStam
                     <dd></dd><dt>$<a href="App/Models/Users.html#property_username">
 <abbr title="App\Models\Users">Users</abbr>#username</a> &mdash; <em>Property in class <a href="App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a></em></dt>
                     <dd></dd><dt><a href="Console/Commands/UploadsCommand.html"><abbr title="Console\Commands\UploadsCommand">UploadsCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
-                    <dd><p>Supports ability to create a class that extends the Uploads class.</p></dd><dt><a href="Core/DB.html#method_update">
+                    <dd><p>Supports ability to create a class that extends the Uploads class.</p></dd><dt><a href="Console/Helpers/Uploads.html"><abbr title="Console\Helpers\Uploads">Uploads</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
+                    <dd><p>Contains functions for creating a new Uploads class</p></dd><dt><a href="Core/DB.html#method_update">
 <abbr title="Core\DB">DB</abbr>::update</a>() &mdash; <em>Method in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
                     <dd><p>Performs update operation on a SQL database record.</p></dd><dt><a href="Core/Lib/Utilities/UploadProfileImage.html"><abbr title="Core\Lib\Utilities\UploadProfileImage">UploadProfileImage</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Utilities.html">Core\Lib\Utilities</a></em></dt>
                     <dd><p>Supports the ability to upload a single profile image at a time.</p></dd><dt><a href="Core/Lib/Utilities/Uploads.html"><abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Utilities.html">Core\Lib\Utilities</a></em></dt>
@@ -930,7 +942,9 @@ called from within this class.</p></dd><dt><a href="Core/View.html"><abbr title=
                     <dd><p>Handles operations related to views and its content.</p></dd>        </dl><h2 id="letterW">W</h2>
         <dl id="indexW"><dt>$<a href="App/Models/Contacts.html#property_work_phone">
 <abbr title="App\Models\Contacts">Contacts</abbr>#work_phone</a> &mdash; <em>Property in class <a href="App/Models/Contacts.html"><abbr title="App\Models\Contacts">Contacts</abbr></a></em></dt>
-                    <dd></dd>        </dl><h2 id="letterZ">Z</h2>
+                    <dd></dd><dt><a href="Console/Helpers/Tools.html#method_writeFile">
+<abbr title="Console\Helpers\Tools">Tools</abbr>::writeFile</a>() &mdash; <em>Method in class <a href="Console/Helpers/Tools.html"><abbr title="Console\Helpers\Tools">Tools</abbr></a></em></dt>
+                    <dd><p>Generates files for console commands</p></dd>        </dl><h2 id="letterZ">Z</h2>
         <dl id="indexZ"><dt>$<a href="App/Models/Contacts.html#property_zip">
 <abbr title="App\Models\Contacts">Contacts</abbr>#zip</a> &mdash; <em>Property in class <a href="App/Models/Contacts.html"><abbr title="App\Models\Contacts">Contacts</abbr></a></em></dt>
                     <dd></dd>        </dl><h2 id="letter_">_</h2>
