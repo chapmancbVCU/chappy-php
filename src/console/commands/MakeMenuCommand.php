@@ -21,7 +21,7 @@ class MakeMenuCommand extends Command {
     {
         $this->setName('make:menu')
             ->setDescription('Generates a new menu')
-            ->setHelp('php console make:menu <menu_name')
+            ->setHelp('php console make:menu <menu_name>')
             ->addArgument('menu-name', InputArgument::REQUIRED, 'Pass the name for the new menu');
     }
 
