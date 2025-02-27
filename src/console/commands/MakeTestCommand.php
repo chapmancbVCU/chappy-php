@@ -39,7 +39,7 @@ class MakeTestCommand extends Command
         if (php_sapi_name() != 'cli') die('Restricted');
         
         // Generate unit test class
-        Tools::writeFile(
+        return Tools::writeFile(
             ROOT.DS.'tests'.DS.$testName.'.php',
             Test::makeTest($testName),
             'Test'
