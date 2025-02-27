@@ -73,7 +73,7 @@ class View {
     }
 
     /**
-     * Generates a new menu file
+     * Generates a new menu file.
      *
      * @param InputInterface $input The name of the menu.
      * @return int A value that indicates success, invalid, or failure.
@@ -82,6 +82,7 @@ class View {
         $menuName = $input->getArgument('menu-name');
         if (php_sapi_name() != 'cli') die('Restricted');
 
+        // Generate menu file
         return Tools::writeFile(
             ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($menuName)."_menu.php",
             self::menu($menuName),
@@ -89,9 +90,21 @@ class View {
         );
     }
 
+    /**
+     * Generates a new menu_acl file.
+     *
+     * @param InputInterface $input The name of the menu_acl file.
+     * @return int A value that indicates success, invalid, or failure.
+     */
     public static function makeMenuAcl(InputInterface $input): int {
         $menuName = $input->getArgument('menu-name');
         if (php_sapi_name() != 'cli') die('Restricted');
+
+        return Tools::writeFile(
+          ROOT.DS.'app'.DS.strtolower($menuName)."_menu_acl.json",
+          self::menu($menuName),
+          "Menu file "
+        );
     }
 
     /**
