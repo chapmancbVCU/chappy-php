@@ -204,6 +204,8 @@ Since we need to name this file we grab the argument provided when running the c
 
 We return an integer to indicate success, invalid, or failure.
 
-The path will usually contain the name variable, in this case, the name of the menu.  The ```self::menuAcl($menuName)``` calls a function that generates the content.  We prefer to use a separate function for the content to make the code clean and more maintainable.  
+The path will usually contain the name variable, in this case, the name of the menu.  We always use the DIRECTORY_SEPARATOR (DS) constant instead of forward or backward slashes to ensure compatibility across different operating systems.
+
+The ```self::menuAcl($menuName)``` calls a function that generates the content.  We prefer to use a separate function for the content to make the code clean and more maintainable.  
 
 The third argument is used to populate the message that gets printed out to the terminal.  In the case the messages will be ```Menu file successfully created``` when file write is successful and ```Menu file already exists``` if the file already exists.
