@@ -86,7 +86,7 @@ class View {
         return Tools::writeFile(
             ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($menuName)."_menu.php",
             self::menu($menuName),
-            "Menu file "
+            "Menu file"
         );
     }
 
@@ -103,7 +103,7 @@ class View {
         return Tools::writeFile(
           ROOT.DS.'app'.DS.strtolower($menuName)."_menu_acl.json",
           self::menuAcl($menuName),
-          "Menu file "
+          "The menu_acl json"
         );
     }
 
