@@ -35,6 +35,6 @@ use Core\FormHelper;
       <?= Session::displayMessage() ?>
       <?= $this->content('body'); ?>
     </div>
-    <?php //include 'footer.php'; ?>
+    <?php //$this->component(footer.php'); ?>
   </body>
 </html>
