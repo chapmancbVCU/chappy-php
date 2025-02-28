@@ -97,12 +97,12 @@ class View {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeMenuAcl(InputInterface $input): int {
-        $menuName = $input->getArgument('menu-name');
+        $menuName = $input->getArgument('acl-name');
         if (php_sapi_name() != 'cli') die('Restricted');
 
         return Tools::writeFile(
           ROOT.DS.'app'.DS.strtolower($menuName)."_menu_acl.json",
-          self::menu($menuName),
+          self::menuAcl($menuName),
           "Menu file "
         );
     }
@@ -157,7 +157,7 @@ $userMenu = Router::getMenu(\'user_menu\');
         return '
 {
     "Home" : "home",
-    "'.ucfirst($menuName).'" :        
+    "'.ucfirst($menuName).'" : ""     
 }      
 ';
     }
