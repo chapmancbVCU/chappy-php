@@ -31,7 +31,7 @@ Where Test is the name of the file containing the test. Typing php console in th
 If there is a command you would like for us to support you can submit an issue [here](https://github.com/chapmancbVCU/chappy-php/issues).
 
 ## Summary of Available Commands <a id="summary-of-available-commands"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-Below is a list of available commands. Most items in this list contains a link to the page that describes an individual command.
+Below is a list of available commands. Most items in this list contains a link to the page that describes an individual command.  This list can be viewed in the terminal by typing ```php console``` under project root.
 
 | Command | Description |
 |:-------:|-------------|
