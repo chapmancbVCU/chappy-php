@@ -9,6 +9,10 @@ use Symfony\Component\Console\Input\InputInterface;
  */
 class View {
 
+    public static function formComponent(string $content, string $method = 'post'): string {
+        return '';
+    }
+
     /**
      * Returns a string containing contents for a layout.
      *
@@ -54,6 +58,14 @@ class View {
 </html>        
 ';
     }        
+
+    public static function makeFormComponent(string $componentContent, string $componentName, string $method): int {
+        return Tools::writeFile(
+          ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($componentName)."_menu.php",
+          self::formComponent($componentContent, $method),
+          "Menu file"
+      );
+    }
 
     /**
      * Generates a new layout file.
