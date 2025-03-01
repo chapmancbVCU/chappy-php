@@ -9,9 +9,17 @@ use Symfony\Component\Console\Input\InputInterface;
  */
 class View {
 
-    public static function formComponent(string $method = 'post'): string {
+  /**
+   * Generates content of form component.
+   *
+   * @param string $method The method to be used.
+   * @param string $encType The enctype to be used.
+   * @return string The contents of the form component.
+   */
+    public static function formComponent(string $method, string $encType): string {
+        $enctypeAttr = !empty($encType) ? ' enctype="'.$encType.'"' : '';
         return '<?php use Core\FormHelper; ?>
-<form class="form" action=<?=$this->postAction?> method="'.$method.'">
+<form class="form" action=<?=$this->postAction?> method="'.$method.'"'.$enctypeAttr.'>
     <?= FormHelper::csrfInput() ?>
 
 </form>';
@@ -63,18 +71,18 @@ class View {
 ';
     }        
 
-    public static function makeFormComponent(string $componentName, string $method): int {
-        if($method !== 'post') {
-            return Tools::writeFile(
-              ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($componentName).".php",
-              self::formComponent($method),
-              "Form component"
-          );  
-        }
-
+    /**
+     * Writes form component to file.
+     *
+     * @param string $componentName The name of the form component.
+     * @param string $method The method to be used.
+     * @param string $encType The enctype to be used.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeFormComponent(string $componentName, string $method, string $encType): int {
         return Tools::writeFile(
             ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($componentName).".php",
-            self::formComponent(),
+            self::formComponent($method, $encType),
             "Form component"
         );
     }
