@@ -58,14 +58,15 @@ class View {
      * Generates a new layout file.
      *
      * @param string $layoutName The name of the layout.
+     * @param string $menuName The name of the menu to be used.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeLayout(string $layoutName): int {
+    public static function makeLayout(string $layoutName, string $menuName = 'main'): int {
         if (php_sapi_name() != 'cli') die('Restricted');
 
         return Tools::writeFile(
             ROOT.DS.'resources'.DS.'views'.DS.'layouts'.DS.lcfirst($layoutName).".php", 
-            self::layout($layoutName), 
+            self::layout($menuName), 
             'Layout'
         );
     }
