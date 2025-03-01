@@ -20,13 +20,18 @@ $userMenu = Router::getMenu('user_menu');
       <a href="<?=APP_DOMAIN?>api-docs/index.html" target="_blank" class="nav-link">API</a>
       <a href="https://chapmancbvcu.github.io/chappy-php/" target="_blank" class="nav-link">Wiki</a>
     </ul>
-    <ul class="navbar-nav me-2">
+    <ul class="navbar-nav me-2 align-items-center"> <!-- Align items vertically -->
       <?= Helper::buildMenuListItems($userMenu, "dropdown-menu-end"); ?>
-      <a class="pt-1" href="<?=APP_DOMAIN?>profile">
-        <?php if ($profileImage != null): ?>
-          <img class="img-thumbnail profile-img ms-2 p-0" style="width: 50px" src="<?=APP_DOMAIN . $profileImage->url?>"></img>
-        <?php endif; ?>
-      </a>
+      <li class="nav-item">
+          <a class="nav-link p-0" href="<?=APP_DOMAIN?>profile">
+              <?php if ($profileImage != null): ?>
+                  <img class="rounded-circle profile-img ms-2"
+                      style="width: 40px; height: 40px; object-fit: cover; border: 2px solid #ddd; transition: opacity 0.3s;"
+                      src="<?=APP_DOMAIN . $profileImage->url?>"
+                      alt="Profile Picture">
+              <?php endif; ?>
+          </a>
+      </li>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
