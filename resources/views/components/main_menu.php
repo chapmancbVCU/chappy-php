@@ -23,6 +23,7 @@ $userMenu = Router::getMenu('user_menu');
         <a class="nav-link p-0" href="<?=APP_DOMAIN?>profile">
           <?php if ($profileImage != null): ?>
             <img class="rounded-circle profile-img ms-2"
+              style="width: 40px; height: 40px; object-fit: cover; border: 2px solid #ddd; transition: opacity 0.3s;"
               src="<?=APP_DOMAIN . $profileImage->url?>"
               alt="Profile Picture">
           <?php endif; ?>
