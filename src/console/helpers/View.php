@@ -75,13 +75,10 @@ class View {
     /**
      * Generates a new menu file.
      *
-     * @param InputInterface $input The name of the menu.
+     * @param string $input The name of the menu.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeMenu(InputInterface $input): int {
-        $menuName = $input->getArgument('menu-name');
-        if (php_sapi_name() != 'cli') die('Restricted');
-
+    public static function makeMenu(string $menuName): int {
         // Generate menu file
         return Tools::writeFile(
             ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($menuName)."_menu.php",
