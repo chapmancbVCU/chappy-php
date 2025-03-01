@@ -21,7 +21,7 @@ Get to any resource within the Chappy.php Wiki from here.
 17. [Views Introduction](views_intro)
     * [api-docs and doctum API Generation](doctum)
     * [Components](components) - Coming soon
-    * [Layouts](layouts) - Coming soon
+    * [Layouts](layouts)
     * [Navigation Bar](nav_bar) - Coming soon
     * [Pagination](pagination) - Coming soon
     * [Views](views) - Coming soon
