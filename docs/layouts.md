@@ -5,6 +5,8 @@
 2. [Layouts](#layouts)
 3. [Building Your Own Layout](#build-layout)
 4. [Menus](#menus)
+5. [Menu ACLs](#menu-acls)
+
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The layouts feature supports the ability to present a consistent user experience across views in the framework.  We natively support Bootstrap 5 for the styling.
 
@@ -128,5 +130,33 @@ $userMenu = Router::getMenu('user_menu');
 </nav>
 ```
 
-Notice that the parameter near the top for the getMenu function call is set to `foo_menu_acl`.  That is the name of the menu_acl file that is used to configure your menu.  You can also edit other parts of the menu.  If you inspect the admin_menu you will notice there are slight differences from the main_menu file.
+Notice that the parameter near the top for the `getMenu` function call is set to `foo_menu_acl`.  That is the name of the menu_acl file that is used to configure your menu.  You can also edit other parts of the menu.  If you inspect the admin_menu you will notice there are slight differences from the main_menu file.
 
+## Menu ACLs <a id="menu-acls"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+The menu_acl json file is tied to the menu file created above.  The menu_acl json file is used to configure the contents of the navigation bar.  With this file you can define links and menus.  Let's take a look at the `admin_menu_acl.json` file.
+
+```json
+{
+    "Home" : "home",
+    "Admin" : {
+        "Admin Dashboard" : "admindashboard/index",
+        "Manage ACLS" : "admindashboard/manageACLs"
+    }
+}
+```
+
+Anything on the left side of a semi-colon is the label for your link or menu.  Home is simple.  The right side text, `home`, is the name of the controller.  The admin section is a little more complicated.  `Admin` is the name of the menu and anything inside this json object are link labels, just like Home, along with the name of the controller and the name of the action after the forward slash.  If you write `home/index` the same result will occur when clicking on the link since index actions are always the default action.
+
+You have two options for creating menu_acl json files.  The first is by using the following command:
+
+```sh
+php console make:acl admin
+```
+
+This is the command we used to generate the `admin_menu_acl.json` file shown above.  You can also use the `make:layout` command as well which is shown below:
+
+```sh
+php console make:layout Admin --menu-acl
+```
+
+Running the command above will create the Admin layout along with your acl file.
