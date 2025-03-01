@@ -25,9 +25,12 @@ class MakeComponentCommand extends Command {
             ->addArgument('component-name', InputArgument::REQUIRED, 'Pass the name for the new component')
 
             // Configure form component
-            ->addOption('form', null, InputOption::VALUE_NONE, 'Name of form component')
+            ->addOption('form', null, InputOption::VALUE_NONE, 'Create a form component')
             ->addOption('form-method', null, InputOption::VALUE_OPTIONAL, 'Form method (default: POST)', 'post')
-            ->addOption('enctype', null, InputOption::VALUE_OPTIONAL, 'Form enctype', '');
+            ->addOption('enctype', null, InputOption::VALUE_OPTIONAL, 'Form enctype', '')
+
+            // Configure card component
+            ->addOption('card', null, InputOption::VALUE_NONE, 'Create a card component');
     }
 
     /**
@@ -42,11 +45,13 @@ class MakeComponentCommand extends Command {
         $componentName = $input->getArgument('component-name');
 
         if($input->getOption('form')) {
-            View::makeFormComponent(
+            return View::makeFormComponent(
                 $componentName,
                 strtolower($input->getOption('form-method') ?? 'post'),
                 $input->getOption('enctype') ??  ''
             );
+        } else if($input->getOption('card')) {
+            return View::makeCardComponent($componentName);
         }
 
         return Command::SUCCESS;

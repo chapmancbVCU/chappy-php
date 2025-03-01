@@ -8,6 +8,18 @@ use Symfony\Component\Console\Input\InputInterface;
  * json files.
  */
 class View {
+    /**
+     * Returns contents of a card component.
+     *
+     * @return string The contents of a card component.
+     */
+    public static function cardComponent(): string {
+        return '<div class="card">
+  <div class="card-header"><?= $title ?></div>
+  <div class="card-body"><?= $slot ?></div>
+</div>';
+
+  }
 
   /**
    * Generates content of form component.
@@ -70,6 +82,20 @@ class View {
 </html>        
 ';
     }        
+
+    /**
+     * Writes card component to a file
+     *
+     * @param string $componentName The name of the card component.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeCardComponent(string $componentName): int {
+        return Tools::writeFile(
+            ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($componentName).".php",
+            self::cardComponent(),
+            "Form component"
+      );
+    }
 
     /**
      * Writes form component to file.
