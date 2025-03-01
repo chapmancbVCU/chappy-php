@@ -35,7 +35,6 @@ class MakeAclCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $menuName = $input->getArgument('acl-name');
-        if (php_sapi_name() != 'cli') die('Restricted');
         return View::makeMenuAcl($menuName);
     }
 }

@@ -35,7 +35,6 @@ class MakeMenuCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $menuName = $input->getArgument('menu-name');
-        if (php_sapi_name() != 'cli') die('Restricted');
         return View::makeMenu($menuName);
     }
 }
