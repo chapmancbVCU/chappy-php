@@ -5,3 +5,4 @@
 
 
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+Components are blocks of code that can be reused between different views.
