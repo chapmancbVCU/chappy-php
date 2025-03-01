@@ -115,7 +115,7 @@
                     static&nbsp;int
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_makeLayout">makeLayout</a>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
+                    <a href="#method_makeLayout">makeLayout</a>(string $layoutName, string $menuName = &#039;main&#039;)
         
                                             <p><p>Generates a new layout file.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -125,7 +125,7 @@
                     static&nbsp;int
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_makeMenu">makeMenu</a>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
+                    <a href="#method_makeMenu">makeMenu</a>(string $menuName)
         
                                             <p><p>Generates a new menu file.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -135,7 +135,7 @@
                     static&nbsp;int
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_makeMenuAcl">makeMenuAcl</a>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
+                    <a href="#method_makeMenuAcl">makeMenuAcl</a>(string $menuName)
         
                                             <p><p>Generates a new menu_acl file.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -210,9 +210,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_makeLayout">
-        <div class="location">at line 63</div>
+        <div class="location">at line 64</div>
         <code>        static            int
-    <strong>makeLayout</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
+    <strong>makeLayout</strong>(string $layoutName, string $menuName = &#039;main&#039;)
         </code>
     </h3>
     <div class="details">    
@@ -227,9 +227,14 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
-                <td>$input</td>
+                <td>string</td>
+                <td>$layoutName</td>
                 <td><p>The name of the layout.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$menuName</td>
+                <td><p>The name of the menu to be used.</p></td>
             </tr>
             </table>
 
@@ -252,9 +257,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_makeMenu">
-        <div class="location">at line 81</div>
+        <div class="location">at line 80</div>
         <code>        static            int
-    <strong>makeMenu</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
+    <strong>makeMenu</strong>(string $menuName)
         </code>
     </h3>
     <div class="details">    
@@ -269,9 +274,9 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
-                <td>$input</td>
-                <td><p>The name of the menu.</p></td>
+                <td>string</td>
+                <td>$menuName</td>
+                <td></td>
             </tr>
             </table>
 
@@ -294,9 +299,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_makeMenuAcl">
-        <div class="location">at line 99</div>
+        <div class="location">at line 96</div>
         <code>        static            int
-    <strong>makeMenuAcl</strong>(<abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr> $input)
+    <strong>makeMenuAcl</strong>(string $menuName)
         </code>
     </h3>
     <div class="details">    
@@ -311,8 +316,8 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="Symfony\Component\Console\Input\InputInterface">InputInterface</abbr></td>
-                <td>$input</td>
+                <td>string</td>
+                <td>$menuName</td>
                 <td><p>The name of the menu_acl file.</p></td>
             </tr>
             </table>
@@ -336,7 +341,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_menu">
-        <div class="location">at line 116</div>
+        <div class="location">at line 112</div>
         <code>        static            string
     <strong>menu</strong>(string $menuName)
         </code>
@@ -378,7 +383,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_menuAcl">
-        <div class="location">at line 156</div>
+        <div class="location">at line 152</div>
         <code>        static            string
     <strong>menuAcl</strong>(string $menuName)
         </code>
