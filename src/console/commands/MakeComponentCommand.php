@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * Undocumented class
+ * Supports ability to create components.
  */
 class MakeComponentCommand extends Command {
     /**
@@ -23,6 +23,8 @@ class MakeComponentCommand extends Command {
             ->setDescription('Generates a new component')
             ->setHelp('php console make:component <component_name>')
             ->addArgument('component-name', InputArgument::REQUIRED, 'Pass the name for the new component')
+
+            // Configure form component
             ->addOption('form', null, InputOption::VALUE_NONE, 'Name of form component')
             ->addOption('form-method', null, InputOption::VALUE_OPTIONAL, 'Form method (default: POST)', 'post')
             ->addOption('enctype', null, InputOption::VALUE_OPTIONAL, 'Form enctype', '');
