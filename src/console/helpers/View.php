@@ -94,7 +94,7 @@ class View {
      */
     public static function makeMenuAcl(string $menuName): int {
         if (php_sapi_name() != 'cli') die('Restricted');
-        
+
         return Tools::writeFile(
           ROOT.DS.'app'.DS.strtolower($menuName)."_menu_acl.json",
           self::menuAcl($menuName),
@@ -113,7 +113,7 @@ class View {
 use Core\Router;
 use Core\Helper;
 $profileImage = Helper::getProfileImage();
-$menu = Router::getMenu(\''.$menuName.'_menu_acl\');
+$menu = Router::getMenu(\''.lcfirst($menuName).'_menu_acl\');
 $userMenu = Router::getMenu(\'user_menu\');
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-5">
