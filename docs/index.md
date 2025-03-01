@@ -22,7 +22,7 @@ Get to any resource within the Chappy.php Wiki from here.
     * [api-docs and doctum API Generation](doctum)
     * [Components](components) - Coming soon
     * [Layouts](layouts)
-    * [Navigation Bar](nav_bar) - Coming soon
+    * [Navigation Bar](nav_bar)
     * [Pagination](pagination) - Coming soon
     * [Views](views) - Coming soon
 

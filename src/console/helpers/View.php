@@ -4,7 +4,8 @@ namespace Console\Helpers;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 /**
- * 
+ * Supports ability to create views, layouts, components, and menu_acl 
+ * json files.
  */
 class View {
 

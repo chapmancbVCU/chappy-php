@@ -145,7 +145,7 @@ The menu_acl json file is tied to the menu file created above.  The menu_acl jso
 }
 ```
 
-Anything on the left side of a semi-colon is the label for your link or menu.  Home is simple.  The right side text, `home`, is the name of the controller.  The admin section is a little more complicated.  `Admin` is the name of the menu and anything inside this json object are link labels, just like Home, along with the name of the controller and the name of the action after the forward slash.  If you write `home/index` the same result will occur when clicking on the link since index actions are always the default action.
+Anything on the left side of a colon is the label for your link or menu.  Home is simple.  The right side text, `home`, is the name of the controller.  The admin section is a little more complicated.  `Admin` is the name of the menu and anything inside this json object are link labels, just like Home, along with the name of the view directory and the name of the action after the forward slash.  If you write `home/index` the same result will occur when clicking on the link since index actions are always the default action.  To summarize, the right side looks the text in the call to the render function inside your controller.c
 
 You have two options for creating menu_acl json files.  The first is by using the following command:
 
