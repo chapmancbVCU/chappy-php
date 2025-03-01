@@ -26,7 +26,7 @@ An example of a command that requires arguments is demonstrated below:
 php console test:run-test Test
 ```
 
-Where Test is the name of the file containing the test. Typing php console in the command line at project root will display all of the available commands. Each of the supported command will be covered in their respective sections in this user guide.
+Where Test is the name of the file containing the test. Typing php console in the command line at project root will display all of the available commands. Each of the supported commands will be covered in their respective sections in this user guide.
 
 If there is a command you would like for us to support you can submit an issue [here](https://github.com/chapmancbVCU/chappy-php/issues).
 
@@ -65,7 +65,7 @@ Generating your own command is easy.  We will make a fake command called Foo as 
 php console make:command Foo
 ```
 
-The output of this command will be a file called ```FooCommand.php``` and will be located under ```src/console/commands```.  The resulting file is shown below:
+The output of this command will be a file called `FooCommand.php` and will be located under `src/console/commands`.  The resulting file is shown below:
 
 ```php
 namespace Console\Commands;
@@ -109,7 +109,7 @@ Everything you need to build your own command is included in this file.  All rel
 ## Command Helpers <a id="command-helpers"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Since this framework is fully Object-Oriented you can generate helper files to modularize tasks that need to be used across multiple commands.  Helpers can be found at ```src\console\helpers```.
 
-You can build your own command helper class by running the ```make:command-helper``` command.  Let's create a FooHelper class by running the following:
+You can build your own command helper class by running the `make:command-helper` command.  Let's create a FooHelper class by running the following:
 
 ```sh
 php console make:helper Foo Helper
@@ -206,6 +206,6 @@ We return an integer to indicate success, invalid, or failure.
 
 The path will usually contain the name variable, in this case, the name of the menu.  We always use the DIRECTORY_SEPARATOR (DS) constant instead of forward or backward slashes to ensure compatibility across different operating systems.
 
-The ```self::menuAcl($menuName)``` calls a function that generates the content.  We prefer to use a separate function for the content to make the code clean and more maintainable.  
+The `self::menuAcl($menuName)` calls a function that generates the content.  We prefer to use a separate function for the content to make the code clean and more maintainable.  
 
-The third argument is used to populate the message that gets printed out to the terminal.  In the case the messages will be ```Menu file successfully created``` when file write is successful and ```Menu file already exists``` if the file already exists.
+The third argument is used to populate the message that gets printed out to the terminal.  In the case the messages will be `Menu file successfully created` when file write is successful and `Menu file already exists` if the file already exists.
