@@ -23,14 +23,13 @@ $userMenu = Router::getMenu('user_menu');
     <ul class="navbar-nav me-2 align-items-center"> <!-- Align items vertically -->
       <?= Helper::buildMenuListItems($userMenu, "dropdown-menu-end"); ?>
       <li class="nav-item">
-          <a class="nav-link p-0" href="<?=APP_DOMAIN?>profile">
-              <?php if ($profileImage != null): ?>
-                  <img class="rounded-circle profile-img ms-2"
-                      style="width: 40px; height: 40px; object-fit: cover; border: 2px solid #ddd; transition: opacity 0.3s;"
-                      src="<?=APP_DOMAIN . $profileImage->url?>"
-                      alt="Profile Picture">
-              <?php endif; ?>
-          </a>
+        <a class="nav-link p-0" href="<?=APP_DOMAIN?>profile">
+          <?php if ($profileImage != null): ?>
+            <img class="rounded-circle profile-img ms-2"
+              src="<?=APP_DOMAIN . $profileImage->url?>"
+              alt="Profile Picture">
+          <?php endif; ?>
+        </a>
       </li>
     </ul>
   </div><!-- /.navbar-collapse -->
