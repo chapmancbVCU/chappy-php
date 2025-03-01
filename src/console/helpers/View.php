@@ -9,8 +9,12 @@ use Symfony\Component\Console\Input\InputInterface;
  */
 class View {
 
-    public static function formComponent(string $content, string $method = 'post'): string {
-        return '';
+    public static function formComponent(string $method = 'post'): string {
+        return '<?php use Core\FormHelper; ?>
+<form class="form" action=<?=$this->postAction?> method="'.$method.'">
+    <?= FormHelper::csrfInput() ?>
+
+</form>';
     }
 
     /**
@@ -59,12 +63,20 @@ class View {
 ';
     }        
 
-    public static function makeFormComponent(string $componentContent, string $componentName, string $method): int {
+    public static function makeFormComponent(string $componentName, string $method): int {
+        if($method !== 'post') {
+            return Tools::writeFile(
+              ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($componentName).".php",
+              self::formComponent($method),
+              "Form component"
+          );  
+        }
+
         return Tools::writeFile(
-          ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($componentName)."_menu.php",
-          self::formComponent($componentContent, $method),
-          "Menu file"
-      );
+            ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($componentName).".php",
+            self::formComponent(),
+            "Form component"
+        );
     }
 
     /**
