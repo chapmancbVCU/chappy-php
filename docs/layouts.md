@@ -4,9 +4,9 @@
 1. [Overview](#overview)
 2. [Layouts](#layouts)
 3. [Building Your Own Layout](#build-layout)
-
+4. [Menus](#menus)
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-The layouts feature supports the ability to present a consistent user experience across views in the framework.  We natively support Bootstrap 5 for the styling.  You can build your own layouts using a different framework such as Tailwind CSS.  We have not tested Tailwind CSS but this Laravel 11 Crash Course [video](https://www.youtube.com/watch?v=R00eTP8BiVI&list=PL38wFHH4qYZXH8Gb7PIbmyjdsWdEJLImp&index=3) might point you in the right direction.
+The layouts feature supports the ability to present a consistent user experience across views in the framework.  We natively support Bootstrap 5 for the styling.
 
 Layouts are supported by layout files that are located at `resources\views\layouts`, menus that can be found at `resources\views\components`, and menu_acl json files within the `app` directory.
 
@@ -68,4 +68,65 @@ The `body` element contains a call to the `component` function for rendering men
 The next function call displays session or sometimes called flash messages depending on the framework.  Finally, we have a call to the content function for displaying `body` content.
 
 ## Building Your Own Layout <a id="build-layout"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-User have the ability to create their own layout.
+User have the ability to create their own layout.  You can either create just a layout.  We will create a layout called Foo.
+
+```sh
+php console make:layout Foo
+```
+
+This tells the framework to create a new layout using the default main_menu  The `make:layout` also accepts `--menu` and `-menu-acl` as arguments for generating the menu file and the menu_acl json file.  Using these arguments will create new menu and menu_acl files.  More about this in the next two sections.
+
+## Menus <a id="menu"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+You can create custom menus to be used with your layouts.  There are two ways to accomplish this task.  You can create a menu using the following command:
+
+```sh
+php console make:menu Foo
+```
+
+This will create a new menu called foo that you can customize.  You can also create a menu using the `make:layout` commands as shown below:
+
+```sh
+php console make:layout Foo --menu
+```
+
+This will create a new layout where the menu name is set when the component function as called.  Note, this operation will fail if you type anything after `--menu` such as `--menu=afafaf`.  This is demonstrated below:
+
+```php
+$this->component('foo_menu')
+```
+
+No matter what method you use the same menu will be created as shown below:
+
+```php
+use Core\Router;
+use Core\Helper;
+$profileImage = Helper::getProfileImage();
+$menu = Router::getMenu('foo_menu_acl');
+$userMenu = Router::getMenu('user_menu');
+?>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-5">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_menu" aria-controls="main_menu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="<?=APP_DOMAIN?>home"><?=MENU_BRAND?></a>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="main_menu">
+    <ul class="navbar-nav me-auto">
+      <?= Helper::buildMenuListItems($menu); ?>
+    </ul>
+    <ul class="navbar-nav me-2">
+      <?= Helper::buildMenuListItems($userMenu, "dropdown-menu-end"); ?>
+      <a class="pt-1" href="<?=APP_DOMAIN?>profile">
+        <?php if ($profileImage != null): ?>
+          <img class="img-thumbnail profile-img ms-2 p-0" style="width: 50px" src="<?=APP_DOMAIN . $profileImage->url?>"></img>
+        <?php endif; ?>
+      </a>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+```
+
+Notice that the parameter near the top for the getMenu function call is set to `foo_menu_acl`.  That is the name of the menu_acl file that is used to configure your menu.  You can also edit other parts of the menu.  If you inspect the admin_menu you will notice there are slight differences from the main_menu file.
+
