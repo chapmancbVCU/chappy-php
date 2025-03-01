@@ -35,7 +35,6 @@ class UploadsCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $uploadName = $input->getArgument('upload-type-name');
-        if (php_sapi_name() != 'cli') die('Restricted');
         
         // Generate Uploads class.
         return Tools::writeFile(

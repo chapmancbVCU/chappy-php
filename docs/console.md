@@ -187,7 +187,6 @@ Here is an example call to this function for generating a new menu_acl json file
 ```php
 public static function makeMenuAcl(InputInterface $input): int {
     $menuName = $input->getArgument('acl-name');
-    if (php_sapi_name() != 'cli') die('Restricted');
 
     return Tools::writeFile(
         ROOT.DS.'app'.DS.strtolower($menuName)."_menu_acl.json",

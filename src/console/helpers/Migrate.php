@@ -54,7 +54,6 @@ class Migrate {
      */
     public static function makeMigration(InputInterface $input): int {
         $tableName = strtolower($input->getArgument('table_name'));
-        if (php_sapi_name() != 'cli') die('Restricted');
         
         // Generate Migration class
         $fileName = "Migration".time();

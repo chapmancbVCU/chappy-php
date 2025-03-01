@@ -36,7 +36,6 @@ class GenerateModelCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $modelName = $input->getArgument('modelname');
-        if (php_sapi_name() != 'cli') die('Restricted');
 
         // Generate the Model class
         return Tools::writeFile(

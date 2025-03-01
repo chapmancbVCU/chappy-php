@@ -75,8 +75,6 @@ class View {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeLayout(string $layoutName, string $menuName = 'main'): int {
-        if (php_sapi_name() != 'cli') die('Restricted');
-
         return Tools::writeFile(
             ROOT.DS.'resources'.DS.'views'.DS.'layouts'.DS.lcfirst($layoutName).".php", 
             self::layout($menuName), 
@@ -91,8 +89,6 @@ class View {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeMenu(string $menuName): int {
-        if (php_sapi_name() != 'cli') die('Restricted');
-
         return Tools::writeFile(
             ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($menuName)."_menu.php",
             self::menu($menuName),
@@ -107,8 +103,6 @@ class View {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeMenuAcl(string $menuName): int {
-        if (php_sapi_name() != 'cli') die('Restricted');
-
         return Tools::writeFile(
           ROOT.DS.'app'.DS.strtolower($menuName)."_menu_acl.json",
           self::menuAcl($menuName),

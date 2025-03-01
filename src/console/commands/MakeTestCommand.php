@@ -36,7 +36,6 @@ class MakeTestCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $testName = ucfirst($input->getArgument('testname'));
-        if (php_sapi_name() != 'cli') die('Restricted');
         
         // Generate unit test class
         return Tools::writeFile(

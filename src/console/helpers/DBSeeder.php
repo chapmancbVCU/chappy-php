@@ -17,7 +17,6 @@ class DBSeeder {
      */
     public static function makeSeeder(InputInterface $input): int {
         $seederName = ucfirst($input->getArgument('seeder-name'));
-        if (php_sapi_name() != 'cli') die('Restricted');
 
         // Generate Seeder class
         return Tools::writeFile(

@@ -18,7 +18,6 @@ class CommandHelper {
      */
     public static function makeCommand(InputInterface $input): int {
         $commandName = $input->getArgument('command-name');
-        if (php_sapi_name() != 'cli') die('Restricted');
         $ext = ".php";
         $fullPath = ROOT.DS.'src'.DS.'console'.DS.'commands'.DS.$commandName.'Command'.$ext;
         $content = '<?php
@@ -77,7 +76,6 @@ class '.$commandName.'Command extends Command {
      */
     public static function makeHelper(InputInterface $input): int {
         $helperName = ucfirst($input->getArgument('helper-name'));
-        if (php_sapi_name() != 'cli') die('Restricted');
         $ext = ".php";
         $fullPath = ROOT.DS.'src'.DS.'console'.DS.'helpers'.DS.$helperName.$ext;
         $content = '<?php

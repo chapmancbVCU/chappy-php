@@ -49,7 +49,6 @@ class GenerateControllerCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $controllerName = ucfirst($input->getArgument('controllername'));
-        if (php_sapi_name() != 'cli') die('Restricted');
         
         // Test if --layout is properly set
         $layoutInput = $input->getOption('layout');
