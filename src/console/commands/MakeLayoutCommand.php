@@ -34,6 +34,8 @@ class MakeLayoutCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return View::makeLayout($input);
+        $layoutName = $input->getArgument('layout-name');
+        if (php_sapi_name() != 'cli') die('Restricted');
+        return View::makeLayout($layoutName);
     }
 }

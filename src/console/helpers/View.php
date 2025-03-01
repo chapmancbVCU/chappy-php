@@ -57,14 +57,10 @@ class View {
     /**
      * Generates a new layout file.
      *
-     * @param InputInterface $input The name of the layout.
+     * @param string $layoutName The name of the layout.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeLayout(InputInterface $input): int {
-        $layoutName = $input->getArgument('layout-name');
-        if (php_sapi_name() != 'cli') die('Restricted');
-
-        // Generate layout
+    public static function makeLayout(string $layoutName): int {
         return Tools::writeFile(
             ROOT.DS.'resources'.DS.'views'.DS.'layouts'.DS.lcfirst($layoutName).".php", 
             self::layout($layoutName), 
@@ -79,7 +75,6 @@ class View {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeMenu(string $menuName): int {
-        // Generate menu file
         return Tools::writeFile(
             ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($menuName)."_menu.php",
             self::menu($menuName),
@@ -90,13 +85,10 @@ class View {
     /**
      * Generates a new menu_acl file.
      *
-     * @param InputInterface $input The name of the menu_acl file.
+     * @param string $menuName The name of the menu_acl file.
      * @return int A value that indicates success, invalid, or failure.
      */
-    public static function makeMenuAcl(InputInterface $input): int {
-        $menuName = $input->getArgument('acl-name');
-        if (php_sapi_name() != 'cli') die('Restricted');
-
+    public static function makeMenuAcl(string $menuName): int {
         return Tools::writeFile(
           ROOT.DS.'app'.DS.strtolower($menuName)."_menu_acl.json",
           self::menuAcl($menuName),
