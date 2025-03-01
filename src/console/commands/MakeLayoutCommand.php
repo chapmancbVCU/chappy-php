@@ -52,16 +52,6 @@ class MakeLayoutCommand extends Command {
         $menu = $input->getOption('menu');
         $menuAcl = $input->getOption('menu-acl');
 
-        // Process menu input
-        if($menu === false) {
-            Tools::info('--menu argument not set so we ignore operation', 'blue');
-        }
-        else if($menu === null) {
-            View::makeMenu($layoutName);
-        } else {
-            Tools::info('--menu does not accept an argument', 'red');
-        }
-
         // Process menu-acl input
         if($menuAcl === false) {
             Tools::info('--menu-acl argument not set so we ignore operation', 'blue');
@@ -70,6 +60,18 @@ class MakeLayoutCommand extends Command {
         } else {
             Tools::info('--menu-acl does not accept an argument', 'red');
         }
-        return View::makeLayout($layoutName);
+
+        // Process menu input
+        if($menu === false) {
+            Tools::info('--menu argument not set so we ignore operation', 'blue');
+            return View::makeLayout($layoutName);
+        }
+        else if($menu === null) {
+            View::makeMenu($layoutName);
+            return View::makeLayout($layoutName, $layoutName);
+        } else {
+            Tools::info('--menu does not accept an argument', 'red');
+            return Command::FAILURE;
+        }
     }
 }
