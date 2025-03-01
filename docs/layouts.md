@@ -8,7 +8,7 @@
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The layouts feature supports the ability to present a consistent user experience across views in the framework.  We natively support Bootstrap 5 for the styling.  You can build your own layouts using a different framework such as Tailwind CSS.  We have not tested Tailwind CSS but this Laravel 11 Crash Course [video](https://www.youtube.com/watch?v=R00eTP8BiVI&list=PL38wFHH4qYZXH8Gb7PIbmyjdsWdEJLImp&index=3) might point you in the right direction.
 
-Layouts are supported by layout files that are located at ```resources\views\layouts```, menus that can be found at ```resources\views\components```, and menu_acl json files within the ```app``` directory.
+Layouts are supported by layout files that are located at `resources\views\layouts`, menus that can be found at `resources\views\components`, and menu_acl json files within the `app` directory.
 
 ## Layouts <a id="layouts"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Let's look at the default layout.
@@ -57,14 +57,15 @@ use Core\FormHelper;
 </html>
 ```
 
-Within the ```head``` element the first thing after the required meta tags you will see a call to the siteTitle() function.  This sets the title of the current page on a browser tab.  
+Within the `head` element the first thing after the required meta tags you will see a call to the siteTitle() function.  This sets the title of the current page on a browser tab.  
 
 The if statement that is in this section is where Vite is used for asset bundling.  During development, when you save a view file, any changes are automatically presented to the user without have to refresh the page.
 
-The last function call, ```$this->content('head)```  is where additional information for ```head``` element is injected into your view.  More information about the ```content``` function can be found in the [View](view) page.
+The last function call, `$this->content('head)`  is where additional information for `head` element is injected into your view.  More information about the `content` function can be found in the [View](view) page.
 
-The ```body``` element contains a call to the ```component``` function for rendering menus.  For the admin layout we use the ```admin_menu``` instead and the framework is smart enough to display this menu for pages that uses the admin layout.
+The `body` element contains a call to the `component` function for rendering menus.  For the admin layout we use the `admin_menu` instead and the framework is smart enough to display this menu for pages that uses the admin layout.
 
-The next function call displays session or sometimes called flash messages depending on the framework.  Finally, we have a call to the content function for displaying ```body``` content.
+The next function call displays session or sometimes called flash messages depending on the framework.  Finally, we have a call to the content function for displaying `body` content.
 
 ## Building Your Own Layout <a id="build-layout"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+User have the ability to create their own layout.
