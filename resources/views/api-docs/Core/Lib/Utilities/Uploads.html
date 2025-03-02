@@ -117,7 +117,7 @@
                     void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_errorReporting">errorReporting</a>(array $errors, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name)
+                    <a href="#method_errorReporting">errorReporting</a>(<abbr title="Core\Lib\Utilities\bool|array">bool|array</abbr> $errors, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name)
         
                                             <p><p>Processes list of errors associated with uploads and makes them
 presentable to user during validation.</p></p>                </div>
@@ -244,7 +244,7 @@ size usually described as <size_as_an_int>&lt;bytes|mb|gb&gt; (e.g.: 5mb).</p></
                     <h3 id="method_errorReporting">
         <div class="location">at line 64</div>
         <code>                    void
-    <strong>errorReporting</strong>(array $errors, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name)
+    <strong>errorReporting</strong>(<abbr title="Core\Lib\Utilities\bool|array">bool|array</abbr> $errors, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name)
         </code>
     </h3>
     <div class="details">    
@@ -260,9 +260,9 @@ presentable to user during validation.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td>array</td>
+                <td><abbr title="Core\Lib\Utilities\bool|array">bool|array</abbr></td>
                 <td>$errors</td>
-                <td><p>The array of errors.</p></td>
+                <td><p>The errors, if any are detected will be an array.</p></td>
             </tr>
                     <tr>
                 <td><a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a></td>
