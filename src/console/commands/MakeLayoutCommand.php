@@ -22,7 +22,7 @@ class MakeLayoutCommand extends Command {
     {
         $this->setName('make:layout')
             ->setDescription('Generates a new layout')
-            ->setHelp('php console make:layout <layout_name')
+            ->setHelp('php console make:layout <layout_name>')
             ->addArgument('layout-name', InputArgument::REQUIRED, 'Pass the name of the new layout')
             ->addOption(
                 'menu',
