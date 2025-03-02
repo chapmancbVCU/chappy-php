@@ -41,6 +41,7 @@ Below is a list of available commands. Most items in this list contains a link t
 | make:api | Generates or updates api-docs |
 | make:command | Generates a new command class |
 | make:command-helper | Generates helper class that supports console commands |
+| make:component | Generates component based on flags that are set |
 | make:controller| Generates a new controller class |
 | make:layout | Generates a new layout |
 | make:menu | Generates a new menu file |
