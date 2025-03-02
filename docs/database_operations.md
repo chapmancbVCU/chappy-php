@@ -83,9 +83,9 @@ class Migration1733521897 extends Migration {
 }
 ```
 
-**addColumn** is the most common function that is used. On line 8 we call this function to create a field called 'bar' whose type is varchar. The last argument is the optional attributes parameter. It is an associative array and in this case we set the size. Other supported attributes are precision, scale, before, after, and definition.
+**addColumn** is the most common function that is used. On line 8 we call this function to create a field called `bar` whose type is varchar. The last argument is the optional attributes parameter. It is an associative array and in this case we set the size. Other supported attributes are precision, scale, before, after, and definition.
 
-**addTimeStamps** as shown on line 9 creates 'created_at' and 'updated_at' fields. **softDelete** is used as a setting where you want to removed a record from being returned from any database query. It serves as a safety net that allows you to permanently delete the record later or preserve for later use.
+`addTimeStamps` as shown on line 9 creates `created_at` and `updated_at` fields. `softDelete` is used as a setting where you want to removed a record from being returned from any database query. It serves as a safety net that allows you to permanently delete the record later or preserve for later use.
 
 The function call on line 11 adds a user_id field and the next line sets this field as an index. It is a common way to create relationships with this and the Laravel framework.
 

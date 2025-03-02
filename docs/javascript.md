@@ -17,11 +17,13 @@ Additional JavaScript features can also be included in this framework.  The entr
 
 ## Vite Asset Bundling <a id="vite-asset-bundling"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 This framework includes the ability to perform Vite asset bundling.  Run the following command to bundle your assets:
+
 ```sh
 npm run build
 ```
 
 Vite is also used to provide live updates of your views after saving a view file.  Run the following command to use this feature:
+
 ```sh
 npm run dev
 ```

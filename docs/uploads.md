@@ -23,7 +23,7 @@ Run the following command:
 php console make:upload ProfileImage
 ```
 
-Once you run this command a new class called "UploadProfileImages" will be created at `app/lib/utilities/`
+Once you run this command a new class called `UploadProfileImages` will be created at `app/lib/utilities/`
 
 #### B. Configure File Type Validation <a id="configure-file-type-validation">
 Edit the validateFileType function that is found in your new class.  An example is shown below:
@@ -215,16 +215,16 @@ public function editAction(): void {
 }
 ```
 
-Let's zero in on the block of code below the comment for "Handle file uploads."  Between single and multiple file uploads most of the code is copy in paste.  We shall focus on the following line below and explain what happens.
+Let's zero in on the block of code below the comment for `Handle file uploads`.  Between single and multiple file uploads most of the code is copy in paste.  We shall focus on the following line below and explain what happens.
 
 ```php
 $uploads = new UploadProfileImage($files, ProfileImages::getAllowedFileTypes(), 
     ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS, "5mb");
 ```
 
-The boolean value "false" is for the instance variable of the Upload class called $uploads.  When this value is set to false multiple file uploads is disabled.  ROOT.DS is the bucket variable.  Since we are using localhost for profile images it's set to the project root followed by a directory separator variable.  It can also be set as the path to a host containing an S3 bucket on a cloud base service such as Amazon Web Services (AWS).  The last variable, "5mb", is used for messaging purposes for file size validation.
+The boolean value `false` is for the instance variable of the Upload class called $uploads.  When this value is set to false multiple file uploads is disabled.  ROOT.DS is the bucket variable.  Since we are using localhost for profile images it's set to the project root followed by a directory separator variable.  It can also be set as the path to a host containing an S3 bucket on a cloud base service such as Amazon Web Services (AWS).  The last variable, `5mb`, is used for messaging purposes for file size validation.
 
-When setting up the view we use a call to the inputBlock function.  In the example below we retrieve files from POST using the value "profileImage" as shown below:
+When setting up the view we use a call to the inputBlock function.  In the example below we retrieve files from POST using the value `profileImage` as shown below:
 
 ```php
 <?= FormHelper::inputBlock('file', "Upload Profile Image (Optional)", 'profileImage', '', ['class' => 'form-control', 'accept' => 'image/gif image/jpeg image/png'], ['class' => 'form-group mb-3'], $this->displayErrors) ?>

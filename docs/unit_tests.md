@@ -10,7 +10,7 @@ The Chappy.php framework has basic support for unit testing.  You can make your 
 php console make:Test ${TestName}
 ```
 
-After running the command a new file is created inside the "tests" directory under project root.  Once you implemented your test you it can be executed by running the following command:
+After running the command a new file is created inside the `tests` directory under project root.  Once you implemented your test you it can be executed by running the following command:
 ```sh
 php console test:run-test ${TestName}
 ```

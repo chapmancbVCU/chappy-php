@@ -111,7 +111,7 @@ public function detailsAction(int $id): void {
 }
 ```
 
-For this action we are interested in displaying information for a particular contact. Note that this function has a parameter name id of type int. This function obtains this parameter from the URL path as shown here:```http://hostname/contacts/details/1```
+For this action we are interested in displaying information for a particular contact. Note that this function has a parameter name id of type int. This function obtains this parameter from the URL path as shown here: `http://hostname/contacts/details/1`
 
 Parsing out this path we see the expected identifier for contacts and the action name of details. The third part is interpreted as a parameter. In this case it is the id for the contact whose details we want to display. Next, we use the contact's model to obtain the record. This function on line 2 requires the id we initially passed along with the id of the current user.
 
@@ -125,7 +125,7 @@ public function indexAction(): void {
 }
 ```
 
-Nothing too complicated here but line 2 is noteworthy. Notice the second parameter in the findAllByUserId. We cover this more details in the model section but note we are using an associative array with a key of order and values 'lname, fname'. This, framework supports setting parameters to configure query operations. In this example, we want to older our results by last name and then by first name.
+Nothing too complicated here but line 2 is noteworthy. Notice the second parameter in the findAllByUserId. We cover this more details in the model section but note we are using an associative array with a key of order and values `'lname, fname'`. This, framework supports setting parameters to configure query operations. In this example, we want to older our results by last name and then by first name.
 
 Update operations is similar to the Create operation. There are some noteworthy differences to discuss so we have the code for the ContactsController's editAction shown below.
 

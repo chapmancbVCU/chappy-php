@@ -98,7 +98,7 @@ public function run(): void {
 
 The call to create a new Faker Factory uses a static function called create.  In our case we include 'en_us' as a locality since we are making contacts for "people" who are United States residents.  This will ensure information such as state and zip follow US Postal Service standards.
 
-The variable ```$numberOfRecords``` is set to 10 by default.  You can change this to any positive integer within reason for your case.  The while loop contains statements for creating a contact and setting fake data to database fields.  The if statement at the end is really important because the incrementor statement will be executed only when there is a successful save operation.  This ensures the number of records you need are indeed created.
+The variable `$numberOfRecords` is set to 10 by default.  You can change this to any positive integer within reason for your case.  The while loop contains statements for creating a contact and setting fake data to database fields.  The if statement at the end is really important because the incrementor statement will be executed only when there is a successful save operation.  This ensures the number of records you need are indeed created.
 
 ## Setting Up the DatabaseSeeder Class <a id="database-seeder"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Before we can run the database seeder we need to update the DatabaseSeeder class.  It is found in the same directory as the class that we created above.  You will need to perform the imports and add the function calls in the order you want database seeding to occur.  A properly setup example is shown below:
@@ -124,7 +124,7 @@ class DatabaseSeeder extends Seeder {
 }
 ```
 
-Notice that we need to include a use statements for each seeder we want to use.  Within the run function is a call to the ```call``` function of the Seeder class.  This is where the mechanics of database seeding operations occurs.
+Notice that we need to include a use statements for each seeder we want to use.  Within the run function is a call to the `call` function of the Seeder class.  This is where the mechanics of database seeding operations occurs.
 
 ## Running a Database Seeder <a id="running-seeder"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 We are finally ready to perform database seeding.  Let's look at the index view of the contacts management system before we start.

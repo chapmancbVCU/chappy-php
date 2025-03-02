@@ -108,7 +108,7 @@ class FooCommand extends Command {
 Everything you need to build your own command is included in this file.  All relevant imports are listed at the top.  Each command you create contains two functions.  The configure function is where everything gets setup and the execute function performs actions associated with the command.
 
 ## Command Helpers <a id="command-helpers"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-Since this framework is fully Object-Oriented you can generate helper files to modularize tasks that need to be used across multiple commands.  Helpers can be found at ```src\console\helpers```.
+Since this framework is fully Object-Oriented you can generate helper files to modularize tasks that need to be used across multiple commands.  Helpers can be found at `src\console\helpers`.
 
 You can build your own command helper class by running the `make:command-helper` command.  Let's create a FooHelper class by running the following:
 
