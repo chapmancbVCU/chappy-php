@@ -107,13 +107,13 @@ class ContactsController extends Controller {
         // Determine current page
         $page = Pagination::currentPage($this->request);
 
-        // Retrieve paginated contacts using the base model’s find method
+        // Get the total number of contacts for the user
         $pagination = new Pagination($page, 10, Contacts::findTotal([
             'conditions' => 'user_id = ?',
             'bind'       => [$this->currentUser->id]
         ]));
-
-        // Get the total number of contacts for the user
+        
+        // Retrieve paginated contacts using the base model’s find method
         $contacts = Contacts::find($pagination->paginationParams(
             'user_id = ?', 
             [$this->currentUser->id], 

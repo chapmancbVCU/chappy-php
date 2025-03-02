@@ -23,7 +23,7 @@ Get to any resource within the Chappy.php Wiki from here.
     * [Components](components) - In progress
     * [Layouts](layouts)
     * [Navigation Bar](nav_bar)
-    * [Pagination](pagination) - Coming soon
+    * [Pagination](pagination)
     * [Views](views) - Coming soon
 
 
