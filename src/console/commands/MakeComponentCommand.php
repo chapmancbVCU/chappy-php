@@ -54,6 +54,7 @@ class MakeComponentCommand extends Command {
             return View::makeCardComponent($componentName);
         }
 
-        return Command::SUCCESS;
+        Tools::info('No form type selected', 'red');
+        return Command::FAILURE;
     }
 }
