@@ -43,8 +43,7 @@ class ProfileController extends Controller {
         if($this->request->isPost()) {
             $this->request->csrfCheck();
             $files = $_FILES['profileImage'];
-            $isFiles = $files['tmp_name'] != '';
-            if($isFiles) {
+            if($files['tmp_name'] != '') {
                 $uploads = new UploadProfileImage($files, ProfileImages::getAllowedFileTypes(), 
                     ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS, "5mb");
                 
@@ -55,12 +54,11 @@ class ProfileController extends Controller {
             $user->assign($this->request->get(), Users::blackListedFormKeys);
             $user->save();
             if($user->validationPassed()){
-                if($isFiles) {
+                if($uploads) {
                     // Upload Image
                     ProfileImages::uploadProfileImage($user->id, $uploads);
                 }
-                $sortOrder = json_decode($_POST['images_sorted']);
-                ProfileImages::updateSortByUserId($user->id, $sortOrder);
+                ProfileImages::updateSortByUserId($user->id, json_decode($_POST['images_sorted']));
 
                 // Redirect
                 Router::redirect('profile/index');
