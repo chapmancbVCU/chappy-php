@@ -170,6 +170,16 @@ class View {
     }
     
     /**
+     * Writes template for view to a file.
+     *
+     * @param string $file The path to the view file.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeView(string $filePath): int {
+        return Tools::writeFile($filePath, self::viewContent(), "View file");
+    }
+
+    /**
      * Returns a string containing contents for a menu.
      *
      * @param string $menuName The name for a new menu.
@@ -243,6 +253,27 @@ $userMenu = Router::getMenu(\'user_menu\');
         <?= $slot ?>
     </tbody>
 </table>
+';
+    }
+
+    /**
+     * Generates content for view file.
+     *
+     * @return string The content for the view file.
+     */
+    public static function viewContent(): string {
+        return '<?php $this->setSiteTitle("My title here"); ?>
+
+<!-- Head content between these two function calls.  Remove if not needed. -->
+<?php $this->start(\'head\'); ?>
+
+<?php $this->end(); ?>
+
+
+<!-- Body content between these two function calls. -->
+<?php $this->start(\'body\'); ?>
+
+<?php $this->end(); ?>
 ';
     }
 }
