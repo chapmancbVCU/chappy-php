@@ -4,6 +4,8 @@
 1. [Overview](#overview)
 2. [acl.json File](#acl-file)
 3. [Controllers and Views](#controllers-and-views)
+<br>
+<br>
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 This framework supports Access Control Levels (ACLs) to manage permissions.  A solid permissions structure is a fundamental part of what we call in the IT industry Confidentiality, Integrity, and Availability (CIA) triad of information security.  CIA is defined as follows:
 1. Confidentiality - Only those who are allowed access shall be able to access certain data.
@@ -11,6 +13,7 @@ This framework supports Access Control Levels (ACLs) to manage permissions.  A s
 3. Availability - Those who have permission to access the data shall be able to access it without impedient.  Once the user no longer needs access to the data permissions shall be removed.
 
 We handle access control using a combination of a acl.json file and a acl field in the users table which is represented as an array.
+<br>
 
 ## acl.json File <a id="acl-file"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The acl.json file located under `app/` allows users to grant or deny access to based on controllers and actions.  The acl.json file for the base project is shown below:
@@ -54,6 +57,7 @@ The LoggedIn object is a different such that it contains a denied object that ha
         "Profile" : ["*"]
     },
 ```
+<br>
 
 ## Controllers and Views <a id="controllers-and-views"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 After adding the name of the action they wish to create, in this case `changePassword`, the user will need to create the view and add a function to the AuthController called `changePasswordAction`.  An example is shown below:

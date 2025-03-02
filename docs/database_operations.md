@@ -1,13 +1,15 @@
 <h1 style="font-size: 50px; text-align: center;">Database Operations</h1>
 
-
 ## Table of contents
 1. [Overview](#overview)
 2. [Migration](#migration)
 3. [Creating A New Migration](#creating-a-new-migration)
+<br>
+<br>
 
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 This page goes over the available ways users can manage a database with chappy.php Using the console, you can perform migrations, drop tables, and other tasks. A complete description of all Migration class function can be within the project API Documentation.
+<br>
 
 ## Migration <a id="migration"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Performing a database migration is the first task you will perform after establishing a new project. Before you begin you will need to open the .env file and enter some information about the database. An example is shown below:
@@ -36,6 +38,7 @@ Finally, if you just want to drop tables perform the following command:
 ```php console migrate:drop-all```
 
 Performing either of these commands will result in status messages being displayed in the console.
+<br>
 
 ## Creating A New Migration <a id="creating-a-new-migration"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Create a migration by running the make:migration command. An example is shown below for a table called foo:
@@ -83,7 +86,7 @@ class Migration1733521897 extends Migration {
 }
 ```
 
-**addColumn** is the most common function that is used. On line 8 we call this function to create a field called `bar` whose type is varchar. The last argument is the optional attributes parameter. It is an associative array and in this case we set the size. Other supported attributes are precision, scale, before, after, and definition.
+`ddColumn` is the most common function that is used. On line 8 we call this function to create a field called `bar` whose type is varchar. The last argument is the optional attributes parameter. It is an associative array and in this case we set the size. Other supported attributes are precision, scale, before, after, and definition.
 
 `addTimeStamps` as shown on line 9 creates `created_at` and `updated_at` fields. `softDelete` is used as a setting where you want to removed a record from being returned from any database query. It serves as a safety net that allows you to permanently delete the record later or preserve for later use.
 

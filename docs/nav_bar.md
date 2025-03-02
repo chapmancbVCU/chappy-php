@@ -3,6 +3,8 @@
 ## Table of contents
 1. [Overview](#overview)
 2. [Navigation Bar Layout](#layout)
+<br>
+<br>
 
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The navigation bar is supported by Bootstrap 5 and is responsive based on the size of the viewport.  The configuration of the navigation bar is based on a `menu_acl` json file.  More about creating these files can be found [here](layouts#menu-acls)
@@ -41,6 +43,7 @@ viewDirectoryName/actionName
 ```
 
 This follows the same format for the string parameter inside the render function of your controller's actions.
+<br>
 
 ## Navigation Bar Layout <a id="layout"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The navigation bar is split into sections.  The left most side is the branding.  This is configured by modifying the `MENU_BRAND` variable in your `.env` file.

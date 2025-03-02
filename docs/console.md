@@ -6,10 +6,11 @@
 3. [Building Your Own Command](#build-command)
 4. [Command Helpers](#command-helpers)
 5. [Tools](#tools)
-    * A. [border Function](#border)
-    * B. [info Function](#info)
-    * C. [writeFile Function](#write-file)
-
+    * [border Function](#border)
+    * [info Function](#info)
+    * [writeFile Function](#write-file)
+<br>
+<br>
 
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The console command is used to manage and perform tasks related to this framework. Just like Laravel's Artisan command, this frameworks Command Line Interface (CLI) is based off of the Symfony Console component.  Check out Symfony's Console component [page](https://symfony.com/doc/current/console.html) for documentation on how to set up your command.  
@@ -29,6 +30,7 @@ php console test:run-test Test
 Where Test is the name of the file containing the test. Typing php console in the command line at project root will display all of the available commands. Each of the supported commands will be covered in their respective sections in this user guide.
 
 If there is a command you would like for us to support you can submit an issue [here](https://github.com/chapmancbVCU/chappy-php/issues).
+<br>
 
 ## Summary of Available Commands <a id="summary-of-available-commands"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Below is a list of available commands. Most items in this list contains a link to the page that describes an individual command.  This list can be viewed in the terminal by typing ```php console``` under project root.
@@ -106,6 +108,7 @@ class FooCommand extends Command {
 ```
 
 Everything you need to build your own command is included in this file.  All relevant imports are listed at the top.  Each command you create contains two functions.  The configure function is where everything gets setup and the execute function performs actions associated with the command.
+<br>
 
 ## Command Helpers <a id="command-helpers"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Since this framework is fully Object-Oriented you can generate helper files to modularize tasks that need to be used across multiple commands.  Helpers can be found at `src\console\helpers`.
@@ -132,6 +135,7 @@ class FooHelper {
 ```
 
 When adding function we usually create those that are static.  We rarely need to create a new instance of a helper class so a constructor is not included in the output.
+<br>
 
 ## Tools <a id="tools"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Tools is a command helper class that contains functions that are commonly used with other commands.  To use the tools class simply used the following use statement:
@@ -139,11 +143,13 @@ Tools is a command helper class that contains functions that are commonly used w
 ```php
 use Console\Helpers\Tools;
 ```
+<br>
 
-#### A. border Function <a id="border">
+#### border Function <a id="border">
 The border prints a dashed line.
+<br>
 
-#### B. info Function <a id="info">
+#### info Function <a id="info">
 The info function is used to present to the user logging information.  The following is an example of how to call this function:
 
 ```php
@@ -179,8 +185,9 @@ The following text colors are supported:
 14. light-green
 15. light-blue
 16. light-magenta
+<br>
 
-#### B. writeFile Function <a id="write-file">
+#### writeFile Function <a id="write-file">
 The writeFile function is what we used when we need to dump contents of a command to a file.  We use this for commands such as making controllers, models, and migrations.  
 
 Here is an example call to this function for generating a new menu_acl json file.

@@ -4,9 +4,12 @@
 1. [Overview](#overview)
 2. [Registration](#registration)
 3. [Login](#login)
+<br>
+<br>
 
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 This section provides an overview of the registration and authentication process.
+<br>
 
 ## Registration <a id="registration"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 At the login page the user can access the registration page. A screenshot is shown below in figure 1.
@@ -24,6 +27,7 @@ Field Descriptions:
 5. Description: Optional field where the user can describe themselves.
 6. Profile Image: Optional profile image.
 7. Password: Make sure they match and fulfill complexity requirements.
+<br>
 
 ## Login <a id="login"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The login page is the standard login setup with a remember me checkbox. Once you login you can access parts of the application that are allowed for your access control level. The number of failed attempts allowed can be set by your administrator. If you are an administrator and you get locked out and there are no other administrators you can set the inactive field to 0 and login_attempts to 0 in the record associated with your user account.

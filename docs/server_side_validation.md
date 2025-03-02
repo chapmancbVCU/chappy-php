@@ -4,6 +4,8 @@
 1. [Overview](#overview)
 2. [Setup](#setup)
 3. [Validation Rules](#validation-rules)
+<br>
+<br>
 
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Server side validation supports the frameworks ability to check if values for an input field on a form meet specific requirements. The most commonly used check is required. A list of supported checks is shown below:
@@ -18,6 +20,7 @@ Server side validation supports the frameworks ability to check if values for an
 9. Special - Checks if a string contains at least 1 special character that is not a space
 10. Unique - Checks database on form submit and verifies a value is unique (ex: user name)
 11. Upper Character - Checks if a string contains at least 1 upper case character.
+<br>
 
 ## Setup <a id="setup"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Let's use the addAction function from an example ContactsController class. As shown below on line 32, we have a displayErrors property for the View class. We generally set this value to a function call called getErrorMessages on the model. In this case, we are using the $contacts model because we want to add a new contact.
@@ -44,6 +47,7 @@ The result of submitting a form without entering required input is shown below. 
   <img src="assets/display-errors-example.png" alt="Front end messages">
   <p style="font-style: italic;">Figure 3 - Front end messages</p>
 </div>
+<br>
 
 ## Validation Rules <a id="validation-rules"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 First step is to create a validator function in your model class. The structure looks as follows:

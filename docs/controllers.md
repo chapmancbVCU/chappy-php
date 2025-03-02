@@ -4,9 +4,12 @@
 1. [Overview](#overview)
 2. [Controller File](#controller-file)
 3. [Example](#example)
+<br>
+<br>
 
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 This framework supports controllers to manage the interactions between views and models.
+<br>
 
 ## Controller File <a id="controller-file"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Let's begin by creating a new controller using all available options and arguments:
@@ -59,6 +62,7 @@ class FooController extends Controller {
 The first function you see is the onConstruct. Any default settings you need for the controller is set here. It called by the Controller parent class' constructor. The value for the --layout option is used to set the layout in this function.
 
 All of the other functions supports the default index action and the Create, Read, Update, and Delete (CRUD) operations. With this framework we require that functions that represent actions end with the word Action. Otherwise, the route function is unable to work correctly.
+<br>
 
 ## Example <a id="example"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 ```php

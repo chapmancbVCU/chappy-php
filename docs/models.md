@@ -3,6 +3,8 @@
 ## Table of contents
 1. [Overview](#overview)
 2. [Model File](#model-file)
+<br>
+<br>
 
 ## <a id="overview"></a>Overview <span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 This framework supports models for interacting with a database. Whenever you create a new table you will need to create a new model. Let's use the table 'foo' that was created under the Database Operations section. To create a new model run the the following command:
@@ -63,6 +65,7 @@ class Foo extends Model {
     }
 }
 ```
+<br>
 
 ## Model File <a id="model-file"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The model class that is generated as a template for creating your models. First thing you need to do is add the fields associated with your database as instance variables. These instance variables need to use the 'public' access identifier. Commonly used functions are automatically generated when you create a new model class. Since all model classes extends the Model class you automatically get access to functions that assist with database operations. Functions you create and those from the Model class are commonly used within action functions within controller classes.
