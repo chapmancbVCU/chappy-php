@@ -93,14 +93,7 @@ class AuthController extends Controller {
                     ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS, "5mb");
                 
                 $uploads->runValidation();
-                $imagesErrors = $uploads->validates();
-                if(is_array($imagesErrors)){
-                    $msg = "";
-                    foreach($imagesErrors as $name => $message){
-                        $msg .= $message . " ";
-                    }
-                    $newUser->addErrorMessage('profileImage', trim($msg));
-                }
+                $uploads->errorReporting($uploads->validates(), $newUser, 'profileImage');
             }
 
             $newUser->assign($this->request->get());

@@ -49,14 +49,7 @@ class ProfileController extends Controller {
                     ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS, "5mb");
                 
                 $uploads->runValidation();
-                $imagesErrors = $uploads->validates();
-                if(is_array($imagesErrors)){
-                    $msg = "";
-                    foreach($imagesErrors as $name => $message){
-                        $msg .= $message . " ";
-                    }
-                    $user->addErrorMessage('profileImage', trim($msg));
-                }
+                $uploads->errorReporting($uploads->validates(), $user, 'profileImage');
             }
 
             $user->assign($this->request->get(), Users::blackListedFormKeys);

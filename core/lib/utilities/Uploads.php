@@ -1,5 +1,6 @@
 <?php
 namespace Core\Lib\Utilities;
+use Core\Model;
 use Core\Helper;
 use Core\Lib\Logger;
 /**
@@ -48,6 +49,25 @@ class Uploads {
             $this->_errors[$name] .= $this->_errors[$name] . " " . $message;
         } else {
             $this->_errors[$name] = $message;
+        }
+    }
+
+    /**
+     * Processes list of errors associated with uploads and makes them 
+     * presentable to user during validation.
+     *
+     * @param array $errors The array of errors.
+     * @param Model $model The model associated with the errors.
+     * @param string $name The name of the field in the model for the errors.
+     * @return void
+     */
+    public function errorReporting(array $errors, Model $model, string $name): void {
+        if(is_array($errors)){
+            $msg = "";
+            foreach($errors as $name => $message){
+                $msg .= $message . " ";
+            }
+            $model->addErrorMessage($name, trim($msg));
         }
     }
 
