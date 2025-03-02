@@ -181,9 +181,9 @@ public function editAction(): void {
 
     $profileImages = ProfileImages::findByUserId($user->id);
     if($this->request->isPost()) {
+        $this->request->csrfCheck();
 
         // Handle file uploads
-        $this->request->csrfCheck();
         $files = $_FILES['profileImage'];
         $isFiles = $files['tmp_name'] != '';
         if($isFiles) {
