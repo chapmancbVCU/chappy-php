@@ -8,7 +8,7 @@
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The View component of this Model View Controller framework contains several features.  Everything is standardized and customizable through tools such as layouts, standardized navigation, and components.  With built-in Bootstrap 5 support the user is able tailor layout based on their requirements.  Below are links to all of the resources available to assist in making your project need any visual requirement.
 
-All php files that support views can be found at ```resources\views``` as shown in Figure 1.
+All php files that support views can be found at `resources/views` as shown in Figure 1.
 
 <div style="text-align: center;">
   <img src="assets/views-directory.png" alt="Default views directory">

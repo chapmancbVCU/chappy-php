@@ -23,7 +23,7 @@ The seederName is the name of your model and the table you want to populate with
 php console make:seeder Contacts
 ```
 
-will result in a new file called ContactsTableSeeder being created at ```database\seeders\```.  The resulting template file is shown below.
+will result in a new file called ContactsTableSeeder being created at `database/seeders/`.  The resulting template file is shown below.
 
 ```php
 namespace Database\Seeders;

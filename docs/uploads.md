@@ -23,7 +23,7 @@ Run the following command:
 php console make:upload ProfileImage
 ```
 
-Once you run this command a new class called "UploadProfileImages" will be created at "app\lib\utilities\"
+Once you run this command a new class called "UploadProfileImages" will be created at `app/lib/utilities/`
 
 #### B. Configure File Type Validation <a id="configure-file-type-validation">
 Edit the validateFileType function that is found in your new class.  An example is shown below:
@@ -90,7 +90,7 @@ First we create a new model file.
 php console make:model ProfileImages
 ```
 
-The new model file will be created at "app\models\".  You will need to add instance variables for any database fields and set them to public.  We also need to add protected static instance variables for allowed file types, maximum file size, and upload path.  Finally, set the $_table variable to match the name of the table you just created.  Since profile images are associated with a user we also added a $user_id instance variable to this class to match what we have in the migration file.  The final list of instance variables is shown below:
+The new model file will be created at `app/models/`.  You will need to add instance variables for any database fields and set them to public.  We also need to add protected static instance variables for allowed file types, maximum file size, and upload path.  Finally, set the $_table variable to match the name of the table you just created.  Since profile images are associated with a user we also added a $user_id instance variable to this class to match what we have in the migration file.  The final list of instance variables is shown below:
 
 ```php
 protected static $allowedFileTypes = [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG];

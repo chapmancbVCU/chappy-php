@@ -10,7 +10,7 @@
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The layouts feature supports the ability to present a consistent user experience across views in the framework.  We natively support Bootstrap 5 for the styling.
 
-Layouts are supported by layout files that are located at `resources\views\layouts`, menus that can be found at `resources\views\components`, and menu_acl json files within the `app` directory.
+Layouts are supported by layout files that are located at `resources/views/layouts`, menus that can be found at `resources/views/components`, and menu_acl json files within the `app` directory.
 
 ## Layouts <a id="layouts"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Let's look at the default layout.
