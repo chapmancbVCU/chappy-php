@@ -3,6 +3,8 @@
 ## Table of contents
 1. [Overview](#overview)
 2. [Setup](#controller)
+<br>
+<br>
 
 ## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Pagination is supported with the use of a Pagination class and built in Bootstrap 5 support.  An example of this is shown below in Figure 1.
@@ -11,22 +13,26 @@ Pagination is supported with the use of a Pagination class and built in Bootstra
   <img src="assets/seeded-contacts.png" alt="Pagination example">
   <p style="font-style: italic;">Figure 1 - Pagination example</p>
 </div>
+<br>
 
 ## Setup <a id="setup"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The following are instructions for setting up Pagination within your controller.  We will use the `indexAction` of the `ContactsController`.
 
-1. Import Pagination class:
+#### 1. Import Pagination class:
 
 ```php
 use Core\Lib\Pagination;
-``
+```
+<br>
 
-2. Get current page:
+#### 2. Get current page:
+
 ```php
 $page = Pagination::currentPage($this->request);
 ```
+<br>
 
-3. Get total records, in this case the number of contacts for this user when creating instance of Pagination class.  The condition is the `user_id` and we bind with the current user's id since we want only contacts associated with this user.
+#### 3. Get total records, in this case the number of contacts for this user when creating instance of Pagination class.  The condition is the `user_id` and we bind with the current user's id since we want only contacts associated with this user.
 
 ```php
 $pagination = new Pagination($page, 10, Contacts::findTotal([
@@ -34,8 +40,9 @@ $pagination = new Pagination($page, 10, Contacts::findTotal([
     'bind'       => [$this->currentUser->id]
 ]));
 ```
+<br>
 
-4. Retrieve paginated records using base model's find method.  In this step we use the paginationParams function from the Pagination class to build our query:
+#### 4. Retrieve paginated records using base model's find method.  In this step we use the paginationParams function from the Pagination class to build our query.
 
 ```php
 $contacts = Contacts::find($pagination->paginationParams(
@@ -44,8 +51,9 @@ $contacts = Contacts::find($pagination->paginationParams(
     'lname, fname')                 // Order
 );
 ```
+<br>
 
-5. Configure the view:
+#### 5. Configure the view:
 
 ```php
 $this->view->pagination = Pagination::pagination($page, $pagination->totalPages());
@@ -77,8 +85,9 @@ public function indexAction(): void {
     $this->view->render('contacts/index');
 }
 ```
+<br>
 
-6. Within your view add the following line, in this cases, right after the closing tag for the table element:
+#### 6. Within your view add the following line, in this cases, right after the closing tag for the table element:
 
 ```php
 <?= $this->pagination ?>
