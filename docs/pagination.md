@@ -35,13 +35,13 @@ $pagination = new Pagination($page, 10, Contacts::findTotal([
 ]));
 ```
 
-4. Retrieve paginated records using base model's find method:
+4. Retrieve paginated records using base model's find method.  In this step we use the paginationParams function from the Pagination class to build our query:
 
 ```php
 $contacts = Contacts::find($pagination->paginationParams(
-    'user_id = ?', 
-    [$this->currentUser->id], 
-    'lname, fname')
+    'user_id = ?',                  // Conditions
+    [$this->currentUser->id],       // Bind
+    'lname, fname')                 // Order
 );
 ```
 
