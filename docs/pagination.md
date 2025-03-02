@@ -8,6 +8,8 @@
     * C. [Get Total Records](#total-records)
     * D. [Retrieve Paginated Records](#paginated-records)
     * E. [Configure The View](#configure-view)
+    * F. [Adding Pagination To View](#view)
+3. [Final View](#final-view)
 <br>
 <br>
 
@@ -94,8 +96,56 @@ public function indexAction(): void {
 ```
 <br>
 
-#### F. Within your view add the following line, in this cases, right after the closing tag for the table element:
+#### F. Adding Pagination To View <a id="view">
+Within your view add the following line, in this cases, right after the closing tag for the table element:
 
 ```php
 <?= $this->pagination ?>
+```
+<br>
+
+## 3. Final View <a id="final-view"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+Putting everything together we can demonstrate what the final view looks like.  By placing the `$this->pagination` variable below the closing tag for the table the links are located where they need to be.
+
+```php
+<?php $this->setSiteTitle("My Contacts"); ?>
+
+<?php $this->start('body'); ?>
+<h2 class="text-center">My Contacts</h2>
+<table class="table table-striped  table-bordered table-hover">
+    <thead>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Cell Phone</th>
+        <th>Home Phone</th>
+        <th>Work Phone</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <?php foreach($this->contacts as $contact): ?>
+            <tr>
+                <td>
+                    <a href="<?=APP_DOMAIN?>contacts/details/<?=$contact->id?>">
+                        <?= $contact->displayName(); ?>
+                    </a>
+                </td>
+                <td><?= $contact->email ?></td>
+                <td><?= $contact->cell_phone ?></td>
+                <td><?= $contact->home_phone ?></td>
+                <td><?= $contact->work_phone ?></td>
+                <td class="text-center">
+                    <a href="<?=APP_DOMAIN?>contacts/edit/<?=$contact->id?>" class="btn btn-info btn-sm">
+                        <i class="fa fa-edit"></i> Edit
+                    </a>
+                    <a href="<?=APP_DOMAIN?>contacts/delete/<?=$contact->id?>" class="btn btn-danger btn-sm" onclick="if(!confirm('Are you sure?')){return false;}">
+                        <i class="fa fa-trash"></i> Delete
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
+<?= $this->pagination ?>
+<?php $this->end(); ?>
 ```
