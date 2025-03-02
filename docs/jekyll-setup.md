@@ -11,7 +11,7 @@
 8. [Commit and Push to GitHub](#github)
 9. [Enable GitHub Pages](#enable-github-pages)
 10. [Verify Deployment](#deployment)
-11. [(Optional) Custom Domain][#custom-domain]
+11. [(Optional) Custom Domain](#custom-domain)
 12. [Troubleshooting](#troubleshooting)
 <br>
 <br>
