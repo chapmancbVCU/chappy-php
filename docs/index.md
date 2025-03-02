@@ -24,7 +24,7 @@ Get to any resource within the Chappy.php Wiki from here.
     * [Layouts](layouts)
     * [Navigation Bar](nav_bar)
     * [Pagination](pagination)
-    * [Views](views) - Coming soon
+    * [Views](views)
 
 
 [Visit us on GitHub!](https://github.com/chapmancbVCU/chappy-php)
