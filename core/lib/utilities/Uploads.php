@@ -56,12 +56,12 @@ class Uploads {
      * Processes list of errors associated with uploads and makes them 
      * presentable to user during validation.
      *
-     * @param array $errors The array of errors.
+     * @param bool|array $errors The errors, if any are detected will be an array.
      * @param Model $model The model associated with the errors.
      * @param string $name The name of the field in the model for the errors.
      * @return void
      */
-    public function errorReporting(array $errors, Model $model, string $name): void {
+    public function errorReporting(bool|array $errors, Model $model, string $name): void {
         if(is_array($errors)){
             $msg = "";
             foreach($errors as $name => $message){
