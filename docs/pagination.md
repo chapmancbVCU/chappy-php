@@ -26,7 +26,7 @@ use Core\Lib\Pagination;
 $page = Pagination::currentPage($this->request);
 ```
 
-3. Get total records, in this case the number of contacts for this user when creating instance of Pagination class:
+3. Get total records, in this case the number of contacts for this user when creating instance of Pagination class.  The condition is the `user_id` and we bind with the current user's id since we want only contacts associated with this user.
 
 ```php
 $pagination = new Pagination($page, 10, Contacts::findTotal([
