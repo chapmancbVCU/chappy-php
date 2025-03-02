@@ -30,7 +30,10 @@ class MakeComponentCommand extends Command {
             ->addOption('enctype', null, InputOption::VALUE_OPTIONAL, 'Form enctype', '')
 
             // Configure card component
-            ->addOption('card', null, InputOption::VALUE_NONE, 'Create a card component');
+            ->addOption('card', null, InputOption::VALUE_NONE, 'Create a card component')
+
+            // Configure table component
+            ->addOption('table', null, InputOption::VALUE_NONE, 'Create a table component');
     }
 
     /**
@@ -44,14 +47,16 @@ class MakeComponentCommand extends Command {
     {
         $componentName = $input->getArgument('component-name');
 
-        if($input->getOption('form')) {
+        if($input->getOption('card')) {
+            return View::makeCardComponent($componentName);
+        } else if($input->getOption('form')) {
             return View::makeFormComponent(
                 $componentName,
                 strtolower($input->getOption('form-method') ?? 'post'),
                 $input->getOption('enctype') ??  ''
             );
-        } else if($input->getOption('card')) {
-            return View::makeCardComponent($componentName);
+        } else if($input->getOption('table')) {
+            return View::makeTableComponent($componentName);
         }
 
         Tools::info('No form type selected', 'red');

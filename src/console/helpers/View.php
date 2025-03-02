@@ -93,7 +93,7 @@ class View {
             ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($componentName).".php",
             self::cardComponent(),
             "Form component"
-      );
+        );
     }
 
     /**
@@ -156,6 +156,20 @@ class View {
     }
 
     /**
+     * Writes table component to a file.
+     *
+     * @param string $componentName The name of the table component.
+     * @return int A value that indicates success, invalid, or failure.
+     */
+    public static function makeTableComponent(string $componentName): int {
+        return Tools::writeFile(
+            ROOT.DS.'resources'.DS.'views'.DS.'components'.DS.strtolower($componentName).".php",
+            self::tableComponent(),
+            "Table component"
+        );
+    }
+    
+    /**
      * Returns a string containing contents for a menu.
      *
      * @param string $menuName The name for a new menu.
@@ -214,4 +228,21 @@ $userMenu = Router::getMenu(\'user_menu\');
 }      
 ';
     }
- }
+
+    /**
+     * Generates content for table component.
+     *
+     * @return string The content of the table component.
+     */
+    public static function tableComponent(): string {
+        return '<table class="table">
+    <thead>
+        <tr><?= $headers ?></tr>
+    </thead>
+    <tbody>
+        <?= $slot ?>
+    </tbody>
+</table>
+';
+    }
+}

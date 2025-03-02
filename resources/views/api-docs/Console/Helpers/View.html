@@ -185,6 +185,16 @@ json files.</p></p>                    </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_makeTableComponent">makeTableComponent</a>(string $componentName)
+        
+                                            <p><p>Writes table component to a file.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     static&nbsp;string
                 </div>
                 <div class="col-md-8">
@@ -201,6 +211,16 @@ json files.</p></p>                    </div>
                     <a href="#method_menuAcl">menuAcl</a>(string $menuName)
         
                                             <p><p>Returns a string containing contents of a json menu acl file.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_tableComponent">tableComponent</a>()
+        
+                                            <p><p>Generates content for table component.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -556,8 +576,50 @@ json files.</p></p>                    </div>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_menu">
+                    <h3 id="method_makeTableComponent">
         <div class="location">at line 164</div>
+        <code>        static            int
+    <strong>makeTableComponent</strong>(string $componentName)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Writes table component to a file.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$componentName</td>
+                <td><p>The name of the table component.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>A value that indicates success, invalid, or failure.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_menu">
+        <div class="location">at line 178</div>
         <code>        static            string
     <strong>menu</strong>(string $menuName)
         </code>
@@ -599,7 +661,7 @@ json files.</p></p>                    </div>
             </div>
                     <div class="method-item">
                     <h3 id="method_menuAcl">
-        <div class="location">at line 209</div>
+        <div class="location">at line 223</div>
         <code>        static            string
     <strong>menuAcl</strong>(string $menuName)
         </code>
@@ -630,6 +692,38 @@ menu name</p></td>
         <tr>
             <td>string</td>
             <td><p>The contents of the json menu acl file.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_tableComponent">
+        <div class="location">at line 237</div>
+        <code>        static            string
+    <strong>tableComponent</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Generates content for table component.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The content of the table component.</p></td>
         </tr>
     </table>
 
