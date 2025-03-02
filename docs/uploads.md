@@ -3,24 +3,24 @@
 ## Table of contents
 1. [Overview](#overview)
 2. [Setup](#setup)
-    * [Creating an uploads class](#create-uploads-class)
-    * [Configure File Type Validation](#configure-file-type-validation)
-    * [Migration File](#migration-file)
-    * [Setting up the Model](#model-setup)
+    * A. [Creating an uploads class](#create-uploads-class)
+    * B. [Configure File Type Validation](#configure-file-type-validation)
+    * C. [Migration File](#migration-file)
+    * D. [Setting up the Model](#model-setup)
 3. [Single File Upload](#single-file)
 4. [Multiple File Upload](#multiple-file)
 <br>
 <br>
 
-## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents]
+## 1. Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents]
 This framework supports single and multiple file uploads.  Switching between both modes is relatively easy and is achieved by changing one line of code in your view file and the action function that renders the view.  In this guide we will use the ProfileController and it's associated view located at "resources/views/profile/edit.php" as examples.
 <br>
 
-## Setup <a id="setup"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents]
+## 2. Setup <a id="setup"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents]
 The upload feature is supported by the Uploads class.  To use the Uploads class you will need to perform the following steps:
 <br>
 
-#### Creating an uploads class <a id="create-uploads-class">
+#### A. Creating an uploads class <a id="create-uploads-class">
 Run the following command:
 
 ```sh
@@ -30,7 +30,7 @@ php console make:upload ProfileImage
 Once you run this command a new class called `UploadProfileImages` will be created at `app/lib/utilities/`
 <br>
 
-#### Configure File Type Validation <a id="configure-file-type-validation">
+#### B. Configure File Type Validation <a id="configure-file-type-validation">
 Edit the validateFileType function that is found in your new class.  An example is shown below:
 
 ```php
@@ -61,7 +61,7 @@ protected function validateFileType(): void {
 This function consists of two for loops.  The first is used to setup reporting.  In this implementation we depend on using information from the _allowedFileTypes array for the setup of error messages.  This makes the UploadProfileImage class more usable since we initially set the file types we want to upload in the model for handling uploads.  More on setting up the model in the following section.
 <br>
 
-#### Migration File <a id="migration-file">
+#### C. Migration File <a id="migration-file">
 We need to create a table in the database to store information about the profile pictures we want to upload.  Run the following command to create a migration.
 ```sh
 php console make:migration profile_images
@@ -90,7 +90,7 @@ php console migrate
 Once the migration has been complete the new table will now be accessible in your database.
 <br>
 
-#### Setting up the Model <a id="model-setup">
+#### D. Setting up the Model <a id="model-setup">
 First we create a new model file.
 
 ```sh
@@ -168,7 +168,7 @@ public static function uploadProfileImage($user_id, $uploads) {
 ```
 <br>
 
-## Single File Upload <a id="single-file"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents]
+## 3. Single File Upload <a id="single-file"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents]
 Setting up single file uploads requires the correct configuration of your action inside of the appropriate controller and the associated view file.  Let's look at the editAction function for the ProfileController.
 
 ```php
@@ -232,7 +232,7 @@ When setting up the view we use a call to the inputBlock function.  In the examp
 ```
 <br>
 
-## Multiple File Upload <a id="multiple-file"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents]
+## 4. Multiple File Upload <a id="multiple-file"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents]
 There are two main differences when it comes to setting up uploads with multiple files.  Let's look at the call for the UploadProfileImage constructor again.
 
 ```php

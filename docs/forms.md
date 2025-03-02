@@ -21,11 +21,11 @@
 <br>
 <br>
 
-## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 1. Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The Rapid Forms feature of this Model View Controller (MVC) Framework allows the user to quickly create and style forms. This guide thoroughly describes the ability to create these HTML form elements along with a description and examples. All form inputs will automatically be sanitized and validation checks will be performed.  If you would like support for additional features please create an issue [here](https://github.com/chapmancbVCU/chappy-php/issues).
 <br>
 
-## button <a id="button"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 2. button <a id="button"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 This function creates a button with no surrounding HTML div element. It supports the ability to set attributes such as classes and event handlers. If you want a div to surround a button along with any other attributes we recommend that you use the buttonBlock function. Note the example function call shown below in Figure 1.
 
 <div style="text-align: center;">
@@ -38,7 +38,7 @@ This function accepts 2 arguments as described below:
 2. $inputAttrs is an array and can be found in most function calls. We use this parameter to set values for attributes such as classes for styling, front-side validation, and event handlers. Make sure when performing an event handler function call that contains strings as arguments to escape any quotes. The default value is an empty array.
 <br>
 
-## buttonBlock <a id="buttonBlock"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 3. buttonBlock <a id="buttonBlock"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The buttonBlock function is a wrapper for the button function that adds a div around the button element. An example function call is shown below in Figure 2.
 
 <div style="text-align: center;">
@@ -52,7 +52,7 @@ This function accepts 3 arguments as described below:
 3. $divAttrs is an array whose primary purpose is to add classes for styling the div that surrounds the button element. The default value is an empty array.
 <br>
 
-## checkboxBlockLabelLeft <a id="checkboxBlockLabelLeft"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 4. checkboxBlockLabelLeft <a id="checkboxBlockLabelLeft"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Generates a checkbox where the label is on the left side. It generates a div element that surrounds a label and input of type checkbox. This is idea for situations where labels can be of varying lengths. An example function call is shown below in Figure 3.
 
 <div style="text-align: center;">
@@ -70,7 +70,7 @@ This function accepts 6 arguments as described below:
 7. $errors The errors array. Default value is an empty array.
 <br>
 
-## checkboxBlockLabelRight <a id="checkboxBlockLabelRight"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 5. checkboxBlockLabelRight <a id="checkboxBlockLabelRight"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Generates a checkbox where the label is on the left side. It generates a div element that surrounds a label and input of type checkbox. An example function call from the login view is shown below in Figure 4.
 <div style="text-align: center;">
   <img src="assets/checkbox-right-label-function-call.png" alt="Example checkboxBlockLabelRight function call">
@@ -87,11 +87,11 @@ This function accepts 6 arguments as described below:
 7. $errors The errors array. Default value is an empty array.
 <br>
 
-## csrfInput <a id="csrfInput"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 6. csrfInput <a id="csrfInput"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Generates a CRSF token as the value for an input of type hidden. The token is randomly generated and is used to verify if any tampering of any form has been performed. Use this function to assist in preventing CSRF attacks. The CRSF token is unique for every user session and is a sufficiently large string of random values.
 <br>
 
-## displayErrors <a id="displayErrors"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 7. displayErrors <a id="displayErrors"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The purpose of this function is to display errors related to validation. An example can be found in Figure 5.
 
 <div style="text-align: center;">
@@ -100,7 +100,7 @@ The purpose of this function is to display errors related to validation. An exam
 </div>
 <br>
 
-## emailBlock <a id="emailBlock"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 8. emailBlock <a id="emailBlock"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Use this function to create styled E-mail form inputs. An example function call is shown below in Figure 6.
 
 <div style="text-align: center;">
@@ -117,7 +117,7 @@ The value we want to set. We can use this to set the value of the value attribut
 6. $errors The errors array. Default value is an empty array.
 <br>
 
-## hidden <a id="hidden"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 9. hidden <a id="hidden"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Generates a hidden element. An example function call is shown below in figure 7:
 
 <div style="text-align: center;">
@@ -130,7 +130,7 @@ This function accepts 2 arguments as described below:
 2. $value The value for the value attribute.
 <br>
 
-## inputBlock <a id="inputBlock"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 10. inputBlock <a id="inputBlock"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 1. A generic input block that supports the following input types:
 2. Color
 3. date
@@ -164,7 +164,7 @@ This function accepts 7 arguments as described below:
 7. $errors The errors array. Default value is an empty array.
 <br>
 
-## output <a id="output"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 11. output <a id="output"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Generates an HTML output element. The output element is a container that can inject the results of a calculator or the outcome of a user action. An example function call is shown below in figure 9:
 <div style="text-align: center;">
   <img src="assets/output-element.png" alt="Output element function call">
@@ -176,7 +176,7 @@ This function accepts 2 arguments as described below:
 2. $for Sets the value for the for attribute.
 <br>
 
-## radioInput <a id="radioInput"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 12. radioInput <a id="radioInput"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Creates an input element of type radio with an accompanying label element. Compatible with radio button groups.  An example function call is shown below in figure 10:
 <div style="text-align: center;">
   <img src="assets/radio-button.png" alt="Radio button function call">
@@ -198,7 +198,7 @@ FormHelper::radioInput('CSS', 'css', 'fav_language', "CSS", $check2, ['class' =>
 ```
 <br>
 
-## selectBlock <a id="selectBlock"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 13. selectBlock <a id="selectBlock"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Renders a select element with a list of options.  An example function call is shown below in figure 11: 
 <div style="text-align: center;">
   <img src="assets/select-block.png" alt="Select block function call">
@@ -215,15 +215,15 @@ This function accepts 7 arguments as described below:
 6. $errors The errors array.  Default value is an empty array.
 <br>
 
-## submitBlock <a id="submitBlock"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 14. submitBlock <a id="submitBlock"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Generates a div containing an input of type submit.
 <br>
 
-## submitTag <a id="submitTag"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 15. submitTag <a id="submitTag"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Create a input element of type submit.
 <br>
 
-## telBlock <a id="telBlock"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 16. telBlock <a id="telBlock"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Renders an HTML div element that surrounds an input of type tel. The user is able to enter cell, home, and work as phone types. Certain options can be set using the args parameter.
 
 Option parameters that are supported:
@@ -261,7 +261,7 @@ This function accepts 8 arguments as described below:
 8. $errors	The errors array. Default value is an empty array.
 <br>
 
-## textAreaBlock <a id="textAreaBlock"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 17. textAreaBlock <a id="textAreaBlock"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Assists in the development of textarea in forms. It accepts parameters for setting attribute tags in the form section.  An example function call is shown below in figure 12:
 <div style="text-align: center;">
   <img src="assets/text-area-block.png" alt="TextArea block function call">

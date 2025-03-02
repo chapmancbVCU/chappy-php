@@ -7,7 +7,7 @@
 <br>
 <br>
 
-## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 1. Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 View files are responsible for displaying what the user interacts with.  The view files in this framework are plain php files and at this moment does not require a template engine such as Twig or Blade.  A template view file is shown below:
 
 ```php
@@ -31,7 +31,7 @@ This template is separated into 3 sections:
 3. Body - Anything in this section gets displayed to the user.
 <br>
 
-## Getting Data From Controller <a id="controller"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 2. Getting Data From Controller <a id="controller"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 You can pass values assigned to the View object in the controller to any view.  Let's look at the configure the view section of the ContactsController's indexAction function.
 
 ```php
@@ -50,7 +50,7 @@ After setting up $contacts and Pagination we can assign them to variables for th
 Since each view file has access to an instance of the View class all the user has to do is type `$this->${variable_name}` to access any variables we setup in the controller's action functions.
 <br>
 
-## Creating Views <a id="make-views"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 3. Creating Views <a id="make-views"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Views can be created by two different methods.  You can right click on the directory under `resources/views/` and create a view this way.  You will be responsible for adding anything needed to setup content between the opening and closing tags for the head and body elements.
 
 You can also create a view by running the `make:view` command.  An example is shown below:

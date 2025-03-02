@@ -5,7 +5,7 @@
 <br>
 <br>
 
-## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 1. Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The Chappy.php framework has basic support for unit testing.  You can make your own PHPUnit test class by running the following command:
 
 ```sh

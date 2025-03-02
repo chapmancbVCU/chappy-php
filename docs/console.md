@@ -12,7 +12,7 @@
 <br>
 <br>
 
-## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 1. Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The console command is used to manage and perform tasks related to this framework. Just like Laravel's Artisan command, this frameworks Command Line Interface (CLI) is based off of the Symfony Console component.  Check out Symfony's Console component [page](https://symfony.com/doc/current/console.html) for documentation on how to set up your command.  
 
 You can run a console command following the following syntax:
@@ -32,7 +32,7 @@ Where Test is the name of the file containing the test. Typing php console in th
 If there is a command you would like for us to support you can submit an issue [here](https://github.com/chapmancbVCU/chappy-php/issues).
 <br>
 
-## Summary of Available Commands <a id="summary-of-available-commands"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 2. Summary of Available Commands <a id="summary-of-available-commands"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Below is a list of available commands. Most items in this list contains a link to the page that describes an individual command.  This list can be viewed in the terminal by typing ```php console``` under project root.
 
 | Command | Description |
@@ -62,7 +62,7 @@ Below is a list of available commands. Most items in this list contains a link t
 | tools:mk-env | Creates the .env file |
 | tools:rm-profile-images | Removes all profile images |
 
-## Building Your Own Command <a id="build-command"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 3. Building Your Own Command <a id="build-command"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Generating your own command is easy.  We will make a fake command called Foo as an example.  Simply run the following in your terminal under project root:
 
 ```sh
@@ -111,7 +111,7 @@ class FooCommand extends Command {
 Everything you need to build your own command is included in this file.  All relevant imports are listed at the top.  Each command you create contains two functions.  The configure function is where everything gets setup and the execute function performs actions associated with the command.
 <br>
 
-## Command Helpers <a id="command-helpers"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 4. Command Helpers <a id="command-helpers"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Since this framework is fully Object-Oriented you can generate helper files to modularize tasks that need to be used across multiple commands.  Helpers can be found at `src\console\helpers`.
 
 You can build your own command helper class by running the `make:command-helper` command.  Let's create a FooHelper class by running the following:
@@ -138,7 +138,7 @@ class FooHelper {
 When adding function we usually create those that are static.  We rarely need to create a new instance of a helper class so a constructor is not included in the output.
 <br>
 
-## Tools <a id="tools"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 5. Tools <a id="tools"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Tools is a command helper class that contains functions that are commonly used with other commands.  To use the tools class simply used the following use statement:
 
 ```php

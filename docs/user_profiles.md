@@ -7,7 +7,7 @@
 <br>
 <br>
 
-## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 1. Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The profile page can be accessed by clicking your name or profile image at the top right of any page.
 
 The user profile contains basic information for a user. You can add fields to the users table and more information to this view depending on your needs. Make sure you don't display personal and financial information in this view without taking proper security measures to obscure information.
@@ -20,7 +20,7 @@ This view presents to the user the ability to update profile, profile image, and
 </div>
 <br>
 
-## Update Profile <a id="update-profile"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 2. Update Profile <a id="update-profile"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 At the edit profile page the user can edit their details. A screenshot is shown below in figure 2.
 
 <div style="text-align: center;">
@@ -37,7 +37,7 @@ Field Descriptions:
 6. Manage profile images. Image on left is current image. You can drag an image to the left most position to set it as the current profile image.
 <br>
 
-## Update Password <a id="update-password"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 3. Update Password <a id="update-password"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 This view allows the user to change their password. Complex passwords are enforced here. A screenshot of the update password screen is shown below in Figure 4.
 
 <div style="text-align: center;">

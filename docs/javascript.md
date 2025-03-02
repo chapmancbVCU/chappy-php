@@ -7,7 +7,7 @@
 <br>
 <br>
 
-## Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 1. Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 This framework comes with some built in JavaScrip files to support basic tasks as described below:
 1. Front end password match validation
 2. Phone number format validation
@@ -16,11 +16,11 @@ This framework comes with some built in JavaScrip files to support basic tasks a
 These scripts can be imported into any view that needs these features.  They can be found at resources/js.
 <br>
 
-## app.js <a id="app_js"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 2. app.js <a id="app_js"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Additional JavaScript features can also be included in this framework.  The entry point for additional JavaScript can be found at resources/js/app.js
 <br>
 
-## Vite Asset Bundling <a id="vite-asset-bundling"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 3. Vite Asset Bundling <a id="vite-asset-bundling"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 This framework includes the ability to perform Vite asset bundling.  Run the following command to bundle your assets:
 
 ```sh
