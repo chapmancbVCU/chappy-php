@@ -150,7 +150,7 @@ class Users extends Model {
      * Retrieves a list of users who are assigned to a particular acl.
      *
      * @param string $acl The ACL we want to use in our query.
-     * @return object An individual user who is assigned to an acl.
+     * @return object Users who are assigned to a specific acl.
      */
     public static function findUserByAcl($acl) {
         $aclName = '["'.$acl.'"]';
