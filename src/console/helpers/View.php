@@ -83,7 +83,7 @@ class View {
     }        
 
     /**
-     * Writes card component to a file
+     * Writes card component to a file.
      *
      * @param string $componentName The name of the card component.
      * @return int A value that indicates success, invalid, or failure.

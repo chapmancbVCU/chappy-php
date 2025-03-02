@@ -210,7 +210,9 @@ displaying information, form validation, and DB operations.</p></dd><dt>$<a href
                     <dd><p>Checks if a user is logged in.</p></dd><dt><a href="Console/Helpers/CommandHelper.html"><abbr title="Console\Helpers\CommandHelper">CommandHelper</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
                     <dd><p>Supports commands related to building console commands and associated
 helper classes.</p></dd><dt><a href="Console/Helpers/Controller.html"><abbr title="Console\Helpers\Controller">Controller</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
-                    <dd><p>Helper class for controller related console commands.</p></dd><dt><a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
+                    <dd><p>Helper class for controller related console commands.</p></dd><dt><a href="Console/Helpers/View.html#method_cardComponent">
+<abbr title="Console\Helpers\View">View</abbr>::cardComponent</a>() &mdash; <em>Method in class <a href="Console/Helpers/View.html"><abbr title="Console\Helpers\View">View</abbr></a></em></dt>
+                    <dd><p>Returns contents of a card component.</p></dd><dt><a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
                     <dd><p>This is the parent Controller class.  It describes functions that are
 available to all classes that extends this Controller class.</p></dd><dt><a href="Core/Cookie.html"><abbr title="Core\Cookie">Cookie</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
                     <dd><p>Manages cookies used by this application.  The $_COOKIE superglobal
@@ -376,7 +378,9 @@ particular user.</p></dd><dt><a href="App/Models/ProfileImages.html#method_findC
 <abbr title="App\Models\Users">Users</abbr>::findByUserName</a>() &mdash; <em>Method in class <a href="App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a></em></dt>
                     <dd><p>Finds user by username in the Users table.</p></dd><dt><a href="App/Models/Users.html#method_findUserByAcl">
 <abbr title="App\Models\Users">Users</abbr>::findUserByAcl</a>() &mdash; <em>Method in class <a href="App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a></em></dt>
-                    <dd><p>Retrieves a list of users who are assigned to a particular acl.</p></dd><dt><a href="Core/DB.html#method_find">
+                    <dd><p>Retrieves a list of users who are assigned to a particular acl.</p></dd><dt><a href="Console/Helpers/View.html#method_formComponent">
+<abbr title="Console\Helpers\View">View</abbr>::formComponent</a>() &mdash; <em>Method in class <a href="Console/Helpers/View.html"><abbr title="Console\Helpers\View">View</abbr></a></em></dt>
+                    <dd><p>Generates content of form component.</p></dd><dt><a href="Core/DB.html#method_find">
 <abbr title="Core\DB">DB</abbr>::find</a>() &mdash; <em>Method in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
                     <dd><p>Performs find operation against the database.  The user can use
 parameters such as conditions, bind, order, limit, and sort.</p></dd><dt><a href="Core/DB.html#method_findFirst">
@@ -571,7 +575,8 @@ lower case character in the field.</p></dd>        </dl><h2 id="letterM">M</h2>
 <abbr title="App\Models\Users">Users</abbr>::manageAcls</a>() &mdash; <em>Method in class <a href="App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a></em></dt>
                     <dd><p>Manages the adding and removing of ACLs.</p></dd><dt><a href="Console/Commands/MakeAclCommand.html"><abbr title="Console\Commands\MakeAclCommand">MakeAclCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Supports ability to generate a menu_acl json file.</p></dd><dt><a href="Console/Commands/MakeCommand.html"><abbr title="Console\Commands\MakeCommand">MakeCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
-                    <dd><p>Supports ability to create new console command.</p></dd><dt><a href="Console/Commands/MakeEnvCommand.html"><abbr title="Console\Commands\MakeEnvCommand">MakeEnvCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
+                    <dd><p>Supports ability to create new console command.</p></dd><dt><a href="Console/Commands/MakeComponentCommand.html"><abbr title="Console\Commands\MakeComponentCommand">MakeComponentCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
+                    <dd><p>Supports ability to create components.</p></dd><dt><a href="Console/Commands/MakeEnvCommand.html"><abbr title="Console\Commands\MakeEnvCommand">MakeEnvCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Supports ability to copy .env.sample file and name it
 .env.</p></dd><dt><a href="Console/Commands/MakeHelperCommand.html"><abbr title="Console\Commands\MakeHelperCommand">MakeHelperCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Undocumented class</p></dd><dt><a href="Console/Commands/MakeLayoutCommand.html"><abbr title="Console\Commands\MakeLayoutCommand">MakeLayoutCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
@@ -604,7 +609,11 @@ console commands.</p></dd><dt><a href="Console/Helpers/DBSeeder.html#method_make
 <abbr title="Console\Helpers\Test">Test</abbr>::makeTest</a>() &mdash; <em>Method in class <a href="Console/Helpers/Test.html"><abbr title="Console\Helpers\Test">Test</abbr></a></em></dt>
                     <dd><p>The template for a new TestCase class.</p></dd><dt><a href="Console/Helpers/Uploads.html#method_makeUpload">
 <abbr title="Console\Helpers\Uploads">Uploads</abbr>::makeUpload</a>() &mdash; <em>Method in class <a href="Console/Helpers/Uploads.html"><abbr title="Console\Helpers\Uploads">Uploads</abbr></a></em></dt>
-                    <dd><p>Generates a new class for supporting file uploads.</p></dd><dt><a href="Console/Helpers/View.html#method_makeLayout">
+                    <dd><p>Generates a new class for supporting file uploads.</p></dd><dt><a href="Console/Helpers/View.html#method_makeCardComponent">
+<abbr title="Console\Helpers\View">View</abbr>::makeCardComponent</a>() &mdash; <em>Method in class <a href="Console/Helpers/View.html"><abbr title="Console\Helpers\View">View</abbr></a></em></dt>
+                    <dd><p>Writes card component to a file.</p></dd><dt><a href="Console/Helpers/View.html#method_makeFormComponent">
+<abbr title="Console\Helpers\View">View</abbr>::makeFormComponent</a>() &mdash; <em>Method in class <a href="Console/Helpers/View.html"><abbr title="Console\Helpers\View">View</abbr></a></em></dt>
+                    <dd><p>Writes form component to file.</p></dd><dt><a href="Console/Helpers/View.html#method_makeLayout">
 <abbr title="Console\Helpers\View">View</abbr>::makeLayout</a>() &mdash; <em>Method in class <a href="Console/Helpers/View.html"><abbr title="Console\Helpers\View">View</abbr></a></em></dt>
                     <dd><p>Generates a new layout file.</p></dd><dt><a href="Console/Helpers/View.html#method_makeMenu">
 <abbr title="Console\Helpers\View">View</abbr>::makeMenu</a>() &mdash; <em>Method in class <a href="Console/Helpers/View.html"><abbr title="Console\Helpers\View">View</abbr></a></em></dt>
@@ -937,7 +946,8 @@ upper case character in the field.</p></dd><dt><a href="Database/Migrations/Migr
                     <dd><p>Performs form validation checks for the login screen.</p></dd><dt><a href="App/Models/Users.html#method_validator">
 <abbr title="App\Models\Users">Users</abbr>::validator</a>() &mdash; <em>Method in class <a href="App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a></em></dt>
                     <dd><p>Performs validation on the user registration form.</p></dd><dt><a href="Console/Helpers/View.html"><abbr title="Console\Helpers\View">View</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
-                    <dd></dd><dt>$<a href="Core/Controller.html#property_view">
+                    <dd><p>Supports ability to create views, layouts, components, and menu_acl
+json files.</p></dd><dt>$<a href="Core/Controller.html#property_view">
 <abbr title="Core\Controller">Controller</abbr>#view</a> &mdash; <em>Property in class <a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a></em></dt>
                     <dd></dd><dt><a href="Core/Lib/Utilities/Uploads.html#method_validates">
 <abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr>::validates</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Uploads.html"><abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a></em></dt>
