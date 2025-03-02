@@ -6,9 +6,9 @@
 3. [Building Your Own Command](#build-command)
 4. [Command Helpers](#command-helpers)
 5. [Tools](#tools)
-    * [border Function](#border)
-    * [info Function](#info)
-    * [writeFile Function](#write-file)
+    * A. [border Function](#border)
+    * B. [info Function](#info)
+    * C. [writeFile Function](#write-file)
 <br>
 <br>
 
@@ -146,11 +146,11 @@ use Console\Helpers\Tools;
 ```
 <br>
 
-#### border Function <a id="border">
+#### A. border Function <a id="border">
 The border prints a dashed line.
 <br>
 
-#### info Function <a id="info">
+#### B. info Function <a id="info">
 The info function is used to present to the user logging information.  The following is an example of how to call this function:
 
 ```php
@@ -188,7 +188,7 @@ The following text colors are supported:
 16. light-magenta
 <br>
 
-#### writeFile Function <a id="write-file">
+#### C. writeFile Function <a id="write-file">
 The writeFile function is what we used when we need to dump contents of a command to a file.  We use this for commands such as making controllers, models, and migrations.  
 
 Here is an example call to this function for generating a new menu_acl json file.

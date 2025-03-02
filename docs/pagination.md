@@ -3,6 +3,11 @@
 ## Table of contents
 1. [Overview](#overview)
 2. [Setup](#controller)
+    * A. [Import Pagination Class](#import-class)
+    * B. [Get Current Page](#current-page)
+    * C. [Get Total Records](#total-records)
+    * D. [Retrieve Paginated Records](#paginated-records)
+    * E. [Configure The View](#configure-view)
 <br>
 <br>
 
@@ -18,21 +23,22 @@ Pagination is supported with the use of a Pagination class and built in Bootstra
 ## 2. Setup <a id="setup"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 The following are instructions for setting up Pagination within your controller.  We will use the `indexAction` of the `ContactsController`.
 
-#### A. Import Pagination class:
+#### A. Import Pagination Class <a id="import-class">
 
 ```php
 use Core\Lib\Pagination;
 ```
 <br>
 
-#### B. Get current page:
+#### B. Get Current Page <a id="current-page">
 
 ```php
 $page = Pagination::currentPage($this->request);
 ```
 <br>
 
-#### C. Get total records, in this case the number of contacts for this user when creating instance of Pagination class.  The condition is the `user_id` and we bind with the current user's id since we want only contacts associated with this user.
+#### C. Get Total Records <a id="total-records">
+We want to obtain the list of all of the records.  In this case the number of contacts for this user when creating instance of Pagination class.  The condition is the `user_id` and we bind with the current user's id since we want only contacts associated with this user.
 
 ```php
 $pagination = new Pagination($page, 10, Contacts::findTotal([
@@ -42,7 +48,8 @@ $pagination = new Pagination($page, 10, Contacts::findTotal([
 ```
 <br>
 
-#### D. Retrieve paginated records using base model's find method.  In this step we use the paginationParams function from the Pagination class to build our query.
+#### D. Retrieve Paginated Records <a id="paginated-records">
+We will now proceed to get paginated records using base model's find method.  In this step we use the paginationParams function from the Pagination class to build our query.
 
 ```php
 $contacts = Contacts::find($pagination->paginationParams(
@@ -53,8 +60,8 @@ $contacts = Contacts::find($pagination->paginationParams(
 ```
 <br>
 
-#### E. Configure the view:
-
+#### E. Configure The View <a id="configure-view">
+Configure the view by setting the results of the pagination function to the `$this->view->pagination` variable.  This variable contains the data for rendering the page links.
 ```php
 $this->view->pagination = Pagination::pagination($page, $pagination->totalPages());
 ```
