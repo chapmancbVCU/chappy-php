@@ -160,7 +160,8 @@ Tools::info("My message", 'info', 'red', 'white')
 The first argument is you message, the second argument is the severity level for cli logging, the third is the background color, and finally the fourth is the text color.  We usually don't use the third argument since it may sometimes be ignored especially if you are using the terminal that comes with Visual Studio Code.
 
 The standard Logger Alert Levels (Based on PSR-3)
-| Command | Description |
+
+| Severity Level | Description |
 |:-------:|-------------|
 | emergency | System is unusable (e.g., database crash, critical application failure). |
 | alert | Immediate action required (e.g., entire system down, security breach). |
