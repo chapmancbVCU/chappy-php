@@ -276,7 +276,7 @@ class DB {
                 $this->_error = true;
 
                 // Log query execution failure
-            Logger::log("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . json_encode($params), 'error');
+                Logger::log("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . json_encode($params), 'error');
             }
         } else {
             // Log query preparation failure
