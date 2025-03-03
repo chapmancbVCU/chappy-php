@@ -74,7 +74,7 @@ class Tools {
             Tools::info(ucfirst($name) . ' successfully created');
             return Command::SUCCESS;
         } else {
-            Tools::info(ucfirst($name) . ' already exists', 'red');
+            Tools::info(ucfirst($name) . ' already exists', 'debug', 'red');
             return Command::FAILURE;
         }
     }

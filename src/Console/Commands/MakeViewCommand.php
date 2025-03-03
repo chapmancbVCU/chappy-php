@@ -41,6 +41,7 @@ class MakeViewCommand extends Command {
         if (sizeof($viewArray) !== 2) {
             Tools::info(
                 'Issue parsing argument. Make sure your input is in the format: <directory_name>.<view_name>',
+                'debug',
                 'red'
             );
             return Command::FAILURE;
@@ -52,7 +53,7 @@ class MakeViewCommand extends Command {
 
         // Debug to check if helper exists
         if (!$helper) {
-            Tools::info('Helper could not be instantiated.', 'red');
+            Tools::info('Helper could not be instantiated.', 'debug', 'red');
             return Command::FAILURE;
         }
 
@@ -67,7 +68,7 @@ class MakeViewCommand extends Command {
                 mkdir($directory, 0755, true);
                 Tools::info("Directory created: $directory", 'blue');
             } else {
-                Tools::info('Operation canceled.');
+                Tools::info('Operation canceled.', 'debug', 'blue');
                 return Command::FAILURE;
             }
         }

@@ -37,7 +37,7 @@ abstract class Seeder {
             Tools::info("Running {$seederClass}");
             $seeder->run();
         } else {
-            Tools::info("Seeder class {$seederClass} not found.", 'red');
+            Tools::info("Seeder class {$seederClass} not found.", 'error', 'red');
         }
     }
 }

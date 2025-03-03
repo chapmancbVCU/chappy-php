@@ -20,7 +20,7 @@ class ProfileImageDir {
         if(!file_exists(self::$_path)) {
             mkdir(self::$_path, 0775, true);
         } else {
-            Tools::info('The profile_images directory already exists.', 'red');
+            Tools::info('The profile_images directory already exists.', 'debug', 'red');
             return Command::FAILURE;
         }
         Tools::info('profile_images directory created');
@@ -45,7 +45,7 @@ class ProfileImageDir {
         }
 
         if($response == false) {
-            Tools::info('Failure ocurred when deleting images.', 'red');
+            Tools::info('Failure ocurred when deleting images.', 'debug', 'red');
             return Command::FAILURE;
         }
         Tools::info('All profile images have been deleted.');

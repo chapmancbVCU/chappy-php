@@ -309,7 +309,7 @@ abstract class Migration {
         if($res == 'SUCCESS') {
             Tools::info($title.$msg);
         } else {
-            Tools::info($title.$msg, 'red');
+            Tools::info($title.$msg, 'error', 'red');
         }
     }
 

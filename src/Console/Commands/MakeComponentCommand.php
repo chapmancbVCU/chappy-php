@@ -59,7 +59,7 @@ class MakeComponentCommand extends Command {
             return View::makeTableComponent($componentName);
         }
 
-        Tools::info('No form type selected', 'red');
+        Tools::info('No form type selected', 'debug', 'red');
         return Command::FAILURE;
     }
 }

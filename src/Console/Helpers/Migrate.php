@@ -25,7 +25,7 @@ class Migrate {
         $previousMigs = [];
 
         if(empty($migrationTable)){
-            Tools::info('Empty database.  No tables to drop.', 'red');
+            Tools::info('Empty database.  No tables to drop.', 'debug', 'red');
             return Command::FAILURE;
         }
         
@@ -101,7 +101,7 @@ class Migrate {
         }
 
         if(sizeof($migrationsRun) == 0){
-            Tools::info('No new migrations to run.', 'red');
+            Tools::info('No new migrations to run.', 'debug', 'red');
         }
 
         return Command::SUCCESS;

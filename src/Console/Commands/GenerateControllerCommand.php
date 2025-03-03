@@ -55,11 +55,11 @@ class GenerateControllerCommand extends Command
         if($layoutInput === false) {
             $layout = 'default';
         } else if ($layoutInput === null) {
-            Tools::info('Please supply name of layout.', 'red');
+            Tools::info('Please supply name of layout.', 'debug', 'red');
             return Command::FAILURE;
         } else {
             if($layoutInput === '') {
-                Tools::info('Please supply name of layout.', 'red');
+                Tools::info('Please supply name of layout.', 'debug', 'red');
                 return Command::FAILURE;
             }
             $layout = strtolower($layoutInput);
@@ -75,7 +75,7 @@ class GenerateControllerCommand extends Command
             $content = Controller::resourceTemplate($controllerName, $layout);
         } else {
             // Option with argument
-            Tools::info('--resource does not accept a value.', 'red');
+            Tools::info('--resource does not accept a value.', 'debug', 'red');
             return Command::FAILURE;
         }
 

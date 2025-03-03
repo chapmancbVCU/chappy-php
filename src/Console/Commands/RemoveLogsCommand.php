@@ -38,7 +38,7 @@ class RemoveLogsCommand extends Command {
         } 
 
         // Always execute when there is a failure.
-        Tools::info('There was an issue removing the log file', 'red');
+        Tools::info('There was an issue removing the log file', 'debug', 'red');
         return COMMAND::FAILURE;
     }
 }

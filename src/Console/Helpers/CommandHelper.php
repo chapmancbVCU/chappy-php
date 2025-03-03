@@ -59,7 +59,7 @@ class '.$commandName.'Command extends Command {
         if(!file_exists($fullPath)) {
             $resp = file_put_contents($fullPath, $content);
         } else {
-            Tools::info('Command already exists', 'red');
+            Tools::info('Command already exists', 'debug', 'red');
             return Command::FAILURE;
         }
 
@@ -94,7 +94,7 @@ class '. $helperName.' {
         if(!file_exists($fullPath)) {
             $resp = file_put_contents($fullPath, $content);
         } else {
-            Tools::info('Command helper already exists', 'red');
+            Tools::info('Command helper already exists', 'debug', 'red');
             return Command::FAILURE;
         }
 
