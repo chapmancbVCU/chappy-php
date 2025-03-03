@@ -23,12 +23,35 @@ class DB {
      * there are any failures the application quits with an error message.
      */
     private function __construct() {
+        $config = require ROOT.DS.'config'.DS.'database.php';
+        $dbConfig = $config['connections'][$config['default']] ?? null;
+    
+        if (!$dbConfig) {
+            throw new Exception("Database configuration not found.");
+        }
+    
         try {
-            $this->_pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
-            $this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->_pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $this->_pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
-        } catch(PDOException $e) {
+            if ($dbConfig['driver'] === 'sqlite') {
+                // Ensure SQLite database file exists before connecting
+                $dbPath = ROOT . DS . $dbConfig['database'];
+    
+                if (!file_exists($dbPath)) {
+                    if (!is_dir(dirname($dbPath))) {
+                        mkdir(dirname($dbPath), 0755, true);
+                    }
+                    touch($dbPath);
+                }
+    
+                $dsn = "sqlite:" . $dbPath;
+                $this->_pdo = new PDO($dsn);
+            } else {
+                $dsn = "mysql:host={$dbConfig['host']};port={$dbConfig['port']};dbname={$dbConfig['database']};charset={$dbConfig['charset']}";
+                $this->_pdo = new PDO($dsn, $dbConfig['username'], $dbConfig['password']);
+                $this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $this->_pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                $this->_pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+            }
+        } catch (PDOException $e) {
             throw new Exception($e->getMessage());
         }
     }
@@ -172,7 +195,11 @@ class DB {
      * from a database table.
      */
     public function getColumns($table) {
-        return $this->query("SHOW COLUMNS FROM {$table}")->results();
+        if ($this->_pdo->getAttribute(PDO::ATTR_DRIVER_NAME) === 'sqlite') {
+        return $this->query("PRAGMA table_info({$table})")->results();
+        } else {
+            return $this->query("SHOW COLUMNS FROM {$table}")->results();
+        }
     }
 
     /**
@@ -188,6 +215,10 @@ class DB {
         return self::$_instance;
     }
 
+    public function getPDO() {
+        return $this->_pdo;
+    }
+    
     /**
      * Perform insert operations against the database.
      * 
