@@ -18,24 +18,12 @@ foreach (glob(ROOT . DS . 'config' . DS . '*.php') as $configFile) {
     require_once $configFile;
 }
 
-function autoload($className){
-    $classAry = explode('\\',$className);
-    $class = array_pop($classAry);
-    $subPath = strtolower(implode(DS,$classAry));
-    $path = ROOT . DS . $subPath . DS . $class . '.php';
-    if(file_exists($path)){
-        require_once($path);
-    }
-}
-
-spl_autoload_register('autoload');
-
 // Initialize Symfony Console application
 $app = new Application();
 
 // Dynamically load and add command classes
 $commandNamespace = 'Console\\Commands';
-$commandDir = ROOT . DS . 'src' . DS . 'console' . DS . 'commands';
+$commandDir = ROOT . DS . 'src' . DS . 'Console' . DS . 'Commands';
 
 foreach (glob($commandDir . DS . '*.php') as $commandFile) {
     $commandClass = $commandNamespace . '\\' . pathinfo($commandFile, PATHINFO_FILENAME);

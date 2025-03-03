@@ -2,8 +2,14 @@
     "name": "chadchapman/chappy-php",
     "autoload": {
         "psr-4": {
-            "Chadchapman\\ChappyPhp\\": "src/",
-            "Console\\": "/src"
+            "Core\\": "core/",
+            "Console\\": "src/console",
+            "Console\\Commands\\": "src/console/commands/",
+            "Console\\Helpers\\": "src/console/helpers/",
+            "App\\": "app/",
+            "Config\\": "config/",
+            "Database\\Seeders\\": "database/seeders/",
+            "Database\\Migrations\\": "database/migrations/"
         },
         "classmap": ["src"]
     },

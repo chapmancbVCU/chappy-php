@@ -23,25 +23,7 @@ foreach (glob(ROOT . DS . 'config' . DS . '*.php') as $configFile) {
     require_once $configFile;
 }
 
-/**
- * Auto-loading of classes using PSR-4 Support.
- *
- * @param string $className Path to file we will used for auto-loading 
- * classes that are used by this application.
- * @return void
- */
-function autoload($className) {
-    $classArray = explode('\\', $className);
-    $class = array_pop($classArray);
-    $subPath = strtolower(implode(DS, $classArray));
-
-    $path = ROOT . DS . $subPath . DS . $class . '.php';
-    if(file_exists($path)) {
-        require_once($path);
-    }
-}
-spl_autoload_register('autoload');
-require_once __DIR__ . '/core/lib/helpers.php';
+require_once __DIR__ . '/core/Lib/helpers.php';
 session_start();
 
 // Global Exception Handler: Log all uncaught exceptions
