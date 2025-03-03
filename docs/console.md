@@ -217,7 +217,7 @@ public static function makeMenuAcl(InputInterface $input): int {
 }
 ```
 
-Since we need to name this file we grab the argument provided when running the command in the console.  Next we make sure the command line interface is being used.  The writeFile function contains the following arguments:
+Since we need to name this file we grab the argument provided when running the command in the console.  The writeFile function contains the following arguments:
 1. $path - Where the file will be written
 2. $content - The contents of the file to be created
 3. $name The name of the file, class, or other relevant information.
