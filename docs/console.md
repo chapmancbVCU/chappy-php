@@ -157,7 +157,19 @@ The info function is used to present to the user logging information.  The follo
 Tools::info("My message", 'red', 'white')
 ```
 
-The first argument is you message, the second is the background color, and finally the third is the text color.  We usually don't use the third argument since it may sometimes be ignored especially if you are using the terminal that comes with Visual Studio Code.
+The first argument is you message, the second argument is the severity level for cli logging, the third is the background color, and finally the fourth is the text color.  We usually don't use the third argument since it may sometimes be ignored especially if you are using the terminal that comes with Visual Studio Code.
+
+The standard Logger Alert Levels (Based on PSR-3)
+| Command | Description |
+|:-------:|-------------|
+| emergency | System is unusable (e.g., database crash, critical application failure). |
+| alert | Immediate action required (e.g., entire system down, security breach). |
+| critical | Critical errors (e.g., service failures, unexpected shutdowns). |
+| error | Application errors (e.g., exceptions, failed transactions, runtime errors). |
+| warning | Warning messages (e.g., deprecated features, high memory usage). |
+| notice | Normal but significant events (e.g., config changes, recoverable issues). |
+| info | Informational messages (e.g., user logins, API requests, background jobs). |
+| debug | Debugging details (e.g., variables, performance metrics). |
 
 The following is a list of supported background colors:
 1. black
