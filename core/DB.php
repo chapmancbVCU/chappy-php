@@ -25,7 +25,7 @@ class DB {
     private function __construct() {
         $config = require ROOT.DS.'config'.DS.'database.php';
         $dbConfig = $config['connections'][$config['default']] ?? null;
-
+        
         if (!$dbConfig) {
             throw new Exception("Database configuration not found.");
         }
@@ -33,16 +33,10 @@ class DB {
         try {
             if ($dbConfig['driver'] === 'sqlite') {
                 // Ensure SQLite database file exists before connecting
-                $dbPath = ROOT . DS . $dbConfig['database'];
-
-                if (!file_exists($dbPath)) {
-                    if (!is_dir(dirname($dbPath))) {
-                        mkdir(dirname($dbPath), 0755, true);
-                    }
-                    touch($dbPath);
+                if (!file_exists($dbConfig['database'])) {
+                    touch($dbConfig['database']);
                 }
-
-                $dsn = "sqlite:" . $dbPath;
+                $dsn = "sqlite:" . $dbConfig['database'];
                 $this->_pdo = new PDO($dsn);
             } else {
                 $dsn = "mysql:host={$dbConfig['host']};port={$dbConfig['port']};dbname={$dbConfig['database']};charset={$dbConfig['charset']}";
@@ -73,26 +67,6 @@ class DB {
     }
 
     /**
-     * Creates a table with SQLite and MySQL compatibility.
-     *
-     * @param string $table The name of the table.
-     * @param array $columns An array of columns and their types.
-     */
-    public function createTable($table, $columns) {
-        $query = "CREATE TABLE IF NOT EXISTS {$table} (";
-        foreach ($columns as $column => $type) {
-            // Fix SQLite AUTO_INCREMENT handling
-            if ($this->_pdo->getAttribute(PDO::ATTR_DRIVER_NAME) === 'sqlite' && strpos($type, 'AUTO_INCREMENT') !== false) {
-                $type = str_replace('AUTO_INCREMENT', 'AUTOINCREMENT', $type);
-            }
-            $query .= "{$column} {$type}, ";
-        }
-        $query = rtrim($query, ', ') . ");";
-
-        return $this->query($query);
-    }
-
-    /**
      * Getter function for the private _count variable.
      *
      * @return int The number of results found in an SQL query.
@@ -120,15 +94,6 @@ class DB {
         if(!$this->query($sql)->error()) {
             return true;
         } else return false;
-    }
-
-    /**
-     * Deletes a table with SQLite and MySQL compatibility.
-     *
-     * @param string $table The name of the table to be deleted.
-     */
-    public function dropTable($table) {
-        $this->query("DROP TABLE IF EXISTS {$table}");
     }
 
     /**
@@ -224,11 +189,7 @@ class DB {
      * from a database table.
      */
     public function getColumns($table) {
-        if ($this->_pdo->getAttribute(PDO::ATTR_DRIVER_NAME) === 'sqlite') {
-            return $this->query("PRAGMA table_info({$table})")->results();
-        } else {
-            return $this->query("SHOW COLUMNS FROM {$table}")->results();
-        }
+        return $this->query("SHOW COLUMNS FROM {$table}")->results();
     }
 
     /**
@@ -244,10 +205,6 @@ class DB {
         return self::$_instance;
     }
 
-    public function getPDO() {
-        return $this->_pdo;
-    }
-    
     /**
      * Perform insert operations against the database.
      * 
@@ -292,9 +249,6 @@ class DB {
      * @return int The primary key ID from the last insert operation.
      */
     public function lastID() {
-        if ($this->_pdo->getAttribute(PDO::ATTR_DRIVER_NAME) === 'sqlite') {
-            return $this->_pdo->lastInsertId();
-        }
         return $this->_lastInsertID;
     }
 
@@ -311,11 +265,11 @@ class DB {
      * is not successful the $_error instance variable is set to true and is 
      * returned.
      */
-    public function query($sql, $params = [], $class = false) {
+    public function query($sql, $params = [],$class = false) {
         $this->_error = false;
-        $startTime = microtime(true); 
+        $startTime = microtime(true); // Start timing query execution
 
-        if ($this->_query = $this->_pdo->prepare($sql)) {
+        if($this->_query = $this->_pdo->prepare($sql)) {
             $x = 1;
             if(count($params)) {
                 foreach($params as $param) {
@@ -324,21 +278,25 @@ class DB {
                 }
             }
             if($this->_query->execute()) {
-                $executionTime = microtime(true) - $startTime;
-                if ($class && $this->_fetchStyle === PDO::FETCH_CLASS) {
-                    $this->_result = $this->_query->fetchAll($this->_fetchStyle, $class);
+                $executionTime = microtime(true) - $startTime; // Calculate execution time
+                if($class && $this->_fetchStyle === PDO::FETCH_CLASS){
+                    $this->_result = $this->_query->fetchAll($this->_fetchStyle,$class);
                 } else {
                     $this->_result = $this->_query->fetchAll($this->_fetchStyle);
                 }
                 $this->_count = $this->_query->rowCount();
                 $this->_lastInsertID = $this->_pdo->lastInsertId();
 
+                // Log successful query execution
                 Logger::log("Executed Query: $sql | Params: " . json_encode($params) . " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s", 'debug');
             } else {
                 $this->_error = true;
+
+                // Log query execution failure
                 Logger::log("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . json_encode($params), 'error');
             }
         } else {
+            // Log query preparation failure
             Logger::log("Failed to prepare query: $sql | Params: " . json_encode($params), 'error');
         }
 

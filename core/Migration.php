@@ -1,6 +1,5 @@
 <?php
 namespace Core;
-use PDO;
 use Core\{DB, Helper};
 use Console\Helpers\Tools;
 
@@ -17,7 +16,6 @@ abstract class Migration {
         'char' => '_charColumn', 'varchar' => '_varcharColumn', 'text' => '_textColumn'
     ];
     protected $_isCli;
-    protected $_tableDefinitions = [];
 
     /**
      * Creates instance of Migration class.
@@ -53,31 +51,15 @@ abstract class Migration {
      * @return bool $resp The response.
      */
     public function addColumn($table, $name, $type, $attrs = []) {
-        $pdo = $this->_db->getPDO();
-        $dbDriver = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
-    
-        // Re-check column existence to ensure SQLite isn't misreporting
-        if ($this->columnExists($table, $name)) {
-            Tools::info("Skipping Column '{$name}' in {$table} - Already Exists", 'debug', 'yellow');
-            return true;
-        }
-    
-        // Ensure correct column type formatting
-        $formattedType = $this->_formatColumnType($type, $attrs);
-    
-        // SQLite does not support ALTER TABLE ADD COLUMN for constraints
-        if ($dbDriver === 'sqlite') {
-            Tools::info("SQLite Detected - Altering Table {$table} is Limited.", 'debug', 'red');
-        }
-    
-        // Run the ALTER TABLE query
-        $sql = "ALTER TABLE {$table} ADD COLUMN {$name} {$formattedType};";
+        $formattedType = call_user_func([$this, $this->_columnTypesMap[$type]], $attrs);
+        $definition = array_key_exists('definition',$attrs)? $attrs['definition']." " : "";
+        $order = $this->_orderingColumn($attrs);
+        $sql = "ALTER TABLE {$table} ADD COLUMN {$name} {$formattedType} {$definition}{$order};";
+        $msg = "Adding Column " . $name . " To ". $table;
         $resp = !$this->_db->query($sql)->error();
-    
-        $this->_printColor($resp, "Adding Column {$name} To {$table}");
+        $this->_printColor($resp, $msg);
         return $resp;
     }
-    
     
     /**
      * Add Index to db table.
@@ -86,20 +68,14 @@ abstract class Migration {
      * @param string $name name of column to add index.
      * @return bool $resp The response.
      */
-    public function addIndex($table, $name) {
-        $pdo = $this->_db->getPDO();
-        $dbDriver = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
-    
-        $sql = ($dbDriver === 'sqlite')
-            ? "CREATE INDEX IF NOT EXISTS {$table}_{$name}_idx ON {$table} ({$name})"
-            : "ALTER TABLE {$table} ADD INDEX {$name} ({$name})";
-    
+    public function addIndex($table,$name,$columns=false) {
+        $columns = (!$columns)? $name : $columns;
+        $sql = "ALTER TABLE {$table} ADD INDEX {$name} ({$columns})";
+        $msg = "Adding Index " . $name . " To ". $table;
         $resp = !$this->_db->query($sql)->error();
-        $this->_printColor($resp, "Adding Index {$name} To {$table}");
+        $this->_printColor($resp,$msg);
         return $resp;
     }
-    
-    
 
     /**
      * Adds deleted column to db table to be used for soft deleting rows.
@@ -151,34 +127,15 @@ abstract class Migration {
      * @return bool $resp The response.
      */
     public function createTable($table) {
-        $pdo = $this->_db->getPDO();
-        $dbDriver = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
-    
-        // Ensure ID column is always present
-        if (!isset($this->_tableDefinitions[$table])) {
-            $this->_tableDefinitions[$table] = [
-                'id' => ($dbDriver === 'sqlite') ? 'INTEGER PRIMARY KEY AUTOINCREMENT' : 'INT AUTO_INCREMENT PRIMARY KEY'
-            ];
-        }
-    
-        // Construct column definitions
-        $columnDefinitions = [];
-        foreach ($this->_tableDefinitions[$table] as $name => $type) {
-            if ($dbDriver === 'sqlite' && strpos($type, 'AUTO_INCREMENT') !== false) {
-                $type = str_replace('AUTO_INCREMENT', 'AUTOINCREMENT', $type);
-            }
-            $columnDefinitions[] = "{$name} {$type}";
-        }
-    
-        // Build and execute the query
-        $sql = "CREATE TABLE IF NOT EXISTS {$table} (" . implode(", ", $columnDefinitions) . ");";
+        $sql = "CREATE TABLE IF NOT EXISTS {$table} (
+            id INT AUTO_INCREMENT,
+            PRIMARY KEY (id)
+        )  ENGINE=INNODB;";
         $resp = !$this->_db->query($sql)->error();
-    
-        // Log table creation status
-        $this->_printColor($resp, "Creating Table {$table}");
+        $this->_printColor($resp,"Creating Table " . $table);
         return $resp;
     }
-    
+
     /**
      * Setup char column.
      *
@@ -189,35 +146,6 @@ abstract class Migration {
         $params = $this->_parsePrecisionScale($attrs);
         return "CHAR".$params;
     }
-
-    /**
-     * Checks if a column exists in the given table.
-     *
-     * @param string $table The table name.
-     * @param string $column The column name.
-     * @return bool Whether the column exists.
-     */
-    protected function columnExists($table, $column) {
-        $pdo = $this->_db->getPDO();
-        $dbDriver = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
-    
-        if ($dbDriver === 'sqlite') {
-            $sql = "PRAGMA table_info({$table})";
-            $columns = $this->_db->query($sql)->results();
-    
-            foreach ($columns as $col) {
-                if (isset($col->name) && $col->name === $column) {
-                    return true;
-                }
-            }
-        } else {
-            $sql = "SHOW COLUMNS FROM {$table} LIKE '{$column}'";
-            return count($this->_db->query($sql)->results()) > 0;
-        }
-    
-        return false;
-    }
-    
 
     /**
      * Setup date column.
@@ -284,21 +212,12 @@ abstract class Migration {
      * @return bool $resp The response.
      */
     public function dropIndex($table, $name) {
-        $pdo = $this->_db->getPDO();
-        $dbDriver = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
-    
-        if ($dbDriver === 'sqlite') {
-            $sql = "DROP INDEX IF EXISTS {$table}_{$name}_idx";
-        } else {
-            $sql = "DROP INDEX {$name} ON {$table}";
-        }
-    
-        $msg = "Dropping Index " . $name . " From " . $table;
+        $sql = "DROP INDEX {$name} ON {$table}";
+        $msg = "Dropping Index " . $name . " From ". $table;
         $resp = !$this->_db->query($sql)->error();
-        $this->_printColor($resp, $msg);
+        $this->_printColor($resp,$msg);
         return $resp;
     }
-    
 
     /**
      * Drops a table in the database.
@@ -308,14 +227,11 @@ abstract class Migration {
      */
     public function dropTable($table) {
         $sql = "DROP TABLE IF EXISTS {$table}";
+        $msg =  "Dropping Table " . $table;
         $resp = !$this->_db->query($sql)->error();
-    
-        // Log table drop status
-        $this->_printColor($resp, "Dropping Table {$table}");
-        
+        $this->_printColor($resp,$msg);
         return $resp;
     }
-    
 
     /**
      * Setup float column.
@@ -328,24 +244,6 @@ abstract class Migration {
         return "FLOAT".$params;
     }
 
-    /**
-     * Formats column type with optional attributes.
-     * 
-     * @param string $type The base column type (e.g., varchar, int).
-     * @param array $attrs Optional attributes like size, precision.
-     * @return string The formatted column type string.
-     */
-    protected function _formatColumnType($type, $attrs) {
-        if (isset($attrs['size'])) {
-            return strtoupper($type) . "({$attrs['size']})";
-        }
-        return strtoupper($type);
-    }
-
-    protected function getDBDriver(): string {
-        return $this->_db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
-    }    
-    
     /**
      * Setup int column.
      *
@@ -436,25 +334,6 @@ abstract class Migration {
      */
     protected function _smallintColumn($attrs) {
         return 'SMALLINT';
-    }
-
-    /**
-     * Checks if a table exists in the database.
-     * 
-     * @param string $table The table name.
-     * @return bool Whether the table exists.
-     */
-    protected function tableExists($table) {
-        $pdo = $this->_db->getPDO();
-        $dbDriver = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
-
-        if ($dbDriver === 'sqlite') {
-            $sql = "SELECT name FROM sqlite_master WHERE type='table' AND name='{$table}'";
-        } else {
-            $sql = "SHOW TABLES LIKE '{$table}'";
-        }
-
-        return count($this->_db->query($sql)->results()) > 0;
     }
 
     /**
