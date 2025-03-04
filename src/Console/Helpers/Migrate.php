@@ -19,30 +19,40 @@ class Migrate {
     public static function dropAllTables(): int {
         // Load configuration and helper functions
         $isCli = php_sapi_name() == 'cli';
-
         $db = DB::getInstance();
-        $migrationTable = $db->query("SHOW TABLES LIKE 'migrations'")->results();
+        $pdo = $db->getPDO();
+        $dbDriver = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
+
+        // Check for migrations table
+        if ($dbDriver === 'sqlite') {
+            $query = "SELECT name FROM sqlite_master WHERE type='table' AND name='migrations'";
+        } else {
+            $query = "SHOW TABLES LIKE 'migrations'";
+        }
+
+        $migrationTable = $db->query($query)->results();
         $previousMigs = [];
 
-        if(empty($migrationTable)){
-            Tools::info('Empty database.  No tables to drop.', 'debug', 'red');
+        if (empty($migrationTable)) {
+            Tools::info('Empty database. No tables to drop.', 'debug', 'red');
             return Command::FAILURE;
         }
-        
-        // get all files
-        $migrations = glob('database'.DS.'migrations'.DS.'*.php');
 
-        foreach($migrations as $fileName){
-            $klass = str_replace('database'.DS.'migrations'.DS,'',$fileName);
-            $klass = str_replace('.php','',$klass);
-            if(!in_array($klass,$previousMigs)){
-                $klassNamespace = 'Database\\Migrations\\'.$klass;
+        // Get all migration files
+        $migrations = glob(ROOT . DS . 'database' . DS . 'migrations' . DS . '*.php');
+
+        foreach ($migrations as $fileName) {
+            $klass = basename($fileName, '.php'); // Extract class name from filename
+            if (!in_array($klass, $previousMigs)) {
+                $klassNamespace = 'Database\\Migrations\\' . $klass;
                 $mig = new $klassNamespace($isCli);
                 $mig->down();
             }
         }
 
-        Tools::info('All tables have been dropped');
+        // Drop migrations table
+        $db->dropTable('migrations');
+        Tools::info('All tables have been dropped.');
         return Command::SUCCESS;
     }
 
