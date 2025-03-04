@@ -2,28 +2,22 @@
 namespace Database\Migrations;
 use Core\Migration;
 
-/**
- * Migration class for the migrations table.
- */
 class Migration1722819683 extends Migration {
-    /**
-     * Performs a migration.
-     *
-     * @return void
-     */
     public function up() {
-      $table = "migrations";
-      $this->createTable($table);
-      $this->addColumn($table, 'migration', 'varchar',['size'=>35]);
-      $this->addIndex($table,'migration');
+        $table = "migrations";
+        $columns = [
+            'id' => ($this->getDBDriver() === 'sqlite') ? 'INTEGER PRIMARY KEY AUTOINCREMENT' : 'INT AUTO_INCREMENT PRIMARY KEY',
+            'migration' => 'VARCHAR(255) NOT NULL'
+        ];
+        $this->createTable($table, $columns);
+        $this->addIndex($table, 'migration');
     }
 
-    /**
-     * Undo a migration task.
-     *
-     * @return void
-     */
     public function down() {
-      $this->dropTable('migrations');
+        $this->dropTable('migrations');
+    }
+
+    private function getDBDriver(): string {
+        return $this->_db->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
     }
 }

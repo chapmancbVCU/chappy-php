@@ -80,42 +80,56 @@ class Migrate {
      * @return integer A value that indicates success, invalid, or failure.
      */
     public static function migrate(): int {
-        // Load configuration and helper functions
         $isCli = php_sapi_name() == 'cli';
-
         $db = DB::getInstance();
-        $migrationTable = $db->query("SHOW TABLES LIKE 'migrations'")->results();
+        $pdo = $db->getPDO();
+        $dbDriver = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
+    
+        // Ensure the migrations table exists
+        if ($dbDriver === 'sqlite') {
+            $checkTable = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name='migrations'")->results();
+        } else {
+            $checkTable = $db->query("SHOW TABLES LIKE 'migrations'")->results();
+        }
+    
+        if (empty($checkTable)) {
+            $columns = [
+                'id' => ($dbDriver === 'sqlite') ? 'INTEGER PRIMARY KEY AUTOINCREMENT' : 'INT AUTO_INCREMENT PRIMARY KEY',
+                'migration' => 'VARCHAR(255) NOT NULL'
+            ];
+            $db->createTable('migrations', $columns);
+        }
+    
         $previousMigs = [];
-        $migrationsRun = [];
-
-        if(!empty($migrationTable)){
+        if (!empty($checkTable)) {
             $query = $db->query("SELECT migration FROM migrations")->results();
-            foreach($query as $q){
+            foreach ($query as $q) {
                 $previousMigs[] = $q->migration;
             }
         }
-        
-        // get all files
-        $migrations = glob('database'.DS.'migrations'.DS.'*.php');
-
-        foreach($migrations as $fileName){
-            $klass = str_replace('database'.DS.'migrations'.DS,'',$fileName);
-            $klass = str_replace('.php','',$klass);
-            if(!in_array($klass,$previousMigs)){
-                $klassNamespace = 'Database\\Migrations\\'.$klass;
+    
+        // Get all migration files
+        $migrations = glob(ROOT . DS . 'database' . DS . 'migrations' . DS . '*.php');
+        $migrationsRun = [];
+    
+        foreach ($migrations as $fileName) {
+            $klass = basename($fileName, '.php');
+            if (!in_array($klass, $previousMigs)) {
+                $klassNamespace = 'Database\\Migrations\\' . $klass;
                 $mig = new $klassNamespace($isCli);
                 $mig->up();
-                $db->insert('migrations',['migration'=>$klass]);
+                $db->insert('migrations', ['migration' => $klass]);
                 $migrationsRun[] = $klassNamespace;
             }
         }
-
-        if(sizeof($migrationsRun) == 0){
+    
+        if (sizeof($migrationsRun) == 0) {
             Tools::info('No new migrations to run.', 'debug', 'red');
         }
-
+    
         return Command::SUCCESS;
     }
+    
 
     /**
      * Generates a new Migration class.
