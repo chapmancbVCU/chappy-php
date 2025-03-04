@@ -206,6 +206,15 @@ class DB {
     }
 
     /**
+     * Returns instance of PDO class.
+     *
+     * @return PDO The PDO object.
+     */
+    public function getPDO(): PDO {
+        return $this->_pdo;
+    }
+
+    /**
      * Perform insert operations against the database.
      * 
      * Example setup:
