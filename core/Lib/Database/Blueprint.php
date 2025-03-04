@@ -25,6 +25,7 @@ class Blueprint {
      */
     public function bigInteger($name) {
         $this->columns[] = "{$name} BIGINT";
+        return $this;
     }
 
     /**
@@ -32,6 +33,7 @@ class Blueprint {
      */
     public function boolean($name) {
         $this->columns[] = "{$name} TINYINT(1)";
+        return $this;
     }
 
     /**
@@ -85,6 +87,7 @@ class Blueprint {
      */
     public function date($name) {
         $this->columns[] = "{$name} DATE";
+        return $this;
     }
 
     /**
@@ -92,6 +95,7 @@ class Blueprint {
      */
     public function dateTime($name) {
         $this->columns[] = "{$name} DATETIME";
+        return $this;
     }
 
     /**
@@ -99,8 +103,18 @@ class Blueprint {
      */
     public function decimal($name, $precision = 8, $scale = 2) {
         $this->columns[] = "{$name} DECIMAL({$precision}, {$scale})";
+        return $this;
     }
 
+    public function default($value) {
+        $lastIndex = count($this->columns) - 1;
+        if ($lastIndex >= 0) {
+            $formattedValue = is_string($value) ? "'{$value}'" : $value; // Handle string values
+            $this->columns[$lastIndex] .= " DEFAULT {$formattedValue}";
+        }
+        return $this;  // ✅ Allow chaining
+    }
+    
     /**
      * Drops a table if it exists.
      *
@@ -117,6 +131,7 @@ class Blueprint {
      */
     public function double($name, $precision = 16, $scale = 4) {
         $this->columns[] = "{$name} DOUBLE({$precision}, {$scale})";
+        return $this;
     }
 
     /**
@@ -129,6 +144,7 @@ class Blueprint {
         } else {
             $this->columns[] = "{$name} TEXT";
         }
+        return $this;
     }
 
     /**
@@ -136,6 +152,7 @@ class Blueprint {
      */
     public function float($name, $precision = 8, $scale = 2) {
         $this->columns[] = "{$name} FLOAT({$precision}, {$scale})";
+        return $this;
     }
 
     /**
@@ -151,7 +168,8 @@ class Blueprint {
      * Add an ID column (primary key).
      */
     public function id() {
-        $this->columns[] = "id INTEGER PRIMARY KEY AUTOINCREMENT";
+        $type = ($this->dbDriver === 'sqlite') ? "INTEGER PRIMARY KEY AUTOINCREMENT" : "INT AUTO_INCREMENT PRIMARY KEY";
+        $this->columns[] = "id {$type}";
     }
 
     /**
@@ -159,6 +177,7 @@ class Blueprint {
      */
     public function index($column) {
         $this->indexes[] = $column;
+        return $this;
     }
 
     /**
@@ -167,6 +186,7 @@ class Blueprint {
     public function integer($name) {
         $type = ($this->dbDriver === 'sqlite') ? "INTEGER" : "INT";
         $this->columns[] = "{$name} {$type}";
+        return $this;
     }
 
     /**
@@ -174,6 +194,15 @@ class Blueprint {
      */
     public function mediumInteger($name) {
         $this->columns[] = "{$name} MEDIUMINT";
+        return $this;
+    }
+
+    public function nullable() {
+        $lastIndex = count($this->columns) - 1;
+        if ($lastIndex >= 0) {
+            $this->columns[$lastIndex] .= " NULL";
+        }
+        return $this;  // ✅ Allow chaining
     }
 
     /**
@@ -181,6 +210,7 @@ class Blueprint {
      */
     public function smallInteger($name) {
         $this->columns[] = "{$name} SMALLINT";
+        return $this;
     }
 
     /**
@@ -188,6 +218,7 @@ class Blueprint {
      */
     public function softDeletes() {
         $this->columns[] = "deleted TINYINT(1)";
+        return $this;
     }
 
     /**
@@ -196,6 +227,7 @@ class Blueprint {
     public function string($name, $length = 255) {
         $type = ($this->dbDriver === 'sqlite') ? "TEXT" : "VARCHAR({$length})";
         $this->columns[] = "{$name} {$type}";
+        return $this;
     }
 
     /**
@@ -203,6 +235,7 @@ class Blueprint {
      */
     public function text($name) {
         $this->columns[] = "{$name} TEXT";
+        return $this;
     }
 
     /**
@@ -210,6 +243,7 @@ class Blueprint {
      */
     public function time($name) {
         $this->columns[] = "{$name} TIME";
+        return $this;
     }
 
     /**
@@ -217,6 +251,7 @@ class Blueprint {
      */
     public function timestamp($name) {
         $this->columns[] = "{$name} TIMESTAMP";
+        return $this;
     }
 
     /**
@@ -225,6 +260,7 @@ class Blueprint {
     public function timestamps() {
         $this->columns[] = "created_at DATETIME";
         $this->columns[] = "updated_at DATETIME";
+        return $this;
     }
 
     /**
@@ -232,6 +268,7 @@ class Blueprint {
      */
     public function tinyInteger($name) {
         $this->columns[] = "{$name} TINYINT";
+        return $this;
     }
 
     /**
@@ -243,6 +280,7 @@ class Blueprint {
         } else {
             $this->columns[] = "{$name} INTEGER";
         }
+        return $this;
     }
 
     /**
@@ -269,6 +307,7 @@ class Blueprint {
         } else {
             $this->columns[] = "{$name} TEXT";
         }
+        return $this;
     }
 
 }

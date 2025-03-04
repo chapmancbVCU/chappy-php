@@ -17,32 +17,78 @@ class Migrate {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function dropAllTables(): int {
-        // Load configuration and helper functions
+        // // Load configuration and helper functions
+        // $isCli = php_sapi_name() == 'cli';
+
+        // $db = DB::getInstance();
+        // $migrationTable = $db->query("SHOW TABLES LIKE 'migrations'")->results();
+        // $previousMigs = [];
+
+        // if(empty($migrationTable)){
+        //     Tools::info('Empty database.  No tables to drop.', 'debug', 'red');
+        //     return Command::FAILURE;
+        // }
+        
+        // // get all files
+        // $migrations = glob('database'.DS.'migrations'.DS.'*.php');
+
+        // foreach($migrations as $fileName){
+        //     $klass = str_replace('database'.DS.'migrations'.DS,'',$fileName);
+        //     $klass = str_replace('.php','',$klass);
+        //     if(!in_array($klass,$previousMigs)){
+        //         $klassNamespace = 'Database\\Migrations\\'.$klass;
+        //         $mig = new $klassNamespace($isCli);
+        //         $mig->down();
+        //     }
+        // }
+
+        // Tools::info('All tables have been dropped');
+        // return Command::SUCCESS;
+        // Check if running from CLI
         $isCli = php_sapi_name() == 'cli';
 
         $db = DB::getInstance();
-        $migrationTable = $db->query("SHOW TABLES LIKE 'migrations'")->results();
-        $previousMigs = [];
-
-        if(empty($migrationTable)){
-            Tools::info('Empty database.  No tables to drop.', 'debug', 'red');
-            return Command::FAILURE;
+        if ($db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'sqlite') {
+            $db->query("PRAGMA foreign_keys=ON;");
         }
         
-        // get all files
-        $migrations = glob('database'.DS.'migrations'.DS.'*.php');
+        $driver = $db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
+        $previousMigs = [];
 
-        foreach($migrations as $fileName){
-            $klass = str_replace('database'.DS.'migrations'.DS,'',$fileName);
-            $klass = str_replace('.php','',$klass);
-            if(!in_array($klass,$previousMigs)){
-                $klassNamespace = 'Database\\Migrations\\'.$klass;
+        // Check if the migrations table exists
+        if ($driver === 'sqlite') {
+            // SQLite method to check if table exists
+            $migrationTable = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name='migrations'")->count();
+        } else {
+            // MySQL method
+            $migrationTable = $db->query("SHOW TABLES LIKE 'migrations'")->count();
+        }
+
+        if ($migrationTable == 0) {
+            Tools::info('Empty database. No tables to drop.', 'debug', 'red');
+            return Command::FAILURE;
+        }
+
+        // Get all migration files
+        $migrations = glob('database' . DS . 'migrations' . DS . '*.php');
+
+        // Reverse loop to drop tables in the correct order
+        foreach (array_reverse($migrations) as $fileName) {
+            $klass = str_replace(['database' . DS . 'migrations' . DS, '.php'], '', $fileName);
+            $klassNamespace = 'Database\\Migrations\\' . $klass;
+
+            if (class_exists($klassNamespace)) {
                 $mig = new $klassNamespace($isCli);
-                $mig->down();
+                $mig->down();  // Drop table
+            } else {
+                Tools::info("WARNING: Migration class '{$klassNamespace}' not found!", 'error', 'yellow');
             }
         }
 
-        Tools::info('All tables have been dropped');
+        // Clear the migrations table after dropping all tables
+        $db->query("DROP TABLE IF EXISTS migrations");
+
+        Tools::info('All tables have been dropped.', 'success', 'green');
         return Command::SUCCESS;
     }
 
@@ -71,37 +117,90 @@ class Migrate {
      */
     public static function migrate(): int {
         // Load configuration and helper functions
+        // $isCli = php_sapi_name() == 'cli';
+
+        // $db = DB::getInstance();
+        // $migrationTable = $db->query("SHOW TABLES LIKE 'migrations'")->results();
+        // $previousMigs = [];
+        // $migrationsRun = [];
+
+        // if(!empty($migrationTable)){
+        //     $query = $db->query("SELECT migration FROM migrations")->results();
+        //     foreach($query as $q){
+        //         $previousMigs[] = $q->migration;
+        //     }
+        // }
+        
+        // // get all files
+        // $migrations = glob('database'.DS.'migrations'.DS.'*.php');
+
+        // foreach($migrations as $fileName){
+        //     $klass = str_replace('database'.DS.'migrations'.DS,'',$fileName);
+        //     $klass = str_replace('.php','',$klass);
+        //     if(!in_array($klass,$previousMigs)){
+        //         $klassNamespace = 'Database\\Migrations\\'.$klass;
+        //         $mig = new $klassNamespace($isCli);
+        //         $mig->up();
+        //         $db->insert('migrations',['migration'=>$klass]);
+        //         $migrationsRun[] = $klassNamespace;
+        //     }
+        // }
+
+        // if(sizeof($migrationsRun) == 0){
+        //     Tools::info('No new migrations to run.', 'debug', 'red');
+        // }
+
+        // return Command::SUCCESS;
+
         $isCli = php_sapi_name() == 'cli';
 
         $db = DB::getInstance();
-        $migrationTable = $db->query("SHOW TABLES LIKE 'migrations'")->results();
+        $driver = $db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
         $previousMigs = [];
         $migrationsRun = [];
 
-        if(!empty($migrationTable)){
+        // Check if the migrations table exists
+        if ($driver === 'sqlite') {
+            // SQLite method to check if table exists
+            $migrationTable = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name='migrations'")->count();
+        } else {
+            // MySQL method
+            $migrationTable = $db->query("SHOW TABLES LIKE 'migrations'")->count();
+        }
+
+        // If the migrations table exists, load previous migrations
+        if ($migrationTable > 0) {
             $query = $db->query("SELECT migration FROM migrations")->results();
-            foreach($query as $q){
+            foreach ($query as $q) {
                 $previousMigs[] = $q->migration;
             }
         }
-        
-        // get all files
-        $migrations = glob('database'.DS.'migrations'.DS.'*.php');
 
-        foreach($migrations as $fileName){
-            $klass = str_replace('database'.DS.'migrations'.DS,'',$fileName);
-            $klass = str_replace('.php','',$klass);
-            if(!in_array($klass,$previousMigs)){
-                $klassNamespace = 'Database\\Migrations\\'.$klass;
-                $mig = new $klassNamespace($isCli);
-                $mig->up();
-                $db->insert('migrations',['migration'=>$klass]);
-                $migrationsRun[] = $klassNamespace;
+        // Get all migration files
+        $migrations = glob('database' . DS . 'migrations' . DS . '*.php');
+
+        foreach ($migrations as $fileName) {
+            $klass = str_replace(['database' . DS . 'migrations' . DS, '.php'], '', $fileName);
+            
+            if (!in_array($klass, $previousMigs)) {
+                $klassNamespace = 'Database\\Migrations\\' . $klass;
+                
+                if (class_exists($klassNamespace)) {
+                    $mig = new $klassNamespace($isCli);
+                    $mig->up();  // Run migration
+                    $db->insert('migrations', ['migration' => $klass]); // Store migration history
+                    $migrationsRun[] = $klassNamespace;
+                } else {
+                    Tools::info("WARNING: Migration class '{$klassNamespace}' not found!", 'error', 'red');
+                }
             }
         }
 
-        if(sizeof($migrationsRun) == 0){
-            Tools::info('No new migrations to run.', 'debug', 'red');
+        // Output result
+        if (sizeof($migrationsRun) == 0) {
+            Tools::info('No new migrations to run.', 'debug', 'yellow');
+        } else {
+            Tools::info('Migrations completed successfully.', 'success', 'green');
         }
 
         return Command::SUCCESS;
