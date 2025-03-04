@@ -56,26 +56,27 @@ abstract class Migration {
         $pdo = $this->_db->getPDO();
         $dbDriver = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
     
-        // Format column type
-        $formattedType = $this->_formatColumnType($type, $attrs);
-    
-        // Check if column already exists
+        // Re-check column existence to ensure SQLite isn't misreporting
         if ($this->columnExists($table, $name)) {
             Tools::info("Skipping Column '{$name}' in {$table} - Already Exists", 'debug', 'yellow');
-            return true; // Skip adding column if it already exists
+            return true;
         }
     
-        // If table already exists, apply the column directly
-        if ($this->tableExists($table)) {
-            $sql = "ALTER TABLE {$table} ADD COLUMN {$name} {$formattedType};";
-            $resp = !$this->_db->query($sql)->error();
-            $this->_printColor($resp, "Adding Column {$name} To {$table}");
-            return $resp;
+        // Ensure correct column type formatting
+        $formattedType = $this->_formatColumnType($type, $attrs);
+    
+        // SQLite does not support ALTER TABLE ADD COLUMN for constraints
+        if ($dbDriver === 'sqlite') {
+            Tools::info("SQLite Detected - Altering Table {$table} is Limited.", 'debug', 'red');
         }
     
-        return true;
+        // Run the ALTER TABLE query
+        $sql = "ALTER TABLE {$table} ADD COLUMN {$name} {$formattedType};";
+        $resp = !$this->_db->query($sql)->error();
+    
+        $this->_printColor($resp, "Adding Column {$name} To {$table}");
+        return $resp;
     }
-    
     
     
     /**
@@ -199,16 +200,24 @@ abstract class Migration {
     protected function columnExists($table, $column) {
         $pdo = $this->_db->getPDO();
         $dbDriver = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
-
+    
         if ($dbDriver === 'sqlite') {
             $sql = "PRAGMA table_info({$table})";
+            $columns = $this->_db->query($sql)->results();
+    
+            foreach ($columns as $col) {
+                if (isset($col->name) && $col->name === $column) {
+                    return true;
+                }
+            }
         } else {
             $sql = "SHOW COLUMNS FROM {$table} LIKE '{$column}'";
+            return count($this->_db->query($sql)->results()) > 0;
         }
-
-        return count($this->_db->query($sql)->results()) > 0;
+    
+        return false;
     }
-
+    
 
     /**
      * Setup date column.
