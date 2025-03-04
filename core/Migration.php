@@ -1,5 +1,6 @@
 <?php
 namespace Core;
+use PDO;
 use Core\{DB, Helper};
 use Console\Helpers\Tools;
 
@@ -127,13 +128,13 @@ abstract class Migration {
      * @return bool $resp The response.
      */
     public function createTable($table) {
-        $sql = "CREATE TABLE IF NOT EXISTS {$table} (
-            id INT AUTO_INCREMENT,
-            PRIMARY KEY (id)
-        )  ENGINE=INNODB;";
-        $resp = !$this->_db->query($sql)->error();
-        $this->_printColor($resp,"Creating Table " . $table);
-        return $resp;
+        $columns = [
+            'id' => ($this->_db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'sqlite') 
+                    ? 'INTEGER PRIMARY KEY AUTOINCREMENT' 
+                    : 'INT AUTO_INCREMENT PRIMARY KEY'
+        ];
+    
+        return $this->_db->createTable($table, $columns);
     }
 
     /**

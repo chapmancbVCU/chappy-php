@@ -81,13 +81,15 @@ class DB {
     public function createTable($table, $columns) {
         $query = "CREATE TABLE IF NOT EXISTS {$table} (";
         foreach ($columns as $column => $type) {
+            // Fix SQLite AUTO_INCREMENT handling
             if ($this->_pdo->getAttribute(PDO::ATTR_DRIVER_NAME) === 'sqlite' && strpos($type, 'AUTO_INCREMENT') !== false) {
                 $type = str_replace('AUTO_INCREMENT', 'AUTOINCREMENT', $type);
             }
             $query .= "{$column} {$type}, ";
         }
         $query = rtrim($query, ', ') . ");";
-        $this->query($query);
+
+        return $this->query($query);
     }
 
     /**
