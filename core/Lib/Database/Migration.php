@@ -37,7 +37,14 @@ abstract class Migration {
      */
     abstract public function down();
 
-
+    /**
+     * Get a new instance of Blueprint for schema building.
+     *
+     * @return \Core\Lib\Database\Blueprint
+     */
+    protected function schema() {
+        return new \Core\Lib\Database\Blueprint($this->_db);
+    }
 
 
 

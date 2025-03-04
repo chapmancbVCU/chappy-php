@@ -102,6 +102,17 @@ class Blueprint {
     }
 
     /**
+     * Drops a table if it exists.
+     *
+     * @param string $table
+     * @return void
+     */
+    public function dropIfExists($table) {
+        $sql = "DROP TABLE IF EXISTS {$table}";
+        DB::getInstance()->query($sql);
+        Tools::info("SUCCESS: Dropping Table {$table}");
+    }
+    /**
      * Define a double column.
      */
     public function double($name, $precision = 16, $scale = 4) {
