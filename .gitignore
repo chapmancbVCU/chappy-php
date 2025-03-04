@@ -7,3 +7,5 @@
 template.txt
 Thumbs.db*
 .DS_Store
+
+database/database.sqlite
