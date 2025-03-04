@@ -1,5 +1,5 @@
 <?php
-namespace Core;
+namespace Core\Lib\Database;
 use Core\{DB, Helper};
 use Console\Helpers\Tools;
 
@@ -26,6 +26,24 @@ abstract class Migration {
         $this->_db = DB::getInstance();
         $this->_isCli = $isCli;
     }
+
+    /**
+     * Execute the migration.
+     */
+    abstract public function up();
+
+    /**
+     * Rollback the migration.
+     */
+    abstract public function down();
+
+
+
+
+
+
+
+
 
     /**
      * Setup acl table's initial fields during first db migration.
@@ -381,7 +399,7 @@ abstract class Migration {
      *
      * @return void
      */
-    abstract function up();
+    // abstract function up();
 
     /**
      * Setup varchar column.
