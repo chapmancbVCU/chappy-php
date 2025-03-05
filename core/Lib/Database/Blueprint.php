@@ -2,6 +2,8 @@
 namespace Core\Lib\Database;
 
 use Core\DB;
+use Exception;
+use Core\Lib\Logger;
 use Console\Helpers\Tools;
 
 /**
@@ -108,11 +110,26 @@ class Blueprint {
 
     public function default($value) {
         $lastIndex = count($this->columns) - 1;
-        if ($lastIndex >= 0) {
-            $formattedValue = is_string($value) ? "'{$value}'" : $value; // Handle string values
-            $this->columns[$lastIndex] .= " DEFAULT {$formattedValue}";
+
+        if ($lastIndex < 0) {
+            throw new Exception("Cannot apply default value without a defined column.");
         }
-        return $this;  // ✅ Allow chaining
+
+        preg_match('/^(\w+)\s+([\w()]+)/', $this->columns[$lastIndex], $matches);
+
+        if (!isset($matches[2])) {
+            throw new Exception("Could not extract column type.");
+        }
+
+        $columnType = strtoupper($matches[2]);
+
+        if ($this->dbDriver === 'sqlite' && in_array($columnType, ['TEXT', 'BLOB'])) {
+            Logger::log("Skipping default value for column '{$matches[1]}' (type: $columnType) in SQLite.", 'warning');
+            return $this;
+        }
+
+        $this->columns[$lastIndex] .= " DEFAULT " . (is_string($value) ? "'$value'" : $value);
+        return $this;
     }
     
     /**
@@ -267,7 +284,8 @@ class Blueprint {
      * Define a tiny integer column.
      */
     public function tinyInteger($name) {
-        $this->columns[] = "{$name} TINYINT";
+        $type = ($this->dbDriver === 'sqlite') ? "INTEGER" : "TINYINT";
+        $this->columns[] = "{$name} {$type}";
         return $this;
     }
 

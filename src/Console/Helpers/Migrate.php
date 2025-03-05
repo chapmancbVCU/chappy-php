@@ -48,10 +48,7 @@ class Migrate {
         $isCli = php_sapi_name() == 'cli';
 
         $db = DB::getInstance();
-        if ($db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'sqlite') {
-            $db->query("PRAGMA foreign_keys=ON;");
-        }
-        
+
         $driver = $db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
         $previousMigs = [];
 
@@ -155,6 +152,9 @@ class Migrate {
         $isCli = php_sapi_name() == 'cli';
 
         $db = DB::getInstance();
+        if ($db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'sqlite') {
+            $db->query("PRAGMA foreign_keys=ON;");
+        }
         $driver = $db->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
         $previousMigs = [];
         $migrationsRun = [];

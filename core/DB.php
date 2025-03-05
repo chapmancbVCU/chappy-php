@@ -10,6 +10,7 @@ use \PDOException;
  */
 class DB {
     private $_count = 0;
+    private $_dbDriver;
     private $_error = false;
     private $_fetchStyle = PDO::FETCH_OBJ;
     private static $_instance = null;
@@ -32,12 +33,12 @@ class DB {
 
         try {
             if ($dbConfig['driver'] === 'sqlite') {
-                // Ensure SQLite database file exists before connecting
                 if (!file_exists($dbConfig['database'])) {
                     touch($dbConfig['database']);
                 }
                 $dsn = "sqlite:" . $dbConfig['database'];
                 $this->_pdo = new PDO($dsn);
+                $this->_pdo->exec("PRAGMA foreign_keys=ON;"); // Enable foreign keys for SQLite
             } else {
                 $dsn = "mysql:host={$dbConfig['host']};port={$dbConfig['port']};dbname={$dbConfig['database']};charset={$dbConfig['charset']}";
                 $this->_pdo = new PDO($dsn, $dbConfig['username'], $dbConfig['password']);
@@ -45,6 +46,7 @@ class DB {
                 $this->_pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
                 $this->_pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
             }
+            $this->_dbDriver = $dbConfig['driver']; // Store database driver
         } catch (PDOException $e) {
             throw new Exception($e->getMessage());
         }
@@ -89,11 +91,8 @@ class DB {
      * return false.
      */
     public function delete($table, $id) {
-        $sql = "DELETE FROM {$table} WHERE id = {$id}";
-
-        if(!$this->query($sql)->error()) {
-            return true;
-        } else return false;
+        $sql = "DELETE FROM {$table} WHERE id = ?";
+        return !$this->query($sql, [$id])->error();
     }
 
     /**
@@ -189,7 +188,13 @@ class DB {
      * from a database table.
      */
     public function getColumns($table) {
-        return $this->query("SHOW COLUMNS FROM {$table}")->results();
+        $dbDriver = $this->_pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
+
+        if ($dbDriver === 'sqlite') {
+            return $this->query("PRAGMA table_info({$table})")->results();
+        } else {
+            return $this->query("SHOW COLUMNS FROM {$table}")->results();
+        }
     }
 
     /**
@@ -232,24 +237,28 @@ class DB {
      * @return bool Report whether or not the operation was successful.
      */
     public function insert($table, $fields = []) {
-        $fieldString = '';      // Table field
-        $valueString = '';      // Populated with ?
-        $values = [];           // Values we will bind when we build our query
-
-        foreach($fields as $field => $value) {
-            $fieldString .= '`' . $field . '`,';
-            $valueString .= '?,';
-            $values[] = $value;
+        if (empty($fields)) {
+            Logger::log("Attempted to insert empty data into {$table}", 'error');
+            return false;
         }
-
-        // Cleanup trailing commas
-        $fieldString = rtrim($fieldString, ',');
-        $valueString = rtrim($valueString, ',');
+    
+        // Remove ID field from insertion if it's an autoincrement field
+        if (isset($fields['id'])) {
+            unset($fields['id']);
+        }
+    
+        $fieldString = implode(',', array_keys($fields));
+        $valueString = implode(',', array_fill(0, count($fields), '?'));
+        $values = array_values($fields);
+    
         $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
+    
+        Logger::log("Preparing INSERT query: $sql | Params: " . json_encode($values), 'debug');
 
-        if(!$this->query($sql, $values)->error()) {
+        if (!$this->query($sql, $values)->error()) {
             return true;
-        } else return false;
+        }
+        return false;
     }
 
     /**
@@ -276,41 +285,33 @@ class DB {
      */
     public function query($sql, $params = [],$class = false) {
         $this->_error = false;
-        $startTime = microtime(true); // Start timing query execution
-
-        if($this->_query = $this->_pdo->prepare($sql)) {
+        $startTime = microtime(true);
+    
+        if ($this->_query = $this->_pdo->prepare($sql)) {
             $x = 1;
-            if(count($params)) {
-                foreach($params as $param) {
-                    $this->_query->bindValue($x, $param);
-                    $x++;
-                }
+            foreach ($params as $param) {
+                $this->_query->bindValue($x, $param);
+                $x++;
             }
-            if($this->_query->execute()) {
-                $executionTime = microtime(true) - $startTime; // Calculate execution time
-                if($class && $this->_fetchStyle === PDO::FETCH_CLASS){
-                    $this->_result = $this->_query->fetchAll($this->_fetchStyle,$class);
-                } else {
-                    $this->_result = $this->_query->fetchAll($this->_fetchStyle);
-                }
+    
+            if ($this->_query->execute()) {
+                $executionTime = microtime(true) - $startTime;
+                $this->_result = $class ? $this->_query->fetchAll(PDO::FETCH_CLASS, $class) : $this->_query->fetchAll($this->_fetchStyle);
                 $this->_count = $this->_query->rowCount();
                 $this->_lastInsertID = $this->_pdo->lastInsertId();
-
-                // Log successful query execution
+    
                 Logger::log("Executed Query: $sql | Params: " . json_encode($params) . " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s", 'debug');
             } else {
                 $this->_error = true;
-
-                // Log query execution failure
                 Logger::log("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . json_encode($params), 'error');
             }
         } else {
-            // Log query preparation failure
             Logger::log("Failed to prepare query: $sql | Params: " . json_encode($params), 'error');
         }
-
+    
         return $this;
     }
+    
 
     /** UPDATE
      * Supports SELECT operations that maybe ran against a SQL database.  It 
@@ -336,68 +337,80 @@ class DB {
         $order = '';
         $limit = '';
         $offset = '';
-    
-        //FETCH STYLE
+
+        // Detect SQLite
+        $dbDriver = $this->_pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
+
+        // Fetch Style
         if(isset($params['fetchStyle'])){
-          $this->_fetchStyle = $params['fetchStyle'];
+            $this->_fetchStyle = $params['fetchStyle'];
         }
-    
-        // conditions
+
+        // Conditions
         if(isset($params['conditions'])) {
             if(is_array($params['conditions'])) {
                 foreach($params['conditions'] as $condition) {
+                    // Convert `!=` to `<>` for SQLite
+                    if ($dbDriver === 'sqlite') {
+                        $condition = str_replace('!=', '<>', $condition);
+                    }
                     $conditionString .= ' ' . $condition . ' AND';
                 }
                 $conditionString = trim($conditionString);
                 $conditionString = rtrim($conditionString, ' AND');
             } else {
                 $conditionString = $params['conditions'];
+                if ($dbDriver === 'sqlite') {
+                    $conditionString = str_replace('!=', '<>', $conditionString);
+                }
             }
             if($conditionString != '') {
-                $conditionString = ' Where ' . $conditionString;
+                $conditionString = ' WHERE ' . $conditionString;
             }
         }
-    
-        // columns
+
+        // Columns
         if(array_key_exists('columns',$params)){
             $columns = $params['columns'];
         }
-    
-        // joins and raw joins
+
+        // Joins and raw joins
         if(array_key_exists('joins',$params)){
             foreach($params['joins'] as $join){
                 $joins .= $this->_buildJoin($join);
             }
             $joins .= " ";
         }
-    
+
         if(array_key_exists('joinsRaw', $params)) {
             foreach($params['joinsRaw'] as $raw) {
                 $joins .= ' ' .$raw;
             }
         }
-    
-        // bind
+
+        // Bind
         if(array_key_exists('bind', $params)) {
             $bind = $params['bind'];
         }
-    
-        // order
+
+        // Order
         if(array_key_exists('order', $params)) {
             $order = ' ORDER BY ' . $params['order'];
         }
-    
-        // limit
+
+        // Limit
         if(array_key_exists('limit', $params)) {
             $limit = ' LIMIT ' . $params['limit'];
         }
-    
-        // offset
+
+        // Offset
         if(array_key_exists('offset', $params)) {
             $offset = ' OFFSET ' . $params['offset'];
         }
+
         $sql = ($count) ? "SELECT COUNT(*) as count " : "SELECT {$columns} ";
         $sql .= "FROM {$table}{$joins}{$conditionString}{$order}{$limit}{$offset}";
+
         if($this->query($sql, $bind, $class)) {
             if(!count($this->_result)) return false;
             return true;
@@ -413,6 +426,17 @@ class DB {
      */
     public function results() {
         return $this->_result;
+    }
+
+    public function tableExists($table) {
+        if ($this->_dbDriver === 'sqlite') {
+            $sql = "SELECT name FROM sqlite_master WHERE type='table' AND name=:table";
+        } else {
+            $sql = "SHOW TABLES LIKE :table";
+        }
+
+        $this->query($sql, ['table' => $table]);
+        return $this->count() > 0;
     }
 
     /**
@@ -435,22 +459,12 @@ class DB {
      * we return false.
      */
     public function update($table, $id, $fields = []) {
-        $fieldString = '';      // Table field
-        $values = [];           // Values we will bind when we build our query
+        $setString = implode('=?, ', array_keys($fields)) . '=?';
+        $values = array_values($fields);
+        $values[] = $id;
 
-        foreach($fields as $field => $value) {
-            $fieldString .= ' ' . $field . ' = ?,';
-            $values[] = $value;
-        }
+        $sql = "UPDATE {$table} SET {$setString} WHERE id = ?";
 
-        $fieldString = trim($fieldString);
-        $fieldString = rtrim($fieldString, ',');
-
-        $sql = "UPDATE {$table} SET {$fieldString} where id = {$id}";
-
-        if(!$this->query($sql, $values)->error()) {
-            return true;
-        }
-        return false;
+        return !$this->query($sql, $values)->error();
     }  
 }

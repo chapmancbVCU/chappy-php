@@ -1,6 +1,7 @@
 <?php
 namespace Core;
 use Core\Helper;
+use Core\Lib\Logger;
 
 /**
  * Parent class for our models.  Takes functions from DB wrapper and extract 
@@ -105,8 +106,13 @@ class Model {
      */
     public function data() {
         $data = new \stdClass();
-        foreach(static::getColumns() as $column) {
-            $columnName = $column->Field;
+        $columns = static::getColumns();
+        
+        // Determine column key name based on DB driver
+        $columnKey = (isset($columns[0]->Field)) ? 'Field' : 'name';
+
+        foreach ($columns as $column) {
+            $columnName = $column->{$columnKey};
             $data->{$columnName} = $this->{$columnName};
         }
         return $data;
@@ -151,11 +157,27 @@ class Model {
      */
     public function getColumnsForSave() {
         $columns = static::getColumns();
+        Logger::log("Columns from DB: " . json_encode($columns), 'debug');
+
         $fields = [];
-        foreach($columns as $column) {
-            $key = $column->Field;
-            $fields[$key] = $this->{$key};
+
+        // Determine correct column name key
+        $columnKey = isset($columns[0]->Field) ? 'Field' : (isset($columns[0]->name) ? 'name' : null);
+
+        if ($columnKey === null) {
+            Logger::log("ERROR: Column key not found!", 'error');
+            return [];
         }
+
+        foreach ($columns as $column) {
+            $key = $column->{$columnKey};
+
+            if (isset($this->{$key})) {
+                $fields[$key] = $this->{$key};
+            }
+        }
+
+        Logger::log("Fields for save: " . json_encode($fields), 'debug');
         return $fields;
     }
 
@@ -350,17 +372,21 @@ class Model {
         if($this->_validates){
             $this->beforeSave();
             $fields = $this->getColumnsForSave();
-            // determine whether to update or insert
+            
+            // Ensure ID is never passed to SQLite INSERT statements
+            if (isset($fields['id'])) {
+                unset($fields['id']);
+            }
+
             if($this->isNew()) {
                 $save = $this->insert($fields);
-                // populate object with the id
                 if($save){
                     $this->id = static::getDb()->lastID();
                 }
             } else {
                 $save = $this->update($fields);
             }
-            // run after save
+
             if($save){
                 $this->afterSave();
             }
@@ -378,14 +404,17 @@ class Model {
     protected static function _softDeleteParams($params){
         if(isset($params['includeDeleted']) && $params['includeDeleted'] == true) return $params;
         if(static::$_softDelete){
+            $dbDriver = static::getDb()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
+            $notEqualOperator = ($dbDriver === 'sqlite') ? "<>" : "!=";
+
             if(array_key_exists('conditions',$params)){
                 if(is_array($params['conditions'])){
-                    $params['conditions'][] = "deleted != 1";
+                    $params['conditions'][] = "deleted {$notEqualOperator} 1";
                 } else {
-                    $params['conditions'] .= " AND deleted != 1";
+                    $params['conditions'] .= " AND deleted {$notEqualOperator} 1";
                 }
             } else {
-                $params['conditions'] = "deleted != 1";
+                $params['conditions'] = "deleted {$notEqualOperator} 1";
             }
         }
         return $params;
