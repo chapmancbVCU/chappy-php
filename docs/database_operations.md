@@ -49,16 +49,33 @@ Once you perform this action a migration class is created with two functions cal
 
 ```php
 namespace Database\Migrations;
-use Core\Migration;
+use Core\Lib\Database\Schema;
+use Core\Lib\Database\Blueprint;
+use Core\Lib\Database\Migration;
 
-class Migration1733521897 extends Migration {
+/**
+ * Migration class for the foo table.
+ */
+class Migration1741215401 extends Migration {
+    /**
+     * Performs a migration.
+     *
+     * @return void
+     */
     public function up() {
-        $table = 'foo';
-        $this->createTable($table);
+        Schema::create('foo', function (Blueprint $table) {
+          $table->id();
+
+      });
     }
 
+    /**
+     * Undo a migration task.
+     *
+     * @return void
+     */
     public function down() {
-        $this->dropTable('foo');
+        Schema::dropIfExists('foo');
     }
 }
 ```
@@ -67,28 +84,44 @@ The up function automatically creates a $table variable set to the value you ent
 
 ```php
 namespace Database\Migrations;
-use Core\Migration;
+use Core\Lib\Database\Schema;
+use Core\Lib\Database\Blueprint;
+use Core\Lib\Database\Migration;
 
-class Migration1733521897 extends Migration {
+/**
+ * Migration class for the foo table.
+ */
+class Migration1741215401 extends Migration {
+    /**
+     * Performs a migration.
+     *
+     * @return void
+     */
     public function up() {
-        $table = 'foo';
-        $this->createTable($table);
-        $this->addColumn($table,'bar','varchar',['size'=>150]);
-        $this->addTimeStamps($table);
-        $this->addSoftDelete($table);
-        $this->addColumn($table,'user_id','int');
-        $this->addIndex($table,'user_id');
+        Schema::create('foo', function (Blueprint $table) {
+            $table->id();
+            $table->string('bar', 150)->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+            $table->integer('user_id');
+            $table->index('user_id');
+      });
     }
 
+    /**
+     * Undo a migration task.
+     *
+     * @return void
+     */
     public function down() {
-        $this->dropTable('foo');
+        Schema::dropIfExists('foo');
     }
 }
 ```
 
-`ddColumn` is the most common function that is used. On line 8 we call this function to create a field called `bar` whose type is varchar. The last argument is the optional attributes parameter. It is an associative array and in this case we set the size. Other supported attributes are precision, scale, before, after, and definition.
+`string` is the most common function that is used. We call this function to create a field called `bar` whose type is varchar. The second argument is used to set the size of this field.  For this field we also chain the nullable function to allow this field's value to be null.
 
-`addTimeStamps` as shown on line 9 creates `created_at` and `updated_at` fields. `softDelete` is used as a setting where you want to removed a record from being returned from any database query. It serves as a safety net that allows you to permanently delete the record later or preserve for later use.
+`addTimeStamps` creates `created_at` and `updated_at` fields. `addSoftDelete` is used as a setting where you want to removed a record from being returned from any database query. It serves as a safety net that allows you to permanently delete the record later or preserve for later use.
 
 The function call on line 11 adds a user_id field and the next line sets this field as an index. It is a common way to create relationships with this and the Laravel framework.
 
