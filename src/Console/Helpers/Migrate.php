@@ -17,34 +17,6 @@ class Migrate {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function dropAllTables(): int {
-        // // Load configuration and helper functions
-        // $isCli = php_sapi_name() == 'cli';
-
-        // $db = DB::getInstance();
-        // $migrationTable = $db->query("SHOW TABLES LIKE 'migrations'")->results();
-        // $previousMigs = [];
-
-        // if(empty($migrationTable)){
-        //     Tools::info('Empty database.  No tables to drop.', 'debug', 'red');
-        //     return Command::FAILURE;
-        // }
-        
-        // // get all files
-        // $migrations = glob('database'.DS.'migrations'.DS.'*.php');
-
-        // foreach($migrations as $fileName){
-        //     $klass = str_replace('database'.DS.'migrations'.DS,'',$fileName);
-        //     $klass = str_replace('.php','',$klass);
-        //     if(!in_array($klass,$previousMigs)){
-        //         $klassNamespace = 'Database\\Migrations\\'.$klass;
-        //         $mig = new $klassNamespace($isCli);
-        //         $mig->down();
-        //     }
-        // }
-
-        // Tools::info('All tables have been dropped');
-        // return Command::SUCCESS;
-        // Check if running from CLI
         $isCli = php_sapi_name() == 'cli';
 
         $db = DB::getInstance();
@@ -113,42 +85,6 @@ class Migrate {
      * @return integer A value that indicates success, invalid, or failure.
      */
     public static function migrate(): int {
-        // Load configuration and helper functions
-        // $isCli = php_sapi_name() == 'cli';
-
-        // $db = DB::getInstance();
-        // $migrationTable = $db->query("SHOW TABLES LIKE 'migrations'")->results();
-        // $previousMigs = [];
-        // $migrationsRun = [];
-
-        // if(!empty($migrationTable)){
-        //     $query = $db->query("SELECT migration FROM migrations")->results();
-        //     foreach($query as $q){
-        //         $previousMigs[] = $q->migration;
-        //     }
-        // }
-        
-        // // get all files
-        // $migrations = glob('database'.DS.'migrations'.DS.'*.php');
-
-        // foreach($migrations as $fileName){
-        //     $klass = str_replace('database'.DS.'migrations'.DS,'',$fileName);
-        //     $klass = str_replace('.php','',$klass);
-        //     if(!in_array($klass,$previousMigs)){
-        //         $klassNamespace = 'Database\\Migrations\\'.$klass;
-        //         $mig = new $klassNamespace($isCli);
-        //         $mig->up();
-        //         $db->insert('migrations',['migration'=>$klass]);
-        //         $migrationsRun[] = $klassNamespace;
-        //     }
-        // }
-
-        // if(sizeof($migrationsRun) == 0){
-        //     Tools::info('No new migrations to run.', 'debug', 'red');
-        // }
-
-        // return Command::SUCCESS;
-
         $isCli = php_sapi_name() == 'cli';
 
         $db = DB::getInstance();

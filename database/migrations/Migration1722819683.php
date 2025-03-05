@@ -14,10 +14,6 @@ class Migration1722819683 extends Migration {
      * @return void
      */
     public function up() {
-      // $table = "migrations";
-      // $this->createTable($table);
-      // $this->addColumn($table, 'migration', 'varchar',['size'=>35]);
-      // $this->addIndex($table,'migration');
         Schema::create('migrations', function (Blueprint $table) {
           $table->id();
           $table->string('migration', 35);
@@ -31,7 +27,6 @@ class Migration1722819683 extends Migration {
      * @return void
      */
     public function down() {
-      // $this->dropTable('migrations');
       Schema::dropIfExists('migrations');
     }
 }

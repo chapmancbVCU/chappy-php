@@ -14,13 +14,6 @@ class Migration1724274442 extends Migration {
    * @return void
    */
   public function up() {
-    // $table = 'profile_images';
-    // $this->createTable($table);
-    // $this->addColumn($table, 'url', 'varchar', ['size' => 255]);
-    // $this->addColumn($table, 'sort', 'int');
-    // $this->addColumn($table, 'user_id', 'int');
-    // $this->addColumn($table, 'name', 'varchar', ['size' => 255]);
-    // $this->addSoftDelete($table);
     Schema::create('profile_images', function (Blueprint $table) {
       $table->id();
       $table->string('url', 255);
@@ -39,7 +32,6 @@ class Migration1724274442 extends Migration {
    * @return void
    */
   public function down() {
-    // $this->dropTable('profile_images');
     Schema::dropIfExists('profile_images');
   }
 }
