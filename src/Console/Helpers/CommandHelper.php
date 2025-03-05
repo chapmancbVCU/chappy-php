@@ -19,7 +19,7 @@ class CommandHelper {
     public static function makeCommand(InputInterface $input): int {
         $commandName = $input->getArgument('command-name');
         $ext = ".php";
-        $fullPath = ROOT.DS.'src'.DS.'console'.DS.'commands'.DS.$commandName.'Command'.$ext;
+        $fullPath = ROOT.DS.'src'.DS.'Console'.DS.'Commands'.DS.$commandName.'Command'.$ext;
         $content = '<?php
 namespace Console\Commands;
  
@@ -77,7 +77,7 @@ class '.$commandName.'Command extends Command {
     public static function makeHelper(InputInterface $input): int {
         $helperName = ucfirst($input->getArgument('helper-name'));
         $ext = ".php";
-        $fullPath = ROOT.DS.'src'.DS.'console'.DS.'helpers'.DS.$helperName.$ext;
+        $fullPath = ROOT.DS.'src'.DS.'Console'.DS.'Helpers'.DS.$helperName.$ext;
         $content = '<?php
 namespace Console\Helpers;
 
