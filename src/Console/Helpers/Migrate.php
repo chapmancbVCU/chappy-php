@@ -150,18 +150,36 @@ class Migrate {
      * @return string The contents of the new Migration class.
      */
     public static function migrationClass(string $fileName, string $tableName): string {
+        $tableName = strtolower($tableName);
         return '<?php
 namespace Database\Migrations;
-use Core\Migration;
+use Core\Lib\Database\Schema;
+use Core\Lib\Database\Blueprint;
+use Core\Lib\Database\Migration;
 
+/**
+ * Migration class for the '.$tableName.' table.
+ */
 class '.$fileName.' extends Migration {
+    /**
+     * Performs a migration.
+     *
+     * @return void
+     */
     public function up() {
-        $table = \''.$tableName.'\';
-        $this->createTable($table);
+        Schema::create(\''.$tableName.'\', function (Blueprint $table) {
+            $table->id();
+
+      });
     }
 
+    /**
+     * Undo a migration task.
+     *
+     * @return void
+     */
     public function down() {
-        $this->dropTable(\''.$tableName.'\');
+        Schema::dropIfExists(\''.$tableName.'\');
     }
 }
 ';
