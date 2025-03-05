@@ -24,6 +24,8 @@ class Blueprint {
 
     /**
      * Define a big integer column.
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function bigInteger($name) {
         $this->columns[] = "{$name} BIGINT";
@@ -32,6 +34,8 @@ class Blueprint {
 
     /**
      * Define a boolean column.
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function boolean($name) {
         $this->columns[] = "{$name} TINYINT(1)";
@@ -86,6 +90,8 @@ class Blueprint {
 
     /**
      * Define a date column.
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function date($name) {
         $this->columns[] = "{$name} DATE";
@@ -94,6 +100,8 @@ class Blueprint {
 
     /**
      * Define a datetime column.
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function dateTime($name) {
         $this->columns[] = "{$name} DATETIME";
@@ -102,6 +110,8 @@ class Blueprint {
 
     /**
      * Define a decimal column.
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function decimal($name, $precision = 8, $scale = 2) {
         $this->columns[] = "{$name} DECIMAL({$precision}, {$scale})";
@@ -145,6 +155,8 @@ class Blueprint {
     }
     /**
      * Define a double column.
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function double($name, $precision = 16, $scale = 4) {
         $this->columns[] = "{$name} DOUBLE({$precision}, {$scale})";
@@ -153,6 +165,8 @@ class Blueprint {
 
     /**
      * Define an enum column (MySQL only).
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function enum($name, array $values) {
         if ($this->dbDriver === 'mysql') {
@@ -166,6 +180,8 @@ class Blueprint {
 
     /**
      * Define a float column.
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function float($name, $precision = 8, $scale = 2) {
         $this->columns[] = "{$name} FLOAT({$precision}, {$scale})";
@@ -194,11 +210,12 @@ class Blueprint {
      */
     public function index($column) {
         $this->indexes[] = $column;
-        return $this;
     }
 
     /**
      * Define an integer column.
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function integer($name) {
         $type = ($this->dbDriver === 'sqlite') ? "INTEGER" : "INT";
@@ -208,12 +225,19 @@ class Blueprint {
 
     /**
      * Define a medium integer column.
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function mediumInteger($name) {
         $this->columns[] = "{$name} MEDIUMINT";
         return $this;
     }
 
+    /**
+     * Modifies last column added to the schema and make it nullable.
+     *
+     * @return Blueprint Return the instance to allow method chaining.
+     */
     public function nullable() {
         $lastIndex = count($this->columns) - 1;
         if ($lastIndex >= 0) {
@@ -224,6 +248,8 @@ class Blueprint {
 
     /**
      * Define a small integer column.
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function smallInteger($name) {
         $this->columns[] = "{$name} SMALLINT";
@@ -232,6 +258,8 @@ class Blueprint {
 
     /**
      * Define a soft delete column.
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function softDeletes() {
         $this->columns[] = "deleted TINYINT(1)";
@@ -240,6 +268,8 @@ class Blueprint {
 
     /**
      * Define a string column.
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function string($name, $length = 255) {
         $type = ($this->dbDriver === 'sqlite') ? "TEXT" : "VARCHAR({$length})";
@@ -249,6 +279,8 @@ class Blueprint {
 
     /**
      * Define a text column.
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function text($name) {
         $this->columns[] = "{$name} TEXT";
@@ -257,6 +289,8 @@ class Blueprint {
 
     /**
      * Define a time column.
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function time($name) {
         $this->columns[] = "{$name} TIME";
@@ -265,6 +299,8 @@ class Blueprint {
 
     /**
      * Define a timestamp column.
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function timestamp($name) {
         $this->columns[] = "{$name} TIMESTAMP";
@@ -277,11 +313,12 @@ class Blueprint {
     public function timestamps() {
         $this->columns[] = "created_at DATETIME";
         $this->columns[] = "updated_at DATETIME";
-        return $this;
     }
 
     /**
      * Define a tiny integer column.
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function tinyInteger($name) {
         $type = ($this->dbDriver === 'sqlite') ? "INTEGER" : "TINYINT";
@@ -291,6 +328,8 @@ class Blueprint {
 
     /**
      * Define an unsigned integer column (MySQL only).
+     * 
+     * @return Blueprint Return the instance to allow method chaining.
      */
     public function unsignedInteger($name) {
         if ($this->dbDriver === 'mysql') {
@@ -325,7 +364,5 @@ class Blueprint {
         } else {
             $this->columns[] = "{$name} TEXT";
         }
-        return $this;
     }
-
 }
