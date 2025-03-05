@@ -57,6 +57,7 @@ Below is a list of available commands. Most items in this list contains a link t
 | migrate:drop-all | Drops all database tables |
 | migrate:refresh | Drops all tables and runs a Database Migration |
 | seed:run | Runs database seeders |
+| serve | Runs local PHP server without having to use Apache2 or Nginx |
 | serve:docs | Locally serves jekyll based user guide |
 | test | Performs a phpunit test |
 | tools:mk-env | Creates the .env file |
