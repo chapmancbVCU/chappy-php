@@ -39,7 +39,7 @@ class GenerateModelCommand extends Command
 
         // Generate the Model class
         return Tools::writeFile(
-            ROOT.DS.'app'.DS.'models'.DS.$modelName.'.php',
+            ROOT.DS.'app'.DS.'Models'.DS.$modelName.'.php',
             Model::makeModel($modelName),
             'Model'
         );

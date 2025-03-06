@@ -81,7 +81,7 @@ class GenerateControllerCommand extends Command
 
         // Generate Controller class
         return Tools::writeFile(
-            ROOT.DS.'app'.DS.'controllers'.DS.$controllerName.'Controller.php',
+            ROOT.DS.'app'.DS.'Controllers'.DS.$controllerName.'Controller.php',
             $content,
             "Controller"
         );
