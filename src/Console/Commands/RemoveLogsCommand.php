@@ -1,10 +1,12 @@
 <?php
 namespace Console\Commands;
  
+use Console\Helpers\Log;
+use Console\Helpers\Tools;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Console\Helpers\Tools;
 
 /**
  * Supports ability to delete log file.
@@ -19,7 +21,16 @@ class RemoveLogsCommand extends Command {
     {
         $this->setName('log:clear')
             ->setDescription('Removes log file')
-            ->setHelp('Run php console log:clear to remove log files.');
+            ->setHelp('Run php console log:clear to remove log files.')
+
+            // Remove app.log
+            ->addOption('app', null, InputOption::VALUE_NONE, 'Delete app.log')
+
+            // Remove cli.log
+            ->addOption('cli', null, InputOption::VALUE_NONE, 'Delete cli.log')
+
+            // Remove all logs
+            ->addOption('all', null, InputOption::VALUE_NONE, 'Delete all logs');
     }
 
     /**
@@ -31,11 +42,31 @@ class RemoveLogsCommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        // When successful
-        if(unlink(ROOT.DS.'storage'.DS.'logs'.DS.'app.log')) {
-            Tools::info('Log file successfully cleared', 'green');
+        if($input->getOption('app')) {
+            Log::delete(
+                'app.log successfully cleared',
+                ROOT.DS.'storage'.DS.'logs'.DS.'app.log'
+            );
             return COMMAND::SUCCESS;
-        } 
+        } else if($input->getOption('cli')) {
+            Log::delete(
+                'cli.log successfully cleared',
+                ROOT.DS.'storage'.DS.'logs'.DS.'cli.log'
+            );
+            return COMMAND::SUCCESS;
+        } else if($input->getOption('all')) {
+            Log::delete(
+                'app.log successfully cleared',
+                ROOT.DS.'storage'.DS.'logs'.DS.'app.log'
+            );
+
+            Log::delete(
+                'cli.log successfully cleared',
+                ROOT.DS.'storage'.DS.'logs'.DS.'cli.log'
+            );
+            return COMMAND::SUCCESS;
+        }
+
 
         // Always execute when there is a failure.
         Tools::info('There was an issue removing the log file', 'debug', 'red');
