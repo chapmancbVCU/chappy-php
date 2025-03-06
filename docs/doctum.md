@@ -2,6 +2,7 @@
 
 ## Table of contents
 1. [Overview](#overview)
+2. [Accessing api-docs](#access-api)
 <br>
 <br>
 
@@ -23,3 +24,11 @@ The configuration file is located under project root and is called `doctum.php`.
 6. public
 7. vendor
 
+## 2.  <a id="access-api"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+There are two methods for accessing the api-docs.  Running the following command in the console with optional port and host arguments:
+
+```sh
+php console serve:api --port=<port_number> --host=<hostname_or_ip>
+```
+
+Then navigate to `http://<hostname_or_ip>:<port_number>`.  The default is `http://localhost:8001`.  If you are using Apache or Nginx you can navigate to `localhost/api-docs/index.html`.
