@@ -31,5 +31,11 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^11.3"
-    }
+    },
+    "scripts": {
+    "post-root-package-install": [
+        "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+        "@php -r \"if (!file_exists('storage/app/private/profile_images')) mkdir('storage/app/private/profile_images', 0777, true);\""
+    ]
+}
 }
