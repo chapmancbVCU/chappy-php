@@ -24,7 +24,7 @@ The configuration file is located under project root and is called `doctum.php`.
 6. public
 7. vendor
 
-## 2.  <a id="access-api"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 2. Accessing api-docs <a id="access-api"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 There are two methods for accessing the api-docs.  Running the following command in the console with optional port and host arguments:
 
 ```sh
