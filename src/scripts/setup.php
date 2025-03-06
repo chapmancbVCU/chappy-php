@@ -1,9 +1,5 @@
 #!/usr/bin/env php
 <?php
-use Dotenv\Dotenv;
-
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../'); // Adjust path if needed
-$dotenv->load();
 
 // 1️⃣ Determine the project root dynamically (if inside src/scripts/)
 $projectRoot = dirname(__DIR__, 2); // Go up two levels from 'src/scripts'
@@ -25,6 +21,13 @@ if (!is_dir("vendor")) {
 } else {
     echo "✅ Dependencies are already installed. Skipping 'composer install'.\n";
 }
+
+require_once "vendor/autoload.php";
+
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable($projectRoot);
+$dotenv->load();
 
 // 4️⃣ Check if Node.js and npm are installed
 $npmExists = shell_exec('npm --version');
