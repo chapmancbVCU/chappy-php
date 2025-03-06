@@ -121,6 +121,9 @@ if ($migrateOutput) {
 
 // 1️⃣3️⃣ Final instructions
 echo "✅ Setup complete!\n";
+echo "➡️ Run: git add .";
+echo "➡️ Run: git commit -m \"Initial commit\"";
+echo "➡️ Set git to origin: git remote add origin https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME.git";
 echo "➡️ Run: php console serve\n";
 echo "🌍 Open your project at: http://localhost:8000\n";
 exit(0);
