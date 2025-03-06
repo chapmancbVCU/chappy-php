@@ -1,5 +1,9 @@
 #!/usr/bin/env php
 <?php
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../'); // Adjust path if needed
+$dotenv->load();
 
 // 1️⃣ Determine the project root dynamically (if inside src/scripts/)
 $projectRoot = dirname(__DIR__, 2); // Go up two levels from 'src/scripts'
@@ -88,9 +92,15 @@ if (!file_exists($sqliteFile)) {
 // 🔟 Generate .env file (if missing)
 $envFile = '.env';
 if (!file_exists($envFile)) {
-    copy('.env.example', $envFile);
-    echo "✅ Copied .env.example to .env\n";
+    if (file_exists('.env.example')) {
+        copy('.env.example', $envFile);
+        echo "✅ Copied .env.example to .env\n";
+    } else {
+        echo "⚠️ Warning: .env.example not found. Creating a blank .env file.\n";
+        touch($envFile);
+    }
 }
+
 
 // 1️⃣1️⃣ Generate random keys for security
 $appKey = 'base64:' . base64_encode(random_bytes(32));

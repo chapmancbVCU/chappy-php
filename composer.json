@@ -37,7 +37,7 @@
             "@php src/scripts/setup.php"
         ],
             "install-project": [
-            "@php src/scripts/install.php"
+            "@php src/scripts/setup.php"
         ]
     }
 }
