@@ -138,6 +138,15 @@ if ($migrateOutput) {
     echo "❌ Migration process failed. Check your database connection.\n";
 }
 
+// 1️⃣6️⃣ Install NPM dependencies (if package.json exists)
+if (file_exists("package.json")) {
+    echo "📦 Installing NPM dependencies...\n";
+    system("npm install");
+    echo "✅ NPM dependencies installed.\n";
+} else {
+    echo "⚠️ No package.json found. Skipping NPM install.\n";
+}
+
 // 1️⃣5️⃣ Final instructions
 echo "\n✅ Setup complete!\n";
 echo "➡️ Run: git add .\n";
