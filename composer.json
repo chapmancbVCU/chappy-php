@@ -34,7 +34,7 @@
     },
     "scripts": {
         "post-root-package-install": [
-            "@php scripts/setup.php"
+            "@php src/scripts/setup.php"
         ]
     }
 }
