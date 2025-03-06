@@ -1,7 +1,27 @@
 <h1 style="font-size: 50px; text-align: center;">Getting Started</h1>
 
-Here we provide the resources needed to get your project up and running.  While we work to improve out product and add content 
-to the wiki you can search using a combination of keywords that include Laravel, server type such as Nginx or Apache, and name of OS.  
+## Table of contents
+1. [Overview](#overview)
+2. [System Requirements](#requirements)
+
+<br>
+<br>
+
+## 1. Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+Here we provide the resources needed to get your project up and running.
+<br>
+
+## 2. System Requirements <a id="requirements"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+1. Apache Server, development environment such as XAMPP, or Nginx (optional)
+2. PHP 8.3
+3. SQL/MariaDB (optional)
+4. OS: MacOS, Linux, Windows 11+
+5. SQL Management software (We use phpMyAdmin or adminer)(optional)
+6. Composer
+7. git
+8. Node Package Manager (npm)
+
+
 They will list out all PHP related dependencies needed for Apache and Nginx.
 1. Navigate to where your development projects are located in CMD or Terminal.
 2. Run the command 
