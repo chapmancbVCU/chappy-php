@@ -5,6 +5,9 @@ echo "Setting up the project...\n";
 // Install composer dependencies.
 system('composer install');
 
+// Install node dependencies.
+system('npm install');
+
 // Remove .git directory
 if (is_dir('.git')) {
     if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
