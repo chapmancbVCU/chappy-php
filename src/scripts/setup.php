@@ -36,12 +36,8 @@ if (!file_exists($envFile)) {
 APP_KEY=
 CURRENT_USER_SESSION_NAME=
 REMEMBER_ME_COOKIE_NAME=
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=my_database
-DB_USERNAME=root
-DB_PASSWORD=
+DB_CONNECTION=sqlite
+DB_DATABASE=database/database.sqlite
 EOL;
         file_put_contents($envFile, $defaultEnv);
     }
@@ -86,13 +82,68 @@ chmod($envFile, 0777);
 
 echo "🔑 Successfully updated .env with generated keys.\n";
 
-// 9️⃣ Final instructions
+// 9️⃣ Remove .git directory (for fresh installs)
+if (is_dir('.git')) {
+    echo "🗑 Removing existing Git repository...\n";
+    system("rm -rf .git");
+    echo "✅ Git repository removed.\n";
+}
+
+// 🔟 Initialize a new Git repository
+echo "🔄 Initializing a new Git repository...\n";
+system("git init");
+system("git add .");
+system("git commit -m 'Initial commit'");
+echo "✅ New Git repository initialized.\n";
+
+// 1️⃣1️⃣ Create necessary directories
+$directories = [
+    'storage/app/private/profile_images',
+    'storage/logs',
+    'database'
+];
+
+foreach ($directories as $dir) {
+    if (!is_dir($dir)) {
+        mkdir($dir, 0777, true);
+        echo "📂 Created directory: $dir\n";
+    }
+}
+
+// 1️⃣2️⃣ Set permissions (Linux/macOS only)
+if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
+    chmod('storage', 0777);
+    chmod('storage/logs', 0777);
+    chmod('database', 0777);
+    echo "🔧 Set permissions for storage, logs, and database directories.\n";
+}
+
+// 1️⃣3️⃣ Create SQLite database file if it doesn't exist
+$sqliteFile = 'database/database.sqlite';
+if (!file_exists($sqliteFile)) {
+    touch($sqliteFile);
+    echo "📄 Created SQLite database file: $sqliteFile\n";
+} else {
+    echo "✅ SQLite database file already exists.\n";
+}
+
+// 1️⃣4️⃣ Run database migrations
+echo "⚙️ Running database migrations...\n";
+$migrateCommand = "php console migrate";
+$migrateOutput = shell_exec($migrateCommand);
+
+if ($migrateOutput) {
+    echo "✅ Migrations completed successfully.\n";
+} else {
+    echo "❌ Migration process failed. Check your database connection.\n";
+}
+
+// 1️⃣5️⃣ Final instructions
 echo "\n✅ Setup complete!\n";
 echo "➡️ Run: git add .\n";
 echo "➡️ Run: git commit -m \"Initial commit\"\n";
-echo "➡️ Set git to origin: git remote add origin https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME.git\n";
+echo "➡️ Set GitHub origin: git remote add origin https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME.git\n";
 echo "➡️ Run: git push -u origin main\n";
 echo "➡️ Run: php console serve\n";
 echo "🌍 Open your project at: http://localhost:8000\n";
 exit(0);
-
