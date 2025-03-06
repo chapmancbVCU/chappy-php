@@ -15,10 +15,14 @@ This page goes over the available ways users can manage a database with chappy.p
 Performing a database migration is the first task you will perform after establishing a new project. Before you begin you will need to open the .env file and enter some information about the database. An example is shown below:
 
 ```
-DB_NAME=my_db_name
-DB_USER=my_db_user_name
-DB_PASSWORD=my_secure_password
+# Set to mysql or mariadb for production
+DB_CONNECTION=sqlite
 DB_HOST='127.0.0.1'
+DB_PORT=3306
+# Set to your database name for production
+# DB_DATABASE=database/database.sqlite
+DB_USER=root
+# DB_PASSWORD=
 ```
 
 Next, create the database using your preferred method.  We like to use phpMyAdmin and Adminer.
