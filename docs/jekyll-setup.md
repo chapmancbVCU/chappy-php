@@ -30,6 +30,11 @@ Jekyll requires Ruby. Follow the steps based on your operating system:
 gem install bundler jekyll
 ```
 
+OR (if using Homebrew)
+
+---
+
+
 #### Windows
 1. Install **Ruby** from [RubyInstaller](https://rubyinstaller.org/).
 2. Open a terminal (Git Bash or Command Prompt with Ruby) and run:
