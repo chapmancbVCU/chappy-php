@@ -3,6 +3,7 @@
 ## Table of contents
 1. [Overview](#overview)
 2. [DB Class Query Function](#queries)
+    * A. [Read](#read)
 3. [Using Models](#models)
 <br>
 <br>
@@ -33,6 +34,27 @@ public static function findUserByAcl($acl) {
 ```
 
 All the user has to do is create a classic SQL query as the first parameter.  Since we want to find a list of ACLs we use `aclName` as the parameter that we will bind using the PDO class.  By using the built in `query` function the user does not have to be concerned with the actual binding of values or calling the execute function of the PDO class.
+
+A read Query function example:
+
+```php
+use Core\DB;
+use Core\Helper;
+$db = DB::getInstance();
+$sql = "SELECT * FROM contacts";
+$contacts = $db->query($sql);
+Helper::dd($contacts);
+?>
+```
+
+Below is the result using the `dd` function:
+
+<div style="text-align: center;">
+  <img src="assets/sql-query.png" alt="SQL query example">
+  <p style="font-style: italic;">Figure 1 - SQL query example</p>
+</div>
+
+As shown in Figure 1 all the information returned from the database is represented as an object.  The `PDOStatement` value has been expanded to show the actual query.  The `_result` section shows all of your contacts.
 
 You can learn more about SQL through this [link](https://www.theodinproject.com/paths/full-stack-javascript/courses/databases) to The Odin Project's Database Course.
 <br>
