@@ -25,19 +25,52 @@ This guide explains how to set up **Jekyll** to serve the PHP MVC framework's us
 Jekyll requires Ruby. Follow the steps based on your operating system:
 <br>
 
-#### MacOS/Linux
-```sh
+#### Linux
+```
 gem install bundler jekyll
 ```
+<br>
 
-OR (if using Homebrew)
+#### MacOS
+* A. Install `rbnev` using Homebrew
+  ```sh
+  brew install rbenv ruby-build
+  ```
+  <br>
 
----
+* B. Shell Configuration
 
+  Zsh (MacOS default) - run:
+  ```sh
+  echo 'eval "$(rbenv init - zsh)"' >> ~/.zshrc
+  source ~/.zshrc
+  ```
+
+  Bash users:
+  ```sh
+  echo 'eval "$(rbenv init - bash)"' >> ~/.bash_profile
+  source ~/.bash_profile
+  ```
+  <br>
+
+* C. Install Ruby (Latest Stable Version)
+  ```sh
+  rbenv install 3.2.2
+  rbenv global 3.2.2
+
+  ```
+  <br>
+
+* D. Install Bundler and Jekyll
+  ```sh
+  gem install bundler
+  gem install jekyll
+  ```
+  <br>
 
 #### Windows
-1. Install **Ruby** from [RubyInstaller](https://rubyinstaller.org/).
-2. Open a terminal (Git Bash or Command Prompt with Ruby) and run:
+* A. Install **Ruby** from [RubyInstaller](https://rubyinstaller.org/).
+* B. Open a terminal (Git Bash or Command Prompt with Ruby) and run:
    ```sh
    gem install bundler jekyll
    ```
