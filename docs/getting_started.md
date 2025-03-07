@@ -31,16 +31,21 @@ They will list out all PHP related dependencies needed for Apache and Nginx.
 3. cd to newly cloned directory.
 3. From project root run the command: 
 
-   ```php init-chappy```
+   ```composer run install-project```
 
-4. If necessary, make a copy of .env.sample in project root and name it .env.  Fill in the following information:
-   * DB_NAME
-   * DB_USER
-   * DB_PASSWORD
-   * DB_HOST
-   * CURRENT_USER_SESSION_NAME: should be a long string of upper and lower case characters and numbers.
-   * REMEMBER_ME_COOKIE_NAME:  should be a long string of upper and lower case characters and numbers.
-   * For XAMPP set APP_DOMAIN to 'http://localhost/chappy-php'.  On live servers set it to '/'.
+4. .env file
+   * For production edit the configuration file.
+      ```
+      # Set to mysql or mariadb for production
+      DB_CONNECTION=mysql or mariadb
+      DB_HOST='127.0.0.1'
+      DB_PORT=3306
+      # Set to your database name for production
+      DB_DATABASE=dbname
+      DB_USER=dbuser
+      DB_PASSWORD=secure_password
+      ```
+   * For XAMPP set APP_DOMAIN to 'http://localhost/chappy-php'.  Otherwise keep it as '/'.
    * You can also configure password complexity requirements, MAX_LOGIN_ATTEMPTS, and name for S3_BUCKET here as well.
 5. Database Setup:
    * Create your database and set it to what you entered for DB_NAME
@@ -48,23 +53,7 @@ They will list out all PHP related dependencies needed for Apache and Nginx.
       
       ```php console migrate```
 
-   * Inspect database and make sure the following tables are created:
-      * acl
-      * contacts
-      * migrations
-      * profile_images
-      * users
-      * user_sessions
-6. Vite support
-   * Run command 
-   
-      ```npm init```
-
-   * Run command 
-   
-      ```npm install```
-
-7. profile_images directory:
+6. profile_images directory:
    * In CMD or Terminal navigate to public/images/uploads from project root and make sure the "profile_images" directory exists. If not create it.
    * Set the correct permissions for the profile_images directory in MacOS or Linux: 
    
@@ -74,7 +63,7 @@ They will list out all PHP related dependencies needed for Apache and Nginx.
 
       ```sudo chown -R %USERNAME%:%GROUP% profile_images/```
 
-      With XAMPP your username will work along with daemon as the group. Apache both has to be www-data. Not tested with nginx yet.
+      With XAMPP your username will work along with daemon as the group. Apache both has to be www-data. Nginx the user is `nginx`.
 7. If the logs directory is not created perform the following steps at the project root run:
    
    ```chmod -R 777 logs```
