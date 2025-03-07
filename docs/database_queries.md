@@ -2,8 +2,9 @@
 
 ## Table of contents
 1. [Overview](#overview)
-2. [DB Class Query Function](#queries)
-    * A. [Read](#read)
+2. [DB Class](#db)
+    * A. [SQL](#query)
+    * B. [Find](#find)
 3. [Using Models](#models)
 <br>
 <br>
@@ -12,7 +13,7 @@
 There are two ways to perform database queries in this framework.  You can use queries or the functions that comes with your models or base model classes.
 <br>
 
-## 2. DB Class Query Function <a id="queries"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 2. DB Class <a id="db"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 You can perform a query within this framework by using the `query` function from the `DB` class.  The query function has 3 parameters:
 1. $sql - The database query we will submit to the database.
 2. $params - The values for the query.  They are the fiends of the table in our database.  The default value is an empty array.
@@ -34,7 +35,9 @@ public static function findUserByAcl($acl) {
 ```
 
 All the user has to do is create a classic SQL query as the first parameter.  Since we want to find a list of ACLs we use `aclName` as the parameter that we will bind using the PDO class.  By using the built in `query` function the user does not have to be concerned with the actual binding of values or calling the execute function of the PDO class.
+<br>
 
+#### A. Read <a id="read">
 A read Query function example:
 
 ```php
@@ -55,6 +58,32 @@ Below is the result using the `dd` function:
 </div>
 
 As shown in Figure 1 all the information returned from the database is represented as an object.  The `PDOStatement` value has been expanded to show the actual query.  The `_result` section shows all of your contacts.
+<br>
+
+#### B. Find <a id="find">
+Users can perform find operations using the DB class with the `find` function using parameters such as conditions, bind, order, limit, and sort.  An example is shown below:
+
+```php
+use Core\DB;
+use Core\Helper;
+$db = DB::getInstance();
+
+$contacts = $db->find('contacts', [
+    'conditions' => ["user_id = ?"],
+    'bind' => ['1'],
+    'limit' => 2,
+    'sort' => 'DESC'
+]);
+Helper:dd($contacts);
+?>
+```
+
+<div style="text-align: center;">
+  <img src="assets/db-find.png" alt="DB Class Find Function">
+  <p style="font-style: italic;">Figure 2 - DB Class Find Function</p>
+</div>
+
+As shown above in figure 2, we need to first specify the table.  In this case we want to look through our contacts table.  Next, we set our parameters.  Here we use the `user_id` field as the condition, bind to it the `id` of 1, limit the results to the first 2, and sort in descending order.
 
 You can learn more about SQL through this [link](https://www.theodinproject.com/paths/full-stack-javascript/courses/databases) to The Odin Project's Database Course.
 <br>

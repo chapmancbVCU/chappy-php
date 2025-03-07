@@ -1,4 +1,18 @@
 <?php $this->start('body'); ?>
+
+<?php
+use Core\DB;
+use Core\Helper;
+$db = DB::getInstance();
+
+$contacts = $db->find('contacts', [
+       'conditions' => ["user_id = ?"],
+       'bind' => ['1'],
+       'limit' => 2,
+       'sort' => 'DESC'
+   ]);
+Helper:dd($contacts);
+?>
 <div class="col-12 mx-auto text-center">
   <img class="w-50" src="<?=APP_DOMAIN?>public/logo.png" alt="Example FormHelper function call">
 </div>
