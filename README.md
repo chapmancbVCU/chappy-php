@@ -11,6 +11,13 @@ chappy.php is a whole new Model View Controller framework tailored to all of the
 <br>
 Originally a fork of the Ruah PHP MVC framework based on the MVC PHP Framework tutorial series on the Freeskills YouTube channel, we have worked hard to add additional support and features.  
 
+## Quick start guide in 5 easy steps
+1. Install PHP 8.3 or greater, composer, and npm
+2. Clone project `git clone git@github.com:chapmancbVCU/chappy-php.git`
+3. Run `composer install-project`
+4. Run `php console serve`
+5. Have fun...
+
 ## This framework includes the following features:
 1. Custom form handling
 2. Dynamic routing
