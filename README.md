@@ -15,7 +15,7 @@ Originally a fork of the Ruah PHP MVC framework based on the MVC PHP Framework t
 1. Install PHP 8.3 or greater, composer, and npm
 2. Clone project `git clone git@github.com:chapmancbVCU/chappy-php.git`
 3. cd into project
-4. Run `composer install-project`
+4. Run `composer run install-project`
 5. Run `php console serve`
 
 
