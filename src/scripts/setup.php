@@ -60,15 +60,15 @@ $cookieSecret = bin2hex(random_bytes(32));
 $sessionSecret = bin2hex(random_bytes(32));
 
 // 7️⃣ Update .env file with generated keys
-$envLines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$envLines = file($envFile, FILE_IGNORE_NEW_LINES);
 $updatedEnv = [];
 
 foreach ($envLines as $line) {
-    if (str_starts_with($line, 'APP_KEY=')) {
+    if (preg_match('/^APP_KEY\s*=\s*/', $line)) {
         $updatedEnv[] = "APP_KEY={$appKey}";
-    } elseif (str_starts_with($line, 'CURRENT_USER_SESSION_NAME=')) {
+    } elseif (preg_match('/^CURRENT_USER_SESSION_NAME\s*=\s*/', $line)) {
         $updatedEnv[] = "CURRENT_USER_SESSION_NAME={$cookieSecret}";
-    } elseif (str_starts_with($line, 'REMEMBER_ME_COOKIE_NAME=')) {
+    } elseif (preg_match('/^REMEMBER_ME_COOKIE_NAME\s*=\s*/', $line)) {
         $updatedEnv[] = "REMEMBER_ME_COOKIE_NAME={$sessionSecret}";
     } else {
         $updatedEnv[] = $line;
