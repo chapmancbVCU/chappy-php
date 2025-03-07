@@ -11,7 +11,7 @@ $contacts = $db->find('contacts', [
        'limit' => 2,
        'sort' => 'DESC'
    ]);
-Helper:dd($contacts);
+Helper::dd($contacts);
 ?>
 <div class="col-12 mx-auto text-center">
   <img class="w-50" src="<?=APP_DOMAIN?>public/logo.png" alt="Example FormHelper function call">

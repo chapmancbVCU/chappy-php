@@ -3,8 +3,11 @@
 ## Table of contents
 1. [Overview](#overview)
 2. [DB Class](#db)
-    * A. [SQL](#query)
-    * B. [Find](#find)
+    * A. [Query Function](#query)
+    * B. [Create](#create)
+    * C. [Read](#read)
+    * D. [Update](#update)
+    * E. [Delete](#delete)
 3. [Using Models](#models)
 <br>
 <br>
@@ -37,7 +40,7 @@ public static function findUserByAcl($acl) {
 All the user has to do is create a classic SQL query as the first parameter.  Since we want to find a list of ACLs we use `aclName` as the parameter that we will bind using the PDO class.  By using the built in `query` function the user does not have to be concerned with the actual binding of values or calling the execute function of the PDO class.
 <br>
 
-#### A. Read <a id="read">
+#### A. Query Function <a id="query">
 A read Query function example:
 
 ```php
@@ -58,9 +61,15 @@ Below is the result using the `dd` function:
 </div>
 
 As shown in Figure 1 all the information returned from the database is represented as an object.  The `PDOStatement` value has been expanded to show the actual query.  The `_result` section shows all of your contacts.
+
+You can learn more about SQL through this [link](https://www.theodinproject.com/paths/full-stack-javascript/courses/databases) to The Odin Project's Database Course.
 <br>
 
-#### B. Find <a id="find">
+#### B. Create <a id="read">
+
+<br>
+
+#### C. Read <a id="read">
 Users can perform find operations using the DB class with the `find` function using parameters such as conditions, bind, order, limit, and sort.  An example is shown below:
 
 ```php
@@ -74,7 +83,7 @@ $contacts = $db->find('contacts', [
     'limit' => 2,
     'sort' => 'DESC'
 ]);
-Helper:dd($contacts);
+Helper::dd($contacts);
 ?>
 ```
 
@@ -84,8 +93,14 @@ Helper:dd($contacts);
 </div>
 
 As shown above in figure 2, we need to first specify the table.  In this case we want to look through our contacts table.  Next, we set our parameters.  Here we use the `user_id` field as the condition, bind to it the `id` of 1, limit the results to the first 2, and sort in descending order.
+<br>
 
-You can learn more about SQL through this [link](https://www.theodinproject.com/paths/full-stack-javascript/courses/databases) to The Odin Project's Database Course.
+#### D. Update <a id="update">
+
+<br>
+
+#### E. Delete <a id="delete">
+
 <br>
 
 ## 2. Using Models <a id="models"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
