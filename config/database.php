@@ -14,7 +14,7 @@ return [
             'driver' => 'mysql',
             'host' => $_ENV['DB_HOST'] ?? '127.0.0.1',
             'port' => $_ENV['DB_PORT'] ?? '3306',
-            'database' => $_ENV['DB_DATABASE'] ?? 'mvc',
+            'database' => $_ENV['DB_DATABASE'] ?? 'chappy-php',
             'username' => $_ENV['DB_USERNAME'] ?? 'root',
             'password' => $_ENV['DB_PASSWORD'] ?? '',  // Corrected to use $_ENV
             'charset' => 'utf8mb4',
@@ -27,7 +27,7 @@ return [
             'driver' => 'mysql', // MariaDB is compatible with MySQL driver
             'host' => $_ENV['DB_HOST'] ?? '127.0.0.1',
             'port' => $_ENV['DB_PORT'] ?? '3306',
-            'database' => $_ENV['DB_DATABASE'] ?? 'mvc',
+            'database' => $_ENV['DB_DATABASE'] ?? 'chappy-php',
             'username' => $_ENV['DB_USERNAME'] ?? 'root',
             'password' => $_ENV['DB_PASSWORD'] ?? '',  // Corrected to use $_ENV
             'charset' => 'utf8mb4',
