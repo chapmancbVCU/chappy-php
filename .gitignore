@@ -9,3 +9,4 @@ Thumbs.db*
 .DS_Store
 
 database/database.sqlite
+docs/Gemfile.lock
