@@ -317,7 +317,7 @@ class DB {
     }
     
 
-    /** UPDATE
+    /**
      * Supports SELECT operations that maybe ran against a SQL database.  It 
      * supports the ability to order and limit the number of results returned 
      * from a database query.  The user can use parameters such as conditions, 

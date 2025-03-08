@@ -3,11 +3,11 @@
 ## Table of contents
 1. [Overview](#overview)
 2. [DB Class](#db)
-    * A. [Query Function](#query)
-    * B. [Create](#create)
-    * C. [Read](#read)
-    * D. [Update](#update)
-    * E. [Delete](#delete)
+    * A. [Create](#create)
+    * B. [Read](#read)
+    * C. [Update](#update)
+    * D. [Delete](#delete)
+    * E. [DB Summary](#db-summary)
 3. [Using Models](#models)
 <br>
 <br>
@@ -40,8 +40,7 @@ public static function findUserByAcl($acl) {
 All the user has to do is create a classic SQL query as the first parameter.  Since we want to find a list of ACLs we use `aclName` as the parameter that we will bind using the PDO class.  By using the built in `query` function the user does not have to be concerned with the actual binding of values or calling the execute function of the PDO class.
 <br>
 
-#### A. Query Function <a id="query">
-A read Query function example:
+Here is another example shown below:
 
 ```php
 use Core\DB;
@@ -50,7 +49,6 @@ $db = DB::getInstance();
 $sql = "SELECT * FROM contacts";
 $contacts = $db->query($sql);
 Helper::dd($contacts);
-?>
 ```
 
 Below is the result using the `dd` function:
@@ -65,11 +63,11 @@ As shown in Figure 1 all the information returned from the database is represent
 You can learn more about SQL through this [link](https://www.theodinproject.com/paths/full-stack-javascript/courses/databases) to The Odin Project's Database Course.
 <br>
 
-#### B. Create <a id="read">
+#### A. Create <a id="read">
 
 <br>
 
-#### C. Read <a id="read">
+#### B. Read <a id="read">
 Users can perform find operations using the DB class with the `find` function using parameters such as conditions, bind, order, limit, and sort.  An example is shown below:
 
 ```php
@@ -84,7 +82,6 @@ $contacts = $db->find('contacts', [
     'sort' => 'DESC'
 ]);
 Helper::dd($contacts);
-?>
 ```
 
 <div style="text-align: center;">
@@ -95,12 +92,52 @@ Helper::dd($contacts);
 As shown above in figure 2, we need to first specify the table.  In this case we want to look through our contacts table.  Next, we set our parameters.  Here we use the `user_id` field as the condition, bind to it the `id` of 1, limit the results to the first 2, and sort in descending order.
 <br>
 
-#### D. Update <a id="update">
+This function accepts the following parameters:
+1. $table - The name of the table that contains the records we want to retrieve.
+2. $params - An associative array that contains key value pair parameters for our query such as conditions, bind, limit, offset, join, order, and sort.  The default value is an empty array.
+3. $class A default value of false, it contains the name of the class we will build based on the name of a model.
 
+#### C. Update <a id="update">
+You can used the DB class' `update` function to update a record as shown below:
+
+```php
+use Core\DB;
+use Core\Helper;
+$db = DB::getInstance();
+
+$fields = [
+    'fname' => 'John',
+    'email' => 'example@email.com'
+];
+$contacts = $db->update('contacts', 3, $fields);
+```
+
+This function accepts 3 parameters:
+1. $table - The name of the table that contains the record we want to update.
+2. $id - The primary key for the record we want to remove from the database table.
+3. $fields - An associative array containing key value pairs containing information we want to update.
 <br>
 
-#### E. Delete <a id="delete">
+#### D. Delete <a id="delete">
+The delete function performs delete operations.  This is the simples of all our functions to use as shown below:
 
+```php
+$contacts = $db->delete('contacts', 3);
+```
+
+It accepts the following arguments:
+1. $table - The name of the table that contains the record we want to delete.
+2. $id The primary key for the record we want to remove from a database table.
+<br>
+
+#### E. Summary  <a id="db-summary">
+All of these functions have their equivalent wrapper functions that will be described in the **Using Models** section.  Here are the descriptions for additional functions:
+1. count - Getter function for the private _count variable.
+2. findFirst - Returns the first result performed by an SQL query.
+3. findTotal - Returns number of records in a table.
+4. first - Returns first result in the _result array.
+5. lastID - The primary key ID of the last insert operation.
+6. results - Returns value of query results.  We usually chain this as a call with another function for our Model classes.
 <br>
 
 ## 2. Using Models <a id="models"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
