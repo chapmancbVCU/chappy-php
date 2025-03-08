@@ -242,9 +242,9 @@ class Model {
     }
 
     /**
-     * Retrieves list of all records within a table related to a logged in user.
+     * Retrieves list of all records within a table related to a user.
      *
-     * @param int $user_id The ID user associated with this contact.
+     * @param int $user_id The user ID.
      * @param array $params Used to build conditions for database query.  The 
      * default value is an empty array.
      * @return array The list of records that is returned from the database.
