@@ -155,7 +155,10 @@ All of these functions have their equivalent wrapper functions that will be desc
 3. findTotal - Returns number of records in a table.
 4. first - Returns first result in the _result array.
 5. lastID - The primary key ID of the last insert operation.
-6. results - Returns value of query results.  We usually chain this as a call with another function for our Model classes.
+6. results - Returns value of query results.  We usually chain this as a call with another function for our Model classes.  Here is an example we will discuss in later sections: 
+    ```php
+    $users = Users::findUserByAcl($acl->acl)->results();
+    ```
 <br>
 
 ## 2. Using Models <a id="models"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
