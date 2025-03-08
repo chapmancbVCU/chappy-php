@@ -112,7 +112,6 @@ class AdmindashboardController extends Controller {
      */
     public function editAclAction($id): void {
         $acl = ACL::findById((int)$id);
-        // Helper::dd($acl->isAssignedToUsers());
         if (!$acl) {
             Session::addMessage('danger', "ACL not found.");
             Router::redirect('admindashboard/manageAcls');
