@@ -16,19 +16,20 @@ class Router {
      * @return void
      */
     private static function docsRouting(string $requestPath): void {
-        $apiPath = 'src' . DS . 'api-docs' . DS . 'views';
-        $filePath = ROOT . DS . $apiPath . DS . str_replace('/api-docs/', '', $requestPath);
-    
-        // Redirect root `/api-docs` to `/resources/views/api-docs/index.html`
-        if ($filePath === $apiPath. DS || $filePath === ROOT . DS . $apiPath) {
-            $filePath .= DS . 'index.html';
+        $apiPath = ROOT . DS . 'src' . DS . 'api-docs' . DS . 'views';
+        $relativePath = str_replace('/api-docs/', '', $requestPath);
+        
+        // Ensure index.html is served when accessing /api-docs
+        if ($requestPath === '/api-docs' || $requestPath === '/api-docs/') {
+            $filePath = $apiPath . DS . 'index.html';
+        } else {
+            $filePath = $apiPath . DS . ltrim($relativePath, DS);
         }
     
         // Serve static assets (CSS, JS, images)
         if (preg_match('/\.(css|js|png|jpg|jpeg|gif|svg|ico)$/', $filePath)) {
             if (file_exists($filePath)) {
-                $mimeType = mime_content_type($filePath);
-                header("Content-Type: $mimeType");
+                header("Content-Type: " . mime_content_type($filePath));
                 readfile($filePath);
             } else {
                 header("HTTP/1.0 404 Not Found");
@@ -39,6 +40,7 @@ class Router {
     
         // Serve HTML documentation pages
         if (file_exists($filePath)) {
+            header("Content-Type: text/html");
             readfile($filePath);
         } else {
             header("HTTP/1.0 404 Not Found");
@@ -46,6 +48,7 @@ class Router {
         }
         exit();
     }
+    
     
 
     /**
