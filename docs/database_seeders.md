@@ -6,11 +6,12 @@
 3. [Setting Up the Seeder Class](#seeder-class-setup)
 4. [Setting Up the DatabaseSeeder Class](#database-seeder)
 5. [Running a Database Seeder](#running-seeder)
+6. [Image Seeding](#image-seeding)
 <br>
 <br>
 
 ## 1. Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-This framework supports the ability to seed a database with fake data utilizing a package called FakerPHP.  Consult their documentation [here](https://fakerphp.org/) for more information about what they support.  Using this package, along with the native support for Seeder classes you are able to populate tables in your database with test seeder data.
+This framework supports the ability to seed a database with fake data utilizing a package called FakerPHP.  Consult their documentation [here](https://fakerphp.org/) for more information about what they support.  Using this package, along with the native support for Seeder classes you are able to populate tables in your database with test seeder data.  The list of third-party libraries can be found [here](https://fakerphp.org/third-party/).
 <br>
 
 ## 2. Creating a Seeder Class <a id="seeder-class"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
@@ -168,3 +169,58 @@ But viewing the Contacts' index view is just one phase of our testing.  We need 
 </div>
 
 As shown above in Figure 4, we can see that Carmel's information looks like we would expect.  It contains a valid street address along with a city, state, and zip code that matches USPS standards.  The first name and last name makes sense despite it being completely made up.  Finally, the email and phone number matches a valid format.
+<br>
+
+## 5. Image Seeding <a id="image-seeding"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+Seeding records for images and uploading them requires a few extra steps.  You will need to use a third-party library called `Smknstd\FakerPicsumImages`.  Let's go over this example for profile images.
+
+```php
+public function run(): void {
+    $faker = Faker::create();
+    $faker->addProvider(new FakerPicsumImagesProvider($faker));
+
+    // Generate a unique image filename
+    $userId = 1;
+    $basePath = 'storage' . DS . 'app' . DS . 'private' . DS . 'profile_images' . DS;
+    $uploadPath = $basePath . 'user_' . $userId . DS;
+    
+    // Set number of records to create.
+    $numberOfRecords = 10;
+    $i = 0;
+    while($i < $numberOfRecords) {
+        // Ensure the directory exists
+        if (!file_exists($uploadPath)) {
+            mkdir($uploadPath, 0777, true);
+        }
+
+        // Generate the image and get the actual filename from Faker
+        $actualFilePath = $faker->image($uploadPath, 200, 200, false, null, false, 'jpg');
+        
+        // Extract only the filename
+        $imageFileName = basename($actualFilePath);
+
+        // Create ProfileImages record
+        $profileImage = new ProfileImages();
+        $profileImage->user_id = $userId;
+        $profileImage->sort = $i;
+        $profileImage->name = $imageFileName;
+
+        // Correct the database URL to match form-uploaded images
+        $profileImage->url = $uploadPath . $imageFileName;
+
+        if ($profileImage->save()) {
+            Tools::info("Saved profile image record: $imageFileName");
+            $i++;
+        } else {
+            Tools::info("Failed to save profile image record: $imageFileName");
+            Tools::info("Validation Errors: " . json_encode($profileImage->getErrorMessages()));
+        }
+    }
+
+    Tools::info("Finished seeding profileImage table.");
+}
+```
+
+You will need to import the third-party library, `use Smknstd\FakerPicsumImages\FakerPicsumImagesProvider;`, and manage where the file will be uploaded.  If the files do get saved but you are having trouble accessing them make sure the upload path is correct.  
+
+When uploading the image using the `$faker->image` function call we set the path, hight, width, and file type.  Next we setup information for the record.  Finally se save the file and produce the appropriate output messages.
