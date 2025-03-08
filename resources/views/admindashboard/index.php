@@ -31,4 +31,5 @@ use Core\Helper;
         <?php endforeach; ?>
     </tbody>
 </table>
+<?= $this->pagination ?>
 <?php $this->end(); ?>

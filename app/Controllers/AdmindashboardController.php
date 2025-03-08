@@ -1,8 +1,9 @@
 <?php
 namespace App\Controllers;
+use Core\Helper;
+use Core\Lib\Pagination;
 use Core\{Controller, Router, Session};
 use App\Models\{ACL, ProfileImages, Users};
-use Core\Helper;
 
 /**
  * Implements support for our Admindashboard controller.
@@ -203,7 +204,24 @@ class AdmindashboardController extends Controller {
      * @return void
      */
     public function indexAction(): void {
-        $users = Users::findAllUsersExceptCurrent(Users::currentUser()->id);
+        // Determine current page
+        $page = Pagination::currentPage($this->request);
+        $totalUsers = Users::findTotal([
+            'conditions' => 'id != ?',
+            'bind' => [Users::currentUser()->id]
+        ]);
+
+        $pagination = new Pagination($page, 10, $totalUsers);
+
+        $users = Users::find([
+            'conditions' => 'id != ?',
+            'bind'       => [Users::currentUser()->id],
+            'order'      => 'created_at DESC',
+            'limit'      => $pagination->perPage(),
+            'offset'     => $pagination->offset()
+        ]);
+
+        $this->view->pagination = Pagination::pagination($page, $pagination->totalPages());
         $this->view->users = $users;
         $this->view->render('admindashboard/index');
     }
