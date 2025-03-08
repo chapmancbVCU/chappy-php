@@ -63,7 +63,7 @@ As shown in Figure 1 all the information returned from the database is represent
 You can learn more about SQL through this [link](https://www.theodinproject.com/paths/full-stack-javascript/courses/databases) to The Odin Project's Database Course.
 <br>
 
-#### A. Create <a id="read">
+#### A. Create <a id="create">
 The **insert** function performs our create operation on our database.  An example is shown below:
 
 ```php
