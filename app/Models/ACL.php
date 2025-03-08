@@ -67,7 +67,7 @@ class ACL extends Model {
         if ($dbDriver === 'mysql') {
             // MySQL query using JSON_CONTAINS
             $users = Users::find([
-                'conditions' => "JSON_CONTAINS(acls, ?)",
+                'conditions' => "JSON_CONTAINS(acl, ?)",
                 'bind' => [$this->acl]
             ]);
         } else {
