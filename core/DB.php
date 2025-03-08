@@ -235,8 +235,9 @@ class DB {
      * 
      * @param string $table The name of the table we want to perform the 
      * insert operation.
-     * @param array $fields The field names and the respective values we will 
-     * use to populate a database record.  The default value is an empty array.
+     * @param array $fields An associative array of key value pairs.  The key 
+     * is the name of the database field and the value is the value we will 
+     * set to a particular field.  The default value is an empty array.
      * @return bool Report whether or not the operation was successful.
      */
     public function insert($table, $fields = []) {

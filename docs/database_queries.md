@@ -64,7 +64,20 @@ You can learn more about SQL through this [link](https://www.theodinproject.com/
 <br>
 
 #### A. Create <a id="read">
+The **insert** function performs our create operation on our database.  An example is shown below:
 
+```php
+use Core\DB;
+use Core\Helper;
+$db = DB::getInstance();
+
+$fields = [
+    'fname' => 'John',
+    'lname' => 'Doe',
+    'email' => 'example@email.com'
+];
+$contacts = $db->insert('contacts', $fields);
+Helper::dd($contacts);
 <br>
 
 #### B. Read <a id="read">
