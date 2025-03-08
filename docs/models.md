@@ -11,9 +11,8 @@
     * E. [beforeSave](#before-save)
     * F. [onConstruct](#on-construct)
     * G. [runValidation](#run-validation)
-    * H. [timeStamps](#time-stamps)
-    * I. [validationPassed](#validation-passed)
-    * J. [validator](#validator)
+    * H. [validationPassed](#validation-passed)
+    * I. [validator](#validator)
 <br>
 <br>
 
@@ -91,25 +90,55 @@ The following are descriptions for functions no directly related to database ope
 <br>
 
 #### A. addErrorMessage <a id="add-error-message">
+Generates error messages that occur during form validation.  You can also set this message whenever certain events occur.  An example is as follows:
+
+```php
+$loginModel->addErrorMessage('username', 'There is an error with your username or password.');
+```
+
+Here we set an error message associated with a username when there is a failed login attempt.  This function accepts 2 parameters:
+1. $field - The form field associated with failed form validation.
+2. $message - A message that describes to the user the cause for failed form validation.
+<br>
 
 #### B. afterDelete <a id="after-delete">
 Implement procedures in your model class to perform tasks after deleting a record.
+<br>
 
 #### C. afterSave <a id="after-save">
 Implement procedures in your model class to perform tasks after saving a record.
+<br>
 
 #### D. beforeDelete <a id="before-delete">
 Implement procedures in your model class to perform tasks before deleting a record.
+<br>
 
 #### E. beforeSave <a id="before-save">
 Implement procedures in your model class to perform tasks before saving a record.
+<br>
 
 #### F. onConstruct <a id="on-construct">
+Runs when the object is constructed.
+<br>
 
 #### G. runValidation <a id="run-validation">
+Runs a validator object and sets validates boolean and adds error message if validator fails.  Refer to the [Server Side Validation page](server_side_validation) for more details.
+<br>
 
-#### H. timeStamps <a id="time-stamps">
+#### H. validationPassed <a id="validation-passed">
+Use this function to check if form validation is successful.  An example is shown below:
 
-#### I. validationPassed <a id="validation-passed">
+```php
+if($newUser->validationPassed()) {
+    if($uploads) {
+        ProfileImages::uploadProfileImage($newUser->id, $uploads);
+    }
+    Router::redirect('auth/login');
+}
+```
 
-#### J. validator <a id="validator">
+When we create a new user we want to check if form validation has passed before we begin to upload their profile picture to the server.  
+<br>
+
+#### I. validator <a id="validator">
+Use this function to perform form validation.  More about server side validation can be found [here](server_side_validation).
