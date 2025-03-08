@@ -212,14 +212,11 @@ class AdmindashboardController extends Controller {
         ]);
 
         $pagination = new Pagination($page, 10, $totalUsers);
-
-        $users = Users::find([
-            'conditions' => 'id != ?',
-            'bind'       => [Users::currentUser()->id],
-            'order'      => 'created_at DESC',
-            'limit'      => $pagination->perPage(),
-            'offset'     => $pagination->offset()
-        ]);
+        $users = Users::find($pagination->paginationParams(
+            'id != ?',
+            [Users::currentUser()->id],
+            'created_at DESC'
+        ));
 
         $this->view->pagination = Pagination::pagination($page, $pagination->totalPages());
         $this->view->users = $users;

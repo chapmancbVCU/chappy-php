@@ -123,15 +123,6 @@ class Pagination {
     }
 
     /**
-     * Returns limit of results per page.
-     *
-     * @return int
-     */
-    public function perPage(): int {
-        return $this->limit;
-    }
-
-    /**
      * Returns total number of pages we need to handle.
      *
      * @return int The total number of pages to be manged by pagination.
