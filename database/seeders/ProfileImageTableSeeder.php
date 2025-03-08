@@ -22,16 +22,15 @@ class ProfileImageTableSeeder extends Seeder {
         $faker = Faker::create();
         $faker->addProvider(new FakerPicsumImagesProvider($faker));
 
+        // Generate a unique image filename
+        $userId = 1;
         $basePath = 'storage' . DS . 'app' . DS . 'private' . DS . 'profile_images' . DS;
-
+        $uploadPath = $basePath . 'user_' . $userId . DS;
+        
         // Set number of records to create.
         $numberOfRecords = 10;
         $i = 0;
         while($i < $numberOfRecords) {
-            // Generate a unique image filename
-            $userId = 1;
-            $uploadPath = $basePath . 'user_' . $userId . DS;
-
             // Ensure the directory exists
             if (!file_exists($uploadPath)) {
                 mkdir($uploadPath, 0777, true);
