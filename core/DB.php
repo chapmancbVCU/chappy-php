@@ -119,8 +119,9 @@ class DB {
      *
      * @param string $table The name or the table we want to perform 
      * our query against
-     * @param array $params The values for the query.  They are the fields of 
-     * the table in our database.  The default value is an empty array.
+     * @param array $params An associative array that contains key value pair 
+     * parameters for our query such as conditions, bind, limit, offset, 
+     * join, order, and sort.  The default value is an empty array.
      * @param bool|string $class A default value of false, it contains the 
      * name of the class we will build based on the name of a model.
      * @return bool|array An array of object returned from an SQL query.
@@ -138,8 +139,9 @@ class DB {
      *
      * @param @param string $table The name or the table we want to perform 
      * our query against.
-     * @@param array $params The values for the query.  They are the fields of 
-     * the table in our database.  The default value is an empty array.
+     * @param array $params An associative array that contains key value pair 
+     * parameters for our query such as conditions, bind, limit, offset, 
+     * join, order, and sort.  The default value is an empty array.
      * @param bool|string  $class A default value of false, it contains the 
      * name of the class we will build based on the name of a model.
      * @return bool|array An associative array of results returned from an SQL 
@@ -157,8 +159,9 @@ class DB {
      *
      * @param string $table  The name or the table we want to perform 
      * our query against.
-     * @param array $params The values for the query.  They are the fields of 
-     * the table in our database.  The default value is an empty array.
+     * @param array $params An associative array that contains key value pair 
+     * parameters for our query such as conditions, bind, limit, offset, 
+     * join, order, and sort.  The default value is an empty array.
      * @return int $count The number of records in a table.
      */
     public function findTotal($table, $params=[]) {
@@ -275,8 +278,9 @@ class DB {
      * binding, execute, and fetch.  
      *
      * @param string $sql The database query we will submit to the database.
-     * @param array $params The values for the query.  They are the fields of 
-     * the table in our database.  The default value is an empty array.
+     * @param array $params An associative array that contains key value pair 
+     * parameters for our query such as conditions, bind, limit, offset, 
+     * join, order, and sort.  The default value is an empty array.
      * @param bool|string $class A default value of false, it contains the 
      * name of the class we will build based on the name of a model.
      * @return DB The results of the database query.  If the operation 
@@ -321,8 +325,9 @@ class DB {
      *
      * @param string $table The name of the table that contains the 
      * record(s) we want to find.
-     * @param array $params The values for the query.  They are the fields of 
-     * the table in our database.  The default value is an empty array.
+     * @param array $params An associative array that contains key value pair 
+     * parameters for our query such as conditions, bind, limit, offset, 
+     * join, order, and sort.  The default value is an empty array.
      * @param bool|string  $class A default value of false, it contains the 
      * name of the class we will build based on the name of a model.
      * @param bool $count Boolean switch for turning on support for count 
