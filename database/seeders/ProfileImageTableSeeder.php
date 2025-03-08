@@ -9,6 +9,9 @@ use Console\Helpers\Tools;
 // Import your model
 use App\Models\ProfileImages;
 
+/**
+ * Class for generating profile images.
+ */
 class ProfileImageTableSeeder extends Seeder {
     /**
      * Runs the database seeder
@@ -50,10 +53,14 @@ class ProfileImageTableSeeder extends Seeder {
             $profileImage->url = $uploadPath . $imageFileName;
 
             if ($profileImage->save()) {
+                Tools::info("Saved profile image record: $imageFileName");
                 $i++;
+            } else {
+                Tools::info("Failed to save profile image record: $imageFileName");
+                Tools::info("Validation Errors: " . json_encode($profileImage->getErrorMessages()));
             }
         }
 
-        Tools::info("Seeded profileImage table.");
+        Tools::info("Finished seeding profileImage table.");
     }
 }
