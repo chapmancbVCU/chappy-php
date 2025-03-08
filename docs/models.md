@@ -3,6 +3,17 @@
 ## Table of contents
 1. [Overview](#overview)
 2. [Model File](#model-file)
+3. [Description of Functions](#descriptions)
+    * A. [addErrorMessage](#add-error-messaage)
+    * B. [afterDelete](#after-delete)
+    * C. [afterSave](#after-save)
+    * D. [beforeDelete](#before-delete)
+    * E. [beforeSave](#before-save)
+    * F. [onConstruct](#on-construct)
+    * G. [runValidation](#run-validation)
+    * H. [timeStamps](#time-stamps)
+    * I. [validationPassed](#validation-passed)
+    * J. [validator](#validator)
 <br>
 <br>
 
@@ -73,3 +84,32 @@ The model class that is generated as a template for creating your models. First 
 This class comes with a public const blackList variable that is an array. You can populate this array with fields you don't want updated inadvertently on POST. More on this in the controller's section.
 
 Models also support functions for tasks you want to perform before and after delete and update operations. Finally, the validator function supports server side validation tasks. More information about validation can be found [here](server_side_validation).
+<br>
+
+## 3. Description of Functions <a id="descriptions"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+The following are descriptions for functions no directly related to database operations.  Database related functions can be found [here](database_queries#models)
+<br>
+
+#### A. addErrorMessage <a id="add-error-message">
+
+#### B. afterDelete <a id="after-delete">
+Implement procedures in your model class to perform tasks after deleting a record.
+
+#### C. afterSave <a id="after-save">
+Implement procedures in your model class to perform tasks after saving a record.
+
+#### D. beforeDelete <a id="before-delete">
+Implement procedures in your model class to perform tasks before deleting a record.
+
+#### E. beforeSave <a id="before-save">
+Implement procedures in your model class to perform tasks before saving a record.
+
+#### F. onConstruct <a id="on-construct">
+
+#### G. runValidation <a id="run-validation">
+
+#### H. timeStamps <a id="time-stamps">
+
+#### I. validationPassed <a id="validation-passed">
+
+#### J. validator <a id="validator">
