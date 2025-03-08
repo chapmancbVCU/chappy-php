@@ -10,3 +10,5 @@ Thumbs.db*
 
 database/database.sqlite
 docs/Gemfile.lock
+
+src/cache/

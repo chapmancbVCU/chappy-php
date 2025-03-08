@@ -33,8 +33,19 @@ class APICommand extends Command {
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        shell_exec('php doctum.phar update doctum.php');
-        Tools::info('Doctum api-docs generated');
+        // Get absolute path of src/api-docs
+        $apiDocsPath = realpath(__DIR__ . '/../../../src/api-docs');
+
+        if (!$apiDocsPath || !is_dir($apiDocsPath)) {
+            Tools::info("Error: src/api-docs directory not found at $apiDocsPath");
+            return Command::FAILURE;
+        }
+
+        // Run Doctum with absolute paths
+        $command = "php $apiDocsPath/doctum.phar update $apiDocsPath/doctum.php";
+        shell_exec($command);
+        
+        Tools::info("Doctum API docs generated at $apiDocsPath/views");
         return Command::SUCCESS;
     }
 }
