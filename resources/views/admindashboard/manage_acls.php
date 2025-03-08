@@ -14,7 +14,7 @@
         <th></th>
     </thead>
     <tbody>
-        <?php foreach($this->usedAcls as $acl): ?>
+        <?php foreach($this->unUsedAcls as $acl): ?>
             <tr>
                 <?php if($acl->acl !== "Admin"): ?>
                     <td class="text-center w-50"><?= $acl->acl ?></td>
@@ -42,7 +42,7 @@
         <th class="text-center">Updated</th>
     </thead>
     <tbody>
-        <?php foreach($this->unUsedAcls as $acl): ?>
+        <?php foreach($this->usedAcls as $acl): ?>
             <tr>
                 <td class="text-center w-50"><?= $acl->acl ?></td>
                 <td class="text-center"><?= Helper::timeAgo($acl->created_at) ?></td>

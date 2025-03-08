@@ -1,8 +1,9 @@
 <?php
 namespace App\Models;
+use PDO;
 use Core\Model;
-use Core\Validators\{RequiredValidator, UniqueValidator};
 use Core\Helper;
+use Core\Validators\{RequiredValidator, UniqueValidator};
 
 /**
  * Describes ACL model.
@@ -23,8 +24,13 @@ class ACL extends Model {
      *
      * @return void
      */
-    public function beforeSave(): void {
+    public function beforeSave(): bool {
+        if ($this->isAssignedToUsers()) {
+            $this->addErrorMessage('acl', "Cannot update '{$this->acl}', assigned to one or more users.");
+            return false;
+        }
         $this->timeStamps();
+        return true;
     }
 
     /**
@@ -48,6 +54,31 @@ class ACL extends Model {
      */
     public static function getACLs(): array {
         return self::find(['order' => 'acl']);
+    }
+
+    /**
+     * Check if ACL is assigned to any users
+     *
+     * @return bool
+     */
+    public function isAssignedToUsers(): bool {
+        $dbDriver = self::getDb()->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
+    
+        if ($dbDriver === 'mysql') {
+            // MySQL query using JSON_CONTAINS
+            $users = Users::find([
+                'conditions' => "JSON_CONTAINS(acls, ?)",
+                'bind' => [$this->acl]
+            ]);
+        } else {
+            // SQLite query using LIKE (since SQLite does not support JSON_CONTAINS)
+            $users = Users::find([
+                'conditions' => "acl LIKE ?",
+                'bind' => ['%"' . $this->acl . '"%']
+            ]);
+        }
+
+        return count($users) > 0;
     }
 
     /**

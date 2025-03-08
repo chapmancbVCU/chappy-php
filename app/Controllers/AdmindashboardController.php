@@ -58,7 +58,7 @@ class AdmindashboardController extends Controller {
         $acl = ACL::findById((int)$id);
 
         // Get users so we can get number using acl and update later.
-        $users = Users::findUserByAcl($acl->acl)->results();
+        $users = $acl->isAssignedToUsers();
         if(count($users) > 0) {
             Session::addMessage('info', "Cannot delete ". $acl->acl. ", assigned to one or more users.");
         }
@@ -112,28 +112,37 @@ class AdmindashboardController extends Controller {
      */
     public function editAclAction($id): void {
         $acl = ACL::findById((int)$id);
-
-        // Get users so we can get number using acl and update later.
-        $users = Users::findUserByAcl($acl->acl)->results();
-        if(count($users) > 0) {
-            Session::addMessage('danger', "Cannot update ". $acl->acl.", assigned to one or more users.");
+        // Helper::dd($acl->isAssignedToUsers());
+        if (!$acl) {
+            Session::addMessage('danger', "ACL not found.");
             Router::redirect('admindashboard/manageAcls');
         }
-
-        if($this->request->isPost()) {
+    
+        
+        // Check if ACL is assigned to any users and restrict access
+        if ($acl->isAssignedToUsers()) {
+            Session::addMessage('danger', "Access denied. '{$acl->acl}' is assigned to one or more users and cannot be edited.");
+            Router::redirect('admindashboard/manageAcls');
+        }
+    
+        if ($this->request->isPost()) {
             $this->request->csrfCheck();
-            $acl->assign($this->request->get(), ACL::blackList);
-            
-            if($acl->save()) {
+            $acl->assign($this->request->get());
+    
+            if ($acl->save()) {
                 Session::addMessage('info', "ACL Name updated.");
                 Router::redirect('admindashboard/manageAcls');
+            } else {
+                Session::addMessage('danger', implode(" ", $acl->getErrorMessages()));
             }
         }
+    
         $this->view->displayErrors = $acl->getErrorMessages();
         $this->view->acl = $acl;
         $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'editAcl' . DS . $acl->id;
         $this->view->render('admindashboard/edit_acl');
     }
+    
 
     /**
      * Supports ability for administrators to edit user profiles.
@@ -205,12 +214,13 @@ class AdmindashboardController extends Controller {
         $usedAcls = [];
         $unUsedAcls = [];
         foreach($acls as $acl) {
-            if(count(Users::findUserByAcl($acl->acl)->results()) == 0) {
+            if($acl->isAssignedToUsers()) {
                 array_push($usedAcls, $acl);
             } else {
                 array_push($unUsedAcls, $acl);
             }
         }
+        // Helper::dd($unUsedAcls);
         $this->view->usedAcls = $usedAcls;
         $this->view->unUsedAcls = $unUsedAcls;
         $this->view->render('admindashboard/manage_acls');

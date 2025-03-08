@@ -147,17 +147,6 @@ class Users extends Model {
     }
 
     /**
-     * Retrieves a list of users who are assigned to a particular acl.
-     *
-     * @param string $acl The ACL we want to use in our query.
-     * @return object Users who are assigned to a specific acl.
-     */
-    public static function findUserByAcl($acl) {
-        $aclName = '["'.$acl.'"]';
-        return self::$_db->query("SELECT * FROM users WHERE acl = ?", [$aclName]);
-    }
-
-    /**
      * Checks if the user has a specific ACL assigned.
      *
      * @param string $acl The ACL to check.
