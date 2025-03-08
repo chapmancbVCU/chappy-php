@@ -19,6 +19,15 @@ class ProfileImages extends Model {
     public $user_id;
 
     /**
+     * Implements beforeSave function described in Model parent class. 
+     * Generates timestamps.
+     *
+     * @return void
+     */
+    public function beforeSave(): void {
+        $this->timeStamps();
+    }
+    /**
      * Deletes a profile image by id.
      *
      * @param int $id The id of the image we want to delete.
