@@ -85,8 +85,20 @@ echo "🔑 Successfully updated .env with generated keys.\n";
 // 9️⃣ Remove .git directory (for fresh installs)
 if (is_dir('.git')) {
     echo "🗑 Removing existing Git repository...\n";
-    system("rm -rf .git");
-    echo "✅ Git repository removed.\n";
+    
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        // Windows command using PowerShell
+        system('rmdir /s /q .git');
+    } else {
+        // Linux/macOS command
+        system("rm -rf .git");
+    }
+    
+    if (!is_dir('.git')) {
+        echo "✅ Git repository removed successfully.\n";
+    } else {
+        echo "❌ Failed to remove Git repository. Try manually deleting the .git folder.\n";
+    }
 }
 
 // 🔟 Initialize a new Git repository
