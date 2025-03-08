@@ -220,7 +220,7 @@ class AdmindashboardController extends Controller {
                 array_push($unUsedAcls, $acl);
             }
         }
-        // Helper::dd($unUsedAcls);
+
         $this->view->usedAcls = $usedAcls;
         $this->view->unUsedAcls = $unUsedAcls;
         $this->view->render('admindashboard/manage_acls');

@@ -3,7 +3,7 @@ namespace Database\Seeders;
 
 use Core\Lib\Database\Seeder;
 use Database\Seeders\ContactsTableSeeder;
-
+use Database\Seeders\ProfileImageTableSeeder;
 /**
  * Supports ability to call seeder classes.
  */
@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder {
      * @return void
      */
     public function run(): void {
-        $this->call(ContactsTableSeeder::class);
+        //$this->call(ContactsTableSeeder::class);
+        //$this->call(ProfileImageTableSeeder::class);
     }
 }
