@@ -78,6 +78,11 @@ $fields = [
 ];
 $contacts = $db->insert('contacts', $fields);
 Helper::dd($contacts);
+```
+
+This function accepts two arguments:
+1. $table - The name of the table we want to perform the insert operation.
+2. $fields - An associative array of key value pairs.  The key is the name of the database field and the value is the value we will set to a particular field.  The default value is an empty array.
 <br>
 
 #### B. Read <a id="read">
