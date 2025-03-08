@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>App\Models\ACL | Chappy.php API</title>
+    <title>App\Models\Contacts | Chappy.php API</title>
 
             <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
 
     </head>
 
-    <body id="class" data-name="class:App_Models_ACL" data-root-path="../../" data-search-index-url="../../doctum-search.json">
+    <body id="class" data-name="class:App_Models_Contacts" data-root-path="../../" data-search-index-url="../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -75,18 +75,18 @@
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
                 <li><span class="label label-default">class</span></li>
-                        <li><a href="../../App.html">App</a></li><li class="backslash">\</li><li><a href="../../App/Models.html">Models</a></li><li class="backslash">\</li><li>ACL</li>
+                        <li><a href="../../App.html">App</a></li><li class="backslash">\</li><li><a href="../../App/Models.html">Models</a></li><li class="backslash">\</li><li>Contacts</li>
             </ol>
         </div>
                 <div id="page-content">
     <div class="page-header">
-        <h1>ACL    
+        <h1>Contacts    
             </h1>
     </div>
 
     
     <p>        class
-    <strong>ACL</strong>        extends <a href="../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a>
+    <strong>Contacts</strong>        extends <a href="../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a>
 </p>
 
         
@@ -94,7 +94,8 @@
         
 
             <div class="description">
-            <p><p>Describes ACL model.</p></p>                    </div>
+            <p><p>Extends the Model class.  Supports functions for handling Contacts such as
+displaying information, form validation, and DB operations.</p></p>                    </div>
             
         
             <h2>Constants</h2>    <table class="table table-condensed">
@@ -123,11 +124,47 @@
                 <td></td>
             </tr>
                     <tr>
-                <td class="type" id="property_acl">
+                <td class="type" id="property_address">
                                                                                 
                                                                                 
                                     </td>
-                <td>$acl</td>
+                <td>$address</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_address2">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$address2</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_cell_phone">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$cell_phone</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_city">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$city</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_country">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$country</td>
                 <td class="last"></td>
                 <td></td>
             </tr>
@@ -150,11 +187,83 @@
                 <td></td>
             </tr>
                     <tr>
+                <td class="type" id="property_email">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$email</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_fname">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$fname</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_home_phone">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$home_phone</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_lname">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$lname</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_state">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$state</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
                 <td class="type" id="property_updated_at">
                                                                                 
                                                                                 
                                     </td>
                 <td>$updated_at</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_user_id">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$user_id</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_work_phone">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$work_phone</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_zip">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$zip</td>
                 <td class="last"></td>
                 <td></td>
             </tr>
@@ -335,7 +444,7 @@
                 <div class="col-md-8">
                     <a href="#method_findAllByUserId">findAllByUserId</a>(int $user_id, array $params = [])
         
-                                            <p><p>Retrieves list of all records within a table related to a logged in user.</p></p>                </div>
+                                            <p><p>Retrieves list of all records within a table related to a user.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Model.html#method_findAllByUserId">
 <abbr title="Core\Model">Model</abbr></a></small></div>
             </div>
@@ -478,23 +587,43 @@ called from within this class.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;array
+                    string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_getOptionsForForm">getOptionsForForm</a>()
+                    <a href="#method_displayAddress">displayAddress</a>()
         
-                                            <p><p>Generates list of ACL options based on ACL table.  Compatible with
-dropdown and checkbox group elements.</p></p>                </div>
+                                            <p><p>Formats address to conform to form factor of an address label.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;array
+                    string
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_getACLs">getACLs</a>()
+                    <a href="#method_displayAddressLabel">displayAddressLabel</a>()
         
-                                            <p><p>Retrieves list of all ACLs sorted by the acl field.</p></p>                </div>
+                                            <p><p>Displays contact information in an address label format.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_displayName">displayName</a>()
+        
+                                            <p><p>Displays name in following format: ${firstName}, ${lastName}.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool|object
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_findByIdAndUserId">findByIdAndUserId</a>(int $contact_id, int $user_id, array $params = [])
+        
+                                            <p><p>Retrieves information for a contact that is associate with a
+particular user.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -732,7 +861,7 @@ blacklisted.  Otherwise they are whitelisted.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_beforeSave">
-        <div class="location">at line 26</div>
+        <div class="location">at line 37</div>
         <code>                    void
     <strong>beforeSave</strong>()
         </code>
@@ -1064,7 +1193,7 @@ the table in our database.  The default value is an empty array.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Retrieves list of all records within a table related to a logged in user.</p></p>                        
+                            <p><p>Retrieves list of all records within a table related to a user.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -1073,7 +1202,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <tr>
                 <td>int</td>
                 <td>$user_id</td>
-                <td><p>The ID user associated with this contact.</p></td>
+                <td><p>The user ID.</p></td>
             </tr>
                     <tr>
                 <td>array</td>
@@ -1542,7 +1671,7 @@ false if there is a failure.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validator">
-        <div class="location">at line 58</div>
+        <div class="location">at line 111</div>
         <code>                    void
     <strong>validator</strong>()
         </code>
@@ -1576,10 +1705,10 @@ called from within this class.</p></p>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_getOptionsForForm">
-        <div class="location">at line 36</div>
-        <code>        static            array
-    <strong>getOptionsForForm</strong>()
+                    <h3 id="method_displayAddress">
+        <div class="location">at line 46</div>
+        <code>                    string
+    <strong>displayAddress</strong>()
         </code>
     </h3>
     <div class="details">    
@@ -1587,8 +1716,7 @@ called from within this class.</p></p>
             
 
         <div class="method-description">
-                            <p><p>Generates list of ACL options based on ACL table.  Compatible with
-dropdown and checkbox group elements.</p></p>                        
+                            <p><p>Formats address to conform to form factor of an address label.</p></p>                        
         </div>
         <div class="tags">
             
@@ -1596,8 +1724,8 @@ dropdown and checkbox group elements.</p></p>
 
                     <table class="table table-condensed">
         <tr>
-            <td>array</td>
-            <td><p>$aclArray The array containing ACLs from ACL table.</p></td>
+            <td>string</td>
+            <td><p>$html The formatted address.</p></td>
         </tr>
     </table>
 
@@ -1609,10 +1737,10 @@ dropdown and checkbox group elements.</p></p>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_getACLs">
-        <div class="location">at line 49</div>
-        <code>        static            array
-    <strong>getACLs</strong>()
+                    <h3 id="method_displayAddressLabel">
+        <div class="location">at line 71</div>
+        <code>                    string
+    <strong>displayAddressLabel</strong>()
         </code>
     </h3>
     <div class="details">    
@@ -1620,7 +1748,7 @@ dropdown and checkbox group elements.</p></p>
             
 
         <div class="method-description">
-                            <p><p>Retrieves list of all ACLs sorted by the acl field.</p></p>                        
+                            <p><p>Displays contact information in an address label format.</p></p>                        
         </div>
         <div class="tags">
             
@@ -1628,8 +1756,96 @@ dropdown and checkbox group elements.</p></p>
 
                     <table class="table table-condensed">
         <tr>
-            <td>array</td>
-            <td><p>The list of ACLs that is returned from the database.</p></td>
+            <td>string</td>
+            <td><p>$html The contact information in an address label
+format.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_displayName">
+        <div class="location">at line 82</div>
+        <code>                    string
+    <strong>displayName</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Displays name in following format: ${firstName}, ${lastName}.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>Returns first name and last name.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_findByIdAndUserId">
+        <div class="location">at line 97</div>
+        <code>        static            bool|object
+    <strong>findByIdAndUserId</strong>(int $contact_id, int $user_id, array $params = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Retrieves information for a contact that is associate with a
+particular user.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$contact_id</td>
+                <td><p>The ID of the contact whose details we want.</p></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$user_id</td>
+                <td><p>The ID user associated with this contact.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td><p>Used to set additional conditions.  The default
+value is an empty array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool|object</td>
+            <td><p>The associative array with contact information we want to
+view.</p></td>
         </tr>
     </table>
 

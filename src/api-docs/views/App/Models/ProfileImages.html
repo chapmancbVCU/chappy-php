@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>App\Models\UserSessions | Chappy.php API</title>
+    <title>App\Models\ProfileImages | Chappy.php API</title>
 
             <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
 
     </head>
 
-    <body id="class" data-name="class:App_Models_UserSessions" data-root-path="../../" data-search-index-url="../../doctum-search.json">
+    <body id="class" data-name="class:App_Models_ProfileImages" data-root-path="../../" data-search-index-url="../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -75,18 +75,18 @@
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
                 <li><span class="label label-default">class</span></li>
-                        <li><a href="../../App.html">App</a></li><li class="backslash">\</li><li><a href="../../App/Models.html">Models</a></li><li class="backslash">\</li><li>UserSessions</li>
+                        <li><a href="../../App.html">App</a></li><li class="backslash">\</li><li><a href="../../App/Models.html">Models</a></li><li class="backslash">\</li><li>ProfileImages</li>
             </ol>
         </div>
                 <div id="page-content">
     <div class="page-header">
-        <h1>UserSessions    
+        <h1>ProfileImages    
             </h1>
     </div>
 
     
     <p>        class
-    <strong>UserSessions</strong>        extends <a href="../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a>
+    <strong>ProfileImages</strong>        extends <a href="../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a>
 </p>
 
         
@@ -94,7 +94,7 @@
         
 
             <div class="description">
-            <p><p>Supports operations of the User Session model.  Extends the Model class.</p></p>                    </div>
+            <p><p>Supports CRUD operations on profile image records.</p></p>                    </div>
             
         
     
@@ -111,20 +111,38 @@
                 <td></td>
             </tr>
                     <tr>
-                <td class="type" id="property_session">
+                <td class="type" id="property_deleted">
                                                                                 
                                                                                 
                                     </td>
-                <td>$session</td>
+                <td>$deleted</td>
                 <td class="last"></td>
                 <td></td>
             </tr>
                     <tr>
-                <td class="type" id="property_user_agent">
+                <td class="type" id="property_name">
                                                                                 
                                                                                 
                                     </td>
-                <td>$user_agent</td>
+                <td>$name</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_sort">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$sort</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_url">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$url</td>
                 <td class="last"></td>
                 <td></td>
             </tr>
@@ -217,7 +235,8 @@
                     <a href="#method_beforeSave">beforeSave</a>()
         
                                             <p><p>Called after save.</p></p>                </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Model.html#method_beforeSave">
+<abbr title="Core\Model">Model</abbr></a></small></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -314,7 +333,7 @@
                 <div class="col-md-8">
                     <a href="#method_findAllByUserId">findAllByUserId</a>(int $user_id, array $params = [])
         
-                                            <p><p>Retrieves list of all records within a table related to a logged in user.</p></p>                </div>
+                                            <p><p>Retrieves list of all records within a table related to a user.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Model.html#method_findAllByUserId">
 <abbr title="Core\Model">Model</abbr></a></small></div>
             </div>
@@ -458,12 +477,72 @@ called from within this class.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    static&nbsp;bool|<a href="../../App/Models/UserSessions.html"><abbr title="App\Models\UserSessions">UserSessions</abbr></a>
+                    static&nbsp;bool
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_getFromCookie">getFromCookie</a>()
+                    <a href="#method_deleteById">deleteById</a>(int $id)
         
-                                            <p><p>Retrieves User Session information from cookie.</p></p>                </div>
+                                            <p><p>Deletes a profile image by id.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool|array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_findCurrentProfileImage">findCurrentProfileImage</a>(int $user_id)
+        
+                                            <p><p>Returns currently set profile image for a user.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;bool|array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_findByUserId">findByUserId</a>(int $user_id)
+        
+                                            <p><p>Finds all profile images for a user.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_getAllowedFileTypes">getAllowedFileTypes</a>()
+        
+                                            <p><p>Getter function for $allowedFileTypes array</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;int
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_getMaxAllowedFileSize">getMaxAllowedFileSize</a>()
+        
+                                            <p><p>Getter function for $maxAllowedFileSize.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_updateSortByUserId">updateSortByUserId</a>(int $user_id, array $sortOrder = [])
+        
+                                            <p><p>Updates sort order by user id.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_uploadProfileImage">uploadProfileImage</a>(int $user_id, <abbr title="App\Models\Uploads">Uploads</abbr> $uploads)
+        
+                                            <p><p>Performs upload operation for a profile image.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -701,7 +780,8 @@ blacklisted.  Otherwise they are whitelisted.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_beforeSave">
-        <div class="location">at line 20</div>
+        <div class="location">in <a href="../../Core/Model.html#method_beforeSave">
+<abbr title="Core\Model">Model</abbr></a> at line 100</div>
         <code>                    void
     <strong>beforeSave</strong>()
         </code>
@@ -1033,7 +1113,7 @@ the table in our database.  The default value is an empty array.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Retrieves list of all records within a table related to a logged in user.</p></p>                        
+                            <p><p>Retrieves list of all records within a table related to a user.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -1042,7 +1122,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <tr>
                 <td>int</td>
                 <td>$user_id</td>
-                <td><p>The ID user associated with this contact.</p></td>
+                <td><p>The user ID.</p></td>
             </tr>
                     <tr>
                 <td>array</td>
@@ -1546,10 +1626,10 @@ called from within this class.</p></p>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_getFromCookie">
-        <div class="location">at line 31</div>
-        <code>        static            bool|<a href="../../App/Models/UserSessions.html"><abbr title="App\Models\UserSessions">UserSessions</abbr></a>
-    <strong>getFromCookie</strong>()
+                    <h3 id="method_deleteById">
+        <div class="location">at line 28</div>
+        <code>        static            bool
+    <strong>deleteById</strong>(int $id)
         </code>
     </h3>
     <div class="details">    
@@ -1557,7 +1637,138 @@ called from within this class.</p></p>
             
 
         <div class="method-description">
-                            <p><p>Retrieves User Session information from cookie.</p></p>                        
+                            <p><p>Deletes a profile image by id.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$id</td>
+                <td><p>The id of the image we want to delete.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>Result of delete operation.  True if success, otherwise
+false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_findCurrentProfileImage">
+        <div class="location">at line 51</div>
+        <code>        static            bool|array
+    <strong>findCurrentProfileImage</strong>(int $user_id)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Returns currently set profile image for a user.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$user_id</td>
+                <td><p>The id of the user whose profile image we want to
+retrieve.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool|array</td>
+            <td><p>The associative array for the profile image's
+record.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_findByUserId">
+        <div class="location">at line 66</div>
+        <code>        static            bool|array
+    <strong>findByUserId</strong>(int $user_id)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Finds all profile images for a user.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$user_id</td>
+                <td><p>The id of the user whose profile images we want to
+retrieve.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool|array</td>
+            <td><p>The associative array of profile image records for a
+user.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAllowedFileTypes">
+        <div class="location">at line 79</div>
+        <code>        static            array
+    <strong>getAllowedFileTypes</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Getter function for $allowedFileTypes array</p></p>                        
         </div>
         <div class="tags">
             
@@ -1565,10 +1776,139 @@ called from within this class.</p></p>
 
                     <table class="table table-condensed">
         <tr>
-            <td>bool|<a href="../../App/Models/UserSessions.html"><abbr title="App\Models\UserSessions">UserSessions</abbr></a></td>
-            <td><p>An object containing information about the
-current user's session.  If a user session does not exist false is
-returned.</p></td>
+            <td>array</td>
+            <td><p>$allowedFileTypes The array of allowed file types.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getMaxAllowedFileSize">
+        <div class="location">at line 89</div>
+        <code>        static            int
+    <strong>getMaxAllowedFileSize</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Getter function for $maxAllowedFileSize.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>int</td>
+            <td><p>$maxAllowedFileSize The max file size for an individual
+file.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_updateSortByUserId">
+        <div class="location">at line 102</div>
+        <code>        static            void
+    <strong>updateSortByUserId</strong>(int $user_id, array $sortOrder = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Updates sort order by user id.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$user_id</td>
+                <td><p>The id of the user whose profile images we want
+to sort.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$sortOrder</td>
+                <td><p>An array containing sort values for a profile
+image.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_uploadProfileImage">
+        <div class="location">at line 123</div>
+        <code>        static            void
+    <strong>uploadProfileImage</strong>(int $user_id, <abbr title="App\Models\Uploads">Uploads</abbr> $uploads)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Performs upload operation for a profile image.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$user_id</td>
+                <td><p>The id of the user that the upload operation
+is performed upon.</p></td>
+            </tr>
+                    <tr>
+                <td><abbr title="App\Models\Uploads">Uploads</abbr></td>
+                <td>$uploads</td>
+                <td><p>The instance of the Uploads class for this
+upload.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
         </tr>
     </table>
 

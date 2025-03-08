@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Doctum | Chappy.php API</title>
+    <title>Core | Chappy.php API</title>
 
             <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
 
     </head>
 
-    <body id="namespace" data-name="namespace:Doctum" data-root-path="" data-search-index-url="doctum-search.json">
+    <body id="namespace" data-name="namespace:Core" data-root-path="" data-search-index-url="doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -75,54 +75,78 @@
                 <div class="namespace-breadcrumbs">
         <ol class="breadcrumb">
             <li><span class="label label-default">Namespace</span></li>
-                    <li><a href="Doctum.html">Doctum</a></li><li class="backslash">\</li>
+                    <li><a href="Core.html">Core</a></li><li class="backslash">\</li>
         </ol>
     </div>
             <div id="page-content">
     <div class="page-header">
-        <h1>Doctum</h1>
+        <h1>Core</h1>
     </div>
 
             <h2>Namespaces</h2>
         <div class="namespace-list">
-            <a href="Doctum/Console.html">Doctum\Console</a><a href="Doctum/Parser.html">Doctum\Parser</a><a href="Doctum/Reflection.html">Doctum\Reflection</a><a href="Doctum/RemoteRepository.html">Doctum\RemoteRepository</a><a href="Doctum/Renderer.html">Doctum\Renderer</a><a href="Doctum/Store.html">Doctum\Store</a><a href="Doctum/Version.html">Doctum\Version</a>        </div>
+            <a href="Core/Lib.html">Core\Lib</a><a href="Core/Validators.html">Core\Validators</a>        </div>
     
             <h2>Classes</h2>
     <div class="container-fluid underlined">
                     <div class="row">
                 <div class="col-md-6">
-                    <a href="Doctum/Doctum.html"><abbr title="Doctum\Doctum">Doctum</abbr></a>    </div>
-                <div class="col-md-6"></div>
+                    <a href="Core/Application.html"><abbr title="Core\Application">Application</abbr></a>    </div>
+                <div class="col-md-6"><p>The Application class supports basic functional needs of the application.</p></div>
             </div>
                     <div class="row">
                 <div class="col-md-6">
-                    <a href="Doctum/ErrorHandler.html"><abbr title="Doctum\ErrorHandler">ErrorHandler</abbr></a>    </div>
-                <div class="col-md-6"></div>
+                    <a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a>    </div>
+                <div class="col-md-6"><p>This is the parent Controller class.  It describes functions that are
+available to all classes that extends this Controller class.</p></div>
             </div>
                     <div class="row">
                 <div class="col-md-6">
-                    <a href="Doctum/Indexer.html"><abbr title="Doctum\Indexer">Indexer</abbr></a>    </div>
-                <div class="col-md-6"></div>
+                    <a href="Core/Cookie.html"><abbr title="Core\Cookie">Cookie</abbr></a>    </div>
+                <div class="col-md-6"><p>Manages cookies used by this application.  The $_COOKIE superglobal
+variable is an associative array.</p></div>
             </div>
                     <div class="row">
                 <div class="col-md-6">
-                    <a href="Doctum/Message.html"><abbr title="Doctum\Message">Message</abbr></a>    </div>
-                <div class="col-md-6"></div>
+                    <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a>    </div>
+                <div class="col-md-6"><p>Support database operations.</p></div>
             </div>
                     <div class="row">
                 <div class="col-md-6">
-                    <a href="Doctum/Project.html"><abbr title="Doctum\Project">Project</abbr></a>    </div>
-                <div class="col-md-6"><p>Project represents an API project.</p></div>
+                    <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a>    </div>
+                <div class="col-md-6"><p>Contains functions for building form elements of various types.</p></div>
             </div>
                     <div class="row">
                 <div class="col-md-6">
-                    <a href="Doctum/Tree.html"><abbr title="Doctum\Tree">Tree</abbr></a>    </div>
-                <div class="col-md-6"></div>
+                    <a href="Core/Helper.html"><abbr title="Core\Helper">Helper</abbr></a>    </div>
+                <div class="col-md-6"><p>Helper and utility functions.</p></div>
             </div>
                     <div class="row">
                 <div class="col-md-6">
-                    <a href="Doctum/TreeNode.html"><abbr title="Doctum\TreeNode">TreeNode</abbr></a>    </div>
-                <div class="col-md-6"></div>
+                    <a href="Core/Input.html"><abbr title="Core\Input">Input</abbr></a>    </div>
+                <div class="col-md-6"><p>Input class handles requests to the server.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a>    </div>
+                <div class="col-md-6"><p>Parent class for our models.  Takes functions from DB wrapper and extract
+functionality further to make operations easier to use and improve
+extendability.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="Core/Router.html"><abbr title="Core\Router">Router</abbr></a>    </div>
+                <div class="col-md-6"><p>This class is responsible for routing between views.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="Core/Session.html"><abbr title="Core\Session">Session</abbr></a>    </div>
+                <div class="col-md-6"><p>Supports functions for user sessions.  This class never gets instantiated.</p></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                    <a href="Core/View.html"><abbr title="Core\View">View</abbr></a>    </div>
+                <div class="col-md-6"><p>Handles operations related to views and its content.</p></div>
             </div>
             </div>
     

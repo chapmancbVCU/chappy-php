@@ -16,7 +16,7 @@ class Router {
      * @return void
      */
     private static function docsRouting(string $requestPath): void {
-        $apiPath = 'resources' . DS . 'views' . DS . 'api-docs';
+        $apiPath = 'src' . DS . 'api-docs' . DS . 'views';
         $filePath = ROOT . DS . $apiPath . DS . str_replace('/api-docs/', '', $requestPath);
     
         // Redirect root `/api-docs` to `/resources/views/api-docs/index.html`

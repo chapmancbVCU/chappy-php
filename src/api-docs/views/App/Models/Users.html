@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>App\Models\Contacts | Chappy.php API</title>
+    <title>App\Models\Users | Chappy.php API</title>
 
             <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
 
     </head>
 
-    <body id="class" data-name="class:App_Models_Contacts" data-root-path="../../" data-search-index-url="../../doctum-search.json">
+    <body id="class" data-name="class:App_Models_Users" data-root-path="../../" data-search-index-url="../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -75,18 +75,18 @@
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
                 <li><span class="label label-default">class</span></li>
-                        <li><a href="../../App.html">App</a></li><li class="backslash">\</li><li><a href="../../App/Models.html">Models</a></li><li class="backslash">\</li><li>Contacts</li>
+                        <li><a href="../../App.html">App</a></li><li class="backslash">\</li><li><a href="../../App/Models.html">Models</a></li><li class="backslash">\</li><li>Users</li>
             </ol>
         </div>
                 <div id="page-content">
     <div class="page-header">
-        <h1>Contacts    
+        <h1>Users    
             </h1>
     </div>
 
     
     <p>        class
-    <strong>Contacts</strong>        extends <a href="../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a>
+    <strong>Users</strong>        extends <a href="../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a>
 </p>
 
         
@@ -94,14 +94,13 @@
         
 
             <div class="description">
-            <p><p>Extends the Model class.  Supports functions for handling Contacts such as
-displaying information, form validation, and DB operations.</p></p>                    </div>
+            <p><p>Extends the Model class.  Supports functions for the Users model.</p></p>                    </div>
             
         
             <h2>Constants</h2>    <table class="table table-condensed">
                     <tr>
                 <td>
-                                                                                                                        blackList
+                                                                                                                        blackListedFormKeys
                                     </td>
                 <td class="last">
                     <p><em></em></p>
@@ -124,47 +123,20 @@ displaying information, form validation, and DB operations.</p></p>             
                 <td></td>
             </tr>
                     <tr>
-                <td class="type" id="property_address">
+                <td class="type" id="property_acl">
                                                                                 
                                                                                 
                                     </td>
-                <td>$address</td>
+                <td>$acl</td>
                 <td class="last"></td>
                 <td></td>
             </tr>
                     <tr>
-                <td class="type" id="property_address2">
+                <td class="type" id="property_confirm">
                                                                                 
                                                                                 
                                     </td>
-                <td>$address2</td>
-                <td class="last"></td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td class="type" id="property_cell_phone">
-                                                                                
-                                                                                
-                                    </td>
-                <td>$cell_phone</td>
-                <td class="last"></td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td class="type" id="property_city">
-                                                                                
-                                                                                
-                                    </td>
-                <td>$city</td>
-                <td class="last"></td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td class="type" id="property_country">
-                                                                                
-                                                                                
-                                    </td>
-                <td>$country</td>
+                <td>$confirm</td>
                 <td class="last"></td>
                 <td></td>
             </tr>
@@ -178,11 +150,29 @@ displaying information, form validation, and DB operations.</p></p>             
                 <td></td>
             </tr>
                     <tr>
+                <td class="type" id="property_currentLoggedInUser">
+                    static                                                            
+                                                                                
+                                    </td>
+                <td>$currentLoggedInUser</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
                 <td class="type" id="property_deleted">
                                                                                 
                                                                                 
                                     </td>
                 <td>$deleted</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_description">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$description</td>
                 <td class="last"></td>
                 <td></td>
             </tr>
@@ -205,11 +195,11 @@ displaying information, form validation, and DB operations.</p></p>             
                 <td></td>
             </tr>
                     <tr>
-                <td class="type" id="property_home_phone">
+                <td class="type" id="property_inactive">
                                                                                 
                                                                                 
                                     </td>
-                <td>$home_phone</td>
+                <td>$inactive</td>
                 <td class="last"></td>
                 <td></td>
             </tr>
@@ -223,11 +213,29 @@ displaying information, form validation, and DB operations.</p></p>             
                 <td></td>
             </tr>
                     <tr>
-                <td class="type" id="property_state">
+                <td class="type" id="property_login_attempts">
                                                                                 
                                                                                 
                                     </td>
-                <td>$state</td>
+                <td>$login_attempts</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_reset_password">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$reset_password</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_password">
+                                                                                
+                                                                                
+                                    </td>
+                <td>$password</td>
                 <td class="last"></td>
                 <td></td>
             </tr>
@@ -241,29 +249,11 @@ displaying information, form validation, and DB operations.</p></p>             
                 <td></td>
             </tr>
                     <tr>
-                <td class="type" id="property_user_id">
+                <td class="type" id="property_username">
                                                                                 
                                                                                 
                                     </td>
-                <td>$user_id</td>
-                <td class="last"></td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td class="type" id="property_work_phone">
-                                                                                
-                                                                                
-                                    </td>
-                <td>$work_phone</td>
-                <td class="last"></td>
-                <td></td>
-            </tr>
-                    <tr>
-                <td class="type" id="property_zip">
-                                                                                
-                                                                                
-                                    </td>
-                <td>$zip</td>
+                <td>$username</td>
                 <td class="last"></td>
                 <td></td>
             </tr>
@@ -444,7 +434,7 @@ displaying information, form validation, and DB operations.</p></p>             
                 <div class="col-md-8">
                     <a href="#method_findAllByUserId">findAllByUserId</a>(int $user_id, array $params = [])
         
-                                            <p><p>Retrieves list of all records within a table related to a logged in user.</p></p>                </div>
+                                            <p><p>Retrieves list of all records within a table related to a user.</p></p>                </div>
                 <div class="col-md-2"><small>from&nbsp;<a href="../../Core/Model.html#method_findAllByUserId">
 <abbr title="Core\Model">Model</abbr></a></small></div>
             </div>
@@ -587,32 +577,53 @@ called from within this class.</p></p>                </div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    string
+                    array
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_displayAddress">displayAddress</a>()
+                    <a href="#method_acls">acls</a>()
         
-                                            <p><p>Formats address to conform to form factor of an address label.</p></p>                </div>
+                                            <p><p>Returns an array containing access control list information.  When the
+$acl instance variable is empty an empty array is returned.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    string
+                    static&nbsp;array
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_displayAddressLabel">displayAddressLabel</a>()
+                    <a href="#method_aclToArray">aclToArray</a>(mixed $acls)
         
-                                            <p><p>Displays contact information in an address label format.</p></p>                </div>
+                                            <p><p>Ensures that we are always dealing with an array of ACLs</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
-                    string
+                    static&nbsp;bool
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_displayName">displayName</a>()
+                    <a href="#method_addAcl">addAcl</a>(int $user_id, string $acl)
         
-                                            <p><p>Displays name in following format: ${firstName}, ${lastName}.</p></p>                </div>
+                                            <p><p>Add ACL to user's acl field as an element of an array.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;object|null
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_currentUser">currentUser</a>()
+        
+                                            <p><p>Checks if a user is logged in.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;array
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_findAllUsersExceptCurrent">findAllUsersExceptCurrent</a>(int $current_user_id, array $params = [])
+        
+                                            <p><p>Retrieves a list of all users except current logged in user.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -620,10 +631,146 @@ called from within this class.</p></p>                </div>
                     static&nbsp;bool|object
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_findByIdAndUserId">findByIdAndUserId</a>(int $contact_id, int $user_id, array $params = [])
+                    <a href="#method_findByUserName">findByUserName</a>(string $username)
         
-                                            <p><p>Retrieves information for a contact that is associate with a
-particular user.</p></p>                </div>
+                                            <p><p>Finds user by username in the Users table.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;object
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_findUserByAcl">findUserByAcl</a>(string $acl)
+        
+                                            <p><p>Retrieves a list of users who are assigned to a particular acl.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_hasAcl">hasAcl</a>(string $acl)
+        
+                                            <p><p>Checks if the user has a specific ACL assigned.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_hashPassword">hashPassword</a>(string $password)
+        
+                                            <p><p>Hashes password.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_isInactiveChecked">isInactiveChecked</a>()
+        
+                                            <p><p>Assists in setting value of inactive field based on POST.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_isResetPWChecked">isResetPWChecked</a>()
+        
+                                            <p><p>Assists in setting value of reset_password field based on
+POST.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_login">login</a>(bool $rememberMe = false)
+        
+                                            <p><p>Creates a session when the user logs in.  A new record is added to the
+user_sessions table and a cookie is created if remember me is
+selected.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;<a href="../../App/Models/Login.html"><abbr title="App\Models\Login">Login</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_loginAttempts">loginAttempts</a>(<abbr title="App\Models\User">User</abbr> $user, <a href="../../App/Models/Login.html"><abbr title="App\Models\Login">Login</abbr></a> $loginModel)
+        
+                                            <p><p>Tests for login attempts and sets session messages when there is a
+failed attempt or when account is locked.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;<a href="../../App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a>
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_loginUserFromCookie">loginUserFromCookie</a>()
+        
+                                            <p><p>Logs in user from cookie.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    bool
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_logout">logout</a>()
+        
+                                            <p><p>Perform logout operation on current logged in user.  The record for the
+current logged in user is removed from the user_session table and the
+corresponding cookie is deleted.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_manageAcls">manageAcls</a>(array $acls, <a href="../../App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a> $user, array $newAcls, array $userAcls)
+        
+                                            <p><p>Manages the adding and removing of ACLs.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_removeAcl">removeAcl</a>(int $user_id, string $acl)
+        
+                                            <p><p>Removes ACL from user's acl field array.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;string
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_setAclAtRegistration">setAclAtRegistration</a>()
+        
+                                            <p><p>Sets ACL at registration.  If users table is empty the default
+value is Admin.  Otherwise, we set the value to &quot;&quot;.</p></p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_setChangePassword">setChangePassword</a>(bool $value)
+        
+                                            <p><p>Setter function for $changePassword.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
             </div>
@@ -861,7 +1008,7 @@ blacklisted.  Otherwise they are whitelisted.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_beforeSave">
-        <div class="location">at line 37</div>
+        <div class="location">at line 96</div>
         <code>                    void
     <strong>beforeSave</strong>()
         </code>
@@ -1193,7 +1340,7 @@ the table in our database.  The default value is an empty array.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Retrieves list of all records within a table related to a logged in user.</p></p>                        
+                            <p><p>Retrieves list of all records within a table related to a user.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -1202,7 +1349,7 @@ the table in our database.  The default value is an empty array.</p></td>
                     <tr>
                 <td>int</td>
                 <td>$user_id</td>
-                <td><p>The ID user associated with this contact.</p></td>
+                <td><p>The user ID.</p></td>
             </tr>
                     <tr>
                 <td>array</td>
@@ -1671,7 +1818,7 @@ false if there is a failure.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validator">
-        <div class="location">at line 111</div>
+        <div class="location">at line 378</div>
         <code>                    void
     <strong>validator</strong>()
         </code>
@@ -1705,10 +1852,10 @@ called from within this class.</p></p>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_displayAddress">
-        <div class="location">at line 46</div>
-        <code>                    string
-    <strong>displayAddress</strong>()
+                    <h3 id="method_acls">
+        <div class="location">at line 50</div>
+        <code>                    array
+    <strong>acls</strong>()
         </code>
     </h3>
     <div class="details">    
@@ -1716,7 +1863,8 @@ called from within this class.</p></p>
             
 
         <div class="method-description">
-                            <p><p>Formats address to conform to form factor of an address label.</p></p>                        
+                            <p><p>Returns an array containing access control list information.  When the
+$acl instance variable is empty an empty array is returned.</p></p>                        
         </div>
         <div class="tags">
             
@@ -1724,8 +1872,8 @@ called from within this class.</p></p>
 
                     <table class="table table-condensed">
         <tr>
-            <td>string</td>
-            <td><p>$html The formatted address.</p></td>
+            <td>array</td>
+            <td><p>The array containing access control list information.</p></td>
         </tr>
     </table>
 
@@ -1737,10 +1885,10 @@ called from within this class.</p></p>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_displayAddressLabel">
-        <div class="location">at line 71</div>
-        <code>                    string
-    <strong>displayAddressLabel</strong>()
+                    <h3 id="method_aclToArray">
+        <div class="location">at line 62</div>
+        <code>        static            array
+    <strong>aclToArray</strong>(mixed $acls)
         </code>
     </h3>
     <div class="details">    
@@ -1748,17 +1896,26 @@ called from within this class.</p></p>
             
 
         <div class="method-description">
-                            <p><p>Displays contact information in an address label format.</p></p>                        
+                            <p><p>Ensures that we are always dealing with an array of ACLs</p></p>                        
         </div>
         <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>mixed</td>
+                <td>$acls</td>
+                <td><p>An array or any type that we want to add to an array.</p></td>
+            </tr>
+            </table>
+
             
                             <h4>Return Value</h4>
 
                     <table class="table table-condensed">
         <tr>
-            <td>string</td>
-            <td><p>$html The contact information in an address label
-format.</p></td>
+            <td>array</td>
+            <td><p>An array of acls.</p></td>
         </tr>
     </table>
 
@@ -1770,10 +1927,10 @@ format.</p></td>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_displayName">
-        <div class="location">at line 82</div>
-        <code>                    string
-    <strong>displayName</strong>()
+                    <h3 id="method_addAcl">
+        <div class="location">at line 77</div>
+        <code>        static            bool
+    <strong>addAcl</strong>(int $user_id, string $acl)
         </code>
     </h3>
     <div class="details">    
@@ -1781,40 +1938,7 @@ format.</p></td>
             
 
         <div class="method-description">
-                            <p><p>Displays name in following format: ${firstName}, ${lastName}.</p></p>                        
-        </div>
-        <div class="tags">
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>string</td>
-            <td><p>Returns first name and last name.</p></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
-                    <h3 id="method_findByIdAndUserId">
-        <div class="location">at line 97</div>
-        <code>        static            bool|object
-    <strong>findByIdAndUserId</strong>(int $contact_id, int $user_id, array $params = [])
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Retrieves information for a contact that is associate with a
-particular user.</p></p>                        
+                            <p><p>Add ACL to user's acl field as an element of an array.</p></p>                        
         </div>
         <div class="tags">
                             <h4>Parameters</h4>
@@ -1822,19 +1946,137 @@ particular user.</p></p>
                     <table class="table table-condensed">
                     <tr>
                 <td>int</td>
-                <td>$contact_id</td>
-                <td><p>The ID of the contact whose details we want.</p></td>
+                <td>$user_id</td>
+                <td><p>The id of the user whose acl field we want to
+modify.</p></td>
             </tr>
                     <tr>
+                <td>string</td>
+                <td>$acl</td>
+                <td><p>The name of the new ACL.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True or false depending on success of operation.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_currentUser">
+        <div class="location">at line 113</div>
+        <code>        static            object|null
+    <strong>currentUser</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if a user is logged in.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>object|null</td>
+            <td><p>An object containing information about current
+logged in user from users table.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_findAllUsersExceptCurrent">
+        <div class="location">at line 128</div>
+        <code>        static            array
+    <strong>findAllUsersExceptCurrent</strong>(int $current_user_id, array $params = [])
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Retrieves a list of all users except current logged in user.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
                 <td>int</td>
-                <td>$user_id</td>
-                <td><p>The ID user associated with this contact.</p></td>
+                <td>$current_user_id</td>
+                <td><p>The id of the currently logged in user.</p></td>
             </tr>
                     <tr>
                 <td>array</td>
                 <td>$params</td>
-                <td><p>Used to set additional conditions.  The default
-value is an empty array.</p></td>
+                <td><p>Used to build conditions for database query.  The
+default value is an empty array.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td><p>The list of users that is returned from the database.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_findByUserName">
+        <div class="location">at line 145</div>
+        <code>        static            bool|object
+    <strong>findByUserName</strong>(string $username)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Finds user by username in the Users table.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$username</td>
+                <td><p>The username we want to find in the Users table.</p></td>
             </tr>
             </table>
 
@@ -1844,8 +2086,523 @@ value is an empty array.</p></td>
                     <table class="table table-condensed">
         <tr>
             <td>bool|object</td>
-            <td><p>The associative array with contact information we want to
-view.</p></td>
+            <td><p>An object containing information about a user from
+the Users table.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_findUserByAcl">
+        <div class="location">at line 155</div>
+        <code>        static            object
+    <strong>findUserByAcl</strong>(string $acl)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Retrieves a list of users who are assigned to a particular acl.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$acl</td>
+                <td><p>The ACL we want to use in our query.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>object</td>
+            <td><p>Users who are assigned to a specific acl.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_hasAcl">
+        <div class="location">at line 166</div>
+        <code>                    bool
+    <strong>hasAcl</strong>(string $acl)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Checks if the user has a specific ACL assigned.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$acl</td>
+                <td><p>The ACL to check.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>True if the user has the ACL, otherwise false.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_hashPassword">
+        <div class="location">at line 182</div>
+        <code>                    void
+    <strong>hashPassword</strong>(string $password)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Hashes password.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$password</td>
+                <td><p>Original password submitted on a registration
+or update password form.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isInactiveChecked">
+        <div class="location">at line 192</div>
+        <code>                    
+    <strong>isInactiveChecked</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Assists in setting value of inactive field based on POST.</p></p>                        
+        </div>
+        <div class="tags">
+            
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_isResetPWChecked">
+        <div class="location">at line 203</div>
+        <code>                    
+    <strong>isResetPWChecked</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Assists in setting value of reset_password field based on
+POST.</p></p>                        
+        </div>
+        <div class="tags">
+            
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_login">
+        <div class="location">at line 216</div>
+        <code>                    void
+    <strong>login</strong>(bool $rememberMe = false)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Creates a session when the user logs in.  A new record is added to the
+user_sessions table and a cookie is created if remember me is
+selected.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>bool</td>
+                <td>$rememberMe</td>
+                <td><p>Value obtained from remember me checkbox
+found in login form.  Default value is false.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_loginAttempts">
+        <div class="location">at line 256</div>
+        <code>        static            <a href="../../App/Models/Login.html"><abbr title="App\Models\Login">Login</abbr></a>
+    <strong>loginAttempts</strong>(<abbr title="App\Models\User">User</abbr> $user, <a href="../../App/Models/Login.html"><abbr title="App\Models\Login">Login</abbr></a> $loginModel)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Tests for login attempts and sets session messages when there is a
+failed attempt or when account is locked.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="App\Models\User">User</abbr></td>
+                <td>$user</td>
+                <td><p>The user whose login attempts we are tracking.</p></td>
+            </tr>
+                    <tr>
+                <td><a href="../../App/Models/Login.html"><abbr title="App\Models\Login">Login</abbr></a></td>
+                <td>$loginModel</td>
+                <td><p>The model that will be responsible for
+displaying messages.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../App/Models/Login.html"><abbr title="App\Models\Login">Login</abbr></a></td>
+            <td><p>$loginModel The Login model after login in attempt test
+and session messages are assigned.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_loginUserFromCookie">
+        <div class="location">at line 275</div>
+        <code>        static            <a href="../../App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a>
+    <strong>loginUserFromCookie</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Logs in user from cookie.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a></td>
+            <td><p>The user associated with previous session.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_logout">
+        <div class="location">at line 294</div>
+        <code>                    bool
+    <strong>logout</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Perform logout operation on current logged in user.  The record for the
+current logged in user is removed from the user_session table and the
+corresponding cookie is deleted.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>bool</td>
+            <td><p>Returns true if operation is successful.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_manageAcls">
+        <div class="location">at line 317</div>
+        <code>        static            void
+    <strong>manageAcls</strong>(array $acls, <a href="../../App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a> $user, array $newAcls, array $userAcls)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Manages the adding and removing of ACLs.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$acls</td>
+                <td><p>ACLs stored in acl table.</p></td>
+            </tr>
+                    <tr>
+                <td><a href="../../App/Models/Users.html"><abbr title="App\Models\Users">Users</abbr></a></td>
+                <td>$user</td>
+                <td><p>The user we want to modify</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$newAcls</td>
+                <td><p>The new ACLs for the user.</p></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$userAcls</td>
+                <td><p>The user's existing ACLs.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_removeAcl">
+        <div class="location">at line 336</div>
+        <code>        static            void
+    <strong>removeAcl</strong>(int $user_id, string $acl)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Removes ACL from user's acl field array.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$user_id</td>
+                <td><p>The id of the user whose acl field we want to modify.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$acl</td>
+                <td><p>The name of the ACL to be removed.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setAclAtRegistration">
+        <div class="location">at line 356</div>
+        <code>        static            string
+    <strong>setAclAtRegistration</strong>()
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Sets ACL at registration.  If users table is empty the default
+value is Admin.  Otherwise, we set the value to &quot;&quot;.</p></p>                        
+        </div>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td><p>The value of the ACL we are setting upon
+registration of a user.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setChangePassword">
+        <div class="location">at line 369</div>
+        <code>                    void
+    <strong>setChangePassword</strong>(bool $value)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Setter function for $changePassword.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>bool</td>
+                <td>$value</td>
+                <td><p>The value we will assign to $changePassword.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
         </tr>
     </table>
 

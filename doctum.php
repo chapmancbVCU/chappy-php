@@ -19,13 +19,13 @@ $iterator = Finder::create()
         'public',
         'logs',
         'cache',
-        'resources/views/api-docs']
+        'src/api-docs/views']
     );
 
 // Create a Doctum instance
 return new Doctum($iterator, [
     'title' => 'Chappy.php API',
-    'build_dir' => ROOT . DS. 'resources' .  DS . 'views' . DS . 'api-docs',  // Store docs here
+    'build_dir' => ROOT . DS. 'src' .  DS . 'api-docs' . DS . 'views',  // Store docs here
     'cache_dir' => ROOT . DS .'cache' . DS . 'doctum',  // Caching for faster generation
     'default_opened_level' => 2,  // Sidebar depth
     'filter' => new PublicFilter(),  // Only include public methods
