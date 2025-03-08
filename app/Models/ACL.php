@@ -62,23 +62,7 @@ class ACL extends Model {
      * @return bool
      */
     public function isAssignedToUsers(): bool {
-        $dbDriver = self::getDb()->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME);
-    
-        if ($dbDriver === 'mysql') {
-            // MySQL query using JSON_CONTAINS
-            $users = Users::find([
-                'conditions' => "JSON_CONTAINS(acl, ?)",
-                'bind' => [$this->acl]
-            ]);
-        } else {
-            // SQLite query using LIKE (since SQLite does not support JSON_CONTAINS)
-            $users = Users::find([
-                'conditions' => "acl LIKE ?",
-                'bind' => ['%"' . $this->acl . '"%']
-            ]);
-        }
-
-        return count($users) > 0;
+        return self::getDb()->valueExistsInColumn('users', 'acl', $this->acl);
     }
 
     /**

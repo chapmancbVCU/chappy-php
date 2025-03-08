@@ -473,4 +473,29 @@ class DB {
 
         return !$this->query($sql, $values)->error();
     }  
+
+    /**
+     * Check if a value exists in a JSON or text-based column
+     *
+     * @param string $table The table name
+     * @param string $column The column name (JSON or text-based)
+     * @param mixed $value The value to search for
+     * @return bool True if value exists, False otherwise
+     */
+    public function valueExistsInColumn($table, $column, $value) {
+        $dbDriver = $this->_pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
+        
+        if ($dbDriver === 'mysql') {
+            $condition = "JSON_CONTAINS({$column}, ?)";
+        } else {
+            $condition = "{$column} LIKE ?";
+            $value = '%"'.$value.'"%'; // Adjust value for SQLite string search
+        }
+
+        $query = "SELECT COUNT(*) as count FROM {$table} WHERE {$condition}";
+        $result = $this->query($query, [$value])->first();
+
+        return $result && isset($result->count) && $result->count > 0;
+    }
+
 }
