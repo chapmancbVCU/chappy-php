@@ -172,8 +172,8 @@ public function manageACLsAction(): void {
 ```
 
 Here, we want to create two separate arrays.  One for used ACLs and another for unused.  That way we can list them separately.  We do this to prevent administrators from editing used ACLs.  This doesn't prevent administrators from generating queries from making any necessary changes from the MySQL command line or adding such feature through this framework.  Just make sure you test appropriately in development before making you changes in production.
-
 <br>
+
 #### F. Summary  <a id="db-summary">
 All of these functions have their equivalent wrapper functions that will be described in the **Using Models** section.  Here are the descriptions for additional functions:
 1. count - Getter function for the private _count variable.
