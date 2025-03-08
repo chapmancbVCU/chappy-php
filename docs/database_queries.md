@@ -7,7 +7,8 @@
     * B. [Read](#read)
     * C. [Update](#update)
     * D. [Delete](#delete)
-    * E. [DB Summary](#db-summary)
+    * E. [Checking If Value Exists In Column](#value-exists)
+    * F. [DB Summary](#db-summary)
 3. [Using Models](#models)
 <br>
 <br>
@@ -148,7 +149,32 @@ It accepts the following arguments:
 2. $id The primary key for the record we want to remove from a database table.
 <br>
 
-#### E. Summary  <a id="db-summary">
+#### E. Checking If Value Exists In Column <a id="value-exists">
+Sometimes you need to check if a value exists in a column in the form of an element in an array.  The `valueExistsInColumn` makes this possible.  Let's check out the manageACLsAction below where we separate ACLs into used and unused.  
+
+```php
+public function manageACLsAction(): void {
+    $acls = ACL::getACLs();
+    $usedAcls = [];
+    $unUsedAcls = [];
+    foreach($acls as $acl) {
+        if($acl->isAssignedToUsers()) {
+            array_push($usedAcls, $acl);
+        } else {
+            array_push($unUsedAcls, $acl);
+        }
+    }
+
+    $this->view->usedAcls = $usedAcls;
+    $this->view->unUsedAcls = $unUsedAcls;
+    $this->view->render('admindashboard/manage_acls');
+}
+```
+
+Here, we want to create two separate arrays.  One for used ACLs and another for unused.  That way we can list them separately.  We do this to prevent administrators from editing used ACLs.  This doesn't prevent administrators from generating queries from making any necessary changes from the MySQL command line or adding such feature through this framework.  Just make sure you test appropriately in development before making you changes in production.
+
+<br>
+#### F. Summary  <a id="db-summary">
 All of these functions have their equivalent wrapper functions that will be described in the **Using Models** section.  Here are the descriptions for additional functions:
 1. count - Getter function for the private _count variable.
 2. findFirst - Returns the first result performed by an SQL query.
