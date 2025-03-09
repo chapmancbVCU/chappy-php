@@ -15,6 +15,7 @@ use Core\Validators\{
     UpperCharValidator
 };
 use App\Models\UserSessions;
+use Core\Lib\Utilities\Env;
 
 /**
  * Extends the Model class.  Supports functions for the Users model.
@@ -111,8 +112,8 @@ class Users extends Model {
      * logged in user from users table.
      */
     public static function currentUser() {
-        if(!isset(self::$currentLoggedInUser) && Session::exists(CURRENT_USER_SESSION_NAME)) {
-            self::$currentLoggedInUser = self::findById((int)Session::get(CURRENT_USER_SESSION_NAME));
+        if(!isset(self::$currentLoggedInUser) && Session::exists(Env::get('CURRENT_USER_SESSION_NAME'))) {
+            self::$currentLoggedInUser = self::findById((int)Session::get(Env::get('CURRENT_USER_SESSION_NAME')));
         }
         return self::$currentLoggedInUser;
     }
@@ -216,7 +217,7 @@ class Users extends Model {
             Logger::log("Failed login attempt: Inactive account for user ID {$user->id} ({$user->username}).", 'warning');
         }
 
-        Session::set(CURRENT_USER_SESSION_NAME, $this->id);
+        Session::set(Env::get('CURRENT_USER_SESSION_NAME'), $this->id);
         Logger::log("User {$user->id} ({$user->username}) logged in successfully.", 'info');
         
         if($rememberMe) {
@@ -285,7 +286,7 @@ class Users extends Model {
         if($userSession) {
             $userSession->delete();
         }
-        Session::delete(CURRENT_USER_SESSION_NAME);
+        Session::delete(Env::get('CURRENT_USER_SESSION_NAME'));
         if(Cookie::exists(REMEMBER_ME_COOKIE_NAME)) {
             Cookie::delete(REMEMBER_ME_COOKIE_NAME);
         }
