@@ -1,13 +1,16 @@
 <?php
 namespace Core\Lib\Utilities;
 
+/**
+ * Supports ability to use environment variables.
+ */
 class Env {
     private static array $env = [];
 
     /**
       * Load .env file into memory (only once)
       *
-      * @param [type] $path
+      * @param string $path The path to the .env file.
       * @return void
       */
     public static function load(string $path = ROOT . DS . 'env'): void {
@@ -29,11 +32,11 @@ class Env {
      /**
       * Get an environment variable with an optional default value
       *
-      * @param string $key
-      * @param [type] $default
+      * @param string $key The key for the key value pair for env variables.
+      * @param mixed $default The default value for the env variable.
       * @return mixed
       */
-    public static function get(string $key, $default = null): mixed {
+    public static function get(string $key, mixed $default = null): mixed {
         if (empty(self::$env)) {
             self::load();
         }
