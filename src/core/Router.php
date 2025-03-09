@@ -185,9 +185,10 @@ class Router {
             // ACL check
             $grantAccess = self::hasAccess($controller_name, $action_name);
             if(!$grantAccess) {
+                $accessRestricted = Env::get('ACCESS_RESTRICTED', 'Restricted');
                 Logger::log("Access Denied: User '$userId' attempted to use a controller that does not exists or access a restricted area '$controller_name/$action_name'", 'warning');
-                $controller = ACCESS_RESTRICTED.'Controller';
-                $controller_name = ACCESS_RESTRICTED;
+                $controller = $accessRestricted.'Controller';
+                $controller_name = $accessRestricted;
                 $action = 'indexAction';
             }
     
