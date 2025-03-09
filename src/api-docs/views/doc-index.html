@@ -209,11 +209,11 @@ necessary, we can implement additional types of content.</p></dd><dt><a href="Da
 <abbr title="Core\DB">DB</abbr>::delete</a>() &mdash; <em>Method in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
                     <dd><p>Performs delete operation against SQL database.</p></dd><dt><a href="Core/FormHelper.html#method_displayErrors">
 <abbr title="Core\FormHelper">FormHelper</abbr>::displayErrors</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
-                    <dd><p>Returns list of errors.</p></dd><dt><a href="Core/Helper.html#method_dump">
-<abbr title="Core\Helper">Helper</abbr>::dump</a>() &mdash; <em>Method in class <a href="Core/Helper.html"><abbr title="Core\Helper">Helper</abbr></a></em></dt>
-                    <dd><p>Dumps content but continues execution.</p></dd><dt><a href="Core/Helper.html#method_dd">
+                    <dd><p>Returns list of errors.</p></dd><dt><a href="Core/Helper.html#method_dd">
 <abbr title="Core\Helper">Helper</abbr>::dd</a>() &mdash; <em>Method in class <a href="Core/Helper.html"><abbr title="Core\Helper">Helper</abbr></a></em></dt>
-                    <dd><p>Performs var_dump of parameter and kills the page.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_date">
+                    <dd><p>Performs var_dump of parameter and kills the page.</p></dd><dt><a href="Core/Helper.html#method_dump">
+<abbr title="Core\Helper">Helper</abbr>::dump</a>() &mdash; <em>Method in class <a href="Core/Helper.html"><abbr title="Core\Helper">Helper</abbr></a></em></dt>
+                    <dd><p>Dumps content but continues execution.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_date">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::date</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Define a date column.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_dateTime">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::dateTime</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
@@ -257,7 +257,8 @@ when a user logs out of a user session.</p></dd><dt><a href="Core/Session.html#m
                     <dd><p>Checks if a particular cookie exists in the $_COOKIE superglobal
 variable.</p></dd><dt><a href="Core/DB.html#method_error">
 <abbr title="Core\DB">DB</abbr>::error</a>() &mdash; <em>Method in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
-                    <dd><p>Getter function for the $_error variable.</p></dd><dt><a href="Core/FormHelper.html#method_emailBlock">
+                    <dd><p>Getter function for the $_error variable.</p></dd><dt><a href="Core/ErrorHandler.html"><abbr title="Core\ErrorHandler">ErrorHandler</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
+                    <dd><p>Performs error handling for application.</p></dd><dt><a href="Core/FormHelper.html#method_emailBlock">
 <abbr title="Core\FormHelper">FormHelper</abbr>::emailBlock</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
                     <dd><p>Renders an HTML div element that surrounds an input of type email.</p></dd><dt><a href="Core/FormHelper.html#method_errorMsg">
 <abbr title="Core\FormHelper">FormHelper</abbr>::errorMsg</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
@@ -359,7 +360,10 @@ and grants access if that is the case.</p></dd>        </dl><h2 id="letterI">I</
 <abbr title="Console\Helpers\Tools">Tools</abbr>::info</a>() &mdash; <em>Method in class <a href="Console/Helpers/Tools.html"><abbr title="Console\Helpers\Tools">Tools</abbr></a></em></dt>
                     <dd><p>Generates output messages for console commands.</p></dd><dt><a href="Core/DB.html#method_insert">
 <abbr title="Core\DB">DB</abbr>::insert</a>() &mdash; <em>Method in class <a href="Core/DB.html"><abbr title="Core\DB">DB</abbr></a></em></dt>
-                    <dd><p>Perform insert operations against the database.</p></dd><dt><a href="Core/FormHelper.html#method_inputBlock">
+                    <dd><p>Perform insert operations against the database.</p></dd><dt><a href="Core/ErrorHandler.html#method_initialize">
+<abbr title="Core\ErrorHandler">ErrorHandler</abbr>::initialize</a>() &mdash; <em>Method in class <a href="Core/ErrorHandler.html"><abbr title="Core\ErrorHandler">ErrorHandler</abbr></a></em></dt>
+                    <dd><p>Performs global exception handling, global error handling, and
+initialized whoops.</p></dd><dt><a href="Core/FormHelper.html#method_inputBlock">
 <abbr title="Core\FormHelper">FormHelper</abbr>::inputBlock</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
                     <dd><p>Assists in the development of forms input blocks in forms.  It accepts
 parameters for setting attribute tags in the form section.  Not to be
@@ -383,7 +387,10 @@ or submitTag functions.</p></dd><dt><a href="Core/Input.html"><abbr title="Core\
 <abbr title="Core\Model">Model</abbr>::insert</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
                     <dd><p>Wrapper for database insert function.</p></dd><dt><a href="Core/Model.html#method_isNew">
 <abbr title="Core\Model">Model</abbr>::isNew</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
-                    <dd><p>Checks if an object is a new insertion or an existing record.</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#property_includeDeleted">
+                    <dd><p>Checks if an object is a new insertion or an existing record.</p></dd><dt><a href="Core/SessionManager.html#method_initialize">
+<abbr title="Core\SessionManager">SessionManager</abbr>::initialize</a>() &mdash; <em>Method in class <a href="Core/SessionManager.html"><abbr title="Core\SessionManager">SessionManager</abbr></a></em></dt>
+                    <dd><p>Checks if session exists and logs user in.  Logs user out if account
+status is inactive.</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#property_includeDeleted">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>#includeDeleted</a> &mdash; <em>Property in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>
                     <dd></dd><dt><a href="Core/View.html#method_insertView">
 <abbr title="Core\View">View</abbr>::insertView</a>() &mdash; <em>Method in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
@@ -602,6 +609,8 @@ upper case character.</p></dd><dt><a href="Core/View.html#method_render">
 <abbr title="Database\Seeders\DatabaseSeeder">DatabaseSeeder</abbr>::run</a>() &mdash; <em>Method in class <a href="Database/Seeders/DatabaseSeeder.html"><abbr title="Database\Seeders\DatabaseSeeder">DatabaseSeeder</abbr></a></em></dt>
                     <dd><p>Call individual seeders in proper order.</p></dd><dt><a href="Database/Seeders/ProfileImageTableSeeder.html#method_run">
 <abbr title="Database\Seeders\ProfileImageTableSeeder">ProfileImageTableSeeder</abbr>::run</a>() &mdash; <em>Method in class <a href="Database/Seeders/ProfileImageTableSeeder.html"><abbr title="Database\Seeders\ProfileImageTableSeeder">ProfileImageTableSeeder</abbr></a></em></dt>
+                    <dd><p>Runs the database seeder</p></dd><dt><a href="Database/Seeders/UsersTableSeeder.html#method_run">
+<abbr title="Database\Seeders\UsersTableSeeder">UsersTableSeeder</abbr>::run</a>() &mdash; <em>Method in class <a href="Database/Seeders/UsersTableSeeder.html"><abbr title="Database\Seeders\UsersTableSeeder">UsersTableSeeder</abbr></a></em></dt>
                     <dd><p>Runs the database seeder</p></dd>        </dl><h2 id="letterS">S</h2>
         <dl id="indexS"><dt><a href="Console/Commands/SeedCommand.html"><abbr title="Console\Commands\SeedCommand">SeedCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
                     <dd><p>Runs the command for seeding database with random data.</p></dd><dt><a href="Console/Commands/ServeCommand.html"><abbr title="Console\Commands\ServeCommand">ServeCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
@@ -640,7 +649,8 @@ Blueprint class.</p></dd><dt><a href="Core/Lib/Database/Seeder.html"><abbr title
 cause this function to return false.</p></dd><dt><a href="Core/Session.html"><abbr title="Core\Session">Session</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
                     <dd><p>Supports functions for user sessions.  This class never gets instantiated.</p></dd><dt><a href="Core/Session.html#method_set">
 <abbr title="Core\Session">Session</abbr>::set</a>() &mdash; <em>Method in class <a href="Core/Session.html"><abbr title="Core\Session">Session</abbr></a></em></dt>
-                    <dd><p>Sets value to $_SESSION name key.</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#property_success">
+                    <dd><p>Sets value to $_SESSION name key.</p></dd><dt><a href="Core/SessionManager.html"><abbr title="Core\SessionManager">SessionManager</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
+                    <dd><p>Supports session management</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#property_success">
 <abbr title="Core\Validators\CustomValidator">CustomValidator</abbr>#success</a> &mdash; <em>Property in class <a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a></em></dt>
                     <dd></dd><dt><a href="Core/Validators/SpecialCharValidator.html"><abbr title="Core\Validators\SpecialCharValidator">SpecialCharValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
                     <dd><p>Child class class that supports ability to check if field contains an
@@ -730,7 +740,8 @@ upper case character in the field.</p></dd><dt><a href="Database/Migrations/Migr
 <abbr title="Database\Migrations\Migration1724274442">Migration1724274442</abbr>::up</a>() &mdash; <em>Method in class <a href="Database/Migrations/Migration1724274442.html"><abbr title="Database\Migrations\Migration1724274442">Migration1724274442</abbr></a></em></dt>
                     <dd><p>Performs a migration.</p></dd><dt><a href="Database/Migrations/Migration1731861283.html#method_up">
 <abbr title="Database\Migrations\Migration1731861283">Migration1731861283</abbr>::up</a>() &mdash; <em>Method in class <a href="Database/Migrations/Migration1731861283.html"><abbr title="Database\Migrations\Migration1731861283">Migration1731861283</abbr></a></em></dt>
-                    <dd><p>Performs a migration.</p></dd>        </dl><h2 id="letterV">V</h2>
+                    <dd><p>Performs a migration.</p></dd><dt><a href="Database/Seeders/UsersTableSeeder.html"><abbr title="Database\Seeders\UsersTableSeeder">UsersTableSeeder</abbr></a> &mdash; <em>Class in namespace <a href="Database/Seeders.html">Database\Seeders</a></em></dt>
+                    <dd><p>Seeder for users table.</p></dd>        </dl><h2 id="letterV">V</h2>
         <dl id="indexV"><dt><a href="Console/Helpers/View.html"><abbr title="Console\Helpers\View">View</abbr></a> &mdash; <em>Class in namespace <a href="Console/Helpers.html">Console\Helpers</a></em></dt>
                     <dd><p>Supports ability to create views, layouts, components, and menu_acl
 json files.</p></dd><dt><a href="Console/Helpers/View.html#method_viewContent">

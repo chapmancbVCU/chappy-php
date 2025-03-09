@@ -143,7 +143,7 @@ and grants access if that is the case.</p></p>                </div>
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_route">route</a>(array $url, string $requestPath)
+                    <a href="#method_route">route</a>()
         
                                             <p><p>Supports operations for routing.  It parses the url to determine which
 page needs to be rendered.  That path is parsed to determine
@@ -158,7 +158,7 @@ the correct controller and action to use.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_getMenu">
-        <div class="location">at line 87</div>
+        <div class="location">at line 45</div>
         <code>        static            array
     <strong>getMenu</strong>(string $menu)
         </code>
@@ -201,7 +201,7 @@ of user.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_hasAccess">
-        <div class="location">at line 128</div>
+        <div class="location">at line 86</div>
         <code>        static            bool
     <strong>hasAccess</strong>(string $controller_name, string $action_name = &quot;index&quot;)
         </code>
@@ -252,7 +252,7 @@ perform.  The default value is &quot;index&quot;.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_redirect">
-        <div class="location">at line 179</div>
+        <div class="location">at line 137</div>
         <code>        static            void
     <strong>redirect</strong>(string $location)
         </code>
@@ -294,9 +294,9 @@ perform.  The default value is &quot;index&quot;.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_route">
-        <div class="location">at line 206</div>
+        <div class="location">at line 164</div>
         <code>        static            void
-    <strong>route</strong>(array $url, string $requestPath)
+    <strong>route</strong>()
         </code>
     </h3>
     <div class="details">    
@@ -309,24 +309,6 @@ page needs to be rendered.  That path is parsed to determine
 the correct controller and action to use.</p></p>                        
         </div>
         <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td>array</td>
-                <td>$url</td>
-                <td><p>The path that contains information about the
-controller and action to use.</p></td>
-            </tr>
-                    <tr>
-                <td>string</td>
-                <td>$requestPath</td>
-                <td><p>The original URL retrieved from the
-$_SERVER['PATH_INFO] $_SERVER['REQUEST_URI] elements in the
-global $_SERVER array.</p></td>
-            </tr>
-            </table>
-
             
                             <h4>Return Value</h4>
 

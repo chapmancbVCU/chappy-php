@@ -141,9 +141,9 @@
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_dump">dump</a>(...$vars)
+                    <a href="#method_dd">dd</a>(mixed ...$vars)
         
-                                            <p><p>Dumps content but continues execution.</p></p>                </div>
+                                            <p><p>Performs var_dump of parameter and kills the page.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -151,9 +151,9 @@
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_dd">dd</a>(mixed ...$vars)
+                    <a href="#method_dump">dump</a>(...$vars)
         
-                                            <p><p>Performs var_dump of parameter and kills the page.</p></p>                </div>
+                                            <p><p>Dumps content but continues execution.</p></p>                </div>
                 <div class="col-md-2"></div>
             </div>
                     <div class="row">
@@ -346,50 +346,8 @@ our output.  Default value is true.</li>
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_dump">
-        <div class="location">at line 90</div>
-        <code>        static            void
-    <strong>dump</strong>(...$vars)
-        </code>
-    </h3>
-    <div class="details">    
-    
-            
-
-        <div class="method-description">
-                            <p><p>Dumps content but continues execution.</p></p>                        
-        </div>
-        <div class="tags">
-                            <h4>Parameters</h4>
-
-                    <table class="table table-condensed">
-                    <tr>
-                <td></td>
-                <td>...$vars</td>
-                <td></td>
-            </tr>
-            </table>
-
-            
-                            <h4>Return Value</h4>
-
-                    <table class="table table-condensed">
-        <tr>
-            <td>void</td>
-            <td></td>
-        </tr>
-    </table>
-
-            
-            
-            
-                    </div>
-    </div>
-
-            </div>
-                    <div class="method-item">
                     <h3 id="method_dd">
-        <div class="location">at line 102</div>
+        <div class="location">at line 89</div>
         <code>        static            void
     <strong>dd</strong>(mixed ...$vars)
         </code>
@@ -430,8 +388,50 @@ our output.  Default value is true.</li>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_dump">
+        <div class="location">at line 102</div>
+        <code>        static            void
+    <strong>dump</strong>(...$vars)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Dumps content but continues execution.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>...$vars</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_formatTime">
-        <div class="location">at line 115</div>
+        <div class="location">at line 114</div>
         <code>        static            string
     <strong>formatTime</strong>(string $time)
         </code>
@@ -473,7 +473,7 @@ our output.  Default value is true.</li>
             </div>
                     <div class="method-item">
                     <h3 id="method_getObjectProperties">
-        <div class="location">at line 127</div>
+        <div class="location">at line 126</div>
         <code>        static            array
     <strong>getObjectProperties</strong>(object $object)
         </code>
@@ -517,7 +517,7 @@ have not been assigned a value, it will be returned with a null value.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_getProfileImage">
-        <div class="location">at line 137</div>
+        <div class="location">at line 136</div>
         <code>        static            bool|array
     <strong>getProfileImage</strong>()
         </code>
@@ -550,7 +550,7 @@ record.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_timeAgo">
-        <div class="location">at line 151</div>
+        <div class="location">at line 150</div>
         <code>        static            string
     <strong>timeAgo</strong>(string $time)
         </code>
@@ -593,7 +593,7 @@ how much time has elapsed.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_timeStamps">
-        <div class="location">at line 161</div>
+        <div class="location">at line 160</div>
         <code>        static            string
     <strong>timeStamps</strong>()
         </code>
