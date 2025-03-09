@@ -91,7 +91,7 @@ class Router {
         $grantAccess = false;
 
         // Bug here after migrate:refresh and cookie still exists.
-        if(Session::exists(CURRENT_USER_SESSION_NAME)) {
+        if(Session::exists(Env::get('CURRENT_USER_SESSION_NAME'))) {
             $current_user_acls[] = "LoggedIn";
             $currentUser = Users::currentUser();
 
@@ -104,7 +104,7 @@ class Router {
                     $current_user_acls[] = $userAcl;
                 }
             } else {
-                Session::delete(CURRENT_USER_SESSION_NAME);
+                Session::delete(Env::get('CURRENT_USER_SESSION_NAME'));
             }
         }
 
@@ -169,7 +169,7 @@ class Router {
         
         try {
             // Log requests sent to server
-            $userId = Session::exists(CURRENT_USER_SESSION_NAME) ? Session::get(CURRENT_USER_SESSION_NAME) : 'Guest';
+            $userId = Session::exists(Env::get('CURRENT_USER_SESSION_NAME')) ? Session::get(Env::get('CURRENT_USER_SESSION_NAME')) : 'Guest';
             Logger::log("Incoming Request: Method: ".$_SERVER['REQUEST_METHOD']." | URL: $requestPath | IP: ".$_SERVER['REMOTE_ADDR']." | User: $userId", 'info');
             
             // Extract from URL our controllers
