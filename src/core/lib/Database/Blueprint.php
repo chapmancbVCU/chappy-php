@@ -3,7 +3,7 @@ namespace Core\Lib\Database;
 
 use Core\DB;
 use Exception;
-use Core\Lib\Logger;
+use Core\Lib\Logging\Logger;
 use Console\Helpers\Tools;
 
 /**

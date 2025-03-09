@@ -3,7 +3,7 @@ namespace Core;
 use \PDO;
 use Exception;
 use Core\Helper;
-use Core\Lib\Logger;
+use Core\Lib\Logging\Logger;
 use \PDOException;
 /**
  * Support database operations.

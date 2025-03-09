@@ -1,6 +1,6 @@
 <?php
 namespace Core;
-use Core\Lib\Logger;
+use Core\Lib\Logging\Logger;
 /**
  * Supports functions for user sessions.  This class never gets instantiated.
  */

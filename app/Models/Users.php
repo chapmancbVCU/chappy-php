@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 use Core\{Cookie, Helper, Model, Session};
-use Core\Lib\Logger;
+use Core\Lib\Logging\Logger;
 use Core\Validators\{
     EmailValidator,
     LowerCharValidator,

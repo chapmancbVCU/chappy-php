@@ -1,5 +1,5 @@
 <?php
-namespace Core\Lib;
+namespace Core\Lib\Logging;
 use Core\Helper;
 /**
  * Supports the ability to produce logging.

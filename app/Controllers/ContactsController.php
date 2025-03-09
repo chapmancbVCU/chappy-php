@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 use Core\{Controller, Helper, Session, Router};
-use Core\Lib\Pagination;
+use Core\Lib\Pagination\Pagination;
 use App\Models\{Contacts, Users};
 /**
  * Implements support for our Contacts Controller.  It contains actions for 

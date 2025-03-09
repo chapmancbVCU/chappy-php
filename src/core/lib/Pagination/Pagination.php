@@ -1,5 +1,5 @@
 <?php
-namespace Core\Lib;
+namespace Core\Lib\Pagination;
 
 /**
  * Class that supports pagination for views.

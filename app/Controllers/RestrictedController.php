@@ -1,7 +1,7 @@
 <?php 
 namespace App\Controllers;
 use Core\Controller;
-use Core\Lib\Logger;
+use Core\Lib\Logging\Logger;
 /**
  * Implements support for the Restricted controller.  Interactions that the 
  * user performs that are restricted will result in a relevant view being 

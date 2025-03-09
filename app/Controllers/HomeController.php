@@ -14,7 +14,6 @@ class HomeController extends Controller {
      * @return void
      */
     public function indexAction(): void {
-        Helper::cl("Hello", ["key" => "value"], 42);
         $this->view->render('home/index');
     }
 

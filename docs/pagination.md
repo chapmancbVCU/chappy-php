@@ -28,7 +28,7 @@ The following are instructions for setting up Pagination within your controller.
 #### A. Import Pagination Class <a id="import-class">
 
 ```php
-use Core\Lib\Pagination;
+use Core\Lib\Pagination\Pagination;
 ```
 <br>
 

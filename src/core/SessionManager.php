@@ -1,7 +1,7 @@
 <?php
 namespace Core;
 
-use Core\Lib\Logger;
+use Core\Lib\Logging\Logger;
 use App\Models\Users;
 use Core\Cookie;
 use Core\Session;

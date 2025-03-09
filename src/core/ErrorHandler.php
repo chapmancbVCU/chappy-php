@@ -2,7 +2,7 @@
 namespace Core;
 
 use Whoops\Run;
-use Core\Lib\Logger;
+use Core\Lib\Logging\Logger;
 use Whoops\Handler\PrettyPageHandler;
 
 /**

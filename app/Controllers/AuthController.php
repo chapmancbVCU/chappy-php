@@ -1,6 +1,6 @@
 <?php
 namespace App\Controllers;
-use Core\Lib\Logger;
+use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\UploadProfileImage;
 use App\Models\{Login, ProfileImages, Users};
 use Core\{Controller, Helper, Router, Session};

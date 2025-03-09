@@ -1,4 +1,4 @@
-<?php use Core\Helper; ?>
+<?php use Core\Lib\Utilities\DateTime; ?>
 
 <?php $this->setSiteTitle($this->user->username . " Details"); ?>
 <?php $this->start('body'); ?>

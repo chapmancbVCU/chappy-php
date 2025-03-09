@@ -1,7 +1,7 @@
 <?php
 namespace Core;
 use Exception;
-use Core\Lib\Logger;
+use Core\Lib\Logging\Logger;
 use Core\Session;
 use App\Models\Users;
 

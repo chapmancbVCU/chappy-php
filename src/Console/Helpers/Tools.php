@@ -1,7 +1,7 @@
 <?php
 namespace Console\Helpers;
 
-use Core\Lib\Logger;
+use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 
 /**

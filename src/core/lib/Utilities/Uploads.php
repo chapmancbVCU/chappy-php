@@ -2,7 +2,7 @@
 namespace Core\Lib\Utilities;
 use Core\Model;
 use Core\Helper;
-use Core\Lib\Logger;
+use Core\Lib\Logging\Logger;
 /**
  * Provides support for file uploads.
  */

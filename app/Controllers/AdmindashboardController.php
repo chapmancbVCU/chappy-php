@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 use Core\Helper;
-use Core\Lib\Pagination;
+use Core\Lib\Pagination\Pagination;
 use Core\{Controller, Router, Session};
 use App\Models\{ACL, ProfileImages, Users};
 

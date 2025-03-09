@@ -2,7 +2,7 @@
 namespace Core;
 use \Exception;
 use Core\{Helper, Session};
-use Core\Lib\Logger;
+use Core\Lib\Logging\Logger;
 /**
  * Contains functions for building form elements of various types.
  */

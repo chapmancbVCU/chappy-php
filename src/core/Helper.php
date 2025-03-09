@@ -1,6 +1,5 @@
 <?php
 namespace Core;
-use Carbon\Carbon;
 use App\Models\{ProfileImages, Users};
 use Symfony\Component\VarDumper\VarDumper;
 
@@ -29,20 +28,20 @@ class Helper {
       }
       if(is_array($val)): ?>
         <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <?=$key?>
-        </a>
-        <ul class="dropdown-menu <?=$dropdownClass?>">
-            <?php foreach ($val as $k => $v): 
-                $active = ($v == $currentPage) ? 'active' : ''; ?>
-                <?php if ($k == 'separator'): ?>
-                    <li><hr class="dropdown-divider"></li>
-                <?php else: ?>
-                    <li><a class="dropdown-item <?=$active?>" href="<?=$v?>"><?=$k?></a></li>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </ul>
-    </li>
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              <?=$key?>
+          </a>
+          <ul class="dropdown-menu <?=$dropdownClass?>">
+              <?php foreach ($val as $k => $v): 
+                  $active = ($v == $currentPage) ? 'active' : ''; ?>
+                  <?php if ($k == 'separator'): ?>
+                      <li><hr class="dropdown-divider"></li>
+                  <?php else: ?>
+                      <li><a class="dropdown-item <?=$active?>" href="<?=$v?>"><?=$k?></a></li>
+                  <?php endif; ?>
+              <?php endforeach; ?>
+          </ul>
+        </li>
       <?php else:
         $active = ($val == $currentPage) ? 'active' : ''; ?>
         <li class="nav-item">
@@ -105,15 +104,7 @@ class Helper {
     }
   }
 
-  /**
-   * Returns string in Y-m-d H:i:s using correct timezone.
-   *
-   * @param string $time String in format Y-m-d H:i:s using UTC.
-   * @return void
-   */
-  public static function formatTime(string $time): string { 
-    return Carbon::parse($time, 'UTC')->timezone(TIME_ZONE)->format('Y-m-d H:i:s');  
-  }
+  
 
   /**
    * Gets the properties of the given object
@@ -138,27 +129,5 @@ class Helper {
     if($user) {
       return ProfileImages::findCurrentProfileImage($user->id);
     }
-  }
-
-  /**
-   * Accepts UTC time in format Y-m-d H:i:s and returns a string describing  
-   * how much time has elapsed.
-   *
-   * @param string $time String in format Y-m-d H:i:s using UTC
-   * @return void
-   */
-  public static function timeAgo(string $time): string
-  {
-    return Carbon::parse(new \DateTime($time, new \DateTimeZone('UTC')))->diffForHumans();
-  }
-
-  /**
-   * Generates a timestamp.
-   *
-   * @return string A timestamp in the format Y-m-d H:i:s UTC time.
-   */
-  public static function timeStamps() {
-    $dt = new \DateTime("now", new \DateTimeZone("UTC"));
-    return $dt->format('Y-m-d H:i:s');
   }
 }

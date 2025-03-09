@@ -3,7 +3,7 @@
  * Application execution begins here.
  */
 use Core\Router;
-use Core\Lib\Logger;
+use Core\Lib\Logging\Logger;
 use Core\SessionManager;
 use Core\ErrorHandler;
 

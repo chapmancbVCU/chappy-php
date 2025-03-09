@@ -1,7 +1,8 @@
 <?php
 namespace Core;
 use Core\Helper;
-use Core\Lib\Logger;
+use Core\Lib\Logging\Logger;
+use Core\Lib\Utilities\DateTime;
 
 /**
  * Parent class for our models.  Takes functions from DB wrapper and extract 
@@ -426,7 +427,7 @@ class Model {
      * @return void
      */
     public function timeStamps() {
-        $now = Helper::timeStamps();
+        $now = DateTime::timeStamps();
         $this->updated_at = $now;
         if($this->isNew()) {
             $this->created_at = $now;
