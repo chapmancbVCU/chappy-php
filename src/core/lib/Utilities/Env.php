@@ -8,8 +8,7 @@ namespace Core\Lib\Utilities;
  *
  * @package Core\Lib\Utilities
  */
-class Env
-{
+class Env{
     /**
      * @var array Holds the loaded environment variables.
      */
@@ -25,8 +24,7 @@ class Env
      * @param string $file Path to the `.env` file.
      * @return void
      */
-    public static function load($file)
-    {
+    public static function load($file){
         if (!file_exists($file)) {
             return;
         }
@@ -80,8 +78,7 @@ class Env
      * @param mixed $default The default value to return if the key is not found.
      * @return mixed The value of the environment variable or the default value.
      */
-    public static function get($key, $default = null)
-    {
+    public static function get($key, $default = null) {
         return static::$variables[$key] ?? $default;
     }
 }

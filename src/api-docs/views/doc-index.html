@@ -185,7 +185,8 @@ fails the user is routed to a view stating access is restricted.</p></dd><dt><a 
 <abbr title="Core\Lib\Database\Schema">Schema</abbr>::create</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Schema.html"><abbr title="Core\Lib\Database\Schema">Schema</abbr></a></em></dt>
                     <dd><p>Create a new table.</p></dd><dt><a href="Core/Lib/Pagination/Pagination.html#method_currentPage">
 <abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr>::currentPage</a>() &mdash; <em>Method in class <a href="Core/Lib/Pagination/Pagination.html"><abbr title="Core\Lib\Pagination\Pagination">Pagination</abbr></a></em></dt>
-                    <dd><p>Retrieves current page from GET request.</p></dd><dt><a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
+                    <dd><p>Retrieves current page from GET request.</p></dd><dt><a href="Core/Lib/Utilities/Config.html"><abbr title="Core\Lib\Utilities\Config">Config</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Utilities.html">Core\Lib\Utilities</a></em></dt>
+                    <dd><p>Manages the usage of configuration files.</p></dd><dt><a href="Core/Validators/CustomValidator.html"><abbr title="Core\Validators\CustomValidator">CustomValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
                     <dd><p>Abstract parent class for our child validation child classes.  Each child
 class must implement the runValidation() function.</p></dd><dt><a href="Core/View.html#method_component">
 <abbr title="Core\View">View</abbr>::component</a>() &mdash; <em>Method in class <a href="Core/View.html"><abbr title="Core\View">View</abbr></a></em></dt>
@@ -267,7 +268,7 @@ variable.</p></dd><dt><a href="Core/DB.html#method_error">
                     <dd><p>Renders an error message for a particular form field.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_enum">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::enum</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Define an enum column (MySQL only).</p></dd><dt><a href="Core/Lib/Utilities/Env.html"><abbr title="Core\Lib\Utilities\Env">Env</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Utilities.html">Core\Lib\Utilities</a></em></dt>
-                    <dd><p>Supports ability to use environment variables.</p></dd><dt><a href="Core/Lib/Utilities/Uploads.html#method_errorReporting">
+                    <dd><p>Class Env</p></dd><dt><a href="Core/Lib/Utilities/Uploads.html#method_errorReporting">
 <abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr>::errorReporting</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Uploads.html"><abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a></em></dt>
                     <dd><p>Processes list of errors associated with uploads and makes them
 presentable to user during validation.</p></dd><dt><a href="Core/Session.html#method_exists">
@@ -336,9 +337,11 @@ class because we can't use $this.</p></dd><dt><a href="Core/DB.html#method_getPD
 <abbr title="Core\Input">Input</abbr>::get</a>() &mdash; <em>Method in class <a href="Core/Input.html"><abbr title="Core\Input">Input</abbr></a></em></dt>
                     <dd><p>Supports operations related to handling POST and GET requests.</p></dd><dt><a href="Core/Input.html#method_getRequestMethod">
 <abbr title="Core\Input">Input</abbr>::getRequestMethod</a>() &mdash; <em>Method in class <a href="Core/Input.html"><abbr title="Core\Input">Input</abbr></a></em></dt>
-                    <dd><p>Returns the request element within the $_SERVER superglobal array.</p></dd><dt><a href="Core/Lib/Utilities/Env.html#method_get">
+                    <dd><p>Returns the request element within the $_SERVER superglobal array.</p></dd><dt><a href="Core/Lib/Utilities/Config.html#method_get">
+<abbr title="Core\Lib\Utilities\Config">Config</abbr>::get</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Config.html"><abbr title="Core\Lib\Utilities\Config">Config</abbr></a></em></dt>
+                    <dd><p>Get a configuration value.</p></dd><dt><a href="Core/Lib/Utilities/Env.html#method_get">
 <abbr title="Core\Lib\Utilities\Env">Env</abbr>::get</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Env.html"><abbr title="Core\Lib\Utilities\Env">Env</abbr></a></em></dt>
-                    <dd><p>Get an environment variable with an optional default value</p></dd><dt><a href="Core/Lib/Utilities/Uploads.html#method_getFiles">
+                    <dd><p>Retrieves an environment variable.</p></dd><dt><a href="Core/Lib/Utilities/Uploads.html#method_getFiles">
 <abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr>::getFiles</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Uploads.html"><abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a></em></dt>
                     <dd><p>Getter function for the $_files array.</p></dd><dt><a href="Core/Model.html#method_getColumns">
 <abbr title="Core\Model">Model</abbr>::getColumns</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
@@ -412,9 +415,11 @@ status is inactive.</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#p
                     <dd><p>The primary key ID of the last insert operation.</p></dd><dt><a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Logging.html">Core\Lib\Logging</a></em></dt>
                     <dd><p>Supports the ability to produce logging.</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_log">
 <abbr title="Core\Lib\Logging\Logger">Logger</abbr>::log</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
-                    <dd><p>Performs operations for adding content to log files.</p></dd><dt><a href="Core/Lib/Utilities/Env.html#method_load">
+                    <dd><p>Performs operations for adding content to log files.</p></dd><dt><a href="Core/Lib/Utilities/Config.html#method_load">
+<abbr title="Core\Lib\Utilities\Config">Config</abbr>::load</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Config.html"><abbr title="Core\Lib\Utilities\Config">Config</abbr></a></em></dt>
+                    <dd><p>Load all config files from a directory.</p></dd><dt><a href="Core/Lib/Utilities/Env.html#method_load">
 <abbr title="Core\Lib\Utilities\Env">Env</abbr>::load</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Env.html"><abbr title="Core\Lib\Utilities\Env">Env</abbr></a></em></dt>
-                    <dd><p>Load .env file into memory (only once)</p></dd><dt><a href="Core/Validators/LowerCharValidator.html"><abbr title="Core\Validators\LowerCharValidator">LowerCharValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
+                    <dd><p>Loads environment variables from a <code>.env</code> file.</p></dd><dt><a href="Core/Validators/LowerCharValidator.html"><abbr title="Core\Validators\LowerCharValidator">LowerCharValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
                     <dd><p>Child class class that supports ability to check if field contains a
 lower case character in the field.</p></dd>        </dl><h2 id="letterM">M</h2>
         <dl id="indexM"><dt><a href="Console/Commands/MakeAclCommand.html"><abbr title="Console\Commands\MakeAclCommand">MakeAclCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
@@ -650,7 +655,9 @@ cookie to exist.</p></dd><dt><a href="Core/FormHelper.html#method_sanitize">
                     <dd><p>Define a string column.</p></dd><dt><a href="Core/Lib/Database/Schema.html"><abbr title="Core\Lib\Database\Schema">Schema</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Database.html">Core\Lib\Database</a></em></dt>
                     <dd><p>The migration API that delegates table creation and modifications to the
 Blueprint class.</p></dd><dt><a href="Core/Lib/Database/Seeder.html"><abbr title="Core\Lib\Database\Seeder">Seeder</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Database.html">Core\Lib\Database</a></em></dt>
-                    <dd><p>Abstract class for seeders.</p></dd><dt><a href="Core/Model.html#method_save">
+                    <dd><p>Abstract class for seeders.</p></dd><dt><a href="Core/Lib/Utilities/Config.html#method_set">
+<abbr title="Core\Lib\Utilities\Config">Config</abbr>::set</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Config.html"><abbr title="Core\Lib\Utilities\Config">Config</abbr></a></em></dt>
+                    <dd><p>Set a configuration value.</p></dd><dt><a href="Core/Model.html#method_save">
 <abbr title="Core\Model">Model</abbr>::save</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
                     <dd><p>Wrapper for update and insert functions.  A failed form validation will
 cause this function to return false.</p></dd><dt><a href="Core/Session.html"><abbr title="Core\Session">Session</abbr></a> &mdash; <em>Class in namespace <a href="Core.html">Core</a></em></dt>
