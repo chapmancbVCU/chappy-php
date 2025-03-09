@@ -244,10 +244,10 @@ class Users extends Model {
      * and session messages are assigned.
      */
     public static function loginAttempts($user, $loginModel) {
-        if($user->login_attempts >= MAX_LOGIN_ATTEMPTS) {
+        if($user->login_attempts >= Env::get('MAX_LOGIN_ATTEMPTS', 5)) {
             $user->inactive = 1; 
         }
-        if($user->login_attempts < MAX_LOGIN_ATTEMPTS) {
+        if($user->login_attempts < Env::get('MAX_LOGIN_ATTEMPTS', 5)) {
             $loginModel->addErrorMessage('username', 'There is an error with your username or password.');
         } else {
             Session::addMessage('danger', 'Your account has been locked due to too many failed login attempts.');

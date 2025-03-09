@@ -31,7 +31,7 @@ class DateTime {
      * @return string The formatted time.
      */
     public static function formatTime(string $time, string $format = self::FORMAT_12_HOUR, string $locale = 'en', string $timezone = 'UTC'): string {
-        $carbon = Carbon::parse($time, $timezone)->setTimezone(TIME_ZONE);
+        $carbon = Carbon::parse($time, $timezone)->setTimezone(Env::get('TIME_ZONE'));
     
         // Temporarily set the locale for this instance only
         return $carbon->locale($locale)->translatedFormat($format);
@@ -54,7 +54,7 @@ class DateTime {
      */
     public static function timeAgo(string $time, string $locale = 'en', string $timezone = 'UTC', bool $short = false): string {
         $carbon = Carbon::parse($time, $timezone)
-            ->setTimezone(TIME_ZONE)
+            ->setTimezone(Env::get('TIME_ZONE'))
             ->locale($locale); // Set locale per instance
     
         return $short 
