@@ -1,5 +1,6 @@
 <?php
 use Core\FormHelper;
+use Core\Lib\Utilities\Env;
 ?>
 <?php $this->setSiteTitle("Change Password for ".$this->user->username); ?>
 <?php $this->start('body'); ?>
@@ -16,7 +17,7 @@ use Core\FormHelper;
             <?= FormHelper::inputBlock('password', "Confirm Password", 'confirm', $this->confirm, ['class' => 'form-control input-sm'], ['class' => 'form-group mb-4']) ?>
             
             <div class="col-md-12 text-end">
-                <a href="<?=APP_DOMAIN?>profile" class="btn btn-default">Cancel</a>
+                <a href="<?=Env::get('APP_DOMAIN', '/')?>profile" class="btn btn-default">Cancel</a>
                 <?= FormHelper::submitTag('Update', ['class' => 'btn btn-primary'])  ?>
             </div>
         </form>

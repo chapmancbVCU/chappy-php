@@ -1,5 +1,7 @@
 <?php
 use Dotenv\Dotenv;
+use Core\Lib\Utilities\Env;
+use Core\Lib\Utilities\Config;
 
 // Load Composer dependencies
 require_once ROOT . DS . 'vendor' . DS . 'autoload.php';
@@ -10,7 +12,13 @@ $dotenv->load();
 
 // Load configuration and helper functions
 require_once ROOT . DS . 'src' . DS . 'scripts' . DS . 'helpers.php';
-loadConfig();
+// var_dump($_ENV);
+
+// Load environment variables from .env file
+Env::load(ROOT . '/.env');
+
+// Load configuration files from the `config/` directory
+Config::load(ROOT . '/config');
 
 // Start PHP session
 session_start();

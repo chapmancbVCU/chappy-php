@@ -1,5 +1,6 @@
 <?php
 namespace Core;
+use Core\Lib\Utilities\Env;
 use App\Models\{ProfileImages, Users};
 use Symfony\Component\VarDumper\VarDumper;
 
@@ -73,8 +74,8 @@ class Helper {
    */
   public static function currentPage(): string {
     $currentPage = $_SERVER['REQUEST_URI'];
-    if($currentPage == APP_DOMAIN || $currentPage == APP_DOMAIN.'home/index') {
-      $currentPage = APP_DOMAIN . 'home';
+    if($currentPage == Env::get('APP_DOMAIN', '/') || $currentPage == Env::get('APP_DOMAIN', '/').'home/index') {
+      $currentPage = Env::get('APP_DOMAIN', '/') . 'home';
     }
     return $currentPage;
   }

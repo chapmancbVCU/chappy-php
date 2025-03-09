@@ -80,7 +80,7 @@ public function addAction(): void {
     $this->view->contact = $contact;
     $this->view->displayErrors = $contact->getErrorMessages();
     // Set action for post.
-    $this->view->postAction = APP_DOMAIN . 'contacts' . DS . 'add';
+    $this->view->postAction = Env::get('APP_DOMAIN', '/') . 'contacts' . DS . 'add';
     $this->view->render('contacts/add');
 }
 ```
@@ -148,7 +148,7 @@ public function editAction($id) {
     }
     $this->view->displayErrors = $contact->getErrorMessages();
     $this->view->contact = $contact;
-    $this->view->postAction = APP_DOMAIN . 'contacts' . DS . 'edit' . DS . $contact->id;
+    $this->view->postAction = Env::get('APP_DOMAIN', '/') 'contacts' . DS . 'edit' . DS . $contact->id;
     $this->view->render('contacts/edit');
 }
 ```

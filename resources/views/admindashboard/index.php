@@ -1,5 +1,6 @@
 <?php 
 use Core\Lib\Utilities\DateTime;
+use Core\Lib\Utilities\Env;
 ?>
 <?php $this->setSiteTitle("Administration"); ?>
 <?php $this->start('body'); ?>
@@ -23,7 +24,7 @@ use Core\Lib\Utilities\DateTime;
                 <td><?= DateTime::timeAgo($user->created_at) ?></td>
                 <td><?= DateTime::timeAgo($user->updated_at) ?></td>
                 <td class="text-center">
-                    <a href="<?=APP_DOMAIN?>admindashboard/details/<?=$user->id?>" class="btn btn-info btn-sm w-100">
+                    <a href="<?=Env::get('APP_DOMAIN', '/')?>admindashboard/details/<?=$user->id?>" class="btn btn-info btn-sm w-100">
                         <i class="fa fa-user"></i> Details
                     </a>
                 </td>

@@ -1,6 +1,5 @@
-<?php 
-use Core\FormHelper;
-?>
+<?php use Core\FormHelper; ?>
+<?php use Core\Lib\Utilities\Env; ?>
 <form class="form mb-2" action=<?=$this->postAction?> method="post">
     <?= FormHelper::displayErrors($this->displayErrors) ?>
     <?= FormHelper::csrfInput() ?>
@@ -109,8 +108,8 @@ use Core\FormHelper;
     </div>
 
     <div class="col-md-12 text-end mt-3">
-        <a href="<?=APP_DOMAIN?>contacts" class="btn btn-default">Cancel</a>
+        <a href="<?=Env::get('APP_DOMAIN', '/')?>contacts" class="btn btn-default">Cancel</a>
         <?= FormHelper::submitTag('Save', ['class' => 'btn btn-primary']) ?>
     </div>
-    <script src="<?=APP_DOMAIN?>resources/js/frontEndPhoneNumberValidate.js"></script>
+    <script src="<?=Env::get('APP_DOMAIN', '/')?>resources/js/frontEndPhoneNumberValidate.js"></script>
 </form>

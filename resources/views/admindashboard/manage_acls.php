@@ -1,8 +1,9 @@
 <?php use Core\Lib\Utilities\DateTime; ?>
+<?php use Core\Lib\Utilities\Env; ?>
 <?php $this->setSiteTitle("Manage ACLs"); ?>
 <?php $this->start('body'); ?>
 <h1 class="text-center">Manage ACLs
-    <a href="<?=APP_DOMAIN?>admindashboard/addAcl/" class="btn btn-primary btn-sm ml-5">
+    <a href="<?=Env::get('APP_DOMAIN', '/')?>admindashboard/addAcl/" class="btn btn-primary btn-sm ml-5">
         <i class="fa fa-plus"></i> Add ACL
     </a>
 </h1>
@@ -21,10 +22,10 @@
                     <td class="text-center"><?= DateTime::timeAgo($acl->created_at) ?></td>
                     <td class="text-center"><?= DateTime::timeAgo($acl->updated_at) ?></td>
                     <td class="text-center">
-                        <a href="<?=APP_DOMAIN?>admindashboard/editAcl/<?=$acl->id?>" class="btn btn-info btn-sm">
+                        <a href="<?=Env::get('APP_DOMAIN', '/')?>admindashboard/editAcl/<?=$acl->id?>" class="btn btn-info btn-sm">
                             <i class="fa fa-edit"></i> Edit ACL
                         </a>
-                        <a href="<?=APP_DOMAIN?>admindashboard/deleteAcl/<?=$acl->id?>" class="btn btn-danger btn-sm" onclick="if(!confirm('Are you sure?')){return false;}">
+                        <a href="<?=Env::get('APP_DOMAIN', '/')?>admindashboard/deleteAcl/<?=$acl->id?>" class="btn btn-danger btn-sm" onclick="if(!confirm('Are you sure?')){return false;}">
                             <i class="fa fa-trash"></i> Delete
                         </a>
                     </td>

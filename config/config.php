@@ -1,28 +1,32 @@
 <?php
 /**
- * Configuration for mvc framework.
+ * Configuration for Chappy.php framework.
  */
 
-define('DEBUG', $_ENV['DEBUG']);
-define('APP_ENV', $_ENV['APP_ENV']);
-// this should be set to false for security reasons. If you need to run migrations from the browser you can set this to true, then run migrations, then set it back to false.
-define('RUN_MIGRATIONS_FROM_BROWSER', $_ENV['RUN_MIGRATIONS_FROM_BROWSER']);
+ return [
+    'debug' => $_ENV['DEBUG'] ?? false,
+    'app_env' => $_ENV['APP_ENV'] ?? 'production',
 
-define('DEFAULT_CONTROLLER', $_ENV['DEFAULT_CONTROLLER']);      // Default controller if there isn't one defined in the URL.
-define('DEFAULT_LAYOUT', $_ENV['DEFAULT_LAYOUT']);              // If no layout is set in the controller use this layout.
+    // This should be set to false for security reasons.
+    // If you need to run migrations from the browser, you can set this to true temporarily.
+    'run_migrations_from_browser' => $_ENV['RUN_MIGRATIONS_FROM_BROWSER'] ?? false,
 
-define('APP_DOMAIN', $_ENV['APP_DOMAIN']);                                // Set this to '/' for a live server.
-define('VERSION', $_ENV['VERSION']);
-define('SITE_TITLE', $_ENV['SITE_TITLE']);                      // This will be used if no site title is set.
-define('MENU_BRAND', $_ENV['MENU_BRAND']);                      // Branding for menu.
+    'default_controller' => $_ENV['DEFAULT_CONTROLLER'] ?? 'Home', // Default controller if not set in URL
+    'default_layout' => $_ENV['DEFAULT_LAYOUT'] ?? 'main', // Default layout if not set in controller
 
-define('ACCESS_RESTRICTED', $_ENV['ACCESS_RESTRICTED']);    //Controller name for the restricted redirect.
+    'app_domain' => $_ENV['APP_DOMAIN'] ?? '/', // Set this to '/' for a live server
+    'version' => $_ENV['VERSION'] ?? '1.0.0',
+    'site_title' => $_ENV['SITE_TITLE'] ?? 'My App', // Default site title if not set
+    'menu_brand' => $_ENV['MENU_BRAND'] ?? 'My Brand', // Branding for menu
 
-define('MAX_LOGIN_ATTEMPTS', $_ENV['MAX_LOGIN_ATTEMPTS']);
-define('S3_BUCKET', $_ENV['S3_BUCKET']);
+    'access_restricted' => $_ENV['ACCESS_RESTRICTED'] ?? 'Restricted', // Controller for restricted redirects
 
-define('TIME_ZONE', $_ENV['TIME_ZONE']);
+    'max_login_attempts' => is_numeric($_ENV['MAX_LOGIN_ATTEMPTS'] ?? null) ? (int) $_ENV['MAX_LOGIN_ATTEMPTS'] : 5,
+    's3_bucket' => $_ENV['S3_BUCKET'] ?? null,
 
-/* 
- *  ADD ADDITIONAL CONFIGURATION HERE.
- */
+    'time_zone' => $_ENV['TIME_ZONE'] ?? 'UTC',
+
+    /*
+     * ADD ADDITIONAL CONFIGURATION HERE.
+     */
+ ];

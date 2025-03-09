@@ -3,6 +3,8 @@
 /*
  * Console application execution begins here.
  */
+use Core\Lib\Utilities\Env;
+use Core\Lib\Utilities\Config;
 use Dotenv\Dotenv;
 use Symfony\Component\Console\Application;
 
@@ -16,7 +18,12 @@ $dotenv->load();
 
 // Load configuration and helper functions.
 require_once ROOT.DS.'src'.DS.'scripts'.DS.'helpers.php';
-loadConfig();
+
+// Load environment variables using framework's Env class
+Env::load(ROOT . DS . '.env');
+
+// Load configuration using Config class
+Config::load(ROOT . DS . 'config');
 
 // Initialize Symfony Console application
 $app = new Application();

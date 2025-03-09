@@ -1,10 +1,11 @@
+<?php use Core\Lib\Utilities\Env; ?>
 <?php $this->setSiteTitle("Profile Details for ".$this->user->username); ?>
 <?php $this->start('body'); ?>
 <h1 class="text-center">Profile Details for <?=$this->user->username?></h1>
 
 <div class="col align-items-center justify-content-center mx-auto my-3 w-50">
     <?php if($this->profileImages != null):?>
-        <img src="<?=APP_DOMAIN.$this->profileImages[0]->url?>"
+        <img src="<?=Env::get('APP_DOMAIN', '/').$this->profileImages[0]->url?>"
             class="img-thumbnail mx-auto my-5 d-block w-50 rounded border border-primary shadow-lg">
         </img>
     <?php endif; ?>
@@ -41,10 +42,10 @@
         </tbody>
     </table>
     <div class="mb-5 d-flex justify-content-around">
-        <a href="<?=APP_DOMAIN?>profile/edit/<?=$this->user->id?>" class="btn btn-info btn-sm mx-2 mb-3">
+        <a href="<?=Env::get('APP_DOMAIN', '/')?>profile/edit/<?=$this->user->id?>" class="btn btn-info btn-sm mx-2 mb-3">
             <i class="fa fa-edit"></i> Edit User Profile
         </a>
-        <a href="<?=APP_DOMAIN?>profile/updatePassword/<?=$this->user->id?>" class="btn btn-danger btn-sm mx-2 mb-3">
+        <a href="<?=Env::get('APP_DOMAIN', '/')?>profile/updatePassword/<?=$this->user->id?>" class="btn btn-danger btn-sm mx-2 mb-3">
             <i class="fa fa-key"></i> Update Password
         </a>
     </div>

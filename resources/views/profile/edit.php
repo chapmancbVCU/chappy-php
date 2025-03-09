@@ -1,13 +1,14 @@
 <?php
 use Core\FormHelper;
+use Core\Lib\Utilities\Env;
 ?>
 <?php $this->setSiteTitle("Edit Details for ".$this->user->username); ?>
 <?php $this->start('head') ?>
-    <link rel="stylesheet" href="<?=APP_DOMAIN?>resources/css/profileImage.css?v=<?=VERSION?>" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="<?=APP_DOMAIN?>resources/css/jquery-ui/jquery-ui.min.css">
-    <script src='<?=APP_DOMAIN?>vendor/tinymce/tinymce/tinymce.min.js'></script>
-    <script src='<?=APP_DOMAIN?>resources/js/profileDescriptionTinyMCE.js'></script>
-    <script type="text/javascript" src="<?=APP_DOMAIN?>resources/js/jquery-ui/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="<?=Env::get('APP_DOMAIN', '/')?>resources/css/profileImage.css?v=<?=Env::get('VERSION')?>" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?=Env::get('APP_DOMAIN', '/')?>resources/css/jquery-ui/jquery-ui.min.css">
+    <script src='<?=Env::get('APP_DOMAIN', '/')?>vendor/tinymce/tinymce/tinymce.min.js'></script>
+    <script src='<?=Env::get('APP_DOMAIN', '/')?>resources/js/profileDescriptionTinyMCE.js'></script>
+    <script type="text/javascript" src="<?=Env::get('APP_DOMAIN', '/')?>resources/js/jquery-ui/jquery-ui.min.js"></script>
 <?php $this->end() ?>
 
 <?php $this->start('body'); ?>
@@ -24,7 +25,7 @@ use Core\FormHelper;
             <?= $this->component('manage_profile_images') ?>
 
             <div class="col-md-12 text-end">
-                <a href="<?=APP_DOMAIN?>profile" class="btn btn-default">Cancel</a>
+                <a href="<?=Env::get('APP_DOMAIN', '/')?>profile" class="btn btn-default">Cancel</a>
                 <?= FormHelper::submitTag('Update', ['class' => 'btn btn-primary'])  ?>
             </div>
         </form>

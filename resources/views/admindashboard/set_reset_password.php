@@ -1,6 +1,5 @@
-<?php
-use Core\FormHelper;
-?>
+<?php use Core\FormHelper; ?>
+<?php use Core\Lib\Utilities\Env; ?>
 <?php $this->setSiteTitle("Reset Password for ".$this->user->username); ?>
 <?php $this->start('body') ?>
 
@@ -13,7 +12,7 @@ use Core\FormHelper;
             <?= FormHelper::checkboxBlockLabelLeft('Select to confirm reset password', 'reset_password', "on", $this->user->isResetPWChecked(), [], ['class' => 'form-group mb-3'], $this->displayErrors); ?>
             
             <div class="col-md-12 text-end">
-                <a href="<?=APP_DOMAIN?>admindashboard/details/<?=$this->user->id?>" class="btn btn-default">Cancel</a>
+                <a href="<?=Env::get('APP_DOMAIN', '/')?>admindashboard/details/<?=$this->user->id?>" class="btn btn-default">Cancel</a>
                 <?= FormHelper::submitTag('Reset Password',['class'=>'btn btn-primary']) ?>
             </div>
         </form>

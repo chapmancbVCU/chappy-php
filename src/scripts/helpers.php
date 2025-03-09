@@ -1,14 +1,33 @@
 <?php
-if(!function_exists('loadConfig')) {
+
+use Core\Lib\Utilities\Env;
+use Core\Lib\Utilities\Config;
+
+if (!function_exists('config')) {
     /**
-     * Loads configuration files.
+     * Get a configuration value.
      *
-     * @return void
+     * @param string $key Dot notation key
+     * @param mixed $default Default value if key not found
+     * @return mixed
      */
-    function loadConfig() {
-        foreach (glob(ROOT . DS . 'config' . DS . '*.php') as $configFile) {
-            require_once $configFile;
-        }
+    function config($key, $default = null)
+    {
+        return Config::get($key, $default);
+    }
+}
+
+if (!function_exists('env')) {
+    /**
+     * Get an environment variable.
+     *
+     * @param string $key The key to retrieve
+     * @param mixed $default Default value if key is not found
+     * @return mixed
+     */
+    function env($key, $default = null)
+    {
+        return Env::get($key, $default);
     }
 }
 if(!function_exists('vite')){

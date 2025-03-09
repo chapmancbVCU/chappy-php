@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 use Core\Helper;
+use Core\Lib\Utilities\Env;
 use Core\Lib\Pagination\Pagination;
 use Core\{Controller, Router, Session};
 use App\Models\{ACL, ProfileImages, Users};
@@ -28,7 +29,7 @@ class AdmindashboardController extends Controller {
 
         $this->view->acl = $acl;
         $this->view->displayErrors = $acl->getErrorMessages();
-        $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'addAcl';
+        $this->view->postAction = Env::get('APP_DOMAIN', '/') . 'admindashboard' . DS . 'addAcl';
         $this->view->render('admindashboard/add_acl');
     }
 
@@ -139,7 +140,7 @@ class AdmindashboardController extends Controller {
     
         $this->view->displayErrors = $acl->getErrorMessages();
         $this->view->acl = $acl;
-        $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'editAcl' . DS . $acl->id;
+        $this->view->postAction = Env::get('APP_DOMAIN', '/') . 'admindashboard' . DS . 'editAcl' . DS . $acl->id;
         $this->view->render('admindashboard/edit_acl');
     }
     
@@ -192,7 +193,7 @@ class AdmindashboardController extends Controller {
     
         $this->view->profileImages = $profileImages;
         $this->view->displayErrors = $user->getErrorMessages();
-        $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'edit' . DS . $user->id;
+        $this->view->postAction = Env::get('APP_DOMAIN', '/') . 'admindashboard' . DS . 'edit' . DS . $user->id;
     
         $this->view->render('admindashboard/edit');
     }
@@ -271,7 +272,7 @@ class AdmindashboardController extends Controller {
 
         $this->view->user = $user;
         $this->view->displayErrors = $user->getErrorMessages();
-        $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'setResetPassword' . DS . $user->id;
+        $this->view->postAction = Env::get('APP_DOMAIN', '/') . 'admindashboard' . DS . 'setResetPassword' . DS . $user->id;
         $this->view->render('admindashboard/set_reset_password');
     }
 
@@ -297,7 +298,7 @@ class AdmindashboardController extends Controller {
 
         $this->view->user = $user;
         $this->view->displayErrors = $user->getErrorMessages();
-        $this->view->postAction = APP_DOMAIN . 'admindashboard' . DS . 'setStatus' . DS . $user->id;
+        $this->view->postAction = Env::get('APP_DOMAIN', '/') . 'admindashboard' . DS . 'setStatus' . DS . $user->id;
         $this->view->render('admindashboard/set_account_status');
     }
 }

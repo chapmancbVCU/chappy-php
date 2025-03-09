@@ -1,5 +1,11 @@
 <?php
 
-define('CURRENT_USER_SESSION_NAME', $_ENV['CURRENT_USER_SESSION_NAME']);   // Session name for logged in user;
-define('REMEMBER_ME_COOKIE_NAME', $_ENV['REMEMBER_ME_COOKIE_NAME']);       // Cookie name for logged in user remember me
-define('REMEMBER_ME_COOKIE_EXPIRY', $_ENV['REMEMBER_ME_COOKIE_EXPIRY']);   // Expire after 30 days, value in seconds
+/**
+ * Session and Cookie Configuration.
+ */
+
+ return [
+    'current_user_session_name' => $_ENV['CURRENT_USER_SESSION_NAME'] ?? 'user_session',
+    'remember_me_cookie_name' => $_ENV['REMEMBER_ME_COOKIE_NAME'] ?? 'remember_me',
+    'remember_me_cookie_expiry' => $_ENV['REMEMBER_ME_COOKIE_EXPIRY'] ?? 2592000, // Default: 30 days in seconds (30 * 24 * 60 * 60)
+];

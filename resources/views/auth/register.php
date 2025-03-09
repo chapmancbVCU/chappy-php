@@ -3,8 +3,8 @@ use Core\FormHelper;
 ?>
 <?php $this->setSiteTitle("Register Here!"); ?>
 <?php $this->start('head') ?>
-  <script src='<?=APP_DOMAIN?>vendor/tinymce/tinymce/tinymce.min.js'></script>
-  <script src='<?=APP_DOMAIN?>resources/js/profileDescriptionTinyMCE.js'></script>
+  <script src='Env::get('APP_DOMAIN', '/')?>vendor/tinymce/tinymce/tinymce.min.js'></script>
+  <script src='Env::get('APP_DOMAIN', '/')?>resources/js/profileDescriptionTinyMCE.js'></script>
 <?php $this->end() ?>
 
 <?php $this->start('body'); ?>

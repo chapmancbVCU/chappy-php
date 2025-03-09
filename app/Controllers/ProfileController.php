@@ -1,8 +1,9 @@
 <?php
 namespace App\Controllers;
-use Core\{Controller, Helper, Router, Session};
+use Core\Lib\Utilities\Env;
 use App\Models\{ProfileImages, Users};
 use Core\Lib\Utilities\UploadProfileImage;
+use Core\{Controller, Helper, Router, Session};
 
 /**
  * Supports ability to use user profile features and render relevant views.
@@ -131,7 +132,7 @@ class ProfileController extends Controller {
         $user->setChangePassword(false);
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->user = $user;
-        $this->view->postAction = APP_DOMAIN . 'profile' . DS . 'update_password' . DS . $user->id;
+        $this->view->postAction = Env::get('APP_DOMAIN', '/') . 'profile' . DS . 'update_password' . DS . $user->id;
         $this->view->render('profile/update_password');
     }
 }

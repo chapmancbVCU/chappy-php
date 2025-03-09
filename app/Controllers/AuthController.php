@@ -4,7 +4,7 @@ use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\UploadProfileImage;
 use App\Models\{Login, ProfileImages, Users};
 use Core\{Controller, Helper, Router, Session};
-
+use Core\Lib\Utilities\Env;
 /**
  * Implements support for our Auth controller.  Functions found in this 
  * class will support tasks related to the user registration and 
@@ -146,7 +146,7 @@ class AuthController extends Controller {
         $user->setChangePassword(false);
         $this->view->displayErrors = $user->getErrorMessages();
         $this->view->user = $user;
-        $this->view->postAction = APP_DOMAIN . 'auth' . DS . 'reset_password' . DS . $user->id;
+        $this->view->postAction = Env::get('APP_DOMAIN', '/') . 'auth' . DS . 'reset_password' . DS . $user->id;
         $this->view->render('auth/reset_password');
     }
 }

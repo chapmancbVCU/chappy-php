@@ -3,6 +3,7 @@ namespace App\Controllers;
 use Core\{Controller, Helper, Session, Router};
 use Core\Lib\Pagination\Pagination;
 use App\Models\{Contacts, Users};
+use Core\Lib\Utilities\Env;
 /**
  * Implements support for our Contacts Controller.  It contains actions for 
  * handling user interactions that will result in CRUD operations against the 
@@ -31,7 +32,7 @@ class ContactsController extends Controller {
         $this->view->contact = $contact;
         $this->view->displayErrors = $contact->getErrorMessages();
         // Set action for post.
-        $this->view->postAction = APP_DOMAIN . 'contacts' . DS . 'add';
+        $this->view->postAction = Env::get('APP_DOMAIN', '/') . 'contacts' . DS . 'add';
         $this->view->render('contacts/add');
     }
 
@@ -93,7 +94,7 @@ class ContactsController extends Controller {
         }
         $this->view->displayErrors = $contact->getErrorMessages();
         $this->view->contact = $contact;
-        $this->view->postAction = APP_DOMAIN . 'contacts' . DS . 'edit' . DS . $contact->id;
+        $this->view->postAction = Env::get('APP_DOMAIN', '/') . 'contacts' . DS . 'edit' . DS . $contact->id;
         $this->view->render('contacts/edit');
     }
 
