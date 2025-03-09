@@ -10,7 +10,7 @@ use Core\Lib\Utilities\Env;
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title><?=$this->siteTitle()?></title>
-    <link rel="icon" href="<?=APP_DOMAIN?>public/noun-mvc-5340614.png">
+    <link rel="icon" href="<?=Env::get('APP_DOMAIN', '/')?>public/noun-mvc-5340614.png">
     <?php if (Env::get('APP_ENV', 'production') === 'local'): ?>
         <script type="module" src="http://localhost:5173/@vite/client"></script>
         <script type="module" src="<?= vite('resources/js/app.js') ?>"></script>
@@ -19,13 +19,13 @@ use Core\Lib\Utilities\Env;
       <link rel="stylesheet" href="<?= vite('resources/css/app.css') ?>">
       <script type="module" src="<?= vite('resources/js/app.js') ?>"></script>
     <?php endif; ?>
-    <link rel="stylesheet" href="<?=APP_DOMAIN?>node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="<?=APP_DOMAIN?>resources/css/alerts/alertMsg.min.css?v=<?=VERSION?>" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="<?=APP_DOMAIN?>resources/css/font-awesome-4.7.0/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
-    <script src="<?=APP_DOMAIN?>resources/js/jQuery-3.7.1/jQuery-3.7.1.min.js"></script>
-    <script src="<?=APP_DOMAIN?>node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
-    <script src="<?=APP_DOMAIN?>node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="<?=APP_DOMAIN?>resources/js/alerts/alertMsg.min.js?v=<?=VERSION?>"></script>
+    <link rel="stylesheet" href="<?=Env::get('APP_DOMAIN', '/')?>node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?=Env::get('APP_DOMAIN', '/')?>resources/css/alerts/alertMsg.min.css?v=<?=Env::get('VERSION')?>" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?=Env::get('APP_DOMAIN', '/')?>resources/css/font-awesome-4.7.0/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+    <script src="<?=Env::get('APP_DOMAIN', '/')?>resources/js/jQuery-3.7.1/jQuery-3.7.1.min.js"></script>
+    <script src="<?=Env::get('APP_DOMAIN', '/')?>node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="<?=Env::get('APP_DOMAIN', '/')?>node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="<?=Env::get('APP_DOMAIN', '/')?>resources/js/alerts/alertMsg.min.js?v=<?=Env::get('VERSION')?>"></script>
     <?= $this->content('head'); ?>
 
   </head>
