@@ -10,48 +10,6 @@ use App\Models\Users;
  */
 class Router {
     /**
-     * Routing function for pages related to API.
-     *
-     * @param string $requestPath The path for API related pages.
-     * @return void
-     */
-    private static function docsRouting(string $requestPath): void {
-        $apiPath = ROOT . DS . 'src' . DS . 'api-docs' . DS . 'views';
-        $relativePath = str_replace('/api-docs/', '', $requestPath);
-        
-        // Ensure index.html is served when accessing /api-docs
-        if ($requestPath === '/api-docs' || $requestPath === '/api-docs/') {
-            $filePath = $apiPath . DS . 'index.html';
-        } else {
-            $filePath = $apiPath . DS . ltrim($relativePath, DS);
-        }
-    
-        // Serve static assets (CSS, JS, images)
-        if (preg_match('/\.(css|js|png|jpg|jpeg|gif|svg|ico)$/', $filePath)) {
-            if (file_exists($filePath)) {
-                header("Content-Type: " . mime_content_type($filePath));
-                readfile($filePath);
-            } else {
-                header("HTTP/1.0 404 Not Found");
-                echo "<h1>404 - File Not Found</h1>";
-            }
-            exit();
-        }
-    
-        // Serve HTML documentation pages
-        if (file_exists($filePath)) {
-            header("Content-Type: text/html");
-            readfile($filePath);
-        } else {
-            header("HTTP/1.0 404 Not Found");
-            echo "<h1>404 - Documentation Not Found</h1>";
-        }
-        exit();
-    }
-    
-    
-
-    /**
      * Gets link based on value from acl.
      * 
      * @param string $value item in acl that will be used to create a 
@@ -207,18 +165,8 @@ class Router {
         // Parse URLs
         $requestPath = array_key_exists('PATH_INFO', $_SERVER) ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
         $url = isset($requestPath) ? explode('/', ltrim($requestPath, '/')) : [];
-
-        // Ignore static asset requests (CSS, JS, fonts, images)
-        if (preg_match('/\.(css|js|png|jpg|jpeg|gif|svg|ico|woff2|woff|ttf|eot)$/', $requestPath)) {
-            return;
-        }
         
         try {
-            // Handle documentation routes
-            if (strpos($requestPath, '/api-docs') === 0) {
-                self::docsRouting($requestPath);
-            }
-            
             // Log requests sent to server
             $userId = Session::exists(CURRENT_USER_SESSION_NAME) ? Session::get(CURRENT_USER_SESSION_NAME) : 'Guest';
             Logger::log("Incoming Request: Method: ".$_SERVER['REQUEST_METHOD']." | URL: $requestPath | IP: ".$_SERVER['REMOTE_ADDR']." | User: $userId", 'info');
