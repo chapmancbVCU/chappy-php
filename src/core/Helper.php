@@ -61,10 +61,10 @@ class Helper {
    * our output.  Default value is true.
    * @return void
    */
-  public static function cl(mixed $output, bool $with_script_tags = true): void {
-    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
-    if($with_script_tags) $js_code = '<script>' . $js_code . '</script>';
-      echo $js_code;
+  public static function cl(mixed ...$outputs): void {
+    $json_outputs = array_map(fn($output) => json_encode($output, JSON_HEX_TAG), $outputs);
+    $js_code = 'console.log(' . implode(', ', $json_outputs) . ');';
+    echo '<script>' . $js_code . '</script>';
   }
 
   /**
@@ -99,7 +99,7 @@ class Helper {
    * @param mixed ...$var Contains the data we wan to print to the page.
    * @return void
    */
-  public static function dump(...$vars): void {
+  public static function dump(mixed ...$vars): void {
     foreach ($vars as $var) {
       VarDumper::dump($var);
     }
