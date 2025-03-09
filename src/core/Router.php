@@ -203,7 +203,11 @@ class Router {
      * global $_SERVER array.
      * @return void
      */
-    public static function route(array $url, string $requestPath): void {   
+    public static function route(): void {   
+        // Parse URLs
+        $requestPath = array_key_exists('PATH_INFO', $_SERVER) ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
+        $url = isset($requestPath) ? explode('/', ltrim($requestPath, '/')) : [];
+
         // Ignore static asset requests (CSS, JS, fonts, images)
         if (preg_match('/\.(css|js|png|jpg|jpeg|gif|svg|ico|woff2|woff|ttf|eot)$/', $requestPath)) {
             return;

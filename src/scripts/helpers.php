@@ -1,12 +1,15 @@
 <?php
 
-
+/**
+ * Loads configuration files.
+ *
+ * @return void
+ */
 function loadConfig() {
     foreach (glob(ROOT . DS . 'config' . DS . '*.php') as $configFile) {
         require_once $configFile;
     }
 }
-
 
 /**
  * Generate the URL for a Vite asset.

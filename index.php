@@ -63,13 +63,9 @@ $whoops = new Run();
 $whoops->pushHandler(new PrettyPageHandler());
 $whoops->register();
 
-// Create an array from our URL.
-$requestPath = array_key_exists('PATH_INFO', $_SERVER) ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
-$url = isset($requestPath) ? explode('/', ltrim($requestPath, '/')) : [];
-
 // Route the request
 try {
-    Router::route($url, $requestPath);
+    Router::route();
 } catch (Exception $e) {
     Logger::log("Unhandled Exception: " . $e->getMessage(), 'error');
     throw $e; // Let Whoops handle it
