@@ -4,7 +4,7 @@ namespace Core\Lib\Utilities;
 use Carbon\Carbon;
 
 /**
- * Support ability to manipulate how time is displayed.  Most functions are 
+ * Supports ability to manipulate how time is displayed.  Most functions are 
  * wrappers for those found in the Carbon class.
  */
 class DateTime {
