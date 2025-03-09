@@ -2,7 +2,7 @@
 namespace Core;
 use stdClass;
 use Exception;
-use Core\Helper;
+use Core\Lib\Utilities\Env;
 
 /**
  * Handles operations related to views and its content.
@@ -12,16 +12,16 @@ class View extends stdClass {
     protected $_content = [];
     protected $_currentBuffer;
     protected $_head;
-    protected $_layout = DEFAULT_LAYOUT;
+    protected $_layout;
     protected $_outputBuffer;
-    protected $_siteTitle = SITE_TITLE;
+    protected $_siteTitle;
     
     /**
      * Default constructor.
      */
-    public function __construct()
-    {
-        
+    public function __construct() {
+        $this->_layout = Env::get('DEFAULT_LAYOUT', 'default'); // Default layout: 'default'
+        $this->_siteTitle = Env::get('SITE_TITLE', 'My Website'); // Default site title
     }
     
     /**
