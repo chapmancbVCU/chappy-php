@@ -230,7 +230,8 @@ necessary, we can implement additional types of content.</p></dd><dt><a href="Da
                     <dd><p>Rollback the migration.</p></dd><dt><a href="Core/Lib/Database/Schema.html#method_dropIfExists">
 <abbr title="Core\Lib\Database\Schema">Schema</abbr>::dropIfExists</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Schema.html"><abbr title="Core\Lib\Database\Schema">Schema</abbr></a></em></dt>
                     <dd><p>Drop a table if it exists.</p></dd><dt><a href="Core/Lib/Utilities/DateTime.html"><abbr title="Core\Lib\Utilities\DateTime">DateTime</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Utilities.html">Core\Lib\Utilities</a></em></dt>
-                    <dd></dd><dt><a href="Core/Model.html#method_data">
+                    <dd><p>Supports ability to manipulate how time is displayed.  Most functions are
+wrappers for those found in the Carbon class.</p></dd><dt><a href="Core/Model.html#method_data">
 <abbr title="Core\Model">Model</abbr>::data</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
                     <dd><p>Grab object and if we just need data for smaller result set.</p></dd><dt><a href="Core/Model.html#method_delete">
 <abbr title="Core\Model">Model</abbr>::delete</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
@@ -265,7 +266,8 @@ variable.</p></dd><dt><a href="Core/DB.html#method_error">
 <abbr title="Core\FormHelper">FormHelper</abbr>::errorMsg</a>() &mdash; <em>Method in class <a href="Core/FormHelper.html"><abbr title="Core\FormHelper">FormHelper</abbr></a></em></dt>
                     <dd><p>Renders an error message for a particular form field.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method_enum">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::enum</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
-                    <dd><p>Define an enum column (MySQL only).</p></dd><dt><a href="Core/Lib/Utilities/Uploads.html#method_errorReporting">
+                    <dd><p>Define an enum column (MySQL only).</p></dd><dt><a href="Core/Lib/Utilities/Env.html"><abbr title="Core\Lib\Utilities\Env">Env</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Utilities.html">Core\Lib\Utilities</a></em></dt>
+                    <dd><p>Supports ability to use environment variables.</p></dd><dt><a href="Core/Lib/Utilities/Uploads.html#method_errorReporting">
 <abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr>::errorReporting</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Uploads.html"><abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a></em></dt>
                     <dd><p>Processes list of errors associated with uploads and makes them
 presentable to user during validation.</p></dd><dt><a href="Core/Session.html#method_exists">
@@ -296,7 +298,8 @@ for the _read function for this purpose.</p></dd><dt><a href="Core/DB.html#metho
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::foreign</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd><p>Define a foreign key (MySQL only).</p></dd><dt><a href="Core/Lib/Utilities/DateTime.html#method_formatTime">
 <abbr title="Core\Lib\Utilities\DateTime">DateTime</abbr>::formatTime</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/DateTime.html"><abbr title="Core\Lib\Utilities\DateTime">DateTime</abbr></a></em></dt>
-                    <dd><p>Returns string in Y-m-d H:i:s A using correct timezone.</p></dd><dt><a href="Core/Model.html#method_find">
+                    <dd><p>Returns string that describes time.  The results can be set using
+constants, locale, and timezone.</p></dd><dt><a href="Core/Model.html#method_find">
 <abbr title="Core\Model">Model</abbr>::find</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
                     <dd><p>Wrapper for the find function that is found in the DB class.</p></dd><dt><a href="Core/Model.html#method_findById">
 <abbr title="Core\Model">Model</abbr>::findById</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
@@ -333,7 +336,9 @@ class because we can't use $this.</p></dd><dt><a href="Core/DB.html#method_getPD
 <abbr title="Core\Input">Input</abbr>::get</a>() &mdash; <em>Method in class <a href="Core/Input.html"><abbr title="Core\Input">Input</abbr></a></em></dt>
                     <dd><p>Supports operations related to handling POST and GET requests.</p></dd><dt><a href="Core/Input.html#method_getRequestMethod">
 <abbr title="Core\Input">Input</abbr>::getRequestMethod</a>() &mdash; <em>Method in class <a href="Core/Input.html"><abbr title="Core\Input">Input</abbr></a></em></dt>
-                    <dd><p>Returns the request element within the $_SERVER superglobal array.</p></dd><dt><a href="Core/Lib/Utilities/Uploads.html#method_getFiles">
+                    <dd><p>Returns the request element within the $_SERVER superglobal array.</p></dd><dt><a href="Core/Lib/Utilities/Env.html#method_get">
+<abbr title="Core\Lib\Utilities\Env">Env</abbr>::get</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Env.html"><abbr title="Core\Lib\Utilities\Env">Env</abbr></a></em></dt>
+                    <dd><p>Get an environment variable with an optional default value</p></dd><dt><a href="Core/Lib/Utilities/Uploads.html#method_getFiles">
 <abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr>::getFiles</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Uploads.html"><abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a></em></dt>
                     <dd><p>Getter function for the $_files array.</p></dd><dt><a href="Core/Model.html#method_getColumns">
 <abbr title="Core\Model">Model</abbr>::getColumns</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
@@ -407,7 +412,9 @@ status is inactive.</p></dd><dt>$<a href="Core/Validators/CustomValidator.html#p
                     <dd><p>The primary key ID of the last insert operation.</p></dd><dt><a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a> &mdash; <em>Class in namespace <a href="Core/Lib/Logging.html">Core\Lib\Logging</a></em></dt>
                     <dd><p>Supports the ability to produce logging.</p></dd><dt><a href="Core/Lib/Logging/Logger.html#method_log">
 <abbr title="Core\Lib\Logging\Logger">Logger</abbr>::log</a>() &mdash; <em>Method in class <a href="Core/Lib/Logging/Logger.html"><abbr title="Core\Lib\Logging\Logger">Logger</abbr></a></em></dt>
-                    <dd><p>Performs operations for adding content to log files.</p></dd><dt><a href="Core/Validators/LowerCharValidator.html"><abbr title="Core\Validators\LowerCharValidator">LowerCharValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
+                    <dd><p>Performs operations for adding content to log files.</p></dd><dt><a href="Core/Lib/Utilities/Env.html#method_load">
+<abbr title="Core\Lib\Utilities\Env">Env</abbr>::load</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/Env.html"><abbr title="Core\Lib\Utilities\Env">Env</abbr></a></em></dt>
+                    <dd><p>Load .env file into memory (only once)</p></dd><dt><a href="Core/Validators/LowerCharValidator.html"><abbr title="Core\Validators\LowerCharValidator">LowerCharValidator</abbr></a> &mdash; <em>Class in namespace <a href="Core/Validators.html">Core\Validators</a></em></dt>
                     <dd><p>Child class class that supports ability to check if field contains a
 lower case character in the field.</p></dd>        </dl><h2 id="letterM">M</h2>
         <dl id="indexM"><dt><a href="Console/Commands/MakeAclCommand.html"><abbr title="Console\Commands\MakeAclCommand">MakeAclCommand</abbr></a> &mdash; <em>Class in namespace <a href="Console/Commands.html">Console\Commands</a></em></dt>
@@ -695,9 +702,15 @@ for setting  attribute tags in the form section.</p></dd><dt><a href="Core/Lib/D
                     <dd><p>Returns total number of pages we need to handle.</p></dd><dt><a href="Core/Lib/Utilities/DateTime.html#method_timeAgo">
 <abbr title="Core\Lib\Utilities\DateTime">DateTime</abbr>::timeAgo</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/DateTime.html"><abbr title="Core\Lib\Utilities\DateTime">DateTime</abbr></a></em></dt>
                     <dd><p>Accepts UTC time in format Y-m-d H:i:s and returns a string describing
-how much time has elapsed.</p></dd><dt><a href="Core/Lib/Utilities/DateTime.html#method_timeStamps">
+how much time has elapsed.</p></dd><dt><a href="Core/Lib/Utilities/DateTime.html#method_timeDifference">
+<abbr title="Core\Lib\Utilities\DateTime">DateTime</abbr>::timeDifference</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/DateTime.html"><abbr title="Core\Lib\Utilities\DateTime">DateTime</abbr></a></em></dt>
+                    <dd><p>Shows the difference between two times.  An example is shown below:
+DateTimeHelper::timeDifference('2025-03-09 08:00:00', '2025-03-09 15:30:45');
+Output: &quot;7 hours before&quot;</p></dd><dt><a href="Core/Lib/Utilities/DateTime.html#method_timeStamps">
 <abbr title="Core\Lib\Utilities\DateTime">DateTime</abbr>::timeStamps</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/DateTime.html"><abbr title="Core\Lib\Utilities\DateTime">DateTime</abbr></a></em></dt>
-                    <dd><p>Generates a timestamp.</p></dd><dt><a href="Core/Model.html#method_timeStamps">
+                    <dd><p>Generates a timestamp.</p></dd><dt><a href="Core/Lib/Utilities/DateTime.html#method_toISO8601">
+<abbr title="Core\Lib\Utilities\DateTime">DateTime</abbr>::toISO8601</a>() &mdash; <em>Method in class <a href="Core/Lib/Utilities/DateTime.html"><abbr title="Core\Lib\Utilities\DateTime">DateTime</abbr></a></em></dt>
+                    <dd><p>Converts to ISO 8610 format.</p></dd><dt><a href="Core/Model.html#method_timeStamps">
 <abbr title="Core\Model">Model</abbr>::timeStamps</a>() &mdash; <em>Method in class <a href="Core/Model.html"><abbr title="Core\Model">Model</abbr></a></em></dt>
                     <dd><p>Sets values for timestamp fields.</p></dd><dt><a href="Tests/Test.html"><abbr title="Tests\Test">Test</abbr></a> &mdash; <em>Class in namespace <a href="Tests.html">Tests</a></em></dt>
                     <dd><p>Undocumented class</p></dd><dt><a href="Tests/Test.html#method_testTest">
@@ -768,8 +781,7 @@ called from within this class.</p></dd><dt><a href="Core/View.html"><abbr title=
 <abbr title="Core\Application">Application</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Application.html"><abbr title="Core\Application">Application</abbr></a></em></dt>
                     <dd><p>Calls functions for reporting and unregister of globals.</p></dd><dt><a href="Core/Controller.html#method___construct">
 <abbr title="Core\Controller">Controller</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Controller.html"><abbr title="Core\Controller">Controller</abbr></a></em></dt>
-                    <dd><p>Constructor for the parent Controller class.  This constructor gets
-called when an instance of the child class is instantiated.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method___construct">
+                    <dd><p>Calls functions for reporting and unregister of globals.</p></dd><dt><a href="Core/Lib/Database/Blueprint.html#method___construct">
 <abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Blueprint.html"><abbr title="Core\Lib\Database\Blueprint">Blueprint</abbr></a></em></dt>
                     <dd></dd><dt><a href="Core/Lib/Database/Migration.html#method___construct">
 <abbr title="Core\Lib\Database\Migration">Migration</abbr>::__construct</a>() &mdash; <em>Method in class <a href="Core/Lib/Database/Migration.html"><abbr title="Core\Lib\Database\Migration">Migration</abbr></a></em></dt>

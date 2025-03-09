@@ -121,7 +121,7 @@
                     static&nbsp;void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_info">info</a>(string $message, string $level = &#039;info&#039;, string $background = BACKGROUND_COLOR, string $text = TEXT_COLOR)
+                    <a href="#method_info">info</a>(string $message, string $level = &#039;info&#039;, string|null $background = null, string|null $text = null)
         
                                             <p><p>Generates output messages for console commands.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -144,7 +144,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_border">
-        <div class="location">at line 16</div>
+        <div class="location">at line 17</div>
         <code>        static            string
     <strong>border</strong>()
         </code>
@@ -176,9 +176,9 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_info">
-        <div class="location">at line 35</div>
+        <div class="location">at line 36</div>
         <code>        static            void
-    <strong>info</strong>(string $message, string $level = &#039;info&#039;, string $background = BACKGROUND_COLOR, string $text = TEXT_COLOR)
+    <strong>info</strong>(string $message, string $level = &#039;info&#039;, string|null $background = null, string|null $text = null)
         </code>
     </h3>
     <div class="details">    
@@ -204,14 +204,14 @@
 levels are info, debug, warning, error, critical, alert, and emergency.</p></td>
             </tr>
                     <tr>
-                <td>string</td>
+                <td>string|null</td>
                 <td>$background</td>
                 <td><p>The background color.  This function
 supports black, red, green, yellow, blue, magenta, cyan, and
 light-grey</p></td>
             </tr>
                     <tr>
-                <td>string</td>
+                <td>string|null</td>
                 <td>$text</td>
                 <td><p>The color of the text.  This function supports
 black, white, dark-grey, red, green, brown, blue, magenta, cyan,
@@ -239,7 +239,7 @@ light-magenta.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_writeFile">
-        <div class="location">at line 71</div>
+        <div class="location">at line 75</div>
         <code>        static            int
     <strong>writeFile</strong>(string $path, string $content, string $name)
         </code>
