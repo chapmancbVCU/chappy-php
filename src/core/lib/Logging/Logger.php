@@ -1,6 +1,7 @@
 <?php
 namespace Core\Lib\Logging;
 use Core\Helper;
+use Core\Lib\Utilities\Env;
 /**
  * Supports the ability to produce logging.
  */
@@ -28,7 +29,7 @@ class Logger {
      * @return void
      */
     public static function log(string $message, string $level = 'info'): void {
-        if (!defined('DEBUG') || DEBUG !== "true") {
+        if (!Env::get('DEBUG', false)) {
             return; // Skip logging if DEBUG is disabled
         }
 

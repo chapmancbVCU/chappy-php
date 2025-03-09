@@ -1,6 +1,8 @@
 <?php
 namespace Core;
 
+use Core\Lib\Utilities\Env;
+
 /**
  * The Application class supports basic functional needs of the application.
  */
@@ -19,7 +21,8 @@ class Application {
      * @return void
      */
     private function _set_reporting(): void {
-        if(DEBUG == "true") {
+        $debug = Env::get('DEBUG', false);
+        if($debug) {
             // error_reporting(E_ALL);
             error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED);
             ini_set('display_errors', 1);
