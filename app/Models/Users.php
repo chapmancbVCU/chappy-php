@@ -223,7 +223,7 @@ class Users extends Model {
         if($rememberMe) {
             $hash = md5(uniqid() . rand(0, 100));
             $user_agent = Session::uagent_no_version();
-            Cookie::set(REMEMBER_ME_COOKIE_NAME, $hash, REMEMBER_ME_COOKIE_EXPIRY);
+            Cookie::set(Env::get('REMEMBER_ME_COOKIE_NAME'), $hash, REMEMBER_ME_COOKIE_EXPIRY);
             $fields = ['session'=>$hash, 'user_agent'=>$user_agent, 'user_id'=>$this->id];
             self::$_db->query("DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?", [$this->id, $user_agent]);
             $us = new UserSessions();
@@ -287,8 +287,8 @@ class Users extends Model {
             $userSession->delete();
         }
         Session::delete(Env::get('CURRENT_USER_SESSION_NAME'));
-        if(Cookie::exists(REMEMBER_ME_COOKIE_NAME)) {
-            Cookie::delete(REMEMBER_ME_COOKIE_NAME);
+        if(Cookie::exists(Env::get('REMEMBER_ME_COOKIE_NAME'))) {
+            Cookie::delete(Env::get('REMEMBER_ME_COOKIE_NAME'));
         }
         self::$currentLoggedInUser = null;
         Logger::log("User {$this->id} ({$this->username}) logged out.", 'info');

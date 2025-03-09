@@ -17,7 +17,7 @@ class SessionManager {
      * @return void
      */
     public static function initialize(): void {
-        if (!Session::exists(Env::get('CURRENT_USER_SESSION_NAME')) && Cookie::exists(REMEMBER_ME_COOKIE_NAME)) {
+        if (!Session::exists(Env::get('CURRENT_USER_SESSION_NAME')) && Cookie::exists(Env::get('REMEMBER_ME_COOKIE_NAME'))) {
             $user = Users::loginUserFromCookie();
             
             if ($user) {

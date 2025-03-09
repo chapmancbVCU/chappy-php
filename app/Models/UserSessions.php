@@ -1,5 +1,6 @@
 <?php
 namespace App\Models;
+use Core\Lib\Utilities\Env;
 use Core\{Cookie, Model, Session};
 
 /**
@@ -30,10 +31,10 @@ class UserSessions extends Model{
      */
     public static function getFromCookie() {
         $userSession = null;
-        if(Cookie::exists(REMEMBER_ME_COOKIE_NAME)) {
+        if(Cookie::exists(Env::get('REMEMBER_ME_COOKIE_NAME'))) {
             $userSession = self::findFirst([
               'conditions' => "user_agent = ? AND session = ?",
-              'bind' => [Session::uagent_no_version(), Cookie::get(REMEMBER_ME_COOKIE_NAME)]
+              'bind' => [Session::uagent_no_version(), Cookie::get(Env::get('REMEMBER_ME_COOKIE_NAME'))]
             ]);
         }
         return $userSession;
