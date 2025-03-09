@@ -1,6 +1,6 @@
 <?php 
 use Core\Session;
-use Core\FormHelper;
+use Core\Lib\Utilities\Env;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,7 @@ use Core\FormHelper;
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title><?=$this->siteTitle()?></title>
     <link rel="icon" href="<?=APP_DOMAIN?>public/noun-mvc-5340614.png">
-    <?php if ($_ENV['APP_ENV'] === 'local'): ?>
+    <?php if (Env::get('APP_ENV', 'production') === 'local'): ?>
         <script type="module" src="http://localhost:5173/@vite/client"></script>
         <script type="module" src="<?= vite('resources/js/app.js') ?>"></script>
     <?php else: ?>

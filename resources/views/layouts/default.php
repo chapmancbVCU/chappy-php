@@ -1,7 +1,6 @@
 <?php 
 use Core\Session;
 use Core\Lib\Utilities\Env;
-use Core\FormHelper;
 ?>
 <!DOCTYPE html>
 <html lang="en">
