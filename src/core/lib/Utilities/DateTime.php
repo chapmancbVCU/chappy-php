@@ -21,16 +21,17 @@ class DateTime {
     const FORMAT_SQL_DATETIME = 'Y-m-d H:i:s';
 
     /**
-     * Returns string in Y-m-d H:i:s A using correct timezone.
+     * Returns string that describes time.  The results can be set using 
+     * constants, locale, and timezone.
      *
      * @param string $time String in format Y-m-d H:i:s A using UTC.
      * @param string $format Set format with a default of FORMAT_12_HOUR.
      * @param string $locale Set locale with 'en' as the default value.
-     * @param string $fromTimeZone Override default timezone with 'UTC' as default value.
+     * @param string $timeZone Override default timezone with 'UTC' as default value.
      * @return string The formatted time.
      */
-    public static function formatTime(string $time, string $format = self::FORMAT_12_HOUR, string $locale = 'en', string $fromTimezone = 'UTC'): string {
-        $carbon = Carbon::parse($time, $fromTimezone)->setTimezone(TIME_ZONE);
+    public static function formatTime(string $time, string $format = self::FORMAT_12_HOUR, string $locale = 'en', string $timezone = 'UTC'): string {
+        $carbon = Carbon::parse($time, $timezone)->setTimezone(TIME_ZONE);
     
         // Temporarily set the locale for this instance only
         return $carbon->locale($locale)->translatedFormat($format);
@@ -41,18 +42,18 @@ class DateTime {
      * how much time has elapsed.
      * 
      * This function supports a short form with the following example:
-     * DateTime::timeAgo($user->updated_at, 'en', 'UTC', true)
+     * DateTime::timeAgo($user->updated_at, 'en', 'UTC', true);
      * 
      * This will show something like 21m.
      *
      * @param string $time String in format Y-m-d H:i:s using UTC.
      * @param string $locale Set locale with 'en' as the default value.
-     * @param string $fromTimeZone Override default timezone with 'UTC' as default value.
+     * @param string $timeZone Override default timezone with 'UTC' as default value.
      * @param bool $short Set to true to show short form time.
      * @return string The time represented using language describing time since last change.
      */
-    public static function timeAgo(string $time, string $locale = 'en', string $fromTimezone = 'UTC', bool $short = false): string {
-        $carbon = Carbon::parse($time, $fromTimezone)
+    public static function timeAgo(string $time, string $locale = 'en', string $timezone = 'UTC', bool $short = false): string {
+        $carbon = Carbon::parse($time, $timezone)
             ->setTimezone(TIME_ZONE)
             ->locale($locale); // Set locale per instance
     
@@ -63,7 +64,7 @@ class DateTime {
     
     /**
      * Shows the difference between two times.  An example is shown below:
-     * echo DateTimeHelper::timeDifference('2025-03-09 08:00:00', '2025-03-09 15:30:45');
+     * DateTimeHelper::timeDifference('2025-03-09 08:00:00', '2025-03-09 15:30:45');
      * Output: "7 hours before"
      *
      * @param string $startTime String in format Y-m-d H:i:s using UTC.
