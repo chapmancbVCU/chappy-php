@@ -54,6 +54,20 @@ class Helper {
   }
 
   /**
+   * Prints to console using JavaScript.
+   * 
+   * @param mixed $output The information we want to print to console.
+   * @param bool $with_script_tags - Determines if we will use script tabs in 
+   * our output.  Default value is true.
+   * @return void
+   */
+  public static function cl(mixed $output, bool $with_script_tags = true): void {
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
+    if($with_script_tags) $js_code = '<script>' . $js_code . '</script>';
+      echo $js_code;
+  }
+
+  /**
    * Determines current page based on REQUEST_URI.
    * 
    * @return string $currentPage  The current page.
@@ -64,6 +78,31 @@ class Helper {
       $currentPage = APP_DOMAIN . 'home';
     }
     return $currentPage;
+  }
+
+  /**
+   * Performs var_dump of parameter and kills the page.
+   * 
+   * @param mixed ...$var Contains the data we wan to print to the page.
+   * @return void
+   */
+  public static function dd(mixed ...$vars): void {
+    foreach ($vars as $var) {
+      VarDumper::dump($var);
+    }
+    die(1); // Terminate the script
+  }
+
+  /**
+   * Dumps content but continues execution.
+   *
+   * @param mixed ...$var Contains the data we wan to print to the page.
+   * @return void
+   */
+  public static function dump(...$vars): void {
+    foreach ($vars as $var) {
+      VarDumper::dump($var);
+    }
   }
 
   /**

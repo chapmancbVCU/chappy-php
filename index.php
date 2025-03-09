@@ -14,16 +14,15 @@ use Whoops\Handler\PrettyPageHandler;
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__));
 
+// Load environment variables
 require_once('vendor/autoload.php');
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 // Load configuration and helper functions.
-foreach (glob(ROOT . DS . 'config' . DS . '*.php') as $configFile) {
-    require_once $configFile;
-}
-
 require_once ROOT.DS.'src'.DS.'scripts'.DS.'helpers.php';
+loadConfig();
+
 session_start();
 
 // Global Exception Handler: Log all uncaught exceptions
