@@ -23,7 +23,7 @@ foreach (glob(ROOT . DS . 'config' . DS . '*.php') as $configFile) {
     require_once $configFile;
 }
 
-require_once __DIR__ . '/src/core/Lib/helpers.php';
+require_once ROOT.DS.'src'.DS.'scripts'.DS.'helpers.php';
 session_start();
 
 // Global Exception Handler: Log all uncaught exceptions
