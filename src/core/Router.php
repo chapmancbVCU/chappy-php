@@ -1,9 +1,10 @@
 <?php
 namespace Core;
 use Exception;
-use Core\Lib\Logging\Logger;
 use Core\Session;
 use App\Models\Users;
+use Core\Lib\Utilities\Env;
+use Core\Lib\Logging\Logger;
 
 /**
  * This class is responsible for routing between views.
@@ -172,7 +173,7 @@ class Router {
             Logger::log("Incoming Request: Method: ".$_SERVER['REQUEST_METHOD']." | URL: $requestPath | IP: ".$_SERVER['REMOTE_ADDR']." | User: $userId", 'info');
             
             // Extract from URL our controllers
-            $controller = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]).'Controller' : DEFAULT_CONTROLLER.'Controller';
+            $controller = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]).'Controller' : Env::get('DEFAULT_CONTROLLER', 'Home').'Controller';
             $controller_name = str_replace('Controller', '', $controller);
             array_shift($url);
     
