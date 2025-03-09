@@ -4,7 +4,7 @@
 1. [Overview](#overview)
 2. [filp/whoops](#whoops)
 3. [Log Files](#logs)
-4. [Helper Class Functions](#helpers)
+4. [Helper Functions](#helpers)
 <br>
 <br>
 
@@ -35,4 +35,8 @@ If the framework has issues writing to the logs files run the following command:
 sudo chown ${user}:${user} -R /storage/logs
 ```
 
-## 3. Helper Class Functions <a id="helpers"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 3. Helper Functions <a id="helpers"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+There are 3 functions in the Global Namespace that are used for debugging.
+1. cl - A wrapper for the JavaScript console.log function.
+2. dd - A wrapper for the VarDumper class' dump function that ends execution of the application where the function is called.
+3. dump - A wrapper for the VarDumper class' dump function that continues execution of the application after where the function is called.

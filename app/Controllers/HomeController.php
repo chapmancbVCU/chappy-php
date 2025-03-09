@@ -1,7 +1,6 @@
 <?php
 namespace App\Controllers;
 use Core\Controller;
-use Core\Helper;
 /**
  * Implements support for our Home controller.  Functions found in this class 
  * will support tasks related to the home page.
@@ -14,7 +13,6 @@ class HomeController extends Controller {
      * @return void
      */
     public function indexAction(): void {
-        dd("foo");
         $this->view->render('home/index');
     }
 
