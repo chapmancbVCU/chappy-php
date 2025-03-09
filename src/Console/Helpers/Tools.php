@@ -1,6 +1,7 @@
 <?php
 namespace Console\Helpers;
 
+use Core\Lib\Utilities\Env;
 use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
 
@@ -32,7 +33,10 @@ class Tools {
      * light-magenta.
      * @return void
      */
-    public static function info(string $message, string $level = 'info', string $background = BACKGROUND_COLOR, $text = TEXT_COLOR): void {
+    public static function info(string $message, string $level = 'info', ?string $background = null, ?string $text = null): void {
+        // Load default colors from .env if not provided
+        $background = $background ?? Env::get('BACKGROUND_COLOR', 'black'); // Default: black
+        $text = $text ?? Env::get('TEXT_COLOR', 'white'); // Default: white
         $backgroundColor = [
             'black' => '40', 'red' => '41', 'green' => '42', 'yellow' => '43',
             'blue' => '44', 'magenta' => '45', 'cyan' => '46', 'light-grey' => '47'
