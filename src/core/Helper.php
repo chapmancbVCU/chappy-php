@@ -56,13 +56,13 @@ class Helper {
   /**
    * Prints to console using JavaScript.
    * 
-   * @param mixed $output The information we want to print to console.
+   * @param mixed $vars The information we want to print to console.
    * @param bool $with_script_tags - Determines if we will use script tabs in 
    * our output.  Default value is true.
    * @return void
    */
-  public static function cl(mixed ...$outputs): void {
-    $json_outputs = array_map(fn($output) => json_encode($output, JSON_HEX_TAG), $outputs);
+  public static function cl(mixed ...$vars): void {
+    $json_outputs = array_map(fn($vars) => json_encode($vars, JSON_HEX_TAG), $vars);
     $js_code = 'console.log(' . implode(', ', $json_outputs) . ');';
     echo '<script>' . $js_code . '</script>';
   }
