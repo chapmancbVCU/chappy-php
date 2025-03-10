@@ -37,8 +37,22 @@ class Logger {
             self::init();
         }
 
+            // Get the caller's file and line number
+        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
+        $caller = $backtrace[1] ?? null; // Use index 1 to get the actual caller
+
+        $file = $caller['file'] ?? 'Unknown File';
+        $line = $caller['line'] ?? 'Unknown Line';
+
+        // Dynamically determine the base path
+        $basePath = defined('ROOT') ? ROOT : dirname(__DIR__, 3); 
+
+        // Trim base path from filename
+        $shortFile = str_replace($basePath, '', $file);
+        $shortFile = ltrim($shortFile, '/'); // Remove leading slash if present
+
         $date = date('Y-m-d H:i:s');
-        $logMessage = "[$date - GMT] [$level] $message" . PHP_EOL;
+        $logMessage = "[$date - GMT] [$level] [$shortFile:$line] $message" . PHP_EOL;
         $logDir = dirname(self::$logFile);
 
         // Debug: Check directory existence
