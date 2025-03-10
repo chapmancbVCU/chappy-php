@@ -16,6 +16,7 @@ use Core\Validators\{
 };
 use App\Models\UserSessions;
 use Core\Lib\Utilities\Env;
+use Core\Lib\Utilities\Arr;
 
 /**
  * Extends the Model class.  Supports functions for the Users model.
@@ -64,7 +65,7 @@ class Users extends Model {
         if (!is_array($acls)) {
             $acls = [];
         }
-        return array_map('strval', $acls);
+        return Arr::map($acls, 'strval');
     }
 
     /**

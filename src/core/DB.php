@@ -3,8 +3,9 @@ namespace Core;
 use \PDO;
 use Exception;
 use Core\Helper;
-use Core\Lib\Logging\Logger;
 use \PDOException;
+use Core\Lib\Utilities\Arr;
+use Core\Lib\Logging\Logger;
 /**
  * Support database operations.
  */
@@ -376,41 +377,41 @@ class DB {
         }
 
         // Columns
-        if(array_key_exists('columns',$params)){
+        if(Arr::exists($params, 'columns')) {
             $columns = $params['columns'];
         }
 
         // Joins and raw joins
-        if(array_key_exists('joins',$params)){
-            foreach($params['joins'] as $join){
+        if(Arr::exists($params, 'joins')) {
+            foreach($params['joins'] as $join) {
                 $joins .= $this->_buildJoin($join);
             }
             $joins .= " ";
         }
 
-        if(array_key_exists('joinsRaw', $params)) {
+        if(Arr::exists($params, 'joinsRaw')) {
             foreach($params['joinsRaw'] as $raw) {
                 $joins .= ' ' .$raw;
             }
         }
 
         // Bind
-        if(array_key_exists('bind', $params)) {
+        if(Arr::exists($params, 'bind')) {
             $bind = $params['bind'];
         }
 
         // Order
-        if(array_key_exists('order', $params)) {
+        if(Arr::exists($params, 'order', )) {
             $order = ' ORDER BY ' . $params['order'];
         }
 
         // Limit
-        if(array_key_exists('limit', $params)) {
+        if(Arr::exists($params, 'limit')) {
             $limit = ' LIMIT ' . $params['limit'];
         }
 
         // Offset
-        if(array_key_exists('offset', $params)) {
+        if(Arr::exists($params, 'offset')) {
             $offset = ' OFFSET ' . $params['offset'];
         }
 
