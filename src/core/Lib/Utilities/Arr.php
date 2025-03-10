@@ -226,7 +226,7 @@ class Arr
         }
 
         foreach (explode('.', $key) as $segment) {
-            if (!is_array($array) || !arr::exists($array, $segment)) {
+            if (!is_array($array) || !array_key_exists($segment, $array)) {
                 return false;
             }
             $array = $array[$segment];
@@ -257,7 +257,7 @@ class Arr
         $result = [];
 
         foreach ($array as $item) {
-            if (!is_array($item) || !Arr::exists($item, $key)) {
+            if (!is_array($item) || !array_key_exists($key, $item)) {
                 throw new \InvalidArgumentException("Each item must be an array and contain the key '$key'.");
             }
 
