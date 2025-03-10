@@ -26,11 +26,12 @@
 23. [prepend](#prepend)
 24. [pull](#pull)
 25. [random](#random)
-26. [set](#set)
-27. [shift](#shift)
-28. [shuffle](#shuffle)
-29. [wrap](#wrap)
-30. [where](#where)
+26. [search](#search)
+27. [set](#set)
+28. [shift](#shift)
+29. [shuffle](#shuffle)
+30. [wrap](#wrap)
+31. [where](#where)
 <br>
 <br>
 
@@ -280,6 +281,18 @@ $result = Arr::random($array);
 // e.g., 2
 ```
 <br>
+
+## 26. search <a id="search"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+Searches for a value in an array and returns the corresponding key.
+
+```php
+$array = ['apple', 'banana', 'cherry'];
+$key = Arr::search($array, 'banana');
+// 1
+
+$keyNotFound = Arr::search($array, 'grape');
+// false
+```
 
 ## 26. set <a id="set"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Sets a value within an array using dot notation.

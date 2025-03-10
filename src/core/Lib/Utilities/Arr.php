@@ -258,7 +258,7 @@ class Arr
     {
         return array_keys($array);
     }
-    
+
     /**
      * Reindex an array using a specified key.
      *
@@ -424,6 +424,19 @@ class Arr
         }
 
         return array_intersect_key($array, array_flip((array) array_rand($array, $number)));
+    }
+
+    /**
+     * Search for a value in an array and return the corresponding key.
+     *
+     * @param array $array The array to search in.
+     * @param mixed $value The value to search for.
+     * @param bool $strict Whether to perform a strict type comparison.
+     * @return string|int|false The key if found, false otherwise.
+     */
+    public static function search(array $array, mixed $value, bool $strict = false): string|int|false
+    {
+        return array_search($value, $array, $strict);
     }
 
     /**
