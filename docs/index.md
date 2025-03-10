@@ -21,7 +21,7 @@ Get to any resource within the Chappy.php Wiki from here.
 15. [User Profiles](user_profiles)
 16. [User Registration and Authentication](user_registration_and_authentication)
 17. [Utilities](utilities)
-    * A. [Env Class](#env)
+    * A. [Config and Env Classes](config-env)
     * B. [Time](time)
     * C. [Uploads](uploads)
 18. [Views Introduction](views_intro)
