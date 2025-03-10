@@ -2,6 +2,7 @@
 namespace Core\Validators;
 use \Exception;
 use Core\Helper;
+use Core\Lib\Utilities\Arr;
 /**
  * Abstract parent class for our child validation child classes.  Each child 
  * class must implement the runValidation() function.
@@ -32,10 +33,10 @@ abstract class CustomValidator {
 
         $this->_model = $model;
 
-        if(!array_key_exists('field',$params)){
+        if(!Arr::exists($params, 'field')) {
             throw new Exception("You must add a field to the params array.");
         } else {
-        if(is_array($params['field'])){
+        if(is_array($params['field'])) {
             $this->field = $params['field'][0];
             array_shift($params['field']);
             $this->additionalFieldData = $params['field'];
@@ -44,21 +45,21 @@ abstract class CustomValidator {
         }
         }
 
-        if(!property_exists($model, $this->field)){
+        if(!property_exists($model, $this->field)) {
             throw new Exception("The field must exist in the model");
         }
 
-        if(!array_key_exists('message',$params)){
+        if(!Arr::exists($params, 'message')) {
             throw new Exception("You must add a msg to the params array.");
         } else {
             $this->message = $params['message'];
         }
 
-        if(array_key_exists('rule',$params)){
+        if(Arr::exists($params, 'rule',)) {
             $this->rule = $params['rule'];
         }
 
-        if(array_key_exists('includeDeleted',$params) && $params['includeDeleted']) {
+        if(Arr::exists($params, 'includeDeleted') && $params['includeDeleted']) {
             $this->includeDeleted = true;
         }
 

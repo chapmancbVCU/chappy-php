@@ -2,6 +2,7 @@
 namespace Core;
 use stdClass;
 use Exception;
+use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
 
 /**
@@ -43,7 +44,7 @@ class View extends stdClass {
      * a known type of content we return false;
      */
     public function content(string $type): mixed {
-        if(array_key_exists($type,$this->_content)){
+        if(Arr::exists($this->_content, $type)){
             return $this->_content[$type];
         } else {
         return false;
