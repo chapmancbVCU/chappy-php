@@ -177,12 +177,12 @@ class Router {
             // Extract from URL our controllers
             $controller = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]).'Controller' : Env::get('DEFAULT_CONTROLLER', 'Home').'Controller';
             $controller_name = str_replace('Controller', '', $controller);
-            array_shift($url);
+            Arr::shift($url);
     
             // action - now first element of array.
             $action = (isset($url[0]) && $url[0] != '') ? $url[0] . 'Action' : 'indexAction';
             $action_name = (isset($url[0]) && $url[0] != '') ? $url[0] : 'index';
-            array_shift($url);
+            Arr::shift($url);
     
             // ACL check
             $grantAccess = self::hasAccess($controller_name, $action_name);

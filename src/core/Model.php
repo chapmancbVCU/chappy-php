@@ -258,7 +258,7 @@ class Model {
         ];
 
         // In case you want to add more conditions
-        $conditions = array_merge($conditions, $params);
+        $conditions = Arr::merge($conditions, $params);
         return self::find($conditions);
     }
 

@@ -220,7 +220,7 @@ public static function findAllUsersExceptCurrent($current_user_id, $params = [])
         'bind' => [(int)$current_user_id]
     ];
     // In case you want to add more conditions
-    $conditions = array_merge($conditions, $params);
+    $conditions = Arr::merge($conditions, $params);
     return self::find($conditions);
 }
 ```
@@ -289,7 +289,7 @@ public static function findByIdAndUserId($contact_id, $user_id, $params = []) {
         'conditions' => 'id = ? AND user_id = ?',
         'bind' => [$contact_id, $user_id]
     ];
-    $conditions = array_merge($conditions, $params);
+    $conditions = Arr::merge($conditions, $params);
     return self::findFirst($conditions);
 }
 ```
