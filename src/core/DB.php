@@ -252,7 +252,7 @@ class DB {
             unset($fields['id']);
         }
     
-        $fieldString = implode(',', array_keys($fields));
+        $fieldString = implode(',', Arr::keys($fields));
         $valueString = implode(',', array_fill(0, count($fields), '?'));
         $values = array_values($fields);
     
@@ -466,7 +466,7 @@ class DB {
      * we return false.
      */
     public function update($table, $id, $fields = []) {
-        $setString = implode('=?, ', array_keys($fields)) . '=?';
+        $setString = implode('=?, ', Arr::keys($fields)) . '=?';
         $values = array_values($fields);
         $values[] = $id;
 
