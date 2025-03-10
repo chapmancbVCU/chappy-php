@@ -53,6 +53,19 @@ class Arr
     }
 
     /**
+     * Determine if a given value exists in an array.
+     *
+     * @param array $array The array to search.
+     * @param mixed $value The value to find.
+     * @param bool $strict Whether to perform a strict comparison.
+     * @return bool True if the value exists, false otherwise.
+     */
+    public static function contains(array $array, mixed $value, bool $strict = false): bool
+    {
+        return in_array($value, $array, $strict);
+    }
+    
+    /**
      * Compute the Cartesian product of multiple arrays.
      *
      * @param array ...$arrays The arrays to compute the product for.
