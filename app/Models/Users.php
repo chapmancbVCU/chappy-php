@@ -390,10 +390,10 @@ class Users extends Model {
         
         if($this->isNew() || $this->changePassword) {
             if(Env::get('SET_PW_MIN_LENGTH', false)) {
-                $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => Env::get('PW_MIN_LENGTH', 12), 'message' => 'Password must be at least '. PW_MIN_LENGTH.' characters.']));
+                $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => Env::get('PW_MIN_LENGTH', 12), 'message' => 'Password must be at least '. Env::get('PW_MIN_LENGTH', 12).' characters.']));
             }
             if(Env::get('SET_PW_MAX_LENGTH', false)) {
-                $this->runValidation(new MaxValidator($this, ['field' => 'password', 'rule' => Env::get('PW_MAX_LENGTH', 30), 'message' => 'Password must be less than ' . PW_MAX_LENGTH. ' characters.']));
+                $this->runValidation(new MaxValidator($this, ['field' => 'password', 'rule' => Env::get('PW_MAX_LENGTH', 30), 'message' => 'Password must be less than ' . Env::get('PW_MAX_LENGTH', 30). ' characters.']));
             }
             if(Env::get('PW_LOWER_CHAR', false)) {
                 $this->runValidation(new LowerCharValidator($this, ['field' => 'password', 'message' => 'Must contain at least 1 lower case character.']));
