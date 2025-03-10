@@ -113,8 +113,8 @@ class Router {
         // Check access information.
         foreach ($current_user_acls as $level) {
             if (Arr::has($acl, "$level.$controller_name") &&
-                (in_array($action_name, Arr::get($acl, "$level.$controller_name", [])) || 
-                in_array("*", Arr::get($acl, "$level.$controller_name", [])))) {
+                (Arr::contains(Arr::get($acl, "$level.$controller_name", []), $action_name) || 
+                Arr::contains(Arr::get($acl, "$level.$controller_name", []),"*"))) {
                 $grantAccess = true;
                 break;
             }
