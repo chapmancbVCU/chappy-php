@@ -1,9 +1,10 @@
 <?php
 namespace Console\Helpers;
 
-use Core\DB;
 use PDO;
+use Core\DB;
 use PDOException;
+use Core\Lib\Utilities\Arr;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
@@ -130,7 +131,7 @@ class Migrate {
         foreach ($migrations as $fileName) {
             $klass = str_replace(['database' . DS . 'migrations' . DS, '.php'], '', $fileName);
             
-            if (!in_array($klass, $previousMigs)) {
+            if (!Arr::contains($previousMigs, $klass)) {
                 $klassNamespace = 'Database\\Migrations\\' . $klass;
                 
                 if (class_exists($klassNamespace)) {
