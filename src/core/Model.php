@@ -75,9 +75,9 @@ class Model {
             $whiteListed = true;
             if(sizeof($list) > 0){
               if($blackList){
-                    $whiteListed = !in_array($key,$list);
+                    $whiteListed = !Arr::contains($list, $key);
               } else {
-                    $whiteListed = in_array($key,$list);
+                    $whiteListed = Arr::contains($list, $key);
               }
             }
             if(property_exists($this,$key) && $whiteListed){
