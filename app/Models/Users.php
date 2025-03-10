@@ -389,22 +389,22 @@ class Users extends Model {
         $this->runValidation(new RequiredValidator($this, ['field' => 'password', 'message' => 'Password is required.'])); 
         
         if($this->isNew() || $this->changePassword) {
-            if(SET_PW_MIN_LENGTH == 'true') {
-                $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => PW_MIN_LENGTH, 'message' => 'Password must be at least '. PW_MIN_LENGTH.' characters.']));
+            if(Env::get('SET_PW_MIN_LENGTH', false)) {
+                $this->runValidation(new MinValidator($this, ['field' => 'password', 'rule' => Env::get('PW_MIN_LENGTH', 12), 'message' => 'Password must be at least '. PW_MIN_LENGTH.' characters.']));
             }
-            if(SET_PW_MAX_LENGTH == 'true') {
-                $this->runValidation(new MaxValidator($this, ['field' => 'password', 'rule' => PW_MAX_LENGTH, 'message' => 'Password must be less than ' . PW_MAX_LENGTH. ' characters.']));
+            if(Env::get('SET_PW_MAX_LENGTH', false)) {
+                $this->runValidation(new MaxValidator($this, ['field' => 'password', 'rule' => Env::get('PW_MAX_LENGTH', 30), 'message' => 'Password must be less than ' . PW_MAX_LENGTH. ' characters.']));
             }
-            if(PW_LOWER_CHAR == 'true') {
+            if(Env::get('PW_LOWER_CHAR', false)) {
                 $this->runValidation(new LowerCharValidator($this, ['field' => 'password', 'message' => 'Must contain at least 1 lower case character.']));
             }
-            if(PW_UPPER_CHAR == 'true') {
+            if(Env::get('PW_UPPER_CHAR', false)) {
                 $this->runValidation(new UpperCharValidator($this, ['field' => 'password', 'message' => 'Must contain at least 1 upper case character.']));
             }
-            if(PW_NUM_CHAR == 'true') {
+            if(Env::get('PW_NUM_CHAR', false)) {
                 $this->runValidation(new NumberCharValidator($this, ['field' => 'password', 'message' => 'Must contain at least 1 numeric character.']));
             }
-            if(PW_SPECIAL_CHAR == 'true') {
+            if(Env::get('PW_SPECIAL_CHAR', false)) {
                 $this->runValidation(new SpecialCharValidator($this, ['field' => 'password', 'message' => 'Must contain at least 1 special character.'])); 
             }
             $this->runValidation(new MatchesValidator($this, ['field' => 'password', 'rule' => $this->confirm, 'message' => 'Passwords must match.']));
