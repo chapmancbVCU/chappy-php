@@ -225,6 +225,17 @@ class Arr
     }
 
     /**
+     * Determine if a given value is an array.
+     *
+     * @param mixed $value The value to check.
+     * @return bool True if the value is an array, false otherwise.
+     */
+    public static function isArray(mixed $value): bool
+    {
+        return is_array($value);
+    }
+
+    /**
      * Reindex an array using a specified key.
      *
      * @param array $array The source array.
@@ -404,6 +415,17 @@ class Arr
         $array[array_shift($keys)] = $value;
     }
 
+    /**
+     * Remove and return the first element of an array.
+     *
+     * @param array &$array The array to shift from (passed by reference).
+     * @return mixed|null The removed element or null if the array is empty.
+     */
+    public static function shift(array &$array): mixed
+    {
+        return array_shift($array);
+    }
+    
     /**
      * Shuffle the array.
      *
