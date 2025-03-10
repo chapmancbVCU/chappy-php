@@ -3,6 +3,7 @@ namespace Core;
 use \Exception;
 use Core\{Helper, Session};
 use Core\Lib\Logging\Logger;
+use Core\Lib\Utilities\Arr;
 /**
  * Contains functions for building form elements of various types.
  */
@@ -19,8 +20,8 @@ class FormHelper {
      * @return array $attrs Div attributes with error classes added.
      */
     public static function appendErrorClass($attrs, $errors, $name, $class){
-        if(array_key_exists($name, $errors)) {
-            if(array_key_exists('class',$attrs)) {
+        if(Arr::exists($errors, $name)) {
+            if(Arr::exists($attrs, 'class')) {
                 $attrs['class'] .= " " . $class;
             } else {
                 $attrs['class'] = $class;
@@ -272,7 +273,7 @@ class FormHelper {
     public static function emailBlock($label, $name, $value = '', $inputAttrs= [], $divAttrs = [], $errors = []) {
 
         // Make sure placeholder is not an attribute.
-        if(array_key_exists('placeholder', $inputAttrs)) {
+        if(Arr::exists($inputAttrs, 'placeholder')) {
             throw new Exception('Can not accept placeholder attribute found in your $inputString array.');
         }
 
@@ -295,7 +296,7 @@ class FormHelper {
      * @return string $msg The error message for a particular field.
      */
     public static function errorMsg($errors, $name){
-        $msg = (array_key_exists($name, $errors)) ? $errors[$name] : "";
+        $msg = (Arr::exists($errors, $name)) ? $errors[$name] : "";
         return $msg;  
     }
 
@@ -724,8 +725,9 @@ class FormHelper {
             $html .= '<input type="tel" id="'.$name.'" name="'.$name.'" value="'.$value.'"'.$inputString.' />';
             $html .= '<span class="invalid-feedback">'.self::errorMsg($errors, $name).'</span>';
             $html .= '</div>';
-            return $html;
         } catch (Exception $e) { echo $e->getMessage(); }
+
+        return $html;
     }
 
     /**

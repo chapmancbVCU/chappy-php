@@ -1,6 +1,7 @@
 <?php
 namespace Core;
 use Core\Helper;
+use Core\Lib\Utilities\Arr;
 use Core\Lib\Logging\Logger;
 use Core\Lib\Utilities\DateTime;
 
@@ -38,7 +39,7 @@ class Model {
      */
     public function addErrorMessage($field,$message){
         $this->_validates = false;
-        if(array_key_exists($field,$this->_validationErrors)){
+        if(Arr::exists($this->_validationErrors, $field,)) {
             $this->_validationErrors[$field] .= " " . $message;
         } else {
             $this->_validationErrors[$field] = $message;
@@ -300,7 +301,7 @@ class Model {
      */
     public function insert($fields) {
         if(empty($fields)) return false;
-        if(array_key_exists('id', $fields)) unset($fields['id']);
+        if(Arr::exists($fields, 'id')) unset($fields['id']);
         return static::getDb()->insert(static::$_table, $fields);
     }
 
@@ -408,7 +409,7 @@ class Model {
             $dbDriver = static::getDb()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
             $notEqualOperator = ($dbDriver === 'sqlite') ? "<>" : "!=";
 
-            if(array_key_exists('conditions',$params)){
+            if(Arr::exists($params, 'conditions')){
                 if(is_array($params['conditions'])){
                     $params['conditions'][] = "deleted {$notEqualOperator} 1";
                 } else {

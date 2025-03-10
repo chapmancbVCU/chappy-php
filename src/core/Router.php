@@ -166,7 +166,7 @@ class Router {
      */
     public static function route(): void {   
         // Parse URLs
-        $requestPath = array_key_exists('PATH_INFO', $_SERVER) ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
+        $requestPath = Arr::exists($_SERVER, 'PATH_INFO') ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
         $url = isset($requestPath) ? explode('/', ltrim($requestPath, '/')) : [];
         
         try {
