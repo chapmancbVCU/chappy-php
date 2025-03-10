@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Core\Lib\Utilities;
 
 /**
@@ -17,9 +15,8 @@ class Arr
      * @param mixed $value The value to add.
      * @return array The modified array.
      */
-    public static function add(array $array, string|int $key, mixed $value): array
-    {
-        if (!array_key_exists($key, $array)) {
+    public static function add(array $array, string|int $key, mixed $value): array {
+        if (!self::exists($array, $key)) {
             $array[$key] = $value;
         }
 
@@ -32,8 +29,7 @@ class Arr
      * @param array $array The multi-dimensional array.
      * @return array The collapsed array.
      */
-    public static function collapse(array $array): array
-    {
+    public static function collapse(array $array): array {
         $result = [];
 
         foreach ($array as $values) {
@@ -51,8 +47,7 @@ class Arr
      * @param array ...$arrays The arrays to compute the product for.
      * @return array The Cartesian product.
      */
-    public static function crossJoin(array ...$arrays): array
-    {
+    public static function crossJoin(array ...$arrays): array {
         $result = [[]];
 
         foreach ($arrays as $array) {
@@ -77,8 +72,7 @@ class Arr
      * @param string $prepend The prefix for keys.
      * @return array The array with dot notation keys.
      */
-    public static function dot(array $array, string $prepend = ''): array
-    {
+    public static function dot(array $array, string $prepend = ''): array {
         $results = [];
 
         foreach ($array as $key => $value) {
@@ -99,8 +93,7 @@ class Arr
      * @param array $keys The keys to exclude.
      * @return array The filtered array.
      */
-    public static function except(array $array, array $keys): array
-    {
+    public static function except(array $array, array $keys): array {
         return array_diff_key($array, array_flip($keys));
     }
 
@@ -111,8 +104,7 @@ class Arr
      * @param string|int $key The key to check.
      * @return bool True if the key exists, false otherwise.
      */
-    public static function exists(array $array, string|int $key): bool
-    {
+    public static function exists(array $array, string|int $key): bool {
         return array_key_exists($key, $array);
     }
 
@@ -124,8 +116,7 @@ class Arr
      * @param mixed|null $default The default value if no match is found.
      * @return mixed The first matching value or default.
      */
-    public static function first(array $array, ?callable $callback = null, mixed $default = null): mixed
-    {
+    public static function first(array $array, ?callable $callback = null, mixed $default = null): mixed {
         if ($callback === null) {
             return reset($array) ?: $default;
         }
@@ -146,8 +137,7 @@ class Arr
      * @param int $depth The depth limit.
      * @return array The flattened array.
      */
-    public static function flatten(array $array, int $depth = INF): array
-    {
+    public static function flatten(array $array, int $depth = INF): array {
         $result = [];
 
         foreach ($array as $value) {
@@ -168,8 +158,7 @@ class Arr
      * @param string|array $keys The key(s) to remove.
      * @return void
      */
-    public static function forget(array &$array, string|array $keys): void
-    {
+    public static function forget(array &$array, string|array $keys): void {
         $keys = (array) $keys;
 
         foreach ($keys as $key) {
@@ -198,14 +187,13 @@ class Arr
      * @param mixed|null $default The default value if the key is not found.
      * @return mixed The value from the array or the default.
      */
-    public static function get(array $array, string $key, mixed $default = null): mixed
-    {
-        if (array_key_exists($key, $array)) {
+    public static function get(array $array, string $key, mixed $default = null): mixed {
+        if (self::exists($array, $key)) {
             return $array[$key];
         }
 
         foreach (explode('.', $key) as $segment) {
-            if (!is_array($array) || !array_key_exists($segment, $array)) {
+            if (!is_array($array) || !self::exists($array, $segment)) {
                 return $default;
             }
             $array = $array[$segment];
@@ -221,14 +209,13 @@ class Arr
      * @param string $key The key using dot notation.
      * @return bool True if the key exists, false otherwise.
      */
-    public static function has(array $array, string $key): bool
-    {
-        if (array_key_exists($key, $array)) {
+    public static function has(array $array, string $key): bool {
+        if (self::exists($array, $key)) {
             return true;
         }
 
         foreach (explode('.', $key) as $segment) {
-            if (!is_array($array) || !array_key_exists($segment, $array)) {
+            if (!is_array($array) || !arr::exists($array, $segment)) {
                 return false;
             }
             $array = $array[$segment];
@@ -244,12 +231,11 @@ class Arr
      * @param string|int $key The key to index by.
      * @return array The reindexed array.
      */
-    public static function keyBy(array $array, string|int $key): array
-    {
+    public static function keyBy(array $array, string|int $key): array {
         $result = [];
 
         foreach ($array as $item) {
-            if (!is_array($item) || !array_key_exists($key, $item)) {
+            if (!is_array($item) || !Arr::exists($item, $key)) {
                 throw new \InvalidArgumentException("Each item must be an array and contain the key '$key'.");
             }
 
@@ -268,8 +254,7 @@ class Arr
      * @param mixed|null $default The default value if no match is found.
      * @return mixed The last matching value or default.
      */
-    public static function last(array $array, ?callable $callback = null, mixed $default = null): mixed
-    {
+    public static function last(array $array, ?callable $callback = null, mixed $default = null): mixed {
         return static::first(array_reverse($array, true), $callback, $default);
     }
 
@@ -280,8 +265,7 @@ class Arr
      * @param callable $callback The function to apply.
      * @return array The modified array.
      */
-    public static function map(array $array, callable $callback): array
-    {
+    public static function map(array $array, callable $callback): array {
         return array_map($callback, $array);
     }
 
@@ -292,8 +276,7 @@ class Arr
      * @param callable $callback The function to apply.
      * @return array The modified array with new keys.
      */
-    public static function mapWithKeys(array $array, callable $callback): array
-    {
+    public static function mapWithKeys(array $array, callable $callback): array {
         $result = [];
 
         foreach ($array as $item) {
@@ -316,8 +299,7 @@ class Arr
      * @param array $keys The keys to retrieve.
      * @return array The filtered array.
      */
-    public static function only(array $array, array $keys): array
-    {
+    public static function only(array $array, array $keys): array {
         return array_intersect_key($array, array_flip($keys));
     }
 
@@ -329,8 +311,7 @@ class Arr
      * @param string|null $key Optional key to use as array index.
      * @return array The plucked values.
      */
-    public static function pluck(array $array, string $value, ?string $key = null): array
-    {
+    public static function pluck(array $array, string $value, ?string $key = null): array {
         $results = [];
 
         foreach ($array as $item) {
@@ -355,8 +336,7 @@ class Arr
      * @param string|int|null $key Optional key for the prepended value.
      * @return array The modified array.
      */
-    public static function prepend(array $array, mixed $value, string|int|null $key = null): array
-    {
+    public static function prepend(array $array, mixed $value, string|int|null $key = null): array {
         if ($key !== null) {
             return [$key => $value] + $array;
         }
@@ -373,8 +353,7 @@ class Arr
      * @param mixed|null $default The default value if the key is not found.
      * @return mixed The retrieved value or default.
      */
-    public static function pull(array &$array, string $key, mixed $default = null): mixed
-    {
+    public static function pull(array &$array, string $key, mixed $default = null): mixed {
         $value = static::get($array, $key, $default);
         static::forget($array, $key);
         return $value;
@@ -387,8 +366,7 @@ class Arr
      * @param int|null $number Number of elements to retrieve.
      * @return mixed The random value(s).
      */
-    public static function random(array $array, ?int $number = null): mixed
-    {
+    public static function random(array $array, ?int $number = null): mixed {
         $count = count($array);
 
         if ($number === null) {
@@ -410,8 +388,7 @@ class Arr
      * @param mixed $value The value to set.
      * @return void
      */
-    public static function set(array &$array, string $key, mixed $value): void
-    {
+    public static function set(array &$array, string $key, mixed $value): void {
         $keys = explode('.', $key);
 
         while (count($keys) > 1) {
@@ -434,8 +411,7 @@ class Arr
      * @param int|null $seed Optional seed for deterministic results.
      * @return array The shuffled array.
      */
-    public static function shuffle(array $array, ?int $seed = null): array
-    {
+    public static function shuffle(array $array, ?int $seed = null): array {
         if ($seed !== null) {
             mt_srand($seed);
         }
@@ -450,8 +426,7 @@ class Arr
      * @param mixed $value The value to wrap.
      * @return array The wrapped array.
      */
-    public static function wrap(mixed $value): array
-    {
+    public static function wrap(mixed $value): array {
         return is_array($value) ? $value : [$value];
     } 
 
@@ -462,8 +437,7 @@ class Arr
      * @param callable $callback The function to apply to each element.
      * @return array The filtered array.
      */
-    public static function where(array $array, callable $callback): array
-    {
+    public static function where(array $array, callable $callback): array {
         return array_filter($array, $callback);
     }
 }
