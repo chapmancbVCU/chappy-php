@@ -10,53 +10,6 @@ namespace Core\Lib\Utilities;
 class Arr
 {
     /**
-     * Get a value from an array using dot notation.
-     *
-     * @param array $array The source array.
-     * @param string $key The key using dot notation.
-     * @param mixed|null $default The default value if the key is not found.
-     * @return mixed The value from the array or the default.
-     */
-    public static function get(array $array, string $key, mixed $default = null): mixed
-    {
-        if (array_key_exists($key, $array)) {
-            return $array[$key];
-        }
-
-        foreach (explode('.', $key) as $segment) {
-            if (!is_array($array) || !array_key_exists($segment, $array)) {
-                return $default;
-            }
-            $array = $array[$segment];
-        }
-
-        return $array;
-    }
-
-    /**
-     * Check if an array has a given key using dot notation.
-     *
-     * @param array $array The source array.
-     * @param string $key The key using dot notation.
-     * @return bool True if the key exists, false otherwise.
-     */
-    public static function has(array $array, string $key): bool
-    {
-        if (array_key_exists($key, $array)) {
-            return true;
-        }
-
-        foreach (explode('.', $key) as $segment) {
-            if (!is_array($array) || !array_key_exists($segment, $array)) {
-                return false;
-            }
-            $array = $array[$segment];
-        }
-
-        return true;
-    }
-
-    /**
      * Check if a key exists in an array (non-dot notation).
      *
      * @param array $array The source array.
@@ -92,41 +45,25 @@ class Arr
     }
 
     /**
-     * Get the last element that passes a given test.
+     * Flatten a multi-dimensional array into a single level.
      *
-     * @param array $array The source array.
-     * @param callable|null $callback The function to determine a match.
-     * @param mixed|null $default The default value if no match is found.
-     * @return mixed The last matching value or default.
+     * @param array $array The multi-dimensional array.
+     * @param int $depth The depth limit.
+     * @return array The flattened array.
      */
-    public static function last(array $array, ?callable $callback = null, mixed $default = null): mixed
+    public static function flatten(array $array, int $depth = INF): array
     {
-        return static::first(array_reverse($array, true), $callback, $default);
-    }
+        $result = [];
 
-    /**
-     * Set a value within an array using dot notation.
-     *
-     * @param array $array The source array (passed by reference).
-     * @param string $key The key using dot notation.
-     * @param mixed $value The value to set.
-     * @return void
-     */
-    public static function set(array &$array, string $key, mixed $value): void
-    {
-        $keys = explode('.', $key);
-
-        while (count($keys) > 1) {
-            $segment = array_shift($keys);
-
-            if (!isset($array[$segment]) || !is_array($array[$segment])) {
-                $array[$segment] = [];
+        foreach ($array as $value) {
+            if (is_array($value) && $depth > 1) {
+                $result = array_merge($result, static::flatten($value, $depth - 1));
+            } else {
+                $result[] = $value;
             }
-
-            $array = &$array[$segment];
         }
 
-        $array[array_shift($keys)] = $value;
+        return $result;
     }
 
     /**
@@ -159,91 +96,67 @@ class Arr
     }
 
     /**
-     * Retrieve a value from the array and remove it.
+     * Get a value from an array using dot notation.
      *
-     * @param array $array The source array (passed by reference).
+     * @param array $array The source array.
      * @param string $key The key using dot notation.
      * @param mixed|null $default The default value if the key is not found.
-     * @return mixed The retrieved value or default.
+     * @return mixed The value from the array or the default.
      */
-    public static function pull(array &$array, string $key, mixed $default = null): mixed
+    public static function get(array $array, string $key, mixed $default = null): mixed
     {
-        $value = static::get($array, $key, $default);
-        static::forget($array, $key);
-        return $value;
-    }
+        if (array_key_exists($key, $array)) {
+            return $array[$key];
+        }
 
-    /**
-     * Flatten a multi-dimensional array into a single level.
-     *
-     * @param array $array The multi-dimensional array.
-     * @param int $depth The depth limit.
-     * @return array The flattened array.
-     */
-    public static function flatten(array $array, int $depth = INF): array
-    {
-        $result = [];
-
-        foreach ($array as $value) {
-            if (is_array($value) && $depth > 1) {
-                $result = array_merge($result, static::flatten($value, $depth - 1));
-            } else {
-                $result[] = $value;
+        foreach (explode('.', $key) as $segment) {
+            if (!is_array($array) || !array_key_exists($segment, $array)) {
+                return $default;
             }
+            $array = $array[$segment];
         }
 
-        return $result;
-    }
-
-    /**
-     * Get a random value or multiple values from an array.
-     *
-     * @param array $array The source array.
-     * @param int|null $number Number of elements to retrieve.
-     * @return mixed The random value(s).
-     */
-    public static function random(array $array, ?int $number = null): mixed
-    {
-        $count = count($array);
-
-        if ($number === null) {
-            return $array[array_rand($array)];
-        }
-
-        if ($number > $count) {
-            $number = $count;
-        }
-
-        return array_intersect_key($array, array_flip((array) array_rand($array, $number)));
-    }
-
-    /**
-     * Filter an array using a callback.
-     *
-     * @param array $array The source array.
-     * @param callable $callback The function to apply to each element.
-     * @return array The filtered array.
-     */
-    public static function where(array $array, callable $callback): array
-    {
-        return array_filter($array, $callback);
-    }
-
-    /**
-     * Shuffle the array.
-     *
-     * @param array $array The source array.
-     * @param int|null $seed Optional seed for deterministic results.
-     * @return array The shuffled array.
-     */
-    public static function shuffle(array $array, ?int $seed = null): array
-    {
-        if ($seed !== null) {
-            mt_srand($seed);
-        }
-
-        shuffle($array);
         return $array;
+    }
+    
+
+    /**
+     * Check if an array has a given key using dot notation.
+     *
+     * @param array $array The source array.
+     * @param string $key The key using dot notation.
+     * @return bool True if the key exists, false otherwise.
+     */
+    public static function has(array $array, string $key): bool
+    {
+        if (array_key_exists($key, $array)) {
+            return true;
+        }
+
+        foreach (explode('.', $key) as $segment) {
+            if (!is_array($array) || !array_key_exists($segment, $array)) {
+                return false;
+            }
+            $array = $array[$segment];
+        }
+
+        return true;
+    }
+
+
+    
+
+    /**
+     * Get the last element that passes a given test.
+     *
+     * @param array $array The source array.
+     * @param callable|null $callback The function to determine a match.
+     * @param mixed|null $default The default value if no match is found.
+     * @return mixed The last matching value or default.
+     */
+    public static function last(array $array, ?callable $callback = null, mixed $default = null): mixed
+    {
+        return static::first(array_reverse($array, true), $callback, $default);
     }
 
     /**
@@ -271,6 +184,107 @@ class Arr
 
         return $results;
     }
+    
+    /**
+     * Retrieve a value from the array and remove it.
+     *
+     * @param array $array The source array (passed by reference).
+     * @param string $key The key using dot notation.
+     * @param mixed|null $default The default value if the key is not found.
+     * @return mixed The retrieved value or default.
+     */
+    public static function pull(array &$array, string $key, mixed $default = null): mixed
+    {
+        $value = static::get($array, $key, $default);
+        static::forget($array, $key);
+        return $value;
+    }
+
+    /**
+     * Get a random value or multiple values from an array.
+     *
+     * @param array $array The source array.
+     * @param int|null $number Number of elements to retrieve.
+     * @return mixed The random value(s).
+     */
+    public static function random(array $array, ?int $number = null): mixed
+    {
+        $count = count($array);
+
+        if ($number === null) {
+            return $array[array_rand($array)];
+        }
+
+        if ($number > $count) {
+            $number = $count;
+        }
+
+        return array_intersect_key($array, array_flip((array) array_rand($array, $number)));
+    }
+
+    /**
+     * Set a value within an array using dot notation.
+     *
+     * @param array $array The source array (passed by reference).
+     * @param string $key The key using dot notation.
+     * @param mixed $value The value to set.
+     * @return void
+     */
+    public static function set(array &$array, string $key, mixed $value): void
+    {
+        $keys = explode('.', $key);
+
+        while (count($keys) > 1) {
+            $segment = array_shift($keys);
+
+            if (!isset($array[$segment]) || !is_array($array[$segment])) {
+                $array[$segment] = [];
+            }
+
+            $array = &$array[$segment];
+        }
+
+        $array[array_shift($keys)] = $value;
+    }
+
+    /**
+     * Shuffle the array.
+     *
+     * @param array $array The source array.
+     * @param int|null $seed Optional seed for deterministic results.
+     * @return array The shuffled array.
+     */
+    public static function shuffle(array $array, ?int $seed = null): array
+    {
+        if ($seed !== null) {
+            mt_srand($seed);
+        }
+
+        shuffle($array);
+        return $array;
+    }
+
+    
+
+    
+
+    
+
+    /**
+     * Filter an array using a callback.
+     *
+     * @param array $array The source array.
+     * @param callable $callback The function to apply to each element.
+     * @return array The filtered array.
+     */
+    public static function where(array $array, callable $callback): array
+    {
+        return array_filter($array, $callback);
+    }
+
+    
+
+    
 
     /**
      * Wrap a value in an array.
