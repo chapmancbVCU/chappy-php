@@ -406,6 +406,19 @@ class Arr
     }
 
     /**
+     * Push one or more values onto the end of an array.
+     *
+     * @param array $array The array to modify.
+     * @param mixed ...$values The values to push.
+     * @return array The modified array.
+     */
+    public static function push(array &$array, mixed ...$values): array
+    {
+        array_push($array, ...$values);
+        return $array;
+    }
+
+    /**
      * Get a random value or multiple values from an array.
      *
      * @param array $array The source array.

@@ -25,6 +25,7 @@
 22. [pluck](#pluck)
 23. [prepend](#prepend)
 24. [pull](#pull)
+25. [push](#push)
 25. [random](#random)
 26. [search](#search)
 27. [set](#set)
@@ -269,6 +270,18 @@ $array = ['name' => 'Chad', 'age' => 30];
 $name = Arr::pull($array, 'name');
 // 'Chad'
 // ['age' => 30]
+```
+<br>
+
+## 24. pull <a id="pull"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+Push one or more values onto the end of an array.
+
+```php
+use Core\Lib\Utilities\Arr;
+
+$array = ['apple', 'banana'];
+Arr::push($array, 'cherry');
+// ['apple', 'banana', 'cherry']
 ```
 <br>
 
