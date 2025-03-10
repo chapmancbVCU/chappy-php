@@ -24,17 +24,6 @@ class Arr
     }
 
     /**
-     * Get all the keys from an array.
-     *
-     * @param array $array The array to extract keys from.
-     * @return array The array of keys.
-     */
-    public static function keys(array $array): array
-    {
-        return array_keys($array);
-    }
-
-    /**
      * Collapse a multi-dimensional array into a single-level array.
      *
      * @param array $array The multi-dimensional array.
@@ -64,7 +53,7 @@ class Arr
     {
         return in_array($value, $array, $strict);
     }
-    
+
     /**
      * Compute the Cartesian product of multiple arrays.
      *
@@ -259,6 +248,17 @@ class Arr
         return is_array($value);
     }
 
+    /**
+     * Get all the keys from an array.
+     *
+     * @param array $array The array to extract keys from.
+     * @return array The array of keys.
+     */
+    public static function keys(array $array): array
+    {
+        return array_keys($array);
+    }
+    
     /**
      * Reindex an array using a specified key.
      *
