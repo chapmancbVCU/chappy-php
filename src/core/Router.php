@@ -5,6 +5,7 @@ use Core\Session;
 use App\Models\Users;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Logging\Logger;
+use Core\Lib\Utilities\Arr;
 
 /**
  * This class is responsible for routing between views.
@@ -47,6 +48,7 @@ class Router {
         $menuArray = [];
         $menuFile = file_get_contents(ROOT . DS . 'app' . DS . $menu . '.json');
         $acl = json_decode($menuFile, true);
+        
         foreach($acl as $key => $value) {
             // If array we will know if there is a dropdown or something else.
             if(is_array($value)) {
@@ -86,7 +88,7 @@ class Router {
      */
     public static function hasAccess(string $controller_name, string $action_name = "index") {
         $acl_file = file_get_contents(ROOT . DS . 'app' . DS . 'acl.json');
-        $acl = json_decode($acl_file, true);
+        $acl = json_decode($acl_file, true) ?? [];
         $current_user_acls = ["Guest"];
         $grantAccess = false;
 
@@ -109,21 +111,21 @@ class Router {
         }
 
         // Check access information.
-        foreach($current_user_acls as $level) {
-            if(array_key_exists($level, $acl) && array_key_exists($controller_name, $acl[$level])) {
-                if(in_array($action_name, $acl[$level][$controller_name]) || in_array("*", $acl[$level][$controller_name])) {
-                    $grantAccess = true;
-                    break;
-                }
-            } 
+        foreach ($current_user_acls as $level) {
+            if (Arr::has($acl, "$level.$controller_name") &&
+                (in_array($action_name, Arr::get($acl, "$level.$controller_name", [])) || 
+                in_array("*", Arr::get($acl, "$level.$controller_name", [])))) {
+                $grantAccess = true;
+                break;
+            }
         }
 
         // Check for denied.
-        foreach($current_user_acls as $level) {
-            $denied = $acl[$level]['denied'];
-            if(!empty($denied) && array_key_exists($controller_name, $denied) && in_array($action_name, $denied[$controller_name])) {
+        foreach ($current_user_acls as $level) {
+            if (Arr::has($acl, "$level.denied.$controller_name") &&
+                in_array($action_name, Arr::get($acl, "$level.denied.$controller_name", []))) {
                 $grantAccess = false;
-            } 
+            }
         }
 
         return $grantAccess;
