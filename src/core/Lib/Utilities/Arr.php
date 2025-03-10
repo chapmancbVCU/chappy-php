@@ -10,6 +10,101 @@ namespace Core\Lib\Utilities;
 class Arr
 {
     /**
+     * Add a value to an array if the key does not exist.
+     *
+     * @param array $array The array to modify.
+     * @param string|int $key The key to check.
+     * @param mixed $value The value to add.
+     * @return array The modified array.
+     */
+    public static function add(array $array, string|int $key, mixed $value): array
+    {
+        if (!array_key_exists($key, $array)) {
+            $array[$key] = $value;
+        }
+
+        return $array;
+    }
+
+    /**
+     * Collapse a multi-dimensional array into a single-level array.
+     *
+     * @param array $array The multi-dimensional array.
+     * @return array The collapsed array.
+     */
+    public static function collapse(array $array): array
+    {
+        $result = [];
+
+        foreach ($array as $values) {
+            if (is_array($values)) {
+                $result = array_merge($result, $values);
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Compute the Cartesian product of multiple arrays.
+     *
+     * @param array ...$arrays The arrays to compute the product for.
+     * @return array The Cartesian product.
+     */
+    public static function crossJoin(array ...$arrays): array
+    {
+        $result = [[]];
+
+        foreach ($arrays as $array) {
+            $append = [];
+
+            foreach ($result as $product) {
+                foreach ($array as $item) {
+                    $append[] = array_merge($product, [$item]);
+                }
+            }
+
+            $result = $append;
+        }
+
+        return $result;
+    }
+    
+    /**
+     * Convert a multi-dimensional array into dot notation keys.
+     *
+     * @param array $array The multi-dimensional array.
+     * @param string $prepend The prefix for keys.
+     * @return array The array with dot notation keys.
+     */
+    public static function dot(array $array, string $prepend = ''): array
+    {
+        $results = [];
+
+        foreach ($array as $key => $value) {
+            if (is_array($value) && !empty($value)) {
+                $results += static::dot($value, $prepend . $key . '.');
+            } else {
+                $results[$prepend . $key] = $value;
+            }
+        }
+
+        return $results;
+    }
+
+    /**
+     * Get all items except the specified keys.
+     *
+     * @param array $array The source array.
+     * @param array $keys The keys to exclude.
+     * @return array The filtered array.
+     */
+    public static function except(array $array, array $keys): array
+    {
+        return array_diff_key($array, array_flip($keys));
+    }
+
+    /**
      * Check if a key exists in an array (non-dot notation).
      *
      * @param array $array The source array.
@@ -119,7 +214,6 @@ class Arr
         return $array;
     }
     
-
     /**
      * Check if an array has a given key using dot notation.
      *
@@ -143,8 +237,28 @@ class Arr
         return true;
     }
 
+    /**
+     * Reindex an array using a specified key.
+     *
+     * @param array $array The source array.
+     * @param string|int $key The key to index by.
+     * @return array The reindexed array.
+     */
+    public static function keyBy(array $array, string|int $key): array
+    {
+        $result = [];
 
-    
+        foreach ($array as $item) {
+            if (!is_array($item) || !array_key_exists($key, $item)) {
+                throw new \InvalidArgumentException("Each item must be an array and contain the key '$key'.");
+            }
+
+            $result[$item[$key]] = $item;
+        }
+
+        return $result;
+    }
+
 
     /**
      * Get the last element that passes a given test.
@@ -157,6 +271,54 @@ class Arr
     public static function last(array $array, ?callable $callback = null, mixed $default = null): mixed
     {
         return static::first(array_reverse($array, true), $callback, $default);
+    }
+
+    /**
+     * Apply a callback to each item in an array.
+     *
+     * @param array $array The source array.
+     * @param callable $callback The function to apply.
+     * @return array The modified array.
+     */
+    public static function map(array $array, callable $callback): array
+    {
+        return array_map($callback, $array);
+    }
+
+    /**
+     * Map an array while preserving keys.
+     *
+     * @param array $array The source array.
+     * @param callable $callback The function to apply.
+     * @return array The modified array with new keys.
+     */
+    public static function mapWithKeys(array $array, callable $callback): array
+    {
+        $result = [];
+
+        foreach ($array as $item) {
+            $mapped = $callback($item);
+
+            if (!is_array($mapped) || count($mapped) !== 1) {
+                throw new \InvalidArgumentException("Callback must return an array with a single key-value pair.");
+            }
+
+            $result[key($mapped)] = reset($mapped);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get only the specified keys from an array.
+     *
+     * @param array $array The source array.
+     * @param array $keys The keys to retrieve.
+     * @return array The filtered array.
+     */
+    public static function only(array $array, array $keys): array
+    {
+        return array_intersect_key($array, array_flip($keys));
     }
 
     /**
@@ -184,7 +346,25 @@ class Arr
 
         return $results;
     }
-    
+
+    /**
+     * Prepend a value to an array.
+     *
+     * @param array $array The array to modify.
+     * @param mixed $value The value to prepend.
+     * @param string|int|null $key Optional key for the prepended value.
+     * @return array The modified array.
+     */
+    public static function prepend(array $array, mixed $value, string|int|null $key = null): array
+    {
+        if ($key !== null) {
+            return [$key => $value] + $array;
+        }
+
+        array_unshift($array, $value);
+        return $array;
+    }
+
     /**
      * Retrieve a value from the array and remove it.
      *
@@ -264,11 +444,16 @@ class Arr
         return $array;
     }
 
-    
-
-    
-
-    
+    /**
+     * Wrap a value in an array.
+     *
+     * @param mixed $value The value to wrap.
+     * @return array The wrapped array.
+     */
+    public static function wrap(mixed $value): array
+    {
+        return is_array($value) ? $value : [$value];
+    } 
 
     /**
      * Filter an array using a callback.
@@ -280,20 +465,5 @@ class Arr
     public static function where(array $array, callable $callback): array
     {
         return array_filter($array, $callback);
-    }
-
-    
-
-    
-
-    /**
-     * Wrap a value in an array.
-     *
-     * @param mixed $value The value to wrap.
-     * @return array The wrapped array.
-     */
-    public static function wrap(mixed $value): array
-    {
-        return is_array($value) ? $value : [$value];
     }
 }
