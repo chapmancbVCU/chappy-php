@@ -24,6 +24,17 @@ class Arr
     }
 
     /**
+     * Get all the keys from an array.
+     *
+     * @param array $array The array to extract keys from.
+     * @return array The array of keys.
+     */
+    public static function keys(array $array): array
+    {
+        return array_keys($array);
+    }
+
+    /**
      * Collapse a multi-dimensional array into a single-level array.
      *
      * @param array $array The multi-dimensional array.
@@ -304,6 +315,17 @@ class Arr
     }
 
     /**
+     * Merge one or more arrays together.
+     *
+     * @param array ...$arrays Arrays to merge.
+     * @return array The merged array.
+     */
+    public static function merge(array ...$arrays): array
+    {
+        return array_merge(...$arrays);
+    }
+
+    /**
      * Get only the specified keys from an array.
      *
      * @param array $array The source array.
@@ -425,7 +447,7 @@ class Arr
     {
         return array_shift($array);
     }
-    
+
     /**
      * Shuffle the array.
      *
