@@ -123,7 +123,7 @@ class Router {
         // Check for denied.
         foreach ($current_user_acls as $level) {
             if (Arr::has($acl, "$level.denied.$controller_name") &&
-                in_array($action_name, Arr::get($acl, "$level.denied.$controller_name", []))) {
+                Arr::contains(Arr::get($acl, "$level.denied.$controller_name", []), $action_name)) {
                 $grantAccess = false;
             }
         }
