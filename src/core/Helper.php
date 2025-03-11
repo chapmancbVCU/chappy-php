@@ -1,5 +1,6 @@
 <?php
 namespace Core;
+use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
 use App\Models\{ProfileImages, Users};
 
@@ -26,7 +27,7 @@ class Helper {
         $key = (Users::currentUser())? "Hello " .Users::currentUser()->fname : $key;
         
       }
-      if(is_array($val)): ?>
+      if(Arr::isArray($val)): ?>
         <li class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               <?=$key?>

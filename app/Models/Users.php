@@ -62,7 +62,7 @@ class Users extends Model {
      * @return array An array of acls.
      */
     public static function aclToArray(mixed $acls): array {
-        if (!is_array($acls)) {
+        if (!Arr::isArray($acls)) {
             $acls = [];
         }
         return Arr::map($acls, 'strval');

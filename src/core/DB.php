@@ -355,7 +355,7 @@ class DB {
 
         // Conditions
         if(isset($params['conditions'])) {
-            if(is_array($params['conditions'])) {
+            if(Arr::isArray($params['conditions'])) {
                 foreach($params['conditions'] as $condition) {
                     // Convert `!=` to `<>` for SQLite
                     if ($dbDriver === 'sqlite') {
