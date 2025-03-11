@@ -440,6 +440,18 @@ class Arr
     }
 
     /**
+     * Reverse the order of elements in an array.
+     *
+     * @param array $array The array to reverse.
+     * @param bool $preserveKeys Whether to preserve keys in the reversed array.
+     * @return array The reversed array.
+     */
+    public static function reverse(array $array, bool $preserveKeys = false): array
+    {
+        return array_reverse($array, $preserveKeys);
+    }
+
+    /**
      * Search for a value in an array and return the corresponding key.
      *
      * @param array $array The array to search in.

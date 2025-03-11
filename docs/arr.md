@@ -27,6 +27,7 @@
 24. [pull](#pull)
 25. [push](#push)
 25. [random](#random)
+25. [reverse](#reversez)
 26. [search](#search)
 27. [set](#set)
 28. [shift](#shift)
@@ -295,6 +296,19 @@ $result = Arr::random($array);
 ```
 <br>
 
+## 25. random <a id="random"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+Reverse the order of elements in an array.
+
+```php
+use Core\Lib\Utilities\Arr;
+
+$array = [1, 2, 3, 4, 5];
+$reversed = Arr::reverse($array);
+// [5, 4, 3, 2, 1]
+
+```
+
+<br>
 ## 26. search <a id="search"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Searches for a value in an array and returns the corresponding key.
 
