@@ -254,7 +254,7 @@ class DB {
     
         $fieldString = implode(',', Arr::keys($fields));
         $valueString = implode(',', array_fill(0, count($fields), '?'));
-        $values = array_values($fields);
+        $values = Arr::values($fields);
     
         $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
     
@@ -467,7 +467,7 @@ class DB {
      */
     public function update($table, $id, $fields = []) {
         $setString = implode('=?, ', Arr::keys($fields)) . '=?';
-        $values = array_values($fields);
+        $values = Arr::values($fields);
         $values[] = $id;
 
         $sql = "UPDATE {$table} SET {$setString} WHERE id = ?";

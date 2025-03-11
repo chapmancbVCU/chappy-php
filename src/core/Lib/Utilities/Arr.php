@@ -516,6 +516,17 @@ class Arr
     }
 
     /**
+     * Return all values from an array, resetting numeric keys.
+     *
+     * @param array $array The input array.
+     * @return array The array with numeric indexes.
+     */
+    public static function values(array $array): array
+    {
+        return array_values($array);
+    }
+
+    /**
      * Wrap a value in an array.
      *
      * @param mixed $value The value to wrap.

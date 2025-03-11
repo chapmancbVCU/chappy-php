@@ -32,6 +32,7 @@
 27. [set](#set)
 28. [shift](#shift)
 29. [shuffle](#shuffle)
+30. [values](#values)
 30. [wrap](#wrap)
 31. [where](#where)
 <br>
@@ -296,7 +297,7 @@ $result = Arr::random($array);
 ```
 <br>
 
-## 25. random <a id="random"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 25. reverse <a id="reverse"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Reverse the order of elements in an array.
 
 ```php
@@ -349,6 +350,10 @@ Shuffles the array.
 $array = [1, 2, 3];
 $result = Arr::shuffle($array);
 ```
+<br>
+
+## 28. values <a id="values"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+
 <br>
 
 ## 29. wrap <a id="wrap"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
