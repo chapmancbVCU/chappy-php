@@ -62,7 +62,7 @@ class AdmindashboardController extends Controller {
 
         // Get users so we can get number using acl and update later.
         $users = $acl->isAssignedToUsers();
-        if(count($users) > 0) {
+        if(Arr::isArray($users) && count($users) > 0) {
             Session::addMessage('info', "Cannot delete ". $acl->acl. ", assigned to one or more users.");
         }
         if($acl) {
