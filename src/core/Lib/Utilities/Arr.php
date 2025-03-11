@@ -49,6 +49,29 @@ class Arr
     }
 
     /**
+     * Split an array into chunks.
+     *
+     * @param int $size The size of each chunk.
+     * @return self
+     */
+    public function chunk(int $size): self
+    {
+        $this->items = array_chunk($this->items, $size);
+        return $this;
+    }
+
+    /**
+     * Clear all items in the array.
+     *
+     * @return self
+     */
+    public function clear(): self
+    {
+        $this->items = [];
+        return $this;
+    }
+
+    /**
      * Collapse a multi-dimensional array into a single level.
      *
      * @return self
@@ -63,6 +86,29 @@ class Arr
         return $this;
     }
 
+    /**
+     * Extract a single column from a multi-dimensional array.
+     *
+     * @param string|int $columnKey The column key.
+     * @return self
+     */
+    public function column(string|int $columnKey): self
+    {
+        $this->items = array_column($this->items, $columnKey);
+        return $this;
+    }
+
+    /**
+     * Combine two arrays, one as keys and one as values.
+     *
+     * @param array $keys The keys.
+     * @param array $values The values.
+     * @return self
+     */
+    public static function combine(array $keys, array $values): self
+    {
+        return new self(array_combine($keys, $values));
+    }
     /**
      * Check if an array contains a specific value.
      *
@@ -98,6 +144,29 @@ class Arr
         return $this;
     }
     
+    /**
+     * Get the count of elements in the array.
+     *
+     * @return self
+     */
+    public function count(): self
+    {
+        $this->lastResult = count($this->items);
+        return $this;
+    }
+
+    /**
+     * Get the difference between the current array and another array.
+     *
+     * @param array $array The array to compare.
+     * @return self
+     */
+    public function diff(array $array): self
+    {
+        $this->items = array_diff($this->items, $array);
+        return $this;
+    }
+
     /**
      * Convert an array into dot notation.
      *
@@ -199,6 +268,16 @@ class Arr
     }
 
     /**
+     * Get the first key of the array.
+     *
+     * @return self
+     */
+    public function firstKey(): self
+    {
+        $this->lastResult = array_key_first($this->items);
+        return $this;
+    }
+    /**
      * Flatten a multi-dimensional array into a single level.
      *
      * @return self
@@ -210,6 +289,17 @@ class Arr
             $result[] = $a;
         });
         $this->items = $result;
+        return $this;
+    }
+
+    /**
+     * Swap keys with values in the array.
+     *
+     * @return self
+     */
+    public function flip(): self
+    {
+        $this->items = array_flip($this->items);
         return $this;
     }
 
@@ -262,6 +352,31 @@ class Arr
     }
 
     /**
+     * Determine if at least one of the given keys exists in the array.
+     *
+     * @param array|string $keys The keys to check.
+     * @return self
+     */
+    public function hasAny(array|string $keys): self
+    {
+        $keys = (array) $keys;
+        $this->lastResult = count(array_intersect_key($this->items, array_flip($keys))) > 0;
+        return $this;
+    }
+
+    /**
+     * Get the intersection of the current array and another array.
+     *
+     * @param array $array The array to compare.
+     * @return self
+     */
+    public function intersect(array $array): self
+    {
+        $this->items = array_intersect($this->items, $array);
+        return $this;
+    }
+
+    /**
      * Check if the given value is an array.
      *
      * @param mixed $value The value to check.
@@ -286,6 +401,28 @@ class Arr
     }
 
     /**
+     * Get elements whose keys exist in another array.
+     *
+     * @param array $array The array to compare.
+     * @return self
+     */
+    public function intersectKeys(array $array): self
+    {
+        $this->items = array_intersect_key($this->items, $array);
+        return $this;
+    }
+
+    /**
+     * Check if the array is empty.
+     *
+     * @return self
+     */
+    public function isEmpty(): self
+    {
+        $this->lastResult = empty($this->items);
+        return $this;
+    }
+    /**
      * Get all keys of the array.
      *
      * @return self
@@ -308,6 +445,27 @@ class Arr
         return $this;
     }
 
+    /**
+     * Sort the array by keys in descending order.
+     *
+     * @return self
+     */
+    public function krsort(): self
+    {
+        krsort($this->items);
+        return $this;
+    }
+
+    /**
+     * Sort the array by keys in ascending order.
+     *
+     * @return self
+     */
+    public function ksort(): self
+    {
+        ksort($this->items);
+        return $this;
+    }
 
     /**
      * Get the last element that matches a condition.
@@ -332,14 +490,29 @@ class Arr
     }
 
     /**
-     * Create a new Arr instance from an array.
+     * Get the last key of the array.
      *
-     * @param array $items The array to wrap.
      * @return self
      */
-    public static function make(array $items): self
+    public function lastKey(): self
     {
-        return new self($items);
+        $this->lastResult = array_key_last($this->items);
+        return $this;
+    }
+
+    /**
+     * Create a new `Arr` instance from an array or a single value.
+     *
+     * This function ensures that the provided input is always treated as an array.
+     * If a non-array value (e.g., `null`, `string`, `int`) is passed, it wraps
+     * it into an array automatically.
+     *
+     * @param mixed $items The array or single value to wrap.
+     * @return self A new `Arr` instance.
+     */
+    public static function make(mixed $items = []): self
+    {
+        return new self(is_array($items) ? $items : [$items]);
     }
 
     /**
@@ -407,6 +580,18 @@ class Arr
     }
 
     /**
+     * Sort multiple arrays or multi-dimensional arrays.
+     *
+     * @param int $sortFlags The sorting flags.
+     * @return self
+     */
+    public function multisort(int $sortFlags = SORT_REGULAR): self
+    {
+        array_multisort($this->items, $sortFlags);
+        return $this;
+    }
+
+    /**
      * Return only the specified keys from the array.
      *
      * @param array|string $keys The keys to include.
@@ -415,6 +600,19 @@ class Arr
     public function only(array|string $keys): self
     {
         $this->items = array_intersect_key($this->items, array_flip((array) $keys));
+        return $this;
+    }
+
+    /**
+     * Pad an array to the specified length with a value.
+     *
+     * @param int $size The required size of the array.
+     * @param mixed $value The value to pad with.
+     * @return self
+     */
+    public function pad(int $size, mixed $value): self
+    {
+        $this->items = array_pad($this->items, $size, $value);
         return $this;
     }
 
@@ -483,7 +681,32 @@ class Arr
     }
 
     /**
-     * Get the last operation result.
+     * Reduce the array to a single value using a callback.
+     *
+     * @param callable $callback The callback function.
+     * @param mixed $initial The initial value.
+     * @return self
+     */
+    public function reduce(callable $callback, mixed $initial = null): self
+    {
+        $this->lastResult = array_reduce($this->items, $callback, $initial);
+        return $this;
+    }
+
+    /**
+     * Replace values in the array with values from another array.
+     *
+     * @param array $array The array with replacement values.
+     * @return self
+     */
+    public function replace(array $array): self
+    {
+        $this->items = array_replace($this->items, $array);
+        return $this;
+    }
+
+    /**
+     * Retrieve the result of the last operation.
      *
      * @return mixed
      */
@@ -500,6 +723,17 @@ class Arr
     public function reverse(): self
     {
         $this->items = array_reverse($this->items);
+        return $this;
+    }
+
+    /**
+     * Sort the array in descending order.
+     *
+     * @return self
+     */
+    public function rsort(): self
+    {
+        rsort($this->items);
         return $this;
     }
 
@@ -561,6 +795,68 @@ class Arr
     }
 
     /**
+     * Extract a slice of the array.
+     *
+     * @param int $offset The index to start the slice.
+     * @param int|null $length The number of elements to extract.
+     * @return self
+     */
+    public function slice(int $offset, ?int $length = null): self
+    {
+        $this->items = array_slice($this->items, $offset, $length);
+        return $this;
+    }
+
+    /**
+     * Sort the array in ascending order.
+     *
+     * @return self
+     */
+    public function sort(): self
+    {
+        sort($this->items);
+        return $this;
+    }
+
+    /**
+     * Remove and replace a portion of the array.
+     *
+     * @param int $offset The index to start the splice.
+     * @param int|null $length The number of elements to remove.
+     * @param array $replacement The replacement values.
+     * @return self
+     */
+    public function splice(int $offset, ?int $length = null, array $replacement = []): self
+    {
+        array_splice($this->items, $offset, $length, $replacement);
+        return $this;
+    }
+
+    /**
+     * Compute the difference between arrays using a custom comparison function.
+     *
+     * @param array $array The array to compare.
+     * @param callable $callback The comparison function.
+     * @return self
+     */
+    public function udiff(array $array, callable $callback): self
+    {
+        $this->items = array_udiff($this->items, $array, $callback);
+        return $this;
+    }
+
+    /**
+     * Remove duplicate values from the array.
+     *
+     * @return self
+     */
+    public function unique(): self
+    {
+        $this->items = array_unique($this->items);
+        return $this;
+    }
+
+    /**
      * Get all values of the array.
      *
      * @return self
@@ -572,6 +868,30 @@ class Arr
     }
 
     /**
+     * Apply a user function to every item in the array.
+     *
+     * @param callable $callback The function to apply.
+     * @return self
+     */
+    public function walk(callable $callback): self
+    {
+        array_walk($this->items, $callback);
+        return $this;
+    }
+
+    /**
+     * Recursively apply a user function to every item in the array.
+     *
+     * @param callable $callback The function to apply.
+     * @return self
+     */
+    public function walkRecursive(callable $callback): self
+    {
+        array_walk_recursive($this->items, $callback);
+        return $this;
+    }
+
+    /**
      * Wrap a value in an array if it is not already an array.
      *
      * @param mixed $value The value to wrap.
@@ -579,7 +899,11 @@ class Arr
      */
     public function wrap(mixed $value): self
     {
-        $this->items = is_array($value) ? $value : [$value];
+        $this->items = match (true) {
+            is_array($value) => $value,
+            is_null($value) => [],
+            default => [$value]
+        };
         return $this;
     }
 
