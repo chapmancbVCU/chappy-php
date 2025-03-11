@@ -288,7 +288,7 @@ $name = Arr::pull($array, 'name');
 ```
 <br>
 
-## 26. pull <a id="pull"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 26. push <a id="push"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Push one or more values onto the end of an array.
 
 ```php
@@ -321,7 +321,6 @@ $reversed = Arr::reverse($array);
 // [5, 4, 3, 2, 1]
 
 ```
-
 <br>
 
 ## 29. search <a id="search"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
