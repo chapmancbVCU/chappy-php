@@ -52,13 +52,13 @@ class Tools {
         
         // Validate severity level and log to file.
         $validLevels = ['info', 'debug', 'warning', 'error', 'critical', 'alert', 'emergency'];
-        if (!Arr::exists($validLevels, strtolower($level))) {
+        if (!array_key_exists(strtolower($level), $validLevels)) {
             $level = 'info'; // Default to 'info' if invalid level provided
         }
         Logger::log($message, $level);
 
         // Perform console logging
-        if(Arr::exists($backgroundColor, $background) && Arr::exists($textColor, $text)) {
+        if(array_key_exists($background, $backgroundColor) && array_key_exists($text, $textColor)) {
             echo "\e[".$textColor[$text].";".$backgroundColor[$background]."m\n\n"."   ".$message."\n\e[0m\n";
         } else {
             echo "\e[0;37;41m\n\n"."   Invalid background or text color.\n\e[0m\n";

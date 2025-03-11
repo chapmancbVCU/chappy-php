@@ -32,9 +32,9 @@ class Input {
             // Return entire request array and sanitize it
             $data = [];
             foreach ($_REQUEST as $field => $value) {
-                if (Arr::isArray($value)) {
+                if (is_array($value)) {
                     // Recursively sanitize arrays
-                    $data[$field] = Arr::map($value, [FormHelper::class, 'sanitize']);
+                    $data[$field] = array_map([FormHelper::class, 'sanitize'], $value);
                 } else {
                     // Only trim if it's a string
                     $data[$field] = trim(FormHelper::sanitize($value));
@@ -46,8 +46,8 @@ class Input {
         // Handle single input field
         if (isset($_REQUEST[$input])) {
             $value = $_REQUEST[$input];
-            if (Arr::isArray($value)) {
-                return Arr::map($value, [FormHelper::class, 'sanitize']);
+            if (is_array($value)) {
+                return array_map([FormHelper::class, 'sanitize'], $value);
             }
             return trim(FormHelper::sanitize($value));
         }

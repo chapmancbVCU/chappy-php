@@ -27,7 +27,7 @@ class Helper {
         $key = (Users::currentUser())? "Hello " .Users::currentUser()->fname : $key;
         
       }
-      if(Arr::isArray($val)): ?>
+      if(is_array($val)): ?>
         <li class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
               <?=$key?>

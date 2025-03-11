@@ -62,7 +62,7 @@ class AdmindashboardController extends Controller {
 
         // Get users so we can get number using acl and update later.
         $users = $acl->isAssignedToUsers();
-        if(Arr::isArray($users) && count($users) > 0) {
+        if(count($users) > 0) {
             Session::addMessage('info', "Cannot delete ". $acl->acl. ", assigned to one or more users.");
         }
         if($acl) {
@@ -170,7 +170,7 @@ class AdmindashboardController extends Controller {
         $userAcls = json_decode($user->acl, true);
         $userAcls = Users::aclToArray($userAcls);
 
-        $this->view->userAcls = Arr::map($userAcls, 'strval'); // Ensure values are strings
+        $this->view->userAcls = array_map('strval', $userAcls); // Ensure values are strings
         $profileImages = ProfileImages::findByUserId($user->id);
     
         if ($this->request->isPost()) {
@@ -231,9 +231,9 @@ class AdmindashboardController extends Controller {
         $unUsedAcls = [];
         foreach($acls as $acl) {
             if($acl->isAssignedToUsers()) {
-                Arr::push($usedAcls, $acl);
+                array_push($usedAcls, $acl);
             } else {
-                Arr::push($unUsedAcls, $acl);
+                array_push($unUsedAcls, $acl);
             }
         }
 

@@ -252,9 +252,9 @@ class DB {
             unset($fields['id']);
         }
     
-        $fieldString = implode(',', Arr::keys($fields));
-        $valueString = implode(',', Arr::fill(0, count($fields), '?'));
-        $values = Arr::values($fields);
+        $fieldString = implode(',', array_keys($fields));
+        $valueString = implode(',', array_fill(0, count($fields), '?'));
+        $values = array_values($fields);
     
         $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
     
@@ -355,7 +355,7 @@ class DB {
 
         // Conditions
         if(isset($params['conditions'])) {
-            if(Arr::isArray($params['conditions'])) {
+            if(is_array($params['conditions'])) {
                 foreach($params['conditions'] as $condition) {
                     // Convert `!=` to `<>` for SQLite
                     if ($dbDriver === 'sqlite') {
@@ -377,41 +377,41 @@ class DB {
         }
 
         // Columns
-        if(Arr::exists($params, 'columns')) {
+        if(array_key_exists('columns',$params)){
             $columns = $params['columns'];
         }
 
         // Joins and raw joins
-        if(Arr::exists($params, 'joins')) {
-            foreach($params['joins'] as $join) {
+        if(array_key_exists('joins',$params)){
+            foreach($params['joins'] as $join){
                 $joins .= $this->_buildJoin($join);
             }
             $joins .= " ";
         }
 
-        if(Arr::exists($params, 'joinsRaw')) {
+        if(array_key_exists('joinsRaw', $params)) {
             foreach($params['joinsRaw'] as $raw) {
                 $joins .= ' ' .$raw;
             }
         }
 
         // Bind
-        if(Arr::exists($params, 'bind')) {
+        if(array_key_exists('bind', $params)) {
             $bind = $params['bind'];
         }
 
         // Order
-        if(Arr::exists($params, 'order', )) {
+        if(array_key_exists('order', $params)) {
             $order = ' ORDER BY ' . $params['order'];
         }
 
         // Limit
-        if(Arr::exists($params, 'limit')) {
+        if(array_key_exists('limit', $params)) {
             $limit = ' LIMIT ' . $params['limit'];
         }
 
         // Offset
-        if(Arr::exists($params, 'offset')) {
+        if(array_key_exists('offset', $params)) {
             $offset = ' OFFSET ' . $params['offset'];
         }
 
@@ -466,8 +466,8 @@ class DB {
      * we return false.
      */
     public function update($table, $id, $fields = []) {
-        $setString = implode('=?, ', Arr::keys($fields)) . '=?';
-        $values = Arr::values($fields);
+        $setString = implode('=?, ', array_keys($fields)) . '=?';
+        $values = array_values($fields);
         $values[] = $id;
 
         $sql = "UPDATE {$table} SET {$setString} WHERE id = ?";

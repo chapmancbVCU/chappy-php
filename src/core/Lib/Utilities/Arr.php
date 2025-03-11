@@ -5,560 +5,593 @@ declare(strict_types=1);
 namespace Core\Lib\Utilities;
 
 /**
- * Contains functions that support array operations.
+ * Array utility class with chainable operations.
  */
 class Arr
 {
-    /**
-     * Add a value to an array if the key does not exist.
-     *
-     * @param array $array The array to modify.
-     * @param string|int $key The key to check.
-     * @param mixed $value The value to add.
-     * @return array The modified array.
-     */
-    public static function add(array $array, string|int $key, mixed $value): array {
-        if (!array_key_exists($key, $array)) {
-            $array[$key] = $value;
-        }
-
-        return $array;
-    }
+    protected array $items;
+    protected mixed $lastResult;
 
     /**
-     * Collapse a multi-dimensional array into a single-level array.
+     * Constructor to initialize the array.
      *
-     * @param array $array The multi-dimensional array.
-     * @return array The collapsed array.
+     * @param array $items The initial array.
      */
-    public static function collapse(array $array): array {
-        $result = [];
-
-        foreach ($array as $values) {
-            if (is_array($values)) {
-                $result = array_merge($result, $values);
-            }
-        }
-
-        return $result;
-    }
-
-    /**
-     * Determine if a given value exists in an array.
-     *
-     * @param array $array The array to search.
-     * @param mixed $value The value to find.
-     * @param bool $strict Whether to perform a strict comparison.
-     * @return bool True if the value exists, false otherwise.
-     */
-    public static function contains(array $array, mixed $value, bool $strict = false): bool
+    public function __construct(array $items = [])
     {
-        return in_array($value, $array, $strict);
+        $this->items = $items;
+        $this->lastResult = null;
+    }
+
+    /**
+     * Add a value to the array if the key does not exist.
+     *
+     * @param string $key The key to check.
+     * @param mixed $value The value to add.
+     * @return self
+     */
+    public function add(string $key, mixed $value): self
+    {
+        if (!array_key_exists($key, $this->items)) {
+            $this->items[$key] = $value;
+        }
+        return $this;
+    }
+
+    /**
+     * Get all items in the array.
+     *
+     * @return array The stored array.
+     */
+    public function all(): array
+    {
+        return $this->items;
+    }
+
+    /**
+     * Collapse a multi-dimensional array into a single level.
+     *
+     * @return self
+     */
+    public function collapse(): self
+    {
+        $result = [];
+        array_walk_recursive($this->items, function ($a) use (&$result) {
+            $result[] = $a;
+        });
+        $this->items = $result;
+        return $this;
+    }
+
+    /**
+     * Check if an array contains a specific value.
+     *
+     * @param mixed $value The value to search for.
+     * @param bool $strict Whether to perform strict comparison.
+     * @return self
+     */
+    public function contains(mixed $value, bool $strict = false): self
+    {
+        $this->lastResult = in_array($value, $this->items, $strict);
+        return $this;
     }
 
     /**
      * Compute the Cartesian product of multiple arrays.
      *
-     * @param array ...$arrays The arrays to compute the product for.
-     * @return array The Cartesian product.
+     * @param array ...$arrays Arrays to join.
+     * @return self
      */
-    public static function crossJoin(array ...$arrays): array {
-        $result = [[]];
-
-        foreach ($arrays as $array) {
-            $append = [];
-
-            foreach ($result as $product) {
+    public function crossJoin(array ...$arrays): self
+    {
+        $results = [[]];
+        foreach (array_merge([$this->items], $arrays) as $array) {
+            $newResults = [];
+            foreach ($results as $result) {
                 foreach ($array as $item) {
-                    $append[] = array_merge($product, [$item]);
+                    $newResults[] = array_merge($result, [$item]);
                 }
             }
-
-            $result = $append;
+            $results = $newResults;
         }
-
-        return $result;
+        $this->items = $results;
+        return $this;
     }
     
     /**
-     * Convert a multi-dimensional array into dot notation keys.
+     * Convert an array into dot notation.
      *
-     * @param array $array The multi-dimensional array.
-     * @param string $prepend The prefix for keys.
-     * @return array The array with dot notation keys.
+     * @param string $prepend A string to prepend before keys.
+     * @return self
      */
-    public static function dot(array $array, string $prepend = ''): array {
+    public function dot(string $prepend = ''): self
+    {
         $results = [];
-
-        foreach ($array as $key => $value) {
-            if (is_array($value) && !empty($value)) {
-                $results += static::dot($value, $prepend . $key . '.');
-            } else {
-                $results[$prepend . $key] = $value;
+        $array = $this->items;
+        
+        $flatten = function (array $array, string $prepend) use (&$results, &$flatten) {
+            foreach ($array as $key => $value) {
+                if (is_array($value)) {
+                    $flatten($value, $prepend . $key . '.');
+                } else {
+                    $results[$prepend . $key] = $value;
+                }
             }
+        };
+        
+        $flatten($array, $prepend);
+        $this->items = $results;
+        return $this;
+    }
+
+    /**
+     * Iterate over each item and apply a callback.
+     *
+     * @param callable $callback The function to apply.
+     * @return self
+     */
+    public function each(callable $callback): self
+    {
+        foreach ($this->items as $key => $value) {
+            $callback($value, $key);
         }
-
-        return $results;
+        return $this;
+    }
+    /**
+     * Remove specified keys from the array.
+     *
+     * @param array|string $keys The keys to remove.
+     * @return self
+     */
+    public function except(array|string $keys): self
+    {
+        foreach ((array) $keys as $key) {
+            unset($this->items[$key]);
+        }
+        return $this;
     }
 
     /**
-     * Get all items except the specified keys.
+     * Determine if a key exists in an array.
      *
-     * @param array $array The source array.
-     * @param array $keys The keys to exclude.
-     * @return array The filtered array.
+     * @param string $key The key to check.
+     * @return self
      */
-    public static function except(array $array, array $keys): array {
-        return array_diff_key($array, array_flip($keys));
-    }
-
-    /**
-     * Check if a key exists in an array (non-dot notation).
-     *
-     * @param array $array The source array.
-     * @param string|int $key The key to check.
-     * @return bool True if the key exists, false otherwise.
-     */
-    public static function exists(array $array, string|int $key): bool {
-        return array_key_exists($key, $array);
+    public function exists(string $key): self
+    {
+        $this->lastResult = array_key_exists($key, $this->items);
+        return $this;
     }
 
     /**
      * Fill an array with a specified value.
      *
-     * @param int $startIndex The first index to use.
-     * @param int $count The number of elements to insert.
-     * @param mixed $value The value to use for filling.
-     * @return array The filled array.
+     * @param int $start Index to start filling.
+     * @param int $count Number of elements to insert.
+     * @param mixed $value The value to insert.
+     * @return self
      */
-    public static function fill(int $startIndex, int $count, mixed $value): array
+    public function fill(int $start, int $count, mixed $value): self
     {
-        return array_fill($startIndex, $count, $value);
+        $this->items = array_fill($start, $count, $value);
+        return $this;
     }
 
     /**
-     * Get the first element that passes a given test.
+     * Get the first element that matches a condition.
      *
-     * @param array $array The source array.
-     * @param callable|null $callback The function to determine a match.
-     * @param mixed|null $default The default value if no match is found.
-     * @return mixed The first matching value or default.
+     * @param callable|null $callback A callback function to test elements.
+     * @return self
      */
-    public static function first(array $array, ?callable $callback = null, mixed $default = null): mixed {
+    public function first(?callable $callback = null): self
+    {
         if ($callback === null) {
-            return reset($array) ?: $default;
-        }
-
-        foreach ($array as $value) {
-            if ($callback($value)) {
-                return $value;
+            $this->lastResult = reset($this->items) ?: null;
+        } else {
+            foreach ($this->items as $value) {
+                if ($callback($value)) {
+                    $this->lastResult = $value;
+                    break;
+                }
             }
         }
-
-        return $default;
+        return $this;
     }
 
     /**
      * Flatten a multi-dimensional array into a single level.
      *
-     * @param array $array The multi-dimensional array.
-     * @param int $depth The depth limit.
-     * @return array The flattened array.
+     * @return self
      */
-    public static function flatten(array $array, int $depth = INF): array {
+    public function flatten(): self
+    {
         $result = [];
-
-        foreach ($array as $value) {
-            if (is_array($value) && $depth > 1) {
-                $result = array_merge($result, static::flatten($value, $depth - 1));
-            } else {
-                $result[] = $value;
-            }
-        }
-
-        return $result;
+        array_walk_recursive($this->items, function ($a) use (&$result) {
+            $result[] = $a;
+        });
+        $this->items = $result;
+        return $this;
     }
 
     /**
-     * Remove a value from an array using dot notation.
+     * Remove a specific key from the array.
      *
-     * @param array $array The source array (passed by reference).
-     * @param string|array $keys The key(s) to remove.
-     * @return void
+     * @param string $key The key to remove.
+     * @return self
      */
-    public static function forget(array &$array, string|array $keys): void {
-        $keys = (array) $keys;
-
-        foreach ($keys as $key) {
-            $parts = explode('.', $key);
-            $temp = &$array;
-
-            while (count($parts) > 1) {
-                $part = array_shift($parts);
-
-                if (!isset($temp[$part]) || !is_array($temp[$part])) {
-                    continue 2;
-                }
-
-                $temp = &$temp[$part];
-            }
-
-            unset($temp[array_shift($parts)]);
-        }
+    public function forget(string $key): self
+    {
+        unset($this->items[$key]);
+        return $this;
     }
 
     /**
-     * Get a value from an array using dot notation.
+     * Get a value from the array using dot notation.
      *
-     * @param array $array The source array.
-     * @param string $key The key using dot notation.
-     * @param mixed|null $default The default value if the key is not found.
-     * @return mixed The value from the array or the default.
+     * @param string $key The key in dot notation.
+     * @param mixed $default The default value if the key is not found.
+     * @return self
      */
-    public static function get(array $array, string $key, mixed $default = null): mixed {
-        if (array_key_exists($key, $array)) {
-            return $array[$key];
-        }
-
-        foreach (explode('.', $key) as $segment) {
+    public function get(string $key, mixed $default = null): self
+    {
+        $keys = explode('.', $key);
+        $array = $this->items;
+        
+        foreach ($keys as $segment) {
             if (!is_array($array) || !array_key_exists($segment, $array)) {
-                return $default;
+                $this->lastResult = $default;
+                return $this;
             }
             $array = $array[$segment];
         }
-
-        return $array;
+        
+        $this->lastResult = $array;
+        return $this;
     }
     
     /**
-     * Check if an array has a given key using dot notation.
+     * Check if a key exists in the array.
      *
-     * @param array $array The source array.
-     * @param string $key The key using dot notation.
-     * @return bool True if the key exists, false otherwise.
+     * @param string $key The key to check.
+     * @return self
      */
-    public static function has(array $array, string $key): bool {
-        if (array_key_exists($key, $array)) {
-            return true;
-        }
-
-        foreach (explode('.', $key) as $segment) {
-            if (!is_array($array) || !array_key_exists($segment, $array)) {
-                return false;
-            }
-            $array = $array[$segment];
-        }
-
-        return true;
+    public function has(string $key): self
+    {
+        $this->lastResult = array_key_exists($key, $this->items);
+        return $this;
     }
 
     /**
-     * Determine if a given value is an array.
+     * Check if the given value is an array.
      *
      * @param mixed $value The value to check.
-     * @return bool True if the value is an array, false otherwise.
+     * @return self
      */
-    public static function isArray(mixed $value): bool
+    public function isArray(mixed $value): self
     {
-        return is_array($value);
+        $this->lastResult = is_array($value);
+        return $this;
     }
 
     /**
-     * Get all the keys from an array.
+     * Join array elements with a string.
      *
-     * @param array $array The array to extract keys from.
-     * @return array The array of keys.
+     * @param string $separator The separator string.
+     * @return self
      */
-    public static function keys(array $array): array
+    public function implode(string $separator): self
     {
-        return array_keys($array);
+        $this->lastResult = implode($separator, $this->items);
+        return $this;
     }
 
     /**
-     * Reindex an array using a specified key.
+     * Get all keys of the array.
      *
-     * @param array $array The source array.
-     * @param string|int $key The key to index by.
-     * @return array The reindexed array.
+     * @return self
      */
-    public static function keyBy(array $array, string|int $key): array {
+    public function keys(): self
+    {
+        $this->items = array_keys($this->items);
+        return $this;
+    }
+
+    /**
+     * Key an array by a specific field.
+     *
+     * @param string $key The field to use as keys.
+     * @return self
+     */
+    public function keyBy(string $key): self
+    {
+        $this->items = array_column($this->items, null, $key);
+        return $this;
+    }
+
+
+    /**
+     * Get the last element that matches a condition.
+     *
+     * @param callable|null $callback A callback function to test elements.
+     * @return self
+     */
+    public function last(?callable $callback = null): self
+    {
+        if ($callback === null) {
+            $this->lastResult = end($this->items) ?: null;
+        } else {
+            $this->lastResult = null;
+            foreach (array_reverse($this->items, true) as $value) {
+                if ($callback($value)) {
+                    $this->lastResult = $value;
+                    break;
+                }
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * Create a new Arr instance from an array.
+     *
+     * @param array $items The array to wrap.
+     * @return self
+     */
+    public static function make(array $items): self
+    {
+        return new self($items);
+    }
+
+    /**
+     * Apply a callback function to each item in the array.
+     *
+     * @param callable $callback The function to apply.
+     * @return self
+     */
+    public function map(callable $callback): self
+    {
+        $this->items = array_map($callback, $this->items);
+        return $this;
+    }
+
+    /**
+     * Apply a recursive callback function to each element in the array.
+     *
+     * @param callable $callback The function to apply.
+     * @return self
+     */
+    public function mapRecursive(callable $callback): self
+    {
+        $recursiveMap = function ($array) use (&$recursiveMap, $callback) {
+            foreach ($array as $key => $value) {
+                $array[$key] = is_array($value) ? $recursiveMap($value) : $callback($value);
+            }
+            return $array;
+        };
+
+        $this->items = $recursiveMap($this->items);
+        return $this;
+    }
+
+    /**
+     * Map an array using a callback that defines both keys and values.
+     *
+     * @param callable $callback The function to apply.
+     * @return self
+     */
+    public function mapWithKeys(callable $callback): self
+    {
         $result = [];
 
-        foreach ($array as $item) {
-            if (!is_array($item) || !array_key_exists($key, $item)) {
-                throw new \InvalidArgumentException("Each item must be an array and contain the key '$key'.");
+        foreach ($this->items as $key => $value) {
+            $mapped = $callback($value, $key); // ✅ Ensure both $key and $value are passed.
+            if (is_array($mapped)) {
+                $result = array_merge($result, $mapped);
             }
-
-            $result[$item[$key]] = $item;
         }
 
-        return $result;
-    }
-
-
-    /**
-     * Get the last element that passes a given test.
-     *
-     * @param array $array The source array.
-     * @param callable|null $callback The function to determine a match.
-     * @param mixed|null $default The default value if no match is found.
-     * @return mixed The last matching value or default.
-     */
-    public static function last(array $array, ?callable $callback = null, mixed $default = null): mixed {
-        return static::first(array_reverse($array, true), $callback, $default);
+        $this->items = $result;
+        return $this;
     }
 
     /**
-     * Apply a callback to each item in an array.
+     * Merge the current array with another array.
      *
-     * @param array $array The source array.
-     * @param callable $callback The function to apply.
-     * @return array The modified array.
+     * @param array $array The array to merge with.
+     * @return self
      */
-    public static function map(array $array, callable $callback): array {
-        return array_map($callback, $array);
-    }
-
-    /**
-     * Map an array while preserving keys.
-     *
-     * @param array $array The source array.
-     * @param callable $callback The function to apply.
-     * @return array The modified array with new keys.
-     */
-    public static function mapWithKeys(array $array, callable $callback): array {
-        $result = [];
-
-        foreach ($array as $item) {
-            $mapped = $callback($item);
-
-            if (!is_array($mapped) || count($mapped) !== 1) {
-                throw new \InvalidArgumentException("Callback must return an array with a single key-value pair.");
-            }
-
-            $result[key($mapped)] = reset($mapped);
-        }
-
-        return $result;
-    }
-
-    /**
-     * Merge one or more arrays together.
-     *
-     * @param array ...$arrays Arrays to merge.
-     * @return array The merged array.
-     */
-    public static function merge(array ...$arrays): array
+    public function merge(array $array): self
     {
-        return array_merge(...$arrays);
+        $this->items = array_merge($this->items, $array);
+        return $this;
     }
 
     /**
-     * Get only the specified keys from an array.
+     * Return only the specified keys from the array.
      *
-     * @param array $array The source array.
-     * @param array $keys The keys to retrieve.
-     * @return array The filtered array.
+     * @param array|string $keys The keys to include.
+     * @return self
      */
-    public static function only(array $array, array $keys): array {
-        return array_intersect_key($array, array_flip($keys));
+    public function only(array|string $keys): self
+    {
+        $this->items = array_intersect_key($this->items, array_flip((array) $keys));
+        return $this;
     }
 
     /**
-     * Pluck a single key from an array.
+     * Extract a specific key's values.
      *
-     * @param array $array The source array.
-     * @param string $value The key to extract values for.
-     * @param string|null $key Optional key to use as array index.
-     * @return array The plucked values.
+     * @param string $key The key to pluck.
+     * @return self
      */
-    public static function pluck(array $array, string $value, ?string $key = null): array {
-        $results = [];
-
-        foreach ($array as $item) {
-            $itemValue = static::get($item, $value);
-
-            if ($key !== null) {
-                $itemKey = static::get($item, $key);
-                $results[$itemKey] = $itemValue;
-            } else {
-                $results[] = $itemValue;
-            }
-        }
-
-        return $results;
+    public function pluck(string $key): self
+    {
+        $this->items = array_column($this->items, $key);
+        return $this;
     }
 
     /**
-     * Prepend a value to an array.
+     * Prepend a value to the beginning of the array.
      *
-     * @param array $array The array to modify.
      * @param mixed $value The value to prepend.
-     * @param string|int|null $key Optional key for the prepended value.
-     * @return array The modified array.
+     * @return self
      */
-    public static function prepend(array $array, mixed $value, string|int|null $key = null): array {
-        if ($key !== null) {
-            return [$key => $value] + $array;
-        }
-
-        array_unshift($array, $value);
-        return $array;
-    }
-
-    /**
-     * Retrieve a value from the array and remove it.
-     *
-     * @param array $array The source array (passed by reference).
-     * @param string $key The key using dot notation.
-     * @param mixed|null $default The default value if the key is not found.
-     * @return mixed The retrieved value or default.
-     */
-    public static function pull(array &$array, string $key, mixed $default = null): mixed {
-        $value = static::get($array, $key, $default);
-        static::forget($array, $key);
-        return $value;
-    }
-
-    /**
-     * Push one or more values onto the end of an array.
-     *
-     * @param array $array The array to modify.
-     * @param mixed ...$values The values to push.
-     * @return array The modified array.
-     */
-    public static function push(array &$array, mixed ...$values): array
+    public function prepend(mixed $value): self
     {
-        array_push($array, ...$values);
-        return $array;
+        array_unshift($this->items, $value);
+        return $this;
     }
 
     /**
-     * Get a random value or multiple values from an array.
+     * Remove and return a value from the array.
      *
-     * @param array $array The source array.
+     * @param string $key The key to retrieve and remove.
+     * @param mixed $default The default value if the key is not found.
+     * @return self
+     */
+    public function pull(string $key, mixed $default = null): self
+    {
+        $this->lastResult = $this->items[$key] ?? $default;
+        unset($this->items[$key]);
+        return $this;
+    }
+
+    /**
+     * Add one or more values to the array.
+     *
+     * @param mixed ...$values The values to add.
+     * @return self
+     */
+    public function push(mixed ...$values): self
+    {
+        array_push($this->items, ...$values);
+        return $this;
+    }
+
+    /**
+     * Get a random value or multiple values from the array.
+     *
      * @param int|null $number Number of elements to retrieve.
-     * @return mixed The random value(s).
+     * @return self
      */
-    public static function random(array $array, ?int $number = null): mixed {
-        $count = count($array);
-
-        if ($number === null) {
-            return $array[array_rand($array)];
-        }
-
-        if ($number > $count) {
-            $number = $count;
-        }
-
-        return array_intersect_key($array, array_flip((array) array_rand($array, $number)));
-    }
-
-    /**
-     * Reverse the order of elements in an array.
-     *
-     * @param array $array The array to reverse.
-     * @param bool $preserveKeys Whether to preserve keys in the reversed array.
-     * @return array The reversed array.
-     */
-    public static function reverse(array $array, bool $preserveKeys = false): array
+    public function random(?int $number = null): self
     {
-        return array_reverse($array, $preserveKeys);
+        $this->lastResult = is_null($number)
+            ? $this->items[array_rand($this->items)]
+            : array_intersect_key($this->items, array_flip((array) array_rand($this->items, $number)));
+        return $this;
     }
 
     /**
-     * Search for a value in an array and return the corresponding key.
+     * Get the last operation result.
      *
-     * @param array $array The array to search in.
+     * @return mixed
+     */
+    public function result(): mixed
+    {
+        return $this->lastResult;
+    }
+
+    /**
+     * Reverse the order of the array.
+     *
+     * @return self
+     */
+    public function reverse(): self
+    {
+        $this->items = array_reverse($this->items);
+        return $this;
+    }
+
+   /**
+     * Search for a value in the array and return its key.
+     *
      * @param mixed $value The value to search for.
-     * @param bool $strict Whether to perform a strict type comparison.
-     * @return string|int|false The key if found, false otherwise.
+     * @return self
      */
-    public static function search(array $array, mixed $value, bool $strict = false): string|int|false
+    public function search(mixed $value): self
     {
-        return array_search($value, $array, $strict);
+        $this->lastResult = array_search($value, $this->items, true);
+        return $this;
     }
 
     /**
-     * Set a value within an array using dot notation.
+     * Set a value in the array using dot notation.
      *
-     * @param array $array The source array (passed by reference).
-     * @param string $key The key using dot notation.
+     * @param string $key The key in dot notation.
      * @param mixed $value The value to set.
-     * @return void
+     * @return self
      */
-    public static function set(array &$array, string $key, mixed $value): void {
+    public function set(string $key, mixed $value): self
+    {
+        $array = &$this->items;
         $keys = explode('.', $key);
-
+        
         while (count($keys) > 1) {
-            $segment = array_shift($keys);
-
-            if (!isset($array[$segment]) || !is_array($array[$segment])) {
-                $array[$segment] = [];
+            $key = array_shift($keys);
+            if (!isset($array[$key]) || !is_array($array[$key])) {
+                $array[$key] = [];
             }
-
-            $array = &$array[$segment];
+            $array = &$array[$key];
         }
-
         $array[array_shift($keys)] = $value;
+        return $this;
     }
 
     /**
-     * Remove and return the first element of an array.
+     * Remove and return the first item from the array.
      *
-     * @param array &$array The array to shift from (passed by reference).
-     * @return mixed|null The removed element or null if the array is empty.
+     * @return self
      */
-    public static function shift(array &$array): mixed
+    public function shift(): self
     {
-        return array_shift($array);
+        $this->lastResult = array_shift($this->items);
+        return $this;
     }
 
     /**
-     * Shuffle the array.
+     * Shuffle the elements of the array.
      *
-     * @param array $array The source array.
-     * @param int|null $seed Optional seed for deterministic results.
-     * @return array The shuffled array.
+     * @return self
      */
-    public static function shuffle(array $array, ?int $seed = null): array {
-        if ($seed !== null) {
-            mt_srand($seed);
-        }
-
-        shuffle($array);
-        return $array;
-    }
-
-    /**
-     * Return all values from an array, resetting numeric keys.
-     *
-     * @param array $array The input array.
-     * @return array The array with numeric indexes.
-     */
-    public static function values(array $array): array
+    public function shuffle(): self
     {
-        return array_values($array);
+        shuffle($this->items);
+        return $this;
     }
 
     /**
-     * Wrap a value in an array.
+     * Get all values of the array.
+     *
+     * @return self
+     */
+    public function values(): self
+    {
+        $this->items = array_values($this->items);
+        return $this;
+    }
+
+    /**
+     * Wrap a value in an array if it is not already an array.
      *
      * @param mixed $value The value to wrap.
-     * @return array The wrapped array.
+     * @return self
      */
-    public static function wrap(mixed $value): array {
-        return is_array($value) ? $value : [$value];
-    } 
+    public function wrap(mixed $value): self
+    {
+        $this->items = is_array($value) ? $value : [$value];
+        return $this;
+    }
 
     /**
-     * Filter an array using a callback.
+     * Filter the array using a callback function.
      *
-     * @param array $array The source array.
-     * @param callable $callback The function to apply to each element.
-     * @return array The filtered array.
+     * @param callable $callback The function to apply.
+     * @return self
      */
-    public static function where(array $array, callable $callback): array {
-        return array_filter($array, $callback);
+    public function where(callable $callback): self
+    {
+        $this->items = array_filter($this->items, $callback);
+        return $this;
     }
 }

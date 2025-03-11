@@ -62,10 +62,10 @@ class Users extends Model {
      * @return array An array of acls.
      */
     public static function aclToArray(mixed $acls): array {
-        if (!Arr::isArray($acls)) {
+        if (!is_array($acls)) {
             $acls = [];
         }
-        return Arr::map($acls, 'strval');
+        return array_map('strval', $acls);
     }
 
     /**
@@ -80,7 +80,7 @@ class Users extends Model {
         $user = self::findById($user_id);
         if(!$user) return false;
         $acls = $user->acls();
-        if(!Arr::contains($acls, $acl)){
+        if(!in_array($acl, $acls)){
             $acls[] = $acl;
             $user->acl = json_encode($acls);
             $user->save();
@@ -133,7 +133,7 @@ class Users extends Model {
             'bind' => [(int)$current_user_id]
         ];
         // In case you want to add more conditions
-        $conditions = Arr::merge($conditions, $params);
+        $conditions = array_merge($conditions, $params);
         return self::find($conditions);
     }
 
@@ -157,10 +157,10 @@ class Users extends Model {
     public function hasAcl($acl) {
         $userAcls = json_decode($this->acl, true);
     
-        if (!Arr::isArray($userAcls)) {
+        if (!is_array($userAcls)) {
             return false; // Ensures it always returns a boolean
         }
-        return Arr::contains($userAcls, $acl, true);
+        return in_array($acl, $userAcls, true);
     }
     
     /**
@@ -308,9 +308,9 @@ class Users extends Model {
     public static function manageAcls(array $acls, Users $user, array $newAcls, array $userAcls): void {
         foreach ($acls as $aclName) {
             $aclKeyStr = (string)$aclName;
-            if (Arr::contains($newAcls, $aclKeyStr, true) && !Arr::contains($userAcls, $aclKeyStr, true)) {
+            if (in_array($aclKeyStr, $newAcls, true) && !in_array($aclKeyStr, $userAcls, true)) {
                 self::addAcl($user->id, $aclKeyStr);
-            } elseif (!Arr::contains($newAcls, $aclKeyStr, true) && Arr::contains($userAcls, $aclKeyStr, true)) {
+            } elseif (!in_array($aclKeyStr, $newAcls, true) && in_array($aclKeyStr, $userAcls, true)) {
                 self::removeAcl($user->id, $aclKeyStr);
             }
         }
@@ -328,8 +328,8 @@ class Users extends Model {
         $user = self::findById($user_id);
         if(!$user) return false;
         $acls = $user->acls();
-        if(Arr::contains($acls, $acl,)){
-            $key = Arr::search($acls, $acl);
+        if(in_array($acl,$acls)){
+            $key = array_search($acl,$acls);
             unset($acls[$key]);
             $user->acl = json_encode($acls);
             $user->save();

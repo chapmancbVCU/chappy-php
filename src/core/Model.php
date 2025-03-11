@@ -39,7 +39,7 @@ class Model {
      */
     public function addErrorMessage($field,$message){
         $this->_validates = false;
-        if(Arr::exists($this->_validationErrors, $field,)) {
+        if(array_key_exists($field,$this->_validationErrors)){
             $this->_validationErrors[$field] .= " " . $message;
         } else {
             $this->_validationErrors[$field] = $message;
@@ -75,9 +75,9 @@ class Model {
             $whiteListed = true;
             if(sizeof($list) > 0){
               if($blackList){
-                    $whiteListed = !Arr::contains($list, $key);
+                    $whiteListed = !in_array($key, $list);
               } else {
-                    $whiteListed = Arr::contains($list, $key);
+                    $whiteListed = in_array($key, $list);
               }
             }
             if(property_exists($this,$key) && $whiteListed){
@@ -258,7 +258,7 @@ class Model {
         ];
 
         // In case you want to add more conditions
-        $conditions = Arr::merge($conditions, $params);
+        $conditions = array_merge($conditions, $params);
         return self::find($conditions);
     }
 
@@ -301,7 +301,7 @@ class Model {
      */
     public function insert($fields) {
         if(empty($fields)) return false;
-        if(Arr::exists($fields, 'id')) unset($fields['id']);
+        if(array_key_exists('id', $fields)) unset($fields['id']);
         return static::getDb()->insert(static::$_table, $fields);
     }
 
@@ -409,8 +409,8 @@ class Model {
             $dbDriver = static::getDb()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
             $notEqualOperator = ($dbDriver === 'sqlite') ? "<>" : "!=";
 
-            if(Arr::exists($params, 'conditions')){
-                if(Arr::isArray($params['conditions'])){
+            if(array_key_exists('conditions', $params)){
+                if(is_array($params['conditions'])){
                     $params['conditions'][] = "deleted {$notEqualOperator} 1";
                 } else {
                     $params['conditions'] .= " AND deleted {$notEqualOperator} 1";

@@ -49,7 +49,7 @@ protected function validateFileType(): void {
     // Perform validation and set error messages.
     foreach($this->_files as $file) {
         // checking file type
-        if(!Arr::contains($this->_allowedFileTypes, exif_imagetype($file['tmp_name']), )){
+        if(!in_array(exif_imagetype($file['tmp_name']), $this->_allowedFileTypes)){
             $name = $file['name'];
             $msg = $name . " is not an allowed file type. Please use the following types: " . implode(', ', $reportTypes);
             $this->addErrorMessage($name, $msg);

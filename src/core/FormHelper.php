@@ -20,8 +20,8 @@ class FormHelper {
      * @return array $attrs Div attributes with error classes added.
      */
     public static function appendErrorClass($attrs, $errors, $name, $class){
-        if(Arr::exists($errors, $name)) {
-            if(Arr::exists($attrs, 'class')) {
+        if(array_key_exists($name, $errors)) {
+            if(array_key_exists('class', $attrs)) {
                 $attrs['class'] .= " " . $class;
             } else {
                 $attrs['class'] = $class;
@@ -273,7 +273,7 @@ class FormHelper {
     public static function emailBlock($label, $name, $value = '', $inputAttrs= [], $divAttrs = [], $errors = []) {
 
         // Make sure placeholder is not an attribute.
-        if(Arr::exists($inputAttrs, 'placeholder')) {
+        if(array_key_exists('placeholder', $inputAttrs)) {
             throw new Exception('Can not accept placeholder attribute found in your $inputString array.');
         }
 
@@ -296,7 +296,7 @@ class FormHelper {
      * @return string $msg The error message for a particular field.
      */
     public static function errorMsg($errors, $name){
-        $msg = (Arr::exists($errors, $name)) ? $errors[$name] : "";
+        $msg = (array_key_exists($name, $errors)) ? $errors[$name] : "";
         return $msg;  
     }
 
@@ -496,8 +496,8 @@ class FormHelper {
      * @return string The sanitized version of the dirty string.
      */
     public static function sanitize(string|array $dirty): string|array {
-        if (Arr::isArray($dirty)) {
-            return Arr::map([self::class, 'sanitize'], $dirty); // Recursively sanitize arrays
+        if (is_array($dirty)) {
+            return array_map($dirty, [self::class, 'sanitize']); // Recursively sanitize arrays
         }
         return htmlentities((string)$dirty, ENT_QUOTES, 'UTF-8');
     }

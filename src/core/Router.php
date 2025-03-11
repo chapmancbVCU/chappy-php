@@ -51,7 +51,7 @@ class Router {
         
         foreach($acl as $key => $value) {
             // If array we will know if there is a dropdown or something else.
-            if(Arr::isArray($value)) {
+            if(is_array($value)) {
                 $subMenu = [];
                 foreach($value as $k => $v) {
                     /* Check if item is a separator and continue.  Don't what 
@@ -111,21 +111,21 @@ class Router {
         }
 
         // Check access information.
-        foreach ($current_user_acls as $level) {
-            if (Arr::has($acl, "$level.$controller_name") &&
-                (Arr::contains(Arr::get($acl, "$level.$controller_name", []), $action_name) || 
-                Arr::contains(Arr::get($acl, "$level.$controller_name", []),"*"))) {
-                $grantAccess = true;
-                break;
-            }
+        foreach($current_user_acls as $level) {
+            if(array_key_exists($level, $acl) && array_key_exists($controller_name, $acl[$level])) {
+                if(in_array($action_name, $acl[$level][$controller_name]) || in_array("*", $acl[$level][$controller_name])) {
+                    $grantAccess = true;
+                    break;
+                }
+            } 
         }
 
         // Check for denied.
-        foreach ($current_user_acls as $level) {
-            if (Arr::has($acl, "$level.denied.$controller_name") &&
-                Arr::contains(Arr::get($acl, "$level.denied.$controller_name", []), $action_name)) {
+        foreach($current_user_acls as $level) {
+            $denied = $acl[$level]['denied'];
+            if(!empty($denied) && array_key_exists($controller_name, $denied) && in_array($action_name, $denied[$controller_name])) {
                 $grantAccess = false;
-            }
+            } 
         }
 
         return $grantAccess;
@@ -166,7 +166,7 @@ class Router {
      */
     public static function route(): void {   
         // Parse URLs
-        $requestPath = Arr::exists($_SERVER, 'PATH_INFO') ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
+        $requestPath = array_key_exists('PATH_INFO', $_SERVER) ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
         $url = isset($requestPath) ? explode('/', ltrim($requestPath, '/')) : [];
         
         try {
@@ -177,12 +177,12 @@ class Router {
             // Extract from URL our controllers
             $controller = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]).'Controller' : Env::get('DEFAULT_CONTROLLER', 'Home').'Controller';
             $controller_name = str_replace('Controller', '', $controller);
-            Arr::shift($url);
+            array_shift($url);
     
             // action - now first element of array.
             $action = (isset($url[0]) && $url[0] != '') ? $url[0] . 'Action' : 'indexAction';
             $action_name = (isset($url[0]) && $url[0] != '') ? $url[0] : 'index';
-            Arr::shift($url);
+            array_shift($url);
     
             // ACL check
             $grantAccess = self::hasAccess($controller_name, $action_name);

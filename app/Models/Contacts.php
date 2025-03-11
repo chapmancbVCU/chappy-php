@@ -100,7 +100,7 @@ class Contacts extends Model {
             'conditions' => 'id = ? AND user_id = ?',
             'bind' => [$contact_id, $user_id]
         ];
-        $conditions = Arr::merge($conditions, $params);
+        $conditions = array_merge($conditions, $params);
         return self::findFirst($conditions);
     }
 

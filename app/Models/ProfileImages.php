@@ -114,7 +114,7 @@ class ProfileImages extends Model {
         $i = 0;
         foreach($images as $image) {
             $val = 'image_'.$image->id;
-            $sort = (Arr::contains($sortOrder, $val)) ? Arr::search($sortOrder, $val) : $i;
+            $sort = (in_array($val,$sortOrder)) ? array_search($val, $sortOrder) : $i;
             $image->sort = $sort;
             $image->save();
             $i++;

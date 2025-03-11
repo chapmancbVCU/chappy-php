@@ -48,7 +48,7 @@ class Migrate {
         $migrations = glob('database' . DS . 'migrations' . DS . '*.php');
     
         // ✅ Reverse loop to drop tables in correct order
-        foreach (Arr::reverse($migrations) as $fileName) {
+        foreach (array_reverse($migrations) as $fileName) {
             $klass = str_replace(['database' . DS . 'migrations' . DS, '.php'], '', $fileName);
             $klassNamespace = 'Database\\Migrations\\' . $klass;
     
@@ -131,7 +131,7 @@ class Migrate {
         foreach ($migrations as $fileName) {
             $klass = str_replace(['database' . DS . 'migrations' . DS, '.php'], '', $fileName);
             
-            if (!Arr::contains($previousMigs, $klass)) {
+            if (!in_array($klass, $previousMigs)) {
                 $klassNamespace = 'Database\\Migrations\\' . $klass;
                 
                 if (class_exists($klassNamespace)) {
