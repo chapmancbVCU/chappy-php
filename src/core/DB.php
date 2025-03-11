@@ -253,7 +253,7 @@ class DB {
         }
     
         $fieldString = implode(',', Arr::keys($fields));
-        $valueString = implode(',', array_fill(0, count($fields), '?'));
+        $valueString = implode(',', Arr::fill(0, count($fields), '?'));
         $values = Arr::values($fields);
     
         $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
