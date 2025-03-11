@@ -51,7 +51,7 @@ class Router {
         
         foreach($acl as $key => $value) {
             // If array we will know if there is a dropdown or something else.
-            if(is_array($value)) {
+            if(Arr::isArray($value)) {
                 $subMenu = [];
                 foreach($value as $k => $v) {
                     /* Check if item is a separator and continue.  Don't what 

@@ -20,7 +20,7 @@ class Config
             $configData = require $file;
 
             // Ensure we are working with an array
-            if (!is_array($configData)) {
+            if (!Arr::isArray($configData)) {
                 throw new \Exception("Configuration file {$file} must return an array. Error in: {$file}");
             }
 

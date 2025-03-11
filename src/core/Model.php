@@ -410,7 +410,7 @@ class Model {
             $notEqualOperator = ($dbDriver === 'sqlite') ? "<>" : "!=";
 
             if(Arr::exists($params, 'conditions')){
-                if(is_array($params['conditions'])){
+                if(Arr::isArray($params['conditions'])){
                     $params['conditions'][] = "deleted {$notEqualOperator} 1";
                 } else {
                     $params['conditions'] .= " AND deleted {$notEqualOperator} 1";

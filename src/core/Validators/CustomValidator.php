@@ -36,7 +36,7 @@ abstract class CustomValidator {
         if(!Arr::exists($params, 'field')) {
             throw new Exception("You must add a field to the params array.");
         } else {
-            if(is_array($params['field'])) {
+            if(Arr::isArray($params['field'])) {
                 $this->field = $params['field'][0];
                 Arr::shift($params['field']);
                 $this->additionalFieldData = $params['field'];
