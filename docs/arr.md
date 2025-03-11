@@ -9,6 +9,7 @@
 6. [dot](#dot)
 7. [except](#except)
 8. [exists](#exists)
+8. [fill](#fill)
 9. [first](#first)
 10. [flatten](#flatten)
 11. [forget](#forget)
@@ -108,6 +109,18 @@ Checks if a key exists in an array.
 $array = ['name' => 'Chad'];
 $result = Arr::exists($array, 'name');
 // true
+```
+
+<br>
+
+## 8. fill <a id="fill"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+Fill an array with a specified value.
+
+```php
+use Core\Lib\Utilities\Arr;
+
+$array = Arr::fill(0, 5, 'apple');
+// ['apple', 'apple', 'apple', 'apple', 'apple']
 ```
 <br>
 

@@ -122,6 +122,19 @@ class Arr
     }
 
     /**
+     * Fill an array with a specified value.
+     *
+     * @param int $startIndex The first index to use.
+     * @param int $count The number of elements to insert.
+     * @param mixed $value The value to use for filling.
+     * @return array The filled array.
+     */
+    public static function fill(int $startIndex, int $count, mixed $value): array
+    {
+        return array_fill($startIndex, $count, $value);
+    }
+
+    /**
      * Get the first element that passes a given test.
      *
      * @param array $array The source array.
