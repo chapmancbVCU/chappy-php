@@ -497,7 +497,7 @@ class FormHelper {
      */
     public static function sanitize(string|array $dirty): string|array {
         if (Arr::isArray($dirty)) {
-            return Arr::map($dirty, [self::class, 'sanitize']); // Recursively sanitize arrays
+            return Arr::map([self::class, 'sanitize'], $dirty); // Recursively sanitize arrays
         }
         return htmlentities((string)$dirty, ENT_QUOTES, 'UTF-8');
     }
