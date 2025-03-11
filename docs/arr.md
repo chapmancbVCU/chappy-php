@@ -1,4 +1,4 @@
-<h1 style="font-size: 50px; text-align: center;">Time</h1>
+<h1 style="font-size: 50px; text-align: center;">Arr Class</h1>
 
 ## Table of contents
 1. [Overview](#overview)
@@ -40,6 +40,7 @@
 <br>
 
 ## 1. Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+Description of functions for array based operations.
 <br>
 
 ## 2. add <a id="add"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
