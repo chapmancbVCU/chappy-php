@@ -231,9 +231,9 @@ class AdmindashboardController extends Controller {
         $unUsedAcls = [];
         foreach($acls as $acl) {
             if($acl->isAssignedToUsers()) {
-                array_push($usedAcls, $acl);
+                Arr::push($usedAcls, $acl);
             } else {
-                array_push($unUsedAcls, $acl);
+                Arr::push($unUsedAcls, $acl);
             }
         }
 
