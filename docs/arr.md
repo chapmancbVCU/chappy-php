@@ -9,33 +9,33 @@
 6. [dot](#dot)
 7. [except](#except)
 8. [exists](#exists)
-8. [fill](#fill)
-9. [first](#first)
-10. [flatten](#flatten)
-11. [forget](#forget)
-12. [get](#get)
-13. [has](#has)
-14. [isArray](#is-array)
-15. [keys](#keys)
-16. [keyBy](#key-by)
-17. [last](#last)
-18. [map](#map)
-19. [mapWithKeys](#map-with-keys)
-20. [merge](#merge)
-21. [only](#only)
-22. [pluck](#pluck)
-23. [prepend](#prepend)
-24. [pull](#pull)
-25. [push](#push)
-25. [random](#random)
-25. [reverse](#reversez)
-26. [search](#search)
-27. [set](#set)
-28. [shift](#shift)
-29. [shuffle](#shuffle)
-30. [values](#values)
-30. [wrap](#wrap)
-31. [where](#where)
+9. [fill](#fill)
+10. [first](#first)
+11. [flatten](#flatten)
+12. [forget](#forget)
+13. [get](#get)
+14. [has](#has)
+15. [isArray](#is-array)
+16. [keys](#keys)
+17. [keyBy](#key-by)
+18. [last](#last)
+19. [map](#map)
+20. [mapWithKeys](#map-with-keys)
+21. [merge](#merge)
+22. [only](#only)
+23. [pluck](#pluck)
+24. [prepend](#prepend)
+25. [pull](#pull)
+26. [push](#push)
+27. [random](#random)
+28. [reverse](#reversez)
+29. [search](#search)
+30. [set](#set)
+31. [shift](#shift)
+32. [shuffle](#shuffle)
+33. [values](#values)
+34. [wrap](#wrap)
+35. [where](#where)
 <br>
 <br>
 
@@ -113,7 +113,7 @@ $result = Arr::exists($array, 'name');
 
 <br>
 
-## 8. fill <a id="fill"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 9. fill <a id="fill"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Fill an array with a specified value.
 
 ```php
@@ -124,7 +124,7 @@ $array = Arr::fill(0, 5, 'apple');
 ```
 <br>
 
-## 9. first <a id="first"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 10. first <a id="first"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Gets the first element that matches a condition.
 
 ```php
@@ -134,7 +134,7 @@ $result = Arr::first($array, fn($value) => $value > 15);
 ```
 <br>
 
-## 10. flatten <a id="flatten"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 11. flatten <a id="flatten"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Flattens a multi-dimensional array.
 
 ```php
@@ -144,7 +144,7 @@ $result = Arr::flatten($array);
 ```
 <br>
 
-## 11. forget <a id="forget"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 12. forget <a id="forget"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Removes a value using dot notation.
 
 ```php
@@ -154,7 +154,7 @@ Arr::forget($array, 'user.name');
 ```
 <br>
 
-## 12. get <a id="get"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 13. get <a id="get"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Retrieves a value from an array using dot notation.
 
 ```php
@@ -164,7 +164,7 @@ $name = Arr::get($array, 'user.name');
 ```
 <br>
 
-## 13. has <a id="has"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 14. has <a id="has"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Checks if an array has a key using dot notation.
 
 ```php
@@ -174,7 +174,7 @@ $result = Arr::has($array, 'user.name');
 ```
 <br>
 
-## 14. isArray <a id="is-array"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 15. isArray <a id="is-array"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Checks if a given value is an array.
 
 ```php
@@ -188,7 +188,7 @@ $isArray = Arr::isArray($value);
 ```
 <br>
 
-## 15. keys <a id="keys"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 16. keys <a id="keys"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Gets all the keys from an array.
 ```php
 $array = ['name' => 'Chad', 'email' => 'chad@example.com'];
@@ -197,7 +197,7 @@ $keys = Arr::keys($array);
 ```
 <br>
 
-## 16. keyBy <a id="key-by"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 17. keyBy <a id="key-by"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Reindexes an array using a specific key.
 
 ```php
@@ -207,7 +207,7 @@ $result = Arr::keyBy($array, 'id');
 ```
 <br>
 
-## 17. last <a id="last"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 18. last <a id="last"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Gets the last element that matches a condition.
 
 ```php
@@ -217,7 +217,7 @@ $result = Arr::last($array, fn($value) => $value < 25);
 ```
 <br>
 
-## 18. map <a id="map"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 19. map <a id="map"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Applies a callback to each item.
 
 ```php
@@ -227,7 +227,7 @@ $result = Arr::map($array, fn($value) => $value * 2);
 ```
 <br>
 
-## 19. mapWithKeys <a id="map-with-keys"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 20. mapWithKeys <a id="map-with-keys"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Maps an array while preserving keys.
 
 ```php
@@ -237,7 +237,7 @@ $result = Arr::mapWithKeys($array, fn($item) => [$item['id'] => $item['name']]);
 ```
 <br>
 
-## 20. merge <a id="merge"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 21. merge <a id="merge"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Merges multiple arrays together.**
 ```php
 $array1 = ['name' => 'Chad'];
@@ -247,7 +247,7 @@ $result = Arr::merge($array1, $array2);
 ```
 <br>
 
-## 21. only <a id="only"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 22. only <a id="only"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Returns an array with only the specified keys.
 
 ```php
@@ -257,7 +257,7 @@ $result = Arr::only($array, ['name']);
 ```
 <br>
 
-## 22. pluck <a id="pluck"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 23. pluck <a id="pluck"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Extracts a specific key's values.
 
 ```php
@@ -267,7 +267,7 @@ $result = Arr::pluck($array, 'name');
 ```
 <br>
 
-## 23. prepend <a id="prepend"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 24. prepend <a id="prepend"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Adds a value at the beginning of an array.
 
 ```php
@@ -277,7 +277,7 @@ $result = Arr::prepend($array, 1);
 ```
 <br>
 
-## 24. pull <a id="pull"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 25. pull <a id="pull"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Retrieves a value and removes it from an array.
 
 ```php
@@ -288,7 +288,7 @@ $name = Arr::pull($array, 'name');
 ```
 <br>
 
-## 24. pull <a id="pull"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 26. pull <a id="pull"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Push one or more values onto the end of an array.
 
 ```php
@@ -300,7 +300,7 @@ Arr::push($array, 'cherry');
 ```
 <br>
 
-## 25. random <a id="random"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 27. random <a id="random"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Gets a random element(s) from an array.
 
 ```php
@@ -310,7 +310,7 @@ $result = Arr::random($array);
 ```
 <br>
 
-## 25. reverse <a id="reverse"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 28. reverse <a id="reverse"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Reverse the order of elements in an array.
 
 ```php
@@ -323,7 +323,8 @@ $reversed = Arr::reverse($array);
 ```
 
 <br>
-## 26. search <a id="search"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+
+## 29. search <a id="search"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Searches for a value in an array and returns the corresponding key.
 
 ```php
@@ -335,7 +336,7 @@ $keyNotFound = Arr::search($array, 'grape');
 // false
 ```
 
-## 26. set <a id="set"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 30. set <a id="set"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Sets a value within an array using dot notation.
 
 ```php
@@ -345,7 +346,7 @@ Arr::set($array, 'user.name', 'Chad');
 ```
 <br>
 
-## 27. shift <a id="shift"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 31. shift <a id="shift"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Removes and returns the first element of an array.
 
 ```php
@@ -356,7 +357,7 @@ $first = Arr::shift($array);
 ```
 <br>
 
-## 28. shuffle <a id="shuffle"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 32. shuffle <a id="shuffle"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Shuffles the array.
 
 ```php
@@ -365,11 +366,18 @@ $result = Arr::shuffle($array);
 ```
 <br>
 
-## 28. values <a id="values"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 33. values <a id="values"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 
+```php
+use Core\Lib\Utilities\Arr;
+
+$array = ['a' => 1, 'b' => 2, 'c' => 3];
+$values = Arr::values($array);
+// [1, 2, 3]
+```
 <br>
 
-## 29. wrap <a id="wrap"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 34. wrap <a id="wrap"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Wraps a value in an array.
 
 ```php
@@ -378,7 +386,7 @@ $result = Arr::wrap('Chad');
 ```
 <br>
 
-## 30. where <a id="where"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 35. where <a id="where"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Filters an array using a callback.
 
 ```php
