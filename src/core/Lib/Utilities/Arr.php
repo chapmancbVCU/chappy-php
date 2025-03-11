@@ -16,7 +16,7 @@ class Arr
      * @return array The modified array.
      */
     public static function add(array $array, string|int $key, mixed $value): array {
-        if (!self::exists($array, $key)) {
+        if (!array_key_exists($key, $array)) {
             $array[$key] = $value;
         }
 
@@ -214,12 +214,12 @@ class Arr
      * @return mixed The value from the array or the default.
      */
     public static function get(array $array, string $key, mixed $default = null): mixed {
-        if (self::exists($array, $key)) {
+        if (array_key_exists($key, $array)) {
             return $array[$key];
         }
 
         foreach (explode('.', $key) as $segment) {
-            if (!is_array($array) || !self::exists($array, $segment)) {
+            if (!is_array($array) || !array_key_exists($segment, $array)) {
                 return $default;
             }
             $array = $array[$segment];
@@ -236,7 +236,7 @@ class Arr
      * @return bool True if the key exists, false otherwise.
      */
     public static function has(array $array, string $key): bool {
-        if (self::exists($array, $key)) {
+        if (array_key_exists($key, $array)) {
             return true;
         }
 
