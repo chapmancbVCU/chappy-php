@@ -94,6 +94,18 @@ class Str
     }
 
     /**
+     * Converts the first character of a string to lowercase.
+     *
+     * @param string $value The input string.
+     * @return string The string with the first character converted to lowercase.
+     */
+    public static function lcfirst(string $value): string
+    {
+        return lcfirst($value);
+    }
+
+
+    /**
      * Limit the number of characters in a string.
      */
     public static function limit(string $value, int $limit = 100, string $end = '...'): string
