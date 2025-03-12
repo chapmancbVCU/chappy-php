@@ -1,7 +1,7 @@
 <?php
 namespace Core\Validators;
 use \Exception;
-use Core\Helper;
+use Core\Lib\Utilities\Arr;
 /**
  * Abstract parent class for our child validation child classes.  Each child 
  * class must implement the runValidation() function.
@@ -29,43 +29,44 @@ abstract class CustomValidator {
      * form is submitted during a post action.
      */
     public function __construct(object $model, array $params) {
-
         $this->_model = $model;
+        $paramsArr = Arr::make($params);
 
-        if(!array_key_exists('field',$params)){
-            throw new Exception("You must add a field to the params array.");
+        // Validate field existence
+        if (!$paramsArr->has('field')->result()) {
+            throw new Exception("You must add a 'field' to the params array.");
+        }
+
+        $fieldData = $paramsArr->get('field')->result();
+        if (is_array($fieldData)) {
+            $this->field = array_shift($fieldData);
+            $this->additionalFieldData = $fieldData;
         } else {
-        if(is_array($params['field'])){
-            $this->field = $params['field'][0];
-            array_shift($params['field']);
-            $this->additionalFieldData = $params['field'];
-        } else {
-            $this->field = $params['field'];
-        }
+            $this->field = $fieldData;
         }
 
-        if(!property_exists($model, $this->field)){
-            throw new Exception("The field must exist in the model");
+        if (!property_exists($model, $this->field)) {
+            throw new Exception("The field '{$this->field}' must exist in the model.");
         }
 
-        if(!array_key_exists('message',$params)){
-            throw new Exception("You must add a msg to the params array.");
-        } else {
-            $this->message = $params['message'];
+        // Validate message existence
+        if (!$paramsArr->has('message')->result()) {
+            throw new Exception("You must add a 'message' to the params array.");
+        }
+        $this->message = $paramsArr->get('message')->result();
+
+        // Optional rule parameter
+        if ($paramsArr->has('rule')->result()) {
+            $this->rule = $paramsArr->get('rule')->result();
         }
 
-        if(array_key_exists('rule',$params)){
-            $this->rule = $params['rule'];
-        }
-
-        if(array_key_exists('includeDeleted',$params) && $params['includeDeleted']) {
-            $this->includeDeleted = true;
-        }
+        // Optional includeDeleted flag
+        $this->includeDeleted = (bool) $paramsArr->get('includeDeleted', false)->result();
 
         try {
             $this->success = $this->runValidation();
-        } catch(Exception $e) {
-            echo "Validation Exception on " . get_class() . ": " . $e->getMessage() . "<br />";
+        } catch (Exception $e) {
+            echo "Validation Exception on " . static::class . ": " . $e->getMessage() . "<br />";
         }
     }
 
