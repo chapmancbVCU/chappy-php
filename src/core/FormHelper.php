@@ -448,11 +448,11 @@ class FormHelper {
      * @return array An array of sanitized values from the submitted form.
      */
     public static function posted_values(array $post): array {
-        $clean_array = [];
-        foreach($post as $key => $value) {
-            $clean_array[$key] = self::sanitize($value);
-        }
-        return $clean_array;
+        // $clean_array = [];
+        // foreach($post as $key => $value) {
+        //     $clean_array[$key] = self::sanitize($value);
+        // }
+        return (new Arr($post))->map(fn($value) => self::sanitize($value))->all();
     }
 
     /**
