@@ -859,11 +859,12 @@ class Arr
     /**
      * Sort the array in ascending order.
      *
+     * @param int $sortFlags Flags for sorting (default: SORT_REGULAR).
      * @return self
      */
-    public function sort(): self
+    public function sort(int $sortFlags = SORT_REGULAR): self
     {
-        sort($this->items);
+        sort($this->items, $sortFlags);
         return $this;
     }
 
@@ -902,6 +903,18 @@ class Arr
     public function unique(): self
     {
         $this->items = array_unique($this->items);
+        return $this;
+    }
+
+    /**
+     * Sort the array using a user-defined comparison function.
+     *
+     * @param callable $callback The comparison function.
+     * @return self
+     */
+    public function usort(callable $callback): self
+    {
+        usort($this->items, $callback);
         return $this;
     }
 
