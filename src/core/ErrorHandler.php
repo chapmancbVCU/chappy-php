@@ -30,8 +30,17 @@ class ErrorHandler {
         // Shutdown Handler for Fatal Errors
         register_shutdown_function(function () {
             $error = error_get_last();
-            if ($error && in_array($error['type'], [E_ERROR, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR])) {
-                Logger::log("Fatal Shutdown Error: {$error['message']} | File: {$error['file']} | Line: {$error['line']}", 'critical');
+            if ($error) {
+                // Wrap the error array in Arr
+                $errorData = Arr::make($error);
+                
+                // Check if error type is in the list of fatal errors
+                if ($errorData->hasAny([E_ERROR, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR])->result()) {
+                    Logger::log(
+                        "Fatal Shutdown Error: {$errorData->get('message')->result()} | File: {$errorData->get('file')->result()} | Line: {$errorData->get('line')->result()}",
+                        'critical'
+                    );
+                }
             }
         });
 
