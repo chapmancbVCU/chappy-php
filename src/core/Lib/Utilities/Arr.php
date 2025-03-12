@@ -279,6 +279,18 @@ class Arr
     }
 
     /**
+     * Filters the array using a callback function.
+     *
+     * @param callable $callback The function to apply for filtering.
+     * @return self
+     */
+    public function filter(callable $callback): self
+    {
+        $this->items = array_filter($this->items, $callback);
+        return $this;
+    }
+
+    /**
      * Get the first element that matches a condition.
      *
      * @param callable|null $callback A callback function to test elements.

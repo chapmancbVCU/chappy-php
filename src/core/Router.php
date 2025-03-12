@@ -164,53 +164,68 @@ class Router {
      * global $_SERVER array.
      * @return void
      */
-    public static function route(): void {   
-        // Parse URLs
-        $requestPath = array_key_exists('PATH_INFO', $_SERVER) ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
-        $url = isset($requestPath) ? explode('/', ltrim($requestPath, '/')) : [];
-        
+    public static function route(): void
+    {
         try {
-            // Log requests sent to server
-            $userId = Session::exists(Env::get('CURRENT_USER_SESSION_NAME')) ? Session::get(Env::get('CURRENT_USER_SESSION_NAME')) : 'Guest';
-            Logger::log("Incoming Request: Method: ".$_SERVER['REQUEST_METHOD']." | URL: $requestPath | IP: ".$_SERVER['REMOTE_ADDR']." | User: $userId", 'info');
-            
-            // Extract from URL our controllers
-            $controller = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]).'Controller' : Env::get('DEFAULT_CONTROLLER', 'Home').'Controller';
+            // Parse URLs
+            $requestPath = $_SERVER['PATH_INFO'] ?? $_SERVER['REQUEST_URI'] ?? '';
+            $url = Arr::make(explode('/', ltrim($requestPath, '/')))
+                ->filter(fn($v) => trim($v) !== '') // Removes empty segments
+                ->values(); // Reset array indices
+
+            // Log incoming request
+            $userId = Session::exists(Env::get('CURRENT_USER_SESSION_NAME')) 
+                ? Session::get(Env::get('CURRENT_USER_SESSION_NAME')) 
+                : 'Guest';
+
+            Logger::log(
+                "Incoming Request: Method: {$_SERVER['REQUEST_METHOD']} | URL: $requestPath | IP: {$_SERVER['REMOTE_ADDR']} | User: $userId",
+                'info'
+            );
+
+            // Extract controller name
+            $controller = $url->has(0)->result()
+                ? ucwords($url->first()->result()) . 'Controller'
+                : Env::get('DEFAULT_CONTROLLER', 'Home') . 'Controller';
             $controller_name = str_replace('Controller', '', $controller);
-            array_shift($url);
-    
-            // action - now first element of array.
-            $action = (isset($url[0]) && $url[0] != '') ? $url[0] . 'Action' : 'indexAction';
-            $action_name = (isset($url[0]) && $url[0] != '') ? $url[0] : 'index';
-            array_shift($url);
-    
+            $url->shift();
+
+            // Extract action name
+            $action = $url->has(0)->result() 
+                ? $url->first()->result() . 'Action'
+                : 'indexAction';
+            $action_name = $url->has(0)->result() 
+                ? $url->first()->result() 
+                : 'index';
+            $url->shift();
+
             // ACL check
-            $grantAccess = self::hasAccess($controller_name, $action_name);
-            if(!$grantAccess) {
+            if (!self::hasAccess($controller_name, $action_name)) {
                 $accessRestricted = Env::get('ACCESS_RESTRICTED', 'Restricted');
-                Logger::log("Access Denied: User '$userId' attempted to use a controller that does not exists or access a restricted area '$controller_name/$action_name'", 'warning');
-                $controller = $accessRestricted.'Controller';
+                Logger::log(
+                    "Access Denied: User '$userId' attempted to access restricted area '$controller_name/$action_name'",
+                    'warning'
+                );
+                $controller = $accessRestricted . 'Controller';
                 $controller_name = $accessRestricted;
                 $action = 'indexAction';
             }
-    
-            // Params - any params will now be passed into our action.
-            $queryParams = $url;
+
+            // Prepare controller class with namespace
             $controller = 'App\Controllers\\' . $controller;
 
-            // Use to pass in controller name and action
+            // Instantiate the controller
             $dispatch = new $controller($controller_name, $action);
-            
-            if(method_exists($controller, $action)) {
-                /* Call method on dispatch object.  Our method is the action being called.
-                 * $queryParams support ability to add parameters to our actions. */
-                call_user_func_array([$dispatch, $action], $queryParams);
+
+            // Execute the action if it exists
+            if (method_exists($controller, $action)) {
+                call_user_func_array([$dispatch, $action], $url->all());
             } else {
                 throw new Exception("Method '$action_name' does not exist in the controller '$controller_name'.");
             }
         } catch (Exception $e) {
             Logger::log("Unhandled Exception in Router: " . $e->getMessage(), 'error');
             throw $e;
-        }  
+        }
     }
 }
