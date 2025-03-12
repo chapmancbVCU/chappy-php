@@ -239,7 +239,6 @@ class FormHelper {
      * input of type checkbox.
      */
     public static function displayErrors(array $errors): string {
-        // Ensure $errors is an Arr instance
         $errors = Arr::make($errors);
 
         $hasErrors = !$errors->isEmpty() ? ' has-errors' : '';
@@ -304,11 +303,10 @@ class FormHelper {
      *
      * @param array $errors The error array.
      * @param string $name Used to search errors array for key/form field.
-     * @return string $msg The error message for a particular field.
+     * @return string The error message for a particular field.
      */
-    public static function errorMsg($errors, $name){
-        $msg = (array_key_exists($name, $errors)) ? $errors[$name] : "";
-        return $msg;  
+    public static function errorMsg(array $errors, string $name) {
+        return (new Arr($errors))->get($name, "")->result();  
     }
 
     /**
