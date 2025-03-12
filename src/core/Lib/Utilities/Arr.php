@@ -49,6 +49,34 @@ class Arr
     }
 
     /**
+     * Sort the array while maintaining index association.
+     *
+     * This method sorts the array in ascending order while preserving 
+     * the original keys.
+     *
+     * @return self The modified Arr instance.
+     */
+    public function asort(): self
+    {
+        asort($this->items);
+        return $this;
+    }
+
+    /**
+     * Sort the array in descending order while maintaining index association.
+     *
+     * This method sorts the array in descending order while preserving 
+     * the original keys.
+     *
+     * @return self The modified Arr instance.
+     */
+    public function arsort(): self
+    {
+        arsort($this->items);
+        return $this;
+    }
+
+    /**
      * Split an array into chunks.
      *
      * @param int $size The size of each chunk.
@@ -107,8 +135,12 @@ class Arr
      */
     public static function combine(array $keys, array $values): self
     {
+        if (count($keys) !== count($values)) {
+            throw new \InvalidArgumentException("Keys and values must have the same length.");
+        }
         return new self(array_combine($keys, $values));
     }
+
     /**
      * Check if an array contains a specific value.
      *
@@ -512,7 +544,11 @@ class Arr
      */
     public static function make(mixed $items = []): self
     {
-        return new self(is_array($items) ? $items : [$items]);
+        return new self(match (true) {
+            is_null($items) => [],
+            is_array($items) => $items,
+            default => [$items]
+        });
     }
 
     /**
@@ -555,14 +591,14 @@ class Arr
     public function mapWithKeys(callable $callback): self
     {
         $result = [];
-
         foreach ($this->items as $key => $value) {
-            $mapped = $callback($value, $key); // ✅ Ensure both $key and $value are passed.
+            $mapped = $callback($value, $key);
             if (is_array($mapped)) {
-                $result = array_merge($result, $mapped);
+                foreach ($mapped as $newKey => $newValue) {
+                    $result[$newKey] = $newValue;
+                }
             }
         }
-
         $this->items = $result;
         return $this;
     }
@@ -712,7 +748,7 @@ class Arr
      */
     public function result(): mixed
     {
-        return $this->lastResult;
+        return $this->lastResult ?? null;
     }
 
     /**
@@ -791,6 +827,19 @@ class Arr
     public function shuffle(): self
     {
         shuffle($this->items);
+        return $this;
+    }
+
+    /**
+     * Shuffle an array while preserving keys.
+     *
+     * @return self
+     */
+    public function shuffleAssociative(): self
+    {
+        $keys = array_keys($this->items);
+        shuffle($keys);
+        $this->items = array_merge(array_flip($keys), $this->items);
         return $this;
     }
 
