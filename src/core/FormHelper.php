@@ -19,17 +19,24 @@ class FormHelper {
      * form field.
      * @return array $attrs Div attributes with error classes added.
      */
-    public static function appendErrorClass($attrs, $errors, $name, $class){
-        if(array_key_exists($name, $errors)) {
-            if(array_key_exists('class', $attrs)) {
-                $attrs['class'] .= " " . $class;
-            } else {
-                $attrs['class'] = $class;
+    public static function appendErrorClass(array $attrs, array $errors, string $name, string $class): array {
+        $attrsArr = new Arr($attrs);
+        $errorsArr = new Arr($errors);
+    
+        if ($errorsArr->has($name)->result()) {
+            $currentClass = $attrsArr->get('class', '')->result();
+            
+            // Ensure it's a string before appending
+            if (!is_string($currentClass)) {
+                $currentClass = '';
             }
+    
+            $attrsArr->set('class', trim($currentClass . " " . $class));
         }
-        return $attrs;
+    
+        return $attrsArr->all();
     }
-
+    
     /**
      * Supports ability to create a styled button.  Supports ability to have 
      * functions for event handlers.
@@ -232,13 +239,17 @@ class FormHelper {
      * input of type checkbox.
      */
     public static function displayErrors(array $errors): string {
-        $hasErrors = (!empty($errors))? ' has-errors' : '';
+        // Ensure $errors is an Arr instance
+        $errors = Arr::make($errors);
+
+        $hasErrors = !$errors->isEmpty() ? ' has-errors' : '';
         $html = '<div class="form-errors"><ul class="bg-light'.$hasErrors.'">';
         $logError = '';
-        foreach($errors as $field => $error) {
+
+        $errors->each(function($error) use (&$html, &$logError) {
             $html .= '<li class="text-danger">'.$error.'</li>';
             $logError  .= $error . ' ';
-        }
+        });
         $html .= '</ul></div>';
         if($hasErrors != '') {
             Logger::log("Form validation failed: " . $logError, 'warning');
