@@ -233,13 +233,14 @@ class FormHelper {
     /**
      * Returns list of errors.
      * 
-     * @param array $errors A list of errors and their description that is 
+     * @param array|Arr $errors A list of errors and their description that is 
      * generated during server side form validation.
      * @return string A string representation of a div element containing an 
      * input of type checkbox.
      */
-    public static function displayErrors(array $errors): string {
-        $errors = Arr::make($errors);
+    public static function displayErrors(array|Arr $errors): string {
+        // Ensure $errors is an Arr instance
+        $errors = $errors instanceof Arr ? $errors : new Arr($errors);
 
         $hasErrors = !$errors->isEmpty() ? ' has-errors' : '';
         $html = '<div class="form-errors"><ul class="bg-light'.$hasErrors.'">';
@@ -306,6 +307,7 @@ class FormHelper {
      * @return string The error message for a particular field.
      */
     public static function errorMsg(array $errors, string $name) {
+        //$msg = (array_key_exists($name, $errors)) ? $errors[$name] : "";
         return (new Arr($errors))->get($name, "")->result();  
     }
 
