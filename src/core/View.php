@@ -44,11 +44,7 @@ class View extends stdClass {
      * a known type of content we return false;
      */
     public function content(string $type): mixed {
-        if(array_key_exists($type, $this->_content)){
-            return $this->_content[$type];
-        } else {
-        return false;
-        }
+        return Arr::make($this->_content)->get($type)->result() ?? false;
     }
 
     /**
