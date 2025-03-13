@@ -25,7 +25,7 @@ class Config
             }
 
             // Process env() replacements and type conversion
-            array_walk_recursive($configData, function (&$value) {
+            Arr::walkRecursive($configData, function (&$value) {
                 if (is_string($value) && preg_match('/^env\((.*)\)$/', $value, $matches)) {
                     $envKey = trim($matches[1], "'\"");
                     $value = $_ENV[$envKey] ?? $value;
