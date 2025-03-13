@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 use Core\{Helper, Model};
-use Core\Lib\Utilities\ArraySet;
+use Core\Lib\Utilities\Arr;
 use Core\Validators\{MaxValidator, RequiredValidator};
 
 /**
@@ -100,7 +100,7 @@ class Contacts extends Model {
             'conditions' => 'id = ? AND user_id = ?',
             'bind' => [$contact_id, $user_id]
         ];
-        $conditions = array_merge($conditions, $params);
+        $conditions = Arr::merge($conditions, $params);
         return self::findFirst($conditions);
     }
 
