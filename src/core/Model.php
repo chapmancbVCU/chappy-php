@@ -108,6 +108,7 @@ class Model {
      * @return object The data associated with an object.
      */
     public function data() {
+        // No evidence this function is being called.
         $data = new \stdClass();
         $columns = static::getColumns();
         // Determine column key name based on DB driver
@@ -175,14 +176,11 @@ class Model {
             return [];
         }
 
-        foreach ($columns as $column) {
+        (new ArraySet($columns))->each(function($column) use (&$columnKey, &$key, &$fields) {
             $key = $column->{$columnKey};
-
-            if (isset($this->{$key})) {
-                $fields[$key] = $this->{$key};
-            }
-        }
-
+            if (isset($this->{$key})) $fields[$key] = $this->{$key};
+            
+        });
         Logger::log("Fields for save: " . json_encode($fields), 'debug');
         return $fields;
     }
@@ -262,7 +260,7 @@ class Model {
         ];
 
         // In case you want to add more conditions
-        $conditions = array_merge($conditions, $params);
+        $conditions = Arr::merge($conditions, $params);
         return self::find($conditions);
     }
 
@@ -305,7 +303,7 @@ class Model {
      */
     public function insert($fields) {
         if(empty($fields)) return false;
-        if(array_key_exists('id', $fields)) unset($fields['id']);
+        if(Arr::exists($fields, 'id')) unset($fields['id']);
         return static::getDb()->insert(static::$_table, $fields);
     }
 
@@ -333,6 +331,7 @@ class Model {
      * @return void
      */
     protected function populateObjData($result) {
+        // No evidence this function is being called.
         foreach($result as $key => $val) {
             $this->$key = $val;
         }
@@ -414,7 +413,7 @@ class Model {
             $notEqualOperator = ($dbDriver === 'sqlite') ? "<>" : "!=";
 
             if(array_key_exists('conditions', $params)){
-                if(is_array($params['conditions'])){
+                if(Arr::isArray($params['conditions'])){
                     $params['conditions'][] = "deleted {$notEqualOperator} 1";
                 } else {
                     $params['conditions'] .= " AND deleted {$notEqualOperator} 1";
