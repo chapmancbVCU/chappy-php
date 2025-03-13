@@ -4,8 +4,9 @@ use \PDO;
 use Exception;
 use Core\Helper;
 use \PDOException;
-use Core\Lib\Utilities\ArraySet;
+use Core\Lib\Utilities\Arr;
 use Core\Lib\Logging\Logger;
+use Core\Lib\Utilities\ArraySet;
 /**
  * Support database operations.
  */
@@ -252,9 +253,9 @@ class DB {
             unset($fields['id']);
         }
     
-        $fieldString = implode(',', array_keys($fields));
-        $valueString = implode(',', array_fill(0, count($fields), '?'));
-        $values = array_values($fields);
+        $fieldString = implode(',', Arr::keys($fields));
+        $valueString = implode(',', Arr::fill(0, count($fields), '?'));
+        $values = Arr::values($fields);
     
         $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
     
@@ -355,7 +356,7 @@ class DB {
 
         // Conditions
         if(isset($params['conditions'])) {
-            if(is_array($params['conditions'])) {
+            if(Arr::isArray($params['conditions'])) {
                 foreach($params['conditions'] as $condition) {
                     // Convert `!=` to `<>` for SQLite
                     if ($dbDriver === 'sqlite') {
@@ -377,41 +378,41 @@ class DB {
         }
 
         // Columns
-        if(array_key_exists('columns',$params)){
+        if(Arr::exists($params, 'columns')){
             $columns = $params['columns'];
         }
 
         // Joins and raw joins
-        if(array_key_exists('joins',$params)){
+        if(Arr::exists($params, 'joins')){
             foreach($params['joins'] as $join){
                 $joins .= $this->_buildJoin($join);
             }
             $joins .= " ";
         }
 
-        if(array_key_exists('joinsRaw', $params)) {
+        if(Arr::exists($params, 'joinsRaw')) {
             foreach($params['joinsRaw'] as $raw) {
                 $joins .= ' ' .$raw;
             }
         }
 
         // Bind
-        if(array_key_exists('bind', $params)) {
+        if(Arr::exists($params, 'bind')) {
             $bind = $params['bind'];
         }
 
         // Order
-        if(array_key_exists('order', $params)) {
+        if(Arr::exists($params, 'order')) {
             $order = ' ORDER BY ' . $params['order'];
         }
 
         // Limit
-        if(array_key_exists('limit', $params)) {
+        if(Arr::exists($params, 'limit')) {
             $limit = ' LIMIT ' . $params['limit'];
         }
 
         // Offset
-        if(array_key_exists('offset', $params)) {
+        if(Arr::exists($params, 'offset')) {
             $offset = ' OFFSET ' . $params['offset'];
         }
 
