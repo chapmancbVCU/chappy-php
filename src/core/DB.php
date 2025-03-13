@@ -467,9 +467,8 @@ class DB {
      * we return false.
      */
     public function update($table, $id, $fields = []) {
-        $setString = implode('=?, ', array_keys($fields)) . '=?';
-        $values = array_values($fields);
-        $values[] = $id;
+        $setString = implode('=?, ', Arr::keys($fields)) . '=?';
+        $values = (new ArraySet($fields))->values()->push($id)->all();
 
         $sql = "UPDATE {$table} SET {$setString} WHERE id = ?";
 

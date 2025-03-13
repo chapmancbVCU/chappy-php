@@ -171,7 +171,7 @@ class AdmindashboardController extends Controller {
         $userAcls = json_decode($user->acl, true);
         $userAcls = Users::aclToArray($userAcls);
 
-        $this->view->userAcls = array_map('strval', $userAcls); // Ensure values are strings
+        $this->view->userAcls = Arr::map($userAcls, 'strval'); // Ensure values are strings
         $profileImages = ProfileImages::findByUserId($user->id);
     
         if ($this->request->isPost()) {
