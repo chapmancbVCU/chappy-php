@@ -540,6 +540,28 @@ class Arr
     }
 
     /**
+     * Recursively applies a callback function to each element in an array.
+     *
+     * This function modifies each value in the array using the provided callback.
+     * The callback receives both the value and the key of each array element.
+     *
+     * @param array $array The array to be processed.
+     * @param callable $callback The callback function to apply.
+     *     The callback should accept two parameters: 
+     *     - mixed $value (the array value)
+     *     - string|int $key (the array key)
+     * 
+     * @return array The modified array with the callback applied to each value.
+     */
+    public static function walkRecursive(array $array, callable $callback): array
+    {
+        array_walk_recursive($array, function (&$value, $key) use ($callback) {
+            $value = $callback($value, $key);
+        });
+
+        return $array;
+    }
+    /**
      * Wrap a value in an array.
      *
      * @param mixed $value The value to wrap.
