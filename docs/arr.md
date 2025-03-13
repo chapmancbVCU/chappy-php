@@ -21,8 +21,9 @@
     * A. [lastKey](#lastKey)
     * A. [result](#result)
     * A. [search](#search)
+    * A. [shift](#shift)
     * F. [values](#values)
-5. [Sorting, Ordering, & Transformation](#sorting-ordering)
+5. [Iteration, Sorting, Ordering, & Transformation](#sorting-ordering)
     * A. [asort](#asort)
     * A. [arsort](#arsort)
     * A. [flatten](#flatten)
@@ -32,6 +33,9 @@
     * A. [ksort](#ksort)
     * A. [sort](#sort)
     * A. [rsort](#rsort)
+    * A. [usort](#usort)
+    * A. [walk](#walk)
+    * A. [walkRecursive](#walk-recursive)
 6. [Manipulation](#manipulation)
     * A. [add](#add)
     * A. [clear](#clear)
@@ -52,6 +56,11 @@
     * A. [reduce](#reduce)
     * A. [replace](#replace)
     * A. [set](#set)
+    * A. [shuffle](#shuffle)
+    * A. [shuffleAssociative](#shuffle-associative)
+    * A. [slice](#slice)
+    * A. [splice](#splice)
+    * A. [udiff](#udiff)
 7. [Comparison, Checking, Filtering, & Mapping](#comparison-filtering-mapping)
     * A. [contains](#contains)
     * A. [diff](#diff)
@@ -343,6 +352,20 @@ print_r($arr->result());
 ```
 <br>
 
+#### A. shift <a id="shift">
+`shift(): self`
+
+Removes and returns the first item from the array.
+```php
+$arr = new Arr([1, 2, 3, 4]);
+$arr->shift();
+print_r($arr->all());
+print_r($arr->result());
+// [2, 3, 4]
+// 1
+```
+<br>
+
 #### A. values <a id="values">
 `values()`
 
@@ -353,7 +376,7 @@ print_r($arr->values()->all()); // [1, 2]
 ```
 <br>
 
-## 5. Sorting, Ordering, & Transformation <a id="sorting-ordering-transformation"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 5. Iteration, Sorting, Ordering, & Transformation <a id="sorting-ordering-transformation"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 #### A. asort <a id="asort">
 `asort()`
 
@@ -453,6 +476,45 @@ Sorts in descending order.
 ```php
 $arr = new Arr([5, 3, 8, 1]);
 $arr->rsort()->all(); // [8, 5, 3, 1]
+```
+<br>
+
+#### A. usort <a id="usort">
+`usort(callable $callback): self`
+
+Sorts the array using a user-defined comparison function.
+```php
+$arr = new Arr([3, 1, 4, 2]);
+$arr->usort(fn($a, $b) => $a <=> $b);
+print_r($arr->all());
+// [1, 2, 3, 4]
+```
+<br>
+
+#### A. walk <a id="walk">
+`walk(callable $callback): self`
+
+Applies a user function to every item in the array.
+```php
+$arr = new Arr([1, 2, 3]);
+$arr->walk(fn(&$value) => $value *= 2);
+print_r($arr->all());
+// [2, 4, 6]
+```
+<br>
+
+#### A. walkRecursive <a id="walk-recursive">
+`walkRecursive(callable $callback): self`
+
+Applies a user function to every item in a multi-dimensional array.
+```php
+$arr = new Arr([
+    ['value' => 1],
+    ['value' => 2]
+]);
+$arr->walkRecursive(fn(&$value) => is_numeric($value) ? $value *= 2 : $value);
+print_r($arr->all());
+//  [['value' => 2], ['value' => 4]]
 ```
 <br>
 
@@ -692,6 +754,72 @@ $arr->set('user.name', 'John')->all(); // ['user' => ['name' => 'John']]
 ```
 <br>
 
+#### A. shuffle <a id="shuffle">
+`shuffle(): self`
+
+Randomly shuffles the elements in the array.
+```php
+$arr = new Arr([1, 2, 3, 4, 5]);
+$arr->shuffle();
+print_r($arr->all());
+
+// Output may vary
+// [3, 5, 1, 4, 2] 
+```
+<br>
+
+#### A. shuffleAssociative <a id="shuffleAssociative">
+`shuffleAssociative(): self`
+
+Shuffles the elements of an associative array while preserving key-value relationships.
+```php
+$arr = new Arr(['a' => 1, 'b' => 2, 'c' => 3]);
+$arr->shuffleAssociative();
+print_r($arr->all());
+
+// Output may vary
+// ['c' => 3, 'a' => 1, 'b' => 2]
+```
+<br>
+
+#### A. slice <a id="slice">
+`slice(int $offset, ?int $length = null): self`
+
+Extracts a portion of the array.
+```php
+$arr = new Arr([1, 2, 3, 4, 5]);
+$arr->slice(1, 3);
+print_r($arr->all());
+// [2, 3, 4]
+```
+<br>
+
+#### A. splice <a id="splice">
+`splice(int $offset, ?int $length = null, array $replacement = []): self`
+
+Removes and replaces a portion of the array.
+```php
+$arr = new Arr([1, 2, 3, 4, 5]);
+$arr->splice(2, 2, [6, 7]);
+print_r($arr->all());
+// [1, 2, 6, 7, 5]
+```
+<br>
+
+#### A. udiff <a id="udiff">
+`udiff(array $array, callable $callback): self`
+
+Computes the difference between arrays using a custom comparison function.
+```php
+$arr1 = new Arr([1, 2, 3, 4, 5]);
+$arr2 = [3, 4];
+
+$arr1->udiff($arr2, fn($a, $b) => $a <=> $b);
+print_r($arr1->all());
+// [1, 2, 5]
+```
+<br>
+
 ## 7. Comparison, Checking, Filtering, & Mapping <a id="comparison-filtering-mapping"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 #### A. contains <a id="contains">
 `contains(mixed $value, bool $strict = false): self`
@@ -878,15 +1006,7 @@ $arr->multiSort(SORT_ASC)->all();
 ]
 */
 ```
-
-
-
-
-
-
-
-
-
+<br>
 
 ## 8. Other Utilities <a id="other-utilities"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 #### A. implode <a id="implode">
@@ -916,4 +1036,15 @@ Reverses the order.
 ```php
 $arr = new Arr([1, 2, 3]);
 $arr->reverse()->all(); // [3, 2, 1]
+```
+
+#### A. wrap <a id="wrap">
+`wrap(mixed $value): self`
+
+Ensures the given value is an array. If it's not, wraps it in an array.
+```php
+$arr = new Arr();
+$arr->wrap('hello');
+print_r($arr->all());
+// ['hello']
 ```
