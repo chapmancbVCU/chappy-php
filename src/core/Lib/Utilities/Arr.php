@@ -238,6 +238,7 @@ class Arr
         }
         return $this;
     }
+
     /**
      * Remove specified keys from the array.
      *
@@ -321,6 +322,7 @@ class Arr
         $this->lastResult = array_key_first($this->items);
         return $this;
     }
+
     /**
      * Flatten a multi-dimensional array into a single level.
      *
@@ -421,14 +423,14 @@ class Arr
     }
 
     /**
-     * Check if the given value is an array.
+     * Get elements whose keys exist in another array.
      *
-     * @param mixed $value The value to check.
+     * @param array $array The array to compare.
      * @return self
      */
-    public function isArray(mixed $value): self
+    public function intersectKeys(array $array): self
     {
-        $this->lastResult = is_array($value);
+        $this->items = array_intersect_key($this->items, $array);
         return $this;
     }
 
@@ -445,14 +447,14 @@ class Arr
     }
 
     /**
-     * Get elements whose keys exist in another array.
+     * Check if the given value is an array.
      *
-     * @param array $array The array to compare.
+     * @param mixed $value The value to check.
      * @return self
      */
-    public function intersectKeys(array $array): self
+    public function isArray(mixed $value): self
     {
-        $this->items = array_intersect_key($this->items, $array);
+        $this->lastResult = is_array($value);
         return $this;
     }
 
@@ -466,6 +468,7 @@ class Arr
         $this->lastResult = empty($this->items);
         return $this;
     }
+
     /**
      * Get all keys of the array.
      *
@@ -785,7 +788,7 @@ class Arr
         return $this;
     }
 
-   /**
+    /**
      * Search for a value in the array and return its key.
      *
      * @param mixed $value The value to search for.
