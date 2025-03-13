@@ -95,9 +95,9 @@ use Core\Lib\Utilities\ArraySet;
 <br>
 
 ## 2. Basic Usage <a id="usage"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-To use the `Arr` class, instantiate it with an array:
+To use the `ArraySet` class, instantiate it with an array:
 ```php
-$arr = new Arr([1, 2, 3, 4]);
+$arr = new ArraySet([1, 2, 3, 4]);
 ```
 <br>
 
@@ -105,7 +105,7 @@ $arr = new Arr([1, 2, 3, 4]);
 
 Initializing when you don't know if the variable is an instance of the `Arr` class or an `array` type.
 ```php
-$errors = $errors instanceof Arr ? $errors : new Arr($errors);
+$errors = $errors instanceof Arr ? $errors : new ArraySet($errors);
 ```
 <br>
 
@@ -113,7 +113,7 @@ $errors = $errors instanceof Arr ? $errors : new Arr($errors);
 
 Most methods support chaining:
 ```php
-$arr = (new Arr([5, 3, 8, 1]))
+$arr = (new ArraySet([5, 3, 8, 1]))
     ->sort()
     ->reverse()
     ->all(); 
@@ -126,18 +126,18 @@ print_r($arr); // Output: [8, 5, 3, 1]
 
 Examples
 ```php
-$data = new Arr(['name' => 'John', 'age' => 30]);
+$data = new ArraySet(['name' => 'John', 'age' => 30]);
 
 // Get a value
 echo $data->get('name'); // John
 
 // Sort values
-$sorted = (new Arr([3, 1, 2]))->sort()->all(); // [1, 2, 3]
+$sorted = (new ArraySet([3, 1, 2]))->sort()->all(); // [1, 2, 3]
 
 // Filter
-$filtered = (new Arr([1, 2, 3, 4]))->where(fn($n) => $n > 2)->all(); // [3, 4]
+$filtered = (new ArraySet([1, 2, 3, 4]))->where(fn($n) => $n > 2)->all(); // [3, 4]
 
-$data = new Arr([
+$data = new ArraySet([
     ['id' => 1, 'name' => 'Alice'],
     ['id' => 2, 'name' => 'Bob'],
 ]);
@@ -147,14 +147,14 @@ $names = $data->column('name')->all();
 // ['Alice', 'Bob']
 
 // Remove a key
-$filtered = (new Arr(['name' => 'John', 'age' => 30]))->except('age')->all();
+$filtered = (new ArraySet(['name' => 'John', 'age' => 30]))->except('age')->all();
 // ['name' => 'John']
 
 // Check for a value
-$hasTwo = (new Arr([1, 2, 3, 4]))->contains(2)->result(); 
+$hasTwo = (new ArraySet([1, 2, 3, 4]))->contains(2)->result(); 
 // true
 
-$arr = new Arr([
+$arr = new ArraySet([
     ['name' => 'Alice', 'age' => 30],
     ['name' => 'Bob', 'age' => 25]
 ]);
@@ -175,7 +175,7 @@ $arr->multiSort(SORT_ASC)->all();
 
 Initializes an `Arr` instance.
 ```php
-$arr = new Arr(['name' => 'John', 'age' => 30]);
+$arr = new ArraySet(['name' => 'John', 'age' => 30]);
 ```
 <br>
 
@@ -194,7 +194,7 @@ $arr = Arr::make('Hello')->all(); // Output: ['Hello']
 
 Returns the array.
 ```php
-$arr = new Arr([1, 2, 3]);
+$arr = new ArraySet([1, 2, 3]);
 print_r($arr->all()); // [1, 2, 3]
 ```
 <br>
@@ -204,7 +204,7 @@ print_r($arr->all()); // [1, 2, 3]
 
 Extracts values from a specific column in a multi-dimensional array.
 ```php
-$arr = new Arr([
+$arr = new ArraySet([
     ['id' => 1, 'name' => 'Alice'],
     ['id' => 2, 'name' => 'Bob']
 ]);
@@ -218,7 +218,7 @@ $arr->column('name')->all();
 
 Returns the number of elements in the array.
 ```php
-$arr = new Arr([1, 2, 3, 4]);
+$arr = new ArraySet([1, 2, 3, 4]);
 echo $arr->count()->result(); 
 // 4
 ```
@@ -229,7 +229,7 @@ echo $arr->count()->result();
 
 Checks if a given key exists in the array.
 ```php
-$arr = new Arr(['name' => 'John', 'age' => 30]);
+$arr = new ArraySet(['name' => 'John', 'age' => 30]);
 var_dump($arr->exists('age')->result());
 // true
 ```
@@ -240,12 +240,12 @@ var_dump($arr->exists('age')->result());
 
 Retrieves the first element of the array, or the first element that matches a given condition.
 ```php
-$arr = new Arr([10, 20, 30, 40]);
+$arr = new ArraySet([10, 20, 30, 40]);
 echo $arr->first()->result(); 
 // 10
 
 // With a condition
-$arr = new Arr([10, 20, 30, 40]);
+$arr = new ArraySet([10, 20, 30, 40]);
 echo $arr->first(fn($v) => $v > 25)->result(); 
 // 30
 ```
@@ -256,7 +256,7 @@ echo $arr->first(fn($v) => $v > 25)->result();
 
 Retrieves the first key of the array.
 ```php
-$arr = new Arr(['name' => 'Alice', 'age' => 30]);
+$arr = new ArraySet(['name' => 'Alice', 'age' => 30]);
 echo $arr->firstKey()->result();
 // name
 ```
@@ -267,7 +267,7 @@ echo $arr->firstKey()->result();
 
 Retrieves a value by key, supporting dot notation.
 ```php
-$data = new Arr(['user' => ['name' => 'John']]);
+$data = new ArraySet(['user' => ['name' => 'John']]);
 echo $data->get('user.name'); // John
 ```
 <br>
@@ -277,7 +277,7 @@ echo $data->get('user.name'); // John
 
 Checks if a key exists.
 ```php
-$arr = new Arr(['name' => 'John']);
+$arr = new ArraySet(['name' => 'John']);
 var_dump($arr->has('name')); // true
 ```
 <br>
@@ -287,7 +287,7 @@ var_dump($arr->has('name')); // true
 
 Checks if at least one key exists.
 ```php
-$arr = new Arr(['name' => 'John', 'age' => 30]);
+$arr = new ArraySet(['name' => 'John', 'age' => 30]);
 var_dump($arr->hasAny(['name', 'email'])); // true
 ```
 <br>
@@ -297,7 +297,7 @@ var_dump($arr->hasAny(['name', 'email'])); // true
 
 Returns the array keys.
 ```php
-$arr = new Arr(['a' => 1, 'b' => 2]);
+$arr = new ArraySet(['a' => 1, 'b' => 2]);
 print_r($arr->keys()->all()); // ['a', 'b']
 ```
 <br>
@@ -307,12 +307,12 @@ print_r($arr->keys()->all()); // ['a', 'b']
 
 Retrieves the last element of the array, or the last element that matches a given condition.
 ```php
-$arr = new Arr([10, 20, 30, 40]);
+$arr = new ArraySet([10, 20, 30, 40]);
 echo $arr->last()->result(); 
 // 40
 
 // With a condition
-$arr = new Arr([10, 20, 30, 40]);
+$arr = new ArraySet([10, 20, 30, 40]);
 echo $arr->last(fn($v) => $v < 25)->result(); 
 // 20
 ```
@@ -323,7 +323,7 @@ echo $arr->last(fn($v) => $v < 25)->result();
 
 Retrieves the last key of the array.
 ```php
-$arr = new Arr(['name' => 'Alice', 'age' => 30]);
+$arr = new ArraySet(['name' => 'Alice', 'age' => 30]);
 echo $arr->lastKey()->result();
 // age
 ```
@@ -334,7 +334,7 @@ echo $arr->lastKey()->result();
 
 Retrieves the last computed result from a function that does not modify the original array.
 ```php
-$arr = new Arr([1, 2, 3]);
+$arr = new ArraySet([1, 2, 3]);
 $arr->count();
 print_r($arr->result());
 // 3
@@ -346,7 +346,7 @@ print_r($arr->result());
 
 Searches for a value in the array and returns its key.
 ```php
-$arr = new Arr(['apple' => 'red', 'banana' => 'yellow']);
+$arr = new ArraySet(['apple' => 'red', 'banana' => 'yellow']);
 $arr->search('yellow');
 print_r($arr->result());
 // 'banana'
@@ -358,7 +358,7 @@ print_r($arr->result());
 
 Removes and returns the first item from the array.
 ```php
-$arr = new Arr([1, 2, 3, 4]);
+$arr = new ArraySet([1, 2, 3, 4]);
 $arr->shift();
 print_r($arr->all());
 print_r($arr->result());
@@ -372,7 +372,7 @@ print_r($arr->result());
 
 Returns only the array values.
 ```php
-$arr = new Arr(['a' => 1, 'b' => 2]);
+$arr = new ArraySet(['a' => 1, 'b' => 2]);
 print_r($arr->values()->all()); // [1, 2]
 ```
 <br>
@@ -383,7 +383,7 @@ print_r($arr->values()->all()); // [1, 2]
 
 Sorts while maintaining key association.
 ```php
-$arr = new Arr(['b' => 3, 'a' => 1, 'c' => 2]);
+$arr = new ArraySet(['b' => 3, 'a' => 1, 'c' => 2]);
 $arr->asort()->all(); // ['a' => 1, 'c' => 2, 'b' => 3]
 ```
 <br>
@@ -393,7 +393,7 @@ $arr->asort()->all(); // ['a' => 1, 'c' => 2, 'b' => 3]
 
 Sorts in descending order while maintaining key association.
 ```php
-$arr = new Arr(['b' => 3, 'a' => 1, 'c' => 2]);
+$arr = new ArraySet(['b' => 3, 'a' => 1, 'c' => 2]);
 $arr->arsort()->all(); // ['b' => 3, 'c' => 2, 'a' => 1]
 ```
 <br>
@@ -403,7 +403,7 @@ $arr->arsort()->all(); // ['b' => 3, 'c' => 2, 'a' => 1]
 
 Flattens a multi-dimensional array into a single-level array.
 ```php
-$arr = new Arr([[1, 2], [3, 4], [5]]);
+$arr = new ArraySet([[1, 2], [3, 4], [5]]);
 $arr->flatten()->all();
 // [1, 2, 3, 4, 5]
 ```
@@ -414,7 +414,7 @@ $arr->flatten()->all();
 
 Swaps the keys and values of an array.
 ```php
-$arr = new Arr(['name' => 'Alice', 'age' => 30]);
+$arr = new ArraySet(['name' => 'Alice', 'age' => 30]);
 $arr->flip()->all();
 // ['Alice' => 'name', '30' => 'age']
 ```
@@ -425,7 +425,7 @@ $arr->flip()->all();
 
 Uses a specific field in a multi-dimensional array as the key.
 ```php
-$arr = new Arr([
+$arr = new ArraySet([
     ['id' => 1, 'name' => 'Alice'],
     ['id' => 2, 'name' => 'Bob']
 ]);
@@ -444,7 +444,7 @@ $arr->keyBy('id')->all();
 
 Sorts an array by keys in descending order.
 ```php
-$arr = new Arr(['b' => 2, 'a' => 1, 'c' => 3]);
+$arr = new ArraySet(['b' => 2, 'a' => 1, 'c' => 3]);
 $arr->krsort()->all();
 // ['c' => 3, 'b' => 2, 'a' => 1]
 ```
@@ -455,7 +455,7 @@ $arr->krsort()->all();
 
 Sorts an array by keys in ascending order.
 ```php
-$arr = new Arr(['b' => 2, 'a' => 1, 'c' => 3]);
+$arr = new ArraySet(['b' => 2, 'a' => 1, 'c' => 3]);
 $arr->ksort()->all();
 // ['a' => 1, 'b' => 2, 'c' => 3]
 ```
@@ -466,7 +466,7 @@ $arr->ksort()->all();
 
 Sorts values in ascending order.
 ```php
-$arr = new Arr([5, 3, 8, 1]);
+$arr = new ArraySet([5, 3, 8, 1]);
 $arr->sort()->all(); // [1, 3, 5, 8]
 ```
 <br>
@@ -475,7 +475,7 @@ $arr->sort()->all(); // [1, 3, 5, 8]
 `rsort()`
 Sorts in descending order.
 ```php
-$arr = new Arr([5, 3, 8, 1]);
+$arr = new ArraySet([5, 3, 8, 1]);
 $arr->rsort()->all(); // [8, 5, 3, 1]
 ```
 <br>
@@ -485,7 +485,7 @@ $arr->rsort()->all(); // [8, 5, 3, 1]
 
 Sorts the array using a user-defined comparison function.
 ```php
-$arr = new Arr([3, 1, 4, 2]);
+$arr = new ArraySet([3, 1, 4, 2]);
 $arr->usort(fn($a, $b) => $a <=> $b);
 print_r($arr->all());
 // [1, 2, 3, 4]
@@ -497,7 +497,7 @@ print_r($arr->all());
 
 Applies a user function to every item in the array.
 ```php
-$arr = new Arr([1, 2, 3]);
+$arr = new ArraySet([1, 2, 3]);
 $arr->walk(fn(&$value) => $value *= 2);
 print_r($arr->all());
 // [2, 4, 6]
@@ -509,7 +509,7 @@ print_r($arr->all());
 
 Applies a user function to every item in a multi-dimensional array.
 ```php
-$arr = new Arr([
+$arr = new ArraySet([
     ['value' => 1],
     ['value' => 2]
 ]);
@@ -525,7 +525,7 @@ print_r($arr->all());
 
 Adds a value if the key does not exist.
 ```php
-$arr = new Arr(['name' => 'John']);
+$arr = new ArraySet(['name' => 'John']);
 $arr->add('age', 30)->all(); // ['name' => 'John', 'age' => 30]
 ```
 <br>
@@ -535,7 +535,7 @@ $arr->add('age', 30)->all(); // ['name' => 'John', 'age' => 30]
 
 Removes all elements.
 ```php
-$arr = new Arr([1, 2, 3]);
+$arr = new ArraySet([1, 2, 3]);
 $arr->clear()->all(); // []
 ```
 <br>
@@ -559,7 +559,7 @@ $arr->all();
 
 Computes the Cartesian product of multiple arrays.
 ```php
-$arr = new Arr([1, 2]);
+$arr = new ArraySet([1, 2]);
 $arr->crossJoin(['A', 'B'])->all();
 /*
 [
@@ -575,7 +575,7 @@ $arr->crossJoin(['A', 'B'])->all();
 
 Converts a multi-dimensional array into a dot notation format.
 ```php
-$arr = new Arr([
+$arr = new ArraySet([
     'user' => ['name' => 'John', 'age' => 30]
 ]);
 $arr->dot()->all();
@@ -588,7 +588,7 @@ $arr->dot()->all();
 
 Applies a callback to each element in the array.
 ```php
-$arr = new Arr([1, 2, 3]);
+$arr = new ArraySet([1, 2, 3]);
 $arr->each(function ($value, $key) {
     echo "$key => $value\n";
 });
@@ -605,7 +605,7 @@ $arr->each(function ($value, $key) {
 
 Removes specific keys from the array.
 ```php
-$arr = new Arr(['name' => 'John', 'age' => 30, 'city' => 'New York']);
+$arr = new ArraySet(['name' => 'John', 'age' => 30, 'city' => 'New York']);
 $arr->except('age')->all();
 // ['name' => 'John', 'city' => 'New York']
 ```
@@ -616,7 +616,7 @@ $arr->except('age')->all();
 
 Fills the array with a specified value starting at a given index and continuing for a specified number of elements.
 ```php
-$arr = new Arr([1, 2, 3]);
+$arr = new ArraySet([1, 2, 3]);
 $arr->fill(1, 3, "X");
 
 print_r($arr->all());
@@ -629,7 +629,7 @@ print_r($arr->all());
 
 Removes an item by key.
 ```php
-$arr = new Arr(['name' => 'John', 'age' => 30]);
+$arr = new ArraySet(['name' => 'John', 'age' => 30]);
 $arr->forget('name')->all(); // ['age' => 30]
 ```
 <br>
@@ -639,7 +639,7 @@ $arr->forget('name')->all(); // ['age' => 30]
 
 Merges another array.
 ```php
-$arr = new Arr(['name' => 'John']);
+$arr = new ArraySet(['name' => 'John']);
 $arr->merge(['age' => 30])->all(); // ['name' => 'John', 'age' => 30]
 ```
 <br>
@@ -649,7 +649,7 @@ $arr->merge(['age' => 30])->all(); // ['name' => 'John', 'age' => 30]
 
 Returns a new array containing only the specified keys.
 ```php
-$arr = new Arr(['name' => 'John', 'age' => 30, 'city' => 'New York']);
+$arr = new ArraySet(['name' => 'John', 'age' => 30, 'city' => 'New York']);
 $arr->only(['name', 'city']);
 print_r($arr->all());
 // ['name' => 'John', 'city' => 'New York']
@@ -661,7 +661,7 @@ print_r($arr->all());
 
 Expands the array to a specified size by padding it with a given value.
 ```php
-$arr = new Arr([1, 2, 3]);
+$arr = new ArraySet([1, 2, 3]);
 $arr->pad(5, 0);
 print_r($arr->all());
 // [1, 2, 3, 0, 0]
@@ -673,7 +673,7 @@ print_r($arr->all());
 
 Extracts values from an array of associative arrays based on a given key.
 ```php
-$arr = new Arr([
+$arr = new ArraySet([
     ['name' => 'John', 'age' => 30],
     ['name' => 'Jane', 'age' => 25]
 ]);
@@ -688,7 +688,7 @@ print_r($arr->all());
 
 Adds a value to the beginning of the array.
 ```php
-$arr = new Arr([2, 3, 4]);
+$arr = new ArraySet([2, 3, 4]);
 $arr->prepend(1);
 print_r($arr->all());
 // [1, 2, 3, 4]
@@ -700,7 +700,7 @@ print_r($arr->all());
 
 Retrieves a value from the array and removes it.
 ```php
-$arr = new Arr(['name' => 'John', 'age' => 30]);
+$arr = new ArraySet(['name' => 'John', 'age' => 30]);
 $arr->pull('age');
 print_r($arr->all());
 print_r($arr->result());
@@ -714,7 +714,7 @@ print_r($arr->result());
 
 Adds one or more values to the end of the array.
 ```php
-$arr = new Arr([1, 2, 3]);
+$arr = new ArraySet([1, 2, 3]);
 $arr->push(4, 5);
 print_r($arr->all());
 // [1, 2, 3, 4, 5]
@@ -726,7 +726,7 @@ print_r($arr->all());
 
 Reduces the array to a single value using a callback function.
 ```php
-$arr = new Arr([1, 2, 3, 4]);
+$arr = new ArraySet([1, 2, 3, 4]);
 $arr->reduce(fn($carry, $item) => $carry + $item, 0);
 print_r($arr->result());
 // 10
@@ -738,7 +738,7 @@ print_r($arr->result());
 
 Replaces values in the current array with values from another array.
 ```php
-$arr = new Arr(['name' => 'John', 'age' => 30]);
+$arr = new ArraySet(['name' => 'John', 'age' => 30]);
 $arr->replace(['age' => 35, 'city' => 'New York']);
 print_r($arr->all());
 // ['name' => 'John', 'age' => 35, 'city' => 'New York']
@@ -750,7 +750,7 @@ print_r($arr->all());
 
 Sets a value using dot notation.
 ```php
-$arr = new Arr([]);
+$arr = new ArraySet([]);
 $arr->set('user.name', 'John')->all(); // ['user' => ['name' => 'John']]
 ```
 <br>
@@ -760,7 +760,7 @@ $arr->set('user.name', 'John')->all(); // ['user' => ['name' => 'John']]
 
 Randomly shuffles the elements in the array.
 ```php
-$arr = new Arr([1, 2, 3, 4, 5]);
+$arr = new ArraySet([1, 2, 3, 4, 5]);
 $arr->shuffle();
 print_r($arr->all());
 
@@ -774,7 +774,7 @@ print_r($arr->all());
 
 Shuffles the elements of an associative array while preserving key-value relationships.
 ```php
-$arr = new Arr(['a' => 1, 'b' => 2, 'c' => 3]);
+$arr = new ArraySet(['a' => 1, 'b' => 2, 'c' => 3]);
 $arr->shuffleAssociative();
 print_r($arr->all());
 
@@ -788,7 +788,7 @@ print_r($arr->all());
 
 Extracts a portion of the array.
 ```php
-$arr = new Arr([1, 2, 3, 4, 5]);
+$arr = new ArraySet([1, 2, 3, 4, 5]);
 $arr->slice(1, 3);
 print_r($arr->all());
 // [2, 3, 4]
@@ -800,7 +800,7 @@ print_r($arr->all());
 
 Removes and replaces a portion of the array.
 ```php
-$arr = new Arr([1, 2, 3, 4, 5]);
+$arr = new ArraySet([1, 2, 3, 4, 5]);
 $arr->splice(2, 2, [6, 7]);
 print_r($arr->all());
 // [1, 2, 6, 7, 5]
@@ -812,7 +812,7 @@ print_r($arr->all());
 
 Computes the difference between arrays using a custom comparison function.
 ```php
-$arr1 = new Arr([1, 2, 3, 4, 5]);
+$arr1 = new ArraySet([1, 2, 3, 4, 5]);
 $arr2 = [3, 4];
 
 $arr1->udiff($arr2, fn($a, $b) => $a <=> $b);
@@ -827,7 +827,7 @@ print_r($arr1->all());
 
 Checks if an array contains a specific value.
 ```php
-$arr = new Arr([1, 2, 3, 4]);
+$arr = new ArraySet([1, 2, 3, 4]);
 var_dump($arr->contains(3)->result());
 // true
 ```
@@ -838,7 +838,7 @@ var_dump($arr->contains(3)->result());
 
 Finds the difference between the current array and another array.
 ```php
-$arr = new Arr([1, 2, 3, 4]);
+$arr = new ArraySet([1, 2, 3, 4]);
 $arr->diff([2, 4])->all();
 // [1, 3]
 ```
@@ -849,7 +849,7 @@ $arr->diff([2, 4])->all();
 
 Filters elements based on a condition.
 ```php
-$arr = new Arr([1, 2, 3, 4]);
+$arr = new ArraySet([1, 2, 3, 4]);
 $arr->filter(fn($n) => $n % 2 === 0)->all(); // [2, 4]
 ```
 <br>
@@ -859,7 +859,7 @@ $arr->filter(fn($n) => $n % 2 === 0)->all(); // [2, 4]
 
 Finds the common values between the current array and another array.
 ```php
-$arr = new Arr([1, 2, 3, 4]);
+$arr = new ArraySet([1, 2, 3, 4]);
 $arr->intersect([2, 4, 6])->all();
 // [2, 4]
 ```
@@ -870,7 +870,7 @@ $arr->intersect([2, 4, 6])->all();
 
 Finds elements whose keys exist in another array.
 ```php
-$arr = new Arr(['name' => 'Alice', 'age' => 30, 'city' => 'New York']);
+$arr = new ArraySet(['name' => 'Alice', 'age' => 30, 'city' => 'New York']);
 $arr->intersectKeys(['age' => '', 'city' => ''])->all();
 // ['age' => 30, 'city' => 'New York']
 ```
@@ -881,7 +881,7 @@ $arr->intersectKeys(['age' => '', 'city' => ''])->all();
 
 Checks if the given value is an array.
 ```php
-$arr = new Arr();
+$arr = new ArraySet();
 var_dump($arr->isArray([1, 2, 3])->result()); 
 // true
 ```
@@ -892,7 +892,7 @@ var_dump($arr->isArray([1, 2, 3])->result());
 
 Checks if the array is empty.
 ```php
-$arr = new Arr([]);
+$arr = new ArraySet([]);
 var_dump($arr->isEmpty()->result());
 // true
 ```
@@ -903,7 +903,7 @@ var_dump($arr->isEmpty()->result());
 
 Applies a function to each item.
 ```php
-$arr = new Arr([1, 2, 3]);
+$arr = new ArraySet([1, 2, 3]);
 $arr->map(fn($n) => $n * 2)->all(); // [2, 4, 6]
 ```
 <br>
@@ -913,7 +913,7 @@ $arr->map(fn($n) => $n * 2)->all(); // [2, 4, 6]
 
 Removes duplicate values.
 ```php
-$arr = new Arr([1, 2, 2, 3, 3]);
+$arr = new ArraySet([1, 2, 2, 3, 3]);
 $arr->unique()->all(); // [1, 2, 3]
 ```
 <br>
@@ -923,7 +923,7 @@ $arr->unique()->all(); // [1, 2, 3]
 
 Filters values where callback returns true.
 ```php
-$arr = new Arr([['age' => 18], ['age' => 25], ['age' => 30]]);
+$arr = new ArraySet([['age' => 18], ['age' => 25], ['age' => 30]]);
 $arr->where(fn($item) => $item['age'] >= 25)->all(); 
 // [['age' => 25], ['age' => 30]]
 ```
@@ -935,7 +935,7 @@ $arr->where(fn($item) => $item['age'] >= 25)->all();
 
 Splits an array into chunks of the specified size.
 ```php
-$arr = new Arr([1, 2, 3, 4, 5, 6]);
+$arr = new ArraySet([1, 2, 3, 4, 5, 6]);
 $arr->chunk(2)->all(); 
 // [[1, 2], [3, 4], [5, 6]]
 ```
@@ -946,7 +946,7 @@ $arr->chunk(2)->all();
 
 Flattens a multi-dimensional array into a single-level array.
 ```php
-$arr = new Arr([[1, 2], [3, 4], [5]]);
+$arr = new ArraySet([[1, 2], [3, 4], [5]]);
 $arr->collapse()->all();
 // [1, 2, 3, 4, 5]
 ```
@@ -958,7 +958,7 @@ $arr->collapse()->all();
 
 Recursively applies a callback function to each element in the array.
 ```php
-$arr = new Arr([
+$arr = new ArraySet([
     [1, 2, 3],
     [4, 5, [6, 7]]
 ]);
@@ -978,7 +978,7 @@ $arr->mapRecursive(fn($v) => $v * 2)->all();
 
 Maps an array using a callback that defines both keys and values.
 ```php
-$arr = new Arr(['name' => 'Alice', 'age' => 30]);
+$arr = new ArraySet(['name' => 'Alice', 'age' => 30]);
 $arr->mapWithKeys(fn($v, $k) => [$k . '_modified' => $v])->all();
 /*
 [
@@ -994,7 +994,7 @@ $arr->mapWithKeys(fn($v, $k) => [$k . '_modified' => $v])->all();
 
 Sorts multiple arrays or multi-dimensional arrays.
 ```php
-$arr = new Arr([
+$arr = new ArraySet([
     ['name' => 'Alice', 'age' => 30],
     ['name' => 'Bob', 'age' => 25]
 ]);
@@ -1015,7 +1015,7 @@ $arr->multiSort(SORT_ASC)->all();
 
 Joins array values into a string.
 ```php
-$arr = new Arr(['apple', 'banana', 'cherry']);
+$arr = new ArraySet(['apple', 'banana', 'cherry']);
 echo $arr->implode(', '); // "apple, banana, cherry"
 ```
 <br>
@@ -1025,7 +1025,7 @@ echo $arr->implode(', '); // "apple, banana, cherry"
 
 Retrieves a random value or values.
 ```php
-$arr = new Arr([1, 2, 3, 4]);
+$arr = new ArraySet([1, 2, 3, 4]);
 echo $arr->random(); // Random value from the array
 ```
 <br>
@@ -1035,7 +1035,7 @@ echo $arr->random(); // Random value from the array
 
 Reverses the order.
 ```php
-$arr = new Arr([1, 2, 3]);
+$arr = new ArraySet([1, 2, 3]);
 $arr->reverse()->all(); // [3, 2, 1]
 ```
 
@@ -1044,7 +1044,7 @@ $arr->reverse()->all(); // [3, 2, 1]
 
 Ensures the given value is an array. If it's not, wraps it in an array.
 ```php
-$arr = new Arr();
+$arr = new ArraySet();
 $arr->wrap('hello');
 print_r($arr->all());
 // ['hello']
