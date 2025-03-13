@@ -104,10 +104,12 @@ class Users extends Model {
             $this->password = password_hash($this->password, PASSWORD_DEFAULT);
             $this->reset_password = 0;
         }
+        
         // ✅ Ensure ACL is always stored as `[""]` when empty
-        if (empty($this->acl) || $this->acl === '[]') {
-            $this->acl = '[""]'; 
+        if (Arr::isEmpty(json_decode($this->acl, true))) {
+            $this->acl = json_encode([""]);
         }
+        
     }
 
     /**
