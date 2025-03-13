@@ -1,8 +1,9 @@
 <?php
 namespace Core;
 use Core\Helper;
-use Core\Lib\Utilities\ArraySet;
+use Core\Lib\Utilities\Arr;
 use Core\Lib\Logging\Logger;
+use Core\Lib\Utilities\ArraySet;
 use Core\Lib\Utilities\DateTime;
 
 /**
@@ -37,9 +38,9 @@ class Model {
      * for failed form validation.
      * @return void
      */
-    public function addErrorMessage($field,$message){
+    public function addErrorMessage($field,$message) {
         $this->_validates = false;
-        if(array_key_exists($field,$this->_validationErrors)){
+        if(Arr::exists($this->_validationErrors, $field,)) {
             $this->_validationErrors[$field] .= " " . $message;
         } else {
             $this->_validationErrors[$field] = $message;
@@ -75,9 +76,9 @@ class Model {
             $whiteListed = true;
             if(sizeof($list) > 0){
               if($blackList){
-                    $whiteListed = !in_array($key, $list);
+                    $whiteListed = !Arr::contains($list, $key);
               } else {
-                    $whiteListed = in_array($key, $list);
+                    $whiteListed = Arr::contains($list, $key);
               }
             }
             if(property_exists($this,$key) && $whiteListed){
@@ -109,14 +110,17 @@ class Model {
     public function data() {
         $data = new \stdClass();
         $columns = static::getColumns();
-        
         // Determine column key name based on DB driver
         $columnKey = (isset($columns[0]->Field)) ? 'Field' : 'name';
 
-        foreach ($columns as $column) {
+        // foreach ($columns as $column) {
+        //     $columnName = $column->{$columnKey};
+        //     $data->{$columnName} = $this->{$columnName};
+        // }
+        (new ArraySet($columns))->each(function($column) use (&$columnName, &$data, &$columnKey) {
             $columnName = $column->{$columnKey};
             $data->{$columnName} = $this->{$columnName};
-        }
+        });
         return $data;
     }
 

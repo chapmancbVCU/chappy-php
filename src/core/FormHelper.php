@@ -564,11 +564,6 @@ class FormHelper {
      * @return string The stringified attributes.
      */
     public static function stringifyAttrs(array $attrs) {
-        // $string = '';
-        // foreach($attrs as $key => $val) {
-        //     $string .= ' ' . $key . '="' . $val . '"'; 
-        // }
-        // return $string;
         $string = '';
         (new ArraySet($attrs))->each(function($val, $key) use (&$string) {
             $string .= " $key=\"$val\"";
