@@ -16,7 +16,7 @@ use Core\Validators\{
 };
 use App\Models\UserSessions;
 use Core\Lib\Utilities\Env;
-use Core\Lib\Utilities\ArraySet;
+use Core\Lib\Utilities\Arr;
 
 /**
  * Extends the Model class.  Supports functions for the Users model.
@@ -65,7 +65,7 @@ class Users extends Model {
         if (!is_array($acls)) {
             $acls = [];
         }
-        return array_map('strval', $acls);
+        return Arr::map($acls, 'strval');
     }
 
     /**
@@ -137,7 +137,7 @@ class Users extends Model {
             'bind' => [(int)$current_user_id]
         ];
         // In case you want to add more conditions
-        $conditions = array_merge($conditions, $params);
+        $conditions = Arr::merge($conditions, $params);
         return self::find($conditions);
     }
 
@@ -328,12 +328,12 @@ class Users extends Model {
      * @param string $acl The name of the ACL to be removed.
      * @return void
      */
-    public static function removeAcl($user_id, $acl){
+    public static function removeAcl($user_id, $acl) {
         $user = self::findById($user_id);
         if(!$user) return false;
         $acls = $user->acls();
         if(in_array($acl,$acls)){
-            $key = array_search($acl,$acls);
+            $key = Arr::search($acls, $acl);
             unset($acls[$key]);
             $user->acl = json_encode($acls);
             $user->save();
