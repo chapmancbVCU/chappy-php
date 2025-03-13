@@ -3,6 +3,7 @@ namespace Core;
 use \Exception;
 use Core\{Helper, Session};
 use Core\Lib\Logging\Logger;
+use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\ArraySet;
 /**
  * Contains functions for building form elements of various types.
@@ -507,8 +508,8 @@ class FormHelper {
      * @return string The sanitized version of the dirty string.
      */
     public static function sanitize(string|array $dirty): string|array {
-        if (is_array($dirty)) {
-            return array_map($dirty, [self::class, 'sanitize']); // Recursively sanitize arrays
+        if (Arr::isArray($dirty)) {
+            return Arr::map([self::class, 'sanitize'], $dirty); // Recursively sanitize arrays
         }
         return htmlentities((string)$dirty, ENT_QUOTES, 'UTF-8');
     }
@@ -562,11 +563,16 @@ class FormHelper {
      * @param array $attrs The attributes we want to stringify.
      * @return string The stringified attributes.
      */
-    public static function stringifyAttrs($attrs) {
+    public static function stringifyAttrs(array $attrs) {
+        // $string = '';
+        // foreach($attrs as $key => $val) {
+        //     $string .= ' ' . $key . '="' . $val . '"'; 
+        // }
+        // return $string;
         $string = '';
-        foreach($attrs as $key => $val) {
-            $string .= ' ' . $key . '="' . $val . '"'; 
-        }
+        (new ArraySet($attrs))->each(function($val, $key) use (&$string) {
+            $string .= " $key=\"$val\"";
+        });
         return $string;
     }
 

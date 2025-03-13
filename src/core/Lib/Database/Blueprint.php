@@ -4,7 +4,7 @@ namespace Core\Lib\Database;
 use Core\DB;
 use Exception;
 use Console\Helpers\Tools;
-use Core\Lib\Utilities\ArraySet;
+use Core\Lib\Utilities\Arr;
 use Core\Lib\Logging\Logger;
 
 /**
@@ -134,7 +134,7 @@ class Blueprint {
 
         $columnType = strtoupper($matches[2]);
 
-        if ($this->dbDriver === 'sqlite' && in_array($columnType, ['TEXT', 'BLOB'])) {
+        if ($this->dbDriver === 'sqlite' && Arr::exists(['TEXT', 'BLOB'], $columnType)) {
             Logger::log("Skipping default value for column '{$matches[1]}' (type: $columnType) in SQLite.", 'warning');
             return $this;
         }
