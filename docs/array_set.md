@@ -8,81 +8,82 @@
     * B. [make](#make)
 4. [Retrieving Data](#retrieving-data)
     * A. [all](#all)
-    * A. [column](#column)
-    * A. [count](#count)
-    * A. [exists](#exists)
-    * A. [first](#first)
-    * A. [firstKey](#first-key)
-    * B. [get](#get)
-    * C. [has](#has)
-    * D. [hasAny](#has-any)
-    * E. [keys](#keys)
-    * A. [last](#last)
-    * A. [lastKey](#lastKey)
-    * A. [result](#result)
-    * A. [search](#search)
-    * A. [shift](#shift)
-    * F. [values](#values)
+    * B. [column](#column)
+    * C. [count](#count)
+    * D. [exists](#exists)
+    * E. [first](#first)
+    * F. [firstKey](#first-key)
+    * G. [get](#get)
+    * H. [has](#has)
+    * I. [hasAny](#has-any)
+    * J. [keys](#keys)
+    * K. [last](#last)
+    * L. [lastKey](#lastKey)
+    * M. [result](#result)
+    * N. [search](#search)
+    * O. [shift](#shift)
+    * P. [values](#values)
 5. [Iteration, Sorting, Ordering, & Transformation](#sorting-ordering)
     * A. [asort](#asort)
-    * A. [arsort](#arsort)
-    * A. [flatten](#flatten)
-    * A. [flip](#flip)
-    * A. [keyBy](#key-by)
-    * A. [krsort](#krsort)
-    * A. [ksort](#ksort)
-    * A. [sort](#sort)
-    * A. [rsort](#rsort)
-    * A. [usort](#usort)
-    * A. [walk](#walk)
-    * A. [walkRecursive](#walk-recursive)
+    * B. [arsort](#arsort)
+    * C. [flatten](#flatten)
+    * D. [flip](#flip)
+    * E. [keyBy](#key-by)
+    * F. [krsort](#krsort)
+    * G. [ksort](#ksort)
+    * H. [sort](#sort)
+    * I. [rsort](#rsort)
+    * J. [usort](#usort)
+    * K. [walk](#walk)
+    * L. [walkRecursive](#walk-recursive)
 6. [Manipulation](#manipulation)
     * A. [add](#add)
-    * A. [clear](#clear)
-    * A. [combine](#combine)
-    * A. [crossJoin](#cross-join)
-    * A. [dot](#dot)
-    * A. [each](#each)
-    * A. [except](#except)
-    * A. [fill](#fill)
-    * A. [forget](#forget)
-    * A. [merge](#merge)
-    * A. [only](#only)
-    * A. [pad](#pad)
-    * A. [pluck](#pluck)
-    * A. [prepend](#prepend)
-    * A. [pull](#pull)
-    * A. [push](#push)
-    * A. [reduce](#reduce)
-    * A. [replace](#replace)
-    * A. [set](#set)
-    * A. [shuffle](#shuffle)
-    * A. [shuffleAssociative](#shuffle-associative)
-    * A. [slice](#slice)
-    * A. [splice](#splice)
-    * A. [udiff](#udiff)
+    * B. [clear](#clear)
+    * C. [combine](#combine)
+    * D. [crossJoin](#cross-join)
+    * E. [dot](#dot)
+    * F. [each](#each)
+    * G. [except](#except)
+    * H. [fill](#fill)
+    * I. [forget](#forget)
+    * J. [merge](#merge)
+    * K. [only](#only)
+    * L. [pad](#pad)
+    * M. [pluck](#pluck)
+    * N. [prepend](#prepend)
+    * O. [pull](#pull)
+    * P. [push](#push)
+    * Q. [reduce](#reduce)
+    * R. [replace](#replace)
+    * S. [set](#set)
+    * T. [shuffle](#shuffle)
+    * U. [shuffleAssociative](#shuffle-associative)
+    * V. [slice](#slice)
+    * W. [splice](#splice)
+    * X. [udiff](#udiff)
 7. [Comparison, Checking, Filtering, & Mapping](#comparison-filtering-mapping)
     * A. [contains](#contains)
-    * A. [diff](#diff)
-    * A. [filter](#filter)
-    * A. [intersect](#intersect)
-    * A. [intersectKeys](#intersect-keys)
-    * A. [isArray](#is-array)
-    * A. [isEmpty](#is-empty)
-    * A. [map](#map)
-    * A. [unique](#unique)
-    * A. [where](#where)
+    * B. [diff](#diff)
+    * C. [filter](#filter)
+    * D. [intersect](#intersect)
+    * E. [intersectKeys](#intersect-keys)
+    * F. [isArray](#is-array)
+    * G. [isEmpty](#is-empty)
+    * H. [map](#map)
+    * I. [unique](#unique)
+    * J. [where](#where)
 8. [Chunking and Collapsing](#chunking-collapsing)
     * A. [chunk](#chunk)
     * B. [collapse](#collapse)
 8. [Mapping and Recursive Operations](#mapping-recursion)
     * A. [mapRecursive](#map-recursive)
-    * A. [mapWithKeys](#map-with-keys)
-    * A. [multiSort](#multi-sort)
+    * B. [mapWithKeys](#map-with-keys)
+    * C. [multiSort](#multi-sort)
 8. [Other Utilities](#other-utilities)
     * A. [implode](#implode)
     * B. [random](#random)
     * C. [reverse](#reverse)
+    * D. [wrap](#wrap)
 <br>
 <br>
 
@@ -199,7 +200,7 @@ print_r($arr->all()); // [1, 2, 3]
 ```
 <br>
 
-#### A. column <a id="column">
+#### B. column <a id="column">
 `column(string|int $columnKey): self`
 
 Extracts values from a specific column in a multi-dimensional array.
@@ -213,7 +214,7 @@ $arr->column('name')->all();
 ```
 <br>
 
-#### A. count <a id="count">
+#### C. count <a id="count">
 `count(): self`
 
 Returns the number of elements in the array.
@@ -224,7 +225,7 @@ echo $arr->count()->result();
 ```
 <br>
 
-#### A. exists <a id="exists">
+#### D. exists <a id="exists">
 `exists(string $key): self`
 
 Checks if a given key exists in the array.
@@ -235,7 +236,7 @@ var_dump($arr->exists('age')->result());
 ```
 <br>
 
-#### A. first <a id="first">
+#### E. first <a id="first">
 `first(?callable $callback = null): self`
 
 Retrieves the first element of the array, or the first element that matches a given condition.
@@ -251,7 +252,7 @@ echo $arr->first(fn($v) => $v > 25)->result();
 ```
 <br>
 
-#### A. firstKey <a id="firstKey">
+#### F. firstKey <a id="firstKey">
 `firstKey(): self`
 
 Retrieves the first key of the array.
@@ -262,7 +263,7 @@ echo $arr->firstKey()->result();
 ```
 <br>
 
-#### A. get <a id="get">
+#### G. get <a id="get">
 `get(string $key, mixed $default = null)`
 
 Retrieves a value by key, supporting dot notation.
@@ -272,7 +273,7 @@ echo $data->get('user.name'); // John
 ```
 <br>
 
-#### A. has <a id="has">
+#### H. has <a id="has">
 `has(string $key)`
 
 Checks if a key exists.
@@ -282,7 +283,7 @@ var_dump($arr->has('name')); // true
 ```
 <br>
 
-#### A. hasAny <a id="has-any">
+#### I. hasAny <a id="has-any">
 `hasAny(array|string $keys)`
 
 Checks if at least one key exists.
@@ -292,7 +293,7 @@ var_dump($arr->hasAny(['name', 'email'])); // true
 ```
 <br>
 
-#### A. keys <a id="keys">
+#### J. keys <a id="keys">
 `keys()`
 
 Returns the array keys.
@@ -302,7 +303,7 @@ print_r($arr->keys()->all()); // ['a', 'b']
 ```
 <br>
 
-#### A. last <a id="last">
+#### K. last <a id="last">
 `last(?callable $callback = null): self`
 
 Retrieves the last element of the array, or the last element that matches a given condition.
@@ -318,7 +319,7 @@ echo $arr->last(fn($v) => $v < 25)->result();
 ```
 <br>
 
-#### A. lastKey <a id="lastKey">
+#### L. lastKey <a id="lastKey">
 `lastKey(): self`
 
 Retrieves the last key of the array.
@@ -329,7 +330,7 @@ echo $arr->lastKey()->result();
 ```
 <br>
 
-#### A. result <a id="result">
+#### M. result <a id="result">
 `result(): mixed`
 
 Retrieves the last computed result from a function that does not modify the original array.
@@ -341,7 +342,7 @@ print_r($arr->result());
 ```
 <br>
 
-#### A. search <a id="search">
+#### N. search <a id="search">
 `search(mixed $value): self`
 
 Searches for a value in the array and returns its key.
@@ -353,7 +354,7 @@ print_r($arr->result());
 ```
 <br>
 
-#### A. shift <a id="shift">
+#### O. shift <a id="shift">
 `shift(): self`
 
 Removes and returns the first item from the array.
@@ -367,7 +368,7 @@ print_r($arr->result());
 ```
 <br>
 
-#### A. values <a id="values">
+#### P. values <a id="values">
 `values()`
 
 Returns only the array values.
@@ -388,7 +389,7 @@ $arr->asort()->all(); // ['a' => 1, 'c' => 2, 'b' => 3]
 ```
 <br>
 
-#### A. arsort <a id="arsort">
+#### B. arsort <a id="arsort">
 `arsort()`
 
 Sorts in descending order while maintaining key association.
@@ -398,7 +399,7 @@ $arr->arsort()->all(); // ['b' => 3, 'c' => 2, 'a' => 1]
 ```
 <br>
 
-#### A. flatten <a id="flatten">
+#### C. flatten <a id="flatten">
 `flatten(): self`
 
 Flattens a multi-dimensional array into a single-level array.
@@ -409,7 +410,7 @@ $arr->flatten()->all();
 ```
 <br>
 
-#### A. flip <a id="flip">
+#### D. flip <a id="flip">
 `flip(): self`
 
 Swaps the keys and values of an array.
@@ -420,7 +421,7 @@ $arr->flip()->all();
 ```
 <br>
 
-#### A. keyBy <a id="key-by">
+#### E. keyBy <a id="key-by">
 `keyBy(string $key): self`
 
 Uses a specific field in a multi-dimensional array as the key.
@@ -439,7 +440,7 @@ $arr->keyBy('id')->all();
 ```
 <br>
 
-#### A. krsort <a id="krsort">
+#### F. krsort <a id="krsort">
 `krsort(): self`
 
 Sorts an array by keys in descending order.
@@ -450,7 +451,7 @@ $arr->krsort()->all();
 ```
 <br>
 
-#### A. ksort <a id="ksort">
+#### G. ksort <a id="ksort">
 `ksort(): self`
 
 Sorts an array by keys in ascending order.
@@ -461,7 +462,7 @@ $arr->ksort()->all();
 ```
 <br>
 
-#### A. sort <a id="sort">
+#### H. sort <a id="sort">
 `sort(int $sortFlags = SORT_REGULAR)`
 
 Sorts values in ascending order.
@@ -471,7 +472,7 @@ $arr->sort()->all(); // [1, 3, 5, 8]
 ```
 <br>
 
-#### A. rsort <a id="rsort">
+#### I. rsort <a id="rsort">
 `rsort()`
 Sorts in descending order.
 ```php
@@ -480,7 +481,7 @@ $arr->rsort()->all(); // [8, 5, 3, 1]
 ```
 <br>
 
-#### A. usort <a id="usort">
+#### J. usort <a id="usort">
 `usort(callable $callback): self`
 
 Sorts the array using a user-defined comparison function.
@@ -492,7 +493,7 @@ print_r($arr->all());
 ```
 <br>
 
-#### A. walk <a id="walk">
+#### K. walk <a id="walk">
 `walk(callable $callback): self`
 
 Applies a user function to every item in the array.
@@ -504,7 +505,7 @@ print_r($arr->all());
 ```
 <br>
 
-#### A. walkRecursive <a id="walk-recursive">
+#### L. walkRecursive <a id="walk-recursive">
 `walkRecursive(callable $callback): self`
 
 Applies a user function to every item in a multi-dimensional array.
@@ -519,7 +520,7 @@ print_r($arr->all());
 ```
 <br>
 
-## 6. Manipulation <a id="manipulation"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## M. Manipulation <a id="manipulation"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 #### A. add <a id="add">
 `add(string $key, mixed $value)`
 
@@ -530,7 +531,7 @@ $arr->add('age', 30)->all(); // ['name' => 'John', 'age' => 30]
 ```
 <br>
 
-#### A. clear <a id="clear">
+#### B. clear <a id="clear">
 `clear()`
 
 Removes all elements.
@@ -540,7 +541,7 @@ $arr->clear()->all(); // []
 ```
 <br>
 
-#### A. combine <a id="combine">
+#### C. combine <a id="combine">
 `combine(array $keys, array $values): self`
 
 Combines two arrays, one as keys and one as values.
@@ -554,7 +555,7 @@ $arr->all();
 ```
 <br>
 
-#### A. crossJoin <a id="crossJoin">
+#### D. crossJoin <a id="crossJoin">
 `crossJoin(array ...$arrays): self`
 
 Computes the Cartesian product of multiple arrays.
@@ -570,7 +571,7 @@ $arr->crossJoin(['A', 'B'])->all();
 ```
 <br>
 
-#### A. dot <a id="dot">
+#### E. dot <a id="dot">
 `dot(string $prepend = ''): self`
 
 Converts a multi-dimensional array into a dot notation format.
@@ -583,7 +584,7 @@ $arr->dot()->all();
 ```
 <br>
 
-#### A. each <a id="each">
+#### F. each <a id="each">
 `each(callable $callback): self`
 
 Applies a callback to each element in the array.
@@ -600,7 +601,7 @@ $arr->each(function ($value, $key) {
 ```
 <br>
 
-#### A. except <a id="except">
+#### G. except <a id="except">
 `except(array|string $keys): self`
 
 Removes specific keys from the array.
@@ -611,7 +612,7 @@ $arr->except('age')->all();
 ```
 <br>
 
-#### A. fill <a id="fill">
+#### H. fill <a id="fill">
 `fill(int $start, int $count, mixed $value): self`
 
 Fills the array with a specified value starting at a given index and continuing for a specified number of elements.
@@ -624,7 +625,7 @@ print_r($arr->all());
 ```
 <br>
 
-#### A. forget <a id="forget">
+#### I. forget <a id="forget">
 `forget(string $key)`
 
 Removes an item by key.
@@ -634,7 +635,7 @@ $arr->forget('name')->all(); // ['age' => 30]
 ```
 <br>
 
-#### A. merge <a id="merge">
+#### J. merge <a id="merge">
 `merge(array $array)`
 
 Merges another array.
@@ -644,7 +645,7 @@ $arr->merge(['age' => 30])->all(); // ['name' => 'John', 'age' => 30]
 ```
 <br>
 
-#### A. only <a id="only">
+#### K. only <a id="only">
 `only(array|string $keys): self`
 
 Returns a new array containing only the specified keys.
@@ -656,7 +657,7 @@ print_r($arr->all());
 ```
 <br>
 
-#### A. pad <a id="pad">
+#### L. pad <a id="pad">
 `pad(int $size, mixed $value): self`
 
 Expands the array to a specified size by padding it with a given value.
@@ -668,7 +669,7 @@ print_r($arr->all());
 ```
 <br>
 
-#### A. pluck <a id="pluck">
+#### M. pluck <a id="pluck">
 `pluck(string $key): self`
 
 Extracts values from an array of associative arrays based on a given key.
@@ -683,7 +684,7 @@ print_r($arr->all());
 ```
 <br>
 
-#### A. prepend <a id="prepend">
+#### N. prepend <a id="prepend">
 `prepend(mixed $value): self`
 
 Adds a value to the beginning of the array.
@@ -695,7 +696,7 @@ print_r($arr->all());
 ```
 <br>
 
-#### A. pull <a id="pull">
+#### O. pull <a id="pull">
 `pull(string $key, mixed $default = null): self`
 
 Retrieves a value from the array and removes it.
@@ -709,7 +710,7 @@ print_r($arr->result());
 ```
 <br>
 
-#### A. push <a id="push">
+#### P. push <a id="push">
 `push(mixed ...$values): self`
 
 Adds one or more values to the end of the array.
@@ -721,7 +722,7 @@ print_r($arr->all());
 ```
 <br>
 
-#### A. reduce <a id="reduce">
+#### Q. reduce <a id="reduce">
 `reduce(callable $callback, mixed $initial = null): self`
 
 Reduces the array to a single value using a callback function.
@@ -733,7 +734,7 @@ print_r($arr->result());
 ```
 <br>
 
-#### A. replace <a id="replace">
+#### R. replace <a id="replace">
 `replace(array $array): self`
 
 Replaces values in the current array with values from another array.
@@ -745,7 +746,7 @@ print_r($arr->all());
 ```
 <br>
 
-#### A. set <a id="set">
+#### S. set <a id="set">
 `set(string $key, mixed $value)`
 
 Sets a value using dot notation.
@@ -755,7 +756,7 @@ $arr->set('user.name', 'John')->all(); // ['user' => ['name' => 'John']]
 ```
 <br>
 
-#### A. shuffle <a id="shuffle">
+#### T. shuffle <a id="shuffle">
 `shuffle(): self`
 
 Randomly shuffles the elements in the array.
@@ -769,7 +770,7 @@ print_r($arr->all());
 ```
 <br>
 
-#### A. shuffleAssociative <a id="shuffleAssociative">
+#### U. shuffleAssociative <a id="shuffleAssociative">
 `shuffleAssociative(): self`
 
 Shuffles the elements of an associative array while preserving key-value relationships.
@@ -783,7 +784,7 @@ print_r($arr->all());
 ```
 <br>
 
-#### A. slice <a id="slice">
+#### V. slice <a id="slice">
 `slice(int $offset, ?int $length = null): self`
 
 Extracts a portion of the array.
@@ -795,7 +796,7 @@ print_r($arr->all());
 ```
 <br>
 
-#### A. splice <a id="splice">
+#### W. splice <a id="splice">
 `splice(int $offset, ?int $length = null, array $replacement = []): self`
 
 Removes and replaces a portion of the array.
@@ -807,7 +808,7 @@ print_r($arr->all());
 ```
 <br>
 
-#### A. udiff <a id="udiff">
+#### X. udiff <a id="udiff">
 `udiff(array $array, callable $callback): self`
 
 Computes the difference between arrays using a custom comparison function.
@@ -833,7 +834,7 @@ var_dump($arr->contains(3)->result());
 ```
 <br>
 
-#### A. diff <a id="diff">
+#### B. diff <a id="diff">
 `diff(array $array): self`
 
 Finds the difference between the current array and another array.
@@ -844,7 +845,7 @@ $arr->diff([2, 4])->all();
 ```
 <br>
 
-#### A. filter <a id="filter">
+#### C. filter <a id="filter">
 `filter(callable $callback)`
 
 Filters elements based on a condition.
@@ -854,7 +855,7 @@ $arr->filter(fn($n) => $n % 2 === 0)->all(); // [2, 4]
 ```
 <br>
 
-#### A. intersect <a id="intersect">
+#### D. intersect <a id="intersect">
 `intersect(array $array): self`
 
 Finds the common values between the current array and another array.
@@ -865,7 +866,7 @@ $arr->intersect([2, 4, 6])->all();
 ```
 <br>
 
-#### A. intersectKeys <a id="intersect-keys">
+#### E. intersectKeys <a id="intersect-keys">
 `intersectKeys(array $array): self`
 
 Finds elements whose keys exist in another array.
@@ -876,7 +877,7 @@ $arr->intersectKeys(['age' => '', 'city' => ''])->all();
 ```
 <br>
 
-#### A. isArray <a id="is-array">
+#### F. isArray <a id="is-array">
 `isArray(mixed $value): self`
 
 Checks if the given value is an array.
@@ -887,7 +888,7 @@ var_dump($arr->isArray([1, 2, 3])->result());
 ```
 <br>
 
-#### A. isEmpty <a id="is-empty">
+#### G. isEmpty <a id="is-empty">
 `isEmpty(): self`
 
 Checks if the array is empty.
@@ -898,7 +899,7 @@ var_dump($arr->isEmpty()->result());
 ```
 <br>
 
-#### A. map <a id="map">
+#### H. map <a id="map">
 `map(callable $callback)`
 
 Applies a function to each item.
@@ -908,7 +909,7 @@ $arr->map(fn($n) => $n * 2)->all(); // [2, 4, 6]
 ```
 <br>
 
-#### A. unique <a id="unique">
+#### I. unique <a id="unique">
 `unique()`
 
 Removes duplicate values.
@@ -918,7 +919,7 @@ $arr->unique()->all(); // [1, 2, 3]
 ```
 <br>
 
-#### A. where <a id="where">
+#### J. where <a id="where">
 `where(callable $callback)`
 
 Filters values where callback returns true.
@@ -941,7 +942,7 @@ $arr->chunk(2)->all();
 ```
 <br>
 
-#### A. collapse <a id="collapse">
+#### B. collapse <a id="collapse">
 `collapse(): self`
 
 Flattens a multi-dimensional array into a single-level array.
@@ -973,7 +974,7 @@ $arr->mapRecursive(fn($v) => $v * 2)->all();
 ```
 <br>
 
-#### A. mapWithKeys <a id="mapWithKeys">
+#### B. mapWithKeys <a id="mapWithKeys">
 `mapWithKeys(callable $callback): self`
 
 Maps an array using a callback that defines both keys and values.
@@ -989,7 +990,7 @@ $arr->mapWithKeys(fn($v, $k) => [$k . '_modified' => $v])->all();
 ```
 <br>
 
-#### A. multiSort <a id="multiSort">
+#### C. multiSort <a id="multiSort">
 `multiSort(int $sortFlags = SORT_REGULAR): self`
 
 Sorts multiple arrays or multi-dimensional arrays.
@@ -1020,7 +1021,7 @@ echo $arr->implode(', '); // "apple, banana, cherry"
 ```
 <br>
 
-#### A. random <a id="random">
+#### B. random <a id="random">
 `random(?int $number = null)`
 
 Retrieves a random value or values.
@@ -1030,7 +1031,7 @@ echo $arr->random(); // Random value from the array
 ```
 <br>
 
-#### A. reverse <a id="reverse">
+#### C. reverse <a id="reverse">
 `reverse()`
 
 Reverses the order.
@@ -1039,7 +1040,7 @@ $arr = new ArraySet([1, 2, 3]);
 $arr->reverse()->all(); // [3, 2, 1]
 ```
 
-#### A. wrap <a id="wrap">
+#### D. wrap <a id="wrap">
 `wrap(mixed $value): self`
 
 Ensures the given value is an array. If it's not, wraps it in an array.
