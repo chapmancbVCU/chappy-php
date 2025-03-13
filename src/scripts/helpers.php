@@ -1,6 +1,6 @@
 <?php
 
-use Core\Lib\Utilities\ArraySet;
+use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Config;
 use Symfony\Component\VarDumper\VarDumper;
@@ -15,7 +15,7 @@ if(!function_exists('cl')) {
      * @return void
      */
     function cl(mixed ...$vars): void {
-        $json_outputs = array_map(fn($vars) => json_encode($vars, JSON_HEX_TAG), $vars);
+        $json_outputs = Arr::map($vars, fn($vars) => json_encode($vars, JSON_HEX_TAG));
         $js_code = 'console.log(' . implode(', ', $json_outputs) . ');';
         echo '<script>' . $js_code . '</script>';
     }

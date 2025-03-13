@@ -1,6 +1,7 @@
 <?php
 namespace Core\Validators;
 use \Exception;
+use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\ArraySet;
 /**
  * Abstract parent class for our child validation child classes.  Each child 
@@ -38,7 +39,7 @@ abstract class CustomValidator {
         }
 
         $fieldData = $paramsArr->get('field')->result();
-        if (is_array($fieldData)) {
+        if (Arr::isArray($fieldData)) {
             $this->field = array_shift($fieldData);
             $this->additionalFieldData = $fieldData;
         } else {
