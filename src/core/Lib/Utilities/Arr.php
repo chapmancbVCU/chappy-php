@@ -24,6 +24,51 @@ class Arr
     }
 
     /**
+     * Split an array into two separate arrays: one with keys, one with values.
+     *
+     * @param array $array The array to divide.
+     * @return array An array containing two arrays: [keys, values].
+     */
+    public static function arrayDivide(array $array): array
+    {
+        return [array_keys($array), array_values($array)];
+    }
+
+    /**
+     * Pluck a nested value from an array.
+     *
+     * @param array $array The source array.
+     * @param array|string $keys The nested keys to extract.
+     * @return array The plucked values.
+     */
+    public static function arrayPluckMulti(array $array, array|string $keys): array
+    {
+        $result = [];
+
+        foreach ($array as $item) {
+            $value = static::get($item, $keys);
+            if ($value !== null) {
+                $result[] = $value;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Shuffle an associative array while preserving keys.
+     *
+     * @param array $array The array to shuffle.
+     * @return array The shuffled array.
+     */
+    public static function arrayShuffleAssoc(array $array): array
+    {
+        $keys = array_keys($array);
+        shuffle($keys);
+        return array_merge(array_flip($keys), $array);
+    }
+
+    /**
      * Collapse a multi-dimensional array into a single-level array.
      *
      * @param array $array The multi-dimensional array.
@@ -36,6 +81,45 @@ class Arr
             if (is_array($values)) {
                 $result = array_merge($result, $values);
             }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Split an array into chunks of a given size.
+     *
+     * @param array $array The array to split.
+     * @param int $size The size of each chunk.
+     * @param bool $preserveKeys Whether to preserve keys.
+     * @return array An array of chunked arrays.
+     */
+    public static function chunk(array $array, int $size, bool $preserveKeys = false): array
+    {
+        return array_chunk($array, $size, $preserveKeys);
+    }
+
+    /**
+     * Chunk an array into groups based on a callback function.
+     *
+     * @param array $array The array to chunk.
+     * @param callable $callback The function to determine chunks.
+     * @return array The chunked array.
+     */
+    public static function chunkBy(array $array, callable $callback): array {
+        $result = [];
+        $chunk = [];
+
+        foreach ($array as $key => $value) {
+            if (!empty($chunk) && !$callback($value, end($chunk))) {
+                $result[] = $chunk;
+                $chunk = [];
+            }
+            $chunk[] = $value;
+        }
+
+        if (!empty($chunk)) {
+            $result[] = $chunk;
         }
 
         return $result;
@@ -79,6 +163,50 @@ class Arr
     }
     
     /**
+     * Recursively merge two or more arrays.
+     *
+     * @param array ...$arrays The arrays to merge.
+     * @return array The merged array.
+     */
+    public static function deepMerge(array ...$arrays): array {
+        $base = array_shift($arrays);
+
+        foreach ($arrays as $array) {
+            foreach ($array as $key => $value) {
+                if (is_array($value) && isset($base[$key]) && is_array($base[$key])) {
+                    $base[$key] = static::deepMerge($base[$key], $value);
+                } else {
+                    $base[$key] = $value;
+                }
+            }
+        }
+
+        return $base;
+    }
+
+    /**
+     * Recursively compute the difference between two arrays with keys.
+     *
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
+     * @return array The difference.
+     */
+    public static function diffAssocRecursive(array $array1, array $array2): array {
+        $difference = array_diff_assoc($array1, $array2);
+
+        foreach ($array1 as $key => $value) {
+            if (isset($array2[$key]) && is_array($value) && is_array($array2[$key])) {
+                $recursiveDiff = self::diffAssocRecursive($value, $array2[$key]);
+                if (!empty($recursiveDiff)) {
+                    $difference[$key] = $recursiveDiff;
+                }
+            }
+        }
+
+        return $difference;
+    }
+
+    /**
      * Convert a multi-dimensional array into dot notation keys.
      *
      * @param array $array The multi-dimensional array.
@@ -98,6 +226,7 @@ class Arr
 
         return $results;
     }
+
 
     /**
      * Get all items except the specified keys.
@@ -132,6 +261,40 @@ class Arr
     public static function fill(int $startIndex, int $count, mixed $value): array
     {
         return array_fill($startIndex, $count, $value);
+    }
+
+    /**
+     * Filter an array using a callback function.
+     *
+     * @param array $array The source array.
+     * @param callable $callback The filtering function.
+     * @return array The filtered array.
+     */
+    public static function filter(array $array, callable $callback): array
+    {
+        return array_filter($array, $callback, ARRAY_FILTER_USE_BOTH);
+    }
+
+    /**
+     * Filter an array to include only the specified keys.
+     *
+     * @param array $array The source array.
+     * @param array $keys The keys to keep.
+     * @return array The filtered array.
+     */
+    public static function filterByKeys(array $array, array $keys): array {
+        return array_intersect_key($array, array_flip($keys));
+    }
+
+    /**
+     * Filter an array by its values.
+     *
+     * @param array $array The array to filter.
+     * @param callable $callback The function to apply for filtering.
+     * @return array The filtered array.
+     */
+    public static function filterByValue(array $array, callable $callback): array {
+        return array_filter($array, $callback);
     }
 
     /**
@@ -175,6 +338,51 @@ class Arr
         }
 
         return $result;
+    }
+
+    /**
+     * Flatten an array up to a specified depth.
+     *
+     * @param array $array The multi-dimensional array.
+     * @param int $depth The depth limit (default: infinite).
+     * @return array The flattened array.
+     */
+    public static function flattenWithDepth(array $array, int $depth = INF): array {
+        $result = [];
+
+        foreach ($array as $value) {
+            if (is_array($value) && $depth > 1) {
+                $result = array_merge($result, static::flattenWithDepth($value, $depth - 1));
+            } else {
+                $result[] = $value;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Convert a multi-dimensional array into dot notation keys.
+     *
+     * @param array $array The multi-dimensional array.
+     * @param string $prefix The prefix for keys.
+     * @return array The array with flattened keys.
+     */
+    public static function flattenKeys(array $array, string $prefix = ''): array
+    {
+        $results = [];
+
+        foreach ($array as $key => $value) {
+            $newKey = $prefix ? "{$prefix}.{$key}" : $key;
+
+            if (is_array($value)) {
+                $results += static::flattenKeys($value, $newKey);
+            } else {
+                $results[$newKey] = $value;
+            }
+        }
+
+        return $results;
     }
 
     /**
@@ -229,6 +437,27 @@ class Arr
     }
     
     /**
+     * Group an array by a given key.
+     *
+     * @param array $array The array to group.
+     * @param string $key The key to group by.
+     * @return array The grouped array.
+     */
+    public static function groupBy(array $array, string $key): array
+    {
+        $result = [];
+
+        foreach ($array as $item) {
+            $groupKey = $item[$key] ?? null;
+            if ($groupKey !== null) {
+                $result[$groupKey][] = $item;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * Check if an array has a given key using dot notation.
      *
      * @param array $array The source array.
@@ -251,6 +480,84 @@ class Arr
     }
 
     /**
+     * Check if all given keys exist in the array.
+     *
+     * @param array $array The array to check.
+     * @param array $keys The keys to search for.
+     * @return bool True if all keys exist, otherwise false.
+     */
+    public static function hasAllKeys(array $array, array $keys): bool {
+        return !array_diff_key(array_flip($keys), $array);
+    }
+
+    /**
+     * Check if at least one key exists in the array.
+     *
+     * @param array $array The array to check.
+     * @param array $keys The keys to search for.
+     * @return bool True if any key exists, otherwise false.
+     */
+    public static function hasAnyKey(array $array, array $keys): bool {
+        return (bool) array_intersect_key(array_flip($keys), $array);
+    }
+
+    /**
+     * Determine if at least one of the given keys exists in the array.
+     *
+     * @param array $array The array to check.
+     * @param array $keys The list of keys to check.
+     * @return bool True if any key exists, false otherwise.
+     */
+    public static function hasAny(array $array, array $keys): bool
+    {
+        return count(array_intersect_key($array, array_flip($keys))) > 0;
+    }
+
+    /**
+     * Insert an element before a given key in an array.
+     *
+     * @param array $array The original array.
+     * @param string|int $key The key to insert before.
+     * @param string|int $newKey The new key.
+     * @param mixed $value The value to insert.
+     * @return array The modified array.
+     */
+    public static function insertBefore(array $array, string|int $key, string|int $newKey, mixed $value): array
+    {
+        $position = array_search($key, array_keys($array));
+        
+        if ($position === false) {
+            return $array;
+        }
+
+        return array_slice($array, 0, $position, true)
+            + [$newKey => $value]
+            + array_slice($array, $position, null, true);
+    }
+
+    /**
+     * Insert an element after a given key in an array.
+     *
+     * @param array $array The original array.
+     * @param string|int $key The key to insert after.
+     * @param string|int $newKey The new key.
+     * @param mixed $value The value to insert.
+     * @return array The modified array.
+     */
+    public static function insertAfter(array $array, string|int $key, string|int $newKey, mixed $value): array
+    {
+        $position = array_search($key, array_keys($array));
+
+        if ($position === false) {
+            return $array;
+        }
+
+        return array_slice($array, 0, $position + 1, true)
+            + [$newKey => $value]
+            + array_slice($array, $position + 1, null, true);
+    }
+
+    /**
      * Determine if a given value is an array.
      *
      * @param mixed $value The value to check.
@@ -259,6 +566,37 @@ class Arr
     public static function isArray(mixed $value): bool
     {
         return is_array($value);
+    }
+
+    /**
+     * Determine if an array is associative (i.e., contains at least one non-numeric key).
+     *
+     * @param array $array The array to check.
+     * @return bool True if associative, false otherwise.
+     */
+    public static function isAssoc(array $array): bool
+    {
+        return array_keys($array) !== range(0, count($array) - 1);
+    }
+
+    /**
+     * Check if the given array is empty.
+     *
+     * @param array|null $array The array to check.
+     * @return bool True if empty or null, otherwise false.
+     */
+    public static function isEmpty(?array $array): bool {
+        return empty($array);
+    }
+
+    /**
+     * Check if the given array is not empty.
+     *
+     * @param array|null $array The array to check.
+     * @return bool True if not empty, otherwise false.
+     */
+    public static function isNotEmpty(?array $array): bool {
+        return !self::isEmpty($array);
     }
 
     /**
@@ -363,6 +701,29 @@ class Arr
     }
 
     /**
+     * Partition an array into two arrays: 
+     * One where the callback returns true, the other where it returns false.
+     *
+     * @param array $array The array to partition.
+     * @param callable $callback The callback function.
+     * @return array An array with two arrays (true, false).
+     */
+    public static function partition(array $array, callable $callback): array {
+        $matches = [];
+        $nonMatches = [];
+
+        foreach ($array as $item) {
+            if ($callback($item)) {
+                $matches[] = $item;
+            } else {
+                $nonMatches[] = $item;
+            }
+        }
+
+        return [$matches, $nonMatches];
+    }
+
+    /**
      * Pluck a single key from an array.
      *
      * @param array $array The source array.
@@ -453,6 +814,18 @@ class Arr
     }
 
     /**
+     * Reject elements that match a given condition.
+     *
+     * @param array $array The source array.
+     * @param callable $callback The function to determine rejection.
+     * @return array The modified array.
+     */
+    public static function reject(array $array, callable $callback): array
+    {
+        return array_filter($array, fn($value, $key) => !$callback($value, $key), ARRAY_FILTER_USE_BOTH);
+    }
+
+    /**
      * Reverse the order of elements in an array.
      *
      * @param array $array The array to reverse.
@@ -462,6 +835,22 @@ class Arr
     public static function reverse(array $array, bool $preserveKeys = false): array
     {
         return array_reverse($array, $preserveKeys);
+    }
+
+    /**
+     * Rotate an array left or right.
+     *
+     * @param array $array The array to rotate.
+     * @param int $positions Number of positions to rotate (positive for right, negative for left).
+     * @return array The rotated array.
+     */
+    public static function rotate(array $array, int $positions): array {
+        if ($positions === 0) return $array;
+
+        $count = count($array);
+        $positions = $positions % $count;
+
+        return array_merge(array_slice($array, -$positions), array_slice($array, 0, -$positions));
     }
 
     /**
@@ -529,6 +918,166 @@ class Arr
     }
 
     /**
+     * Sort an array using a callback function.
+     *
+     * @param array $array The array to sort.
+     * @param callable|null $callback The comparison function.
+     * @return array The sorted array.
+     */
+    public static function sort(array $array, ?callable $callback = null): array
+    {
+        if ($callback) {
+            usort($array, $callback);
+        } else {
+            sort($array);
+        }
+
+        return $array;
+    }
+
+    /**
+     * Sort an associative array by its keys.
+     *
+     * @param array $array The array to sort.
+     * @param bool $descending Whether to sort in descending order.
+     * @return array The sorted array.
+     */
+    public static function sortAssoc(array $array, bool $descending = false): array
+    {
+        $descending ? krsort($array) : ksort($array);
+        return $array;
+    }
+
+    /**
+     * Sort an array by a specific key.
+     *
+     * @param array $array The array to sort.
+     * @param string $key The key to sort by.
+     * @param bool $descending Whether to sort in descending order.
+     * @return array The sorted array.
+     */
+    public static function sortBy(array $array, string $key, bool $descending = false): array
+    {
+        usort($array, fn($a, $b) => ($a[$key] <=> $b[$key]) * ($descending ? -1 : 1));
+        return $array;
+    }
+
+    /**
+     * Sort an array by its keys.
+     *
+     * @param array $array The array to sort.
+     * @return array The sorted array.
+     */
+    public static function sortByKeys(array $array): array {
+        ksort($array);
+        return $array;
+    }
+
+    /**
+     * Sort an array by its values.
+     *
+     * @param array $array The array to sort.
+     * @return array The sorted array.
+     */
+    public static function sortByValues(array $array): array {
+        asort($array);
+        return $array;
+    }
+
+    /**
+     * Swap two keys in an array.
+     *
+     * @param array $array The array to modify.
+     * @param string|int $key1 The first key.
+     * @param string|int $key2 The second key.
+     * @return array The modified array.
+     */
+    public static function swapKeys(array $array, string|int $key1, string|int $key2): array {
+        if (!isset($array[$key1]) || !isset($array[$key2])) {
+            return $array; // Keys must exist
+        }
+
+        [$array[$key1], $array[$key2]] = [$array[$key2], $array[$key1]];
+
+        return $array;
+    }
+
+    /**
+     * Convert an array to a JSON string.
+     *
+     * @param array $array The array to convert.
+     * @param int $options JSON encoding options.
+     * @return string The JSON string.
+     */
+    public static function toJson(array $array, int $options = 0): string {
+        return json_encode($array, $options);
+    }
+
+    /**
+     * Convert an array to an object.
+     *
+     * @param array $array The array to convert.
+     * @return object The converted object.
+     */
+    public static function toObject(array $array): object {
+        return json_decode(json_encode($array), false);
+    }
+
+    /**
+     * Remove duplicate values from an array.
+     *
+     * @param array $array The source array.
+     * @return array The array without duplicate values.
+     */
+    public static function unique(array $array): array
+    {
+        return array_unique($array, SORT_REGULAR);
+    }
+
+    /**
+     * Remove duplicate items from an array based on a key or callback.
+     *
+     * @param array $array The array to filter.
+     * @param string|callable $key The key or function to determine uniqueness.
+     * @return array The unique array.
+     */
+    public static function uniqueBy(array $array, string|callable $key): array {
+        $seen = [];
+        return array_filter($array, function ($item) use (&$seen, $key) {
+            $keyValue = is_callable($key) ? $key($item) : $item[$key] ?? null;
+            if ($keyValue === null || in_array($keyValue, $seen, true)) {
+                return false;
+            }
+            $seen[] = $keyValue;
+            return true;
+        });
+    }
+
+    /**
+     * Remove multiple keys from an array.
+     *
+     * @param array $array The array to modify.
+     * @param array $keys The keys to remove.
+     * @return array The array without the specified keys.
+     */
+    public static function unsetKeys(array $array, array $keys): array {
+        foreach ($keys as $key) {
+            unset($array[$key]);
+        }
+        return $array;
+    }
+
+    /**
+     * Unwrap an array if it contains only one item.
+     *
+     * @param array $array The array to unwrap.
+     * @return mixed The single value or the original array.
+     */
+    public static function unwrap(array $array): mixed {
+        return count($array) === 1 ? reset($array) : $array;
+    }
+
+    /**
      * Return all values from an array, resetting numeric keys.
      *
      * @param array $array The input array.
@@ -561,6 +1110,29 @@ class Arr
 
         return $array;
     }
+
+    /**
+     * Select a random element based on weighted probabilities.
+     *
+     * @param array $array The array with weights.
+     * @param array $weights The corresponding weights.
+     * @return mixed A randomly selected item.
+     */
+    public static function weightedRandom(array $array, array $weights): mixed {
+        $totalWeight = array_sum($weights);
+        $rand = mt_rand(1, $totalWeight);
+        $cumulative = 0;
+
+        foreach ($array as $key => $value) {
+            $cumulative += $weights[$key];
+            if ($rand <= $cumulative) {
+                return $value;
+            }
+        }
+
+        return null; // Fallback, should never reach
+    }
+
     /**
      * Wrap a value in an array.
      *
@@ -580,5 +1152,16 @@ class Arr
      */
     public static function where(array $array, callable $callback): array {
         return array_filter($array, $callback);
+    }
+
+    /**
+     * Compute the exclusive difference between two arrays.
+     *
+     * @param array $array1 The first array.
+     * @param array $array2 The second array.
+     * @return array The values that exist only in one of the arrays.
+     */
+    public static function xorDiff(array $array1, array $array2): array {
+        return array_merge(array_diff($array1, $array2), array_diff($array2, $array1));
     }
 }
