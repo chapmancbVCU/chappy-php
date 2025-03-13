@@ -285,7 +285,7 @@ class FormHelper {
     public static function emailBlock($label, $name, $value = '', $inputAttrs= [], $divAttrs = [], $errors = []) {
 
         // Make sure placeholder is not an attribute.
-        if(array_key_exists('placeholder', $inputAttrs)) {
+        if(arr::exists($inputAttrs, 'placeholder')) {
             throw new Exception('Can not accept placeholder attribute found in your $inputString array.');
         }
 

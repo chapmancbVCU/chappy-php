@@ -412,7 +412,7 @@ class Model {
             $dbDriver = static::getDb()->getPDO()->getAttribute(\PDO::ATTR_DRIVER_NAME);
             $notEqualOperator = ($dbDriver === 'sqlite') ? "<>" : "!=";
 
-            if(array_key_exists('conditions', $params)){
+            if(Arr::exists($params, 'conditions')){
                 if(Arr::isArray($params['conditions'])){
                     $params['conditions'][] = "deleted {$notEqualOperator} 1";
                 } else {
