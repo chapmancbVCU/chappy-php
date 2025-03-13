@@ -16,7 +16,7 @@ use Core\Validators\{
 };
 use App\Models\UserSessions;
 use Core\Lib\Utilities\Env;
-use Core\Lib\Utilities\Arr;
+use Core\Lib\Utilities\ArraySet;
 
 /**
  * Extends the Model class.  Supports functions for the Users model.

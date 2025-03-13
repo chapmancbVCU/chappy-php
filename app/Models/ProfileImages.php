@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 use Core\{Helper, Model};
-use Core\Lib\Utilities\Arr;
+use Core\Lib\Utilities\ArraySet;
 
 /**
  * Supports CRUD operations on profile image records.

@@ -5,7 +5,7 @@ use Core\Session;
 use App\Models\Users;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Logging\Logger;
-use Core\Lib\Utilities\Arr;
+use Core\Lib\Utilities\ArraySet;
 
 /**
  * This class is responsible for routing between views.
@@ -169,7 +169,7 @@ class Router {
         try {
             // Parse URLs
             $requestPath = $_SERVER['PATH_INFO'] ?? $_SERVER['REQUEST_URI'] ?? '';
-            $url = Arr::make(explode('/', ltrim($requestPath, '/')))
+            $url = ArraySet::make(explode('/', ltrim($requestPath, '/')))
                 ->filter(fn($v) => trim($v) !== '') // Removes empty segments
                 ->values(); // Reset array indices
 

@@ -2,7 +2,7 @@
 namespace Core;
 
 use Whoops\Run;
-use Core\Lib\Utilities\Arr;
+use Core\Lib\Utilities\ArraySet;
 use Core\Lib\Logging\Logger;
 use Whoops\Handler\PrettyPageHandler;
 
@@ -32,7 +32,7 @@ class ErrorHandler {
             $error = error_get_last();
             if ($error) {
                 // Wrap the error array in Arr
-                $errorData = Arr::make($error);
+                $errorData = ArraySet::make($error);
                 
                 // Check if error type is in the list of fatal errors
                 if ($errorData->hasAny([E_ERROR, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR])->result()) {

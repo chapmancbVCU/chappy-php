@@ -3,7 +3,7 @@ namespace Core;
 use \Exception;
 use Core\{Helper, Session};
 use Core\Lib\Logging\Logger;
-use Core\Lib\Utilities\Arr;
+use Core\Lib\Utilities\ArraySet;
 /**
  * Contains functions for building form elements of various types.
  */
@@ -20,8 +20,8 @@ class FormHelper {
      * @return array $attrs Div attributes with error classes added.
      */
     public static function appendErrorClass(array $attrs, array $errors, string $name, string $class): array {
-        $attrsArr = new Arr($attrs);
-        $errorsArr = new Arr($errors);
+        $attrsArr = new ArraySet($attrs);
+        $errorsArr = new ArraySet($errors);
     
         if ($errorsArr->has($name)->result()) {
             $currentClass = $attrsArr->get('class', '')->result();
@@ -233,14 +233,14 @@ class FormHelper {
     /**
      * Returns list of errors.
      * 
-     * @param array|Arr $errors A list of errors and their description that is 
+     * @param array|ArraySet $errors A list of errors and their description that is 
      * generated during server side form validation.
      * @return string A string representation of a div element containing an 
      * input of type checkbox.
      */
-    public static function displayErrors(array|Arr $errors): string {
+    public static function displayErrors(array|ArraySet $errors): string {
         // Ensure $errors is an Arr instance
-        $errors = $errors instanceof Arr ? $errors : new Arr($errors);
+        $errors = $errors instanceof ArraySet ? $errors : new ArraySet($errors);
 
         $hasErrors = !$errors->isEmpty() ? ' has-errors' : '';
         $html = '<div class="form-errors"><ul class="bg-light'.$hasErrors.'">';
@@ -308,7 +308,7 @@ class FormHelper {
      */
     public static function errorMsg(array $errors, string $name) {
         //$msg = (array_key_exists($name, $errors)) ? $errors[$name] : "";
-        return (new Arr($errors))->get($name, "")->result();  
+        return (new ArraySet($errors))->get($name, "")->result();  
     }
 
     /**
@@ -454,7 +454,7 @@ class FormHelper {
         // foreach($post as $key => $value) {
         //     $clean_array[$key] = self::sanitize($value);
         // }
-        return (new Arr($post))->map(fn($value) => self::sanitize($value))->all();
+        return (new ArraySet($post))->map(fn($value) => self::sanitize($value))->all();
     }
 
     /**

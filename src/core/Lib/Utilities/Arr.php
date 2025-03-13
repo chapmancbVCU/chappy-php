@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Core\Lib\Utilities;
 
 /**
- * Array utility class with chainable operations.
+ * Array utility class with functions for both chainable operations.
  */
-class Arr
+class ArraySet
 {
     protected array $items;
     protected mixed $lastResult;

@@ -1,7 +1,7 @@
 <?php
 namespace Core\Validators;
 use \Exception;
-use Core\Lib\Utilities\Arr;
+use Core\Lib\Utilities\ArraySet;
 /**
  * Abstract parent class for our child validation child classes.  Each child 
  * class must implement the runValidation() function.
@@ -30,7 +30,7 @@ abstract class CustomValidator {
      */
     public function __construct(object $model, array $params) {
         $this->_model = $model;
-        $paramsArr = Arr::make($params);
+        $paramsArr = ArraySet::make($params);
 
         // Validate field existence
         if (!$paramsArr->has('field')->result()) {

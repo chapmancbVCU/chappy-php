@@ -22,7 +22,7 @@ Get to any resource within the Chappy.php Wiki from here.
 15. [User Profiles](user_profiles)
 16. [User Registration and Authentication](user_registration_and_authentication)
 17. [Utilities](utilities)
-    * A. [Arr Class](arr)
+    * A. [ArraySet Class](array_set)
     * B. [Config and Env Classes](config-env)
     * C. [Str Class](str)
     * D. [Time](time)

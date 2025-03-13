@@ -87,9 +87,10 @@
 <br>
 
 ## 1. Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+A collection of functions for manipulating arrays that are chainable.
 To use this class make sure it is properly loaded:
 ```php
-use Core\Lib\Utilities\Arr;
+use Core\Lib\Utilities\ArraySet;
 ```
 <br>
 

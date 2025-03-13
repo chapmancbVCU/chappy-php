@@ -2,7 +2,7 @@
 namespace Core;
 use stdClass;
 use Exception;
-use Core\Lib\Utilities\Arr;
+use Core\Lib\Utilities\ArraySet;
 use Core\Lib\Utilities\Env;
 
 /**
@@ -44,7 +44,7 @@ class View extends stdClass {
      * a known type of content we return false;
      */
     public function content(string $type): mixed {
-        return Arr::make($this->_content)->get($type)->result() ?? false;
+        return ArraySet::make($this->_content)->get($type)->result() ?? false;
     }
 
     /**
