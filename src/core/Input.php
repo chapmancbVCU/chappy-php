@@ -1,6 +1,6 @@
 <?php
 namespace Core;
-use Core\Lib\Utilities\ArraySet;
+use Core\Lib\Utilities\Arr;
 use Core\{FormHelper, Helper, Router};
 
 /**
@@ -32,9 +32,9 @@ class Input {
             // Return entire request array and sanitize it
             $data = [];
             foreach ($_REQUEST as $field => $value) {
-                if (is_array($value)) {
+                if (Arr::isArray($value)) {
                     // Recursively sanitize arrays
-                    $data[$field] = array_map([FormHelper::class, 'sanitize'], $value);
+                    $data[$field] = Arr::map($value, [FormHelper::class, 'sanitize']);
                 } else {
                     // Only trim if it's a string
                     $data[$field] = trim(FormHelper::sanitize($value));
@@ -46,8 +46,8 @@ class Input {
         // Handle single input field
         if (isset($_REQUEST[$input])) {
             $value = $_REQUEST[$input];
-            if (is_array($value)) {
-                return array_map([FormHelper::class, 'sanitize'], $value);
+            if (Arr::isArray($value)) {
+                return Arr::map($value, [FormHelper::class, 'sanitize']);
             }
             return trim(FormHelper::sanitize($value));
         }

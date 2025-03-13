@@ -1,8 +1,9 @@
 <?php
 namespace App\Controllers;
 use Core\Helper;
-use Core\Lib\Utilities\ArraySet;
+use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
+use Core\Lib\Utilities\ArraySet;
 use Core\Lib\Pagination\Pagination;
 use Core\{Controller, Router, Session};
 use App\Models\{ACL, ProfileImages, Users};
@@ -231,9 +232,9 @@ class AdmindashboardController extends Controller {
         $unUsedAcls = [];
         foreach($acls as $acl) {
             if($acl->isAssignedToUsers()) {
-                array_push($usedAcls, $acl);
+                Arr::push($usedAcls, $acl);
             } else {
-                array_push($unUsedAcls, $acl);
+                Arr::push($unUsedAcls, $acl);
             }
         }
 
