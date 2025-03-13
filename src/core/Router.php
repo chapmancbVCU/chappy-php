@@ -5,6 +5,7 @@ use Core\Session;
 use App\Models\Users;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Logging\Logger;
+use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\ArraySet;
 
 /**
@@ -51,7 +52,7 @@ class Router {
         
         foreach($acl as $key => $value) {
             // If array we will know if there is a dropdown or something else.
-            if(is_array($value)) {
+            if(Arr::isArray($value)) {
                 $subMenu = [];
                 foreach($value as $k => $v) {
                     /* Check if item is a separator and continue.  Don't what 
@@ -112,8 +113,8 @@ class Router {
 
         // Check access information.
         foreach($current_user_acls as $level) {
-            if(array_key_exists($level, $acl) && array_key_exists($controller_name, $acl[$level])) {
-                if(in_array($action_name, $acl[$level][$controller_name]) || in_array("*", $acl[$level][$controller_name])) {
+            if(Arr::exists($acl, $level) && Arr::exists($acl[$level], $controller_name)) {
+                if(Arr::contains($acl[$level][$controller_name], $action_name) || Arr::contains($acl[$level][$controller_name], "*")) {
                     $grantAccess = true;
                     break;
                 }
@@ -123,7 +124,7 @@ class Router {
         // Check for denied.
         foreach($current_user_acls as $level) {
             $denied = $acl[$level]['denied'];
-            if(!empty($denied) && array_key_exists($controller_name, $denied) && in_array($action_name, $denied[$controller_name])) {
+            if(!empty($denied) && Arr::exists($denied, $controller_name) && Arr::contains($denied[$controller_name], $action_name)) {
                 $grantAccess = false;
             } 
         }

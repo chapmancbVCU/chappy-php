@@ -1,7 +1,7 @@
 <?php
 namespace Console\Helpers;
 
-use Core\Lib\Utilities\ArraySet;
+use Core\Lib\Utilities\Arr;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Logging\Logger;
 use Symfony\Component\Console\Command\Command;
@@ -52,13 +52,13 @@ class Tools {
         
         // Validate severity level and log to file.
         $validLevels = ['info', 'debug', 'warning', 'error', 'critical', 'alert', 'emergency'];
-        if (!array_key_exists(strtolower($level), $validLevels)) {
+        if (!Arr::exists($validLevels, strtolower($level))) {
             $level = 'info'; // Default to 'info' if invalid level provided
         }
         Logger::log($message, $level);
 
         // Perform console logging
-        if(array_key_exists($background, $backgroundColor) && array_key_exists($text, $textColor)) {
+        if(Arr::exists($backgroundColor, $background) && Arr::exists($textColor, $text)) {
             echo "\e[".$textColor[$text].";".$backgroundColor[$background]."m\n\n"."   ".$message."\n\e[0m\n";
         } else {
             echo "\e[0;37;41m\n\n"."   Invalid background or text color.\n\e[0m\n";
