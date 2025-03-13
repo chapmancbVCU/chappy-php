@@ -13,8 +13,7 @@ class Config
      *
      * @param string $path Path to config directory
      */
-    public static function load($path)
-    {
+    public static function load(string $path): void {
         foreach (glob($path . '/*.php') as $file) {
             $key = basename($file, '.php');
             $configData = require $file;
@@ -55,7 +54,7 @@ class Config
      * @param mixed $default Default value if key not found
      * @return mixed
      */
-    public static function get($key, $default = null) {
+    public static function get(string $key, mixed $default = null): mixed {
         $keys = explode('.', $key);
         $value = static::$configs;
 
@@ -75,7 +74,7 @@ class Config
      * @param string $key Dot notation key
      * @param mixed $value Value to set
      */
-    public static function set($key, $value) {
+    public static function set(string $key, mixed $value): void {
         $keys = explode('.', $key);
         $temp = &static::$configs;
 
