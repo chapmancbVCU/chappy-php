@@ -2,6 +2,7 @@
 namespace Console\Helpers;
 
 use Console\Helpers\Tools;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
@@ -75,7 +76,7 @@ class '.$commandName.'Command extends Command {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeHelper(InputInterface $input): int {
-        $helperName = ucfirst($input->getArgument('helper-name'));
+        $helperName = Str::ucfirst($input->getArgument('helper-name'));
         $ext = ".php";
         $fullPath = ROOT.DS.'src'.DS.'Console'.DS.'Helpers'.DS.$helperName.$ext;
         $content = '<?php

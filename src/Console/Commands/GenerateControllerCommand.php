@@ -2,6 +2,7 @@
 namespace Console\Commands;
  
 use Console\Helpers\Tools;
+use Core\Lib\Utilities\Str;
 use Console\Helpers\Controller;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -48,7 +49,7 @@ class GenerateControllerCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $controllerName = ucfirst($input->getArgument('controllername'));
+        $controllerName = Str::ucfirst($input->getArgument('controllername'));
         
         // Test if --layout is properly set
         $layoutInput = $input->getOption('layout');

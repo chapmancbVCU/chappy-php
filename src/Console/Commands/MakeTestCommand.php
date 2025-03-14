@@ -3,6 +3,7 @@ namespace Console\Commands;
  
 use Console\Helpers\Test;
 use Console\Helpers\Tools;
+use Core\Lib\Utilities\Str;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -35,7 +36,7 @@ class MakeTestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $testName = ucfirst($input->getArgument('testname'));
+        $testName = Str::ucfirst($input->getArgument('testname'));
         
         // Generate unit test class
         return Tools::writeFile(
