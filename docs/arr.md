@@ -1,7 +1,6 @@
 <h1 style="font-size: 50px; text-align: center;">Arr</h1>
 
 ## Table of Contents
-## Table of Contents
 1. [Overview](#overview)  
 2. [Basic Usage](#usage)  
 3. [Methods](#methods)  
