@@ -2,7 +2,7 @@
 namespace App\Controllers;
 use Core\Lib\Utilities\Env;
 use App\Models\{ProfileImages, Users};
-use Core\Lib\FileSystem\Uploads;
+use Core\Lib\FileSystem\UploadProfileImage;
 use Core\{Controller, Helper, Router, Session};
 
 /**
@@ -43,15 +43,14 @@ class ProfileController extends Controller {
         $profileImages = ProfileImages::findByUserId($user->id);
         if($this->request->isPost()) {
             $this->request->csrfCheck();
-
-            // Handle file upload using the static method in Uploads
-            $uploads = Uploads::handleUpload(
-                $_FILES['profileImage'],
-                ProfileImages::getAllowedFileTypes(),
-                ProfileImages::getMaxAllowedFileSize(),
-                ROOT . DS,
-                "5mb"
-            );
+            $files = $_FILES['profileImage'];
+            if($files['tmp_name'] != '') {
+                $uploads = new UploadProfileImage($files, ProfileImages::getAllowedFileTypes(), 
+                    ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS, "5mb");
+                
+                $uploads->runValidation();
+                $uploads->errorReporting($uploads->validates(), $user, 'profileImage');
+            }
 
             $user->assign($this->request->get(), Users::blackListedFormKeys);
             $user->save();
