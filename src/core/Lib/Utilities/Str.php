@@ -37,6 +37,26 @@ class Str
     }
     
     /**
+     * Base64 encode a string.
+     *
+     * @param string $value The input string.
+     */
+    public static function base64Encode(string $value): string
+    {
+        return base64_encode($value);
+    }
+
+    /**
+     * Base64 decode a string.
+     *
+     * @param string $value The base64 encoded string.
+     */
+    public static function base64Decode(string $value): string
+    {
+        return base64_decode($value);
+    }
+
+    /**
      * Get the portion of a string before the first occurrence of a given value.
      *
      * @param string $subject The input string.
@@ -50,6 +70,21 @@ class Str
     }
 
     /**
+     * Get the substring between two given substrings.
+     *
+     * @param string $value The input string.
+     * @param string $start The starting substring.
+     * @param string $end The ending substring.
+     */
+    public static function between(string $value, string $start, string $end): string
+    {
+        if (($startPos = strpos($value, $start)) === false) return '';
+        $startPos += strlen($start);
+        if (($endPos = strpos($value, $end, $startPos)) === false) return '';
+        return substr($value, $startPos, $endPos - $startPos);
+    }
+
+    /**
      * Convert a string to camelCase.
      *
      * @param string $value The input string.
@@ -57,6 +92,28 @@ class Str
     public static function camel(string $value): string
     {
         return lcfirst(str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $value))));
+    }
+
+    /**
+     * Split a string into chunks.
+     *
+     * @param string $value The input string.
+     * @param int $length The chunk length.
+     */
+    public static function chunk(string $value, int $length = 1): array
+    {
+        return str_split($value, $length);
+    }
+
+    /**
+     * Compare two strings.
+     *
+     * @param string $string1 The first string.
+     * @param string $string2 The second string.
+     */
+    public static function compare(string $string1, string $string2): int
+    {
+        return strcmp($string1, $string2);
     }
 
     /**
@@ -71,6 +128,16 @@ class Str
     }
 
     /**
+     * Calculate CRC32 hash of a string.
+     *
+     * @param string $value The input string.
+     */
+    public static function crc32(string $value): int
+    {
+        return crc32($value);
+    }
+
+    /**
      * Determine if a string ends with a given substring.
      *
      * @param string $haystack The string to check.
@@ -79,6 +146,24 @@ class Str
     public static function endsWith(string $haystack, string $needle): bool
     {
         return str_ends_with($haystack, $needle);
+    }
+
+    /**
+     * Create excerpts around specific words within a string.
+     *
+     * @param string $text The input string.
+     * @param string $phrase The phrase to excerpt around.
+     * @param int $radius The number of characters around the phrase.
+     */
+    public static function excerpt(string $text, string $phrase, int $radius = 100): string
+    {
+        $position = mb_strpos($text, $phrase);
+        if ($position === false) return '';
+
+        $start = max(0, $position - $radius);
+        $end = min(mb_strlen($text), $position + mb_strlen($phrase) + $radius);
+
+        return mb_substr($text, $start, $end - $start);
     }
 
     /**
@@ -102,6 +187,15 @@ class Str
         return mb_convert_case(str_replace(['-', '_'], ' ', $value), MB_CASE_TITLE);
     }
 
+    /**
+     * Check if the given string is pure ASCII.
+     *
+     * @param string $value The input string.
+     */
+    public static function isAscii(string $value): bool
+    {
+        return mb_check_encoding($value, 'ASCII');
+    }
 
     /**
      * Determine if a string is empty.
@@ -114,6 +208,27 @@ class Str
     }
 
     /**
+     * Determine if a string is a valid JSON.
+     *
+     * @param string $value The input string.
+     */
+    public static function isJson(string $value): bool
+    {
+        json_decode($value);
+        return json_last_error() === JSON_ERROR_NONE;
+    }
+
+    /**
+     * Check if a string is a valid UUID.
+     *
+     * @param string $value The input string.
+     */
+    public static function isUuid(string $value): bool
+    {
+        return Uuid::isValid($value);
+    }
+
+    /**
      * Convert a string to kebab-case.
      *
      * @param string $value The input string.
@@ -123,6 +238,17 @@ class Str
         return self::snake($value, '-');
     }
 
+    /**
+     * Find the position of the last occurrence of a substring.
+     *
+     * @param string $haystack The string to search in.
+     * @param string $needle The substring to search for.
+     * @return int|false
+     */
+    public static function lastPosition(string $haystack, string $needle)
+    {
+        return strrpos($haystack, $needle);
+    }
 
     /**
      * Converts the first character of a string to lowercase.
@@ -135,6 +261,26 @@ class Str
         return lcfirst($value);
     }
 
+    /**
+     * Get the length of a string using multibyte support.
+     *
+     * @param string $value The input string.
+     */
+    public static function length(string $value): int
+    {
+        return mb_strlen($value);
+    }
+
+    /**
+     * Calculate Levenshtein distance between two strings.
+     *
+     * @param string $string1 The first string.
+     * @param string $string2 The second string.
+     */
+    public static function levenshtein(string $string1, string $string2): int
+    {
+        return levenshtein($string1, $string2);
+    }
 
     /**
      * Limit the number of characters in a string.
@@ -156,6 +302,45 @@ class Str
     public static function lower(string $value): string
     {
         return mb_strtolower($value);
+    }
+
+    /**
+     * Mask portions of a string with a given character.
+     *
+     * @param string $string The input string.
+     * @param string $character The mask character.
+     * @param int $start The starting position for masking.
+     * @param int|null $length The number of characters to mask.
+     */
+    public static function mask(string $string, string $character = '*', int $start = 0, ?int $length = null): string
+    {
+        $length = $length ?? mb_strlen($string);
+        return mb_substr($string, 0, $start)
+            . str_repeat($character, $length)
+            . mb_substr($string, $start + $length);
+    }
+
+    /**
+     * Return the MD5 hash of a string.
+     *
+     * @param string $value The input string.
+     */
+    public static function md5(string $value): string
+    {
+        return md5($value);
+    }
+
+    /**
+     * Format a number with grouped thousands.
+     *
+     * @param float $number The number to format.
+     * @param int $decimals Number of decimal points.
+     * @param string $decimalSeparator Decimal separator.
+     * @param string $thousandSeparator Thousand separator.
+     */
+    public static function numberFormat(float $number, int $decimals = 0, string $decimalSeparator = '.', string $thousandSeparator = ','): string
+    {
+        return number_format($number, $decimals, $decimalSeparator, $thousandSeparator);
     }
 
     /**
@@ -204,6 +389,18 @@ class Str
         return $count === 1 ? $word : $inflector->pluralize($word);
     }
 
+    /**
+     * Find the position of the first occurrence of a substring.
+     *
+     * @param string $haystack The string to search in.
+     * @param string $needle The substring to search for.
+     * @return int|false
+     */
+    public static function position(string $haystack, string $needle)
+    {
+        return strpos($haystack, $needle);
+    }
+
    /**
      * Generate a random string of a specified length.
      *
@@ -212,6 +409,17 @@ class Str
     public static function random(int $length = 16): string
     {
         return bin2hex(random_bytes($length / 2));
+    }
+
+    /**
+     * Repeat a string.
+     *
+     * @param string $value The input string.
+     * @param int $times Number of times to repeat.
+     */
+    public static function repeat(string $value, int $times): string
+    {
+        return str_repeat($value, $times);
     }
 
     /**
@@ -265,6 +473,48 @@ class Str
     public static function replaceMultiple(array $replacements, string $subject): string
     {
         return str_replace(array_keys($replacements), array_values($replacements), $subject);
+    }
+
+    /**
+     * Reverse a given string.
+     *
+     * @param string $value The input string.
+     */
+    public static function reverse(string $value): string
+    {
+        return implode('', array_reverse(mb_str_split($value)));
+    }
+
+    /**
+     * Return the SHA1 hash of a string.
+     *
+     * @param string $value The input string.
+     */
+    public static function sha1(string $value): string
+    {
+        return sha1($value);
+    }
+
+    /**
+     * Shuffle characters in a string.
+     *
+     * @param string $value The input string.
+     */
+    public static function shuffle(string $value): string
+    {
+        return str_shuffle($value);
+    }
+
+    /**
+     * Calculate similarity between two strings.
+     *
+     * @param string $string1 The first string.
+     * @param string $string2 The second string.
+     */
+    public static function similarity(string $string1, string $string2): int
+    {
+        similar_text($string1, $string2, $percent);
+        return (int)$percent;
     }
 
     /**
@@ -346,6 +596,17 @@ class Str
     }
 
     /**
+     * Count occurrences of a substring.
+     *
+     * @param string $haystack The input string.
+     * @param string $needle The substring to count.
+     */
+    public static function substrCount(string $haystack, string $needle): int
+    {
+        return substr_count($haystack, $needle);
+    }
+
+    /**
      * Swap keys with values in an array and return as a string.
      *
      * @param array $array The input array.
@@ -363,6 +624,16 @@ class Str
     public static function title(string $value): string
     {
         return ucwords(mb_strtolower($value));
+    }
+
+    /**
+     * Convert a string into an array.
+     *
+     * @param string $value The input string.
+     */
+    public static function toArray(string $value): array
+    {
+        return mb_str_split($value);
     }
 
     /**
@@ -386,9 +657,7 @@ class Str
     }
 
     /**
-     * Count the number of words in a string.
-     *
-     * @param string $value The input string.
+     * Generate a UUID (Universally Unique Identifier).
      */
     public static function uuid(): string
     {
@@ -403,6 +672,19 @@ class Str
     public static function wordCount(string $value): int
     {
         return str_word_count($value);
+    }
+
+    /**
+     * Limit a string to a certain number of words.
+     *
+     * @param string $value The input string.
+     * @param int $words Number of words to limit to.
+     * @param string $end Ending to append if truncated.
+     */
+    public static function words(string $value, int $words = 10, string $end = '...'): string
+    {
+        preg_match('/^(?:\S+\s+){0,' . ($words - 1) . '}\S+/u', $value, $matches);
+        return isset($matches[0]) && mb_strlen($matches[0]) < mb_strlen($value) ? $matches[0] . $end : $value;
     }
 
     /**
