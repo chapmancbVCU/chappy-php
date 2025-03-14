@@ -14,6 +14,9 @@ define('ROOT', dirname(__FILE__));
 // Load configuration and helper functions.
 require_once ROOT.DS.'src'.DS.'scripts'.DS.'bootstrap.php';
 
+// Start PHP session
+session_start();
+
 // Set up error & exception handling
 ErrorHandler::initialize();
 

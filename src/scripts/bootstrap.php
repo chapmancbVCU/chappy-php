@@ -18,6 +18,3 @@ Env::load(ROOT . '/.env');
 
 // Load configuration files from the `config/` directory
 Config::load(ROOT . '/config');
-
-// Start PHP session
-session_start();
