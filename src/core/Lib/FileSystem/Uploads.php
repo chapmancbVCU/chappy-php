@@ -217,7 +217,7 @@ class Uploads {
 
     
             // Debugging: Log MIME type to check if it matches expectations
-            error_log("Checking file: $fileName | Detected MIME type: $mimeType");
+            Logger::log("Checking file: $fileName | Detected MIME type: $mimeType", "info");
     
             // Check if the file type is allowed
             if (!in_array($mimeType, $allowedFileTypes, true)) {
