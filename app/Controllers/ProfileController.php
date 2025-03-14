@@ -43,7 +43,7 @@ class ProfileController extends Controller {
         $profileImages = ProfileImages::findByUserId($user->id);
         if($this->request->isPost()) {
             $this->request->csrfCheck();
-            $files = $_FILES['profileImage'];
+
             // Handle file upload using the static method in Uploads
             $uploads = Uploads::handleUpload(
                 $_FILES['profileImage'],
