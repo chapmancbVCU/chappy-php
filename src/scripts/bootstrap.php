@@ -12,7 +12,6 @@ $dotenv->load();
 
 // Load configuration and helper functions
 require_once ROOT . DS . 'src' . DS . 'scripts' . DS . 'helpers.php';
-// var_dump($_ENV);
 
 // Load environment variables from .env file
 Env::load(ROOT . '/.env');
