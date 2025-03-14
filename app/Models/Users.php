@@ -17,7 +17,7 @@ use Core\Validators\{
 use App\Models\UserSessions;
 use Core\Lib\Utilities\Env;
 use Core\Lib\Utilities\Arr;
-
+use Core\Lib\Utilities\Str;
 /**
  * Extends the Model class.  Supports functions for the Users model.
  */
@@ -228,7 +228,7 @@ class Users extends Model {
         Logger::log("User {$user->id} ({$user->username}) logged in successfully.", 'info');
         
         if($rememberMe) {
-            $hash = md5(uniqid() . rand(0, 100));
+            $hash = Str::md5(uniqid() . rand(0, 100));
             $user_agent = Session::uagent_no_version();
             Cookie::set(Env::get('REMEMBER_ME_COOKIE_NAME'), $hash, Env::get('REMEMBER_ME_COOKIE_EXPIRY', 2592000));
             $fields = ['session'=>$hash, 'user_agent'=>$user_agent, 'user_id'=>$this->id];
