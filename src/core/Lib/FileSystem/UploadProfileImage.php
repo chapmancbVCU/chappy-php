@@ -1,8 +1,6 @@
 <?php
-namespace Core\Lib\Utilities;
+namespace Core\Lib\FileSystem;
 
-use Core\Helper;
-use Core\Lib\Utilities\Uploads;
 /**
  * Supports the ability to upload a single profile image at a time.
  */

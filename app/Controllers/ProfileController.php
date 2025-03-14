@@ -1,9 +1,8 @@
 <?php
 namespace App\Controllers;
 use Core\Lib\Utilities\Env;
-use Core\Lib\Utilities\Uploads;
 use App\Models\{ProfileImages, Users};
-use Core\Lib\Utilities\UploadProfileImage;
+use Core\Lib\FileSystem\Uploads;
 use Core\{Controller, Helper, Router, Session};
 
 /**
