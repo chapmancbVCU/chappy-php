@@ -41,19 +41,46 @@ class UploadProfileImage extends Uploads {
      *
      * @return void
      */
-    protected function validateFileType(): void { 
-        $reportTypes = [];
-        foreach($this->_allowedFileTypes as $type) {
-            array_push($reportTypes, image_type_to_mime_type($type));
-        }
+    // protected function validateFileType(): void { 
+    //     $reportTypes = [];
+    
+    //     // Ensure allowed file types are in lowercase to avoid case-sensitivity issues
+    //     $allowedFileTypes = array_map('strtolower', $this->_allowedFileTypes);
+    
+    //     foreach ($this->_allowedFileTypes as $type) {
+    //         if (is_int($type)) {
+    //             // Convert image type constant to MIME type
+    //             $reportTypes[] = image_type_to_mime_type($type);
+    //         } else {
+    //             // Assume it's already a MIME type
+    //             $reportTypes[] = strtolower($type);
+    //         }
+    //     }
+    
+    //     foreach ($this->_files as $file) {
+    //         $filePath = $file['tmp_name'];
+    //         $fileName = $file['name'];
+    
+    //         // Check if file exists
+    //         if (!file_exists($filePath)) {
+    //             $this->addErrorMessage($fileName, "Error: File does not exist.");
+    //             continue;
+    //         }
+    
+    //         $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    //         $mimeType = finfo_file($finfo, $filePath);
+    //         finfo_close($finfo);
 
-        foreach($this->_files as $file) {
-            // checking file type
-            if(!in_array(exif_imagetype($file['tmp_name']), $this->_allowedFileTypes)){
-                $name = $file['name'];
-                $msg = $name . " is not an allowed file type. Please use the following types: " . implode(', ', $reportTypes);
-                $this->addErrorMessage($name, $msg);
-            }
-        }
-    }
+    
+    //         // Debugging: Log MIME type to check if it matches expectations
+    //         error_log("Checking file: $fileName | Detected MIME type: $mimeType");
+    
+    //         // Check if the file type is allowed
+    //         if (!in_array($mimeType, $allowedFileTypes, true)) {
+    //             $msg = "$fileName is not an allowed file type. Please use the following types: " . implode(', ', $reportTypes);
+    //             $this->addErrorMessage($fileName, $msg);
+    //         }
+    //     }
+    // }
+    
 }
