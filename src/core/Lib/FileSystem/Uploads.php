@@ -143,7 +143,10 @@ class Uploads {
      *
      * @return void
      */
-    public function runValidation(): void { }
+    public function runValidation(): void { 
+        $this->validateSize();
+        $this->validateFileType();
+    }
 
     /**
      * Performs file upload.
