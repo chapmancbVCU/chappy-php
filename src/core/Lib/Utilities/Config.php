@@ -27,7 +27,7 @@ class Config
             Arr::walkRecursive($configData, function (&$value) {
                 if (is_string($value) && preg_match('/^env\((.*)\)$/', $value, $matches)) {
                     $envKey = trim($matches[1], "'\"");
-                    $value = $_ENV[$envKey] ?? $value;
+                    $value = Env::get($envKey) ?? $value;
                 }
 
                 // Convert numeric strings to actual numbers
