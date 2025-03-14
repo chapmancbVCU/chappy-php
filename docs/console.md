@@ -51,7 +51,6 @@ Below is a list of available commands. Most items in this list contains a link t
 | make:model | Generates a new model file |
 | make:seeder | Creates a new database seeder class |
 | make:test | Generates a new test class |
-| make:upload | Create class that extends Uploads |
 | make:view | Create a new view |
 | migrate | Runs a Database Migration |
 | migrate:drop-all | Drops all database tables |
