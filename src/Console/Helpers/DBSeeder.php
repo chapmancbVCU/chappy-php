@@ -1,6 +1,7 @@
 <?php
 namespace Console\Helpers;
 
+use Core\Lib\Utilities\Str;
 use Database\Seeders\DatabaseSeeder;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -16,7 +17,7 @@ class DBSeeder {
      * @return int A value that indicates success, invalid, or failure.
      */
     public static function makeSeeder(InputInterface $input): int {
-        $seederName = ucfirst($input->getArgument('seeder-name'));
+        $seederName = Str::ucfirst($input->getArgument('seeder-name'));
 
         // Generate Seeder class
         return Tools::writeFile(
@@ -45,6 +46,8 @@ class DBSeeder {
      * @return string The contents of the seeder class.
      */
     public static function seeder(string $seederName): string {
+        $lcSeederName = Str::lcfirst($seederName);
+        $ucSeederName = Str::ucfirst($seederName);
         return '<?php
 namespace Database\Seeders;
 
@@ -53,14 +56,14 @@ use Core\Lib\Database\Seeder;
 use Console\Helpers\Tools;
 
 // Import your model
-use App\Models\\'.ucfirst($seederName).';
+use App\Models\\'.$ucSeederName.';
 
 /**
- * Seeder for '.lcfirst($seederName).' table.
+ * Seeder for '.$lcSeederName.' table.
  * 
  * @return void
  */
-class '.ucfirst($seederName).'TableSeeder extends Seeder {
+class '.$ucSeederName.'TableSeeder extends Seeder {
     /**
      * Runs the database seeder
      *
@@ -73,14 +76,14 @@ class '.ucfirst($seederName).'TableSeeder extends Seeder {
         $numberOfRecords = 10;
         $i = 0;
         while($i < $numberOfRecords) {
-            $'.lcfirst($seederName).' = new '.ucfirst($seederName).'();
+            $'.$lcSeederName.' = new '.$ucSeederName.'();
             
 
-            if($'.lcfirst($seederName).'->save()) {
+            if($'.$lcSeederName.'->save()) {
                 $i++;
             }
         }
-        Tools::info("Seeded '.lcfirst($seederName).' table.");
+        Tools::info("Seeded '.$lcSeederName.' table.");
     }
 }
 ';
