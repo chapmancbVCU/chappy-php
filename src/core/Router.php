@@ -87,50 +87,66 @@ class Router {
      * perform.  The default value is "index".
      * @return bool $grantAccess True if we give access, otherwise false.
      */
-    public static function hasAccess(string $controller_name, string $action_name = "index") {
+    public static function hasAccess(string $controller_name, string $action_name = "index"): bool {
         $acl_file = file_get_contents(ROOT . DS . 'app' . DS . 'acl.json');
         $acl = json_decode($acl_file, true) ?? [];
-        $current_user_acls = ["Guest"];
         $grantAccess = false;
-
-        // Bug here after migrate:refresh and cookie still exists.
-        if(Session::exists(Env::get('CURRENT_USER_SESSION_NAME'))) {
-            $current_user_acls[] = "LoggedIn";
+        $current_user_acls = ["Guest"]; // Default to Guest
+    
+        // Get current user
+        if (Session::exists(Env::get('CURRENT_USER_SESSION_NAME'))) {
+            $current_user_acls[] = "LoggedIn"; // Default to LoggedIn if user is authenticated
             $currentUser = Users::currentUser();
-
-            /**
-             * Checks if session exists.  If app is loaded after a 
-             * migrate:refresh and cookie still exists then cookie gets deleted.
-             */
-            if ($currentUser) { 
-                foreach($currentUser->acls() as $userAcl) {
-                    $current_user_acls[] = $userAcl;
+    
+            if ($currentUser) {
+                $username = strtolower($currentUser->username); // Normalize username for ACL matching
+                $userAcls = $currentUser->acls();
+    
+                // If the user has an ACL defined in the ACL file, add it
+                if (isset($acl[$username])) {
+                    $current_user_acls[] = $username;
+                }
+    
+                // Add role-based ACLs (if any exist for this user)
+                if (!empty($userAcls)) {
+                    foreach ($userAcls as $userAcl) {
+                        $current_user_acls[] = $userAcl;
+                    }
+                } else {
+                    // If user has NO specific ACLs, they default to "LoggedIn"
+                    $current_user_acls[] = "LoggedIn";
                 }
             } else {
-                Session::delete(Env::get('CURRENT_USER_SESSION_NAME'));
+                Session::delete(Env::get('CURRENT_USER_SESSION_NAME')); // Remove invalid session
             }
         }
-
-        // Check access information.
-        foreach($current_user_acls as $level) {
-            if(Arr::exists($acl, $level) && Arr::exists($acl[$level], $controller_name)) {
-                if(Arr::contains($acl[$level][$controller_name], $action_name) || Arr::contains($acl[$level][$controller_name], "*")) {
-                    $grantAccess = true;
-                    break;
-                }
-            } 
+    
+        // Remove empty ACLs to prevent errors
+        $current_user_acls = array_filter($current_user_acls, fn($level) => !empty($level));
+    
+        // ✅ Grant access if ANY level allows it
+        foreach ($current_user_acls as $level) {
+            if (isset($acl[$level][$controller_name]) &&
+                (in_array($action_name, $acl[$level][$controller_name]) || in_array("*", $acl[$level][$controller_name]))
+            ) {
+                $grantAccess = true;
+                break;
+            }
         }
-
-        // Check for denied.
-        foreach($current_user_acls as $level) {
-            $denied = $acl[$level]['denied'];
-            if(!empty($denied) && Arr::exists($denied, $controller_name) && Arr::contains($denied[$controller_name], $action_name)) {
+    
+        // ❌ Deny access if ANY level explicitly denies it
+        foreach ($current_user_acls as $level) {
+            if (isset($acl[$level]['denied'][$controller_name]) &&
+                in_array($action_name, $acl[$level]['denied'][$controller_name])
+            ) {
                 $grantAccess = false;
-            } 
+                break;
+            }
         }
-
+    
         return $grantAccess;
     }
+    
 
     /**
      * Performs redirect operations.
