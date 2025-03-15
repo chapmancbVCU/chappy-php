@@ -84,19 +84,20 @@ choco install 7zip -y
 #### 1: Setup
 * A. Open browser and go to https://www.apachefriends.org/ and download **XAMPP for Windows**.
 * B. Select download location and run installer using default options.
-* D. If you get a dialog bos asking "Do you want to allow public and private networks to access this app?" for Apache select **Allow**
-* E. Navigate to `C:\xampp\htdocs` in Windows explorer then type cmd in the address bar.
-* F. Cone the project:
+* D. If you get a dialog box asking "Do you want to allow public and private networks to access this app?" for Apache select **Allow**
+* E. Install **Composer** using the instructions described above.
+* F. Navigate to `C:\xampp\htdocs` in Windows explorer then type cmd in the address bar.
+* G. Cone the project:
 ```powershell
 git clone git@github.com:chapmancbVCU/chappy-php.git
 ```
 
-* G. cd into project and run the command:
+* H. cd into project and run the command:
 ```powershell
 composer run install-project
 ```
 
-* H. Open the project with your preferred IDE.  We use VScode.
+* I. Open the project with your preferred IDE.  We use VScode.
 * J. In the terminal run the command:
 ```sh
 php console serve
@@ -110,7 +111,7 @@ npm run dev
 #### 2. Using with XAMPP
 * A. Open XAMPP Control Panel.
 * B. Start **Apache** and **MySQL**
-* C. If you get a dialog bos asking "Do you want to allow public and private networks to access this app?" for mysqld select **Allow**
+* C. If you get a dialog box asking "Do you want to allow public and private networks to access this app?" for mysqld select **Allow**
 * D. In your browser navigate to `localhost/phpmyadmin`
 * In the left panel click on the **New** link.
 * E. In the main panel under **Create Database** enter the name for your database.
