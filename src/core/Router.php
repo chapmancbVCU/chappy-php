@@ -190,24 +190,24 @@ class Router {
                 ->filter(fn($v) => trim($v) !== '') // Removes empty segments
                 ->values(); // Reset array indices
 
-            // Log incoming request
+            // Identify user
             $userId = Session::exists(Env::get('CURRENT_USER_SESSION_NAME')) 
                 ? Session::get(Env::get('CURRENT_USER_SESSION_NAME')) 
                 : 'Guest';
 
-            Logger::log(
-                "Incoming Request: Method: {$_SERVER['REQUEST_METHOD']} | URL: $requestPath | IP: {$_SERVER['REMOTE_ADDR']} | User: $userId",
-                'info'
-            );
+            // Log only critical requests
+            if (!empty($_GET) || in_array($_SERVER['REQUEST_METHOD'], ['POST', 'PUT', 'DELETE']) || $userId === 'Guest') {
+                Logger::log("Request: $requestPath | User: $userId", 'info');
+            }
 
-            // Extract controller name
+            // Extract controller
             $controller = $url->has(0)->result()
                 ? ucwords($url->first()->result()) . 'Controller'
                 : Env::get('DEFAULT_CONTROLLER', 'Home') . 'Controller';
             $controller_name = str_replace('Controller', '', $controller);
             $url->shift();
 
-            // Extract action name
+            // Extract action
             $action = $url->has(0)->result() 
                 ? $url->first()->result() . 'Action'
                 : 'indexAction';
@@ -218,23 +218,29 @@ class Router {
 
             // ACL check
             if (!self::hasAccess($controller_name, $action_name)) {
-                $accessRestricted = Env::get('ACCESS_RESTRICTED', 'Restricted');
-                Logger::log(
-                    "Access Denied: User '$userId' attempted to access restricted area '$controller_name/$action_name'",
-                    'warning'
-                );
-                $controller = $accessRestricted . 'Controller';
-                $controller_name = $accessRestricted;
+                static $deniedAttempts = [];
+                $key = "{$userId}_{$controller_name}_{$action_name}";
+
+                if (!isset($deniedAttempts[$key])) {
+                    $deniedAttempts[$key] = 1;
+                    Logger::log("Access Denied: User '$userId' tried '$controller_name/$action_name'", 'warning');
+                } else {
+                    $deniedAttempts[$key]++;
+                    if ($deniedAttempts[$key] <= 3) {
+                        Logger::log("Repeated Access Denied: User '$userId' ($deniedAttempts[$key] times) on '$controller_name/$action_name'", 'warning');
+                    }
+                }
+
+                $controller = Env::get('ACCESS_RESTRICTED', 'Restricted') . 'Controller';
+                $controller_name = Env::get('ACCESS_RESTRICTED', 'Restricted');
                 $action = 'indexAction';
             }
 
             // Prepare controller class with namespace
             $controller = 'App\Controllers\\' . $controller;
-
-            // Instantiate the controller
             $dispatch = new $controller($controller_name, $action);
 
-            // Execute the action if it exists
+            // Execute action
             if (method_exists($controller, $action)) {
                 call_user_func_array([$dispatch, $action], $url->all());
             } else {
@@ -245,4 +251,5 @@ class Router {
             throw $e;
         }
     }
+
 }
