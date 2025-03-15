@@ -163,30 +163,24 @@ class Model {
      * from model object.
      */
     public function getColumnsForSave() {
-        static $cachedColumns = null;
-    
-        // Fetch columns only if they haven't been cached
-        if ($cachedColumns === null) {
-            $cachedColumns = static::getColumns();
-            Logger::log("Columns from DB: " . json_encode($cachedColumns), 'debug'); // Log only once
-        }
-    
-        $columns = $cachedColumns;
+        $columns = static::getColumns();
+        Logger::log("Columns from DB: " . json_encode($columns), 'debug');
+
         $fields = [];
-    
+
         // Determine correct column name key
         $columnKey = isset($columns[0]->Field) ? 'Field' : (isset($columns[0]->name) ? 'name' : null);
-    
+
         if ($columnKey === null) {
             Logger::log("ERROR: Column key not found!", 'error');
             return [];
         }
-    
+
         (new ArraySet($columns))->each(function($column) use (&$columnKey, &$key, &$fields) {
             $key = $column->{$columnKey};
             if (isset($this->{$key})) $fields[$key] = $this->{$key};
+            
         });
-    
         Logger::log("Fields for save: " . json_encode($fields), 'debug');
         return $fields;
     }

@@ -291,44 +291,39 @@ class DB {
      * returned.
      */
     public function query($sql, $params = [], $class = false) {
-        $this->_error = false;
-        $startTime = microtime(true);
-    
-        if ($this->_query = $this->_pdo->prepare($sql)) {
-            $x = 1;
-            foreach ($params as $param) {
-                $this->_query->bindValue($x, $param);
-                $x++;
-            }
-    
-            if ($this->_query->execute()) {
-                $executionTime = microtime(true) - $startTime;
-                $this->_result = $class ? $this->_query->fetchAll(PDO::FETCH_CLASS, $class) : $this->_query->fetchAll($this->_fetchStyle);
-                $this->_count = $this->_query->rowCount();
-                $this->_lastInsertID = $this->_pdo->lastInsertId();
-    
-                // Log only slow or modifying queries
-                if ($executionTime > 0.1 || preg_match('/^(UPDATE|INSERT|DELETE)/i', $sql)) {
-                    Logger::log("Executed Query: $sql | Params: " . json_encode($params) . 
-                    " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s", 'debug');
-                }
+    $this->_error = false;
+    $startTime = microtime(true);
+
+    if ($this->_query = $this->_pdo->prepare($sql)) {
+        $x = 1;
+        foreach ($params as $param) {
+            $this->_query->bindValue($x, $param);
+            $x++;
+        }
+
+        if ($this->_query->execute()) {
+            $executionTime = microtime(true) - $startTime;
+            $this->_result = $class ? $this->_query->fetchAll(PDO::FETCH_CLASS, $class) : $this->_query->fetchAll($this->_fetchStyle);
+            $this->_count = $this->_query->rowCount();
+            $this->_lastInsertID = $this->_pdo->lastInsertId();
+
+            // If multiple rows updated, log a summary
+            if ($this->_count > 1) {
+                Logger::log("Executed Batch Query: {$this->_count} rows affected | Execution Time: " . number_format($executionTime, 5) . "s", 'debug');
             } else {
-                $this->_error = true;
-                $errorInfo = $this->_query->errorInfo();
-                if (!empty($errorInfo[2])) {
-                    Logger::log("Database Error: {$errorInfo[2]} | Query: $sql | Params: " . json_encode($params), 'error');
-                }
+                Logger::log("Executed Query: $sql | Params: " . json_encode($params) . " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s", 'debug');
             }
         } else {
-            static $queryFailureCount = 0;
-            $queryFailureCount++;
-            if ($queryFailureCount < 5) {
-                Logger::log("Query Preparation Failed [Count: $queryFailureCount]: $sql | Params: " . json_encode($params), 'error');
-            }
+            $this->_error = true;
+            Logger::log("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . json_encode($params), 'error');
         }
-    
-        return $this;
+    } else {
+        Logger::log("Failed to prepare query: $sql | Params: " . json_encode($params), 'error');
     }
+
+    return $this;
+}
+
     
     
 
