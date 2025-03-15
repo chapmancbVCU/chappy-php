@@ -7,7 +7,7 @@ use Core\Lib\Utilities\ArraySet;
  * Supports CRUD operations on profile image records.
  */
 class ProfileImages extends Model {
-    protected static $allowedFileTypes = [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG];
+    protected static $allowedFileTypes = ['image/gif','image/jpeg', 'image/png',];
     public $deleted = 0;
     public $id;
     protected static $maxAllowedFileSize = 5242880;

@@ -3,10 +3,8 @@
 ## Table of contents
 1. [Overview](#overview)
 2. [Setup](#setup)
-    * A. [Creating an uploads class](#create-uploads-class)
-    * B. [Configure File Type Validation](#configure-file-type-validation)
-    * C. [Migration File](#migration-file)
-    * D. [Setting up the Model](#model-setup)
+    * A. [Migration File](#migration-file)
+    * B. [Setting up the Model](#model-setup)
 3. [Single File Upload](#single-file)
 4. [Multiple File Upload](#multiple-file)
 <br>
@@ -20,48 +18,7 @@ This framework supports single and multiple file uploads.  Switching between bot
 The upload feature is supported by the Uploads class.  To use the Uploads class you will need to perform the following steps:
 <br>
 
-#### A. Creating an uploads class <a id="create-uploads-class">
-Run the following command:
-
-```sh
-php console make:upload ProfileImage
-```
-
-Once you run this command a new class called `UploadProfileImages` will be created at `app/lib/utilities/`
-<br>
-
-#### B. Configure File Type Validation <a id="configure-file-type-validation">
-Edit the validateFileType function that is found in your new class.  An example is shown below:
-
-```php
-/**
- * Validates file type and sets error message if file type is invalid.
- *
- * @return void
- */
-protected function validateFileType(): void { 
-    // Setup file type reporting.
-    $reportTypes = [];
-    foreach($this->_allowedFileTypes as $type) {
-        array_push($reportTypes, image_type_to_mime_type($type));
-    }
-
-    // Perform validation and set error messages.
-    foreach($this->_files as $file) {
-        // checking file type
-        if(!in_array(exif_imagetype($file['tmp_name']), $this->_allowedFileTypes)){
-            $name = $file['name'];
-            $msg = $name . " is not an allowed file type. Please use the following types: " . implode(', ', $reportTypes);
-            $this->addErrorMessage($name, $msg);
-        }
-    }
-}
-```
-
-This function consists of two for loops.  The first is used to setup reporting.  In this implementation we depend on using information from the _allowedFileTypes array for the setup of error messages.  This makes the UploadProfileImage class more usable since we initially set the file types we want to upload in the model for handling uploads.  More on setting up the model in the following section.
-<br>
-
-#### C. Migration File <a id="migration-file">
+#### A. Migration File <a id="migration-file">
 We need to create a table in the database to store information about the profile pictures we want to upload.  Run the following command to create a migration.
 ```sh
 php console make:migration profile_images
@@ -90,7 +47,7 @@ php console migrate
 Once the migration has been complete the new table will now be accessible in your database.
 <br>
 
-#### D. Setting up the Model <a id="model-setup">
+#### B. Setting up the Model <a id="model-setup">
 First we create a new model file.
 
 ```sh
@@ -111,22 +68,6 @@ protected static $_table = 'profile_images';
 protected static $_uploadPath = 'storage'.DS.'app'.DS.'private'.DS .'profile_images'.DS.'user_';
 public $url;
 public $user_id;
-```
-
-Next, add getter functions for allowed file types and maximum file sizes.  Allowed file types functions is shown below:
-
-```php
-public static function getAllowedFileTypes() {
-    return self::$allowedFileTypes;
-}
-```
-
-The max file size function is as follows:
-
-```php
-public static function getMaxAllowedFileSize() {
-    return self::$maxAllowedFileSize;
-}
 ```
 
 Finally, create a function to perform the upload.  An example is shown below:
@@ -183,26 +124,23 @@ public function editAction(): void {
     if($this->request->isPost()) {
         $this->request->csrfCheck();
 
-        // Handle file uploads
-        $files = $_FILES['profileImage'];
-        $isFiles = $files['tmp_name'] != '';
-        if($isFiles) {
-            $uploads = new UploadProfileImage($files, ProfileImages::getAllowedFileTypes(), 
-                ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS, "5mb");
-            
-            $uploads->runValidation();
-            $uploads->errorReporting($uploads->validates(), $user, 'profileImage');
-        }
+        // Handle file upload using the static method in Uploads
+        $uploads = Uploads::handleUpload(
+            $_FILES['profileImage'],
+            ProfileImages::getAllowedFileTypes(),
+            ProfileImages::getMaxAllowedFileSize(),
+            ROOT . DS,
+            "5mb"
+        );
 
         $user->assign($this->request->get(), Users::blackListedFormKeys);
         $user->save();
         if($user->validationPassed()){
-            if($isFiles) {
+            if($uploads) {
                 // Upload Image
                 ProfileImages::uploadProfileImage($user->id, $uploads);
             }
-            $sortOrder = json_decode($_POST['images_sorted']);
-            ProfileImages::updateSortByUserId($user->id, $sortOrder);
+            ProfileImages::updateSortByUserId($user->id, json_decode($_POST['images_sorted']));
 
             // Redirect
             Router::redirect('profile/index');
@@ -219,8 +157,13 @@ public function editAction(): void {
 Let's zero in on the block of code below the comment for `Handle file uploads`.  Between single and multiple file uploads most of the code is copy in paste.  We shall focus on the following line below and explain what happens.
 
 ```php
-$uploads = new UploadProfileImage($files, ProfileImages::getAllowedFileTypes(), 
-    ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS, "5mb");
+$uploads = Uploads::handleUpload(
+    $_FILES['profileImage'],
+    ProfileImages::getAllowedFileTypes(),
+    ProfileImages::getMaxAllowedFileSize(),
+    ROOT . DS,
+    "5mb"
+);
 ```
 
 The boolean value `false` is for the instance variable of the Upload class called $uploads.  When this value is set to false multiple file uploads is disabled.  ROOT.DS is the bucket variable.  Since we are using localhost for profile images it's set to the project root followed by a directory separator variable.  It can also be set as the path to a host containing an S3 bucket on a cloud base service such as Amazon Web Services (AWS).  The last variable, `5mb`, is used for messaging purposes for file size validation.
@@ -233,11 +176,17 @@ When setting up the view we use a call to the inputBlock function.  In the examp
 <br>
 
 ## 4. Multiple File Upload <a id="multiple-file"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents]
-There are two main differences when it comes to setting up uploads with multiple files.  Let's look at the call for the UploadProfileImage constructor again.
+There are two main differences when it comes to setting up uploads with multiple files.  Let's look at the call for the Uploads constructor again.
 
 ```php
-$uploads = new UploadProfileImage($files, ProfileImages::getAllowedFileTypes(), 
-    ProfileImages::getMaxAllowedFileSize(), true, ROOT.DS, "5mb");
+$uploads = Uploads::handleUpload(
+    $_FILES['profileImage'],
+    ProfileImages::getAllowedFileTypes(),
+    ProfileImages::getMaxAllowedFileSize(),
+    true,
+    ROOT . DS,
+    "5mb"
+);
 ```
 
 This time the value for the $multiple parameter is set to true.  That is the only change needed in your model file to switch from single file to multiple file upload mode.  The view file needs two additional changes as shown below:

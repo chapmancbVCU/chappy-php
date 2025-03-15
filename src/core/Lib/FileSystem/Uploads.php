@@ -81,6 +81,36 @@ class Uploads {
     }
 
     /**
+     * Handles file uploads and returns an Uploads instance if valid.
+     * 
+     * @param array $file The file input from $_FILES.
+     * @param array $allowedFileTypes Allowed MIME types.
+     * @param int $maxFileSize Maximum file size in bytes.
+     * @param string $bucket Upload destination.
+     * @param string $sizeMsg Size description for error messages.
+     * @param bool $multiple Whether the upload is multiple files.
+     * @return Uploads|null Returns Uploads instance if valid, otherwise null.
+     */
+    public static function handleUpload(array $file, array $allowedFileTypes, int $maxFileSize, string $bucket, string $sizeMsg, bool $multiple = false): ?self {
+        if (empty($file['tmp_name'])) {
+            return null; // No file uploaded
+        }
+
+        // Create an instance of Uploads
+        $uploadInstance = new static($file, $allowedFileTypes, $maxFileSize, $multiple, $bucket, $sizeMsg);
+
+        // Run validation
+        $uploadInstance->runValidation();
+
+        // If validation fails, return null
+        if (!$uploadInstance->validates()) {
+            return null;
+        }
+
+        return $uploadInstance;
+    }
+
+    /**
      * Restructures files input from post into an array that can be processed.
      *
      * @param array $files A single or an array of elements in the 
@@ -111,7 +141,10 @@ class Uploads {
      *
      * @return void
      */
-    public function runValidation(): void { }
+    public function runValidation(): void { 
+        $this->validateSize();
+        $this->validateFileType();
+    }
 
     /**
      * Performs file upload.
@@ -150,7 +183,35 @@ class Uploads {
      *
      * @return void
      */
-    protected function validateFileType(): void {}
+    protected function validateFileType(): void { 
+        $reportTypes = [];
+    
+        // Ensure allowed file types are mapped to their MIME types
+        foreach ($this->_allowedFileTypes as $type) {
+            if (is_int($type)) {
+                // Convert image type constant to MIME type if it's an integer (image type constant)
+                $reportTypes[] = image_type_to_mime_type($type);
+            } else {
+                // Otherwise, assume it's already a MIME type string
+                $reportTypes[] = $type;
+            }
+        }
+    
+        foreach ($this->_files as $file) {
+            $filePath = $file['tmp_name'];
+            $fileName = $file['name'];
+    
+            // Get the MIME type of the file
+            $mimeType = mime_content_type($filePath);
+    
+            // Check if the file type is allowed
+            if (!in_array($mimeType, $this->_allowedFileTypes, true)) {
+                $msg = "$fileName is not an allowed file type. Please use the following types: " . implode(', ', $reportTypes);
+                $this->addErrorMessage($fileName, $msg);
+            }
+        }
+    }
+    
 
     /**
      * Validates file size and sets error message if file is too large.

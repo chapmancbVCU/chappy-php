@@ -1,10 +1,11 @@
 <?php
 namespace App\Controllers;
+use Core\Lib\Utilities\Env;
 use Core\Lib\Logging\Logger;
+use Core\Lib\FileSystem\Uploads;
 use Core\Lib\FileSystem\UploadProfileImage;
 use App\Models\{Login, ProfileImages, Users};
 use Core\{Controller, Helper, Router, Session};
-use Core\Lib\Utilities\Env;
 /**
  * Implements support for our Auth controller.  Functions found in this 
  * class will support tasks related to the user registration and 
@@ -87,14 +88,15 @@ class AuthController extends Controller {
         $newUser = new Users();
         if($this->request->isPost()) {
             $this->request->csrfCheck();
-            $files = $_FILES['profileImage'];
-            if($files['tmp_name'] != '') {
-                $uploads = new UploadProfileImage($files, ProfileImages::getAllowedFileTypes(), 
-                    ProfileImages::getMaxAllowedFileSize(), false, ROOT.DS, "5mb");
-                
-                $uploads->runValidation();
-                $uploads->errorReporting($uploads->validates(), $newUser, 'profileImage');
-            }
+            
+            // Handle file upload
+            $uploads = Uploads::handleUpload(
+                $_FILES['profileImage'],
+                ProfileImages::getAllowedFileTypes(),
+                ProfileImages::getMaxAllowedFileSize(),
+                ROOT . DS,
+                "5mb"
+            );
 
             $newUser->assign($this->request->get());
             $newUser->confirm = $this->request->get('confirm');
