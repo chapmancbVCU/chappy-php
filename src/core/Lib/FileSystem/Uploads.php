@@ -127,7 +127,6 @@ class Uploads {
             $file, 
             $uploadModel::getAllowedFileTypes(), 
             $uploadModel::getMaxAllowedFileSize(), 
-            $multiple, 
             $bucket, 
             $sizeMsg, 
             $multiple
@@ -135,7 +134,7 @@ class Uploads {
 
         // Run validation and report if any errors.
         $uploadInstance->runValidation();
-        $uploadInstance->errorReporting($uploadInstance->validates(), $model, $name);
+        $uploadInstance->errorReporting($uploadInstance->validates(), $model, 'profileImage');
 
         return $uploadInstance;
     }
