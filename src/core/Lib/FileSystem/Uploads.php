@@ -3,6 +3,7 @@ namespace Core\Lib\FileSystem;
 use Core\Model;
 use Core\Helper;
 use Core\Lib\Logging\Logger;
+use InvalidArgumentException;
 /**
  * Provides support for file uploads.
  */
@@ -28,7 +29,14 @@ class Uploads {
      * @param string $sizeMsg The message describing the maximum allowable 
      * size usually described as <size_as_an_int><bytes|mb|gb> (e.g.: 5mb).
      */
-    public function __construct(array|string $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket, string $sizeMsg) {
+    public function __construct(
+        array|string $files, 
+        array $fileTypes, 
+        int $maxAllowedSize, 
+        string $bucket, 
+        string $sizeMsg, 
+        bool $multiple
+    ) {
         $this->_files = self::restructureFiles($files, $multiple);
         $this->_allowedFileTypes = $fileTypes;
         $this->_maxAllowedSize = $maxAllowedSize;
@@ -91,21 +99,40 @@ class Uploads {
      * @param bool $multiple Whether the upload is multiple files.
      * @return Uploads|null Returns Uploads instance if valid, otherwise null.
      */
-    public static function handleUpload(array $file, array $allowedFileTypes, int $maxFileSize, string $bucket, string $sizeMsg, bool $multiple = false): ?self {
+    public static function handleUpload(
+        array $file, 
+        string $uploadModel, 
+        string $bucket, 
+        string $sizeMsg, 
+        Model $model, 
+        string $name, 
+        bool $multiple = false
+    ): ?self {
+
         if (empty($file['tmp_name'])) {
             return null; // No file uploaded
         }
 
-        // Create an instance of Uploads
-        $uploadInstance = new static($file, $allowedFileTypes, $maxFileSize, $multiple, $bucket, $sizeMsg);
-
-        // Run validation
-        $uploadInstance->runValidation();
-
-        // If validation fails, return null
-        if (!$uploadInstance->validates()) {
-            return null;
+        // Ensure the model class exists and has required methods
+        if (!class_exists($uploadModel) || !method_exists($uploadModel, 'getAllowedFileTypes') || 
+                !method_exists($uploadModel, 'getMaxAllowedFileSize')) {
+            throw new InvalidArgumentException("Invalid model class: $uploadModel");
         }
+
+        // Create an instance of Uploads
+        $uploadInstance = new static(
+            $file, 
+            $uploadModel::getAllowedFileTypes(), 
+            $uploadModel::getMaxAllowedFileSize(), 
+            $multiple, 
+            $bucket, 
+            $sizeMsg, 
+            $multiple
+        );
+
+        // Run validation and report if any errors.
+        $uploadInstance->runValidation();
+        $uploadInstance->errorReporting($uploadInstance->validates(), $model, $name);
 
         return $uploadInstance;
     }

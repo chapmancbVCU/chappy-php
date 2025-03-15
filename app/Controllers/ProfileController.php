@@ -44,14 +44,15 @@ class ProfileController extends Controller {
         $profileImages = ProfileImages::findByUserId($user->id);
         if($this->request->isPost()) {
             $this->request->csrfCheck();
-            
+
             // Handle file upload
             $uploads = Uploads::handleUpload(
                 $_FILES['profileImage'],
-                ProfileImages::getAllowedFileTypes(),
-                ProfileImages::getMaxAllowedFileSize(),
+                ProfileImages::class,
                 ROOT . DS,
-                "5mb"
+                "5mb",
+                $user,
+                'profileImage'
             );
 
             $user->assign($this->request->get(), Users::blackListedFormKeys);

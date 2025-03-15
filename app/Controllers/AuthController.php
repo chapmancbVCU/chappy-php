@@ -92,10 +92,11 @@ class AuthController extends Controller {
             // Handle file upload
             $uploads = Uploads::handleUpload(
                 $_FILES['profileImage'],
-                ProfileImages::getAllowedFileTypes(),
-                ProfileImages::getMaxAllowedFileSize(),
+                ProfileImages::class,
                 ROOT . DS,
-                "5mb"
+                "5mb",
+                $newUser,
+                'profileImage'
             );
 
             $newUser->assign($this->request->get());
