@@ -7,6 +7,7 @@
     * B. [Setting up the Model](#model-setup)
 3. [Single File Upload](#single-file)
 4. [Multiple File Upload](#multiple-file)
+5. [Configuring File Types](#file-types)
 <br>
 <br>
 
@@ -159,10 +160,11 @@ Let's zero in on the block of code below the comment for `Handle file uploads`. 
 ```php
 $uploads = Uploads::handleUpload(
     $_FILES['profileImage'],
-    ProfileImages::getAllowedFileTypes(),
-    ProfileImages::getMaxAllowedFileSize(),
+    ProfileImages::class,
     ROOT . DS,
-    "5mb"
+    "5mb",
+    $user,
+    'profileImage'
 );
 ```
 
@@ -181,11 +183,12 @@ There are two main differences when it comes to setting up uploads with multiple
 ```php
 $uploads = Uploads::handleUpload(
     $_FILES['profileImage'],
-    ProfileImages::getAllowedFileTypes(),
-    ProfileImages::getMaxAllowedFileSize(),
-    true,
+    ProfileImages::class,
     ROOT . DS,
-    "5mb"
+    "5mb",
+    $user,
+    'profileImage',
+    true
 );
 ```
 
@@ -196,3 +199,94 @@ This time the value for the $multiple parameter is set to true.  That is the onl
 ```
 
 The profileImage, the name attribute's value, needs brackets so that we know we are using an array of files as the value for the inputBlock function call.  You also need to add 'multiple' => 'multiple' as an element for the $inputAttrs array.  Otherwise, the window that allows users to select a file will only allow you to select one file.
+
+## 5. Configuring File Types <a id="file-types"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents]
+The following is a sample list of file types you can place in the `$allowedFileTypes` array:
+
+```php
+protected static $allowedFileTypes = [
+    // **Images**
+    'image/gif',
+    'image/jpeg',
+    'image/pjpeg',
+    'image/png',
+    'image/apng',
+    'image/webp',
+    'image/svg+xml',
+    'image/tiff',
+    'image/x-tiff',
+    'image/bmp',
+    'image/x-ms-bmp',
+    'image/heif',
+    'image/heic',
+    'image/x-icon',
+    'image/vnd.microsoft.icon',
+
+    // **Documents (Word, PDF, OpenDocument)**
+    'application/pdf',                    // PDF
+    'application/msword',                  // DOC (Microsoft Word 97-2003)
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // DOCX (Microsoft Word)
+    'application/vnd.oasis.opendocument.text', // ODT (OpenDocument Text)
+
+    // **Text Files**
+    'text/plain',                          // TXT (Plain text)
+    'text/csv',                            // CSV (Comma-separated values)
+    'text/html',                           // HTML (HyperText Markup Language)
+    'text/xml',                            // XML (Extensible Markup Language)
+    'application/json',                    // JSON (JavaScript Object Notation)
+
+    // **Spreadsheets**
+    'application/vnd.ms-excel',            // XLS (Microsoft Excel 97-2003)
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // XLSX (Microsoft Excel)
+    'application/vnd.oasis.opendocument.spreadsheet', // ODS (OpenDocument Spreadsheet)
+    'text/csv',                            // CSV (Comma-separated values)
+
+    // **Presentations**
+    'application/vnd.ms-powerpoint',       // PPT (Microsoft PowerPoint 97-2003)
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation', // PPTX (Microsoft PowerPoint)
+    'application/vnd.oasis.opendocument.presentation', // ODP (OpenDocument Presentation)
+
+    // **Archives & Compressed Files**
+    'application/zip',                      // ZIP (Compressed archive)
+    'application/x-7z-compressed',          // 7Z (7-Zip archive)
+    'application/x-rar-compressed',         // RAR (RAR archive)
+    'application/x-tar',                    // TAR (Tape Archive)
+    'application/gzip',                      // GZ (Gzip compressed file)
+
+    // **Audio Files**
+    'audio/mpeg',                           // MP3
+    'audio/ogg',                            // OGG
+    'audio/wav',                            // WAV
+    'audio/x-wav',                          // WAV (alternative)
+    'audio/flac',                           // FLAC (Free Lossless Audio Codec)
+    'audio/aac',                            // AAC (Advanced Audio Codec)
+    'audio/webm',                           // WEBM Audio
+
+    // **Video Files**
+    'video/mp4',                            // MP4 (MPEG-4)
+    'video/x-msvideo',                      // AVI
+    'video/x-ms-wmv',                       // WMV
+    'video/webm',                           // WEBM
+    'video/ogg',                            // OGG Video
+    'video/quicktime',                      // MOV (Apple QuickTime)
+    'video/x-flv',                          // FLV (Flash Video)
+
+    // **Executable & Scripts**
+    'application/x-msdownload',             // EXE (Windows Executable)
+    'application/x-sh',                     // SH (Shell script)
+    'application/x-python-code',            // PY (Python script)
+    'application/javascript',               // JS (JavaScript file)
+    'application/x-httpd-php',              // PHP (PHP script)
+
+    // **Fonts**
+    'font/otf',                             // OTF (OpenType Font)
+    'font/ttf',                             // TTF (TrueType Font)
+    'application/vnd.ms-fontobject',        // EOT (Embedded OpenType)
+    'font/woff',                            // WOFF (Web Open Font Format)
+    'font/woff2',                           // WOFF2 (Web Open Font Format v2)
+
+    // **Miscellaneous**
+    'application/x-shockwave-flash',        // SWF (Adobe Flash)
+    'application/vnd.android.package-archive', // APK (Android Package)
+];
+```
