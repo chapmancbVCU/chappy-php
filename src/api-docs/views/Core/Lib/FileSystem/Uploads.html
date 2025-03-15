@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="index, follow, all" />
-    <title>Core\Lib\Utilities\UploadProfileImage | Chappy.php API</title>
+    <title>Core\Lib\FileSystem\Uploads | Chappy.php API</title>
 
             <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
@@ -23,7 +23,7 @@
           title="Chappy.php API (main)" />
     </head>
 
-    <body id="class" data-name="class:Core_Lib_Utilities_UploadProfileImage" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
+    <body id="class" data-name="class:Core_Lib_FileSystem_Uploads" data-root-path="../../../" data-search-index-url="../../../doctum-search.json">
             <div id="content">
         <div id="left-column">
                 <div id="control-panel">
@@ -79,18 +79,18 @@
                         <div class="namespace-breadcrumbs">
             <ol class="breadcrumb">
                 <li><span class="label label-default">class</span></li>
-                        <li><a href="../../../Core.html">Core</a></li><li class="backslash">\</li><li><a href="../../../Core/Lib.html">Lib</a></li><li class="backslash">\</li><li><a href="../../../Core/Lib/Utilities.html">Utilities</a></li><li class="backslash">\</li><li>UploadProfileImage</li>
+                        <li><a href="../../../Core.html">Core</a></li><li class="backslash">\</li><li><a href="../../../Core/Lib.html">Lib</a></li><li class="backslash">\</li><li><a href="../../../Core/Lib/FileSystem.html">FileSystem</a></li><li class="backslash">\</li><li>Uploads</li>
             </ol>
         </div>
                 <div id="page-content">
     <div class="page-header">
-        <h1>UploadProfileImage    
+        <h1>Uploads    
             </h1>
     </div>
 
     
     <p>        class
-    <strong>UploadProfileImage</strong>        extends <a href="../../../Core/Lib/Utilities/Uploads.html"><abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a>
+    <strong>Uploads</strong>
 </p>
 
         
@@ -98,7 +98,7 @@
         
 
             <div class="description">
-            <p><p>Supports the ability to upload a single profile image at a time.</p></p>                    </div>
+            <p><p>Provides support for file uploads.</p></p>                    </div>
             
         
     
@@ -111,7 +111,7 @@
                     
                 </div>
                 <div class="col-md-8">
-                    <a href="#method___construct">__construct</a>(<abbr title="Core\Lib\Utilities\array|string">array|string</abbr> $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket, string $sizeMsg)
+                    <a href="#method___construct">__construct</a>(<abbr title="Core\Lib\FileSystem\array|string">array|string</abbr> $files, array $fileTypes, int $maxAllowedSize, string $bucket, string $sizeMsg, bool $multiple)
         
                                             <p><p>Creates instance of Uploads class.</p></p>                </div>
                 <div class="col-md-2"></div>
@@ -121,12 +121,11 @@
                     void
                 </div>
                 <div class="col-md-8">
-                    <a href="#method_errorReporting">errorReporting</a>(<abbr title="Core\Lib\Utilities\bool|array">bool|array</abbr> $errors, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name)
+                    <a href="#method_errorReporting">errorReporting</a>(<abbr title="Core\Lib\FileSystem\bool|array">bool|array</abbr> $errors, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name)
         
                                             <p><p>Processes list of errors associated with uploads and makes them
 presentable to user during validation.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Core/Lib/Utilities/Uploads.html#method_errorReporting">
-<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -136,8 +135,17 @@ presentable to user during validation.</p></p>                </div>
                     <a href="#method_getFiles">getFiles</a>()
         
                                             <p><p>Getter function for the $_files array.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Core/Lib/Utilities/Uploads.html#method_getFiles">
-<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a></small></div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;<a href="../../../Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a>|null
+                </div>
+                <div class="col-md-8">
+                    <a href="#method_handleUpload">handleUpload</a>(array $file, string $uploadModel, string $bucket, string $sizeMsg, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name, bool $multiple = false)
+        
+                                            <p><p>Handles file uploads and returns an Uploads instance if valid.</p></p>                </div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -147,8 +155,7 @@ presentable to user during validation.</p></p>                </div>
                     <a href="#method_restructureFiles">restructureFiles</a>(array $files, bool $multiple)
         
                                             <p><p>Restructures files input from post into an array that can be processed.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Core/Lib/Utilities/Uploads.html#method_restructureFiles">
-<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -168,8 +175,7 @@ presentable to user during validation.</p></p>                </div>
                     <a href="#method_upload">upload</a>(string $path, string $uploadName, string $fileName)
         
                                             <p><p>Performs file upload.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Core/Lib/Utilities/Uploads.html#method_upload">
-<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
@@ -179,8 +185,7 @@ presentable to user during validation.</p></p>                </div>
                     <a href="#method_validates">validates</a>()
         
                                             <p><p>Reports on success of validation.</p></p>                </div>
-                <div class="col-md-2"><small>from&nbsp;<a href="../../../Core/Lib/Utilities/Uploads.html#method_validates">
-<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a></small></div>
+                <div class="col-md-2"></div>
             </div>
             </div>
 
@@ -190,9 +195,9 @@ presentable to user during validation.</p></p>                </div>
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method___construct">
-        <div class="location">at line 24</div>
+        <div class="location">at line 32</div>
         <code>                    
-    <strong>__construct</strong>(<abbr title="Core\Lib\Utilities\array|string">array|string</abbr> $files, array $fileTypes, int $maxAllowedSize, bool $multiple, string $bucket, string $sizeMsg)
+    <strong>__construct</strong>(<abbr title="Core\Lib\FileSystem\array|string">array|string</abbr> $files, array $fileTypes, int $maxAllowedSize, string $bucket, string $sizeMsg, bool $multiple)
         </code>
     </h3>
     <div class="details">    
@@ -207,7 +212,7 @@ presentable to user during validation.</p></p>                </div>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="Core\Lib\Utilities\array|string">array|string</abbr></td>
+                <td><abbr title="Core\Lib\FileSystem\array|string">array|string</abbr></td>
                 <td>$files</td>
                 <td><p>Array of files to be uploaded.</p></td>
             </tr>
@@ -223,12 +228,6 @@ presentable to user during validation.</p></p>                </div>
 file.  This can vary depending on requirements.</p></td>
             </tr>
                     <tr>
-                <td>bool</td>
-                <td>$multiple</td>
-                <td><p>A boolean flag to set whether or not we are
-working with a single file upload or an array regarding form setup.</p></td>
-            </tr>
-                    <tr>
                 <td>string</td>
                 <td>$bucket</td>
                 <td><p>The location where the files will be stored.</p></td>
@@ -238,6 +237,12 @@ working with a single file upload or an array regarding form setup.</p></td>
                 <td>$sizeMsg</td>
                 <td><p>The message describing the maximum allowable
 size usually described as <size_as_an_int>&lt;bytes|mb|gb&gt; (e.g.: 5mb).</p></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$multiple</td>
+                <td><p>A boolean flag to set whether or not we are
+working with a single file upload or an array regarding form setup.</p></td>
             </tr>
             </table>
 
@@ -251,10 +256,9 @@ size usually described as <size_as_an_int>&lt;bytes|mb|gb&gt; (e.g.: 5mb).</p></
             </div>
                     <div class="method-item">
                     <h3 id="method_errorReporting">
-        <div class="location">in <a href="../../../Core/Lib/Utilities/Uploads.html#method_errorReporting">
-<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a> at line 64</div>
+        <div class="location">at line 72</div>
         <code>                    void
-    <strong>errorReporting</strong>(<abbr title="Core\Lib\Utilities\bool|array">bool|array</abbr> $errors, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name)
+    <strong>errorReporting</strong>(<abbr title="Core\Lib\FileSystem\bool|array">bool|array</abbr> $errors, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name)
         </code>
     </h3>
     <div class="details">    
@@ -270,7 +274,7 @@ presentable to user during validation.</p></p>
 
                     <table class="table table-condensed">
                     <tr>
-                <td><abbr title="Core\Lib\Utilities\bool|array">bool|array</abbr></td>
+                <td><abbr title="Core\Lib\FileSystem\bool|array">bool|array</abbr></td>
                 <td>$errors</td>
                 <td><p>The errors, if any are detected will be an array.</p></td>
             </tr>
@@ -305,8 +309,7 @@ presentable to user during validation.</p></p>
             </div>
                     <div class="method-item">
                     <h3 id="method_getFiles">
-        <div class="location">in <a href="../../../Core/Lib/Utilities/Uploads.html#method_getFiles">
-<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a> at line 79</div>
+        <div class="location">at line 87</div>
         <code>                    array
     <strong>getFiles</strong>()
         </code>
@@ -337,9 +340,82 @@ presentable to user during validation.</p></p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_handleUpload">
+        <div class="location">at line 105</div>
+        <code>        static            <a href="../../../Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a>|null
+    <strong>handleUpload</strong>(array $file, string $uploadModel, string $bucket, string $sizeMsg, <a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a> $model, string $name, bool $multiple = false)
+        </code>
+    </h3>
+    <div class="details">    
+    
+            
+
+        <div class="method-description">
+                            <p><p>Handles file uploads and returns an Uploads instance if valid.</p></p>                        
+        </div>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$file</td>
+                <td><p>The file input from $_FILES.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$uploadModel</td>
+                <td><p>The name of the model class responsible for uploads.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$bucket</td>
+                <td><p>Upload destination.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$sizeMsg</td>
+                <td><p>Size description for error messages.</p></td>
+            </tr>
+                    <tr>
+                <td><a href="../../../Core/Model.html"><abbr title="Core\Model">Model</abbr></a></td>
+                <td>$model</td>
+                <td><p>The associated with the view you are working with.
+May or may not be same as $uploadModel if $uploadModel has index
+id field associated with another model.</p></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td><p>The name attribute associated with the file(s).</p></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$multiple</td>
+                <td><p>Whether the upload is multiple files.</p></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Core/Lib/FileSystem/Uploads.html"><abbr title="Core\Lib\FileSystem\Uploads">Uploads</abbr></a>|null</td>
+            <td><p>Returns Uploads instance if valid, otherwise null.</p></td>
+        </tr>
+    </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_restructureFiles">
-        <div class="location">in <a href="../../../Core/Lib/Utilities/Uploads.html#method_restructureFiles">
-<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a> at line 91</div>
+        <div class="location">at line 150</div>
         <code>        static            array
     <strong>restructureFiles</strong>(array $files, bool $multiple)
         </code>
@@ -388,7 +464,7 @@ process.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_runValidation">
-        <div class="location">at line 34</div>
+        <div class="location">at line 173</div>
         <code>                    void
     <strong>runValidation</strong>()
         </code>
@@ -420,8 +496,7 @@ process.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_upload">
-        <div class="location">in <a href="../../../Core/Lib/Utilities/Uploads.html#method_upload">
-<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a> at line 124</div>
+        <div class="location">at line 186</div>
         <code>                    void
     <strong>upload</strong>(string $path, string $uploadName, string $fileName)
         </code>
@@ -473,8 +548,7 @@ process.</p></td>
             </div>
                     <div class="method-item">
                     <h3 id="method_validates">
-        <div class="location">in <a href="../../../Core/Lib/Utilities/Uploads.html#method_validates">
-<abbr title="Core\Lib\Utilities\Uploads">Uploads</abbr></a> at line 144</div>
+        <div class="location">at line 206</div>
         <code>                    bool|array
     <strong>validates</strong>()
         </code>
