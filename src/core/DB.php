@@ -290,7 +290,7 @@ class DB {
      * is not successful the $_error instance variable is set to true and is 
      * returned.
      */
-    public function query($sql, $params = [],$class = false) {
+    public function query($sql, $params = [], $class = false) {
         $this->_error = false;
         $startTime = microtime(true);
     
@@ -307,17 +307,29 @@ class DB {
                 $this->_count = $this->_query->rowCount();
                 $this->_lastInsertID = $this->_pdo->lastInsertId();
     
-                Logger::log("Executed Query: $sql | Params: " . json_encode($params) . " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s", 'debug');
+                // Log only slow or modifying queries
+                if ($executionTime > 0.1 || preg_match('/^(UPDATE|INSERT|DELETE)/i', $sql)) {
+                    Logger::log("Executed Query: $sql | Params: " . json_encode($params) . 
+                    " | Rows Affected: {$this->_count} | Execution Time: " . number_format($executionTime, 5) . "s", 'debug');
+                }
             } else {
                 $this->_error = true;
-                Logger::log("Database Error: " . json_encode($this->_query->errorInfo()) . " | Query: $sql | Params: " . json_encode($params), 'error');
+                $errorInfo = $this->_query->errorInfo();
+                if (!empty($errorInfo[2])) {
+                    Logger::log("Database Error: {$errorInfo[2]} | Query: $sql | Params: " . json_encode($params), 'error');
+                }
             }
         } else {
-            Logger::log("Failed to prepare query: $sql | Params: " . json_encode($params), 'error');
+            static $queryFailureCount = 0;
+            $queryFailureCount++;
+            if ($queryFailureCount < 5) {
+                Logger::log("Query Preparation Failed [Count: $queryFailureCount]: $sql | Params: " . json_encode($params), 'error');
+            }
         }
     
         return $this;
     }
+    
     
 
     /**
