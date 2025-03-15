@@ -8,7 +8,7 @@
 <br>
 
 ## 1. Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-Here we provide the resources needed to get your project up and running.
+Here we provide the resources needed to get your project up and running.  Links to individual operation systems and stacks are described below.
 <br>
 
 ## 2. System Requirements <a id="requirements"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
