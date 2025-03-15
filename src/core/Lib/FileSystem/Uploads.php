@@ -231,7 +231,9 @@ class Uploads {
             $fileName = $file['name'];
     
             // Get the MIME type of the file
-            $mimeType = mime_content_type($filePath);
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $mimeType = finfo_file($finfo, $filePath);
+            finfo_close($finfo);
     
             // Check if the file type is allowed
             if (!in_array($mimeType, $this->_allowedFileTypes, true)) {
