@@ -4,7 +4,7 @@
 1. [Overview](#overview)
 2. [Common](#common)
 3. [XAMPP](#xampp)
-
+4. [Standalone PHP](#php)
 <br>
 <br>
 
@@ -134,3 +134,54 @@ DB_USER=root
 npm run dev
 ```
 * J. Open browser and navigate to `http://localhost/chappy-php/home`.
+<br>
+
+## 2. Standalone PHP <a id="php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+#### 1: Install PHP 8.3+
+* A. **Download PHP**  
+   - Go to the official [Windows PHP downloads](https://windows.php.net/download).
+   - Download the **latest PHP 8.3+ (Thread Safe) zip package**.
+   
+* B. **Extract and Set Up PHP**  
+   - Extract the downloaded ZIP to `C:\php`.
+   - Rename `php.ini-development` to `php.ini` in `C:\php`.
+   - Open `php.ini` and enable necessary extensions:
+     ```ini
+     extension=sqlite3
+     extension=mbstring
+     extension=openssl
+     ```
+   - Add `C:\php` to the **system PATH**:
+     - Open **Start Menu**, search for **"Environment Variables"**.
+     - Under **System Variables**, edit the **Path** variable.
+     - Click **New**, then add `C:\php`.
+
+* C. **Verify Installation**  
+   - Open **Command Prompt (cmd)** and run:
+     ```sh
+     php -v
+     ```
+   - If PHP 8.3+ is displayed, it's correctly installed.
+
+#### 2. Setup The Project
+* A. Install **Composer** using the instructions described above.
+* B. Cone the project:
+```powershell
+git clone git@github.com:chapmancbVCU/chappy-php.git
+```
+
+* C. cd into project and run the command:
+```powershell
+composer run install-project
+```
+
+* D. Open the project with your preferred IDE.  We use VScode.
+* E. In the terminal run the command:
+```sh
+php console serve
+```
+* F. In a new terminal tab run the command:
+```sh
+npm run dev
+```
+* G. Navigate to `localhost:8000` in your preferred web browser.
