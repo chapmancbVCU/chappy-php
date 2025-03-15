@@ -1,5 +1,6 @@
 <?php
 namespace Core\Lib\Database;
+use Core\Lib\Utilities\DateTime;
 use Core\{DB, Helper};
 use Console\Helpers\Tools;
 
@@ -35,7 +36,7 @@ abstract class Migration {
      * @return void
      */
     public function aclSetup($table) {
-        $timestamp = Helper::timeStamps();
+        $timestamp = DateTime::timeStamps();
         if($table == 'acl') {
             $this->_db->insert('acl', ['acl' => 'Admin', 'deleted' => 0, 'created_at' => $timestamp, 'updated_at' => $timestamp]);
         }
