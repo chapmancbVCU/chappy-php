@@ -7,7 +7,7 @@
 <div class="align-items-center justify-content-center mx-auto my-3 w-50">
     <a href="<?=Env::get('APP_DOMAIN', '/')?>admindashboard/index" class="btn btn-sm btn-secondary mb-3">Back</a>
     <?php if($this->profileImage != null):?>
-        <img src="<?=Env::get('APP_DOMAIN', '/')?>.$this->profileImage->url?>"
+        <img src="<?=Env::get('APP_DOMAIN', '/').$this->profileImage->url?>"
             class="img-thumbnail mx-auto my-5 d-block w-50 rounded border border-primary shadow-lg">
         </img>
     <?php endif; ?>
