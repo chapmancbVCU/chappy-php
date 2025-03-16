@@ -128,7 +128,6 @@ Things to consider
 - By default, XAMPP stores all web files in `/Applications/XAMPP/htdocs/`.  
 - **We recommend moving `htdocs` outside `/Applications/XAMPP/`** to avoid losing files when upgrading XAMPP.
 - For example, you can move it to `~/Sites/htdocs/` and update Apache’s config.
-- A comprehensive guide for changing `htdocs` location can be found [here](https://www.youtube.com/watch?v=cWPSBbwmQFE).  There are some written steps for this below that are not as detailed.
 - Updates to composer packages may require you to upgrade XAMPP.
 <br>
 
@@ -188,23 +187,9 @@ sudo launchctl load -w /Library/LaunchDaemons/org.apache.httpd.plist
 sudo launchctl load -w /Library/LaunchDaemons/org.mysql.mysqld.plist
 ```
 
-#### 5: Updating Apache for Custom `htdocs` Location
-If you moved your `htdocs`, update Apache to point to it.
+#### 5: Moving XAMPP's Root Directory (htdocs)
+By default, XAMPP's htdocs directory is located inside /Applications/XAMPP/htdocs. However, for easier management and to prevent data loss when updating XAMPP, it's recommended to move it to another location.
 
-* A. Open the Apache config file:
-```sh
-sudo vi /Applications/XAMPP/xamppfiles/etc/httpd.conf
-```
-* B. Find the line:
-```sh
-DocumentRoot "/Applications/XAMPP/htdocs"
-```
-* C. Change it to your new location:
-```sh
-sudo /Applications/XAMPP/xampp restart
-```
+Watch this video tutorial to learn how to move the root directory properly:
 
-* D. Restart Apache:
-```sh
-sudo /Applications/XAMPP/xampp restart
-```
+📺 How to Change XAMPP Root Directory on MacOS [YouTube](https://www.youtube.com/watch?v=cWPSBbwmQFE)
