@@ -12,7 +12,7 @@ Get to any resource within the Chappy.php Wiki from here.
 7. [Forms](forms)
 8. [Getting Started](getting_started)
     * A. [Linux](linux) - Coming soon
-    * B. [MacOS](macos) - Coming soon
+    * B. [MacOS](macos)
     * A. [Windows](windows)
 9. [JavaScript](javascript)
 10. [Models](models)
