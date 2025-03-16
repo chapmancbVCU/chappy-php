@@ -11,7 +11,9 @@ Get to any resource within the Chappy.php Wiki from here.
 6. [Debugging and Logs](debugging_and_logs)
 7. [Forms](forms)
 8. [Getting Started](getting_started)
-    * A. [Linux](linux) - Coming soon
+    * A. [Linux PHP Standalone](linux-php-standalone) - Coming soon
+    * B. [Linux With Apache](linux-apache) - Coming soon
+    * C. [Linux With Nginx](linux-nginx) - Coming soon
     * B. [MacOS](macos)
     * A. [Windows](windows)
 9. [JavaScript](javascript)
