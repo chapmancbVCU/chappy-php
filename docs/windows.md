@@ -168,7 +168,7 @@ OR
      ```
     - If PHP 8.3+ is displayed, it's correctly installed.
 * E. **Install Composer**
-    - Refer to instruction in the **Common** section for installing from Composer directly.
+    - Refer to instruction in the **Common** section for installing from Composer.
 
 #### 2. Setup The Project
 * A. Install **Composer** using the instructions described above.

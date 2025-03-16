@@ -11,7 +11,9 @@ Get to any resource within the Chappy.php Wiki from here.
 6. [Debugging and Logs](debugging_and_logs)
 7. [Forms](forms)
 8. [Getting Started](getting_started)
-    * A. [Windows](windows) - Coming soon
+    * A. [Linux](linux) - Coming soon
+    * B. [MacOS](macos) - Coming soon
+    * A. [Windows](windows)
 9. [JavaScript](javascript)
 10. [Models](models)
 11. [Server Side Validation](server_side_validation)
