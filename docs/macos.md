@@ -4,7 +4,8 @@
 1. [Overview](#overview)
 2. [Install Homebrew](#homebrew)
 3. [Node.js](nodejs)
-4. [Without XAMPP](#no-xampp)
+4. [Development Setup](#dev)
+5. [XAMPP](#xampp)
 <br>
 <br>
 
@@ -21,13 +22,12 @@ This guide shows you how to setup this framework on MacOS.
     - Ensure you run the 3 commands required after the setup process is finished to setup your path.
 <br>
 
-## 2. Node.js <a id="nodejs"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 3. Node.js <a id="nodejs"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 #### 1: Option 1 - Install via Homebrew (Recommended)
 * A. Run:
 ```sh
 brew install node
 ```
-<br>
 
 #### 2: Option 2: Install via NVM (Node Version Manager)
 This allows you to manage multiple Node.js versions.
@@ -35,7 +35,6 @@ This allows you to manage multiple Node.js versions.
 ```sh
 brew install nvm
 ```
-<br>
 
 * B. Step 2: Setup NVM
     - Add the following to your ~/.zshrc (or ~/.bashrc if using Bash):
@@ -49,13 +48,11 @@ export NVM_DIR="$HOME/.nvm"
 ```sh
 source ~/.zshrc
 ```
-<br>
 
 * C. Step 3: Install Node.js using NVM
 ```sh
 nvm install --lts
 ```
-<br>
 
 * D. Step 4: Verify installation
     - Run
@@ -71,41 +68,36 @@ X.X.X (NPM version)
 ```
 <br>
 
-## 3. Without XAMPP <a id="XAMPP"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 4. Development Setup <a id="dev"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 #### 1: PHP Setup
 * A. Step 1: Install PHP
     - Run:
 ```sh
 brew install php
 ```
-<br>
 
 * B. Step 2: Verify install
     - Run:
 ```sh
 php -v
 ```
-<br>
 
 * C: Step 3: Start PHP as a service
     - Run:
 ```sh
 brew services start php
 ```
-<br>
 
 #### 2: Setup Composer
 * A. Run:
 ```sh
 brew install composer
 ```
-<br>
 
 * B. Verify install.  Run:
 ```sh
 composer -v
 ```
-<br>
 
 #### 3: Setup and Run Project
 * A. Cone the project:
@@ -128,3 +120,91 @@ php console serve
 npm run dev
 ```
 * F. Navigate to `localhost:8000` in your preferred web browser.
+<br>
+
+## 5. XAMPP <a id="xampp"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+Things to consider
+- When using XAMPP you should install XAMPP first before setting up composer.
+- By default, XAMPP stores all web files in `/Applications/XAMPP/htdocs/`.  
+- **We recommend moving `htdocs` outside `/Applications/XAMPP/`** to avoid losing files when upgrading XAMPP.
+- For example, you can move it to `~/Sites/htdocs/` and update Apache’s config.
+- A comprehensive guide for changing `htdocs` location can be found [here](https://www.youtube.com/watch?v=cWPSBbwmQFE).  There are some written steps for this below that are not as detailed.
+- Updates to composer packages may require you to upgrade XAMPP.
+<br>
+
+#### 1: Setup
+* A. Open browser and go to https://www.apachefriends.org/ and download **XAMPP for MacOS**.
+* B. Run installer using default options.
+
+#### 2: Setup Composer
+* A. Install **Composer**.
+    - Run:
+```sh
+brew install composer
+```
+    - Verify install.  Run:
+```sh
+composer -v
+```
+
+#### 3: Project Setup
+* A. Navigate to `Applications/XAMPP/htdocs` or your alternate location for `htdocs` using the Terminal.
+* B. Cone the project inside the `htdocs` directory:
+```sh
+git clone git@github.com:chapmancbVCU/chappy-php.git
+```
+* C. cd into project directory and run:
+```sh
+composer run install-project
+```
+
+* D. Open manager-osx.
+* E. Within the manager-osx start all services.
+* F. Open project in your preferred editor.  We use VSCode.
+* G. Open the .env file.
+* H. Set `APP_DOMAIN` TO `http://localhost/chappy-php/`.  If you renamed your project directory then the second portion of the URL must match.  The URL must have the last forward slash.  Otherwise, the page and routing will not work correctly.
+* I. Update the database section:
+```php
+# Set to mysql or mariadb for production
+DB_CONNECTION=mysql
+DB_HOST='127.0.0.1'
+DB_PORT=3306
+# Set to your database name for production
+DB_DATABASE=chappy
+DB_USER=root
+DB_PASSWORD=    # Sometimes uses root as password
+```
+* J. Run the command:
+```sh
+npm run dev
+```
+* K. Open browser and navigate to `http://localhost/chappy-php/home`.
+<br>
+
+#### 4: Ensure XAMPP Starts on Boot
+To ensure XAMPP services start automatically, open Terminal and run:
+```sh
+sudo launchctl load -w /Library/LaunchDaemons/org.apache.httpd.plist
+sudo launchctl load -w /Library/LaunchDaemons/org.mysql.mysqld.plist
+```
+
+#### 5: Updating Apache for Custom `htdocs` Location
+If you moved your `htdocs`, update Apache to point to it.
+
+* A. Open the Apache config file:
+```sh
+sudo vi /Applications/XAMPP/xamppfiles/etc/httpd.conf
+```
+* B. Find the line:
+```sh
+DocumentRoot "/Applications/XAMPP/htdocs"
+```
+* C. Change it to your new location:
+```sh
+sudo /Applications/XAMPP/xampp restart
+```
+
+* D. Restart Apache:
+```sh
+sudo /Applications/XAMPP/xampp restart
+```
