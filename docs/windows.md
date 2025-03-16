@@ -151,11 +151,11 @@ OR
     - Extract the downloaded ZIP to `C:\php`.
     - Rename `php.ini-development` to `php.ini` in `C:\php`.
     - Open `php.ini` and enable necessary extensions:
-     ```ini
-     extension=sqlite3
-     extension=mbstring
-     extension=openssl
-     ```
+```ini
+extension=sqlite3
+extension=mbstring
+extension=openssl
+```
     - Add `C:\php` to the **system PATH**:
         - Open **Start Menu**, search for **"Environment Variables"**.
         - Under **System Variables**, edit the **Path** variable.
@@ -163,9 +163,9 @@ OR
 
 * D. **Verify Installation**  
     - Open **Command Prompt (cmd)** and run:
-     ```sh
-     php -v
-     ```
+```sh
+php -v
+```
     - If PHP 8.3+ is displayed, it's correctly installed.
 * E. **Install Composer**
     - Refer to instruction in the **Common** section for installing from Composer.
