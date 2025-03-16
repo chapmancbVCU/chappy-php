@@ -14,8 +14,8 @@ Get to any resource within the Chappy.php Wiki from here.
     * A. [Linux PHP Standalone](linux-php-standalone) - Coming soon
     * B. [Linux With Apache](linux-apache) - Coming soon
     * C. [Linux With Nginx](linux-nginx) - Coming soon
-    * B. [MacOS](macos)
-    * A. [Windows](windows)
+    * D. [MacOS](macos)
+    * E. [Windows](windows)
 9. [JavaScript](javascript)
 10. [Models](models)
 11. [Server Side Validation](server_side_validation)

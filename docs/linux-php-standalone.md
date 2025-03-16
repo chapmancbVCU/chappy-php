@@ -1,10 +1,106 @@
-<h1 style="font-size: 50px; text-align: center;">Linux</h1>
+<h1 style="font-size: 50px; text-align: center;">Linux PHP Standalone</h1>
 
 ## Table of contents
 1. [Overview](#overview)
-
+2. [Install System Dependencies](#dependencies)
+3. [Install PHP 8.3+](#php)
+4. [Install Composer](#composer)
+5. [Install Node.js &  NPM](#nodejs)
+6. [Project Setup](#project-setup)
 <br>
 <br>
 
 ## 1. Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-A complete setup guide for running this framework on Linux.  We support XAMPP, Apache, Nginx, and a standalone development environment.
+This guide walks through setting up your PHP framework on Ubuntu, Debian, and RHEL based distributions without requiring XAMPP, Nginx, or Apache. The framework is self-hosted using PHP’s built-in development server (php console serve).
+
+**Requirements**
+- PHP 8.3+
+- Composer
+- Node.js & NPM
+- Git (for cloning the repository)
+<br>
+
+## 2. Install System Dependencies <a id="dependencies"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+First, update your system and install essential dependencies:
+
+**Ubuntu**
+```sh
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y curl wget git unzip software-properties-common
+```
+<br>
+
+## 3. Install PHP 8.3+ <a id="php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+**Ubuntu**
+```sh
+sudo add-apt-repository ppa:ondrej/php -y
+sudo apt update
+sudo apt install -y php8.3 php8.3-cli php8.3-mbstring php8.3-xml php8.3-curl php8.3-zip php8.3-sqlite3 php8.3-bcmath
+```
+
+Verify installation:
+```sh
+php -v
+```
+<br>
+
+## 4. Install Composer <a id="composer"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+Composer is required to manage PHP dependencies.
+#### 1: Download and Install Composer
+**Ubuntu**
+```sh
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+```
+
+#### 2: Verify Installation
+```sh
+composer -v
+```
+<br>
+
+## 5. Install Node.js & NPM <a id="nodejs"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+Use NodeSource to install the latest stable Node.js version.
+#### 1: Add Node.js Repository
+**Ubuntu**
+```sh
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+```
+
+#### 2: Install Node.js & NPM
+**Ubuntu**
+```sh
+sudo apt install -y nodejs
+```
+
+#### 3: Verify Installation
+```sh
+node -v
+npm -v
+```
+<br>
+
+## 6. Project Setup <a id="project-setup"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+Navigate to your preferred development directory and clone the project:
+#### 1. Cloning The Project
+```sh
+cd ~/projects
+git clone git@github.com:chapmancbVCU/chappy-php.git
+cd chappy-php
+```
+<br>
+
+#### 2. Install
+Run:
+```sh
+composer run install-project
+```
+<br>
+
+#### 3. Run Project
+* A. Run:
+```sh
+php console serve
+```
+
+* B. Navigate to `http://localhost:8000`
