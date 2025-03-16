@@ -11,11 +11,11 @@
 ## 1. Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 This guide shows you how to setup this framework on Windows.  There are two ways to achieve this as described below.
 1. XAMPP
-2. Install only dependencies needed.
+2. Install only dependencies needed with standalone PHP.
 <br>
 
 ## 2. Common <a id="common"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-#### 1: Install Composer (Skip until later if installing XAMPP or PHP standalone)
+#### 1: Install Composer - Chocolatey Install Highly Recommended (Skip until later if installing XAMPP)
 * A. **Download Composer Installer**  
    - Visit [Composer's official site](https://getcomposer.org/download/) and download the Windows installer.
 
@@ -74,7 +74,7 @@ choco install composer -y
     
 OR
 
-Install with Chocolatey:
+Install with Chocolatey (Will setup path for you):
 ```powershell
 choco install 7zip -y
 ```
@@ -85,7 +85,7 @@ choco install 7zip -y
 * A. Open browser and go to https://www.apachefriends.org/ and download **XAMPP for Windows**.
 * B. Select download location and run installer using default options.
 * D. If you get a dialog box asking "Do you want to allow public and private networks to access this app?" for Apache select **Allow**
-* E. Install **Composer** using the instructions described above.
+* E. Install **Composer** using the instructions described above.  We recommend using Chocolatey.
 * F. Navigate to `C:\xampp\htdocs` in Windows explorer then type cmd in the address bar.
 * G. Cone the project:
 ```powershell
@@ -138,30 +138,37 @@ npm run dev
 
 ## 2. Standalone PHP <a id="php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 #### 1: Install PHP 8.3+
-* A. **Download PHP**  
-   - Go to the official [Windows PHP downloads](https://windows.php.net/download).
-   - Download the **latest PHP 8.3+ (Thread Safe) zip package**.
+* A **Install with Composer**
+    - Install Composer using Chocolately as described above.  PHP, which is a dependency will automatically be installed.
+
+OR
+
+* B. **Download PHP**
+    - Go to the official [Windows PHP downloads](https://windows.php.net/download).
+    - Download the **latest PHP 8.3+ (Thread Safe) zip package**.
    
-* B. **Extract and Set Up PHP**  
-   - Extract the downloaded ZIP to `C:\php`.
-   - Rename `php.ini-development` to `php.ini` in `C:\php`.
-   - Open `php.ini` and enable necessary extensions:
+* C. **Extract and Set Up PHP**  
+    - Extract the downloaded ZIP to `C:\php`.
+    - Rename `php.ini-development` to `php.ini` in `C:\php`.
+    - Open `php.ini` and enable necessary extensions:
      ```ini
      extension=sqlite3
      extension=mbstring
      extension=openssl
      ```
-   - Add `C:\php` to the **system PATH**:
-     - Open **Start Menu**, search for **"Environment Variables"**.
-     - Under **System Variables**, edit the **Path** variable.
-     - Click **New**, then add `C:\php`.
+    - Add `C:\php` to the **system PATH**:
+        - Open **Start Menu**, search for **"Environment Variables"**.
+        - Under **System Variables**, edit the **Path** variable.
+        - Click **New**, then add `C:\php`.
 
-* C. **Verify Installation**  
-   - Open **Command Prompt (cmd)** and run:
+* D. **Verify Installation**  
+    - Open **Command Prompt (cmd)** and run:
      ```sh
      php -v
      ```
-   - If PHP 8.3+ is displayed, it's correctly installed.
+    - If PHP 8.3+ is displayed, it's correctly installed.
+* E. **Install Composer**
+    - Refer to instruction in the **Common** section for installing from Composer directly.
 
 #### 2. Setup The Project
 * A. Install **Composer** using the instructions described above.
