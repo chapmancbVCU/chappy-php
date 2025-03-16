@@ -133,7 +133,7 @@ DB_USER=root
 ```sh
 npm run dev
 ```
-* J. Open browser and navigate to `http://localhost/chappy-php/home`.
+* K. Open browser and navigate to `http://localhost/chappy-php/home`.
 <br>
 
 ## 2. Standalone PHP <a id="php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>

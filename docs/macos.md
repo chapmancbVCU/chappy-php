@@ -31,12 +31,12 @@ brew install node
 
 #### 2: Option 2: Install via NVM (Node Version Manager)
 This allows you to manage multiple Node.js versions.
-* A. Step 1: Install NVM
+* A. Install NVM
 ```sh
 brew install nvm
 ```
 
-* B. Step 2: Setup NVM
+* B. Setup NVM
     - Add the following to your ~/.zshrc (or ~/.bashrc if using Bash):
 ```sh
 export NVM_DIR="$HOME/.nvm"
@@ -49,12 +49,12 @@ export NVM_DIR="$HOME/.nvm"
 source ~/.zshrc
 ```
 
-* C. Step 3: Install Node.js using NVM
+* C. Install Node.js using NVM
 ```sh
 nvm install --lts
 ```
 
-* D. Step 4: Verify installation
+* D. Verify installation
     - Run
 ```sh
 node -v
@@ -70,19 +70,19 @@ X.X.X (NPM version)
 
 ## 4. Development Setup <a id="dev"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 #### 1: PHP Setup
-* A. Step 1: Install PHP
+* A. Install PHP
     - Run:
 ```sh
 brew install php
 ```
 
-* B. Step 2: Verify install
+* B. Verify install
     - Run:
 ```sh
 php -v
 ```
 
-* C: Step 3: Start PHP as a service
+* C: Start PHP as a service
     - Run:
 ```sh
 brew services start php
