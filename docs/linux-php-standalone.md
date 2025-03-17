@@ -1,4 +1,4 @@
-<h1 style="font-size: 50px; text-align: center;">Linux PHP Standalone</h1>
+<h1 style="font-size: 50px; text-align: center;">Linux Standalone PHP</h1>
 
 ## Table of contents
 1. [Overview](#overview)
@@ -22,6 +22,7 @@ This guide walks through setting up your the Chappy.php framework on Ubuntu (22.
 
 ## 2. Install System Dependencies <a id="dependencies"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 First, update your system and install essential dependencies:
+
 **RHEL**
 ```sh
 sudo dnf update -y

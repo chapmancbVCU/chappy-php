@@ -74,7 +74,7 @@ choco install composer -y
     
 OR
 
-Install with Chocolatey (Will setup path for you):
+Install with Chocolatey:
 ```powershell
 choco install 7zip -y
 ```
