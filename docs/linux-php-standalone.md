@@ -74,19 +74,6 @@ php -v
 ## 4. Install Composer <a id="composer"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Composer is required to manage PHP dependencies.
 #### 1: Download and Install Composer
-**Debian (LMDE)**
-```sh
-curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
-```
-
-**RHEL**
-```sh
-curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
-```
-
-**Ubuntu**
 ```sh
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
