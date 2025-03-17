@@ -108,6 +108,7 @@ sudo apt install -y nodejs
 node -v
 npm -v
 ```
+<br>
 
 ## 6. Project Setup <a id="project-setup"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Navigate to your preferred development directory and clone the project:
