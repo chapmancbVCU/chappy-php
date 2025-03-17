@@ -23,6 +23,12 @@ This guide walks through setting up your the Chappy.php framework on Ubuntu (22.
 ## 2. Install System Dependencies <a id="dependencies"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 First, update your system and install essential dependencies:
 
+**Debian (LMDE)**
+```sh
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y curl wget git unzip
+```
+
 **RHEL**
 ```sh
 sudo dnf update -y
@@ -37,6 +43,12 @@ sudo apt install -y curl wget git unzip software-properties-common
 <br>
 
 ## 3. Install PHP 8.3+ <a id="php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+**Debian (LMDE)**
+```sh
+sudo apt update
+sudo apt install -y php php-cli php-mbstring php-xml php-curl php-zip php-sqlite3 php-bcmath
+```
+
 **RHEL**
 ```sh
 sudo dnf install -y epel-release
@@ -62,6 +74,12 @@ php -v
 ## 4. Install Composer <a id="composer"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Composer is required to manage PHP dependencies.
 #### 1: Download and Install Composer
+**Debian (LMDE)**
+```sh
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+```
+
 **RHEL**
 ```sh
 curl -sS https://getcomposer.org/installer | php
@@ -83,6 +101,11 @@ composer -v
 ## 5. Install Node.js & NPM <a id="nodejs"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Use NodeSource to install the latest stable Node.js version.
 #### 1: Add Node.js Repository
+**Debian (LMDE)**
+```sh
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+```
+
 **RHEL**
 ```sh
 curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -
@@ -94,6 +117,11 @@ curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 ```
 
 #### 2: Install Node.js & NPM
+**Debian (LMDE)**
+```sh
+sudo apt install -y nodejs
+```
+
 **RHEL**
 ```sh
 sudo dnf install -y nodejs
