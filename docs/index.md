@@ -11,9 +11,9 @@ Get to any resource within the Chappy.php Wiki from here.
 6. [Debugging and Logs](debugging_and_logs)
 7. [Forms](forms)
 8. [Getting Started](getting_started)
-    * A. [Linux Standalone PHP](linux-php-standalone) - In progress
-    * B. [Linux With Apache](linux-apache) - Coming soon
-    * C. [Linux With Nginx](linux-nginx) - Coming soon
+    * A. [Linux Standalone PHP](linux-php-standalone)
+    * B. [LAMP Stack](lamp) - Coming soon
+    * C. [LEMP Stack](lemp) - Coming soon
     * D. [MacOS](macos)
     * E. [Windows](windows)
 9. [JavaScript and Vite](javascript)
