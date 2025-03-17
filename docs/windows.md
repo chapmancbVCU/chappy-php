@@ -163,6 +163,7 @@ extension=openssl
         - Under **System Variables**, edit the **Path** variable.
         - Click **New**, then add `C:\php`.
 
+    - After adding to PATH you should restart your computer.
 * D. **Verify Installation**  
     - Open **Command Prompt (cmd)** and run:
 ```sh
