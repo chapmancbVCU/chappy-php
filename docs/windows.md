@@ -33,7 +33,7 @@ OR
  
 Install with Chocolatey
 ```powershell
-choco install nodejs -y
+choco install composer -y
 ```
 <br>
 
@@ -54,7 +54,7 @@ OR
 
 Install with Chocolatey
 ```powershell
-choco install composer -y
+choco install node -y
 ```
 #### 3. Install 7zip
 * A. **Download the Installer**
@@ -86,11 +86,13 @@ choco install 7zip -y
 * B. Select download location and run installer using default options.
 * D. If you get a dialog box asking "Do you want to allow public and private networks to access this app?" for Apache select **Allow**
 * E. Install **Composer** using the instructions described above.  We recommend using Chocolatey.
-* F. Navigate to `C:\xampp\htdocs` in Windows explorer then type cmd in the address bar.
+* F. cd to `C:\xampp\htdocs` using the terminal.
 * G. Cone the project:
 ```powershell
 git clone git@github.com:chapmancbVCU/chappy-php.git
 ```
+
+If permission issues arise, running CMD as Administrator might be needed.
 
 * H. cd into project and run the command:
 ```powershell
@@ -122,7 +124,7 @@ npm run dev
 ```php
 # Set to mysql or mariadb for production
 DB_CONNECTION=mysql
-DB_HOST='127.0.0.1'
+DB_HOST=127.0.0.1
 DB_PORT=3306
 # Set to your database name for production
 DB_DATABASE=chappy

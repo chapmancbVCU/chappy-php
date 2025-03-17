@@ -17,7 +17,7 @@ Performing a database migration is the first task you will perform after establi
 ```
 # Set to mysql or mariadb for production
 DB_CONNECTION=sqlite
-DB_HOST='127.0.0.1'
+DB_HOST=127.0.0.1
 DB_PORT=3306
 # Set to your database name for production
 # DB_DATABASE=database/database.sqlite

@@ -166,7 +166,7 @@ composer run install-project
 ```php
 # Set to mysql or mariadb for production
 DB_CONNECTION=mysql
-DB_HOST='127.0.0.1'
+DB_HOST=127.0.0.1
 DB_PORT=3306
 # Set to your database name for production
 DB_DATABASE=chappy

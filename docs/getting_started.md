@@ -38,7 +38,7 @@ They will list out all PHP related dependencies needed for Apache and Nginx.
       ```
       # Set to mysql or mariadb for production
       DB_CONNECTION=mysql or mariadb
-      DB_HOST='127.0.0.1'
+      DB_HOST=127.0.0.1
       DB_PORT=3306
       # Set to your database name for production
       DB_DATABASE=dbname
