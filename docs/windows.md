@@ -141,7 +141,7 @@ npm run dev
 ## 2. Standalone PHP <a id="php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 #### 1: Install PHP 8.3+
 * A **Install with Composer**
-    - Install Composer using Chocolately as described above.  PHP, which is a dependency will automatically be installed.
+    - Install Composer using Chocolately as described above.  PHP, which is a dependency will automatically be installed.  When setting up as standalone without XAMPP you can skip to **Setup the Project**.  If you change your mind later on, you will need to remove both Composer and PHP along with any values set in the SYSTEM path.  Installing PHP with this method will install PHP 8.4 at `C:\tools\php<ver_number>`.
 
 OR
 
