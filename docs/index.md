@@ -16,7 +16,7 @@ Get to any resource within the Chappy.php Wiki from here.
     * C. [Linux With Nginx](linux-nginx) - Coming soon
     * D. [MacOS](macos)
     * E. [Windows](windows)
-9. [JavaScript](javascript)
+9. [JavaScript and Vite](javascript)
 10. [Models](models)
 11. [Server Side Validation](server_side_validation)
 12. [Session and Flash Messages](session_and_flash_messages)
