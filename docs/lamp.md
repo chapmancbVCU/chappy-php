@@ -7,8 +7,9 @@
 4. [Install MySQL/MariaDB](#mysql)
 5. [Install PHP 8.3+](#php)
 6. [Configure Apache and PHP](#configure-apache-php)
-7. [Install Composer](#composer)
-8. [Install Node.js & NPM](#nodejs)
+7. [Install phpMyAdmin](#phpMyAdmin)
+8. [Install Composer](#composer)
+9. [Install Node.js & NPM](#nodejs)
 <br>
 <br>
 
@@ -260,7 +261,7 @@ echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/info.php
 ```
 
 - Open in a browser:
-```sh
+```rust
 http://localhost/info.php
 ```
 
@@ -269,8 +270,40 @@ http://localhost/info.php
 sudo rm /var/www/html/info.php
 ```
 <br>
+<br>
 
-## 7. Install Composer <a id="composer"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 7. Install phpMyAdmin <a id="phpMyAdmin"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+phpMyAdmin provides a web interface to manage MySQL or MariaDB databases.
+#### A. Install phpMyAdmin
+```sh
+sudo apt install -y phpmyadmin
+```
+
+During installation:
+- Select Apache2 when prompted.
+- Choose Yes to configure dbconfig-common for automatic database setup.
+- Set a phpMyAdmin password (or leave blank to generate one).
+
+#### B. Configure Apache for phpMyAdmin
+Enable phpMyAdmin in Apache:
+```sh
+sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
+sudo systemctl restart apache2
+```
+
+#### C. Verify phpMyAdmin Installation
+Open your browser and visit:
+```rust
+http://localhost/phpmyadmin
+```
+
+Log in using:
+- **Username**: root
+- **Password**: (set during MySQL/MariaDB setup)
+If you used **auth_socket authentication**, switch root to password authentication as described earlier.
+<br>
+
+## 8. Install Composer <a id="composer"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Composer is required to manage PHP dependencies.
 #### A. Download and Install Composer
 ```sh
@@ -284,7 +317,7 @@ composer -v
 ```
 <br>
 
-## 8. Install Node.js & NPM <a id="nodejs"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 9. Install Node.js & NPM <a id="nodejs"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Use NodeSource to install the latest stable Node.js version.
 #### A. Add Node.js Repository
 **Ubuntu**
