@@ -301,6 +301,11 @@ Log in using:
 - **Username**: root
 - **Password**: (set during MySQL/MariaDB setup)
 If you used **auth_socket authentication**, switch root to password authentication as described earlier.
+
+#### D. Setup Your Database
+* In the left panel click on the **New** link.
+* E. In the main panel under **Create Database** enter the name for your database.  This will be the database you will set to `DB_DATABASE` in your `.env` file.
+* F. Click create.
 <br>
 
 ## 8. Install Composer <a id="composer"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
