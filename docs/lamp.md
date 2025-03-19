@@ -5,7 +5,7 @@
 2. [Install System Dependencies](#dependencies)
 3. [Install Apache](#apache)
 4. [Install MySQL/MariaDB](#mysql)
-5. [Install PHP 8.3+](#php)
+5. [Install PHP 8.4](#php)
 6. [Configure Apache and PHP](#configure-apache-php)
 7. [Install phpMyAdmin](#phpMyAdmin)
 8. [Install Composer](#composer)
@@ -73,7 +73,7 @@ sudo systemctl enable mariadb
 sudo systemctl start mariadb
 ```
 
-Verify installation:
+Verify installation (Upper case V):
 ```sh
 mysql -V
 ```
@@ -235,26 +235,17 @@ mysql -u root -p
 
 <br>
 
-## 5. Install PHP 8.3+ <a id="php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+## 5. Install PHP 8.4 <a id="php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 **Ubuntu**
 ```sh
 sudo add-apt-repository ppa:ondrej/php -y
-sudo apt update
-sudo apt install -y php8.3 php8.3-cli php8.3-mbstring php8.3-xml php8.3-curl php8.3-zip php8.3-mysql libapache2-mod-php8.3 php8.4-xml php8.3-sqlite3 sqlite3 php-bcmath
-```
-- Ensure PHP 8.3 Is Set as Default. Ubuntu may install multiple PHP versions. Ensure PHP 8.3 is the active version:
-```sh
-sudo update-alternatives --set php /usr/bin/php8.3
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y php8.4 php8.4-cli php8.4-mbstring php8.4-xml php8.4-curl php8.4-zip php8.4-mysql libapache2-mod-php8.4 php8.4-sqlite3 sqlite3 php8.4-bcmath
 ```
 
 - Verify installation:
 ```sh
 php -v
-```
-
-- Restart Apache to Apply Changes
-```sh
-sudo systemctl restart apache2
 ```
 <br>
 
@@ -279,6 +270,18 @@ http://localhost/info.php
 ```sh
 sudo rm /var/www/html/info.php
 ```
+
+- Configure upload size For profile image upload support.  Edit the file:
+```sh
+sudo vi /etc/php/8.4/apache2/php.ini
+```
+
+- Then modify the setting
+```rust
+upload_max_size = 2M
+```
+
+to a value appropriate for your needs.  We set it to `10M`.
 <br>
 <br>
 
@@ -322,6 +325,7 @@ If you used **auth_socket authentication**, switch root to password authenticati
 Composer is required to manage PHP dependencies.
 #### A. Download and Install Composer
 ```sh
+cd ~/
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 ```
@@ -430,7 +434,12 @@ sudo systemctl restart apache2
 sudo chmod -R 775 storage/
 ```
 
+- Run migrations:
+```sh
+php console migrate
+```
+
 - Your project should now be accessible at:
 ```rust
-http://localhost/chappy-php/
+http://<your_ip_address>
 ```
