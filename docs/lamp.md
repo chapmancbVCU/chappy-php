@@ -48,7 +48,7 @@ sudo systemctl start apache2
 #### B. Verify Apache is running:
 **Ubuntu**
 ```sh
-systemctl status apache 2
+systemctl status apache2
 ```
 
 #### C. Apache should now be accessible at:
@@ -354,10 +354,13 @@ npm -v
 <br>
 
 ## 10. Project Setup <a id="project-setup"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-#### A. Navigate to your user's root directory:
+#### A. Navigate to your user's root directory, install dependencies, then move to final location:
 ```sh
 cd ~/
 git clone git@github.com:chapmancbVCU/chappy-php.git
+cd chappy-php/
+composer run install-project
+cd ..
 sudo mv chappy-php /var/www/html
 cd /var/www/html/chappy-php
 ```
@@ -366,12 +369,6 @@ cd /var/www/html/chappy-php
 ```sh
 sudo chown -R your-username:www-data /var/www/html/chappy-php
 sudo chmod -R 755 /var/www/html/chappy-php
-```
-
-#### C. Install dependencies:
-```sh
-cd chappy-php/
-composer run install-project
 ```
 
 #### D. Project Configuration
@@ -398,40 +395,42 @@ sudo vi /etc/apache2/sites-available/chappy-php.conf
 ```
 
 - Paste the following content into the file (adjust ServerName to your actual IP or domain):
+
 ```rust
 <VirtualHost *:80>
-   ServerName 192.168.1.162
-   ServerAdmin webmaster@thedomain.com
-   DocumentRoot /var/www/html/chappy-php
+ServerName 192.168.1.162
+ServerAdmin webmaster@thedomain.com
+DocumentRoot /var/www/html/chappy-php
 
-   <Directory /var/www/html/chappy-chp>
-       AllowOverride All
-       Require all granted
-   </Directory>
+<Directory /var/www/html/chappy-php>
+    AllowOverride All
+    Require all granted
+</Directory>
 
-   ErrorLog ${APACHE_LOG_DIR}/error.log
-   CustomLog ${APACHE_LOG_DIR}/access.log combined
+ErrorLog ${APACHE_LOG_DIR}/error.log
+CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
 
-- Save and exit (ESC the :wq)
+- Save and exit (ESC then :wq).
 
-Enable the Site and Required Modules
+- Enable the Site and Required Modules:
+
 ```sh
-# Enable the new VirtualHost
-sudo a2ensite chappy-php.conf
-
-# Enable mod_rewrite for URL rewriting
+# Enable mod_rewrite first
 sudo a2enmod rewrite
 
-# Restart Apache for changes to take effect
+# Then enable the VirtualHost
+sudo a2ensite chappy-php.conf
 sudo systemctl restart apache2
 ```
+
 - Set permissions for storage directory (This will enable writing to logs and uploads):
 ```sh
 sudo chmod -R 775 storage/
 ```
-Your project should now be accessible at:
+
+- Your project should now be accessible at:
 ```rust
 http://localhost/chappy-php/
 ```
