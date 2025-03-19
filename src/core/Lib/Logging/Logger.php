@@ -57,7 +57,7 @@ class Logger {
 
         // Debug: Check directory existence
         if (!is_dir($logDir)) {
-            mkdir($logDir, 0755, true);
+            mkdir($logDir, 0775, true);
         }
 
         // Debug: Check directory permissions
@@ -68,7 +68,7 @@ class Logger {
         // Debug: Check file existence
         if (!file_exists(self::$logFile)) {
             touch(self::$logFile);
-            chmod(self::$logFile, 0644);
+            chmod(self::$logFile, 0775);
         }
 
         // Debug: Check if file is writable
