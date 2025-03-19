@@ -10,6 +10,7 @@
 7. [Install phpMyAdmin](#phpMyAdmin)
 8. [Install Composer](#composer)
 9. [Install Node.js & NPM](#nodejs)
+10. [Project Setup](#project-setup)
 <br>
 <br>
 
@@ -239,7 +240,7 @@ mysql -u root -p
 ```sh
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update
-sudo apt install -y php8.3 php8.3-cli php8.3-mbstring php8.3-xml php8.3-curl php8.3-zip php8.3-mysql libapache2-mod-php8.3
+sudo apt install -y php8.3 php8.3-cli php8.3-mbstring php8.3-xml php8.3-curl php8.3-zip php8.3-mysql libapache2-mod-php8.3 php8.4-xml
 ```
 
 Verify installation:
@@ -342,3 +343,47 @@ node -v
 npm -v
 ```
 <br>
+
+## 10. Project Setup <a id="project-setup"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+Navigate to your your root directory:
+```sh
+cd ~/
+sudo git clone git@github.com:chapmancbVCU/chappy-php.git
+sudo mv chappy-php /var/www/html
+cd var/www/html/chappy-php
+```
+
+Set proper permissions:
+```sh
+sudo chown -R your-username:www-data /var/www/html/chappy-php
+sudo chmod -R 755 /var/www/html/chappy-php
+```
+Open your preferred IDE (We use VSCode) and edit the `.env` file:
+- Set `APP_DOMAIN` TO `http://localhost/chappy-php/`.  If you renamed your project directory then the second portion of the URL must match.  The URL must have the last forward slash.  Otherwise, the page and routing will not work correctly.
+- Update the database section:
+```php
+# Set to mysql or mariadb for production
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+# Set to your database name for production
+DB_DATABASE=your_db_name
+DB_USER=root
+DB_PASSWORD=your_password
+```
+**Use a user other than `root` on a production environment**
+
+Install dependencies:
+```sh
+composer run install-project
+```
+
+Restart Apache:
+```sh
+sudo systemctl restart apache2
+```
+
+Your project should now be accessible at:
+```rust
+http://localhost/chappy-php/
+```
