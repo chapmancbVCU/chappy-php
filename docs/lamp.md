@@ -240,15 +240,11 @@ mysql -u root -p
 ```sh
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update
-<<<<<<< HEAD
-sudo apt install -y php8.3 php8.3-cli php8.3-mbstring php8.3-xml php8.3-curl php8.3-zip php8.3-mysql libapache2-mod-php8.3 php8.4-xml
-=======
 sudo apt install -y php8.3 php8.3-cli php8.3-mbstring php8.3-xml php8.3-curl php8.3-zip php8.3-mysql libapache2-mod-php8.3 php8.4-xml php8.3-sqlite3 sqlite3 php-bcmath
 ```
 - Ensure PHP 8.3 Is Set as Default. Ubuntu may install multiple PHP versions. Ensure PHP 8.3 is the active version:
 ```sh
 sudo update-alternatives --set php /usr/bin/php8.3
->>>>>>> 29e52b2f7f77f5af569b2dd91fec7613e4ef9522
 ```
 
 - Verify installation:
@@ -358,17 +354,6 @@ npm -v
 <br>
 
 ## 10. Project Setup <a id="project-setup"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-<<<<<<< HEAD
-Navigate to your your root directory:
-```sh
-cd ~/
-sudo git clone git@github.com:chapmancbVCU/chappy-php.git
-sudo mv chappy-php /var/www/html
-cd var/www/html/chappy-php
-```
-
-Set proper permissions:
-=======
 #### A. Navigate to your user's root directory, install dependencies, then move to final location:
 ```sh
 cd ~/
@@ -381,20 +366,14 @@ cd /var/www/html/chappy-php
 ```
 
 #### B. Set proper permissions:
->>>>>>> 29e52b2f7f77f5af569b2dd91fec7613e4ef9522
 ```sh
 sudo chown -R your-username:www-data /var/www/html/chappy-php
 sudo chmod -R 755 /var/www/html/chappy-php
 ```
-<<<<<<< HEAD
-Open your preferred IDE (We use VSCode) and edit the `.env` file:
-- Set `APP_DOMAIN` TO `http://localhost/chappy-php/`.  If you renamed your project directory then the second portion of the URL must match.  The URL must have the last forward slash.  Otherwise, the page and routing will not work correctly.
-=======
 
 #### D. Project Configuration
 Open your preferred IDE (We use VSCode) and edit the `.env` file:
 - Set `APP_DOMAIN` TO `/`.  If you renamed your project directory then the second portion of the URL must match.  The URL must have the last forward slash.  Otherwise, the page and routing will not work correctly.
->>>>>>> 29e52b2f7f77f5af569b2dd91fec7613e4ef9522
 - Update the database section:
 ```php
 # Set to mysql or mariadb for production
@@ -406,21 +385,6 @@ DB_DATABASE=your_db_name
 DB_USER=root
 DB_PASSWORD=your_password
 ```
-<<<<<<< HEAD
-**Use a user other than `root` on a production environment**
-
-Install dependencies:
-```sh
-composer run install-project
-```
-
-Restart Apache:
-```sh
-sudo systemctl restart apache2
-```
-
-Your project should now be accessible at:
-=======
 
 **Use a user other than `root` on a production environment**
 
@@ -467,7 +431,6 @@ sudo chmod -R 775 storage/
 ```
 
 - Your project should now be accessible at:
->>>>>>> 29e52b2f7f77f5af569b2dd91fec7613e4ef9522
 ```rust
 http://localhost/chappy-php/
 ```
