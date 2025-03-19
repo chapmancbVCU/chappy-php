@@ -273,7 +273,7 @@ sudo rm /var/www/html/info.php
 
 - Configure upload size For profile image upload support.  Edit the file:
 ```sh
-sudo vi /etc/php/8.4/apache2/php.ini
+sudo vi /etc/php/8.4/apache2/php.i
 ```
 
 - Then modify the setting
