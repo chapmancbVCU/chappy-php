@@ -31,26 +31,40 @@ This guide walks through setting up a LAMP stack (Linux, Apache, MySQL/MariaDB, 
 ## 2. Install System Dependencies <a id="dependencies"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 First, update your system and install essential dependencies:
 
-**Ubuntu**
+**Ubuntu & Debian**
 ```sh
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y curl wget git unzip software-properties-common net-tools
+```
+
+**Rocky Linux (RHEL-based)**
+```sh
+sudo dnf install -y epel-release
+sudo dnf update -y
+sudo dnf install -y curl wget git unzip net-tools
 ```
 <br>
 
 ## 3. Install Apache <a id="apache"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 ### A. Install Apache and enable it to start on boot:
-**Ubuntu**
+**Ubuntu and Debian**
 ```sh
 sudo apt install -y apache2
 sudo systemctl enable apache2
 sudo systemctl start apache2
 ```
 
-### B. Verify Apache is running:
-**Ubuntu**
+**Rocky Linux (RHEL-based)**
 ```sh
-systemctl status apache2
+sudo dnf install -y httpd
+sudo systemctl enable httpd
+sudo systemctl start httpd
+```
+
+### B. Verify Apache is running:
+```sh
+systemctl status apache2   # Ubuntu & Debian
+systemctl status httpd     # Rocky Linux
 ```
 
 ### C. Apache should now be accessible at:
@@ -274,11 +288,16 @@ mysql -u root -p
 <br>
 
 ## 5. Install PHP 8.4 <a id="php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-**Ubuntu**
+**Ubuntu and Debian**
 ```sh
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y php8.4 php8.4-cli php8.4-mbstring php8.4-xml php8.4-curl php8.4-zip php8.4-mysql libapache2-mod-php8.4 php8.4-sqlite3 sqlite3 php8.4-bcmath
+```
+
+**Rocky Linux (RHEL-based)**
+```sh
+sudo dnf install -y php php-cli php-mbstring php-xml php-curl php-zip php-mysqlnd php-bcmath php-json php-gd php-opcache php-intl php-pear php-soap
 ```
 
 - Verify installation:
@@ -290,7 +309,8 @@ php -v
 ## 6. Configure Apache and PHP <a id="config-apache-php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Restart Apache to apply PHP settings:
 ```sh
-sudo systemctl restart apache2
+sudo systemctl restart apache2   # Ubuntu & Debian
+sudo systemctl restart httpd     # Rocky Linux
 ```
 
 Test PHP:
@@ -326,8 +346,14 @@ to a value appropriate for your needs.  We set it to `10M`.
 ## 7. Install phpMyAdmin <a id="phpMyAdmin"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 phpMyAdmin provides a web interface to manage MySQL or MariaDB databases.
 #### A. Install phpMyAdmin
+**Ubuntu & Debian**
 ```sh
 sudo apt install -y phpmyadmin
+```
+
+**Rocky Linux (RHEL-based)**
+```sh
+sudo dnf install -y phpmyadmin
 ```
 
 During installation:
@@ -340,7 +366,8 @@ During installation:
 Enable phpMyAdmin in Apache:
 ```sh
 sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
-sudo systemctl restart apache2
+sudo systemctl restart apache2   # Ubuntu & Debian
+sudo systemctl restart httpd     # Rocky Linux
 ```
 
 #### C. Verify phpMyAdmin Installation
@@ -378,15 +405,25 @@ composer -v
 ## 9. Install Node.js & NPM <a id="nodejs"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Use NodeSource to install the latest stable Node.js version.
 #### A. Add Node.js Repository
-**Ubuntu**
+**Ubuntu and Debian**
 ```sh
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+```
+
+**Rocky Linux (RHEL-based)**
+```sh
+curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -
 ```
 
 #### B. Install Node.js & NPM
 **Ubuntu**
 ```sh
 sudo apt install -y nodejs
+```
+
+**Rocky Linux (RHEL-based)**
+```sh
+sudo dnf install -y nodejs
 ```
 
 #### C. Verify Installation
