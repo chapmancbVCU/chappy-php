@@ -358,7 +358,7 @@ to a value appropriate for your needs.  We set it to `10M`.
 
 ## 7. Install phpMyAdmin <a id="phpMyAdmin"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 phpMyAdmin provides a web interface to manage MySQL or MariaDB databases.
-#### A. Install phpMyAdmin
+### A. Install phpMyAdmin
 **Ubuntu & Debian**
 ```sh
 sudo apt install -y phpmyadmin
@@ -375,7 +375,7 @@ During installation:
 - Set a phpMyAdmin password (or leave blank to generate one).
 - If you have issues regarding **[ERROR 1819 (HY000) during the phpMyAdmin installation indicates that the password you've set doesn't meet MySQL's current policy requirements.]** refer to solutions in troubleshooting section.
 
-#### B. Configure Apache for phpMyAdmin
+### B. Configure Apache for phpMyAdmin
 Enable phpMyAdmin in Apache:
 ```sh
 sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
@@ -383,7 +383,7 @@ sudo systemctl restart apache2   # Ubuntu & Debian
 sudo systemctl restart httpd     # Rocky Linux
 ```
 
-#### C. Verify phpMyAdmin Installation
+### C. Verify phpMyAdmin Installation
 Open your browser and visit:
 ```rust
 http://localhost/phpmyadmin
@@ -394,7 +394,7 @@ Log in using:
 - **Password**: (set during MySQL/MariaDB setup)
 If you used **auth_socket authentication**, switch root to password authentication as described earlier.
 
-#### D. Setup Your Database
+### D. Setup Your Database
 * In the left panel click on the **New** link.
 * E. In the main panel under **Create Database** enter the name for your database.  This will be the database you will set to `DB_DATABASE` in your `.env` file.
 * F. Click create.
@@ -402,14 +402,14 @@ If you used **auth_socket authentication**, switch root to password authenticati
 
 ## 8. Install Composer <a id="composer"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Composer is required to manage PHP dependencies.
-#### A. Download and Install Composer
+### A. Download and Install Composer
 ```sh
 cd ~/
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 ```
 
-#### B. Verify Installation
+### B. Verify Installation
 ```sh
 composer -v
 ```
@@ -417,7 +417,7 @@ composer -v
 
 ## 9. Install Node.js & NPM <a id="nodejs"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Use NodeSource to install the latest stable Node.js version.
-#### A. Add Node.js Repository
+### A. Add Node.js Repository
 **Ubuntu and Debian**
 ```sh
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
@@ -428,7 +428,7 @@ curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -
 ```
 
-#### B. Install Node.js & NPM
+### B. Install Node.js & NPM
 **Ubuntu**
 ```sh
 sudo apt install -y nodejs
@@ -439,7 +439,7 @@ sudo apt install -y nodejs
 sudo dnf install -y nodejs
 ```
 
-#### C. Verify Installation
+### C. Verify Installation
 ```sh
 node -v
 npm -v
@@ -447,7 +447,7 @@ npm -v
 <br>
 
 ## 10. Project Setup <a id="project-setup"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-#### A. Navigate to your user's root directory, install dependencies, then move to final location:
+### A. Navigate to your user's root directory, install dependencies, then move to final location:
 ```sh
 git clone git@github.com:chapmancbVCU/chappy-php.git
 cd chappy-php/
@@ -457,13 +457,13 @@ sudo mv chappy-php /var/www/html
 cd /var/www/html/chappy-php
 ```
 
-#### B. Set proper permissions:
+### B. Set proper permissions:
 ```sh
 sudo chown -R your-username:www-data /var/www/html/chappy-php
 sudo chmod -R 755 /var/www/html/chappy-php
 ```
 
-#### D. Project Configuration
+### D. Project Configuration
 Open your preferred IDE (We use VSCode) and edit the `.env` file:
 - Set `APP_DOMAIN` TO `/`.  If you renamed your project directory then the second portion of the URL must match.  The URL must have the last forward slash.  Otherwise, the page and routing will not work correctly.
 - Update the database section:
@@ -480,7 +480,7 @@ DB_PASSWORD=your_password
 
 **Use a user other than `root` on a production environment**
 
-#### E. Apache Virtual Host Configuration
+### E. Apache Virtual Host Configuration
 - Run the following command to create a new Apache configuration file:
 ```sh
 sudo vi /etc/apache2/sites-available/chappy-php.conf
@@ -535,7 +535,7 @@ http://<your_ip_address>
 <br>
 
 ## 11. Troubleshooting <a id="troubleshooting"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-Common Issues:
+### A. Common Issues:
 - ERROR 1819 (HY000) during phpMyAdmin installation → Your password does not meet MySQL’s policy. Disable VALIDATE PASSWORD or use a strong password.
 - mysql_secure_installation skips root password setup on Ubuntu/Debian → Run:
 ```sh
@@ -543,6 +543,58 @@ sudo mysql
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your-password';
 FLUSH PRIVILEGES;
 ```
+<br>
+
+### B. Virtual Host Configuration
+#### 1. Navigation to page
+- Important:
+After configuring the Virtual Host, access your site using:
+```rust
+http://<your-ip-address>
+```
+or the domain name you set in the ServerName directive.
+⚠️ Do not use http://localhost, as it may still serve the default Apache page.
+
+#### 2. Modify the Virtual Host Example
+If you want to support both localhost and the IP, modify the VirtualHost config:
+```rust
+<VirtualHost *:80>
+    ServerName localhost
+    ServerAlias 192.168.1.162 chappyphp.local
+    DocumentRoot /var/www/html/chappy-php
+
+    <Directory /var/www/html/chappy-php>
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+With this change, http://localhost will work, as well as the IP.
+
+#### 3. Update /etc/hosts (For Custom Domain)
+If you want to access your site using http://chappyphp.local, you can edit your /etc/hosts file:
+```sh
+sudo nano /etc/hosts
+```
+
+Example configuration:
+```rust
+127.0.0.1       localhost chappyphp.local
+127.0.1.1       ubuntu-vm
+192.168.1.182   chappy-php.local
+```
+#### 4. Restart Apache After Changing Virtual Host
+After updating VirtualHost, restart Apache:
+```sh
+sudo systemctl restart apache2   # Ubuntu & Debian
+sudo systemctl restart httpd     # Rocky Linux
+```
+
+Now, http://chappyphp.local will work as expected.
 <br>
 
 ## 12. References <a id="references"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
