@@ -80,6 +80,7 @@ This section will guide you through installing MySQL or MariaDB, configuring it 
 Depending on your Linux distribution, install either MySQL or MariaDB using the following instructions.
 
 **Ubuntu & Debian**
+
 To install MySQL:
 ```sh
 sudo apt install -y mysql-server
@@ -95,6 +96,7 @@ sudo systemctl start mariadb
 ```
 
 **Rocky Linux (RHEL-based)**
+
 To install MySQL:
 ```sh
 sudo dnf install -y @mysql
@@ -544,4 +546,5 @@ FLUSH PRIVILEGES;
 
 ## 12. References <a id="references"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 A. [How To Install Linux, Apache, MySQL, PHP (LAMP) Stack on Ubuntu - Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-lamp-stack-on-ubuntu#step-2-installing-mysql)
+
 B. [How To Install and Secure phpMyAdmin on Ubuntu - Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu)
