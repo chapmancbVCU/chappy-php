@@ -17,7 +17,7 @@
 <br>
 
 ## 1. Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-This guide walks through setting up a LAMP stack (Linux, Apache, MySQL/MariaDB, PHP) on Ubuntu (22.04 LTS) for deploying PHP applications, including the Chappy.php framework.
+This guide walks through setting up a LAMP stack (Linux, Apache, MySQL/MariaDB, PHP) on Ubuntu (22.04 LTS), Debian (LMDE), and RHEL (Rocky Linux) for deploying PHP applications, including the Chappy.php framework.
 
 **Requirements**
 - Apache 2.x
@@ -217,8 +217,9 @@ Skipping password set for root as authentication with auth_socket is used by def
 If you would like to use password authentication instead, this can be done with the "ALTER_USER" command.
 See https://dev.mysql.com/doc/refman/8.0/en/alter-user.html#alter-user-password-management for more information.
 ```
+<br>
 
-### F. **How to Switch MySQL Root to Password Authentication**
+### F. **How to Switch MySQL Root to Password Authentication (Ubuntu & Debian)**
 If you want to **use a password for the root user instead of auth_socket**, follow these steps:
 #### 1. Log into MySQL as Root
 Since `auth_socket` is enabled, use **sudo** to access MySQL without a password:
@@ -265,9 +266,8 @@ Now try logging in with your new password:
 ```sh
 mysql -u root -p
 ```
-<br>
 
-#### 6. **Final Notes**
+#### 6. Final Notes
 - For production servers, always use a strong root password and disable remote root login.
 - If you forget your MySQL root password, you’ll need to reset it manually via mysqld_safe mode.
 
