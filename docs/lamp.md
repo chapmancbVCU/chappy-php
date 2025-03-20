@@ -150,7 +150,7 @@ secure enough. Would you like to setup VALIDATE PASSWORD component?
 Press y|Y for Yes, any other key for No:
 ```
 
-- Recommended: Type n (No) unless you want strict password rules.
+- Recommended: Type n (No) unless you want strict password rules.  Choosing Y might get you into a situation where you get the **[ERROR 1819 (HY000) during the phpMyAdmin installation indicates that the password you’ve set doesn’t meet MySQL’s current policy requirements.]** and will have to perform extra steps to resolve.
 
 - If you choose y, you must select a password strength level:
 
@@ -335,10 +335,11 @@ http://localhost/info.php
 sudo rm /var/www/html/info.php
 ```
 
-- Configure upload size For profile image upload support.  Edit the file:
+Configure upload size For profile image upload support.  Edit the file:
+
 **Ubuntu & Debian**
 ```sh
-sudo vi /etc/php/8.4/apache2/php.i
+sudo vi /etc/php/8.4/apache2/php.ini
 ```
 
 **Rocky Linux (RHEL-based)**
@@ -346,9 +347,9 @@ sudo vi /etc/php/8.4/apache2/php.i
 /etc/php.ini
 ```
 
-- Then modify the setting
+Then modify the setting
 ```rust
-upload_max_size = 2M
+upload_max_filesize = 2M
 ```
 
 to a value appropriate for your needs.  We set it to `10M`.
@@ -448,7 +449,6 @@ npm -v
 ## 10. Project Setup <a id="project-setup"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 #### A. Navigate to your user's root directory, install dependencies, then move to final location:
 ```sh
-cd ~/
 git clone git@github.com:chapmancbVCU/chappy-php.git
 cd chappy-php/
 composer run install-project
@@ -549,3 +549,5 @@ FLUSH PRIVILEGES;
 A. [How To Install Linux, Apache, MySQL, PHP (LAMP) Stack on Ubuntu - Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-lamp-stack-on-ubuntu#step-2-installing-mysql)
 
 B. [How To Install and Secure phpMyAdmin on Ubuntu - Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu)
+
+C. [How to Deploy a Laravel App Using Apache and MySQL](https://adeyomoladev.medium.com/how-to-deploy-a-laravel-app-using-apache-and-mysql-4910a07f9a0c)
