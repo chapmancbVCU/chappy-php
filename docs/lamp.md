@@ -11,6 +11,8 @@
 8. [Install Composer](#composer)
 9. [Install Node.js & NPM](#nodejs)
 10. [Project Setup](#project-setup)
+11. [Troubleshooting](#troubleshooting)
+13. [References](#references)
 <br>
 <br>
 
@@ -32,12 +34,12 @@ First, update your system and install essential dependencies:
 **Ubuntu**
 ```sh
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y curl wget git unzip software-properties-common
+sudo apt install -y curl wget git unzip software-properties-common net-tools
 ```
 <br>
 
 ## 3. Install Apache <a id="apache"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-#### A. Install Apache and enable it to start on boot:
+### A. Install Apache and enable it to start on boot:
 **Ubuntu**
 ```sh
 sudo apt install -y apache2
@@ -45,150 +47,186 @@ sudo systemctl enable apache2
 sudo systemctl start apache2
 ```
 
-#### B. Verify Apache is running:
+### B. Verify Apache is running:
 **Ubuntu**
 ```sh
 systemctl status apache2
 ```
 
-#### C. Apache should now be accessible at:
+### C. Apache should now be accessible at:
 ```
 http://localhost
 ```
 <br>
 
 ## 4. Install MySQL/MariaDB <a id="mysql"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-**Ubuntu**
-For MySQL:
+This section will guide you through installing MySQL or MariaDB, configuring it securely, and verifying the installation.
+
+### A. Install MySQL or MariaDB
+Depending on your Linux distribution, install either MySQL or MariaDB using the following instructions.
+
+**Ubuntu & Debian**
+To install MySQL:
 ```sh
 sudo apt install -y mysql-server
 sudo systemctl enable mysql
 sudo systemctl start mysql
 ```
 
-For MariaDB:
+To install MariaDB:
 ```sh
 sudo apt install -y mariadb-server
 sudo systemctl enable mariadb
 sudo systemctl start mariadb
 ```
 
-Verify installation (Upper case V):
+**Rocky Linux (RHEL-based)**
+To install MySQL:
+```sh
+sudo dnf install -y @mysql
+sudo systemctl enable mysqld
+sudo systemctl start mysqld
+```
+
+To install MariaDB:
+```sh
+sudo dnf install -y mariadb-server
+sudo systemctl enable mariadb
+sudo systemctl start mariadb
+```
+**Verify MySQL/MariaDB Installation**
+Run the following command to check the installed version:
 ```sh
 mysql -V
 ```
 <br>
 
-### **Steps for Running** `mysql_secure_installation`
-#### A. Run the command:
+### B. Secure MySQL/MariaDB Using `mysql_secure_installation`
+Run the mysql_secure_installation script to secure your database by setting a root password and removing default insecure settings.
+
+**Ubuntu/Debian (MySQL 8+)**
 ```sh
 sudo mysql_secure_installation
 ```
 
-#### B. Set or Change the Root Password (For MySQL 8+)
-- If you haven’t set a root password yet, it will ask you to set one.
-- If a password is already set, enter the current root password.
-- For MySQL 8+, the default authentication plugin is auth_socket, which means the root user may not have a password set.
-- You may be prompted:
+- MySQL 8+ on Ubuntu/Debian defaults to auth_socket authentication, meaning the root user does NOT need a password to log in locally.
+- The root password setup step may be skipped during the process.
+
+**Rocky Linux (RHEL-based)**
+```sh
+sudo mysql_secure_installation
+```
+
+- MySQL on Rocky Linux requires setting a root password during installation.
+<br>
+
+### C. Steps for Running `mysql_secure_installation`
+The script will ask a series of security questions. Here's a breakdown of the common prompts and how to respond:
+#### 1. VALIDATE PASSWORD COMPONENT (Password Policy)
+You will see this message:
+
+```rust
+VALIDATE PASSWORD COMPONENT can be used to test passwords
+and improve security. It checks the strength of password
+and allows the users to set only those passwords which are
+secure enough. Would you like to setup VALIDATE PASSWORD component?
+
+Press y|Y for Yes, any other key for No:
+```
+
+- Recommended: Type n (No) unless you want strict password rules.
+
+- If you choose y, you must select a password strength level:
+
+```rust
+0 = LOW (minimum 8 characters)
+1 = MEDIUM (includes numbers, mixed case, special characters)
+2 = STRONG (must contain dictionary words + mixed case, numbers, and special characters)
+```
+
+Choose `1` for a good balance.
+
+#### 2. Set or Change the Root Password
+**Ubuntu/Debian**
+- If auth_socket is enabled, this step will be skipped.
+- If prompted:
 ```rust
 Would you like to set up a root password? [Y/n]
 ```
-Type `Y` and press **Enter**, then enter a strong password.
 
-#### C. Remove Anonymous Users
+**Rocky Linux (RHEL-based)**
+- You must set a root password.
+```rust
+Would you like to set up a root password? [Y/n]
+```
+
+#### 3. Remove Anonymous Users
 - You’ll see this prompt:
 ```rust
 Remove anonymous users? (Press y|Y for Yes, any other key for No) :
 ```
 - Type `Y` and press **Enter** to improve security.
 
-#### D. Disable Remote Root Login
+#### 4. Disable Remote Root Login
 - You’ll see this prompt:
 ```rust
 Disallow root login remotely? (Press y|Y for Yes, any other key for No) :
 ```
 - Type `Y` and press **Enter** to prevent unauthorized remote access.
 
-#### E. Remove the Test Database
+#### 5. Remove the Test Database
 - You'll see:
 ```rust
 Remove test database and access to it? (Press y|Y for Yes, any other key for No) :
 ```
 - Type `Y` and press **Enter**.
 
-#### F. Reload Privilege Tables
+#### 6. Reload Privilege Tables
 - Finally, MySQL will ask:
 ```rust
 Reload privilege tables now? (Press y|Y for Yes, any other key for No) :
 ```
 - Type `Y` and press **Enter** to apply all changes.
 
-#### G. Secure Installation Complete
+#### 7. Secure Installation Complete
 - You should see a message like:
 ```rust
 All done! If you've completed all of the above steps, your MySQL installation should now be secure.
 ```
 <br>
 
-### **Verify MySQL is Secure**
+### D. **Verify MySQL is Secure**
 After running `mysql_secure_installation`, you can verify your settings by logging in:
 ```sh
 sudo mysql -u root -p
 ```
 - If prompted, enter the **root password** you set earlier.
-- Run this SQL command to check users:
+
+Run this SQL command to authentication settings:
 ```sql
 SELECT user, host FROM mysql.user;
 ```
 - Ensure that root@localhost exists and that anonymous users were removed.
-<br>
+
 <br>
 
-### **For MariaDB Users**
-- The process is almost identical, except that MariaDB may not require a root password by default.
-- If you’re using MariaDB and sudo mysql -u root logs in without asking for a password, you may need to manually set a root password:
-```sql
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'your-secure-password';
-FLUSH PRIVILEGES;
-```
-<br>
-
-### **Ubuntu Specific Considerations**
-You will see the following message when running the `mysql_secure_installation` script:
+### E. **Changing MySQL Authentication (Ubuntu/Debian)**
+The step to set root password is skipped in Ubuntu and Debian.
 ```rust
-Securing the MySQL server deployment.
-
-Connecting to MySQL using a blank password.
-
-VALIDATE PASSWORD COMPONENT can be used to test passwords
-and improve security. It checks the strength of password
-and allows the users to set only those passwords which are
-secure enough. Would you like to setup VALIDATE PASSWORD component?
-
-Press y|Y for Yes, any other key for No: y
-
-There are three levels of password validation policy:
-
-LOW    Length >= 8
-MEDIUM Length >= 8, numeric, mixed case, and special characters
-STRONG Length >= 8, numeric, mixed case, special characters and dictionary                  file
-
-Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 0
-
 Skipping password set for root as authentication with auth_socket is used by default.
 If you would like to use password authentication instead, this can be done with the "ALTER_USER" command.
 See https://dev.mysql.com/doc/refman/8.0/en/alter-user.html#alter-user-password-management for more information.
 ```
 
-**How to Switch MySQL Root to Password Authentication**
+### F. **How to Switch MySQL Root to Password Authentication**
 If you want to **use a password for the root user instead of auth_socket**, follow these steps:
-#### A. Log into MySQL as Root
+#### 1. Log into MySQL as Root
 Since `auth_socket` is enabled, use **sudo** to access MySQL without a password:
 ```sh
 sudo mysql
 ```
 
-#### B. Check Current Authentication Method
+#### 2. Check Current Authentication Method
 Run this SQL command:
 ```sql
 SELECT user, host, plugin FROM mysql.user;
@@ -203,21 +241,21 @@ You should see `root@localhost` using **auth_socket**, like this:
 +------+-----------+-------------+
 ```
 
-#### C. Change Root to Use Password Authentication
+#### 3. Change Root to Use Password Authentication
 To switch from `auth_socket` to `mysql_native_password`, run:
 ```sql
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your-secure-password';
 FLUSH PRIVILEGES;
 ```
 
-#### D. Verify the Change
+#### 4. Verify the Change
 Run the authentication check again:
 ```sql
 SELECT user, host, plugin FROM mysql.user;
 ```
 It should now show `mysql_native_password` instead of `auth_socket`.
 
-#### E. Exit and Test
+#### 5. Exit and Test
 Exit MySQL:
 ```sql
 EXIT;
@@ -229,7 +267,7 @@ mysql -u root -p
 ```
 <br>
 
-### **Final Notes**
+#### 6. **Final Notes**
 - For production servers, always use a strong root password and disable remote root login.
 - If you forget your MySQL root password, you’ll need to reset it manually via mysqld_safe mode.
 
@@ -296,6 +334,7 @@ During installation:
 - Select Apache2 when prompted.
 - Choose Yes to configure dbconfig-common for automatic database setup.
 - Set a phpMyAdmin password (or leave blank to generate one).
+- If you have issues regarding **[ERROR 1819 (HY000) during the phpMyAdmin installation indicates that the password you've set doesn't meet MySQL's current policy requirements.]** refer to solutions in troubleshooting section.
 
 #### B. Configure Apache for phpMyAdmin
 Enable phpMyAdmin in Apache:
@@ -443,3 +482,12 @@ php console migrate
 ```rust
 http://<your_ip_address>
 ```
+<br>
+
+## 10. Troubleshooting <a id="troubleshooting"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+
+
+
+## 11. References <a id="references"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+A. [How To Install Linux, Apache, MySQL, PHP (LAMP) Stack on Ubuntu - Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-lamp-stack-on-ubuntu#step-2-installing-mysql)
+B. [How To Install and Secure phpMyAdmin on Ubuntu - Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu)
