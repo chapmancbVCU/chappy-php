@@ -297,6 +297,10 @@ sudo apt install -y php8.4 php8.4-cli php8.4-mbstring php8.4-xml php8.4-curl php
 
 **Rocky Linux (RHEL-based)**
 ```sh
+sudo dnf install -y epel-release
+sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+sudo dnf module list php                    # List available PHP modules
+sudo dnf module enable php:remi-8.4 -y      # Enabled PHP 8.3 from Remi repo
 sudo dnf install -y php php-cli php-mbstring php-xml php-curl php-zip php-mysqlnd php-bcmath php-json php-gd php-opcache php-intl php-pear php-soap
 ```
 
@@ -330,8 +334,14 @@ sudo rm /var/www/html/info.php
 ```
 
 - Configure upload size For profile image upload support.  Edit the file:
+**Ubuntu & Debian**
 ```sh
 sudo vi /etc/php/8.4/apache2/php.i
+```
+
+**Rocky Linux (RHEL-based)**
+```sh
+/etc/php.ini
 ```
 
 - Then modify the setting
@@ -502,7 +512,8 @@ sudo a2enmod rewrite
 
 # Then enable the VirtualHost
 sudo a2ensite chappy-php.conf
-sudo systemctl restart apache2
+sudo systemctl restart apache2   # Ubuntu & Debian
+sudo systemctl restart httpd     # Rocky Linux
 ```
 
 - Set permissions for storage directory (This will enable writing to logs and uploads):
