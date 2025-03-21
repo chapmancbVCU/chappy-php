@@ -530,17 +530,17 @@ Paste the following content into the file (adjust ServerName to your actual IP o
 
 ```rust
 <VirtualHost *:80>
-ServerName 192.168.1.162
-ServerAdmin webmaster@thedomain.com
-DocumentRoot /var/www/html/chappy-php
+    ServerName localhost
+    ServerAlias your_ip_address yourdomain.com
+    DocumentRoot /var/www/html/chappy-php
 
-<Directory /var/www/html/chappy-php>
-    AllowOverride All
-    Require all granted
-</Directory>
+    <Directory /var/www/html/chappy-php>
+        AllowOverride All
+        Require all granted
+    </Directory>
 
-ErrorLog ${APACHE_LOG_DIR}/error.log
-CustomLog ${APACHE_LOG_DIR}/access.log combined
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
 
@@ -561,7 +561,7 @@ Paste the following content into the file (adjust ServerName to your actual IP o
 ```rust
 <VirtualHost *:80>
     ServerName localhost
-    ServerAlias 192.168.1.162 yourdomain.com
+    ServerAlias your_ip_address yourdomain.com
     DocumentRoot /var/www/html/chappy-php
 
     <Directory /var/www/html/chappy-php>
@@ -579,6 +579,30 @@ Save and exit (ESC then :wq) then restart apache.
 ```sh
 sudo systemctl restart httpd
 ```
+<br>
+
+**Update /etc/hosts (For Custom Domain)**
+
+If you want to access your site using http://chappyphp.local, you can edit your /etc/hosts file:
+```sh
+sudo vi /etc/hosts
+```
+
+Example configuration:
+```rust
+127.0.0.1       localhost chappyphp.local
+127.0.1.1       ubuntu-vm
+192.168.1.182   chappy-php.local
+```
+
+Restart Apache After Changing Virtual Host
+After updating VirtualHost, restart Apache:
+```sh
+sudo systemctl restart apache2   # Ubuntu & Debian
+sudo systemctl restart httpd     # Rocky Linux
+```
+
+Now, http://chappyphp.local will work as expected.
 
 <br>
 
@@ -675,80 +699,6 @@ sudo mysql
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your-password';
 FLUSH PRIVILEGES;
 ```
-<br>
-
-### B. Virtual Host Configuration
-#### 1. Navigation to page
-- Important:
-After configuring the Virtual Host, access your site using:
-```rust
-http://<your-ip-address>
-```
-or the domain name you set in the ServerName directive.
-⚠️ Do not use http://localhost, as it may still serve the default Apache page.
-
-#### 2. Modify the Virtual Host Example
-If you want to support both localhost and the IP, modify the VirtualHost config:
-
-**Ubuntu and Debian**
-```rust
-<VirtualHost *:80>
-    ServerName localhost
-    ServerAlias 192.168.1.162 chappyphp.local
-    DocumentRoot /var/www/html/chappy-php
-
-    <Directory /var/www/html/chappy-php>
-        AllowOverride All
-        Require all granted
-    </Directory>
-
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-```
-<br>
-
-**Rocky Linux (RHEL-based)**
-```rust
-<VirtualHost *:80>
-    ServerName localhost
-    ServerAlias 192.168.1.162 chappyphp.local
-    DocumentRoot /var/www/html/chappy-php
-
-    <Directory /var/www/html/chappy-php>
-        AllowOverride All
-        Require all granted
-        Options Indexes FollowSymLinks
-    </Directory>
-
-    ErrorLog /var/log/httpd/error.log
-    CustomLog /var/log/httpd/access.log combined
-</VirtualHost>
-```
-
-With this change, http://localhost will work, as well as the IP.
-
-#### 3. Update /etc/hosts (For Custom Domain)
-If you want to access your site using http://chappyphp.local, you can edit your /etc/hosts file:
-```sh
-sudo nano /etc/hosts
-```
-
-Example configuration:
-```rust
-127.0.0.1       localhost chappyphp.local
-127.0.1.1       ubuntu-vm
-192.168.1.182   chappy-php.local
-```
-#### 4. Restart Apache After Changing Virtual Host
-After updating VirtualHost, restart Apache:
-```sh
-sudo systemctl restart apache2   # Ubuntu & Debian
-sudo systemctl restart httpd     # Rocky Linux
-```
-
-Now, http://chappyphp.local will work as expected.
-
 <br>
 
 ### B. SELinux Permissions for phpMyAdmin (Rocky Linux)
