@@ -689,6 +689,7 @@ or the domain name you set in the ServerName directive.
 
 #### 2. Modify the Virtual Host Example
 If you want to support both localhost and the IP, modify the VirtualHost config:
+
 **Ubuntu and Debian**
 ```rust
 <VirtualHost *:80>
