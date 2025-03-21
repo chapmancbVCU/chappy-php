@@ -689,6 +689,7 @@ or the domain name you set in the ServerName directive.
 
 #### 2. Modify the Virtual Host Example
 If you want to support both localhost and the IP, modify the VirtualHost config:
+**Ubuntu and Debian**
 ```rust
 <VirtualHost *:80>
     ServerName localhost
@@ -702,6 +703,25 @@ If you want to support both localhost and the IP, modify the VirtualHost config:
 
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+<br>
+
+**Rocky Linux (RHEL-based)**
+```rust
+<VirtualHost *:80>
+    ServerName localhost
+    ServerAlias 192.168.1.162 chappyphp.local
+    DocumentRoot /var/www/html/chappy-php
+
+    <Directory /var/www/html/chappy-php>
+        AllowOverride All
+        Require all granted
+        Options Indexes FollowSymLinks
+    </Directory>
+
+    ErrorLog /var/log/httpd/error.log
+    CustomLog /var/log/httpd/access.log combined
 </VirtualHost>
 ```
 
