@@ -382,7 +382,7 @@ sudo apt install -y phpmyadmin
 sudo dnf install -y phpmyadmin
 ```
 
-During installation:
+During installation (Ubuntu/Debian):
 - Select Apache2 when prompted.
 - Choose Yes to configure dbconfig-common for automatic database setup.
 - Set a phpMyAdmin password (or leave blank to generate one).
@@ -414,8 +414,8 @@ If you used **auth_socket authentication**, switch root to password authenticati
 
 ### D. Setup Your Database
 * In the left panel click on the **New** link.
-* E. In the main panel under **Create Database** enter the name for your database.  This will be the database you will set to `DB_DATABASE` in your `.env` file.
-* F. Click create.
+* In the main panel under **Create Database** enter the name for your database.  This will be the database you will set to `DB_DATABASE` in your `.env` file.
+* Click create.
 
 <br>
 
@@ -502,7 +502,7 @@ sudo chmod -R 755 /var/www/html/chappy-php
 
 ### D. Project Configuration
 Open your preferred IDE (We use VSCode) and edit the `.env` file:
-- Set `APP_DOMAIN` TO `/`.  If you renamed your project directory then the second portion of the URL must match.  The URL must have the last forward slash.  Otherwise, the page and routing will not work correctly.
+- Set `APP_DOMAIN` TO `/`.
 - Update the database section:
 ```php
 # Set to mysql or mariadb for production
@@ -551,6 +551,7 @@ sudo systemctl restart apache2
 <br>
 
 **Rocky Linux (RHEL-based)**
+
 For `.htaccess` files to work correctly on Rocky Linux, Apache needs `AllowOverride All`.  `Options Indexes FollowSymLinks` helps avoid permission issues if `.htaccess` rewrites fail.
 ```sh
 sudo vi /etc/httpd/conf.d/chappy-php.conf
@@ -592,7 +593,7 @@ Example configuration:
 ```rust
 127.0.0.1       localhost chappyphp.local
 127.0.1.1       ubuntu-vm
-192.168.1.182   chappy-php.local
+your_ip_addr    chappyphp.local
 ```
 
 Restart Apache After Changing Virtual Host
@@ -666,7 +667,6 @@ sudo firewall-cmd --permanent --add-service=https
 sudo firewall-cmd --reload
 ```
 
-#### 5. Test
 Now restart Apache:
 ```sh
 sudo systemctl restart httpd
