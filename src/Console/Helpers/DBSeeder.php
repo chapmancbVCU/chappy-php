@@ -35,7 +35,7 @@ class DBSeeder {
     public static function seed(): int {
         $seeder = new DatabaseSeeder();
         $seeder->run();
-        Tools::info('Database seeding complete');
+        Tools::info('Database seeding complete!.  If you see only this message then uncomment your seeders.');
         return Command::SUCCESS;
     }
 
