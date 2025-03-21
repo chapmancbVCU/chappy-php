@@ -36,6 +36,7 @@ First, update your system and install essential dependencies:
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y curl wget git unzip software-properties-common net-tools
 ```
+<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
@@ -53,6 +54,7 @@ sudo apt install -y apache2
 sudo systemctl enable apache2
 sudo systemctl start apache2
 ```
+<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
@@ -60,12 +62,14 @@ sudo dnf install -y httpd
 sudo systemctl enable httpd
 sudo systemctl start httpd
 ```
+<br>
 
 ### B. Verify Apache is running:
 ```sh
 systemctl status apache2   # Ubuntu & Debian
 systemctl status httpd     # Rocky Linux
 ```
+<br>
 
 ### C. Apache should now be accessible at:
 ```
@@ -87,6 +91,7 @@ sudo apt install -y mysql-server
 sudo systemctl enable mysql
 sudo systemctl start mysql
 ```
+<br>
 
 To install MariaDB:
 ```sh
@@ -94,6 +99,7 @@ sudo apt install -y mariadb-server
 sudo systemctl enable mariadb
 sudo systemctl start mariadb
 ```
+<br>
 
 **Rocky Linux (RHEL-based)**
 
@@ -104,6 +110,7 @@ sudo dnf install -y mysql-server
 sudo systemctl enable mysqld
 sudo systemctl start mysqld
 ```
+<br>
 
 To install MariaDB:
 ```sh
@@ -135,6 +142,7 @@ sudo mysql_secure_installation
 ```
 
 - MySQL on Rocky Linux requires setting a root password during installation.
+<br>
 <br>
 
 ### C. Steps for Running `mysql_secure_installation`
@@ -297,6 +305,7 @@ sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y php8.4 php8.4-cli php8.4-mbstring php8.4-xml php8.4-curl php8.4-zip php8.4-mysql libapache2-mod-php8.4 php8.4-sqlite3 sqlite3 php8.4-bcmath
 ```
+<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
@@ -305,8 +314,9 @@ sudo dnf module list php                    # List available PHP modules
 sudo dnf module enable php:remi-8.4 -y      # Enabled PHP 8.3 from Remi repo
 sudo dnf install -y php php-cli php-mbstring php-xml php-curl php-zip php-mysqlnd php-bcmath php-json php-gd php-opcache php-intl php-pear php-soap
 ```
+<br>
 
-- Verify installation:
+Verify installation:
 ```sh
 php -v
 ```
@@ -334,6 +344,7 @@ http://localhost/info.php
 ```sh
 sudo rm /var/www/html/info.php
 ```
+<br>
 
 Configure upload size For profile image upload support.  Edit the file:
 
@@ -341,10 +352,11 @@ Configure upload size For profile image upload support.  Edit the file:
 ```sh
 sudo vi /etc/php/8.4/apache2/php.ini
 ```
+<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
-/etc/php.ini
+sudo vi /etc/php.ini
 ```
 
 Then modify the setting
@@ -363,6 +375,7 @@ phpMyAdmin provides a web interface to manage MySQL or MariaDB databases.
 ```sh
 sudo apt install -y phpmyadmin
 ```
+<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
@@ -374,6 +387,8 @@ During installation:
 - Choose Yes to configure dbconfig-common for automatic database setup.
 - Set a phpMyAdmin password (or leave blank to generate one).
 - If you have issues regarding **[ERROR 1819 (HY000) during the phpMyAdmin installation indicates that the password you've set doesn't meet MySQL's current policy requirements.]** refer to solutions in troubleshooting section.
+<br>
+<br>
 
 ### B. Configure Apache for phpMyAdmin
 Enable phpMyAdmin in Apache:
@@ -382,6 +397,7 @@ sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
 sudo systemctl restart apache2   # Ubuntu & Debian
 sudo systemctl restart httpd     # Rocky Linux
 ```
+<br>
 
 ### C. Verify phpMyAdmin Installation
 Open your browser and visit:
@@ -393,11 +409,14 @@ Log in using:
 - **Username**: root
 - **Password**: (set during MySQL/MariaDB setup)
 If you used **auth_socket authentication**, switch root to password authentication as described earlier.
+<br>
+<br>
 
 ### D. Setup Your Database
 * In the left panel click on the **New** link.
 * E. In the main panel under **Create Database** enter the name for your database.  This will be the database you will set to `DB_DATABASE` in your `.env` file.
 * F. Click create.
+
 <br>
 
 ## 8. Install Composer <a id="composer"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
@@ -408,6 +427,7 @@ cd ~/
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 ```
+<br>
 
 ### B. Verify Installation
 ```sh
@@ -420,24 +440,31 @@ Use NodeSource to install the latest stable Node.js version.
 ### A. Add Node.js Repository
 **Ubuntu and Debian**
 ```sh
+sudo apt install -y ca-certificates     # On minimal OS installs
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 ```
+<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
+# ca-certificates on minimal OS installs
+rpm -q ca-certificates || sudo dnf install -y ca-certificates
 curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -
 ```
+<br>
 
 ### B. Install Node.js & NPM
 **Ubuntu**
 ```sh
 sudo apt install -y nodejs
 ```
+<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
 sudo dnf install -y nodejs
 ```
+<br>
 
 ### C. Verify Installation
 ```sh
@@ -456,12 +483,22 @@ cd ..
 sudo mv chappy-php /var/www/html
 cd /var/www/html/chappy-php
 ```
+<br>
 
 ### B. Set proper permissions:
+**Ubuntu**
 ```sh
 sudo chown -R your-username:www-data /var/www/html/chappy-php
 sudo chmod -R 755 /var/www/html/chappy-php
 ```
+<br>
+
+**Rocky Linux (RHEL-based)**
+```sh
+sudo chown -R your-username:apache /var/www/html/chappy-php 
+sudo chmod -R 755 /var/www/html/chappy-php
+```
+<br>
 
 ### D. Project Configuration
 Open your preferred IDE (We use VSCode) and edit the `.env` file:
@@ -480,13 +517,16 @@ DB_PASSWORD=your_password
 
 **Use a user other than `root` on a production environment**
 
+<br>
+
 ### E. Apache Virtual Host Configuration
-- Run the following command to create a new Apache configuration file:
+Run the following command to create a new Apache configuration file:
+
 **Ubuntu and Debian**
 ```sh
 sudo vi /etc/apache2/sites-available/chappy-php.conf
 ```
-- Paste the following content into the file (adjust ServerName to your actual IP or domain):
+Paste the following content into the file (adjust ServerName to your actual IP or domain):
 
 ```rust
 <VirtualHost *:80>
@@ -504,14 +544,19 @@ CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
 
-- Save and exit (ESC then :wq).
+Save and exit (ESC then :wq) then restart apache.
+```sh
+sudo systemctl restart apache2
+```
+<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
 sudo vi /etc/httpd/conf.d/chappy-php.conf
 ```
 
-- Paste the following content into the file (adjust ServerName to your actual IP or domain):
+Paste the following content into the file (adjust ServerName to your actual IP or domain):
+
 ```rust
 <VirtualHost *:80>
     ServerName localhost
@@ -528,6 +573,12 @@ sudo vi /etc/httpd/conf.d/chappy-php.conf
 </VirtualHost>
 ```
 
+Save and exit (ESC then :wq) then restart apache.
+```sh
+sudo systemctl restart httpd
+```
+<br>
+
 ### F. Enable the Site:
 **Ubuntu and Debian**
 ```sh
@@ -538,6 +589,7 @@ sudo a2enmod rewrite
 sudo a2ensite chappy-php.conf
 sudo systemctl restart apache2
 ```
+<br>
 
 **Rocky Linux (RHEL-based)**
 #### 1. Fix SELinux Contexts for Apache
@@ -582,19 +634,20 @@ Now restart Apache:
 ```sh
 sudo systemctl restart httpd
 ```
+<br>
 
 ### G. Final Steps
-- Set permissions for storage directory (This will enable writing to logs and uploads):
+Set permissions for storage directory (This will enable writing to logs and uploads):
 ```sh
 sudo chmod -R 775 storage/
 ```
 
-- Run migrations:
+Run migrations:
 ```sh
 php console migrate
 ```
 
-- Your project should now be accessible at:
+Your project should now be accessible at:
 ```rust
 http://<your_ip_address>
 ```
@@ -661,6 +714,28 @@ sudo systemctl restart httpd     # Rocky Linux
 ```
 
 Now, http://chappyphp.local will work as expected.
+
+<br>
+
+### B. SELinux Permissions for phpMyAdmin (Rocky Linux)
+Since `phpMyAdmin` is installed via `dnf` on Rocky Linux, SELinux might block it from reading `/var/www/html/phpmyadmin`.
+🔹 Fix:
+If users get 403 Forbidden on phpMyAdmin, they need to run:
+```sh
+sudo chcon -R -t httpd_sys_content_t /usr/share/phpmyadmin
+sudo semanage fcontext -a -t httpd_sys_content_t "/usr/share/phpmyadmin(/.*)?"
+sudo restorecon -Rv /usr/share/phpmyadmin
+```
+<br>
+
+### C. MySQL 8 Authentication in Rocky Linux
+If `mysql_secure_installation` doesn't ask for a password, users may need to set one manually:
+```sh
+sudo mysql
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your-secure-password';
+FLUSH PRIVILEGES;
+EXIT;
+```
 <br>
 
 ## 12. References <a id="references"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
