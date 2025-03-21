@@ -311,7 +311,7 @@ sudo apt install -y php8.4 php8.4-cli php8.4-mbstring php8.4-xml php8.4-curl php
 ```sh
 sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-9.rpm
 sudo dnf module list php                    # List available PHP modules
-sudo dnf module enable php:remi-8.4 -y      # Enabled PHP 8.3 from Remi repo
+sudo dnf module enable php:remi-8.4 -y      # Enables PHP 8.3 from Remi repo
 sudo dnf install -y php php-cli php-mbstring php-xml php-curl php-zip php-mysqlnd php-bcmath php-json php-gd php-opcache php-intl php-pear php-soap
 ```
 <br>
@@ -551,6 +551,7 @@ sudo systemctl restart apache2
 <br>
 
 **Rocky Linux (RHEL-based)**
+For `.htaccess` files to work correctly on Rocky Linux, Apache needs `AllowOverride All`.  `Options Indexes FollowSymLinks` helps avoid permission issues if `.htaccess` rewrites fail.
 ```sh
 sudo vi /etc/httpd/conf.d/chappy-php.conf
 ```
@@ -566,6 +567,7 @@ Paste the following content into the file (adjust ServerName to your actual IP o
     <Directory /var/www/html/chappy-php>
         AllowOverride All
         Require all granted
+        Options Indexes FollowSymLinks
     </Directory>
 
     ErrorLog /var/log/httpd/error.log
@@ -577,6 +579,7 @@ Save and exit (ESC then :wq) then restart apache.
 ```sh
 sudo systemctl restart httpd
 ```
+
 <br>
 
 ### F. Enable the Site:
@@ -589,6 +592,9 @@ sudo a2enmod rewrite
 sudo a2ensite chappy-php.conf
 sudo systemctl restart apache2
 ```
+
+**See Section D in Troubleshooting if you are having issues with Rocky Linux (RHEL)**
+
 <br>
 
 **Rocky Linux (RHEL-based)**
@@ -629,7 +635,14 @@ sudo semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/html/chappy-php/st
 sudo restorecon -Rv /var/www/html/chappy-php/storage
 ```
 
-#### 4. Test
+#### 4. Add firewalld Configuration for Rocky Linux:
+```sh
+sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --permanent --add-service=https
+sudo firewall-cmd --reload
+```
+
+#### 5. Test
 Now restart Apache:
 ```sh
 sudo systemctl restart httpd
@@ -737,6 +750,22 @@ FLUSH PRIVILEGES;
 EXIT;
 ```
 <br>
+
+### D. mod_rewrite for Rocky Linux (RHEL)
+Since Rocky Linux doesn’t have `a2enmod`, users must manually ensure `mod_rewrite` is enabled in:
+```sh
+sudo vi /etc/httpd/conf/httpd.conf
+```
+
+Then uncomment or add this line:
+```sh
+LoadModule rewrite_module modules/mod_rewrite.so
+```
+
+Restart Apache:
+```sh
+sudo systemctl restart httpd
+```
 
 ## 12. References <a id="references"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 A. [How To Install Linux, Apache, MySQL, PHP (LAMP) Stack on Ubuntu - Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-lamp-stack-on-ubuntu#step-2-installing-mysql)
