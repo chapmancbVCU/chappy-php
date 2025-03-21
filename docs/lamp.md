@@ -99,7 +99,8 @@ sudo systemctl start mariadb
 
 To install MySQL:
 ```sh
-sudo dnf install -y @mysql
+sudo dnf install -y https://dev.mysql.com/get/mysql80-community-release-el8-1.noarch.rpm
+sudo dnf install -y mysql-server
 sudo systemctl enable mysqld
 sudo systemctl start mysqld
 ```
@@ -299,7 +300,6 @@ sudo apt install -y php8.4 php8.4-cli php8.4-mbstring php8.4-xml php8.4-curl php
 
 **Rocky Linux (RHEL-based)**
 ```sh
-sudo dnf install -y epel-release
 sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-9.rpm
 sudo dnf module list php                    # List available PHP modules
 sudo dnf module enable php:remi-8.4 -y      # Enabled PHP 8.3 from Remi repo
@@ -482,10 +482,10 @@ DB_PASSWORD=your_password
 
 ### E. Apache Virtual Host Configuration
 - Run the following command to create a new Apache configuration file:
+**Ubuntu and Debian**
 ```sh
 sudo vi /etc/apache2/sites-available/chappy-php.conf
 ```
-
 - Paste the following content into the file (adjust ServerName to your actual IP or domain):
 
 ```rust
@@ -506,18 +506,84 @@ CustomLog ${APACHE_LOG_DIR}/access.log combined
 
 - Save and exit (ESC then :wq).
 
-- Enable the Site and Required Modules:
+**Rocky Linux (RHEL-based)**
+```sh
+sudo vi /etc/httpd/conf.d/chappy-php.conf
+```
 
+- Paste the following content into the file (adjust ServerName to your actual IP or domain):
+```rust
+<VirtualHost *:80>
+    ServerName localhost
+    ServerAlias 192.168.1.162 yourdomain.com
+    DocumentRoot /var/www/html/chappy-php
+
+    <Directory /var/www/html/chappy-php>
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog /var/log/httpd/error.log
+    CustomLog /var/log/httpd/access.log combined
+</VirtualHost>
+```
+
+### F. Enable the Site:
+**Ubuntu and Debian**
 ```sh
 # Enable mod_rewrite first
 sudo a2enmod rewrite
 
 # Then enable the VirtualHost
 sudo a2ensite chappy-php.conf
-sudo systemctl restart apache2   # Ubuntu & Debian
-sudo systemctl restart httpd     # Rocky Linux
+sudo systemctl restart apache2
 ```
 
+**Rocky Linux (RHEL-based)**
+#### 1. Fix SELinux Contexts for Apache
+Allow Apache to read and serve content from your project directory:
+```sh
+sudo chcon -Rt httpd_sys_content_t /var/www/html/chappy-php
+```
+
+Also apply recursively to any .htaccess, uploads, or views:
+```sh
+sudo restorecon -Rv /var/www/html/chappy-php
+```
+
+#### 2. Allow Apache to Read `.htaccess` Files
+Run this to ensure `.htaccess` is allowed:
+```sh
+sudo setsebool -P httpd_read_user_content 1
+sudo setsebool -P allow_httpd_anon_write 1
+sudo setsebool -P allow_httpd_sys_content 1
+```
+
+If you are using uploads or writing to storage, also run:
+```sh
+sudo setsebool -P httpd_unified 1
+sudo setsebool -P httpd_can_network_connect 1
+```
+
+#### 3. Set the Correct SELinux Context for Writable Log Files and to Storage:
+Step 1: Apply the Right Context:
+```sh
+sudo chcon -R -t httpd_sys_rw_content_t /var/www/html/chappy-php/storage
+```
+
+Step 2: Make it Persistent (Survives Reboots):
+```sh
+sudo semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/html/chappy-php/storage(/.*)?"
+sudo restorecon -Rv /var/www/html/chappy-php/storage
+```
+
+#### 4. Test
+Now restart Apache:
+```sh
+sudo systemctl restart httpd
+```
+
+### G. Final Steps
 - Set permissions for storage directory (This will enable writing to logs and uploads):
 ```sh
 sudo chmod -R 775 storage/
