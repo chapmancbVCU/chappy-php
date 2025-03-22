@@ -408,7 +408,7 @@ http://localhost/phpmyadmin
 Log in using:
 - **Username**: root
 - **Password**: (set during MySQL/MariaDB setup)
-If you used **auth_socket authentication**, switch root to password authentication as described earlier.
+⚠️ If you're using `auth_socket`, see Section 4F to switch to mysql_native_password.
 <br>
 <br>
 
@@ -500,7 +500,7 @@ sudo chmod -R 755 /var/www/html/chappy-php
 ```
 <br>
 
-### D. Project Configuration
+### C. Project Configuration
 Open your preferred IDE (We use VSCode) and edit the `.env` file:
 - Set `APP_DOMAIN` TO `/`.
 - Update the database section:
@@ -519,7 +519,7 @@ DB_PASSWORD=your_password
 
 <br>
 
-### E. Apache Virtual Host Configuration
+### D. Apache Virtual Host Configuration
 Run the following command to create a new Apache configuration file:
 
 **Ubuntu and Debian**
@@ -607,7 +607,7 @@ Now, http://chappyphp.local will work as expected.
 
 <br>
 
-### F. Enable the Site:
+### E. Enable the Site:
 **Ubuntu and Debian**
 ```sh
 # Enable mod_rewrite first
@@ -673,7 +673,7 @@ sudo systemctl restart httpd
 ```
 <br>
 
-### G. Final Steps
+### F. Final Steps
 Set permissions for storage directory (This will enable writing to logs and uploads):
 ```sh
 sudo chmod -R 775 storage/
