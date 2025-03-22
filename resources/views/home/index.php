@@ -1,85 +1,81 @@
 <?php use Core\Lib\Utilities\Env; ?>
 <?php $this->start('body'); ?>
-<div class="col-12 mx-auto text-center">
-  <img class="w-50" src="<?=Env::get('APP_DOMAIN', '/')?>public/logo.png" alt="Example FormHelper function call">
-</div>
 
+<div class="container py-5">
+  <div class="text-center">
+    <h1 class="display-4">Welcome to</h1>
+    <div class="col-12 mx-auto text-center">
+      <img class="w-50" src="<?=Env::get('APP_DOMAIN', '/')?>public/logo.png" alt="Example FormHelper function call">
+    </div>
+    <p class="lead mt-3">
+      A lightweight and modern PHP framework built for simplicity, speed, and developer happiness.
+    </p>
 
-<div class="row align-items-center justify-content-center my-5">
-  <p class="text-center w-75">chappy.php is a whole new Model View Controller framework tailored to all of the fellows of the internet.  
-    Our goal is to provide a light weight and easily expandable framework for any PHP developer.
+    <div class="d-flex justify-content-center mt-4 flex-wrap gap-3">
+      <a class="btn btn-primary" href="https://chapmancbvcu.github.io/chappy-php/">📘 View Documentation</a>
+      <a class="btn btn-outline-secondary" href="<?= Env::get('APP_DOMAIN', '/') ?>contacts">🚀 Sample App</a>
+    </div>
+  </div>
+
+  <hr class="my-5">
+
+  <div class="row text-center g-4">
+    <div class="col-md-4">
+      <h4>🔧 MVC Architecture</h4>
+      <p>Familiar routing and controller setup with simple view rendering.</p>
+    </div>
+    <div class="col-md-4">
+      <h4>🛡️ Form Validation</h4>
+      <p>Built-in server-side form validation with error message support.</p>
+    </div>
+    <div class="col-md-4">
+      <h4>⚙️ Project Generator</h4>
+      <p>Generate project skeletons and database migrations using console commands.</p>
+    </div>
+  </div>
+
+  <div class="row text-center g-4 mt-4">
+    <div class="col-md-4">
+      <h4>🧩 Composer Support</h4>
+      <p>Manage your dependencies using Composer just like Laravel or Symfony.</p>
+    </div>
+    <div class="col-md-4">
+      <h4>📁 User Management</h4>
+      <p>Includes ACL support and authentication out of the box.</p>
+    </div>
+    <div class="col-md-4">
+      <h4>📄 Simple Documentation</h4>
+      <p>Markdown and API documentation included and easy to customize.</p>
+    </div>
+  </div>
+
+  <hr class="my-5">
+
+  <div class="text-center">
+    <h4>⚡ Ajax In Action</h4>
+    <p>Test a sample Ajax call to see the framework response.</p>
+    <button class="btn btn-success" onclick="ajaxTest();">Run Ajax Test</button>
+  </div>
+
+  <script>
+    function ajaxTest() {
+      $.ajax({
+        type: "POST",
+        url: "<?= Env::get('APP_DOMAIN', '/') ?>home/testAjax",
+        data: { model_id: 45 },
+        success: function (resp) {
+          if (resp.success) {
+            alert("Server says: " + resp.data.name);
+          }
+          console.log(resp);
+        }
+      });
+    }
+  </script>
+
+  <p class="text-center text-muted mt-5">
+    To customize this page, edit <code>resources/views/home/index.php</code> and <code>app/Controllers/HomeController.php</code>.
   </p>
-</div>
-
-<div class="d-flex flex-column w-75 mx-auto">
-  <div class="d-flex flex-wrap justify-content-around">
-    <div class="card mb-5 border border-primary rounded-lg shadow-lg" style="width: 30rem;">
-      <img class="card-img-top" src="<?=Env::get('APP_DOMAIN', '/')?>public/images/home/form_helper.png" alt="Example FormHelper function call">
-      <div class="card-body">
-        <h5 class="card-title">Rapid Form Development</h5>
-        <p class="card-text">Built in library of functions focused on rapid development of responsive web forms.</p>
-      </div>
-    </div>
-    <div class="card mb-5 border border-primary rounded-lg shadow-lg" style="width: 30rem;">
-      <img class="card-img-top" src="<?=Env::get('APP_DOMAIN', '/')?>public/images/home/validation.png" alt="Validation messages">
-      <div class="card-body">
-        <h5 class="card-title">Server Side Form Validation</h5>
-        <p class="card-text">Built in suite of server side form validation tools with message alert support.</p>
-      </div>
-    </div>
-  </div>
-  
-  <div class="d-flex flex-wrap justify-content-around">
-    <div class="card mb-5 border border-primary rounded-lg shadow-lg" style="width: 30rem;">
-      <img class="card-img-top" src="<?=Env::get('APP_DOMAIN', '/')?>public/images/home/contacts.png" alt="Contacts page">
-      <div class="card-body">
-        <h5 class="card-title">Sample MVC App</h5>
-        <p class="card-text">The sample contact management systems includes a sample code base to introduce you to how to easily work with this framework..</p>
-      </div>
-    </div>
-    <div class="card mb-5 border border-primary rounded-lg shadow-lg" style="width: 30rem;">
-      <img class="card-img-top" src="<?=Env::get('APP_DOMAIN', '/')?>public/images/home/register.png" alt="User registration page">
-      <div class="card-body">
-        <h5 class="card-title">User Management System</h5>
-        <p class="card-text">Register new users and administer their permissions with ease using our Access Control Level tools.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="d-flex flex-wrap justify-content-around">
-   <div class="card mb-5 border border-primary rounded-lg shadow-lg" style="width: 30rem;">
-      <img class="card-img-top" src="<?=Env::get('APP_DOMAIN', '/')?>public/images/home/documentation.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Documentation</h5>
-        <p class="card-text">Descriptions of all functions and classes that come with chappy.php along with a complete users guide.</p>
-      </div>
-    </div>
-    <div class="card mb-5 border border-primary rounded-lg shadow-lg" style="width: 30rem;">
-      <img class="card-img-top" src="<?=Env::get('APP_DOMAIN', '/')?>public/images/home/ajax.png" alt="Card image cap">
-      <img class="card-img-top" src="<?=Env::get('APP_DOMAIN', '/')?>public/images/home/ajax_request.png" alt="Ajax request code">
-      <div class="card-body d-flex flex-column">
-        <h5 class="card-title">Example Ajax Request</h5>
-        <p class="card-text">Demonstration of an ajax requests.</p>
-          <div class="btn btn-primary mt-auto w-25" onclick="ajaxTest();">Click me!!!
-            <script>
-              function ajaxTest(){
-                $.ajax({
-                  type: "POST",
-                  url : '<?=Env::get('APP_DOMAIN', '/')?>home/testAjax',
-                  data : {model_id:45},
-                  success : function(resp){
-                    if(resp.success){
-                      window.alert(resp.data.name);
-                    }
-                    console.log(resp);
-                  }
-                });
-              }
-            </script>
-          </div>
-      </div>
-    </div> 
-  </div>
 </div>
 
 <?php $this->end(); ?>
