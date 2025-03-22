@@ -97,10 +97,7 @@ public static function uploadProfileImage($user_id, $uploads) {
     $lastSort = (!$lastImage) ? 0 : $lastImage->sort;
     $path = self::$_uploadPath.$user_id.DS;
     foreach($uploads->getFiles() as $file) {
-        $parts = explode('.',$file['name']);
-        $ext = end($parts);
-        $hash = sha1(time().$user_id.$file['tmp_name']);
-        $uploadName = $hash . '.' . $ext;
+        $uploadName = $uploads->generateUploadFilename($file['name']);
         $image = new self();
         $image->url = $path . $uploadName;
         $image->name = $uploadName;
@@ -113,6 +110,15 @@ public static function uploadProfileImage($user_id, $uploads) {
     }
 }
 ```
+
+The key parts common to most uploads are the `$path` and generating a unique hashed filename with the `generateUploadFilename` function.  It required to used the original file name since this function needs it to determine the correct file extension.
+
+The last parts that are common is the setting of values for the database fields using the model's instance variables and the test to determine if saving the record is successful.  If and only if the record save is successful then we proceed to upload the file.
+
+The upload function accepts 3 parameters:
+- string $path - Directory where file will exist when uploaded.
+- string $uploadName - The actual name for the file when uploaded.
+- string $fileName - The temporary file name.
 <br>
 
 ## 3. Single File Upload <a id="single-file"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents]
