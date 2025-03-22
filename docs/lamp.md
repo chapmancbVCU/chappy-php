@@ -704,6 +704,7 @@ FLUSH PRIVILEGES;
 
 ### B. SELinux Permissions for phpMyAdmin (Rocky Linux)
 Since `phpMyAdmin` is installed via `dnf` on Rocky Linux, SELinux might block it from reading `/var/www/html/phpmyadmin`.
+
 🔹 Fix:
 If users get 403 Forbidden on phpMyAdmin, they need to run:
 ```sh
