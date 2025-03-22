@@ -310,7 +310,7 @@ mysql -u root -p
 <br>
 
 ## 5. Install PHP 8.4 <a id="php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-### A. Ubuntu and Debian
+### A. Ubuntu
 ```sh
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update && sudo apt upgrade -y
@@ -324,7 +324,30 @@ sudo systemctl start php8.4-fpm
 ```
 <br>
 
-### B. Rocky Linux (RHEL-based)
+### B. Debian
+#### 1. Add the SURY repository (trusted PHP repo for Debian)
+```sh
+sudo apt install -y lsb-release apt-transport-https ca-certificates wget gnupg2
+```
+
+Then import the GPG key:
+```sh
+wget -qO - https://packages.sury.org/php/apt.gpg | sudo tee /etc/apt/trusted.gpg.d/php.gpg >/dev/null
+```
+
+Now add the repo to your sources list:
+```sh
+echo "deb https://packages.sury.org/php/ bookworm main" | sudo tee /etc/apt/sources.list.d/php.list
+```
+
+#### 2. Update and install PHP 8.3
+```sh
+sudo apt update
+sudo apt install -y php8.3 php8.3-cli php8.3-fpm php8.3-mysql php8.3-curl php8.3-zip php8.3-mbstring php8.3-xml php8.3-bcmath php8.3-soap php8.3-intl php8.3-readline php8.3-sqlite3 sqlite3
+```
+<br>
+
+### C. Rocky Linux (RHEL-based)
 ```sh
 sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-9.rpm
 sudo dnf module list php                    # Optional: list available versions
@@ -348,10 +371,18 @@ php -v
 ## 6. Configure Nginx and PHP-FPM <a id="configure-nginx-php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 ### A. Configure PHP-FPM
 PHP-FPM (FastCGI Process Manager) allows Nginx to process PHP scripts.
-**Ubuntu & Debian**
+
+**Ubuntu**
 ```sh
 sudo systemctl enable php8.4-fpm
 sudo systemctl start php8.4-fpm
+```
+<br>
+
+**Debian**
+```sh
+sudo systemctl enable php8.3-fpm
+sudo systemctl start php8.3-fpm
 ```
 <br>
 
@@ -390,11 +421,6 @@ server {
     index index.html index.htm index.php;
 
     charset utf-8;
-
-    # ✅ Allow direct access to static assets (CSS, JS, Fonts, Images)
-    location /api-docs/assets/ {
-        root /var/www/chappy-php/resources/views/api-docs;
-    }
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location = /robots.txt  { access_log off; log_not_found off; }

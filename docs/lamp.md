@@ -310,7 +310,7 @@ mysql -u root -p
 <br>
 
 ## 5. Install PHP 8.4 <a id="php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-**Ubuntu and Debian**
+### A. Ubuntu
 ```sh
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update && sudo apt upgrade -y
@@ -318,7 +318,30 @@ sudo apt install -y php8.4 php8.4-cli php8.4-mbstring php8.4-xml php8.4-curl php
 ```
 <br>
 
-**Rocky Linux (RHEL-based)**
+### B. Debian
+#### 1. Add the SURY repository (trusted PHP repo for Debian)
+```sh
+sudo apt install -y lsb-release apt-transport-https ca-certificates wget gnupg2
+```
+
+Then import the GPG key:
+```sh
+wget -qO - https://packages.sury.org/php/apt.gpg | sudo tee /etc/apt/trusted.gpg.d/php.gpg >/dev/null
+```
+
+Now add the repo to your sources list:
+```sh
+echo "deb https://packages.sury.org/php/ bookworm main" | sudo tee /etc/apt/sources.list.d/php.list
+```
+
+#### 2. Update and install PHP 8.3
+```sh
+sudo apt update
+sudo apt install -y php8.3 php8.3-cli php8.3-fpm php8.3-mysql php8.3-curl php8.3-zip php8.3-mbstring php8.3-xml php8.3-bcmath php8.3-soap php8.3-intl php8.3-readline php8.3-sqlite3 sqlite3
+```
+<br>
+
+### C. Rocky Linux (RHEL-based)
 ```sh
 sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-9.rpm
 sudo dnf module list php                    # List available PHP modules
