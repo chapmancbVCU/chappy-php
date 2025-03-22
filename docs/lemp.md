@@ -93,7 +93,7 @@ sudo systemctl start mysql
 ```
 <br>
 
-To install MariaDB:
+To install MariaDB (Recommended for Debian):
 ```sh
 sudo apt install -y mariadb-server
 sudo systemctl enable mariadb
@@ -159,8 +159,8 @@ secure enough. Would you like to setup VALIDATE PASSWORD component?
 Press y|Y for Yes, any other key for No:
 ```
 
-- Recommended: Type n (No) unless you want strict password rules.  Choosing Y might get you into a situation where you get the **[ERROR 1819 (HY000) during the phpMyAdmin installation indicates that the password you’ve set doesn’t meet MySQL’s current policy requirements.]** and will have to perform extra steps to resolve.
-
+- ✅ MySQL: Type n unless you want strict password rules. Choosing y might cause errors (e.g., ERROR 1819 (HY000)) during tools like phpMyAdmin setup.
+- ✅ MariaDB: This step may not appear. If it does, it’s safe to disable it (n) for local or development use.
 - If you choose y, you must select a password strength level:
 
 ```rust
@@ -185,35 +185,46 @@ Would you like to set up a root password? [Y/n]
 Would you like to set up a root password? [Y/n]
 ```
 
-#### 3. Remove Anonymous Users
+- MySQL (Ubuntu/Debian): Skipped if `auth_socket` is enabled.
+- MySQL (RHEL-based): You must set a password.
+- ✅ MariaDB (All distros): You’ll be asked even if a password is already set. Choose `n` if you already have it protected with a password or socket.
+
+#### 3. Switch to unix_socket Authentication (MariaDB Only)
+```sh
+Switch to unix_socket authentication [Y/n]
+```
+- ✅ MariaDB on Debian/Ubuntu: Choose `n` if you want to use password authentication (especially for phpMyAdmin compatibility).
+- Choose `y` only if you're confident with CLI-only login and not using GUI tools like phpMyAdmin.
+
+#### 4. Remove Anonymous Users
 - You’ll see this prompt:
 ```rust
 Remove anonymous users? (Press y|Y for Yes, any other key for No) :
 ```
 - Type `Y` and press **Enter** to improve security.
 
-#### 4. Disable Remote Root Login
+#### 5. Disable Remote Root Login
 - You’ll see this prompt:
 ```rust
 Disallow root login remotely? (Press y|Y for Yes, any other key for No) :
 ```
 - Type `Y` and press **Enter** to prevent unauthorized remote access.
 
-#### 5. Remove the Test Database
+#### 6. Remove the Test Database
 - You'll see:
 ```rust
 Remove test database and access to it? (Press y|Y for Yes, any other key for No) :
 ```
 - Type `Y` and press **Enter**.
 
-#### 6. Reload Privilege Tables
+#### 7. Reload Privilege Tables
 - Finally, MySQL will ask:
 ```rust
 Reload privilege tables now? (Press y|Y for Yes, any other key for No) :
 ```
 - Type `Y` and press **Enter** to apply all changes.
 
-#### 7. Secure Installation Complete
+#### 8. Secure Installation Complete
 - You should see a message like:
 ```rust
 All done! If you've completed all of the above steps, your MySQL installation should now be secure.
