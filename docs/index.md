@@ -12,7 +12,7 @@ Get to any resource within the Chappy.php Wiki from here.
 7. [Forms](forms)
 8. [Getting Started](getting_started)
     * A. [Linux Standalone PHP](linux-php-standalone)
-    * B. [LAMP Stack](lamp) - Coming soon
+    * B. [LAMP Stack](lamp)
     * C. [LEMP Stack](lemp) - Coming soon
     * D. [MacOS](macos)
     * E. [Windows](windows)
