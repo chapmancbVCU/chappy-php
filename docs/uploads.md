@@ -113,7 +113,7 @@ public static function uploadProfileImage($user_id, $uploads) {
 
 The key parts common to most uploads are the `$path` and generating a unique hashed filename with the `generateUploadFilename` function.  It required to used the original file name since this function needs it to determine the correct file extension.
 
-The last parts that are common is the setting of values for the database fields using the model's instance variables and the test to determine if saving the record is successful.  If and only if the record save is successful then we proceed to upload the file.
+The last parts that are common is the setting of values for the database fields using the model's instance variables, the test to determine if saving the record is successful, and the setup of the foreach loop.  If and only if the record save is successful then we proceed to upload the file.
 
 The upload function accepts 3 parameters:
 - string $path - Directory where file will exist when uploaded.
