@@ -54,7 +54,7 @@ OR
 
 Install with Chocolatey
 ```powershell
-choco install node -y
+choco install node-lts
 ```
 #### 3. Install 7zip
 * A. **Download the Installer**
