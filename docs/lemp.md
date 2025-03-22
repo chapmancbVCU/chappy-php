@@ -345,6 +345,12 @@ echo "deb https://packages.sury.org/php/ bookworm main" | sudo tee /etc/apt/sour
 sudo apt update
 sudo apt install -y php8.3 php8.3-cli php8.3-fpm php8.3-mysql php8.3-curl php8.3-zip php8.3-mbstring php8.3-xml php8.3-bcmath php8.3-soap php8.3-intl php8.3-readline php8.3-sqlite3 sqlite3
 ```
+
+Enable and start PHP-FPM:
+```sh
+sudo systemctl enable php8.3-fpm
+sudo systemctl start php8.3-fpm
+```
 <br>
 
 ### C. Rocky Linux (RHEL-based)
@@ -362,44 +368,43 @@ sudo systemctl start php-fpm
 ```
 <br>
 
-### C. Verify installation:
+### D. Verify installation:
 ```sh
 php -v
 ```
 <br>
 
 ## 6. Configure Nginx and PHP-FPM <a id="configure-nginx-php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-### A. Configure PHP-FPM
-PHP-FPM (FastCGI Process Manager) allows Nginx to process PHP scripts.
+### A. Configure Nginx Server Block
+Clone and move the project:
+```sh
+cd ~/
+git clone git@github.com:chapmancbVCU/chappy-php.git
+sudo mv chappy-php/ /var/www/
+cd /var/www/chappy-php
+```
 
+### B. Set proper permissions:
 **Ubuntu**
 ```sh
-sudo systemctl enable php8.4-fpm
-sudo systemctl start php8.4-fpm
-```
-<br>
-
-**Debian**
-```sh
-sudo systemctl enable php8.3-fpm
-sudo systemctl start php8.3-fpm
+sudo chown -R your-username:www-data /var/www/chappy-php
+sudo chmod -R 755 /var/www/chappy-php
 ```
 <br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
-sudo systemctl enable php-fpm
-sudo systemctl start php-fpm
+sudo chown -R your-username:nginx /var/www/chappy-php 
+sudo chmod -R 755 /var/www/chappy-php
 ```
 <br>
 
-### B. Configure Nginx Server Block
-Create a new configuration file:
+### C. Create a new configuration file:
+
 **Ubuntu & Debian**
 ```sh
 sudo vi /etc/nginx/sites-available/chappy-php
 ```
-<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
@@ -407,7 +412,7 @@ sudo vi /etc/nginx/conf.d/chappy-php.conf
 ```
 <br>
 
-Paste the following content (replace server_domain_or_IP with your IP address or domain name):
+Paste the following content while making sure correct php version is set (replace server_domain_or_IP with your IP address or domain name):
 ```rust
 server {
     listen 80;
@@ -421,6 +426,10 @@ server {
     index index.html index.htm index.php;
 
     charset utf-8;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location = /robots.txt  { access_log off; log_not_found off; }
@@ -440,9 +449,10 @@ server {
 }
 ```
 
-Enable site on Ubuntu/Debian:
+Enable the new site and disable default on Ubuntu/Debian:
 ```sh
 sudo ln -s /etc/nginx/sites-available/chappy-php /etc/nginx/sites-enabled/
+sudo unlink /etc/nginx/sites-enabled/default
 ```
 
 Then test the configuration and reload Nginx:
@@ -452,7 +462,7 @@ sudo systemctl reload nginx
 ```
 <br>
 
-### C. Test PHP
+### D. Test PHP
 Create a test file:
 ```sh
 echo "<?php phpinfo(); ?>" | sudo tee /var/www/chappy-php/info.php
@@ -469,11 +479,18 @@ sudo rm /var/www/chappy-php/info.php
 ```
 <br>
 
-### D. Configure Upload Size (for Profile Image Support):
+### E. Configure Upload Size (for Profile Image Support):
 
-**Ubuntu & Debian**
+**Ubuntu**
 ```sh
 sudo vi /etc/php/8.4/fpm/php.ini
+
+```
+<br>
+
+**Debian**
+```sh
+sudo vi /etc/php/8.3/fpm/php.ini
 
 ```
 <br>
@@ -490,13 +507,20 @@ upload_max_filesize = 2M
 
 to a value appropriate for your needs.  We set it to `10M`.
 
+<br>
+
 Then restart PHP-FPM:
 
-**Ubuntu & Debian**
+**Ubuntu**
 ```sh
 sudo systemctl restart php8.4-fpm
 ```
-<br>
+
+**Debian**
+```sh
+sudo systemctl restart php8.3-fpm
+```
+
 **Rocky Linux (RHEL-based)**
 ```sh
 sudo systemctl restart php-fpm
@@ -515,6 +539,7 @@ When prompted:
 - Do not select a web server (Nginx is not listed).
 - Choose Yes to configure dbconfig-common and create the phpMyAdmin database.
 - Set a phpMyAdmin password or leave it blank to auto-generate.
+
 <br>
 
 **Rocky Linux (RHEL-based)**
@@ -639,31 +664,12 @@ npm -v
 ## 10. Project Setup <a id="project-setup"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 ### A. Navigate to your user's root directory, install dependencies, then move to final location:
 ```sh
-git clone git@github.com:chapmancbVCU/chappy-php.git
-cd chappy-php/
-composer run install-project
-cd ..
-sudo mv chappy-php /var/www
 cd /var/www/chappy-php
+composer run install-project
 ```
 <br>
 
-### B. Set proper permissions:
-**Ubuntu**
-```sh
-sudo chown -R your-username:www-data /var/www/chappy-php
-sudo chmod -R 755 /var/www/chappy-php
-```
-<br>
-
-**Rocky Linux (RHEL-based)**
-```sh
-sudo chown -R your-username:nginx /var/www/chappy-php 
-sudo chmod -R 755 /var/www/chappy-php
-```
-<br>
-
-### C. Project Configuration
+### B. Project Configuration
 Open your preferred IDE (We use VSCode) and edit the `.env` file:
 - Set `APP_DOMAIN` TO `/`.
 - Update the database section:
@@ -682,7 +688,7 @@ DB_PASSWORD=your_password
 
 <br>
 
-### D. Update /etc/hosts (For Custom Domain)
+### C. Update /etc/hosts (For Custom Domain)
 If you want to access your site using http://chappyphp.local, you can edit your /etc/hosts file:
 ```sh
 sudo vi /etc/hosts
@@ -699,7 +705,7 @@ Now, http://chappyphp.local will work as expected.
 
 <br>
 
-### E. Enable the Site:
+### D. Enable the Site:
 Restart Nginx After Modifying Server Block or /etc/hosts:
 ```sh
 sudo systemctl restart nginx
@@ -803,3 +809,13 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your-sec
 FLUSH PRIVILEGES;
 EXIT;
 ```
+<br>
+
+## 12. References <a id="references"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+A. [How To Install Linux, Nginx, MySQL, PHP (LEMP stack) on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu)
+
+B. [How To Install and Configure Laravel with Nginx on Ubuntu 22.04 (LEMP)](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-laravel-with-nginx-on-ubuntu-22-04)
+
+C. [How to Install PHP 8.3 on Ubuntu 22.04](https://www.atlantic.net/dedicated-server-hosting/how-to-install-php-8-3-on-ubuntu-22-04/)
+
+D. [How To Install and Secure phpMyAdmin with Nginx on an Ubuntu 20.04 Server](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-with-nginx-on-an-ubuntu-20-04-server)
