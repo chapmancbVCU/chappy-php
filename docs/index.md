@@ -10,7 +10,7 @@ Get to any resource within the Chappy.php Wiki from here.
     * B. [Database Seeders](database_seeders)
 6. [Debugging and Logs](debugging_and_logs)
 7. [Forms](forms)
-8. [Getting Started](getting_started)
+8. Getting Started
     * A. [Linux Standalone PHP](linux-php-standalone)
     * B. [LAMP Stack](lamp)
     * C. [LEMP Stack](lemp) - Coming soon
