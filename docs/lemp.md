@@ -1,12 +1,12 @@
-<h1 style="font-size: 50px; text-align: center;">LAMP Stack</h1>
+<h1 style="font-size: 50px; text-align: center;">LEMP Stack</h1>
 
 ## Table of contents
 1. [Overview](#overview)
 2. [Install System Dependencies](#dependencies)
-3. [Install Apache](#apache)
+3. [Install Nginx](#nginx)
 4. [Install MySQL/MariaDB](#mysql)
 5. [Install PHP 8.4](#php)
-6. [Configure Apache and PHP](#configure-apache-php)
+6. [Configure Nginx and PHP-FPM](#configure-nginx-php)
 7. [Install phpMyAdmin](#phpMyAdmin)
 8. [Install Composer](#composer)
 9. [Install Node.js & NPM](#nodejs)
@@ -17,10 +17,10 @@
 <br>
 
 ## 1. Overview <a id="overview"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-This guide walks through setting up a LAMP stack (Linux, Apache, MySQL/MariaDB, PHP) on Ubuntu (22.04 LTS), Debian (LMDE), and RHEL (Rocky Linux) for deploying PHP applications, including the Chappy.php framework.
+This guide walks through setting up a LEMP stack (Linux, Nginx, MySQL/MariaDB, PHP) on Ubuntu (22.04 LTS), Debian (LMDE), and RHEL (Rocky Linux) for deploying PHP applications, including the Chappy.php framework.
 
 **Requirements**
-- Apache 2.x
+- Nginx
 - PHP 8.3+
 - MySQL or MariaDB
 - Composer
@@ -46,32 +46,32 @@ sudo dnf install -y curl wget git unzip net-tools
 ```
 <br>
 
-## 3. Install Apache <a id="apache"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-### A. Install Apache and enable it to start on boot:
+## 3. Install Nginx <a id="nginx"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+### A. Install Nginx and enable it to start on boot:
 **Ubuntu and Debian**
 ```sh
-sudo apt install -y apache2
-sudo systemctl enable apache2
-sudo systemctl start apache2
+sudo apt install -y nginx
+sudo systemctl enable nginx
+sudo systemctl start nginx
 ```
 <br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
-sudo dnf install -y httpd
-sudo systemctl enable httpd
-sudo systemctl start httpd
+sudo dnf install -y nginx
+sudo systemctl enable nginx
+sudo systemctl start nginx
 ```
 <br>
 
-### B. Verify Apache is running:
+### B. Verify Nginx is Running
+To confirm that Nginx is running:
 ```sh
-systemctl status apache2   # Ubuntu & Debian
-systemctl status httpd     # Rocky Linux
+systemctl status nginx
 ```
 <br>
 
-### C. Apache should now be accessible at:
+The default page for Nginx should be accessible at:
 ```rust
 http://localhost
 ```
@@ -299,58 +299,145 @@ mysql -u root -p
 <br>
 
 ## 5. Install PHP 8.4 <a id="php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-**Ubuntu and Debian**
+### A. Ubuntu and Debian
 ```sh
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y php8.4 php8.4-cli php8.4-mbstring php8.4-xml php8.4-curl php8.4-zip php8.4-mysql libapache2-mod-php8.4 php8.4-sqlite3 sqlite3 php8.4-bcmath
+sudo apt install -y php8.4 php8.4-cli php8.4-fpm php8.4-mbstring php8.4-xml php8.4-curl php8.4-zip php8.4-mysql php8.4-sqlite3 sqlite3 php8.4-bcmath
+```
+
+Enable and start PHP-FPM:
+```sh
+sudo systemctl enable php8.4-fpm
+sudo systemctl start php8.4-fpm
 ```
 <br>
 
-**Rocky Linux (RHEL-based)**
+### B. Rocky Linux (RHEL-based)
 ```sh
 sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-9.rpm
-sudo dnf module list php                    # List available PHP modules
-sudo dnf module enable php:remi-8.4 -y      # Enables PHP 8.3 from Remi repo
-sudo dnf install -y php php-cli php-mbstring php-xml php-curl php-zip php-mysqlnd php-bcmath php-json php-gd php-opcache php-intl php-pear php-soap
+sudo dnf module list php                    # Optional: list available versions
+sudo dnf module enable php:remi-8.4 -y      # Enable PHP 8.4 from Remi
+sudo dnf install -y php php-cli php-fpm php-mbstring php-xml php-curl php-zip php-mysqlnd php-bcmath php-json php-gd php-opcache php-intl php-pear php-soap
+```
+
+Enable and start PHP-FPM:
+```sh
+sudo systemctl enable php-fpm
+sudo systemctl start php-fpm
 ```
 <br>
 
-Verify installation:
+### C. Verify installation:
 ```sh
 php -v
 ```
 <br>
 
-## 6. Configure Apache and PHP <a id="config-apache-php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-Restart Apache to apply PHP settings:
+## 6. Configure Nginx and PHP-FPM <a id="configure-nginx-php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+### A. Configure PHP-FPM
+PHP-FPM (FastCGI Process Manager) allows Nginx to process PHP scripts.
+**Ubuntu & Debian**
 ```sh
-sudo systemctl restart apache2   # Ubuntu & Debian
-sudo systemctl restart httpd     # Rocky Linux
+sudo systemctl enable php8.4-fpm
+sudo systemctl start php8.4-fpm
+```
+<br>
+
+**Rocky Linux (RHEL-based)**
+```sh
+sudo systemctl enable php-fpm
+sudo systemctl start php-fpm
+```
+<br>
+
+### B. Configure Nginx Server Block
+Create a new configuration file:
+**Ubuntu & Debian**
+```sh
+sudo vi /etc/nginx/sites-available/chappy-php
+```
+<br>
+
+**Rocky Linux (RHEL-based)**
+```sh
+sudo vi /etc/nginx/conf.d/chappy-php.conf
+```
+<br>
+
+Paste the following content (replace server_domain_or_IP with your IP address or domain name):
+```rust
+server {
+    listen 80;
+    server_name server_domain_or_IP;
+    root /var/www/chappy-php;
+
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-XSS-Protection "1; mode=block";
+    add_header X-Content-Type-Options "nosniff";
+
+    index index.html index.htm index.php;
+
+    charset utf-8;
+
+    # ✅ Allow direct access to static assets (CSS, JS, Fonts, Images)
+    location /api-docs/assets/ {
+        root /var/www/chappy-php/resources/views/api-docs;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    error_page 404 /index.php;
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass unix:/var/run/php/php8.4-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+    }
+
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
 ```
 
-Test PHP:
-- Create a test file:
+Enable site on Ubuntu/Debian:
 ```sh
-echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/info.php
+sudo ln -s /etc/nginx/sites-available/chappy-php /etc/nginx/sites-enabled/
 ```
 
-- Open in a browser:
+Then test the configuration and reload Nginx:
+```sh
+sudo nginx -t
+sudo systemctl reload nginx
+```
+<br>
+
+### C. Test PHP
+Create a test file:
+```sh
+echo "<?php phpinfo(); ?>" | sudo tee /var/www/chappy-php/info.php
+```
+
+Open in a browser:
 ```rust
 http://localhost/info.php
 ```
 
-- Remove the file after testing:
+Remove the file after testing:
 ```sh
-sudo rm /var/www/html/info.php
+sudo rm /var/www/chappy-php/info.php
 ```
 <br>
 
-Configure upload size For profile image upload support.  Edit the file:
+### D. Configure Upload Size (for Profile Image Support):
 
 **Ubuntu & Debian**
 ```sh
-sudo vi /etc/php/8.4/apache2/php.ini
+sudo vi /etc/php/8.4/fpm/php.ini
+
 ```
 <br>
 
@@ -365,6 +452,17 @@ upload_max_filesize = 2M
 ```
 
 to a value appropriate for your needs.  We set it to `10M`.
+
+Then restart PHP-FPM:
+**Ubuntu & Debian**
+```sh
+sudo systemctl restart php8.4-fpm
+```
+<br>
+**Rocky Linux (RHEL-based)**
+```sh
+sudo systemctl restart php-fpm
+```
 <br>
 <br>
 
@@ -375,27 +473,54 @@ phpMyAdmin provides a web interface to manage MySQL or MariaDB databases.
 ```sh
 sudo apt install -y phpmyadmin
 ```
+When prompted:
+- Do not select a web server (Nginx is not listed).
+- Choose Yes to configure dbconfig-common and create the phpMyAdmin database.
+- Set a phpMyAdmin password or leave it blank to auto-generate.
 <br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
 sudo dnf install -y phpmyadmin
 ```
-
-During installation (Ubuntu/Debian):
-- Select Apache2 when prompted.
-- Choose Yes to configure dbconfig-common for automatic database setup.
-- Set a phpMyAdmin password (or leave blank to generate one).
-- If you have issues regarding **[ERROR 1819 (HY000) during the phpMyAdmin installation indicates that the password you've set doesn't meet MySQL's current policy requirements.]** refer to solutions in troubleshooting section.
-<br>
 <br>
 
-### B. Configure Apache for phpMyAdmin
-Enable phpMyAdmin in Apache:
+### B. Configure Nginx to Serve phpMyAdmin
+Symlink phpMyAdmin into your Nginx-accessible root path:
 ```sh
-sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
-sudo systemctl restart apache2   # Ubuntu & Debian
-sudo systemctl restart httpd     # Rocky Linux
+sudo ln -s /usr/share/phpmyadmin /var/www/phpmyadmin
+```
+
+Then edit your Nginx config:
+```sh
+sudo vi /etc/nginx/sites-enabled/chappy-php
+```
+
+Add the following inside the `server {}` block:
+```rust
+location /phpmyadmin {
+    root /var/www;
+    index index.php index.html index.htm;
+
+    location ~ ^/phpmyadmin/(.+\.php)$ {
+        try_files $uri =404;
+        root /var/www;
+        fastcgi_pass unix:/var/run/php/php8.4-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    location ~* ^/phpmyadmin/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
+        root /var/www;
+    }
+}
+```
+If you're using a custom root path like /var/www/chappy-php, adjust root accordingly.
+
+Reload Nginx to apply the config:
+```sh
+sudo systemctl reload nginx
 ```
 <br>
 
@@ -480,23 +605,23 @@ git clone git@github.com:chapmancbVCU/chappy-php.git
 cd chappy-php/
 composer run install-project
 cd ..
-sudo mv chappy-php /var/www/html
-cd /var/www/html/chappy-php
+sudo mv chappy-php /var/www
+cd /var/www/chappy-php
 ```
 <br>
 
 ### B. Set proper permissions:
 **Ubuntu**
 ```sh
-sudo chown -R your-username:www-data /var/www/html/chappy-php
-sudo chmod -R 755 /var/www/html/chappy-php
+sudo chown -R your-username:www-data /var/www/chappy-php
+sudo chmod -R 755 /var/www/chappy-php
 ```
 <br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
-sudo chown -R your-username:apache /var/www/html/chappy-php 
-sudo chmod -R 755 /var/www/html/chappy-php
+sudo chown -R your-username:nginx /var/www/chappy-php 
+sudo chmod -R 755 /var/www/chappy-php
 ```
 <br>
 
@@ -519,71 +644,7 @@ DB_PASSWORD=your_password
 
 <br>
 
-### D. Apache Virtual Host Configuration
-Run the following command to create a new Apache configuration file:
-
-**Ubuntu and Debian**
-```sh
-sudo vi /etc/apache2/sites-available/chappy-php.conf
-```
-Paste the following content into the file (adjust ServerName to your actual IP or domain):
-
-```rust
-<VirtualHost *:80>
-    ServerName localhost
-    ServerAlias your_ip_address yourdomain.com
-    DocumentRoot /var/www/html/chappy-php
-
-    <Directory /var/www/html/chappy-php>
-        AllowOverride All
-        Require all granted
-    </Directory>
-
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-```
-
-Save and exit (ESC then :wq) then restart apache.
-```sh
-sudo systemctl restart apache2
-```
-<br>
-
-**Rocky Linux (RHEL-based)**
-
-For `.htaccess` files to work correctly on Rocky Linux, Apache needs `AllowOverride All`.  `Options Indexes FollowSymLinks` helps avoid permission issues if `.htaccess` rewrites fail.
-```sh
-sudo vi /etc/httpd/conf.d/chappy-php.conf
-```
-
-Paste the following content into the file (adjust ServerName to your actual IP or domain):
-
-```rust
-<VirtualHost *:80>
-    ServerName localhost
-    ServerAlias your_ip_address yourdomain.com
-    DocumentRoot /var/www/html/chappy-php
-
-    <Directory /var/www/html/chappy-php>
-        AllowOverride All
-        Require all granted
-        Options Indexes FollowSymLinks
-    </Directory>
-
-    ErrorLog /var/log/httpd/error.log
-    CustomLog /var/log/httpd/access.log combined
-</VirtualHost>
-```
-
-Save and exit (ESC then :wq) then restart apache.
-```sh
-sudo systemctl restart httpd
-```
-<br>
-
-**Update /etc/hosts (For Custom Domain)**
-
+### D. Update /etc/hosts (For Custom Domain)
 If you want to access your site using http://chappyphp.local, you can edit your /etc/hosts file:
 ```sh
 sudo vi /etc/hosts
@@ -596,26 +657,14 @@ Example configuration:
 your_ip_addr    chappyphp.local
 ```
 
-Restart Apache After Changing Virtual Host
-After updating VirtualHost, restart Apache:
-```sh
-sudo systemctl restart apache2   # Ubuntu & Debian
-sudo systemctl restart httpd     # Rocky Linux
-```
-
 Now, http://chappyphp.local will work as expected.
 
 <br>
 
 ### E. Enable the Site:
-**Ubuntu and Debian**
+Restart Nginx After Modifying Server Block or /etc/hosts:
 ```sh
-# Enable mod_rewrite first
-sudo a2enmod rewrite
-
-# Then enable the VirtualHost
-sudo a2ensite chappy-php.conf
-sudo systemctl restart apache2
+sudo systemctl restart nginx
 ```
 
 **See Section D in Troubleshooting if you are having issues with Rocky Linux (RHEL)**
@@ -623,54 +672,48 @@ sudo systemctl restart apache2
 <br>
 
 **Rocky Linux (RHEL-based)**
-#### 1. Fix SELinux Contexts for Apache
-Allow Apache to read and serve content from your project directory:
+#### 1. Fix SELinux Contexts for Nginx
+Allow Nginx to read and serve content from your project directory:
 ```sh
-sudo chcon -Rt httpd_sys_content_t /var/www/html/chappy-php
+sudo chcon -Rt httpd_sys_content_t /var/www/chappy-php
 ```
 
 Also apply recursively to any .htaccess, uploads, or views:
 ```sh
-sudo restorecon -Rv /var/www/html/chappy-php
+sudo restorecon -Rv /var/www/chappy-php
 ```
 
-#### 2. Allow Apache to Read `.htaccess` Files
-Run this to ensure `.htaccess` is allowed:
-```sh
-sudo setsebool -P httpd_read_user_content 1
-sudo setsebool -P allow_httpd_anon_write 1
-sudo setsebool -P allow_httpd_sys_content 1
-```
-
-If you are using uploads or writing to storage, also run:
+#### 2. Allow Nginx to Write and Connect (If Needed)
+Run these SELinux booleans if your app writes to disk (e.g., for logs/uploads) or needs outbound network access:
 ```sh
 sudo setsebool -P httpd_unified 1
 sudo setsebool -P httpd_can_network_connect 1
+sudo setsebool -P httpd_enable_homedirs 1
 ```
 
 #### 3. Set the Correct SELinux Context for Writable Log Files and to Storage:
 Step 1: Apply the Right Context:
 ```sh
-sudo chcon -R -t httpd_sys_rw_content_t /var/www/html/chappy-php/storage
+sudo chcon -R -t httpd_sys_rw_content_t /var/www/chappy-php/storage
 ```
 
 Step 2: Make it Persistent (Survives Reboots):
 ```sh
-sudo semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/html/chappy-php/storage(/.*)?"
-sudo restorecon -Rv /var/www/html/chappy-php/storage
+sudo semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/chappy-php/storage(/.*)?"
+sudo restorecon -Rv /var/www/chappy-php/storage
 ```
 📁 If you’re using other writable paths, repeat these steps for those as well.
 
-#### 4. Add firewalld Configuration for Rocky Linux:
+#### 4. Add Firewalld Rules for Nginx
 ```sh
 sudo firewall-cmd --permanent --add-service=http
 sudo firewall-cmd --permanent --add-service=https
 sudo firewall-cmd --reload
 ```
 
-Now restart Apache:
+Now restart Nginx:
 ```sh
-sudo systemctl restart httpd
+sudo systemctl restart nginx
 ```
 <br>
 
@@ -703,7 +746,7 @@ FLUSH PRIVILEGES;
 <br>
 
 ### B. SELinux Permissions for phpMyAdmin (Rocky Linux)
-Since `phpMyAdmin` is installed via `dnf` on Rocky Linux, SELinux might block it from reading `/var/www/html/phpmyadmin`.
+Since `phpMyAdmin` is installed via `dnf` on Rocky Linux, SELinux might block it from reading `/var/www/phpmyadmin`.
 🔹 Fix:
 If users get 403 Forbidden on phpMyAdmin, they need to run:
 ```sh
@@ -721,27 +764,3 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your-sec
 FLUSH PRIVILEGES;
 EXIT;
 ```
-<br>
-
-### D. mod_rewrite for Rocky Linux (RHEL)
-Since Rocky Linux doesn’t have `a2enmod`, users must manually ensure `mod_rewrite` is enabled in:
-```sh
-sudo vi /etc/httpd/conf/httpd.conf
-```
-
-Then uncomment or add this line:
-```sh
-LoadModule rewrite_module modules/mod_rewrite.so
-```
-
-Restart Apache:
-```sh
-sudo systemctl restart httpd
-```
-
-## 12. References <a id="references"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-A. [How To Install Linux, Apache, MySQL, PHP (LAMP) Stack on Ubuntu - Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-lamp-stack-on-ubuntu#step-2-installing-mysql)
-
-B. [How To Install and Secure phpMyAdmin on Ubuntu - Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu)
-
-C. [How to Deploy a Laravel App Using Apache and MySQL](https://adeyomoladev.medium.com/how-to-deploy-a-laravel-app-using-apache-and-mysql-4910a07f9a0c)
