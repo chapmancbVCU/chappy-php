@@ -18,7 +18,6 @@ $userMenu = Router::getMenu('user_menu');
   <div class="collapse navbar-collapse" id="main_menu">
     <ul class="navbar-nav me-auto">
       <?= Helper::buildMenuListItems($menu); ?>
-      <a href="https://chapmancbvcu.github.io/chappy-php/" target="_blank" class="nav-link">Wiki</a>
     </ul>
     <ul class="navbar-nav me-2 align-items-center"> <!-- Align items vertically -->
       <?= Helper::buildMenuListItems($userMenu, "dropdown-menu-end"); ?>
