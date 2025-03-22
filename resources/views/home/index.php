@@ -56,7 +56,7 @@
       <h2 class="text-center mb-4">Key Features of Chappy.php</h2>
       <ul class="list-group shadow-sm">
         <li class="list-group-item">
-          <strong>Dynamic Routing & Request Handling:</strong> Map clean URLs to controllers without needing .htaccess rewrites.
+          <strong>Dynamic Routing & Request Handling:</strong> Map clean URLs to controllers without needing to define routes manually.
         </li>
         <li class="list-group-item">
           <strong>CLI Powered by Symfony:</strong> Run migrations, seed data, or clear logs using our integrated console commands.
