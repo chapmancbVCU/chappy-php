@@ -454,6 +454,7 @@ upload_max_filesize = 2M
 to a value appropriate for your needs.  We set it to `10M`.
 
 Then restart PHP-FPM:
+
 **Ubuntu & Debian**
 ```sh
 sudo systemctl restart php8.4-fpm
