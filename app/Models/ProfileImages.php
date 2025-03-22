@@ -139,10 +139,7 @@ class ProfileImages extends Model {
         $lastSort = (!$lastImage) ? 0 : $lastImage->sort;
         $path = self::$_uploadPath.$user_id.DS;
         foreach($uploads->getFiles() as $file) {
-            $parts = explode('.',$file['name']);
-            $ext = end($parts);
-            $hash = sha1(time().$user_id.$file['tmp_name']);
-            $uploadName = $hash . '.' . $ext;
+            $uploadName = $uploads->generateUploadFilename($file['name']);
             $image = new self();
             $image->url = $path . $uploadName;
             $image->name = $uploadName;

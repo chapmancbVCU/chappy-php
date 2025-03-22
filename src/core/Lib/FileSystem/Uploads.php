@@ -80,6 +80,25 @@ class Uploads {
     }
 
     /**
+     * Generates a unique filename for an uploaded file while preserving its extension.
+     *
+     * Uses a cryptographically secure random hash to create a unique base name.
+     * Falls back to 'bin' if no extension is found in the original filename.
+     *
+     * @param string $originalFilename The original filename (used to extract the extension).
+     * @return string A unique, safely generated filename with the original extension.
+     *
+     * @throws \Exception If it was not possible to gather sufficient entropy (from random_bytes).
+     */
+    public function generateUploadFilename($originalFilename): string {
+        // Generate extension and fallback if no extension
+        $extension = pathinfo($originalFilename, PATHINFO_EXTENSION) ?: 'bin';
+
+        $hash = bin2hex(random_bytes(16)); // 32-character hash
+        return $hash . '.' . $extension;
+    }
+
+    /**
      * Getter function for the $_files array.
      *
      * @return array The $_files array.
