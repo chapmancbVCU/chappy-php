@@ -50,52 +50,6 @@
 
   <hr class="my-5">
 
-  <div class="row justify-content-center my-5">
-    <div class="col-12 col-md-10">
-      <h2 class="text-center mb-4">Key Features of Chappy.php</h2>
-      <ul class="list-group shadow-sm">
-        <li class="list-group-item">
-          <strong>Dynamic Routing & Request Handling:</strong> Map clean URLs to controllers without needing to define routes manually.
-        </li>
-        <li class="list-group-item">
-          <strong>CLI Powered by Symfony:</strong> Run migrations, seed data, or clear logs using our integrated console commands.
-        </li>
-        <li class="list-group-item">
-          <strong>Validation and Flash Messaging:</strong> Easily validate input and notify users with helpful UI feedback.
-        </li>
-        <li class="list-group-item">
-          <strong>Secure User Management:</strong> Includes registration, login, password hashing, sessions, and an admin role.
-        </li>
-        <li class="list-group-item">
-          <strong>Layouts & Components:</strong> Build dynamic pages with reusable layout and UI parts.
-        </li>
-        <li class="list-group-item">
-          <strong>Strong Security:</strong> Built-in CSRF protection, input sanitization, and request filtering.
-        </li>
-        <li class="list-group-item">
-          <strong>Single & Multiple File Uploads:</strong> Includes MIME checking and secure file naming strategies.
-        </li>
-        <li class="list-group-item">
-          <strong>Developer Tools:</strong> Debug mode, log viewer, unit test support, and database seeders.
-        </li>
-        <li class="list-group-item">
-          <strong>Built-In Documentation:</strong> Full API docs via Doctum and user guide with Jekyll or Daux.io support.
-        </li>
-        <li class="list-group-item">
-          <strong>Vite for Asset Bundling:</strong> Modern frontend pipeline with support for ES modules, SCSS, and more.
-        </li>
-        <li class="list-group-item">
-          <strong>Pagination and Migrations:</strong> Easy-to-implement pagination system and robust migration structure.
-        </li>
-        <li class="list-group-item">
-          <strong>Contact Manager App Included:</strong> A pre-built sample app to demonstrate best practices and features.
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <hr class="my-5">
-
   <div class="text-center">
     <h4>⚡ Ajax In Action</h4>
     <p>Test a sample Ajax call to see the framework response.</p>
