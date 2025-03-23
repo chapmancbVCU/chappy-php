@@ -338,7 +338,7 @@ echo "deb https://packages.sury.org/php/ bookworm main" | sudo tee /etc/apt/sour
 #### 2. Update and install PHP 8.4
 ```sh
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y php8.4 php8.4-cli php8.4-fpm php8.4-mysql php8.4-curl php8.4-zip php8.4-mbstring php8.4-xml php8.4-bcmath php8.4-soap php8.4-intl php8.4-readline php8.4-sqlite3 sqlite3
+sudo apt install -y php8.4 php8.4-cli php8.4-mysql php8.4-curl php8.4-zip php8.4-mbstring php8.4-xml php8.4-bcmath php8.4-soap php8.4-intl php8.4-readline php8.4-sqlite3 sqlite3
 ```
 
 <br>
