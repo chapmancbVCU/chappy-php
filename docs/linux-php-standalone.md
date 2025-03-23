@@ -3,7 +3,7 @@
 ## Table of contents
 1. [Overview](#overview)
 2. [Install System Dependencies](#dependencies)
-3. [Install PHP 8.3+](#php)
+3. [Install PHP 8.4](#php)
 4. [Install Composer](#composer)
 5. [Install Node.js & NPM](#nodejs)
 6. [Project Setup](#project-setup)
