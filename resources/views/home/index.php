@@ -13,7 +13,6 @@
 
     <div class="d-flex justify-content-center mt-4 flex-wrap gap-3">
       <a class="btn btn-primary" href="https://chapmancbvcu.github.io/chappy-php/">📘 View Documentation</a>
-      <a class="btn btn-outline-secondary" href="<?= Env::get('APP_DOMAIN', '/') ?>contacts">🚀 Sample App</a>
     </div>
   </div>
 
