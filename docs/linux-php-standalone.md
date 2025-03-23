@@ -14,7 +14,7 @@
 This guide walks through setting up your the Chappy.php framework on Ubuntu (22.04 LTS), Debian (LMDE), and RHEL (Rocky Linux 9) based distributions without requiring XAMPP, Nginx, or Apache. The framework is self-hosted using PHP’s built-in development server (php console serve).
 
 **Requirements**
-- PHP 8.3+
+- PHP 8.4
 - Composer
 - Node.js & NPM
 - Git (for cloning the repository)
