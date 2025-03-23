@@ -518,7 +518,6 @@ server {
     }
 }
 ```
-<br>
 
 Allow Nginx to Write and Connect:
 ```sh
@@ -640,6 +639,9 @@ location /phpmyadmin {
     }
 }
 ```
+- **Note:** If you get a 202 Bad Gateway error check the version of PHP in your file.
+If you're using a custom root path like /var/www/chappy-php, adjust root accordingly.
+
 <br>
 
 **Rocky Linux (RHEL-based)**
@@ -674,9 +676,6 @@ location /phpmyadmin {
 }
 ```
 <br>
-
-- **Note:** If you get a 202 Bad Gateway error check the version of PHP in your file.
-If you're using a custom root path like /var/www/chappy-php, adjust root accordingly.
 
 Reload Nginx to apply the config:
 ```sh
@@ -729,7 +728,6 @@ Use NodeSource to install the latest stable Node.js version.
 sudo apt install -y ca-certificates     # On minimal OS installs
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 ```
-<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
@@ -744,7 +742,6 @@ curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -
 ```sh
 sudo apt install -y nodejs
 ```
-<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
@@ -856,13 +853,12 @@ Set permissions and ownership for storage directory (This will enable writing to
 **Ubuntu & Debian**
 ```sh
 sudo chown -R chadchapman:www-data storage/
-sudo chown -R chadchapman:nginx storage/    # Rocky Linux
 sudo chmod -R 775 storage/
 ```
 
 **Rocky Linux (RHEL-based)**
 ```sh
-sudo chown -R nginx:nginx storage/    # Rocky Linux
+sudo chown -R nginx:nginx storage/
 sudo chmod -R 777 storage/
 ```
 <br>

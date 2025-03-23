@@ -389,12 +389,12 @@ Configure upload size For profile image upload support.  Edit the file:
 ```sh
 sudo vi /etc/php/8.4/apache2/php.ini
 ```
-<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
 sudo vi /etc/php.ini
 ```
+<br>
 
 Then modify the setting
 ```rust
@@ -402,7 +402,7 @@ upload_max_filesize = 2M
 ```
 
 to a value appropriate for your needs.  We set it to `10M`.
-<br>
+
 <br>
 
 ## 7. Install phpMyAdmin <a id="phpMyAdmin"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
@@ -480,7 +480,6 @@ Use NodeSource to install the latest stable Node.js version.
 sudo apt install -y ca-certificates     # On minimal OS installs
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 ```
-<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
@@ -495,7 +494,6 @@ curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -
 ```sh
 sudo apt install -y nodejs
 ```
-<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
