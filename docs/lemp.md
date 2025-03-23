@@ -36,7 +36,6 @@ First, update your system and install essential dependencies:
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y curl wget git unzip software-properties-common net-tools
 ```
-<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
@@ -54,7 +53,6 @@ sudo apt install -y nginx
 sudo systemctl enable nginx
 sudo systemctl start nginx
 ```
-<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
@@ -69,7 +67,6 @@ To confirm that Nginx is running:
 ```sh
 systemctl status nginx
 ```
-<br>
 
 The default page for Nginx should be accessible at:
 ```rust
@@ -83,7 +80,7 @@ This section will guide you through installing MySQL or MariaDB, configuring it 
 ### A. Install MySQL or MariaDB
 Depending on your Linux distribution, install either MySQL or MariaDB using the following instructions.
 
-**Ubuntu & Debian**
+**Ubuntu**
 
 To install MySQL:
 ```sh
@@ -93,7 +90,9 @@ sudo systemctl start mysql
 ```
 <br>
 
-To install MariaDB (Recommended for Debian):
+**Ubuntu and Debian**
+
+To install MariaDB:
 ```sh
 sudo apt install -y mariadb-server
 sudo systemctl enable mariadb
@@ -110,7 +109,6 @@ sudo dnf install -y mysql-server
 sudo systemctl enable mysqld
 sudo systemctl start mysqld
 ```
-<br>
 
 To install MariaDB:
 ```sh
@@ -118,7 +116,10 @@ sudo dnf install -y mariadb-server
 sudo systemctl enable mariadb
 sudo systemctl start mariadb
 ```
+<br>
+
 **Verify MySQL/MariaDB Installation**
+
 Run the following command to check the installed version:
 ```sh
 mysql -V
@@ -135,6 +136,8 @@ sudo mysql_secure_installation
 
 - MySQL 8+ on Ubuntu/Debian defaults to auth_socket authentication, meaning the root user does NOT need a password to log in locally.
 - The root password setup step may be skipped during the process.
+
+<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
@@ -171,6 +174,8 @@ Press y|Y for Yes, any other key for No:
 
 Choose `1` for a good balance.
 
+<br>
+
 #### 2. Set or Change the Root Password
 **Ubuntu/Debian**
 - If auth_socket is enabled, this step will be skipped.
@@ -189,12 +194,16 @@ Would you like to set up a root password? [Y/n]
 - MySQL (RHEL-based): You must set a password.
 - ✅ MariaDB (All distros): You’ll be asked even if a password is already set. Choose `n` if you already have it protected with a password or socket.
 
+<br>
+
 #### 3. Switch to unix_socket Authentication (MariaDB Only)
 ```sh
 Switch to unix_socket authentication [Y/n]
 ```
 - ✅ MariaDB on Debian/Ubuntu: Choose `n` if you want to use password authentication (especially for phpMyAdmin compatibility).
 - Choose `y` only if you're confident with CLI-only login and not using GUI tools like phpMyAdmin.
+
+<br>
 
 #### 4. Remove Anonymous Users
 - You’ll see this prompt:
@@ -203,12 +212,16 @@ Remove anonymous users? (Press y|Y for Yes, any other key for No) :
 ```
 - Type `Y` and press **Enter** to improve security.
 
+<br>
+
 #### 5. Disable Remote Root Login
 - You’ll see this prompt:
 ```rust
 Disallow root login remotely? (Press y|Y for Yes, any other key for No) :
 ```
 - Type `Y` and press **Enter** to prevent unauthorized remote access.
+
+<br>
 
 #### 6. Remove the Test Database
 - You'll see:
@@ -217,12 +230,16 @@ Remove test database and access to it? (Press y|Y for Yes, any other key for No)
 ```
 - Type `Y` and press **Enter**.
 
+<br>
+
 #### 7. Reload Privilege Tables
 - Finally, MySQL will ask:
 ```rust
 Reload privilege tables now? (Press y|Y for Yes, any other key for No) :
 ```
 - Type `Y` and press **Enter** to apply all changes.
+
+<br>
 
 #### 8. Secure Installation Complete
 - You should see a message like:
@@ -237,6 +254,8 @@ After running `mysql_secure_installation`, you can verify your settings by loggi
 sudo mysql -u root -p
 ```
 - If prompted, enter the **root password** you set earlier.
+
+<br>
 
 Run this SQL command to authentication settings:
 ```sql
@@ -383,6 +402,7 @@ git clone git@github.com:chapmancbVCU/chappy-php.git
 sudo mv chappy-php/ /var/www/
 cd /var/www/chappy-php
 ```
+<br>
 
 ### B. Set proper permissions:
 **Ubuntu**
@@ -390,7 +410,6 @@ cd /var/www/chappy-php
 sudo chown -R your-username:www-data /var/www/chappy-php
 sudo chmod -R 755 /var/www/chappy-php
 ```
-<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
@@ -448,6 +467,7 @@ server {
     }
 }
 ```
+<br>
 
 Enable the new site and disable default on Ubuntu/Debian:
 ```sh
@@ -484,21 +504,18 @@ sudo rm /var/www/chappy-php/info.php
 **Ubuntu**
 ```sh
 sudo vi /etc/php/8.4/fpm/php.ini
-
 ```
-<br>
 
 **Debian**
 ```sh
 sudo vi /etc/php/8.3/fpm/php.ini
-
 ```
-<br>
 
 **Rocky Linux (RHEL-based)**
 ```sh
 sudo vi /etc/php.ini
 ```
+<br>
 
 Then modify the setting
 ```rust
@@ -762,8 +779,9 @@ sudo systemctl restart nginx
 <br>
 
 ### F. Final Steps
-Set permissions for storage directory (This will enable writing to logs and uploads):
+Set permissions and ownership for storage directory (This will enable writing to logs and uploads):
 ```sh
+sudo chown -R chadchapman:www-data storage/
 sudo chmod -R 775 storage/
 ```
 
