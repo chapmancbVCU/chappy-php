@@ -433,12 +433,6 @@ sudo chmod -R 755 /var/www/chappy-php
 sudo vi /etc/nginx/sites-available/chappy-php
 ```
 
-**Rocky Linux (RHEL-based)**
-```sh
-sudo vi /etc/nginx/conf.d/chappy-php.conf
-```
-<br>
-
 Paste the following content while making sure correct php version is set (replace server_domain_or_IP with your IP address or domain name):
 ```rust
 server {
@@ -475,22 +469,73 @@ server {
     }
 }
 ```
-<br>
 
 Enable the new site and disable default on Ubuntu/Debian:
 ```sh
 sudo ln -s /etc/nginx/sites-available/chappy-php /etc/nginx/sites-enabled/
 sudo unlink /etc/nginx/sites-enabled/default
 ```
+<br>
 
+**Rocky Linux (RHEL-based)**
+```sh
+sudo vi /etc/nginx/conf.d/chappy-php.conf
+```
+
+Paste the following content while making sure correct php version is set (replace server_domain_or_IP with your IP address or domain name):
+```rust
+server {
+    listen 80;
+    server_name server_domain_or_IP;
+    root /var/www/chappy-php;
+
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-XSS-Protection "1; mode=block";
+    add_header X-Content-Type-Options "nosniff";
+
+    index index.html index.htm index.php;
+
+    charset utf-8;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    error_page 404 /index.php;
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass unix:/run/php-fpm/www.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+    }
+
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+```
+<br>
+
+Allow Nginx to Write and Connect:
+```sh
+sudo setsebool -P httpd_unified 1
+sudo setsebool -P httpd_read_user_content 1
+sudo setsebool -P httpd_can_network_connect 1
+sudo setsebool -P httpd_enable_homedirs 1
+```
+<br>
+
+### D. Test PHP
 Then test the configuration and reload Nginx:
 ```sh
 sudo nginx -t
 sudo systemctl reload nginx
 ```
-<br>
 
-### D. Test PHP
 Create a test file:
 ```sh
 echo "<?php phpinfo(); ?>" | sudo tee /var/www/chappy-php/info.php
@@ -564,23 +609,16 @@ sudo dnf install -y phpmyadmin
 <br>
 
 ### B. Configure Nginx to Serve phpMyAdmin
+**Ubuntu & Debian**
 Symlink phpMyAdmin into your Nginx-accessible root path:
 ```sh
 sudo ln -s /usr/share/phpmyadmin /var/www/phpmyadmin
 ```
 
 Then edit your Nginx config:
-
-**Ubuntu & Debian**
 ```sh
 sudo vi /etc/nginx/sites-enabled/chappy-php
 ```
-
-**Rocky Linux (RHEL-based)**
-```sh
-sudo vi /etc/nginx/conf.d/chappy-php.conf
-```
-<br>
 
 Add the following inside the `server {}` block:
 ```rust
@@ -602,12 +640,47 @@ location /phpmyadmin {
     }
 }
 ```
+<br>
+
+**Rocky Linux (RHEL-based)**
+Symlink phpMyAdmin into your Nginx-accessible root path:
+```sh
+sudo ln -s /usr/share/phpMyAdmin /var/www/phpmyadmin
+```
+
+Then edit your Nginx config:
+```sh
+sudo vi /etc/nginx/conf.d/chappy-php.conf
+```
+
+Add the following inside the `server {}` block:
+```rust
+location /phpmyadmin {
+    root /var/www;
+    index index.php index.html index.htm;
+
+    location ~ ^/phpmyadmin/(.+\.php)$ {
+        try_files $uri =404;
+        root /var/www;
+        fastcgi_pass unix:/run/php-fpm/www.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    location ~* ^/phpmyadmin/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
+        root /var/www;
+    }
+}
+```
+<br>
 
 - **Note:** If you get a 202 Bad Gateway error check the version of PHP in your file.
 If you're using a custom root path like /var/www/chappy-php, adjust root accordingly.
 
 Reload Nginx to apply the config:
 ```sh
+sudo nginx -t
 sudo systemctl reload nginx
 ```
 <br>
@@ -752,15 +825,7 @@ Also apply recursively to any .htaccess, uploads, or views:
 sudo restorecon -Rv /var/www/chappy-php
 ```
 
-#### 2. Allow Nginx to Write and Connect (If Needed)
-Run these SELinux booleans if your app writes to disk (e.g., for logs/uploads) or needs outbound network access:
-```sh
-sudo setsebool -P httpd_unified 1
-sudo setsebool -P httpd_can_network_connect 1
-sudo setsebool -P httpd_enable_homedirs 1
-```
-
-#### 3. Set the Correct SELinux Context for Writable Log Files and to Storage:
+#### 2. Set the Correct SELinux Context for Writable Log Files and to Storage:
 Step 1: Apply the Right Context:
 ```sh
 sudo chcon -R -t httpd_sys_rw_content_t /var/www/chappy-php/storage
@@ -773,7 +838,7 @@ sudo restorecon -Rv /var/www/chappy-php/storage
 ```
 📁 If you’re using other writable paths, repeat these steps for those as well.
 
-#### 4. Add Firewalld Rules for Nginx
+#### 3. Add Firewalld Rules for Nginx
 ```sh
 sudo firewall-cmd --permanent --add-service=http
 sudo firewall-cmd --permanent --add-service=https
@@ -788,10 +853,19 @@ sudo systemctl restart nginx
 
 ### F. Final Steps
 Set permissions and ownership for storage directory (This will enable writing to logs and uploads):
+**Ubuntu & Debian**
 ```sh
 sudo chown -R chadchapman:www-data storage/
+sudo chown -R chadchapman:nginx storage/    # Rocky Linux
 sudo chmod -R 775 storage/
 ```
+
+**Rocky Linux (RHEL-based)**
+```sh
+sudo chown -R nginx:nginx storage/    # Rocky Linux
+sudo chmod -R 777 storage/
+```
+<br>
 
 Run migrations:
 ```sh
