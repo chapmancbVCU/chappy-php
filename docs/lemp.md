@@ -701,7 +701,7 @@ npm -v
 ```sh
 cd /var/www/chappy-php
 ```
-**Ubuntu**
+**Ubuntu and Rocky Linux**
 ```sh
 composer run install-project
 ```
