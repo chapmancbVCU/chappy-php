@@ -18,6 +18,7 @@ This guide walks through setting up your the Chappy.php framework on Ubuntu (22.
 - Composer
 - Node.js & NPM
 - Git (for cloning the repository)
+
 <br>
 
 ## 2. Install System Dependencies <a id="dependencies"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
@@ -58,6 +59,7 @@ Now add the repo to your sources list:
 ```sh
 echo "deb https://packages.sury.org/php/ bookworm main" | sudo tee /etc/apt/sources.list.d/php.list
 ```
+<br>
 
 #### 2. Update and install PHP 8.4
 ```sh
@@ -146,12 +148,14 @@ cd repos/
 git clone git@github.com:chapmancbVCU/chappy-php.git
 cd chappy-php/
 ```
+<br>
 
 #### 2. Install
 Run:
 ```sh
 composer run install-project
 ```
+<br>
 
 #### 3. Run Project
 * A. Run:
