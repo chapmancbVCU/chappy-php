@@ -369,7 +369,7 @@ echo "deb https://packages.sury.org/php/ bookworm main" | sudo tee /etc/apt/sour
 
 #### 2. Update and install PHP 8.4
 ```sh
-sudo apt update
+sudo apt update && sudo apt upgrade -y
 sudo apt install -y php8.4 php8.4-cli php8.4-fpm php8.4-mysql php8.4-curl php8.4-zip php8.4-mbstring php8.4-xml php8.4-bcmath php8.4-soap php8.4-intl php8.4-readline php8.4-sqlite3 sqlite3
 ```
 
@@ -687,14 +687,10 @@ npm -v
 <br>
 
 ## 10. Project Setup <a id="project-setup"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-### A. Navigate to your user's root directory, install dependencies, then move to final location:
+### A. Navigate to your user's root directory and install dependencies:
 ```sh
-git clone git@github.com:chapmancbVCU/chappy-php.git
-cd chappy-php/
+cd /var/www/chappy-php/
 composer run install-project
-cd ..
-sudo mv chappy-php /var/www/html
-cd /var/www/html/chappy-php
 ```
 <br>
 
