@@ -316,6 +316,12 @@ sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y php8.4 php8.4-cli php8.4-mbstring php8.4-xml php8.4-curl php8.4-zip php8.4-mysql libapache2-mod-php8.4 php8.4-sqlite3 sqlite3 php8.4-bcmath
 ```
+
+Enable and start PHP-FPM:
+```sh
+sudo systemctl enable php8.4-fpm
+sudo systemctl start php8.4-fpm
+```
 <br>
 
 ### B. Debian
@@ -339,6 +345,12 @@ echo "deb https://packages.sury.org/php/ bookworm main" | sudo tee /etc/apt/sour
 sudo apt update
 sudo apt install -y php8.3 php8.3-cli php8.3-fpm php8.3-mysql php8.3-curl php8.3-zip php8.3-mbstring php8.3-xml php8.3-bcmath php8.3-soap php8.3-intl php8.3-readline php8.3-sqlite3 sqlite3
 ```
+
+Enable and start PHP-FPM:
+```sh
+sudo systemctl enable php8.3-fpm
+sudo systemctl start php8.3-fpm
+```
 <br>
 
 ### C. Rocky Linux (RHEL-based)
@@ -348,9 +360,15 @@ sudo dnf module list php                    # List available PHP modules
 sudo dnf module enable php:remi-8.4 -y      # Enables PHP 8.3 from Remi repo
 sudo dnf install -y php php-cli php-mbstring php-xml php-curl php-zip php-mysqlnd php-bcmath php-json php-gd php-opcache php-intl php-pear php-soap
 ```
+
+Enable and start PHP-FPM:
+```sh
+sudo systemctl enable php-fpm
+sudo systemctl start php-fpm
+```
 <br>
 
-Verify installation:
+### D. Verify installation:
 ```sh
 php -v
 ```
@@ -512,7 +530,25 @@ npm -v
 ```sh
 git clone git@github.com:chapmancbVCU/chappy-php.git
 cd chappy-php/
+```
+<br>
+
+Run install script.
+**Ubuntu and Rocky Linux**
+```sh
 composer run install-project
+```
+
+**Debian**
+```sh
+sudo apt install -y php8.4-xml php8.4-sqlite3 php8.4-mysql
+composer run install-project
+```
+<br>
+
+Finally,
+
+```sh
 cd ..
 sudo mv chappy-php /var/www/html
 cd /var/www/html/chappy-php

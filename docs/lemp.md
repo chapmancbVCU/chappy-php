@@ -26,6 +26,7 @@ This guide walks through setting up a LEMP stack (Linux, Nginx, MySQL/MariaDB, P
 - Composer
 - Node.js & NPM
 - Git (for cloning the repository)
+
 <br>
 
 ## 2. Install System Dependencies <a id="dependencies"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
@@ -281,6 +282,7 @@ Since `auth_socket` is enabled, use **sudo** to access MySQL without a password:
 ```sh
 sudo mysql
 ```
+<br>
 
 #### 2. Check Current Authentication Method
 Run this SQL command:
@@ -296,6 +298,7 @@ You should see `root@localhost` using **auth_socket**, like this:
 | root | localhost | auth_socket |
 +------+-----------+-------------+
 ```
+<br>
 
 #### 3. Change Root to Use Password Authentication
 To switch from `auth_socket` to `mysql_native_password`, run:
@@ -303,6 +306,7 @@ To switch from `auth_socket` to `mysql_native_password`, run:
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your-secure-password';
 FLUSH PRIVILEGES;
 ```
+<br>
 
 #### 4. Verify the Change
 Run the authentication check again:
@@ -310,6 +314,8 @@ Run the authentication check again:
 SELECT user, host, plugin FROM mysql.user;
 ```
 It should now show `mysql_native_password` instead of `auth_socket`.
+
+<br>
 
 #### 5. Exit and Test
 Exit MySQL:
@@ -321,6 +327,7 @@ Now try logging in with your new password:
 ```sh
 mysql -u root -p
 ```
+<br>
 
 #### 6. Final Notes
 - For production servers, always use a strong root password and disable remote root login.
@@ -358,6 +365,7 @@ Now add the repo to your sources list:
 ```sh
 echo "deb https://packages.sury.org/php/ bookworm main" | sudo tee /etc/apt/sources.list.d/php.list
 ```
+<br>
 
 #### 2. Update and install PHP 8.3
 ```sh
@@ -572,9 +580,17 @@ sudo ln -s /usr/share/phpmyadmin /var/www/phpmyadmin
 ```
 
 Then edit your Nginx config:
+
+**Ubuntu & Debian**
 ```sh
 sudo vi /etc/nginx/sites-enabled/chappy-php
 ```
+
+**Rocky Linux (RHEL-based)**
+```sh
+sudo vi /etc/nginx/conf.d/chappy-php.conf
+```
+<br>
 
 Add the following inside the `server {}` block:
 ```rust
@@ -596,6 +612,8 @@ location /phpmyadmin {
     }
 }
 ```
+
+- **Note:** If you get a 202 Bad Gateway error check the version of PHP in your file.
 If you're using a custom root path like /var/www/chappy-php, adjust root accordingly.
 
 Reload Nginx to apply the config:
@@ -682,6 +700,15 @@ npm -v
 ### A. Navigate to your user's root directory, install dependencies, then move to final location:
 ```sh
 cd /var/www/chappy-php
+```
+**Ubuntu**
+```sh
+composer run install-project
+```
+
+**Debian**
+```sh
+sudo apt install -y php8.4-xml php8.4-sqlite3 php8.4-mysql
 composer run install-project
 ```
 <br>
