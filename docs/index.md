@@ -13,7 +13,7 @@ Get to any resource within the Chappy.php Wiki from here.
 8. Getting Started
     * A. [Linux Standalone PHP](linux-php-standalone)
     * B. [LAMP Stack](lamp)
-    * C. [LEMP Stack](lemp) - Coming soon
+    * C. [LEMP Stack](lemp)
     * D. [MacOS](macos)
     * E. [Windows](windows)
 9. [JavaScript and Vite](javascript)
