@@ -317,11 +317,6 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install -y php8.4 php8.4-cli php8.4-mbstring php8.4-xml php8.4-curl php8.4-zip php8.4-mysql libapache2-mod-php8.4 php8.4-sqlite3 sqlite3 php8.4-bcmath
 ```
 
-Enable and start PHP-FPM:
-```sh
-sudo systemctl enable php8.4-fpm
-sudo systemctl start php8.4-fpm
-```
 <br>
 
 ### B. Debian
@@ -346,11 +341,6 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install -y php8.4 php8.4-cli php8.4-fpm php8.4-mysql php8.4-curl php8.4-zip php8.4-mbstring php8.4-xml php8.4-bcmath php8.4-soap php8.4-intl php8.4-readline php8.4-sqlite3 sqlite3
 ```
 
-Enable and start PHP-FPM:
-```sh
-sudo systemctl enable php8.4-fpm
-sudo systemctl start php8.4-fpm
-```
 <br>
 
 ### C. Rocky Linux (RHEL-based)
@@ -361,11 +351,6 @@ sudo dnf module enable php:remi-8.4 -y      # Enables PHP 8.4 from Remi repo
 sudo dnf install -y php php-cli php-mbstring php-xml php-curl php-zip php-mysqlnd php-bcmath php-json php-gd php-opcache php-intl php-pear php-soap
 ```
 
-Enable and start PHP-FPM:
-```sh
-sudo systemctl enable php-fpm
-sudo systemctl start php-fpm
-```
 <br>
 
 ### D. Verify installation:
