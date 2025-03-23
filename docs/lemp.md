@@ -367,16 +367,16 @@ echo "deb https://packages.sury.org/php/ bookworm main" | sudo tee /etc/apt/sour
 ```
 <br>
 
-#### 2. Update and install PHP 8.3
+#### 2. Update and install PHP 8.4
 ```sh
 sudo apt update
-sudo apt install -y php8.3 php8.3-cli php8.3-fpm php8.3-mysql php8.3-curl php8.3-zip php8.3-mbstring php8.3-xml php8.3-bcmath php8.3-soap php8.3-intl php8.3-readline php8.3-sqlite3 sqlite3
+sudo apt install -y php8.4 php8.4-cli php8.4-fpm php8.4-mysql php8.4-curl php8.4-zip php8.4-mbstring php8.4-xml php8.4-bcmath php8.4-soap php8.4-intl php8.4-readline php8.4-sqlite3 sqlite3
 ```
 
 Enable and start PHP-FPM:
 ```sh
-sudo systemctl enable php8.3-fpm
-sudo systemctl start php8.3-fpm
+sudo systemctl enable php8.4-fpm
+sudo systemctl start php8.4-fpm
 ```
 <br>
 
@@ -509,14 +509,9 @@ sudo rm /var/www/chappy-php/info.php
 
 ### E. Configure Upload Size (for Profile Image Support):
 
-**Ubuntu**
+**Ubuntu and Debian**
 ```sh
 sudo vi /etc/php/8.4/fpm/php.ini
-```
-
-**Debian**
-```sh
-sudo vi /etc/php/8.3/fpm/php.ini
 ```
 
 **Rocky Linux (RHEL-based)**
@@ -536,14 +531,9 @@ to a value appropriate for your needs.  We set it to `10M`.
 
 Then restart PHP-FPM:
 
-**Ubuntu**
+**Ubuntu and Debian**
 ```sh
 sudo systemctl restart php8.4-fpm
-```
-
-**Debian**
-```sh
-sudo systemctl restart php8.3-fpm
 ```
 
 **Rocky Linux (RHEL-based)**
@@ -699,17 +689,12 @@ npm -v
 ## 10. Project Setup <a id="project-setup"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 ### A. Navigate to your user's root directory, install dependencies, then move to final location:
 ```sh
-cd /var/www/chappy-php
-```
-**Ubuntu and Rocky Linux**
-```sh
+git clone git@github.com:chapmancbVCU/chappy-php.git
+cd chappy-php/
 composer run install-project
-```
-
-**Debian**
-```sh
-sudo apt install -y php8.4-xml php8.4-sqlite3 php8.4-mysql
-composer run install-project
+cd ..
+sudo mv chappy-php /var/www/html
+cd /var/www/html/chappy-php
 ```
 <br>
 
