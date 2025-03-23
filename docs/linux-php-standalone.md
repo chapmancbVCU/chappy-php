@@ -42,28 +42,47 @@ sudo apt install -y curl wget git unzip software-properties-common
 ```
 <br>
 
-## 3. Install PHP 8.3+ <a id="php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
-**Debian (LMDE)**
+## 3. Install PHP 8.4 <a id="php"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
+### A. Debian (LMDE)**
+#### 1. Add the SURY repository (trusted PHP repo for Debian)
 ```sh
-sudo apt update
-sudo apt install -y php php-cli php-mbstring php-xml php-curl php-zip php-sqlite3 php-bcmath
+sudo apt install -y lsb-release apt-transport-https ca-certificates wget gnupg2
 ```
 
-**RHEL**
+Then import the GPG key:
+```sh
+wget -qO - https://packages.sury.org/php/apt.gpg | sudo tee /etc/apt/trusted.gpg.d/php.gpg >/dev/null
+```
+
+Now add the repo to your sources list:
+```sh
+echo "deb https://packages.sury.org/php/ bookworm main" | sudo tee /etc/apt/sources.list.d/php.list
+```
+
+#### 2. Update and install PHP 8.4
+```sh
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y php8.4 php8.4-cli php8.4-mbstring php8.4-xml php8.4-curl php8.4-zip php8.4-sqlite3 php8.4-bcmath
+```
+<br>
+
+### B. RHEL
 ```sh
 sudo dnf install -y epel-release
 sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-9.rpm
 sudo dnf module list php                    # List available PHP modules
-sudo dnf module enable php:remi-8.3 -y      # Enabled PHP 8.3 from Remi repo
+sudo dnf module enable php:remi-8.4 -y      # Enabled PHP 8.3 from Remi repo
 sudo dnf install -y php php-cli php-mbstring php-xml php-curl php-zip php-sqlite3 php-bcmath
 ```
+<br>
 
-**Ubuntu**
+### C. Ubuntu
 ```sh
 sudo add-apt-repository ppa:ondrej/php -y
-sudo apt update
-sudo apt install -y php8.3 php8.3-cli php8.3-mbstring php8.3-xml php8.3-curl php8.3-zip php8.3-sqlite3 php8.3-bcmath
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y php8.4 php8.4-cli php8.4-mbstring php8.4-xml php8.4-curl php8.4-zip php8.4-sqlite3 php8.4-bcmath
 ```
+<br>
 
 Verify installation:
 ```sh
@@ -88,7 +107,7 @@ composer -v
 ## 5. Install Node.js & NPM <a id="nodejs"></a><span style="float: right; font-size: 14px; padding-top: 15px;">[Table of Contents](#table-of-contents)</span>
 Use NodeSource to install the latest stable Node.js version.
 #### 1: Add Node.js Repository
-**Debian (LMDE)**
+**Debian (LMDE) and Ubuntu**
 ```sh
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 ```
@@ -97,14 +116,10 @@ curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 ```sh
 curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -
 ```
-
-**Ubuntu**
-```sh
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-```
+<br>
 
 #### 2: Install Node.js & NPM
-**Debian (LMDE)**
+**Debian (LMDE) and Ubuntu**
 ```sh
 sudo apt install -y nodejs
 ```
@@ -113,11 +128,7 @@ sudo apt install -y nodejs
 ```sh
 sudo dnf install -y nodejs
 ```
-
-**Ubuntu**
-```sh
-sudo apt install -y nodejs
-```
+<br>
 
 #### 3: Verify Installation
 ```sh
@@ -130,9 +141,10 @@ npm -v
 Navigate to your preferred development directory and clone the project:
 #### 1. Cloning The Project
 ```sh
-cd ~/projects
+mkdir repos
+cd repos/
 git clone git@github.com:chapmancbVCU/chappy-php.git
-cd chappy-php
+cd chappy-php/
 ```
 
 #### 2. Install
