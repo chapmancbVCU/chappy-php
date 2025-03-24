@@ -5,6 +5,15 @@
 
 [Visit our Wiki](https://chapmancbvcu.github.io/chappy-php-starter/)
 
+We have moved!
+
+Main framework can be found [here](https://github.com/chapmancbVCU/chappy-php-framework)
+Starter application can be found [here](https://github.com/chapmancbVCU/chappy-php-starter)
+
+## Install
+```sh
+composer create-project chappy-php/chappy-php my-app
+```
 
 chappy.php is a whole new Model View Controller framework tailored to all of the fellows of the internet. Our goal is to provide a light weight and easily expandable framework for any PHP developer. 
 <br>
