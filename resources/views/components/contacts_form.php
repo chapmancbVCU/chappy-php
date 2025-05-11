@@ -73,7 +73,7 @@
             'cell_phone', 
             $this->contact->cell_phone, 
             ['class' => 'form-control'], 
-            ['class' => 'form-group col-md-6'],
+            ['class' => 'form-group col-md-6', 'onkeydown' => 'phoneNumberFormatter("cell_phone")'],
             "phe"
         );?>
     </div>
@@ -84,7 +84,7 @@
             'home_phone', 
             $this->contact->home_phone,
             ['class' => 'form-control', 'placeholder' => 'EX: 123-456-7890'], 
-            ['class' => 'form-group col-md-6'],
+            ['class' => 'form-group col-md-6', 'onkeydown' => 'phoneNumberFormatter("home_phone")'],
             "ep"
         );?>
         <?= FormHelper::telBlock('work', 
@@ -92,7 +92,7 @@
             'work_phone', 
             $this->contact->work_phone, 
             ['class' => 'form-control'], 
-            ['class' => 'form-group col-md-6'],
+            ['class' => 'form-group col-md-6', 'onkeydown' => 'phoneNumberFormatter("work_phone")'],
             "a"
         );?>
     </div>

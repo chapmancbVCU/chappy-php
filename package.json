@@ -21,9 +21,11 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.7.1",
     "jquery-ui": "^1.14.1",
+    "tinymce": "^7.7.2",
     "vite": "^6.0.3"
   },
   "devDependencies": {
-    "vite-plugin-full-reload": "^1.2.0"
+    "vite-plugin-full-reload": "^1.2.0",
+    "vite-plugin-static-copy": "^2.3.0"
   }
 }
