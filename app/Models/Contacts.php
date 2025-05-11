@@ -2,7 +2,7 @@
 namespace App\Models;
 use Core\{Helper, Model};
 use Core\Lib\Utilities\Arr;
-use Core\Validators\{MaxValidator, RequiredValidator};
+use Core\Validators\{MaxValidator, PhoneNumberValidator, RequiredValidator};
 
 /**
  * Extends the Model class.  Supports functions for handling Contacts such as 
@@ -141,5 +141,10 @@ class Contacts extends Model {
         foreach($requiredFields as $field => $display) {
             $this->runValidation(new RequiredValidator($this,['field'=>$field,'message'=>$display." is required."]));
         }
+
+        $this->runValidation((new PhoneNumberValidator($this, [
+            'field' => 'cell_phone',
+            'rule' => 'GB',
+            'message' => 'Please enter a valid phone number for '])));
     }
 }
