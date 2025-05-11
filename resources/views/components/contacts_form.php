@@ -62,38 +62,35 @@
     </div>
 
     <div class="row">
-        <?= FormHelper::emailBlock('Email', 
+        <?= FormHelper::emailBlock("E-mail",
             'email', 
             $this->contact->email, 
             ['class' => 'form-control'], 
             ['class' => 'form-group col-md-6']
         );?>
-        <?= FormHelper::telBlock('cell', 
+        <?= FormHelper::telBlock( 
             'Cell Phone', 
             'cell_phone', 
             $this->contact->cell_phone, 
             ['class' => 'form-control'], 
-            ['class' => 'form-group col-md-6', 'onkeydown' => 'phoneNumberFormatter("cell_phone")'],
-            "phe"
+            ['class' => 'form-group col-md-6'],
         );?>
     </div>
 
     <div class="row">
-        <?= FormHelper::telBlock('home', 
+        <?= FormHelper::telBlock(
             'Home Phone', 
             'home_phone', 
             $this->contact->home_phone,
             ['class' => 'form-control', 'placeholder' => 'EX: 123-456-7890'], 
-            ['class' => 'form-group col-md-6', 'onkeydown' => 'phoneNumberFormatter("home_phone")'],
-            "ep"
+            ['class' => 'form-group col-md-6'],
         );?>
-        <?= FormHelper::telBlock('work', 
+        <?= FormHelper::telBlock(
             'Work Phone', 
             'work_phone', 
             $this->contact->work_phone, 
             ['class' => 'form-control'], 
-            ['class' => 'form-group col-md-6', 'onkeydown' => 'phoneNumberFormatter("work_phone")'],
-            "a"
+            ['class' => 'form-group col-md-6'],
         );?>
     </div>
 
@@ -111,5 +108,4 @@
         <a href="<?=Env::get('APP_DOMAIN', '/')?>contacts" class="btn btn-default">Cancel</a>
         <?= FormHelper::submitTag('Save', ['class' => 'btn btn-primary']) ?>
     </div>
-    <script src="<?=Env::get('APP_DOMAIN', '/')?>resources/js/frontEndPhoneNumberValidate.js"></script>
 </form>
