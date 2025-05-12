@@ -145,6 +145,7 @@ class Contacts extends Model {
         $this->runValidation((new PhoneNumberValidator($this, [
             'field' => 'cell_phone',
             'rule' => 'US',
-            'message' => 'Please enter a valid phone number for '])));
+            'message' => 'Please enter a valid phone number for '
+        ])));
     }
 }
